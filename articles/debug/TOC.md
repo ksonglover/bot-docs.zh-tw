@@ -1,0 +1,4 @@
+# [偵錯 Bot 服務](../bot-service-debug-bot.md)
+# [測試及偵錯指導方針](../v4sdk/bot-builder-testing-debugging.md)
+# [使用模擬器進行偵錯](../bot-service-debug-emulator.md)
+# [測試 Cortana 技能](../bot-service-debug-cortana-skill.md)

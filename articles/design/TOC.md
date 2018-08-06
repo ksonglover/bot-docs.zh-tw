@@ -1,0 +1,11 @@
+# [Bot 設計準則](../bot-service-design-principles.md)
+# [首次互動](../bot-service-design-first-interaction.md)
+# [設計和控制流程](../bot-service-design-conversation-flow.md)
+# [導覽](../bot-service-design-navigation.md)
+# [UX 元素](../bot-service-design-user-experience.md)
+# 模式
+## [工作自動化](../bot-service-design-pattern-task-automation.md)
+## [知識庫](../bot-service-design-pattern-knowledge-base.md)
+## [將對話遞交給人員處理](../bot-service-design-pattern-handoff-human.md)
+## [應用程式中的 Bot](../bot-service-design-pattern-embed-app.md)
+## [網站中的 Bot](../bot-service-design-pattern-embed-web-site.md)

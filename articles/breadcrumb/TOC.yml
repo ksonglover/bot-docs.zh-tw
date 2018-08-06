@@ -1,0 +1,17 @@
+- name: Docs
+  href: /
+  homepage: /
+  items:
+    - name: Bot 服務
+      tocHref: /Bot-Framework/
+      topicHref: /Bot-Framework/index
+      items:
+        - name: 適用於 .NET 的 Bot 建立器 SDK
+          tocHref: /Bot-Framework/dotnet
+          topicHref: /Bot-Framework/dotnet/
+        - name: 適用於 Node.js 的 Bot 建立器 SDK
+          tocHref: /Bot-Framework/nodejs
+          topicHref: /Bot-Framework/nodejs/
+        - name: Bot Framework REST API
+          tocHref: /Bot-Framework/rest-api
+          topicHref: /Bot-Framework/rest-api/

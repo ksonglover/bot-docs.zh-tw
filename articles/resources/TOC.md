@@ -1,0 +1,11 @@
+# [常見問題集](../bot-service-resources-bot-framework-faq.md)
+# [取得支援](../bot-service-resources-links-help.md)
+# [識別碼指南](../bot-service-resources-identifiers-guide.md)
+# [App Insights 金鑰](../bot-service-resources-app-insights-keys.md)
+# [使用者代理程式要求](../bot-service-resources-user-agent.md)
+# [Bot 檢閱指導方針](../bot-service-review-guidelines.md)
+# [Bot Framework 活動規格](../bot-service-activity-spec.md)
+# [Bot 服務合規性](../v4sdk/bot-service-compliance.md)
+# 疑難排解
+## [針對一般問題進行疑難排解](../bot-service-troubleshoot-general-problems.md)
+## [針對驗證進行疑難排解](../bot-service-troubleshoot-authentication-problems.md)
