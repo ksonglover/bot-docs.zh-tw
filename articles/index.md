@@ -8,14 +8,17 @@ ms.topic: landing-page
 layout: LandingPage
 ms.prod: bot-framework
 ms.date: 05/03/2018
-ms.openlocfilehash: 2264f714b28b52691da2ee0d421506b408a43ef3
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6759a870538265fa9f8ae089486946b8fe648649
+ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39116413"
+ms.lasthandoff: 08/04/2018
+ms.locfileid: "39514988"
 ---
 ::: moniker range="azure-bot-service-3.0"
+
+> [!NOTE]
+> 本主題適用於 SDK v3 (穩定) 版本。 您可以在[這裡](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)找到發行前版本的 SDK v4 文件。
 
 <div class="content">
     <h1>Azure Bot 服務文件</h1>
@@ -90,10 +93,12 @@ ms.locfileid: "39116413"
 
 ::: moniker range="azure-bot-service-4.0"
 
+> [!NOTE] 
+> 本主題為 V4 SDK 內容的發行前文件，且可能會有所變更。 您可以在[這裡](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-3.0)找到 V3 SDK (穩定) 內容。
+
 <div class="content">
     <h1>Azure Bot 服務文件</h1>
     <div class="intro" style="min-width: 200px">
-        <p><b> [本主題為發行前說明文件，可能會有所變更。] </b></p>
         <p>Azure Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot 建立器 SDK，並支援 C#、JavaScript、Python 和 Java。 了解如何透過我們的快速入門、教學課程和範例使用 Bot 服務。
 </p>
 </div>
