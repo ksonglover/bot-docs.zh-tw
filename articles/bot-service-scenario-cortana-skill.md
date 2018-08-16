@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 2483366c6d325e5c18a77c2a89b63cc0350aef85
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 049dffd2adc700323bec943e090d369a14ff696b
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299047"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574844"
 ---
 # <a name="cortana-skills-bot-scenario"></a>Cortana 技能 Bot 案例
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 Cortana 技能 Bot 擴充了 Cortana，可以輕鬆地從您行事曆的內容，使用語音預訂行動裝置自動維護預約。
 
 Cortana 是您的個人助理。 使用您的語音和自訂的 Cortana 技能 Bot 的自然介面，您可以讓 Cortana 與組織 (如汽車商店) 交談，以協助您預約。 該服務可以提供一份服務、可用時間和持續時間的清單。 Cortana 可以查看您的行事曆，以查看您是否在衝突的時間有某些內容，如果沒有，則建立約會並將它新增至您的行事曆中。

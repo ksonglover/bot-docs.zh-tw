@@ -8,14 +8,17 @@ ms.topic: get-started-article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 208bd5a49400f9e9ff230dafb6dd20c36d50dfad
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 21186c5d3b0769311e4703ca1dab2f48a0a0081a
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298802"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574884"
 ---
 # <a name="develop-bots-with-bot-builder"></a>使用 Bot Builder 來開發 Bot
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 Bot Builder 提供 SDL、程式庫、範本與工具來協助您建置 Bot 及針對 Bot 進行偵錯。 當您使用 Bot Service 建置 Bot 時，您的 Bot 由 Bot Builder SDK 支援。 您也可以使用 Bot Builder SDK 利用 C# 或 Node.js 從頭開始建立 Bot。 Bot Builder 包括可用於測試 Bot 的 Bot Framework Emulator，以及與用於在不同通道上預覽 Bot 使用者體驗的 Channel Inspector。
 
 若要使用您偏愛的任何程式設計語言來建置 Bot，您可以使用 REST API。

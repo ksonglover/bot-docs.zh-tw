@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 0eb14f4bf52a293d3405762c786259f771aecad6
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 43c178c4bbdf0bb04384bb8ada397066e6f7dd12
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299823"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574614"
 ---
 # <a name="bot-builder-sdk-for-nodejs-samples"></a>適用於 Node.js 的 Bot 建立器 SDK 範例
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 這些範例會示範以工作為主的 Bot，顯示如何利用適用於 Node.js 的 Bot 建立器 SDK 功能。 您可使用這些範例，協助您快速開始建置具備豐富功能的絕佳 Bot。
 

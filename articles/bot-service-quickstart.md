@@ -8,14 +8,16 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/13/2018
-ms.openlocfilehash: 86776853b7928bc12588a8211d21ace58d57838d
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: c0432bf7c1691422db71798daf3b1aab5bf5b5dd
+ms.sourcegitcommit: 97bb24f15041caccef4ca5736aa14f144881e0c6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298772"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39567517"
 ---
 ::: moniker range="azure-bot-service-3.0"
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
 # <a name="create-a-bot-with-bot-service"></a>使用 Bot 服務建立 Bot
 Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連接 Bot 與通道的 Bot Framework。 建立支援 .NET 和 Node.js 的 Bot 時，Bot 服務提供五種範本供您選擇。 在本主題中，您將了解如何使用 Bot 服務來建立使用 Bot Builder SDK 的新 Bot。
@@ -46,7 +48,7 @@ Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Buil
    | **Bot 範本** | 基本 | 選擇 [C#] 或 [Node.js]，並選取 [基本] 範本以供此快速入門使用，然後按一下 [選取]。 基本範本會建立回應 Bot。 [深入了解](bot-service-concept-templates.md)範本。 |
    | **App Service 方案/位置** | 您的 App Service 方案  | 選取 [App Service 方案](https://azure.microsoft.com/en-us/pricing/details/app-service/plans/)位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 (不適用於 Functions Bot)。 |
    | **Azure 儲存體** | 您的 Azure 儲存體帳戶 | 您可以建立新的資料儲存體帳戶，或使用現有的帳戶。 根據預設，Bot 會使用[表格儲存體](/azure/storage/common/storage-introduction#table-storage)。 |
-   | **Application Insights** | 開啟 | 決定您要**開啟**或**關閉** [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果您選取 [開啟]，您也必須指定區域位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 |
+   | **Application Insights** | 另一 | 決定您要**開啟**或**關閉** [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果您選取 [開啟]，您也必須指定區域位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 |
    | **Microsoft 應用程式識別碼和密碼** | 自動建立應用程式識別碼和密碼 | 如果您需要手動輸入 Microsoft 應用程式識別碼和密碼，請使用此選項。 否則，在 Bot 建立程序期間，便會為您建立新的 Microsoft 應用程式識別碼和密碼。 |
 
    > [!NOTE]
@@ -106,7 +108,7 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
  | **Bot 範本** | 基本 | 選擇 [SDK v4]。 選取 [C#] 或 [Node.js]，並選取 [基本] 範本以供本快速入門使用，然後按一下 [選取]。 基本範本會建立回應 Bot。 
  | **App Service 方案/位置** | 您的 App Service 方案  | 選取 [App Service 方案](https://azure.microsoft.com/en-us/pricing/details/app-service/plans/)位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 |
  | **Azure 儲存體** | 您的 Azure 儲存體帳戶 | 您可以建立新的資料儲存體帳戶，或使用現有的帳戶。 根據預設，Bot 會使用[表格儲存體](/azure/storage/common/storage-introduction#table-storage)。 |
- | **Application Insights** | 開啟 | 決定您要**開啟**或**關閉** [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果您選取 [開啟]，您也必須指定區域位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 |
+ | **Application Insights** | 另一 | 決定您要**開啟**或**關閉** [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果您選取 [開啟]，您也必須指定區域位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 |
  | **Microsoft 應用程式識別碼和密碼** | 自動建立應用程式識別碼和密碼 | 如果您需要手動輸入 Microsoft 應用程式識別碼和密碼，請使用此選項。 否則，在 Bot 建立程序期間，便會為您建立新的 Microsoft 應用程式識別碼和密碼。 |
 
 4. 按一下 [建立] 以建立服務，並將 Bot 部署到雲端。 此程序可能需要幾分鐘的時間。

@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 0dc869aa1464c086b6596ee83d8e6e488d8a8a55
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 4e0bde9d05ed49f6674b2d721e07235b26c5cea4
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299530"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574752"
 ---
 # <a name="enterprise-productivity-bot-scenario"></a>企業生產力 Bot 案例
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 企業 Bot 說明如何將 Bot 與您的 Office 365 行事曆和其他服務整合，來提升您的生產力。
 
 企業生產力 Bot 的重點在於能快速地存取客戶資訊，而不需要開啟一大堆的視窗。 使用簡單的聊天命令，銷售人員便能查閱客戶資料，並透過圖形 API 和 Office 365 檢查下一個約會。 他們可以從中存取儲存在 Dynamics CRM 的客戶特定資訊，例如取得案例資訊，或是建立新的案例。
@@ -53,7 +56,7 @@ Microsoft Graph 透過位於 https://graph.microsoft.com 的單一端點，公�
 Dynamics CRM 是客戶業務開發平台。 使用 Bot 和 CRM API，您可以建置豐富的互動式 Bot，並存取儲存在 CRM 中的大量資料。 Dynamics CRM 的強大功能，可供您的 Bot 用來建立案例、檢查狀態、知識管理搜尋等等。
 
 ### <a name="application-insights"></a>Application Insights
-Application Insights 可協助您透過應用程式效能管理 (APM) 和立即分析，取得可操作的見解。 根據預設，您可以取得豐富的效能監視、強大的警示與便於取用的儀表板，以協助確保您的 Bot 可供使用，並如預期般執行。 您可以快速查看是否遇到問題，然後執行根本原因分析以找出並修正問題。
+Application Insights 可協助您透過應用程式效能管理和立即分析，取得可操作的見解。 根據預設，您可以取得豐富的效能監視、強大的警示與便於取用的儀表板，以協助確保您的 Bot 可供使用，並如預期般執行。 您可以快速查看是否遇到問題，然後執行根本原因分析以找出並修正問題。
 
 ## <a name="next-steps"></a>後續步驟
 接下來，深入了解 Bot 案例。

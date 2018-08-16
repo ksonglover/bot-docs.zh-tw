@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 286d7057afb28983964ef992de2c11cebd74e0da
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: ab1f0b938703f404417e48520467dc75b9f0717d
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299674"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574834"
 ---
 # <a name="bot-service-templates"></a>Bot 服務範本
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 Bot 服務包含五個範本以協助您開始建置 Bot。 這些範本會提供現成的完整功能 Bot 以協助您快速入門。 當您[建立 Bot](bot-service-quickstart.md) 時，您會選擇適用於該 Bot 的範本和 SDK 語言。
 
 每個範本都會提供以 Bot 的其中一項核心功能為基礎的起始點。 
