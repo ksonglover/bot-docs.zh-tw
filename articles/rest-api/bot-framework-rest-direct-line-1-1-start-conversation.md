@@ -1,0 +1,68 @@
+---
+title: 開始對話 | Microsoft Docs
+description: 了解如何使用直接線路 API 1.1 版開始對話。
+author: RobStand
+ms.author: kamrani
+manager: kamrani
+ms.topic: article
+ms.prod: bot-framework
+ms.date: 12/13/2017
+ms.openlocfilehash: 36645ce3811c77a3ca7ed697eeae63027fa1644a
+ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 07/18/2018
+ms.locfileid: "39299519"
+---
+# <a name="start-a-conversation"></a>開始對話
+
+> [!IMPORTANT]
+> 此文章說明如何使用直接線路 API 1.1 開始對話。 如果要在用戶端應用程式與 Bot 之間建立新連線，請改為使用[直接線路 API 3.0](bot-framework-rest-direct-line-3-0-start-conversation.md)。
+
+直接線路對話是由用戶端明確地開啟，且只要 Bot 和用戶端在參與且具有有效認證，對話就會繼續執行。 只要對話還是開啟的，Bot 和用戶端就都會傳送訊息。 可以有超過一個的用戶端連線到指定對話，且每個用戶端都可以代表多個使用者參與對話。
+
+## <a name="open-a-new-conversation"></a>開啟新的對話
+
+若要與 Bot 開啟新的對話，請發出此要求：
+
+```http
+POST https://directline.botframework.com/api/conversations
+Authorization: Bearer SECRET_OR_TOKEN
+```
+
+下列程式碼片段提供「開始對話」要求和回應範例。
+
+### <a name="request"></a>要求
+
+```http
+POST https://directline.botframework.com/api/conversations
+Authorization: Bearer RCurR_XV9ZA.cwA.BKA.iaJrC8xpy8qbOF5xnR2vtCX7CZj0LdjAPGfiCpg4Fv0y8qbOF5xPGfiCpg4Fv0y8qqbOF5x8qbOF5xn
+```
+
+### <a name="response"></a>回應
+
+如果要求成功，回應將會包含對話識別碼、權杖，以及表示權杖過期前秒數的值。
+
+```http
+HTTP/1.1 200 OK
+[other headers]
+```
+
+```json
+{
+  "conversationId": "abc123",
+  "token": "RCurR_XV9ZA.cwA.BKA.iaJrC8xpy8qbOF5xnR2vtCX7CZj0LdjAPGfiCpg4Fv0y8qbOF5xPGfiCpg4Fv0y8qqbOF5x8qbOF5xn",
+  "expires_in": 1800
+}
+```
+
+## <a name="start-conversation-versus-generate-token"></a>開始對話與產生權杖
+
+「開始對話」作業 (`POST /api/conversations`) 和[取得權杖](bot-framework-rest-direct-line-1-1-authentication.md#generate-token)作業 (`POST /api/tokens/conversation`) 類似，兩個作業都會傳回可用於存取單一對話的 `token`。 不過，開始對話作業也會開始對話並連絡 Bot，而產生權杖作業不會做這些事。 
+
+如果您想要立即開始對話，請使用「開始對話」作業。 如果您計畫要將權杖散發給用戶端，並且要它們起始對話，請改為使用[產生權杖](bot-framework-rest-direct-line-1-1-authentication.md#generate-token)作業。 
+
+## <a name="additional-resources"></a>其他資源
+
+- [重要概念](bot-framework-rest-direct-line-1-1-concepts.md)
+- [驗證](bot-framework-rest-direct-line-1-1-authentication.md)
