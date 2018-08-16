@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: ec16b89a6c25c4113048a40f6b9b3edb6ce2af5e
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6a32bc5712937c615962e4f6edfc7ea691d3ec39
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299191"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574974"
 ---
 # <a name="register-a-bot-with-bot-service"></a>使用 Bot 服務建立 Bot
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 如果您的 Bot 已裝載於其他位置，而且您想要使用 Bot 服務與其他通道連線，則您必須使用 Bot 服務註冊您的 Bot。 在本主題中，了解如何藉由建立 **Bot 通道註冊** Bot 服務，使用 Bot 服務註冊您的 Bot。
 
 > [!IMPORTANT] 
@@ -42,13 +45,13 @@ ms.locfileid: "39299191"
 
    |                    設定                     |         建議的值         |                                                                                                  說明                                                                                                  |
    |------------------------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-   |           <strong>Bot 名稱</strong>            |     您的 Bot 顯示名稱     |                                                  Bot 在通道和目錄中的顯示名稱。 您可隨時變更此名稱。                                                  |
+   |           <strong>Bot 名稱</strong>            |     您的 Bot 顯示名稱     |                                                  Bot 在通道和目錄中的顯示名稱。 您可以隨時變更此名稱。                                                  |
    |         <strong>訂用帳戶</strong>          |        您的訂用帳戶        |                                                                                選取您要使用的 Azure 訂用帳戶。                                                                                 |
    |        <strong>資源群組</strong>         |         myResourceGroup         |                                 您可以建立新的[資源群組](/azure/azure-resource-manager/resource-group-overview#resource-groups)，或選擇現有的資源群組。                                  |
    |                    位置                    |             美國西部             |                                                        選擇接近您的 Bot 部署位置，或接近您的 Bot 存取其他服務的位置。                                                         |
    |         <strong>定價層</strong>          |               F0                |             選取定價層。 您可以隨時更新定價層。 如需詳細資訊，請參閱 [Bot 服務價格](https://azure.microsoft.com/en-us/pricing/details/bot-service/)。              |
    |      <strong>傳訊端點</strong>       |               URL               |                                                                               輸入您的 Bot 傳訊端點的 URL。                                                                                |
-   |     <strong>Application Insights</strong>      |               另一                | 決定是否要<strong>開啟</strong>或<strong>關閉</strong> [Application Insights](bot-service-manage-analytics.md)。 如果您選取 [開啟]，您還必須指定區域位置。 |
+   |     <strong>Application Insights</strong>      |               另一                | 決定您要<strong>開啟</strong>或<strong>關閉</strong> [Application Insights](bot-service-manage-analytics.md)。 如果您選取 [開啟]，您還必須指定區域位置。 |
    | <strong>Microsoft 應用程式識別碼和密碼</strong> | 自動建立應用程式識別碼和密碼 |              如果您需要手動輸入 Microsoft 應用程式識別碼和密碼，請使用此選項。 否則，在 Bot 建立流程當中，便會為您建立新的 Microsoft 應用程式識別碼和密碼。               |
 
 

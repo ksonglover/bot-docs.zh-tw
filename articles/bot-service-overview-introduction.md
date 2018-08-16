@@ -8,16 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/03/2018
-ms.openlocfilehash: 142d4cbe0c252e88bab800bb3823b70434a65bd6
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b6326ac152112ff1df01470db1f525d4bf241af4
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300318"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574604"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
 # <a name="azure-bot-service"></a>Azure Bot 服務
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
 Azure Bot 服務提供可在單一位置建立、測試、部署及管理智慧型 Bot 的工具。 透過 SDK 提供的模組化可延伸架構，開發人員可以利用範本來建立可提供語音、語言理解、問答等功能的 Bot。  
 
@@ -72,7 +74,7 @@ Bot 是將許多不同組件整合在一起運作的複雜應用程式。 和其
 > - [透過網路聊天測試 Bot](bot-service-manage-test-webchat.md)
 
 ## <a name="publish"></a>發佈 
-準備就緒後，請在 Azure 或自己的 Web 服務或資料中心發佈 Bot。 您可以設定持續部署，以便在本機開發 Bot，且如果 Bot 簽入 GitHub 或 Visual Studio Team Services 等原始檔控制服務，此方法會相當實用。 只要您確認過來源存放庫中的變更，您的變更就會自動在 Azure 中完成部署。
+準備就緒後，請在 Azure 或自己的 Web 服務或資料中心發佈 Bot。 您可以設定持續部署，以便在本機開發 Bot，且如果 Bot 簽入 GitHub 或 Visual Studio Team Services 等原始檔控制服務，此方法會相當實用。 只要您將變更簽入回來源存放庫中，您的變更就會自動部署至 Azure。
 
 > [!Tip]
 >

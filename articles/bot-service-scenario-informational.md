@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 7c85227d062f32f9f1e8096f1dad83c09ed85a9f
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 43eb8e25e2a17e1d6b1d30e767dd15569fcad78b
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299994"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574864"
 ---
 # <a name="information-bot-scenario"></a>資訊 Bot 案例
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 此資訊 Bot 可透過認知服務 QnA Maker 回答在知識集或常見問題集中定義的問題，也會透過 Azure 搜尋服務回答更開放式的問題。
 
 通常資訊會藏在 SQL Server 等結構化的資料存放區，不過透過搜尋即可輕鬆找到。 想像一下如此方便的情境：使用簡單的交談式命令查閱客戶的訂單狀態。 使用者使用認知服務 QnA Maker 後，會看到一組有效的搜尋選項，例如查閱客戶、檢閱客戶的最新訂單等。使用者可以利用 QnA 格式定義，輕鬆詢問 Azure 搜尋服務所支援的問題，並在 SQL Database 中查閱儲存的資料。
@@ -45,7 +48,7 @@ ms.locfileid: "39299994"
 -   Application Insights
 
 ### <a name="azure-active-directory-azure-ad"></a>Azure Active Directory (Azure AD)
-Azure Active Directory (Azure AD) 是 Microsoft 的多租用戶雲端型目錄和身分識別管理服務。 對於 Bot 開發人員而言，Azure AD 可讓您專注於建置 Bot，快速而簡單地整合數百萬個全球各地組織所使用的世界級身分識別管理解決方案。 您可以藉由定義 Azure AD 應用程式，來控制哪些人可存取您的 Bot，以及其所公開的資料，而不需要自己實作複雜的驗證和授權系統。
+Azure Active Directory (Azure AD) 是 Microsoft 的多租用戶雲端型目錄和身分識別管理服務。 身為 Bot 開發人員，Azure AD 可讓您專注於建置 Bot，快速而簡單地整合數百萬個全球各地組織所使用的世界級身分識別管理解決方案。 您可以藉由定義 Azure AD 應用程式，來控制哪些人可存取您的 Bot，以及其所公開的資料，而不需要自己實作複雜的驗證和授權系統。
 
 ### <a name="cognitive-services-qna-maker"></a>認知服務：QnA Maker
 認知服務 QnA Maker 可協助您提供常見問題集的資料來源，讓使用者可以從 Bot 進行查詢。 遇到儲存在不同系統中的大量資訊時，此服務可以有效協助使用者篩選資訊來源和資訊集。 單一 SQL 資料庫擁有大量資訊，以至於執行自由格式搜尋時會提供過多資訊。 初次使用 QnA Maker 時，您可以為 Bot 使用者定義藍圖，讓使用者了解如何問對問題，以透過 Azure 搜尋服務找到答案。
@@ -54,7 +57,7 @@ Azure Active Directory (Azure AD) 是 Microsoft 的多租用戶雲端型目錄�
 Azure 搜尋服務是應用程式專用的雲端搜尋服務，可讓您快速啟用搜尋索引並執行。 在 Microsoft Azure 上執行，您可以視需求輕鬆增加或減少使用量。 您可以透過對搜尋排名的極佳控制，並找出隱藏在資料庫中的資料，讓搜尋結果促成商業目標。
 
 ### <a name="application-insights"></a>Application Insights
-Application Insights 可協助您透過應用程式效能管理 (APM) 和立即分析，取得可付諸行動的見解。 根據預設，您可以取得豐富的效能監視、強大的警示及便於取用的儀表板，以協助確保您的 Bot 可供使用，並如預期般執行。 您可以快速查看是否遇到問題，然後執行根本原因分析以找出問題，並加以修正。
+Application Insights 可協助您透過應用程式效能管理和立即分析，取得可操作的見解。 根據預設，您可以取得豐富的效能監視、強大的警示與便於取用的儀表板，以協助確保您的 Bot 可供使用，並如預期般執行。 您可以快速查看是否遇到問題，然後執行根本原因分析以找出問題，並加以修正。
 
 ## <a name="next-steps"></a>後續步驟
 接下來，請深入了解物聯網 Bot 案例。

@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3583c4382a9262b959b31d5a9a1b7b1b97fc8a04
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3b65f323427760fa43586f471aefb6811ef3e675
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299179"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574516"
 ---
 # <a name="internet-of-things-iot-bot-scenario"></a>物聯網 (IoT) Bot 案例
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 這個物聯網 (IoT) Bot 可讓您輕鬆地使用語音或互動式聊天命令控制住家內的裝置，例如 Philips Hue 燈光。
 
 人們喜歡以對話來操作自己的裝置。 自從第一台電視遙控器問世以來，人們就愛上這種不需要移動即可影響環境的操作方式。 此 IoT Bot 讓使用者透過簡單的聊天命令或語音來管理 Philips Hue。 此外，使用聊天功能時，使用者可獲得與色彩相關的視覺化選項。
@@ -48,4 +51,4 @@ IoT Bot 將能讓您快速地使用 Skype 或 Slack 等頻道的聊天命令，�
 IFTTT 是免費的 Web 型服務，可供使用者建立簡單的條件陳述式鏈結 (稱為小程式)。 您可以從自己的 Bot 觸發小程式來代替您執行一些動作。 有許多預先定義的 Hue 小程式可用來開關燈光、 變更場景等。
 
 ### <a name="application-insights"></a>Application Insights
-Application Insights 可協助您透過應用程式效能管理 (APM) 和立即分析，取得可操作的深入資訊。 您可以取得豐富的效能監視、強大的警示及便於取用的儀表板，而且全都立即可用，以協助確保您的 Bot 可供使用，並如預期般執行。 您可以快速查看是否遇到問題，然後執行根本原因分析以找出問題並加以修正。
+Application Insights 可協助您透過應用程式效能管理和立即分析，取得可操作的見解。 根據預設，您可以取得豐富的效能監視、強大的警示與便於取用的儀表板，以協助確保您的 Bot 可供使用，並如預期般執行。 您可以快速查看是否遇到問題，然後執行根本原因分析以找出問題並加以修正。
