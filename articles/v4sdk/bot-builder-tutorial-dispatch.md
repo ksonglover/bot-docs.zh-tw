@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/25/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6294021355f82ff53a2ea99db4fb19f44cf13029
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: d3c9355a0e87d31029b92614dc182f3d7010c736
+ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39300587"
+ms.lasthandoff: 08/04/2018
+ms.locfileid: "39514938"
 ---
 ## <a name="integrate-multiple-luis-apps-and-qna-services-with-the-dispatch-tool"></a>使用分派工具整合多個 LUIS 應用程式和 QnA 服務
+
+[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
 本教學課程將說明如何使用分派工具產生的 LUIS 模型，將 Bot 與多個 Language Understanding Intelligent Service (LUIS) 應用程式和 QnAMaker 服務進行整合。 
 
