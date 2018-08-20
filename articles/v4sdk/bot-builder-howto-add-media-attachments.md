@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/03/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e1b25a3b5c090cbb13b4c27279745a81da64e6c4
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 30a0c463698d9ab7e3b2b0f9ddb0e872f007d1d8
+ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299554"
+ms.lasthandoff: 08/04/2018
+ms.locfileid: "39515038"
 ---
 # <a name="add-media-to-messages"></a>將媒體新增至訊息
 
@@ -79,8 +79,7 @@ await context.sendActivity(imageOrVideoMessage);
 
 ```javascript
 // require MessageFactory and CardFactory from botbuilder.
-const {MessageFactory} = require('botbuilder');
-const {CardFactory} = require('botbuilder');
+const {MessageFactory, CardFactory} = require('botbuilder');
 
 let messageWithCarouselOfCards = MessageFactory.list([
     CardFactory.heroCard('title1', ['imageUrl1'], ['button1']),
@@ -161,8 +160,8 @@ await context.sendActivity(message);
 | 類型 | 值 |
 | :---- | :---- |
 | openUrl | 要在內建瀏覽器中開啟的 URL。 對於「點選」或「按一下」動作，會以開啟 URL 來回應。 |
-| imBack | 要傳送至 Bot 的訊息文字 (來自於按一下按鈕或點按卡片的使用者)。 此訊息 (從使用者到 Bot) 會透過裝載對話的用戶端應用程式顯示給所有對話參與者。 |
-| postBack | 要傳送至 Bot 的訊息文字 (來自於按一下按鈕或點按卡片的使用者)。 某些用戶端應用程式可能會在訊息摘要中顯示此文字，讓所有對話參與者都能看見。 |
+| imBack | 要傳送至 Bot 的訊息文字 (來自於按一下按鈕或點選卡片的使用者)。 此訊息 (從使用者到 Bot) 會透過裝載對話的用戶端應用程式顯示給所有對話參與者。 |
+| postBack | 要傳送至 Bot 的訊息文字 (來自於按一下按鈕或點選卡片的使用者)。 某些用戶端應用程式可能會在訊息摘要中顯示此文字，讓所有對話參與者都能看見。 |
 | call | 以下列格式撥打電話的目的地：`tel:123123123123`。對於「點選」或「按一下」動作，會以起始通話來回應。|
 | playAudio | 待播放音訊的 URL。 對於「點選」或「按一下」動作，會以播放音訊來回應。 |
 | playVideo | 待播放視訊的 URL。 對於「點選」或「按一下」動作，會以播放視訊來回應。 |
@@ -461,8 +460,7 @@ await context.SendActivity(activity);
 
 ```javascript
 // require MessageFactory and CardFactory from botbuilder.
-const {MessageFactory} = require('botbuilder');
-const {CardFactory} = require('botbuilder');
+const {MessageFactory, CardFactory} = require('botbuilder');
 
 //  init message object
 let messageWithCarouselOfCards = MessageFactory.carousel([

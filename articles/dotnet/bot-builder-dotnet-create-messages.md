@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a97d21e64ce12f6158f276889762a73ac2aff49b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 00ea81558bf4b8206dc6142ab26e47e3652be563
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300458"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574544"
 ---
 # <a name="create-messages"></a>建立訊息
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 您的 Bot 會傳送**訊息**[活動](bot-builder-dotnet-activities.md) 以傳達資訊給使用者，同樣也會接收來自使用者的**訊息**活動。 某些訊息可能只包含純文字，而其他訊息可能包含更豐富的內容，例如[要讀出的文字](bot-builder-dotnet-text-to-speech.md)、[建議的動作](bot-builder-dotnet-add-suggested-actions.md)、[媒體附件](bot-builder-dotnet-add-media-attachments.md)、[複合式資訊卡 (Rich Card)](bot-builder-dotnet-add-rich-card-attachments.md)，和[通道特定資料](bot-builder-dotnet-channeldata.md)。 
 
@@ -70,14 +72,14 @@ ms.locfileid: "39300458"
 | 位址 | 說明或 `PostalAddress` 物件 (未來) | 
 | 地理區域 | GeoCoordinates | 
 | HasMap | 地圖或 `Map` 物件的 URL (未來) |
-| Name | 位置的名稱 |
+| 名稱 | 位置的名稱 |
 
 `GeoCoordinates` 物件包含下列屬性：
 
 | 屬性 | 說明 | 
 |----|----|
 | 類型 | 實體的類型 ("GeoCoordinates") |
-| Name | 位置的名稱 |
+| 名稱 | 位置的名稱 |
 | 經度 | 位置的經度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 
 | 緯度 | 位置的緯度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 
 | Elevation | 位置的提升 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 

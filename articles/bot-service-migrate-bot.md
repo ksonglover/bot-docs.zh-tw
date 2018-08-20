@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 6/22/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e8c927ce49a2d8aecf0113a09cbedcf1135a8380
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6154ac5c77f818192503e5586986b37062b105bf
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299655"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574517"
 ---
 # <a name="migrate-your-bot-to-azure"></a>將 Bot 移轉至 Azure
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
 所有在 [Bot Framework 入口網站](http://dev.botframework.com)中建立的 **Azure Bot Service (預覽版)** Bot，都必須移轉至 Azure 中的新 Bot Service。 此服務已在 2017 年 12 月正式推出 (GA)。 
 

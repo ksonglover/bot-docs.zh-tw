@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 7fdcd6e0e56ef11cd887b9d5493fd0b25c23cf89
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 8ba63ad99c772c7cf5884180a62244e0dfe11db2
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297565"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574904"
 ---
 # <a name="global-message-handlers-using-scorables"></a>使用可評分對話的全域訊息處理常式
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 當使用者嘗試在對話中使用「說明」、「取消」或「重新開始」等字，來存取 Bot 內的某些功能，而 Bot 預期不同的回應時。 您可以將 Bot 設計為使用可評分對話方塊正常處理這類要求。
 

@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 90e53ed5001ce1c91646644bf815bb51b6a843c1
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: f7fe3181a4c361b47a7ef6fbdf815b4c495c6f76
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300174"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574634"
 ---
 # <a name="activities-overview"></a>活動概觀
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 [!INCLUDE [Activity concept overview](../includes/snippet-dotnet-concept-activity.md)]
 
@@ -55,13 +57,13 @@ ms.locfileid: "39300174"
 
 ## <a name="contactrelationupdate"></a>contactRelationUpdate
 
-每當 Bot 新增至使用者的連絡人清單或從使用者的連絡人清單中移除時，Bot 會收到 **contactRelationUpdate** 活動。 活動的 `Action` 屬性值 (新增 | 移除) 會指出 Bot 是否已新增至使用者的連絡人清單，或已從使用者的連絡人清單中移除。
+每當 Bot 加入使用者的連絡人清單，或從中移除時，Bot 會收到 **contactRelationUpdate** 活動。 活動的 `Action` 屬性值 (新增 | 移除) 會指出 Bot 是否已加入使用者的連絡人清單，或者是否已從中移除。
 
 ## <a name="typing"></a>typing
 
 Bot 會收到 **typing** 活動，表示使用者正在輸入回應。 Bot 會傳送 **typing** 活動，向使用者表示 Bot 正在運作以完成要求或編譯回應。 
 
-## <a name="ping"></a>ping
+## <a name="ping"></a>Ping
 
 Bot 會收到 **ping** 活動，以判斷其端點是否可以存取。 Bot 會使用 HTTP 狀態碼 200 (OK)、403 (禁止) 或 401 (未授權) 做出回應。
 
