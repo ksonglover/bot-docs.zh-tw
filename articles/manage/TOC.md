@@ -1,16 +1,16 @@
 # [管理 Bot](../bot-service-manage-overview.md)
 # 建置
-## [使用線上程式碼編輯器](../bot-service-build-online-code-editor.md)
-## [下載 Bot 原始程式碼](../bot-service-build-download-source-code.md)
+## [使用線上程式碼編輯器編輯 Bot](../bot-service-build-online-code-editor.md)
+## [下載並重新部署 Bot 服務原始程式碼](../bot-service-build-download-source-code.md)
 ## [設定持續部署](../bot-service-build-continuous-deployment.md)
 # [在網路聊天中測試](../bot-service-manage-test-webchat.md)
-# [檢視分析](../bot-service-manage-analytics.md)
+# [Bot 分析](../bot-service-manage-analytics.md)
 # 聲道
-## [設定通道](../bot-service-manage-channels.md)
+## [將 Bot 連線至通道](../bot-service-manage-channels.md)
 ## [Cortana](../bot-service-channel-connect-cortana.md) 
 ## [Skype](../bot-service-channel-connect-skype.md)
 ## [商務用 Skype](../bot-service-channel-connect-skypeforbusiness.md)
-## [Direct Line](../bot-service-channel-connect-directline.md)
+## [直接線路](../bot-service-channel-connect-directline.md) \(英文\)
 ## [Microsoft Teams](https://msdn.microsoft.com/en-us/microsoft-teams/bots)
 ## 網路聊天
 ### [將 Bot 連線至網路聊天](../bot-service-channel-connect-webchat.md)
