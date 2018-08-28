@@ -1,9 +1,9 @@
 # [Azure Bot 服務文件](index.md)
 # 概觀
-## [Azure Bot 服務簡介](bot-service-overview-introduction.md)
+## [關於 Azure Bot Service](bot-service-overview-introduction.md)
 # 快速入門
-## [使用 Bot 服務建立 Bot](~/bot-service-quickstart.md)
-## 使用 Bot 建立器 SDK 建立 Bot
+## [建立具有 Azure Bot Service 的 Bot](~/bot-service-quickstart.md)
+## 在本機上建立 Bot
 ### [.NET](dotnet/bot-builder-dotnet-quickstart.md)
 ### [.NET](dotnet/bot-builder-dotnet-sdk-quickstart.md)
 ### [Node.js](nodejs/bot-builder-nodejs-quickstart.md)
