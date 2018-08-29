@@ -2,7 +2,7 @@
 # [首次互動](../bot-service-design-first-interaction.md)
 # [設計和控制流程](../bot-service-design-conversation-flow.md)
 # [導覽](../bot-service-design-navigation.md)
-# [UX 元素](../bot-service-design-user-experience.md)
+# [UI 元件](../bot-service-design-user-experience.md)
 # 模式
 ## [工作自動化](../bot-service-design-pattern-task-automation.md)
 ## [知識庫](../bot-service-design-pattern-knowledge-base.md)
