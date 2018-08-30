@@ -8,23 +8,26 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b218ae4ffd2ffbfe9144b4143f2600be15d688dd
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3a924503ecadc9f56fa2543881c116f7fbbb4d9a
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299146"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904326"
 ---
 # <a name="manage-state-data"></a>管理狀態資料
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-state.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-state.md)
 
 [!INCLUDE [State concept overview](../includes/snippet-dotnet-concept-state.md)]
 
-## <a name="in-memory-data-storage"></a>記憶體中的資料存放區
+## <a name="in-memory-data-storage"></a>記憶體內部的資料儲存體
 
-記憶體中的資料存放區僅供測試之用。 這是可變更的臨時儲存體。 每次 Bot 重新啟動時，就會清除資料。 若要將記憶體內部儲存體運用於測試用途，請務必： 
+記憶體內部的資料儲存體僅供測試之用。 這是可變更的臨時儲存體。 每次 Bot 重新啟動時，就會清除資料。 若要將記憶體內部儲存體運用於測試用途，請務必： 
 
 安裝下列 NuGet 封裝： 
 - Microsoft.Bot.Builder.Azure
@@ -60,11 +63,11 @@ GlobalConfiguration.Configure(WebApiConfig.Register);
 
 您可以使用這個方法來設定自己的自訂資料存放區，或使用任一項 *Azure 擴充功能*。
 
-## <a name="manage-custom-data-storage"></a>管理自訂資料存放區
+## <a name="manage-custom-data-storage"></a>管理自訂資料儲存體
 
-在生產環境中基於效能和安全性理由，您可能必須執行自己的資料存放區，或下列其中一個資料存放區選項：
+在生產環境中基於效能和安全性理由，您可能要實作自己的資料儲存體，或考量實作下列其中一個資料儲存體選項：
 
-1. [藉由 Cosmos DB 管理狀態資料](bot-builder-dotnet-state-azure-cosmosdb.md)
+1. [使用 Cosmos DB 管理狀態資料](bot-builder-dotnet-state-azure-cosmosdb.md)
 
 2. [藉由資料表儲存體管理狀態資料](bot-builder-dotnet-state-azure-table-storage.md)
 
@@ -74,7 +77,7 @@ GlobalConfiguration.Configure(WebApiConfig.Register);
 
 下表列出可用於管理狀態資料的方法。
 
-| 方法 | 範圍設定為 | 目標 |                                                
+| 方法 | 目標範圍 | 目標 |                                                
 |----|----|----|
 | `GetUserData` | 使用者 | 取得之前儲存供指定通道使用者使用的狀態資料 |
 | `GetConversationData` | 交談 | 取得之前針對指定通道交談儲存的狀態資料 |

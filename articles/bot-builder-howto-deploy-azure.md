@@ -8,14 +8,16 @@ manager: kamrani
 ms.topic: get-started-article
 ms.prod: bot-framework
 ms.date: 05/14/2018
-ms.openlocfilehash: 70a3b7f093bb80dd16c854c65331c141fbba3725
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: f3e5ed5b14ffb81c597b10aeac45854464bad8b0
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300178"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905590"
 ---
 # <a name="deploy-your-bot-to-azure"></a>將 Bot 部署至 Azure
+
+[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
 
 建立您的 Bot 並在本機驗證後，您可以將它推送至 Azure，以便可以從任何地方進行存取。 若要這樣做，首先您將在 [應用程式服務] 中將 Bot 部署到 Azure，然後使用 Bot 通道註冊項目向 Azure Bot 服務設定您的 Bot。
 

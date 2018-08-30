@@ -1,8 +1,8 @@
 # [Bot 設計準則](../bot-service-design-principles.md)
 # [首次互動](../bot-service-design-first-interaction.md)
-# [設計和控制流程](../bot-service-design-conversation-flow.md)
-# [導覽](../bot-service-design-navigation.md)
-# [UI 元件](../bot-service-design-user-experience.md)
+# [設計和控制交談流程](../bot-service-design-conversation-flow.md)
+# [設計 bot 導覽](../bot-service-design-navigation.md)
+# [設計使用者體驗](../bot-service-design-user-experience.md)
 # 模式
 ## [工作自動化](../bot-service-design-pattern-task-automation.md)
 ## [知識庫](../bot-service-design-pattern-knowledge-base.md)

@@ -8,16 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6a32bc5712937c615962e4f6edfc7ea691d3ec39
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: dc8b2723119a03e533f19dbf36446b7dbe0957df
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574974"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906132"
 ---
 # <a name="register-a-bot-with-bot-service"></a>使用 Bot 服務建立 Bot
 
-[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 
 如果您的 Bot 已裝載於其他位置，而且您想要使用 Bot 服務與其他通道連線，則您必須使用 Bot 服務註冊您的 Bot。 在本主題中，了解如何藉由建立 **Bot 通道註冊** Bot 服務，使用 Bot 服務註冊您的 Bot。
 

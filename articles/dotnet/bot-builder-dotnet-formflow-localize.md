@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: bb0ac4b8e3fa34ec8863bb323ae968db37972a6f
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 587e21049ed8c9c3259f04f929784153d06db40c
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299203"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904222"
 ---
 # <a name="localize-form-content"></a>將表單內容當地語系化
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 表單的當地語系化語言是由目前執行緒的 [CurrentUICulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentuiculture(v=vs.110).aspx) 和 [CurrentCulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentculture(v=vs.110).aspx) 所決定。 根據預設，文化特性是衍生自目前訊息的 [地區設定] 欄位，但是您可以覆寫該預設行為。 根據您建構 Bot 的方式，當地語系化資訊可能來自最多三種不同的來源：
 

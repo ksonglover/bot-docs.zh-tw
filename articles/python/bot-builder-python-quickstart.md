@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 02/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3df88215141fa513fb2b97b8f13d1cc358660d86
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: ba16adebe6bbb9b79949cd9842e975e35c3f2aa6
+ms.sourcegitcommit: d486dd088b87a44fc8142f7a08877ff993861a42
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298709"
+ms.lasthandoff: 08/26/2018
+ms.locfileid: "42928407"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-python"></a>使用適用於 Python 的 Bot Builder SDK 建立 Bot
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -136,15 +136,13 @@ python main.py
 
 2. 輸入 **Bot 名稱**，然後輸入 Bot 程式碼的目錄路徑。 Bot 設定檔將會儲存至這個路徑。
 
-3. 將 `http://localhost:port-number/api/messages` 輸入到 [端點 URL] 欄位，其中 *port-number* 必須符合應用程式執行所在之瀏覽器中顯示的連接埠號碼。
+3. 將 `http://localhost:port-number/api/messages` 輸入至 [端點 URL] 欄位，其中連接埠號碼必須符合應用程式執行所在瀏覽器中顯示的連接埠號碼。
 
-4. 按一下 [連線] 來連線到 Bot。 您不需要指定 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**。 目前可以將這些欄位保留空白。 稍後註冊 Bot 時，您將會取得這項資訊。
+4. 按一下 [連線] 來連線至 Bot。 您不需要指定 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**。 目前可以將這些欄位保留空白。 稍後註冊 Bot 時，您將會取得這項資訊。
 
 在模擬器中輸入 **Hello** (您好)，而 Bot 會回應 **You said "Hello"** (您說了「您好」)。
 
 ## <a name="next-steps"></a>後續步驟
-
-接下來，請跳至說明 Bot 及其運作方式的概念。
 
 > [!div class="nextstepaction"]
 > [基本 Bot 概念](../v4sdk/bot-builder-basics.md)

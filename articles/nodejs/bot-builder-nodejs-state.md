@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 1001f1aa2fe76127073551e98548fc20ef9e1bd7
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: cdd35bc5b487b5bf0d49006cf168f2541e17a057
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299667"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904370"
 ---
 # <a name="manage-state-data"></a>管理狀態資料
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-state.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-state.md)
@@ -194,7 +197,7 @@ session.dialogData = {};
 現在，您已經了解如何管理使用者狀態資料，讓我們看看如何使用該資料，更有效地管理交談流程。
 
 > [!div class="nextstepaction"]
-> [管理交談流程](bot-builder-nodejs-dialog-manage-conversation-flow.md)
+> [管理對話流程](bot-builder-nodejs-dialog-manage-conversation-flow.md)
 
 ## <a name="additional-resources"></a>其他資源
 - [提示使用者輸入](bot-builder-nodejs-dialog-prompt.md)

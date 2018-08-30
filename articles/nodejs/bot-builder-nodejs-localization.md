@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8f58c8d0b884e929c575e01aa5e0fee5c21ea4e6
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: f9af8cbbc5f457d5e8684ad57bb147f9d42a62c7
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300058"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905142"
 ---
 # <a name="support-localization"></a>支援當地語系化
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 Bot Builder 包含豐富的當地語系化系統，以建置可使用多種語言與使用者通訊的 Bot。 您 Bot 的所有提示都可以使用儲存在您 Bot 目錄結構中的 JSON 檔案來當地語系化。 如果您使用的系統如同執行自然語言處理的 LUIS，則您可以使用個別的模型為您 Bot 支援的每種語言設定 [LuisRecognizer][LUISRecognizer]，然後 SDK 就會自動選取符合使用者慣用地區設定的模型。
 

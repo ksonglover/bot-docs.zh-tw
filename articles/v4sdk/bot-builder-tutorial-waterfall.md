@@ -9,16 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 5/10/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a5c55d4437033968f9c08ed49c07b9586cb9b7d8
-ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
+ms.openlocfilehash: 7546b46a0bbca86665538b47e8f7b05d5812a920
+ms.sourcegitcommit: 44f100a588ffda19c275b118f4f97029f12d1449
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/04/2018
-ms.locfileid: "39514968"
+ms.lasthandoff: 08/26/2018
+ms.locfileid: "42928316"
 ---
 # <a name="ask-the-user-questions"></a>向使用者提出問題
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 基本上，Bot 是根據與使用者的交談而建立的。 交談具有[多種形式](bot-builder-conversations.md)，可能簡短也可能複雜，可能是發問也可能是回答。 交談的形式取決於多種因素，不過所有因素皆與交談有關。
 

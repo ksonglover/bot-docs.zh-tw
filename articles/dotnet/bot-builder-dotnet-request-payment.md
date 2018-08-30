@@ -8,19 +8,22 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: ce58c210123219c14f580d7164c759307ac2237b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 29359a2a0489863679158d87cdc4af2f3b52e232
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300307"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904242"
 ---
 # <a name="request-payment"></a>要求付款
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-request-payment.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-request-payment.md)
 
-如果 Bot 要讓使用者購買商品，則可在[豐富資訊卡](bot-builder-dotnet-add-rich-card-attachments.md)中包含一個特別的按鈕，藉此要求付款。 本文說明如何使用 Bot Builder SDK for .NET 傳送付款要求。
+如果 Bot 要讓使用者能購買商品，則可在[複合式資訊卡 (Rich Card)](bot-builder-dotnet-add-rich-card-attachments.md) 中包含一個特別的按鈕，藉此要求付款。 本文說明如何使用 Bot Builder SDK for .NET 傳送付款要求。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -69,7 +72,7 @@ Bot 可藉由傳送一則包含[豐富資訊卡附件](bot-builder-dotnet-add-ri
 ![付款範例 Bot](../media/payments-bot-buy.png) 
 
 > [!IMPORTANT]
-> 只要使用者可存取 [購買] 按鈕，就可以透過該按鈕起始付款程序。 在群組交談的內容中，無法指定一個僅供特定使用者使用的按鈕。 
+> 只要使用者可存取 [購買] 按鈕，就可以透過該按鈕起始付款程序。 在群組對話的內容中，不可能指定一個按鈕，僅供特定使用者使用。 
 
 ## <a id="user-experience"></a> 使用者體驗
 

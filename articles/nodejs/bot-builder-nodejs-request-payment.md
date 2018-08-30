@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 1e0c262c3a8dbef6430d51dab79a2d7c3cda938c
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 783d9e1fb3b90f6ba977440b3eefae5c16a1b8ca
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300363"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905833"
 ---
 # <a name="request-payment"></a>要求付款
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-request-payment.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-request-payment.md)
@@ -69,7 +72,7 @@ Bot 可藉由傳送一則包含[複合式資訊卡 (Rich Card)](bot-builder-node
 ![付款範例 Bot](../media/payments-bot-buy.png) 
 
 > [!IMPORTANT]
-> 只要使用者可存取 [購買] 按鈕，就可以使用它來起始付款程序。 在群組對話的內容中，不可能指定一個按鈕，僅供特定使用者使用。 
+> 只要使用者可存取 [購買] 按鈕，就可以透過該按鈕起始付款程序。 在群組對話的內容中，不可能指定一個按鈕，僅供特定使用者使用。 
 
 ## <a id="user-experience"></a> 使用者體驗
 
@@ -83,8 +86,8 @@ HTTP 回呼將傳送至 Bot，指出它應該執行特定作業。 每個回呼�
 
 | 屬性 | 值 |
 |----|----|
-| `type` | invoke | 
-| `name` | 指出 Bot 應該執行的作業類型 (例如，交貨地址更新、交貨選項更新、付款完成)。 | 
+| `type` | 叫用 | 
+| `name` | 指出 Bot 應該執行的作業類型 (例如：交貨地址更新、交貨選項更新、付款完成)。 | 
 | `value` | 採用 JSON 格式的要求承載。 | 
 | `relatesTo` |  說明與付款要求相關聯的通道和使用者。 | 
 
@@ -102,9 +105,9 @@ HTTP 回呼將傳送至 Bot，指出它應該執行特定作業。 每個回呼�
 
 ### <a name="payment-complete-callbacks"></a>付款完成回呼
 
-接收「付款完成」回呼時，Bot 會在物件的 `value` 屬性中取得一份未經修改的最初付款要求，以及付款回應事件。 付款回應物件將包含客戶最終選取的項目以及付款代碼 (Token)。 Bot 應藉此機會根據最初付款要求和客戶最終選取的項目，重新計算最終付款要求。 假設客戶的選取項目被判定為有效，則 Bot 應確認付款代碼標頭中的金額和貨幣，以確保它們符合最終付款要求。  如果 Bot 決定向客戶收費，則只應該收取付款代碼標頭中的金額，因為這是客戶所確認的價格。 如果 Bot 所預期的值與它在「付款完成」回呼中收到的值不相符，它可藉由傳送 HTTP 狀態碼 `200 OK` 並將結果欄位設定為 `failure`，讓失敗付款要求。   
+接收「付款完成」回呼時，Bot 會在物件的 `value` 屬性中取得一份未經修改的最初付款要求，以及付款回應事件。 付款回應物件將包含客戶最終選取的項目以及付款代碼 (Token)。 Bot 應藉此機會根據最初付款要求和客戶最終選取的項目，重新計算最終付款要求。 假設系統將客戶的選取項目判定為有效，則 Bot 應確認付款權杖標頭中的金額和貨幣，確保其符合最終付款要求。  如果 Bot 決定向客戶收費，則只應收取付款權杖標頭中的金額，因為這是客戶所確認的價格。 如果 Bot 預期的值和在「付款完成」回呼中收到的值不相符，則可傳送 HTTP 狀態碼 `200 OK` 並將結果欄位設定為 `failure`，藉此讓付款要求失敗。   
 
-除了驗證付款詳細資料以外，Bot 也應該先確認可以履行訂單，再起始付款處理。 例如，它可以驗證所購買的項目是否仍可在庫存中取得。 如果值正確無誤，而且付款處理器已順利向付款代碼收取費用，則 Bot 應該以 HTTP 狀態碼 `200 OK` 回應並將結果欄位設為 `success`，以便付款 Web 體驗顯示付款確認。 Bot 收到的付款代碼只能由要求付款的商家使用一次，而且必須提交至 Stripe (Bot Framework 目前唯一支援的付款處理器)。 傳送任何 `400` 至 `500` 範圍內的 HTTP 狀態碼會導致客戶發生一般錯誤。
+除了驗證付款詳細資料以外，Bot 也應該先確認可以履行訂單，再起始付款處理。 例如，其可驗證所購買的項目是否仍可在庫存中取得。 如果值正確無誤，而且付款處理器已順利向付款權杖收取費用，則 Bot 應該以 HTTP 狀態碼 `200 OK` 回應並將結果欄位設為 `success`，以便付款 Web 體驗顯示付款確認。 Bot 收到的付款權杖只能由要求付款的商家使用一次，而且必須提交至 Stripe (Bot Framework 目前唯一支援的付款處理器)。 傳送任何 `400` 至 `500` 範圍內的 HTTP 狀態碼會導致客戶發生一般錯誤。
 
 **付款 Bot** 範例中的這個程式碼片段會處理 Bot 所接收的回呼。 
 
@@ -116,7 +119,7 @@ HTTP 回呼將傳送至 Bot，指出它應該執行特定作業。 每個回呼�
 
 [!INCLUDE [Test a payment bot](../includes/snippet-payment-test-bot.md)]
 
-在<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/sample-payments" target="_blank">付款 Bot</a> 範例中，**.env** 中的 `PAYMENTS_LIVEMODE` 環境變數可決定「付款完成」回呼將包含模擬的付款代碼或實際的付款代碼。 如果 `PAYMENTS_LIVEMODE` 設為 `false`，則標頭會新增至 Bot 的輸出付款要求，以指出 Bot 處於測試模式，而且「付款完成」回呼將包含無法收費的模擬付款代碼。 如果 `PAYMENTS_LIVEMODE` 設為 `true`，則指出 Bot 處於測試模式的標頭會從 Bot 的輸出付款要求中省略，而且「付款完成」回呼會包含 Bot 將提交至 Stripe 進行付款處理的實際付款代碼。 這會是向指定的付款工具收費的真實交易。 
+在<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/sample-payments" target="_blank">付款 Bot</a> 範例中，**.env** 中的 `PAYMENTS_LIVEMODE` 環境變數可決定「付款完成」回呼將包含模擬的付款代碼或實際的付款代碼。 如果 `PAYMENTS_LIVEMODE` 設為 `false`，則標頭會新增至 Bot 的輸出付款要求，以指出 Bot 處於測試模式，而且「付款完成」回呼將包含無法收費的模擬付款代碼。 如果 `PAYMENTS_LIVEMODE` 設為 `true`，則指出 Bot 處於測試模式的標頭會從 Bot 的輸出付款要求中省略，而且「付款完成」回呼會包含 Bot 將提交至 Stripe 進行付款處理的實際付款權杖。 這會是向指定的付款工具收費的真實交易。 
 
 ## <a name="additional-resources"></a>其他資源
 

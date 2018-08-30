@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b737b11db3876d8b98cbd9f46f6e23f8b8564244
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 67dc8a196393458b37bb6447ceaa8f36a28a564a
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300367"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905929"
 ---
 # <a name="recognize-user-intent-from-message-content"></a>從訊息內容辨識使用者意圖
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 當 Bot 收到來自使用者的訊息時，Bot 可以使用**辨識器**來檢查訊息並判斷意圖。 此意圖提供一個可叫用的對應 (從訊息到對話方塊)。 本文說明如何使用規則運算式或藉由檢查訊息內容來辨識意圖。 例如，Bot 可以使用規則運算式來檢查訊息是否包含 "help" 這個字，並叫用 [說明] 對話方塊。 Bot 也可以檢查使用者訊息的屬性，查看使用者已傳送映像而非文字，然後叫用映像處理對話方塊。 
 

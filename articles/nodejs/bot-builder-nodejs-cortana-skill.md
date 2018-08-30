@@ -7,14 +7,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a5936f3a622bdc91084ba9a636d8be3b782f9a11
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: c213c1155b1eef5f5c776ba42a221d95b74f99a5
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300203"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906074"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能建置啟用語音的 Bot
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-cortana-skill.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-cortana-skill.md)
@@ -27,7 +30,7 @@ ms.locfileid: "39300203"
 使用 Bot Framework 建立 Cortana 技能不需要太多 Cortana 專屬知識，主要是建置 Bot。 與其他您可能已建立的 Bot 主要差異在於，Cortana 同時具有視覺與音訊元件。 對於視覺元件，Cortana 提供用於轉譯內容 (例如卡片) 的畫布區域。 對於音訊元件，您可以在 Bot 訊息中提供文字或 SSML，Cortana 會讀給使用者聽，讓您的 Bot 擁有語音功能。 
 
 > [!NOTE]
-> 在許多不同的裝置上皆有提供 Cortana。 部分具有螢幕，而其他 (如獨立喇叭) 可能沒有。 您應確認您的 Bot 能夠處理這兩者。 請參閱 [Cortana 特定實體][CortanaSpecificEntities]以了解如何檢查裝置資訊。
+> 在許多不同的裝置上皆有提供 Cortana。 部分具有螢幕，而其他 (如獨立喇叭) 可能沒有。 您應確認 Bot 能夠處理這兩者。 請參閱 [Cortana 特定實體][CortanaSpecificEntities]，以了解如何檢查裝置資訊。
 
 ## <a name="adding-speech-to-your-bot"></a>將語音新增至您的 Bot
 

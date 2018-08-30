@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 5/16/17
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6a88b0a7f44f43d0676ba88314fbba7c486e6be4
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 07f4ad7d53c456de53be196977458a3d8b03c6f0
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299067"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906192"
 ---
 # <a name="extract-intents-and-entities-using-luisgen"></a>使用 LUISGen 擷取意圖和實體
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 除了辨識意圖，LUIS 應用程式也可以擷取實體，也就是滿足使用者要求的重要單字。 例如，在餐廳預訂的範例中，LUIS 應用程式可能可以從使用者的訊息中擷取派對人數、預訂日期或餐廳位置。 
 
@@ -85,7 +87,7 @@ public _Entities Entities;
 |實體 | 類型 | 範例 | 注意 |
 |-------|-----|------|---|
 |partySize| string[]| 派對人數 `four` 人| 簡單實體會辨識字串。 在此範例中，Entities.partySize[0] 是 `"four"`。
-|datetime| [DateTimeSpec](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.ai.luis.datetimespec?view=botbuilder-4.0.0-alpha)[]| 預訂 `9pm tomorrow`| 每個 **DateTimeSpec** 物件都有一個 timex 欄位，包含以 **timex** 格式指定的可能時間值。 更多有關 timex 的資訊可以在這裡找到： http://www.timeml.org/publications/timeMLdocs/timeml_1.2.1.html#timex3      更多有關用來辨識之文件庫的資訊可以在這裡找到： https://github.com/Microsoft/Recognizers-Text
+|Datetime| [DateTimeSpec](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.ai.luis.datetimespec?view=botbuilder-4.0.0-alpha)[]| 預訂 `9pm tomorrow`| 每個 **DateTimeSpec** 物件都有一個 timex 欄位，包含以 **timex** 格式指定的可能時間值。 更多有關 timex 的資訊可以在這裡找到： http://www.timeml.org/publications/timeMLdocs/timeml_1.2.1.html#timex3      更多有關用來辨識之文件庫的資訊可以在這裡找到： https://github.com/Microsoft/Recognizers-Text
 |number| double[]| 派對人數 `four` 人，包括 `2` 個兒童 | `number` 會識別所有數字，不只是派對人數。 <br/> 在「派對人數 4 人，包括 2 個兒童」語句中，`Entities.number[0]` 是 4，`Entities.number[1]` 是 2。
 |cafelocation| string[][] | 預訂位於 `Seattle` 位置。| cafeLocation 是清單實體，這表示它包含已辨識的清單成員。 它是陣列的陣列，已辨識實體是一個清單以上的成員。 例如，「預訂位於華盛頓」可能對應到華盛頓州清單與華盛頓特區清單。
 

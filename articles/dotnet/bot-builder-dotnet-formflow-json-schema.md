@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a7f6e3f186e0c4b9f6096cad72a91ef6f3fdffd4
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 03478431822c8be0e696577a18a2e693d441509b
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300199"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904549"
 ---
 # <a name="define-a-form-using-json-schema"></a>使用 JSON 結構描述來定義表單
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 如果您透過 FormFlow 建立 Bot 時使用了 [C# 類別](bot-builder-dotnet-formflow.md#create-class)來定義表單，表單會衍生自 C# 中類型的靜態定義。 或者，您也可以改用 <a href="http://json-schema.org/documentation.html" target="_blank">JSON 結構描述</a> (英文) 來定義表單。 使用 JSON 結構描述所定義的表單完全由料驅動；只要更新結構描述即可變更表單 (因而變更 Bot 的行為)。 
 

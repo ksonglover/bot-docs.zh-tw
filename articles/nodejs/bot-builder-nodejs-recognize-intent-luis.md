@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/28/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 9c1a0944a24af3f2a51a90818890c50edfe139d4
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 82a4d0843a9aaab25779d833f2b1b1d2ab2516c2
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299767"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905100"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 辨識意圖和實體 
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 本文使用要用來記筆記的 Bot 範例，來示範 Language Understanding ([LUIS][LUIS]) 如何協助您的 Bot 適當地回應自然語言輸入。 Bot 會藉由識別使用者的**意圖**，來偵測他們想要做什麼。 此意圖是從語音或文字輸入，或是**語句**來判斷的。 此意圖會將語句對應到 Bot 所採取的動作，例如叫用對話。 Bot 可能也需要擷取**實體**，其為語句中的重要字組。 有時，實體必須滿足意圖。 在記筆記的 Bot 範例中，`Notes.Title` 實體會識別每個筆記的標題。
 
@@ -30,13 +32,13 @@ ms.locfileid: "39299767"
     ![建立新資源](../media/bot-builder-nodejs-use-luis/bot-service-selection.png)
 
 3. 在 [Bot 服務] 刀鋒視窗中提供必要資訊，然後按一下 [建立]。 這會建立 Bot 服務和 LUIS 應用程式，並將其部署到 Azure。 
-   * 將 [應用程式名稱] 設定為您 Bot 的名稱。 將 Bot 部署到雲端時，此名稱會用來作為子網域 (例如 mynotesbot.azurewebsites.net)。 此名稱也會用來作為與您 Bot 相關聯的 LUIS 應用程式名稱。 複製它以供稍後使用，以尋找與 Bot 相關聯的 LUIS 應用程式。
+   * 將 [應用程式名稱] 設定為您 Bot 的名稱。 將 Bot 部署到雲端時，此名稱會用來作為子網域 (例如 mynotesbot.azurewebsites.net)。 此名稱也會用來作為與您 Bot 相關聯的 LUIS 應用程式名稱。 複製它以在稍後用來尋找與 Bot 相關聯的 LUIS 應用程式。
    * 選取訂用帳戶、[資源群組](/azure/azure-resource-manager/resource-group-overview)、App Service 方案，以及[位置](https://azure.microsoft.com/en-us/regions/)。
    * 針對 [Bot 範本] 欄位，選取 [Language Understanding (Node.js)] 範本。
 
      ![Bot 服務刀鋒視窗](../media/bot-builder-nodejs-use-luis/bot-service-setting-callout-template.png)
 
-   * 核取方塊以確認服務條款。
+   * 選取方塊以確認服務條款。
 
 4. 確認已部署 Bot 服務。
     * 按一下 [通知] (位於 Azure 入口網站頂端邊緣的鈴鐺圖示)。 通知會從 [部署已開始] 變更為 [部署成功]。

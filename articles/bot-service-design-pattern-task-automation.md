@@ -7,14 +7,16 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 2/13/2018
-ms.openlocfilehash: 1f14329958711cc7f9ef8832b267587e1232da2a
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 60a3796e255611ff09d5418cdeaa6f363ad8da15
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298930"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904964"
 ---
 # <a name="create-task-automation-bots"></a>建立工作自動化 Bot
+
+[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
 
 工作自動化 Bot 可讓使用者完成特定工作或一組工作，而不需要任何人類的協助。 這種類型的 Bot 通常十分類似一般應用程式或網站，主要是透過豐富的使用者控制項和文字，與使用者通訊。 可能會有了解自然語言的功能，可擴充與使用者的對話。 
 

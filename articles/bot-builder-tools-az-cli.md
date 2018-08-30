@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/25/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 20258949cd8ea403e5cc9bf774d6a3b7c1e86e7e
-ms.sourcegitcommit: dcbc8ad992a3e242a11ebcdf0ee99714d919a877
+ms.openlocfilehash: 1eb47e76ef1bd6765d5ba93c27b97a8d9e6143db
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352897"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905302"
 ---
 # <a name="create-bots-with-azure-cli"></a>使用 Azure CLI 建立 Bot
+
+[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
 
 [Bot 建立器工具](https://github.com/microsoft/botbuilder-tools)是新的工具組，可讓您直接從命令列管理 Bot 資源並與其進行互動。 
 
@@ -37,7 +39,7 @@ ms.locfileid: "39352897"
 
 ## <a name="1-enable-azure-cli"></a>1.啟用 Azure CLI
 
-您現在已可使用 [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest) 來管理 Bot，就像任何其他 Azure 資源一樣。 若要啟用 Azure CLI，請完成下列步驟：
+您現在已可使用 [Azure CLI](https://docs.microsoft.com/cli/azure/?view=azure-cli-latest) 來管理 Bot，就像任何其他 Azure 資源一樣。 若要啟用 Azure CLI，請完成下列步驟：
 
 1. [下載](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) Azure CLI (如果您還沒有)。 
 
@@ -64,7 +66,7 @@ az login
 ![Azure Bot CLI](media/bot-builder-tools/az-cli-bot.png)
 
 
- 如需 Azure CLI 命令的完整清單，請[按一下這裡](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest)。
+ 如需 Azure CLI 命令的完整清單，請[按一下這裡](https://docs.microsoft.com/cli/azure/reference-index?view=azure-cli-latest)。
 
 
 ## <a name="2-create-a-new-bot-from-azure-cli"></a>2.從 Azure CLI 建立新的 Bot
@@ -83,7 +85,7 @@ az bot [command]
 | 顯示 |顯示現有的 Bot 資源。|
 | update| 更新現有的 Bot Service|
 
-若要從 CLI 建立新的 Bot，您必須選取現有的[資源群組](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview)，或新的資源群組。 
+若要從 CLI 建立新的 Bot，您必須選取現有的[資源群組](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)，或新的資源群組。 
 
 ```azurecli
 az bot create --resource-group "my-resource-group" --name "my-bot-name" --kind "my-resource-type" --description "description-of-my-bot"
@@ -139,18 +141,18 @@ az bot download --name "my-bot-name" --resource-group "my-resource-group"
 
 ## <a name="4-store-your-bot-information-with-msbot"></a>4.使用 MSBot 儲存您的 Bot 資訊
 
-新的 [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/MSBot) 工具可讓您建立 **.bot** 檔案，其中儲存與 Bot 取用不同服務有關的中繼資料，全都放在同一個位置。 此檔案也可讓您的 Bot 從 CLI 連線至這些服務。 此工具可作為 npm 模組，若要加以安裝，請執行：
+新的 [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/MSBot) (英文) 工具可讓您建立 **.bot** 檔案，會儲存您 Bot 所取用不同服務的相關中繼資料，全都放在一個位置。 此檔案也可讓您的 Bot 從 CLI 連線至這些服務。 此工具會以 npm 模組的形式提供，若要安裝請執行：
 
 ```shell
 npm install -g msbot 
 ```
 
-若要建立 Bot 檔案，請從您的 CLI 輸入 **msbot init**，其後再加上 Bot 的名稱和目標 URL 端點，例如：
+若要建立 Bot 檔案，請從您的 CLI 輸入 **msbot init**，後接您 Bot 的名稱和目標 URL 端點，例如：
 
 ```shell
 msbot init --name name-of-my-bot --endpoint http://localhost:bot-port-number/api/messages
 ```
-若要將您的 Bot 連線至服務，請在 CLI 中輸入 **msbot connect**，後接適當的服務：
+若要將您的 Bot 連線到服務，請在 CLI 中輸入 **msbot connect**，後接適當的服務：
 
 ```shell
 msbot connect service-type
@@ -160,8 +162,8 @@ msbot connect service-type
 | ------ | ----------- |
 | azure  |將您的 Bot 連線至 Azure Bot Service 註冊|
 |endpoint| 將您的 Bot 連線至 localhost 之類的端點|
-|luis     | 將您的 Bot 連線至 LUIS 應用程式 |
-| qna     |將您的 Bot 連線至 QnA 知識庫|
+|luis     | 將您的 Bot 連線到 LUIS 應用程式 |
+| qna     |將您的 Bot 連線到 QnA 知識庫|
 |help [cmd]  |顯示 [cmd] 的說明|
 
 ### <a name="connect-your-bot-to-abs-with-the-bot-file"></a>使用 .bot 檔案將您的 Bot 連線至 ABS
@@ -183,7 +185,7 @@ az bot show -n my-bot-name -g my-resource-group --msbot | msbot connect azure --
 > 每個 Bot 建立器工具都包含全域的 help 命令，可輸入 **-h** 或 **--help**，從命令列中加以存取。 您可隨時從任何動作中使用此命令，這會為您提供可用選項及其描述的實用顯示。
 
 ### <a name="ludown"></a>LUDown
-[LUDown](https://github.com/Microsoft/botbuilder-tools/tree/master/Ludown) 可讓您使用 **.lu** 檔案來說明及建立功能強大的語言元件。 新的 .lu 檔案是一種 Markdown 格式，LUDown 工具會加以取用，並輸出目標服務特定的 .json 檔案。 目前，針對每個使用不同的格式，您可以使用 .lu 檔案來建立新的 [LUIS](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-get-started-create-app) 應用程式或 [QnA](https://qnamaker.ai/Documentation/CreateKb) 知識庫。 LUDown 可用來作為 npm 模組，並可全域安裝到您的電腦來使用：
+[LUDown](https://github.com/Microsoft/botbuilder-tools/tree/master/Ludown) (英文) 可讓您使用 **.lu** 檔案，來描述並建立功能強大的語言元件。 新的 .lu 檔案是一種 Markdown 格式，LUDown 工具會加以取用，並輸出目標服務特定的 .json 檔案。 目前，您可以使用 .lu 檔案來建立新的 [LUIS](https://docs.microsoft.com/azure/cognitive-services/luis/luis-get-started-create-app) (英文) 應用程式或 [QnA](https://qnamaker.ai/Documentation/CreateKb) (英文) 知識庫 (各自使用不同的格式)。 LUDown 會以 npm 模組的形式提供，並可全域安裝到您的電腦來使用：
 
 ```shell
 npm install -g ludown
@@ -193,9 +195,9 @@ LUDown 工具可用來建立適用於 LUIS 和 QnA 的新 .json 模型。
 
 ### <a name="creating-a-luis-application-with-ludown"></a>使用 LUDown 建立 LUIS 應用程式
 
-您可以定義 LUIS 應用程式的[意圖](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-intents)和[實體](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-entities)，就如同從 LUIS 入口網站進行。 
+您可以定義 LUIS 應用程式的[意圖](https://docs.microsoft.com/azure/cognitive-services/luis/add-intents)和[實體](https://docs.microsoft.com/azure/cognitive-services/luis/add-entities)，就如同從 LUIS 入口網站進行。 
 
-`# \<intent-name\>` 會說明新的意圖定義區段。 後續幾行包含說明該意圖的[語句](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-example-utterances)。
+`# \<intent-name\>` 會說明新的意圖定義區段。 後續幾行包含說明該意圖的[語句](https://docs.microsoft.com/azure/cognitive-services/luis/add-example-utterances)。
 
 例如，您可以在單一 .lu 檔案中建立多個 LUIS 意圖，如下所示： 
 
@@ -225,7 +227,7 @@ please help
     this-is-the-answer
     ```
   ```
-LUDown 工具會自動將問題和解答分開到 qnamaker JSON 檔案，以便您用來建立新的 [QnaMaker.ai](http://qnamaker.ai) 知識庫。
+LUDown 工具會自動將問題和解答分開到 qnamaker JSON 檔案，以便您可用來建立您的新 [QnaMaker.ai](http://qnamaker.ai) (英文) 知識庫。
 
   ```ludown
   ### ? How do I change the default message for QnA Maker?
@@ -235,7 +237,7 @@ LUDown 工具會自動將問題和解答分開到 qnamaker JSON 檔案，以便�
     ```
   ```
 
-您也可以將多個問題新增到相同的答案，只需針對單一解答新增問題變化的新行。 
+您也可以將多個問題新增到相同的答案，只需針對單一解答新增問題變化的新行即可。 
 
   ```ludown
   ### ? What is your name?
@@ -294,7 +296,7 @@ LUIS 和 QnA 可透過其個別的入口網站，或透過新的 CLI 工具來�
 
 ### <a name="connect-to-luis-from-the-cli"></a>從 CLI 連線至 LUIS 
 
-新工具組中所包含的是 [LUIS 擴充功能](https://github.com/Microsoft/botbuilder-tools/tree/master/LUIS)，可讓您獨立管理您的 LUIS 資源。 它可用來作為 npm 模組，以供您下載：
+新工具組中所包含的是 [LUIS 擴充功能](https://github.com/Microsoft/botbuilder-tools/tree/master/LUIS)https://github.com/Microsoft/botbuilder-tools/tree/master/LUIS，可讓您獨立管理您的 LUIS 資源。 它會以 npm 模組的形式提供，可供您下載：
 
 ```shell
 npm install -g luis-apis
@@ -304,7 +306,7 @@ npm install -g luis-apis
 ```shell
 luis action-name resource-name arguments-list
 ```
-若要將您的 bot 連線至 LUIS，您必須建立 **.luisrc** 檔案。 當您的應用程式進行輸出呼叫時，這個組態檔可將您的 LUIS appID 和密碼佈建到服務端點。 您可以執行 **luis init** 來建立這個檔案，如下所示：
+若要將您的 Bot 連線至 LUIS，您必須建立 **.luisrc** 檔案。 當您的應用程式進行輸出呼叫時，這個組態檔可將您的 LUIS appID 和密碼佈建到服務端點。 您可以執行 **luis init** 來建立這個檔案，如下所示：
 
 ```shell
 luis init

@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 331effc0bf604388995288e5d7c3ca9d54537f94
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 376982396ac11cbcf54f26255235b3779e0e1c26
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298998"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905710"
 ---
 # <a name="secure-your-bot"></a>保護 Bot
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 透過 Bot Framework 連接器服務，Bot 可以連線到許多不同的通訊通道 (Skype、SMS、電子郵件等其他項目)。 本文將說明如何使用 HTTPS 與 Bot Framework 驗證來保護您的 Bot。
 

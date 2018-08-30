@@ -8,21 +8,23 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f432a570f5a8393a2aef3e4ec97c5e7e8cbaa43f
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 509cba25eae229d1e454cd1846a97474f0af957b
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299907"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904262"
 ---
 # <a name="send-proactive-messages"></a>傳送主動訊息
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-proactive-messages.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-proactive-messages.md)
 
 [!INCLUDE [Introduction to proactive messages - part 1](../includes/snippet-proactive-messages-intro-1.md)]
 
-## <a name="types-of-proactive-messages"></a>主動訊息類型
+## <a name="types-of-proactive-messages"></a>主動式訊息的類型
 
 [!INCLUDE [Introduction to proactive messages - part 2](../includes/snippet-proactive-messages-intro-2.md)]
 

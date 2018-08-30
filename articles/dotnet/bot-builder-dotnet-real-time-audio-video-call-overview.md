@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3e990da2abcb63c695cc79d5d8d9af40d8966cfa
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 35aca6f5f50602d0a90c41997eff2e8b1d2cdb4e
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299571"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905610"
 ---
 # <a name="build-a-real-time-media-bot-for-skype"></a>建置適用於 Skype 的即時媒體 Bot
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 適用於 Bot 的即時媒體平台是一項進階功能，可以讓 Bot「逐框架」傳送及接收語音和視訊內容。 Bot 具有語音、視訊和畫面共用即時形式的「原始」存取權。 本文提供建置音訊/視訊通話 Bot 和存取即時形式的概觀。
 

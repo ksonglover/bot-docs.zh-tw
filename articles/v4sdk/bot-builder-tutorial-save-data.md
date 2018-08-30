@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 10c1cb240a22c1c16dd0d946ee55531d514f332e
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 86f70fd66f1bc2261339cbe0590061913b51ddbc
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299859"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904436"
 ---
 # <a name="save-user-state-data"></a>儲存使用者狀態資料
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 當 Bot 要求使用者輸入時，您可能會想要以某些形式的儲存體保存某些資訊。 Bot Builder SDK 可讓您使用*記憶體內部儲存體*、*檔案儲存體*、資料庫儲存體 (*CosmosDB* 或 *SQL*) 來儲存使用者輸入。 
 
@@ -107,7 +109,7 @@ server.post('/api/messages', (req, res) => {
 });
 ```
 
-在執行時，每當使用者傳送包含字串 `reserve table` 的訊息時，Bot 就會開始 `reserveTable` 交談。
+在執行時，每當使用者傳送包含字串 `reserve table` 的訊息，Bot 就會啟動 `reserveTable` 交談。
 
 ## <a name="next-steps"></a>後續步驟
 

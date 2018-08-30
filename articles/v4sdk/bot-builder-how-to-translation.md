@@ -1,5 +1,5 @@
 ---
-title: 翻譯使用者輸入，讓您的 Bot 會使用多國語言 | Microsoft Docs
+title: 翻譯使用者輸入，讓您的 Bot 支援多國語言 | Microsoft Docs
 description: 如何自動將使用者輸入翻譯成 Bot 的原生語言和翻譯回使用者的語言。
 author: DeniseMak
 ms.author: v-demak
@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/06/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7241b67b582b3e31c1b3c15dc5474e750b7cc558
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: e316ff90b68f860274579f06e7196deec364e082
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300463"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905631"
 ---
 # <a name="translate-from-the-users-language-to-make-your-bot-multilingual"></a>從使用者的語言翻譯，讓您的 Bot 會使用多國語言
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 您的 Bot 可以使用 [Microsoft Translator](https://www.microsoft.com/en-us/translator/) 自動將訊息翻譯成 Bot 了解的語言，以及選擇性將 Bot 的回覆翻譯回使用者的語言。
 <!-- 
@@ -31,22 +33,22 @@ ms.locfileid: "39300463"
 
 ## <a name="installing-packages"></a>安裝套件
 
-請確定您有將翻譯新增 Bot 所需的套件。
+請確定您有將翻譯新增到 Bot 所需的套件。
 
 # <a name="ctabcsrefs"></a>[C#](#tab/csrefs)
 
-對以下 NuGet 套件的發行前版本[新增參考](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui)：
+對以下 NuGet 套件的發行前版本[加入參考](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui) \(機器翻譯\)：
 
 * `Microsoft.Bot.Builder.Integration.AspNet.Core`
 * `Microsoft.Bot.Builder.Ai` (翻譯的必要項目)
 
-如果您打算要結合翻譯與 Language Understanding (LUIS)，請也新增下列的參考：
+如果您打算要結合翻譯與 Language Understanding (LUIS)，請也加入對下列項目的參考：
 
 * `Microsoft.Bot.Builder.Luis` (LUIS 的必要項目)
 
 # <a name="javascripttabjsrefs"></a>[JavaScript](#tab/jsrefs)
 
-這些任一項服務都可以使用 botbuilder-ai 套件新增到您的 Bot。 您可以透過 npm 將此套件新增到您的專案：
+在這些服務中，任一個服務都可以使用 botbuilder-ai 套件新增到您的 Bot。 您可以透過 npm 將此套件新增到您的專案：
 * `npm install --save botbuilder@preview`
 * `npm install --save botbuilder-ai@preview`
 
@@ -54,12 +56,12 @@ ms.locfileid: "39300463"
 
 ## <a name="configure-translation"></a>設定翻譯
 
-藉由直接將翻譯工具新增到 Bot 的中介軟體堆疊，來將 Bot 設定成針對收到的每個使用者訊息呼叫您的翻譯工具。 中介軟體會使用翻譯結果，修改使用內容物件的使用者訊息。
+藉由直接將翻譯工具新增到 Bot 的中介軟體堆疊，來將 Bot 設定成針對收到的每個使用者訊息呼叫您的翻譯工具。 中介軟體會使用翻譯結果來修改使用內容物件的使用者訊息。
 
 
 # <a name="ctabcssetuptranslate"></a>[C#](#tab/cssetuptranslate)
 
-開始使用 SDK 中的 EchoBot 範例，並更新 `Startup.cs` 檔案中的 `ConfigureServices` 方法，以將 `TranslationMiddleware` 新增到 Bot。 這會設定您的 Bot 翻譯從使用者收到的每則訊息。 <!--, by simply adding it to your bot's middleware set. The middleware stores the translation results on the context object. -->
+開始使用 SDK 中的 EchoBot 範例，並更新 `Startup.cs` 檔案中的 `ConfigureServices` 方法，以將 `TranslationMiddleware` 新增到 Bot。 這會設定您的 Bot 翻譯從使用者收到的每個訊息。 <!--, by simply adding it to your bot's middleware set. The middleware stores the translation results on the context object. -->
 
 **Startup.cs**
 ```csharp
@@ -93,11 +95,11 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 > [!TIP] 
-> BotBuilder SDK 會自動根據使用者提交訊息，偵測其所使用的語言。 若要覆寫這項功能，您可以提供其他回呼參數，以新增自己用來偵測和變更使用者語言的邏輯。  
+> BotBuilder SDK 會自動根據使用者提交訊息，偵測其所使用的語言。 若要覆寫此功能，您可以提供其他回呼參數，以新增自己用來偵測及變更使用者語言的邏輯。  
 
 
 
-看一下 `EchoBot.cs` 中的程式碼，其中 "You sent" 後面接著使用者說的話：
+看一下 `EchoBot.cs` 中的程式碼，它會送出 "You sent" 後面接著使用者說的話：
 
 ```cs
 using Microsoft.Bot.Builder;
@@ -197,7 +199,7 @@ server.post('/api/messages', (req, res) => {
 
 ## <a name="run-the-bot-and-see-translated-input"></a>執行 Bot，並查看已翻譯的輸入
 
-執行 Bot，並以其他語言輸入幾行訊息。 您會看到 Bot 翻譯了使用者訊息，並指明翻譯在回應中。
+執行 Bot，並以其他語言輸入一些訊息。 您會看到 Bot 翻譯了使用者訊息，並在其回應中指明翻譯。
 
 ![Bot 會偵測語言並翻譯輸入](./media/how-to-bot-translate/bot-detects-language-translates-input.png)
 
@@ -206,7 +208,7 @@ server.post('/api/messages', (req, res) => {
 
 ## <a name="invoke-logic-in-the-bots-native-language"></a>以 Bot 原生語言叫用邏輯
 
-現在，新增檢查英文單字的邏輯。 如果使用者以其他語言說「說明」或「取消」，Bot 會將它翻譯成英文，且會叫用檢查英文單字 "help" 或 "cancel" 的邏輯。
+現在，新增可檢查英文單字的邏輯。 如果使用者以其他語言說「說明」或「取消」，Bot 會將它翻譯成英文，並叫用可檢查英文單字 "help" 或 "cancel" 的邏輯。
 
 # <a name="ctabcshelp"></a>[C#](#tab/cshelp)
 ```cs
@@ -232,7 +234,7 @@ if (context.activity.type === 'message') {
 
 ---
 
-![Bot 偵測法文的說明](./media/how-to-bot-translate/bot-detects-help-french.png)
+![Bot 偵測法文的 help](./media/how-to-bot-translate/bot-detects-help-french.png)
 
 
 
@@ -264,7 +266,7 @@ adapter.use(languageTranslator);
 
 ## <a name="run-the-bot-to-see-replies-in-the-users-language"></a>執行 Bot，並查看以使用者語言寫的回覆
 
-執行 Bot，並以其他語言輸入幾行訊息。 您會看到它會偵測使用者的語言並翻譯回應。
+執行 Bot，並以其他語言輸入一些訊息。 您會看到它會偵測使用者的語言並翻譯回應。
 
 ![Bot 會偵測語言並翻譯回應](./media/how-to-bot-translate/bot-detects-language-translates-response.png)
 
@@ -384,7 +386,7 @@ server.post('/api/messages', (req, res) => {
 
 ## <a name="combining-luis-or-qna-with-translation"></a>結合 LUIS 或 QnA 與翻譯
 
-如果您想在 Bot 中結合翻譯與其他服務 (如 LUIS 或 QnA Maker)，請先新增翻譯翻譯中介軟體，這樣訊息傳遞到使用 Bot 原生語言的其他中介軟體前會先經過翻譯。
+如果您想在 Bot 中結合翻譯與其他服務 (如 LUIS 或 QnA Maker)，請先新增翻譯翻譯中介軟體，這樣訊息傳遞到預期 Bot 原生語言的其他中介軟體前就會先經過翻譯。
 
 # <a name="ctabcslanguageluis"></a>[C#](#tab/cslanguageluis)
 ```cs
@@ -446,7 +448,7 @@ server.post('/api/messages', (req, res) => {
 
 ---
 
-在您的 Bot 程式碼中，LUIS 結果會根據已經翻譯為 Bot 原生語言的輸入產生。 請嘗試修改 Bot 程式碼以檢查 LUIS 應用程式的結果：
+在您的 Bot 程式碼中，LUIS 結果是以已經翻譯為 Bot 原生語言的輸入為基礎。 請嘗試修改 Bot 程式碼以檢查 LUIS 應用程式的結果：
 
 ```cs
 public async Task OnTurn(ITurnContext context)
@@ -513,12 +515,12 @@ adapter.use(languageTranslator);
 
 ## <a name="localize-dates"></a>當地語系化日期
 
-如果需要當地語系化日期，您可以新增 `LocaleConverterMiddleware`。 例如，如果您知道 Bot 接受 `MM/DD/YYYY` 格式的日期，而其他地區設定的使用者可以輸入了 `DD/MM/YYYY` 格式的日期，則地區設定轉換器中介軟體可自動將日期轉換為 Bot 接受的格式。
+如果需要將日期當地語系化，您可以新增 `LocaleConverterMiddleware`。 例如，如果您知道 Bot 接受 `MM/DD/YYYY` 格式的日期，而其他地區設定的使用者可能輸入了 `DD/MM/YYYY` 格式的日期，則地區設定轉換器中介軟體可自動將日期轉換為 Bot 接受的格式。
 
 > [!NOTE]
 > 地區設定轉換器中介軟體的用途是只轉換日期。 它並不知道翻譯中介軟體的結果。 如果您使用翻譯中介軟體，請注意它與地區設定轉換器的結合方式。 翻譯中介軟體會將一些文字格式的日期，與其他文字輸入一起翻譯，但是它不會翻譯日期
 
-例如，下圖顯示 Bot 將翻譯成法文之後回應使用者輸入。 它會使用 `TranslationMiddleware`，而不使用 `LocaleConverterMiddleware`。
+例如，下圖顯示 Bot 將英文翻譯成法文之後回應使用者輸入。 它使用 `TranslationMiddleware` 而未使用 `LocaleConverterMiddleware`。
 
 ![Bot 翻譯日期卻不會轉換日期](./media/how-to-bot-translate/locale-date-before.png)
 

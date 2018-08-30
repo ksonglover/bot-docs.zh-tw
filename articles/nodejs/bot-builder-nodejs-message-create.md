@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 09/7/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e7dfb72f69202011c4fda06c3d55e0afa8d3d045
-ms.sourcegitcommit: dcbc8ad992a3e242a11ebcdf0ee99714d919a877
+ms.openlocfilehash: 804081e52a03a27da418f549f0fadb6dc8bca52b
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352907"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905672"
 ---
 # <a name="create-messages"></a>建立訊息
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 Bot 和使用者會透過訊息來通訊。 Bot 會傳送訊息活動以傳達資訊給使用者，同樣也會接收來自使用者的訊息活動。 某些訊息可能只包含純文字，而其他訊息可能包含更豐富的內容，例如要讀出的文字、建議的動作、媒體附件、複合式資訊卡 (Rich Card)，和通道特定資料。
 
 本文說明一些可供您用來增強使用者體驗的常用訊息方法。
@@ -66,7 +69,7 @@ session.send(customMessage);
 
 訊息的 `textFormat` 屬性可用來指定文字格式。 `textFormat` 屬性可以設定為 **plain**、**markdown** 或 **xml**。 `textFormat` 的預設值為 **markdown**。 
 
-如需常支援的文字格式清單，請參閱[文字格式](../bot-service-channel-inspector.md#text-formatting)。 若要確保目標通道會支援您想使用的功能，請使用[通道偵測器](../bot-service-channel-inspector.md)來預覽此功能。
+如需常支援的文字格式設定清單，請參閱[文字格式設定](../bot-service-channel-inspector.md#text-formatting)。 若要確保目標通道會支援您想使用的功能，請使用[通道偵測器](../bot-service-channel-inspector.md)來預覽此功能。
 
 ## <a name="message-property"></a>訊息屬性
 

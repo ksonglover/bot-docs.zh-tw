@@ -9,16 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 48c32a1dd1c43bbb84c0f771be7dff691f0996ec
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: 34564b411f911ae82197d5a34cb954a103abe70b
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39300582"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905412"
 ---
 # <a name="basic-bot-structure"></a>基本 Bot 結構
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 Azure Bot Service 和 Bot Builder SDK 提供資料庫、範本和工具來協助您建置和偵錯 Bot。 不過，在我們深入進入細節前，請務必瞭解 Bot 和搭配使用的基本結構。 這些概念套用您所選的任一程式語言中。 全文有提供更深入內容的連結，此文章將提供 Bot 如何運作的初始心理架構。
 

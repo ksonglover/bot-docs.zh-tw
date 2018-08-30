@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f38424c2fa86fd4456ab6f8dee81bde71bfd6753
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: cf3d69f7941d8c3177788bd00e4b58416a71cf5e
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299147"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904622"
 ---
 # <a name="basic-features-of-formflow"></a>FormFlow 的基本功能
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 [交談方塊](bot-builder-dotnet-dialogs.md)功能強大且彈性，處理訂購三明治等引導式交談時可能會很費工。 在交談中的每個時間點，接下來有可能會發生許多不同的情況。 例如，您可能需要釐清問題、提供協助、返回或顯示進度。 使用 Bot Builder SDK for .NET 中的 **FormFlow**，即可大幅簡化管理這類引導式交談的程序。 
 
@@ -316,11 +318,11 @@ FormFlow 簡化對話方塊的開發作業。 FormFlow 的進階功能可讓您�
 
 ## <a name="additional-resources"></a>其他資源
 
-- [使用 FormBuilder 自訂表單](bot-builder-dotnet-formflow-formbuilder.md)
+- [使用 FormBuilder 來自訂表單](bot-builder-dotnet-formflow-formbuilder.md)
 - [將表單內容當地語系化](bot-builder-dotnet-formflow-localize.md)
-- [使用 JSON 結構描述定義表單](bot-builder-dotnet-formflow-json-schema.md)
-- [使用模式語言自訂使用者體驗](bot-builder-dotnet-formflow-pattern-language.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 參考資料</a>
+- [使用 JSON 結構描述來定義表單](bot-builder-dotnet-formflow-json-schema.md)
+- [使用模式語言來自訂使用者體驗](bot-builder-dotnet-formflow-pattern-language.md)
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot 建立器 SDK 參考</a>
 
 [LuisDialog]: /dotnet/api/microsoft.bot.builder.dialogs.luisdialog-1
 

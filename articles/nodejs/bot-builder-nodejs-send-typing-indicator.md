@@ -8,15 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: aff2509a426fb42f136fb9d2b4a2df9ec1accda0
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 1c6b01b1cab9165b1513bfda5af182f27635290e
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300222"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904380"
 ---
 # <a name="send-a-typing-indicator"></a>傳送輸入指標 
 
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 使用者期望訊息可收到及時的回應。 如果 Bot 正在執行某些長時間執行的工作，例如呼叫伺服器或執行查詢，而未提供使用者 Bot 收到訊息的指示，使用者可能會不耐煩並傳送其他訊息，或以為 Bot 故障了。
 許多通道都支援傳送輸入指示，以向使用者顯示訊息已收到且正在進行處理。

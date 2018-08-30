@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/30/17
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9a04a73e8ac8716ec528586e069aa2d16d90e28f
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: 88651a2c86698d55e3a429d7ea62662976d2115f
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39300594"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906162"
 ---
 # <a name="using-luis-for-language-understanding"></a>將 LUIS 用於 Language Understanding
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 讓您的 Bot 能透過交談和上下文了解使用者的意思，並不是簡單的工作，但這樣的功能可讓您的 Bot 使用起來更有自然交談的感覺。 Language Understanding (稱為 LUIS) 能讓您這麼做，使您的 Bot 可以辨識使用者訊息的意圖，這樣使用者就能使用更自然的語言，且更順利地引導交談流程。 如果您需要 LUIS 與 Bot 之整合方式的詳細背景資訊，請參閱[Bot 的語言理解](./bot-builder-concept-LUIS.md)。 
 

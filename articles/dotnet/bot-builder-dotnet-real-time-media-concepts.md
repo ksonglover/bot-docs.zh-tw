@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 255248449ab7adb6512db93ece51389d65c01dee
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: eed4ac20664d15fbc40969551a1f23fc91b4f120
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299247"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906222"
 ---
 # <a name="real-time-media-calling-with-skype"></a>使用 Skype 進行即時媒體通話
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 Bot 的即時媒體平台可實現即時語音、視訊和畫面共用，讓 Bot 能以更豐富的形式與使用者互動。 這可提供建置引人注目和互動式環境、教育及協助 Bot 的功能。 使用者以 Skype 與即時媒體 Bot 通訊。
 

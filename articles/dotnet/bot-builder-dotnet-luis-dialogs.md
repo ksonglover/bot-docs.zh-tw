@@ -8,22 +8,26 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b98eea6bdae097beec85e93301e5380a1de991c3
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: fc260f34f28e406dc88dd5b688d84cd79c7e9449
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299886"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905950"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 辨識意圖和實體 
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 本文使用要用來記筆記的 Bot 範例，來示範 Language Understanding ([LUIS][LUIS]) 如何協助您的 Bot 適當地回應自然語言輸入。 Bot 會藉由識別使用者的**意圖**，來偵測他們想要做什麼。 此意圖是從語音或文字輸入，或是**語句**來判斷的。 此意圖會將語句對應到 Bot 所採取的動作。 例如，記筆記的 Bot 會辨識 `Notes.Create` 意圖，以叫用可用來建立筆記的功能。 Bot 可能也需要擷取**實體**，其為語句中的重要單字。 在記筆記的 Bot 範例中，`Notes.Title` 實體會識別每個筆記的標題。
 
 ## <a name="create-a-language-understanding-bot-with-bot-service"></a>使用 Bot 服務來建立 Language Understanding Bot
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，選取功能表刀鋒視窗中的 [建立新資源]，然後按一下 [查看全部]。<!-- Start with the steps in [Create a bot with Bot Service](../bot-service-quickstart.md) to start creating a new bot service.  -->
+1. 在 [Azure 入口網站](https://portal.azure.com)中，選取功能表刀鋒視窗中的 [建立新資源]，然後按一下 [查看全部]。
 
-    ![建立新資源](../media/bot-builder-dotnet-use-luis/bot-service-creation.png)
+<!-- Start with the steps in [Create a bot with Bot Service](../bot-service-quickstart.md) to start creating a new bot service.  -->
+
+    ![Create new resource](../media/bot-builder-dotnet-use-luis/bot-service-creation.png)
 
 2. 在搜尋方塊中，搜尋 **Web 應用程式 Bot**。 
 
@@ -382,10 +386,10 @@ Bot 可以使用 `Note.ReadAloud` 意圖來顯示筆記的內容，如果未偵�
 
 ## <a name="additional-resources"></a>其他資源
 
-- [對話](bot-builder-dotnet-dialogs.md)
+- [對話方塊](bot-builder-dotnet-dialogs.md)
 - [使用對話 (dialogue) 管理對話 (conversation) 流程](bot-builder-dotnet-manage-conversation-flow.md)
 - <a href="https://www.luis.ai" target="_blank">LUIS</a>
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Builder SDK 參考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot 建立器 SDK 參考</a>
 
 [LUIS]: https://www.luis.ai/
 [NotesSample]: https://github.com/Microsoft/BotFramework-Samples/tree/master/docs-samples/CSharp/Simple-LUIS-Notes-Sample

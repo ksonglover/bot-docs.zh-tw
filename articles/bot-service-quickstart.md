@@ -8,18 +8,21 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/13/2018
-ms.openlocfilehash: c0432bf7c1691422db71798daf3b1aab5bf5b5dd
-ms.sourcegitcommit: 97bb24f15041caccef4ca5736aa14f144881e0c6
+ms.openlocfilehash: fef9a3056839f99fe4da47bb22a1a0980293dc5d
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39567517"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905382"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
 # <a name="create-a-bot-with-bot-service"></a>使用 Bot 服務建立 Bot
+
+[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
+
 Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連接 Bot 與通道的 Bot Framework。 建立支援 .NET 和 Node.js 的 Bot 時，Bot 服務提供五種範本供您選擇。 在本主題中，您將了解如何使用 Bot 服務來建立使用 Bot Builder SDK 的新 Bot。
 
 ## <a name="log-in-to-azure"></a>登入 Azure
@@ -39,7 +42,7 @@ Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Buil
 
    | 設定 | 建議的值 | 說明 |
    | ---- | ---- | ---- |
-   | **Bot 名稱** | Bot 的顯示名稱 | Bot 在通道和目錄中的顯示名稱。 您可以隨時變更此名稱。 |
+   | **Bot 名稱** | 您的 Bot 顯示名稱 | Bot 在通道和目錄中的顯示名稱。 您可以隨時變更此名稱。 |
    | **訂用帳戶** | 您的訂用帳戶 | 選取您要使用的 Azure 訂用帳戶。 |
    | **資源群組** | myResourceGroup | 您可以建立新的[資源群組](/azure/azure-resource-manager/resource-group-overview#resource-groups)，或選擇現有的資源群組。 |
    | **位置** | 預設的位置 | 選取資源群組的地理位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 一旦建立 Bot，就無法變更位置。 |
@@ -64,7 +67,7 @@ Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Buil
  > 如需詳細資訊，請參閱 [Azure Functions Pack](https://github.com/Azure/azure-functions-pack) \(英文\)。
  
 ## <a name="test-the-bot"></a>測試 Bot
-現在，既然您已建立 Bot，請在 [Web 聊天](bot-service-manage-test-webchat.md)中測試它。 輸入訊息，而您的 Bot 應該會回應。
+現在，既然您已建立 Bot，請在 [Web 聊天](bot-service-manage-test-webchat.md)中測試它。 輸入訊息，您的 Bot 應會回應。
 
 ## <a name="next-steps"></a>後續步驟
 
@@ -99,7 +102,7 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 
  | 設定 | 建議的值 | 說明 |
  | ---- | ---- | ---- |
- | **Bot 名稱** | Bot 的顯示名稱 | Bot 在通道和目錄中的顯示名稱。 您可以隨時變更此名稱。 |
+ | **Bot 名稱** | 您的 Bot 顯示名稱 | Bot 在通道和目錄中的顯示名稱。 您可以隨時變更此名稱。 |
  | **訂用帳戶** | 您的訂用帳戶 | 選取您要使用的 Azure 訂用帳戶。 |
  | **資源群組** | myResourceGroup | 您可以建立新的[資源群組](/azure/azure-resource-manager/resource-group-overview#resource-groups)，或選擇現有的資源群組。 |
  | **位置** | 預設的位置 | 選取資源群組的地理位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 一旦建立 Bot，就無法變更位置。 |
@@ -116,7 +119,7 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 勾選 [通知] 來確認已部署 Bot。 通知會從 [部署進行中] 變更為 [部署成功]。 按一下 [前往資源] 按鈕以開啟 Bot 的資源刀鋒視窗。
 
 ## <a name="test-the-bot"></a>測試 Bot
-現在，既然您已建立 Bot，請在 [Web 聊天](bot-service-manage-test-webchat.md)中測試它。 輸入訊息，而您的 Bot 應該會回應。
+現在，既然您已建立 Bot，請在 [Web 聊天](bot-service-manage-test-webchat.md)中測試它。 輸入訊息，您的 Bot 應會回應。
 
 ## <a name="next-steps"></a>後續步驟
 

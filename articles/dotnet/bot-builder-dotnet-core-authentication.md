@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6df7923caa708ac2b10af37d860dfac317e113a0
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 431367cf4afe702fd83feff60b0ee4e260d50f17
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299202"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905760"
 ---
 # <a name="authenticating-activities-using-net-core"></a>使用 .NET Core 驗證活動
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 如果您選擇使用 [.NET Core](/dotnet/core/index) 來開發您的 Bot，可以使用 [Bot Framework Connector](bot-builder-dotnet-connector.md) 從您的 Bot 傳送及接收[活動](https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html)訊息。 若要使用 Connector 服務，您必須為目標架構版本設定適當的驗證模型。
 

@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: aed933a6ff8cb393b6c3aaed9cb96cdc0005c2e1
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 52557ed98cefcfcfc9fdc0d29fd4728309cdcc40
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300087"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904022"
 ---
 # <a name="bot-framework-reference"></a>Bot Framework 參考
+
+[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
+
 Bot Framework 包括 Bot Builder SDK for .NET、Bot Builder SDK for Node.js 和 Bot Framework REST API 的完整參考文件。
 
 ## <a name="bot-builder-sdk-for-net"></a>Bot Builder SDK for .NET

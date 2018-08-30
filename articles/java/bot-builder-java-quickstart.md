@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/02/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ca4714d3b3988fd08021f55a4905d9426996b7eb
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3b618bfb7cd1a462390aee4d564778c8ec0a7247
+ms.sourcegitcommit: d486dd088b87a44fc8142f7a08877ff993861a42
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299219"
+ms.lasthandoff: 08/26/2018
+ms.locfileid: "42928427"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-java"></a>使用適用於 Java 的 Bot 建立器 SDK 建立 Bot
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -150,23 +150,21 @@ public class App {
 
 ### <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並且連線到您的 Bot
 
-此時，Bot 正在本機執行。
-接下來，啟動模擬器，然後在模擬器中連線到您的 Bot：
+此時，您的 Bot 正在本機執行。
+接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 
-1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 組態] 連結。 
+1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定] 連結。 
 
-2. 輸入 **Bot 名稱**，然後輸入 Bot 程式碼的目錄路徑。 Bot 組態檔會儲存至這個路徑。
+2. 輸入 **Bot 名稱**，然後輸入 Bot 程式碼的目錄路徑。 Bot 設定檔將會儲存至這個路徑。
 
-3. 將 `http://localhost:port-number/api/messages` 輸入到 [端點 URL] 欄位，其中連接埠號碼必須符合應用程式執行所在瀏覽器中顯示的連接埠號碼。
+3. 將 `http://localhost:port-number/api/messages` 輸入至 [端點 URL] 欄位，其中連接埠號碼必須符合應用程式執行所在瀏覽器中顯示的連接埠號碼。
 
-4. 按一下 [連線] 來連線到 Bot。 您不需要指定 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**。 目前可以將這些欄位保留空白。 稍後註冊 Bot 時，您會取得這項資訊。
+4. 按一下 [連線] 來連線至 Bot。 您不需要指定 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**。 目前可以將這些欄位保留空白。 稍後註冊 Bot 時，您會取得這項資訊。
 
 ### <a name="interact-with-your-bot"></a>與您的 Bot 互動
 傳送 "Hi" 給您的 Bot，Bot 會回應訊息。
 
 ## <a name="next-steps"></a>後續步驟
-
-接下來，請跳至說明 Bot 及其運作方式的概念。
 
 > [!div class="nextstepaction"]
 > [基本 Bot 概念](../v4sdk/bot-builder-basics.md)

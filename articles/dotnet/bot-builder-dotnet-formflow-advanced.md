@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8860c6b3fa0eaaf9f9bfc92984a501c066f2fe5c
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6637876b016b8680fe722602f530a0c6b0ddfc5a
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297574"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905402"
 ---
 # <a name="advanced-features-of-formflow"></a>FormFlow 的進階功能
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 [FormFlow 的基本功能](bot-builder-dotnet-formflow.md)描述基本的 FormFlow 實作，可提供相當通用的使用者體驗。 若要使用 FormFlow 來提供更客製化的使用者體驗，您可以指定初始表單狀態；新增商務邏輯，以管理欄位之間的相互依存性並處理使用者輸入；以及使用屬性來自訂提示、覆寫範本、指定選擇性欄位、比對使用者輸入，並驗證使用者輸入。 
 

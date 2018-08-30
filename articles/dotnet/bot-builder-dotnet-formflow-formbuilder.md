@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d24e43a3f48db024ab55c2089acbc42edebab929
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3ad843530b70b75a6db728a399a315534d2234ac
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300211"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904191"
 ---
 # <a name="customize-a-form-using-formbuilder"></a>使用 FormBuilder 來自訂表單
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 [FormFlow 的基本功能](bot-builder-dotnet-formflow.md)描述基本的 FormFlow 實作，可提供相當通用的使用者體驗，而 [FormFlow 的進階功能](bot-builder-dotnet-formflow-advanced.md)則描述如何使用商務邏輯和屬性來自訂使用者體驗。 本文說明如何藉由指定表單執行步驟的序列，並以動態方式定義欄位值、確認和訊息，使用 [FormBuilder][formBuilder] 進一步自訂使用者體驗。 
 

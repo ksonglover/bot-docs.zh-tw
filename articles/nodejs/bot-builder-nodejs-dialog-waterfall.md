@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: ac8e01a81e3f8acca3aa6976eec47017876c3042
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: fcda5bb35712f3a1ec27fba64a492ced911c41db
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299399"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905960"
 ---
 # <a name="define-conversation-steps-with-waterfalls"></a>使用瀑布定義交談步驟
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 交談是使用者與 Bot 之間交換的一系列訊息。 當 Bot 的目標是引導使用者完成一系列的步驟時，您可以使用瀑布來定義交談的步驟。
 

@@ -9,16 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 539e9e1cd772495d849ce106ee7d6a157fc1a9c0
-ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
+ms.openlocfilehash: 28377a1e611464012df28d3edf78d1cf01351345
+ms.sourcegitcommit: 44f100a588ffda19c275b118f4f97029f12d1449
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/04/2018
-ms.locfileid: "39515078"
+ms.lasthandoff: 08/26/2018
+ms.locfileid: "42928366"
 ---
 # <a name="persist-user-data"></a>保存使用者資料
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 當 Bot 要求使用者輸入時，您可能會想要以某些形式的儲存體保存某些資訊。 Bot 建立器 SDK 可讓您使用「記憶體中的儲存體」、「檔案儲存體」或資料庫儲存體 (例如 CosmosDB 或 SQL) 來儲存使用者輸入，其中本機儲存體類型主要用於測試或原型設計，而後面的儲存體類型最適合用於生產 Bot。
 

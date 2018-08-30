@@ -8,20 +8,23 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 04d1f92687668267ca8226257ee83f993b5d09df
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 58086bfb29846e39a219beb2f7f0e8d977415559
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299658"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904913"
 ---
 # <a name="add-speech-to-messages"></a>將語音新增至訊息
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-text-to-speech.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-text-to-speech.md)
 > - [REST](../rest-api/bot-framework-rest-connector-text-to-speech.md)
 
-如果您要為具備語音功能的通道 (例如 Cortana) 建置 Bot，您可以建構訊息，其中指定要由 Bot 讀出的文字。 您也可以嘗試影響用戶端的麥克風狀態，做法是指定[輸入提示](bot-builder-nodejs-send-input-hints.md)，指出 Bot 會接受、需要還是忽略使用者輸入。
+如果您要為具備語音功能的通道 (例如 Cortana) 建置 Bot，您可以建構訊息，其中指定要由 Bot 讀出的文字。 您也可以指定[輸入提示](bot-builder-nodejs-send-input-hints.md)，藉由指出您的 Bot 要接受、需要或忽略使用者輸入，來嘗試影響用戶端的麥克風狀態。
 
 ## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定要由 Bot 讀出的文字
 
@@ -57,14 +60,14 @@ ms.locfileid: "39299658"
 
 ## <a id="ssml"></a>語音合成標記語言 (SSML)
 
-若要指定要由 Bot 讀出的文字，您可以使用純文字字串或格式化為語音合成標記語言 (SSML) 的字串；SSML 是一種以 XML 為基礎的標記語言，可讓您控制 Bot 語音的各種特性，例如聲音、速率、音量、發音、音調等等。 如需 SSML 的詳細資訊，請參閱<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">合成標記語言參考</a>。
+若要指定要由 Bot 讀出的文字，您可以使用純文字字串或格式化為語音合成標記語言 (SSML) 的字串，SSML 是一種以 XML 為基礎的標記語言，可讓您控制 Bot 語音的各種特性，例如聲音、速率、音量、發音、音調等等。 如需 SSML 的詳細資訊，請參閱<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">合成標記語言參考</a>。
 
 > [!TIP]
 > 使用 <a href="https://www.npmjs.com/search?q=ssml" target="_blank">SSML 程式庫</a>建立格式正確的 SSML。
 
 ## <a name="input-hints"></a>輸入提示
 
-當您在具備語音功能的通道上傳送訊息時，您也可以嘗試影響用戶端的麥克風狀態，做法是包含輸入提示，表示您的 Bot 會接受、需要或忽略使用者輸入。 如需詳細資訊，請參閱[將輸入提示新增至訊息](bot-builder-nodejs-send-input-hints.md)。
+當您在啟用語音功能的通道上傳送訊息時，您也可以藉由包含輸入提示以指出 Bot 要接受、需要或忽略使用者輸入，來嘗試影響用戶端的麥克風狀態。 如需詳細資訊，請參閱[將輸入提示新增至訊息](bot-builder-nodejs-send-input-hints.md)。
 
 ## <a name="sample-code"></a>範例程式碼 
 
@@ -72,7 +75,7 @@ ms.locfileid: "39299658"
 
 ## <a name="additional-resources"></a>其他資源
 
-- <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a>
+- <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a> \(英文\)
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">骰子機範例 (GitHub)</a>
 - [適用於 Node.js 的 Bot 建立器 SDK 參考資料][SDKReference]
 

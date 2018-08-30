@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 29edff2db0e513a37b8ca8ac0f97e0647282567d
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3f36b00a91644859445676676374f7d321087800
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299351"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906099"
 ---
 # <a name="create-middleware-that-logs-in-cosmos-db"></a>建立在 Cosmos DB 中記錄的中介軟體
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 雖然 SDK 提供實用的中介軟體，仍然有些情況下，您需要自行實作中介軟體，以達到所需的目標。
 

@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e6bfd890944cfea052e07ee99451ab90db75415b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: a3d049e349a86437f8c342df1702281600aeddd4
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297572"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904390"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能建置啟用語音的 Bot
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-cortana-skill.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-cortana-skill.md)
@@ -79,9 +82,9 @@ reply.InputHint = InputHints.ExpectingInput;
 
 | 卡片類型 | 說明 |
 |----|----|
-| [HeroCard][heroCard] | 通常包含單一大型影像、一或多個按鈕及文字的卡片。 |
-| [ThumbnailCard][thumbnailCard] | 包含單一縮圖影像、一或多個按鈕及文字的卡片。 |
-| [ReceiptCard][receiptCard] | 讓 Bot 向使用者提供收據的卡片。 通常包含收據上的項目清單 (稅金和總金額資訊) 及其他文字。 |
+| [HeroCard][heroCard] | 通常包含單一大型影像、一或多個按鈕和文字的卡片。 |
+| [ThumbnailCard][thumbnailCard] | 通常包含單一縮圖影像、一或多個按鈕和文字的卡片。 |
+| [ReceiptCard][receiptCard] | 讓 Bot 向使用者提供收據的卡片。 通常包含收據上的項目清單 (稅金和總金額資訊) 和其他文字。 |
 | [SignInCard][signinCard] | 可讓 Bot 要求使用者登入的卡片。 它通常包含文字，以及一或多個按鈕，使用者可以按一下按鈕來起始登入流程。 |
 
 

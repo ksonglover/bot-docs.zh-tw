@@ -7,19 +7,22 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b99dc4cd9011871d52479ade92968ebb29c8c73f
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: cb64d25582589b7bcbbe715cb4288cf56ac93e1c
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300082"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906075"
 ---
 # <a name="manage-custom-state-data-with-azure-cosmos-db-for-net"></a>使用適用於 .NET 的 Azure Cosmos DB 管理自訂狀態資料
-在本文中，您將實作 Azure Cosmos DB 來儲存和管理 Bot 的狀態資料。 Bot 所使用的預設連接器狀態服務不適用於生產環境。 您應使用 GitHub 上提供的 [Azure 延伸模組](https://github.com/Microsoft/BotBuilder-Azure)，或使用您選擇的資料儲存體平台實作自訂狀態用戶端。 以下列舉應使用自訂狀態儲存體的若干原因：
- - 更高的狀態 API 輸送量 (更充分掌控效能)
- - 地理分佈的低延遲
- - 控制資料儲存位置
- - 實際狀態資料的存取權
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
+在本文中，您將實作 Azure Cosmos DB 來儲存和管理 Bot 的狀態資料。 Bot 所使用的預設連接器狀態服務不適用於生產環境。 您應使用 GitHub 上提供的 [Azure 延伸模組](https://github.com/Microsoft/BotBuilder-Azure) (英文)，或使用您選擇的資料儲存體平台來實作自訂狀態用戶端。 以下列舉應使用自訂狀態儲存體的若干原因：
+ - 可獲得更高的狀態 API 輸送量 (更充分掌控效能)
+ - 可降低地理分佈的延遲
+ - 可控制資料儲存位置
+ - 可存取實際的狀態資料
  - 儲存超過 32 KB 的資料
  
 ## <a name="prerequisites"></a>必要條件
@@ -27,17 +30,17 @@ ms.locfileid: "39300082"
  - [Microsoft Azure 帳戶](https://azure.microsoft.com/en-us/free/)
  - [Visual Studio 2015 或更新版本](https://www.visualstudio.com/)
  - [Bot Builder Azure NuGet 套件](https://www.nuget.org/packages/Microsoft.Bot.Builder.Azure/)
- - [Autofac Web Api2 NuGet 套件](https://www.nuget.org/packages/Autofac.WebApi2/)
- - [Bot Framework 模擬器](~/bot-service-debug-emulator.md)
+ - [Autofac Web Api2 NuGet 套件](https://www.nuget.org/packages/Autofac.WebApi2/) (英文)
+ - [Bot Framework 模擬器](~/bot-service-debug-emulator.md) (英文)
  
 ## <a name="create-azure-account"></a>建立 Azure 帳戶
-如果您沒有 Azure 帳戶，按一下[這裡](https://azure.microsoft.com/en-us/free/)註冊免費帳戶。
+如果您沒有 Azure 帳戶，請按一下[這裡](https://azure.microsoft.com/en-us/free/)註冊免費帳戶。
 
 ## <a name="set-up-the-azure-cosmos-db-database"></a>設定 Azure Cosmos DB 資料庫
 1. 在您登入 Azure 入口網站之後，按一下 [新增] 以建立新的 *Azure Cosmos DB* 資料庫。 
 2. 按一下 [資料庫]。 
 3. 找到 **Azure Cosmos DB**，然後按一下 [建立]。
-4. 填寫欄位。 如果是 **API** 欄位，請選取 **SQL (DocumentDB)**。 填妥所有欄位後，按一下畫面底部的 [建立] 按鈕來部署新的資料庫。 
+4. 填寫欄位。 如果是 [**API**] 欄位，請選取 [**SQL (DocumentDB)**]。 填妥所有欄位後，按一下畫面底部的 [建立] 按鈕來部署新的資料庫。 
 5. 新資料庫部署完畢後，接著瀏覽至新資料庫。 按一下 [存取金鑰] 以尋找金鑰和連接字串。 您的 Bot 會使用此資訊來呼叫儲存體服務以儲存狀態資料。
 
 ## <a name="install-nuget-packages"></a>安裝 NuGet 套件
@@ -104,7 +107,7 @@ namespace SampleApp
 
 ## <a name="connect-your-bot-to-the-emulator"></a>將 Bot 連線至模擬器
 此時，Bot 正在本機執行。 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
-1. 將 http://localhost:port-number/api/messages 輸入網址列，其中連接埠號碼必須符合應用程式執行所在瀏覽器中顯示的連接埠號碼。 您目前可以將 <strong>Microsoft 應用程式識別碼</strong>和 <strong>Microsoft 應用程式密碼</strong>欄位留白。 稍後[註冊 Bot](~/bot-service-quickstart-registration.md) 時，您會取得這項資訊。
+1. 將 http://localhost:port-number/api/messages 輸入網址列，其中連接埠號碼必須符合應用程式執行所在的瀏覽器中，所顯示的連接埠號碼。 您目前可以將 <strong>Microsoft 應用程式識別碼</strong>和 <strong>Microsoft 應用程式密碼</strong>欄位留白。 稍後[註冊 Bot](~/bot-service-quickstart-registration.md) 時，您會取得這些資訊。
 2. 按一下 [ **連接**]。 
 3. 在模擬器中輸入一些訊息以測試您的 Bot。 
 
