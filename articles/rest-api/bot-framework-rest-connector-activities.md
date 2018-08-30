@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: cf8da2240df7edbb6ea8c858829e71089b7e72cb
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 565f71dee4269ecd67dabe18af57e36defcfb3fc
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300342"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756493"
 ---
 # <a name="activities-overview"></a>活動概觀
 
@@ -28,9 +28,8 @@ Bot 連接器服務在 Bot 和通道 (使用者) 之間藉由傳遞[活動][Acti
 | conversationUpdate | 表示 Bot 已新增至對話、其他成員已新增至對話或從對話中移除，或對話中繼資料已變更。 |
 | contactRelationUpdate | 表示 Bot 已新增至連絡人清單，或從使用者的連絡人清單中移除。 |
 | typing | 表示使用者或在對話另一端的 Bot 正在編譯回應。 | 
-| Ping | 代表嘗試判斷 Bot 的端點是否可以存取。 | 
 | deleteUserData | 表示使用者已要求 Bot 刪除任何可能已儲存的使用者資料。 |
-| endOfConversation | 標示對話結束。 |
+| endOfConversation | 表示對話結束。 |
 
 ## <a name="message"></a>Message
 
@@ -53,13 +52,9 @@ Bot 連接器服務在 Bot 和通道 (使用者) 之間藉由傳遞[活動][Acti
 
 Bot 會收到 **typing** 活動，表示使用者正在輸入回應。 Bot 會傳送 **typing** 活動，向使用者表示 Bot 正在運作以完成要求或編譯回應。 
 
-## <a name="ping"></a>Ping
-
-Bot 會收到 **ping** 活動，以判斷其端點是否可以存取。 Bot 會使用 HTTP 狀態碼 200 (OK)、403 (禁止) 或 401 (未授權) 做出回應。
-
 ## <a name="deleteuserdata"></a>deleteUserData
 
-當使用者要求刪除 Bot 先前為其保存的任何資料，Bot 會收到 **deleteUserData** 活動。 如果您的 Bot 收到此類型的活動，它會為提出要求的使用者刪除先前已儲存的任何個人識別資訊 (PII)。
+當使用者要求刪除 Bot 先前為其保存的任何資料，Bot 會收到 **deleteUserData** 活動。 如果您的 Bot 收到此類型的活動，就會為提出要求的使用者刪除先前已儲存的任何個人識別資訊 (PII)。
 
 ## <a name="endofconversation"></a>endOfConversation 
 

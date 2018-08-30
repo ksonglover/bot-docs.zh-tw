@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f7fe3181a4c361b47a7ef6fbdf815b4c495c6f76
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 834702024c99873ca9f0bbedb53a24a16ba55878
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574634"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756699"
 ---
 # <a name="activities-overview"></a>活動概觀
 
@@ -31,7 +31,6 @@ ms.locfileid: "39574634"
 | [conversationUpdate](#conversationupdate) | IConversationUpdateActivity | 表示 Bot 已新增至對話、其他成員已新增至對話中或從對話中移除，或對話中繼資料已變更。 |
 | [contactRelationUpdate](#contactrelationupdate) | IContactRelationUpdateActivity | 表示 Bot 已新增至使用者的連絡人清單，或從使用者的連絡人清單中移除。 |
 | [typing](#typing) | ITypingActivity | 表示使用者或在對話另一端的 Bot 正在編譯回應。 | 
-| [ping](#ping) | n/a | 代表已嘗試判斷 Bot 的端點是否可以存取。 | 
 | [deleteUserData](#deleteuserdata) | n/a | 表示使用者已要求 Bot 刪除任何可能已儲存的使用者資料。 |
 | [endOfConversation](#endofconversation) | IEndOfConversationActivity | 表示對話結束。 |
 | [event](#event) | IEventActivity | 代表傳送給 Bot 使用者看不到的通訊。 |
@@ -62,10 +61,6 @@ ms.locfileid: "39574634"
 ## <a name="typing"></a>typing
 
 Bot 會收到 **typing** 活動，表示使用者正在輸入回應。 Bot 會傳送 **typing** 活動，向使用者表示 Bot 正在運作以完成要求或編譯回應。 
-
-## <a name="ping"></a>Ping
-
-Bot 會收到 **ping** 活動，以判斷其端點是否可以存取。 Bot 會使用 HTTP 狀態碼 200 (OK)、403 (禁止) 或 401 (未授權) 做出回應。
 
 ## <a name="deleteuserdata"></a>deleteUserData
 
