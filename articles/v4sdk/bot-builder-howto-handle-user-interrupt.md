@@ -10,14 +10,14 @@ ms.prod: bot-framework
 ms.date: 04/17/2018
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 651a7410893f7a66f5941121edc7b34055807ba7
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: fff4f8e2a4d2d86cf440bee7ab40216e93a8c8c5
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298922"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756569"
 ---
-# <a name="handle-user-interrupt"></a>處理使用者中斷
+# <a name="handle-user-interruptions"></a>處理使用者中斷
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -29,17 +29,19 @@ ms.locfileid: "39298922"
 
 程序性對話流程具有一組核心步驟，您會想要引導使用者進行這些步驟，與這些步驟不同的任何使用者動作都是潛在的中斷。 在一般流程中，會有您可以預期的中斷。
 
-**餐廳訂位** 在餐廳訂位 Bot 中，核心步驟可能是向使用者詢問日期和時間、派對規模及訂位名稱。 在該程序中，您可以預期到的一些中斷可能包括： 
- * `cancel`：可結束程序。
- * `help`：可提供此程序相關的其他指引。
- * `more info`：可提供提示與建議，或提供餐廳訂位的替代方式 (例如：連絡用電子郵件地址或電話號碼)。
- * `show list of available tables`：如果這是選項；會顯示在使用者希望的日期和時間可供選擇的桌位清單。
+**餐廳訂位** 在餐廳訂位 Bot 中，核心步驟可能是向使用者詢問日期和時間、派對規模及訂位名稱。 在該程序中，您可以預期到的一些中斷可能包括：
 
-**訂購晚餐** 在訂購晚餐 Bot 中，核心步驟是提供選單項目清單，並且讓使用者可將項目新增至購物車。 在此程序中，您可以預期到的一些中斷可能包括： 
- * `cancel`：可結束訂購程序。
- * `more info`：可提供每個選單項目的飲食詳細資料。
- * `help`：可提供如何使用系統的說明。
- * `process order`：可處理訂單。
+* `cancel`：可結束程序。
+* `help`：可提供此程序相關的其他指引。
+* `more info`：可提供提示與建議，或提供餐廳訂位的替代方式 (例如：連絡用電子郵件地址或電話號碼)。
+* `show list of available tables`：如果這是選項；會顯示在使用者希望的日期和時間可供選擇的桌位清單。
+
+**訂購晚餐** 在訂購晚餐 Bot 中，核心步驟是提供選單項目清單，並且讓使用者可將項目新增至購物車。 在此程序中，您可以預期到的一些中斷可能包括：
+
+* `cancel`：可結束訂購程序。
+* `more info`：可提供每個選單項目的飲食詳細資料。
+* `help`：可提供如何使用系統的說明。
+* `process order`：可處理訂單。
 
 您可用**建議的動作**清單或提示的形式，將這些項目提供給使用者，讓使用者至少知道可以傳送哪些 Bot 能夠了解的命令。
 
@@ -71,7 +73,7 @@ public class dinnerMenu
 
 ```javascript
 var dinnerMenu = {
-    choices: ["Potato Salad - $5.99", "Tuna Sandwich - $6.89", "Clam Chowder - $4.50", 
+    choices: ["Potato Salad - $5.99", "Tuna Sandwich - $6.89", "Clam Chowder - $4.50",
             "more info", "Process order", "Cancel"],
     "Potato Salad - $5.99": {
         Description: "Potato Salad",
@@ -140,13 +142,13 @@ dialogs.Add("orderPrompt", new WaterfallStep[]
 
         if(response == "process order")
         {
-            try 
+            try
             {
                 var order = convo["order"];
 
                 await dc.Context.SendActivity("Order is on it's way!");
-                
-                // In production, you may want to store something more helpful, 
+
+                // In production, you may want to store something more helpful,
                 // such as send order off to be made
                 (order as Orders).processOrder = true;
 
@@ -191,13 +193,13 @@ dialogs.Add("orderPrompt", new WaterfallStep[]
         }
         else
         {
-            // Unlikely to get past the prompt verification, but this will catch 
+            // Unlikely to get past the prompt verification, but this will catch
             // anything that isn't a valid menu choice
             if(!dinnerMenu.dinnerChoices.ContainsKey(response))
             {
                 await dc.Context.SendActivity("Sorry, that is not a valid item. " +
                     "Please pick one from the menu.");
-    
+
                 // Ask again
                 await dc.Replace("orderPrompt");
             }
@@ -267,14 +269,14 @@ dialogs.add('orderPrompt', [
                 + "Tuna Sandwich: contains 700 calaries per serving. <br/>" 
                 + "Clam Chowder: contains 650 calaries per serving."
             await dc.context.sendActivity(msg);
-            
+
             // Ask again
             await dc.replace('orderPrompt');
         }
         else if(choice.value.match(/help/ig)){
             var msg = `Help: <br/>To make an order, add as many items to your cart as you like then choose the "Process order" option to check out.`
             await dc.context.sendActivity(msg);
-            
+
             // Ask again
             await dc.replace('orderPrompt');
         }
@@ -284,7 +286,7 @@ dialogs.add('orderPrompt', [
             // Only proceed if user chooses an item from the menu
             if(!choice){
                 await dc.context.sendActivity("Sorry, that is not a valid item. Please pick one from the menu.");
-                
+
                 // Ask again
                 await dc.replace('orderPrompt');
             }
@@ -311,17 +313,20 @@ dialogs.add('orderPrompt', [
 雖然您無法預期所有中斷，但可以針對 Bot 進行程式設計，來處理一些中斷的模式。
 
 ### <a name="switching-topic-of-conversations"></a>切換對話主題
+
 如果使用者正在對話中，而且想要切換至另一個對話，怎麼辦？ 例如，您的 Bot 可以處理餐廳訂位和訂購晚餐。
-當使用者處於_餐廳訂位_流程中時，使用者並非回答「派對中有多少人？」的問題，而是傳送「訂購晚餐」訊息。 在此情況下，使用者改變了心意並且想要參與訂購晚餐對話。 您應該如何處理此中斷？ 
+當使用者處於_餐廳訂位_流程中時，使用者並非回答「派對中有多少人？」的問題，而是傳送「訂購晚餐」訊息。 在此情況下，使用者改變了心意並且想要參與訂購晚餐對話。 您應該如何處理此中斷？
 
 您可以將主題切換為訂購晚餐流程，或者可以藉由告知使用者您正在等待數量並且重新提示他們，讓問題固定下來。 如果您允許他們切換主題，接著就必須決定是否要儲存進度，讓使用者可以從他們離開的地方再開始；或者可以刪除已收集的所有資訊，讓他們在下一次訂位的時候從頭開始。 如需管理使用者狀態資料的詳細資訊，請參閱[使用對話和使用者屬性來儲存狀態](bot-builder-howto-v4-state.md)。
 
 ### <a name="apply-artificial-intelligence"></a>套用人工智慧
-針對範圍之外的中斷，您可以嘗試猜測使用者的想法。 您可以使用 AI 服務 (例如 QnAMaker、LUIS) 或您的自訂邏輯，然後針對 Bot 所判斷的使用者需求的提供建議，來達到這項目的。 
 
-例如，在餐廳訂位流程當中，使用者說：「我想要訂購漢堡」。 Bot 不會知道要如何在這個對話流程中處理這個訊息。 因為目前的流程與訂購毫無相關，Bot 的其他對話命令是「訂購晚餐」，所以 Bot 不知道要怎麼處理這個輸入。 舉例來說，如果您套用 LUIS，您可以訓練模型來辨識使用者想要訂購餐點 (例如：LUIS 可以傳回 "orderFood" 意圖)。 因此，Bot 就可以回應：「您似乎想要訂購餐點。 您要切換到我們的訂購晚餐程序嗎？」 如需訓練 LUIS 並且偵測使用者意圖的詳細資訊，請參閱[用以理解語言的使用者 LUIS](bot-builder-howto-v4-luis.md)。
+針對範圍之外的中斷，您可以嘗試猜測使用者的想法。 您可以使用 AI 服務 (例如 QnAMaker、LUIS) 或您的自訂邏輯，然後針對 Bot 所判斷的使用者需求的提供建議，來達到這項目的。
+
+例如，在餐廳訂位流程當中，使用者說：「我想要訂購漢堡」。 Bot 不會知道要如何在這個對話流程中處理這個訊息。 因為目前的流程與訂購毫無相關，Bot 的其他對話命令是「訂購晚餐」，所以 Bot 不知道要怎麼處理這個輸入。 舉例來說，如果您套用 LUIS，您可以訓練模型來辨識使用者想要訂購餐點 (例如：LUIS 可以傳回 "orderFood" 意圖)。 因此，Bot 就可以回應：「您似乎想要訂購餐點。 您要切換到我們的訂購晚餐程序嗎？」 如需訓練 LUIS 並且偵測使用者意圖的詳細資訊，請參閱[使用 LUIS 理解語言](bot-builder-howto-v4-luis.md)。
 
 ### <a name="default-response"></a>預設回應
+
 如果所有解決方案都失敗，您可以傳送通用預設回應，而不是毫無作為，讓使用者臆測究竟發生什麼事。 預設回應應該告知使用者 Bot 可以理解哪些命令，讓使用者可以回到正軌。
 
 您可以檢查 Bot 邏輯結尾的內容**已回應**旗標，以查看 Bot 是否在使用者等待時將任何項目傳回給使用者。 如果 Bot 會處理使用者的輸入，但是不會回應，有可能是 Bot 不知道該如何處理輸入。 在此情況下，您可以攔截它，並且將預設訊息傳送給使用者。
@@ -347,4 +352,3 @@ if (!context.responded) {
 ```
 
 ---
-

@@ -8,16 +8,16 @@ ms.topic: get-started-article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 21186c5d3b0769311e4703ca1dab2f48a0a0081a
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 3ee7843e64dfa95427ebcb132740eab3db281ffc
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574884"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904011"
 ---
 # <a name="develop-bots-with-bot-builder"></a>使用 Bot Builder 來開發 Bot
 
-[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 
 Bot Builder 提供 SDL、程式庫、範本與工具來協助您建置 Bot 及針對 Bot 進行偵錯。 當您使用 Bot Service 建置 Bot 時，您的 Bot 由 Bot Builder SDK 支援。 您也可以使用 Bot Builder SDK 利用 C# 或 Node.js 從頭開始建立 Bot。 Bot Builder 包括可用於測試 Bot 的 Bot Framework Emulator，以及與用於在不同通道上預覽 Bot 使用者體驗的 Channel Inspector。
 
@@ -55,7 +55,7 @@ Bot Builder 提供 SDL、程式庫、範本與工具來協助您建置 Bot 及�
 
 [Node.js 快速入門](~/nodejs/bot-builder-nodejs-quickstart.md)將引導您用適用於 Node.js 的 Bot Builder SDK 來建立 Bot。 
 
-適用於 Node.js 的 Bot Builder SDK 是以 npm 套件的形式提供。 若要安裝適用於 Node.js 的 Bot Builder SDK 與其相依組件，請先為您的 Bot 建立資料夾並瀏覽到該資料夾，然後執行下列 **npm** 命令：
+適用於 Node.js 的 Bot Builder SDK 是以 npm 套件的形式提供。 若要安裝適用於 Node.js 的 Bot 建立器 SDK 與其相依組件，請先為您的 Bot 建立資料夾並瀏覽到該資料夾，然後執行下列 **npm** 命令：
 
 ```nodejs
 npm init

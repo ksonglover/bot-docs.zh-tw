@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 2f688b9c80e762b93c2eba8f4671ff1760f624f9
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3569e3bfbb3be51cf9023b4686ed4693e90ed50c
+ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300062"
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42795177"
 ---
 # <a name="api-reference---direct-line-api-11"></a>API 參照 - 直接線路 API 1.1
 
@@ -41,33 +41,33 @@ Authorization: Bearer SECRET_OR_TOKEN
 Authorization: BotConnector SECRET_OR_TOKEN
 ```
 
-如需如何取得您的用戶端用來驗證其直接線路 API 要求的密碼或權杖之相關詳細資料，請參閱[驗證](bot-framework-rest-direct-line-1-1-authentication.md)。
+如需如何取得您的用戶端用來驗證其 Direct Line API 要求之祕密或權杖的詳細資料，請參閱[驗證](bot-framework-rest-direct-line-1-1-authentication.md)。
 
 ## <a name="http-status-codes"></a>HTTP 狀態碼
 
-與每個回應一併傳回的 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank">HTTP 狀態碼</a>會指出對應要求的結果。
- 
+與每個回應一併傳回的 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank">HTTP 狀態碼</a>會指出對應要求的結果。 
 
 | HTTP 狀態碼 | 意義 |
 |----|----|
 | 200 | 要求成功。 |
 | 204 | 要求成功，但未傳回任何內容。 |
 | 400 | 要求的格式不正確或有其他錯誤。 |
-| 401 | 用戶端未獲授權提出要求。 此狀態碼出現的原因通常是遺漏 `Authorization` 標頭或格式不正確。 |
+| 401 | 用戶端未獲授權，無法提出要求。 此狀態碼出現的原因通常是遺漏 `Authorization` 標頭或格式不正確。 |
 | 403 | 不允許用戶端執行要求的作業。 此狀態碼出現的原因通常是 `Authorization` 標頭指定了無效的權杖或密碼。 |
 | 404 | 找不到要求的資源。 此狀態碼通常表示要求的 URI 無效。 |
-| 500 | 直接線路服務中發生內部伺服器錯誤，或 Bot 中出現失敗。 如果將訊息張貼到 Bot 時出現錯誤碼 500 錯誤，該錯誤可能是由 Bot 中的失敗所觸發。 **此為常見錯誤碼。** |
+| 500 | Direct Line 服務內發生內部伺服器錯誤 |
+| 502 | Bot 內發生錯誤；Bot 無法使用，或傳回錯誤。  **此為常見錯誤碼。** |
 
 ## <a name="token-operations"></a>權杖作業 
-透過這些作業可建立或重新整理用戶端用於存取單一交談的權杖。
+透過這些作業可建立或重新整理用戶端用於存取單一對話的權杖。
 
 | 作業 | 說明 |
 |----|----|
-| [產生權杖](#generate-token) | 產生新交談的權杖。 | 
+| [產生權杖](#generate-token) | 產生新對話的權杖。 | 
 | [重新整理權杖](#refresh-token) | 重新整理權杖。 | 
 
 ### <a name="generate-token"></a>產生權杖
-產生僅適用於單一交談的有效權杖。 
+產生適用於一個對話的權杖。 
 ```http 
 POST /api/tokens/conversation
 ```
@@ -93,13 +93,13 @@ GET /api/tokens/{conversationId}/renew
 
 | 作業 | 說明 |
 |----|----|
-| [開始交談](#start-conversation) | 開啟與 Bot 的新交談。 | 
+| [開始對話](#start-conversation) | 開啟與 Bot 的新對話。 | 
 | [取得訊息](#get-messages) | 接收來自 Bot 的訊息。 |
 | [傳送訊息](#send-a-message) | 將訊息傳送至 Bot。 | 
 | [上傳與傳送檔案](#upload-send-files) | 上傳檔案後，以附件型式傳送檔案。 |
 
-### <a name="start-conversation"></a>開始交談
-開啟與 Bot 的新交談。 
+### <a name="start-conversation"></a>開始對話
+開啟與 Bot 的新對話。 
 ```http 
 POST /api/conversations
 ```
@@ -130,7 +130,7 @@ POST /api/conversations/{conversationId}/messages
 | | |
 |----|----|
 | **要求本文** | [訊息](#message-object)物件 |
-| **傳回** | 回應的本文沒有任何傳回的資料。 訊息成功傳送時，服務會以 HTTP 204 狀態碼回應。 藉由運用[取得訊息](#get-messages)作業，用戶端可能會取得其所傳送的訊息 (以及任何 Bot 傳送至用戶端的訊息)。 |
+| **傳回** | 回應的本文中沒有任何傳回的資料。 訊息成功傳送時，服務會以 HTTP 204 狀態碼回應。 藉由運用[取得訊息](#get-messages)作業，用戶端可能會取得其所傳送的訊息 (以及任何 Bot 傳送至用戶端的訊息)。 |
 
 ### <a id="upload-send-files"></a>上傳與傳送檔案
 上傳檔案後，以附件型式傳送檔案。 設定要求 URI 中的 `userId` 參數以定傳送附件之使用者的識別碼。
@@ -140,8 +140,8 @@ POST /api/conversations/{conversationId}/upload?userId={userId}
 
 | | |
 |----|----|
-| **要求本文** | 若為單一附件，請填入含有檔案內容的要求本文。 若有多個附件，請建立多部分要求本文，每個附件均包含其各自的一部份；(選擇性) 亦可採用屬於做為指定附件之容器的[訊息](#message-object)物件的單一部分的方式。 如需詳細資訊，請參閱[將訊息傳送至 Bot](bot-framework-rest-direct-line-1-1-send-message.md)。 |
-| **傳回** | 回應的本文沒有任何傳回的資料。 訊息成功傳送時，服務會以 HTTP 204 狀態碼回應。 藉由運用[取得訊息](#get-messages)作業，用戶端可能會取得其所傳送的訊息 (以及任何 Bot 傳送至用戶端的訊息)。 | 
+| **要求本文** | 若為單一附件，請在要求本文填入檔案內容。 若有多個附件，請建立多部分要求本文，每個附件均包含其各自的一部份；(選擇性) 亦可採用屬於做為指定附件之容器的[訊息](#message-object)物件的單一部分的方式。 如需詳細資訊，請參閱[將訊息傳送至 Bot](bot-framework-rest-direct-line-1-1-send-message.md)。 |
+| **傳回** | 回應的本文中沒有任何傳回的資料。 訊息成功傳送時，服務會以 HTTP 204 狀態碼回應。 藉由運用[取得訊息](#get-messages)作業，用戶端可能會取得其所傳送的訊息 (以及任何 Bot 傳送至用戶端的訊息)。 | 
 
 > [!NOTE]
 > 上傳的檔案會在 24 小時後刪除。
@@ -210,12 +210,12 @@ POST /api/conversations/{conversationId}/upload?userId={userId}
 | **url** | 字串 | 附件內容的 URL。 |
 
 ### <a name="conversation-object"></a>交談物件
-用於定義直接線路交談。<br/><br/>
+定義 Direct Line 對話。<br/><br/>
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
-| **conversationId** | 字串 | 唯一識別屬於有效指定權杖之交談的識別碼。 |
-| **token** | 字串 | 指定交談中的有效權杖。 |
+| **conversationId** | 字串 | 唯一識別指定權杖所適用對話的識別碼。 |
+| **token** | 字串 | 適用於指定對話的權杖。 |
 | **expires_in** | number | 權杖到期之前的秒數。 |
 
 ### <a name="error-object"></a>錯誤物件

@@ -1,5 +1,5 @@
 ---
-title: 儲存狀態和存取資料 | Microsoft Docs
+title: 狀態和儲存體 | Microsoft Docs
 description: 描述 Bot Builder SDK 中有哪些狀態管理員、對話狀態和使用者狀態。
 keywords: LUIS, 對話狀態, 使用者狀態, 儲存體, 管理狀態
 author: DeniseMak
@@ -9,21 +9,21 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 02/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 56814ab12a85d18e52b0d5ec83fd81682f3b9f60
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: e25ecec3aec1cdebe3b9eae4bff0d3c434cb610b
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39300578"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756531"
 ---
-# <a name="save-state-and-access-data"></a>儲存狀態和存取資料
+# <a name="state-and-storage"></a>狀態和儲存體
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 Bot 的設計是否精良，關鍵之一是必須能夠追蹤交談的上下文，讓 Bot 記住先前問題的答案這類事項。
 根據 Bot 的用途，您甚至需要持續追蹤狀態，或將資料儲存超過對話存留期的時間。
 Bot 必須記住*狀態*的資訊才能適當回應內送的訊息。 Bot Builder SDK 會提供類別，以便用將狀態資料儲存和擷取為與使用者或對話相關聯的物件。
 
-* **對話屬性**可協助您的 Bot 追蹤目前 Bot 與使用者進行中的對話。 如果您的 Bot 需要完成一系列的步驟或在對話主題之間進行切換，您可以使用對話屬性來按照順序管理步驟或追蹤目前的主題。 由於對話屬性會反映目前對話的狀態，您通常會在工作階段的結尾在 Bot 收到_結束對話_活動時，清除對話屬性。
+* **對話屬性**可協助您的 Bot 追蹤目前 Bot 與使用者進行中的對話。 如果您的 Bot 需要完成一系列的步驟或在對話主題之間進行切換，您可以使用對話屬性來按照順序管理步驟或追蹤目前的主題。 由於對話屬性會反映目前對話的狀態，您通常會在對話結尾當 Bot 收到_結束對話_活動時，清除這些屬性。
 * **使用者屬性**有許多用途，例如判斷使用者先前離開對話的位置，或單純地以名字來問候回來的使用者。 如果您儲存使用者的喜好設定，下次聊天時就可以使用該資訊來自訂對話。 比方說，您可能會在有使用者感興趣的新聞文章，或有可用約會時通知使用者。 如果 Bot 收到_刪除使用者資料_活動，請進行清除。
 
 您可以使用[儲存體](bot-builder-howto-v4-storage.md)來讀取和寫入永續性儲存體。 這可讓您的 Bot 執行動作，例如更新共用資源、記錄出席回函或投票，或讀取歷史氣象資料。 您可以使用與應用程式相同的方式，讓 Bot 在與使用者的對話中利用儲存體來達成目標。

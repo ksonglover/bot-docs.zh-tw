@@ -1,5 +1,5 @@
 ---
-title: 翻譯使用者輸入，讓您的 Bot 支援多國語言 | Microsoft Docs
+title: 翻譯使用者輸入 | Microsoft Docs
 description: 如何自動將使用者輸入翻譯成 Bot 的原生語言和翻譯回使用者的語言。
 keywords: 翻譯, 多語, microsoft translator
 author: DeniseMak
@@ -9,14 +9,14 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/06/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 13139755989afccd85b2e09267dc42619ec1f83c
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6304e328e523e73894473620fc1fb7656a8776bf
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299023"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756377"
 ---
-# <a name="translate-user-input-to-make-your-bot-multilingual"></a>翻譯使用者輸入，讓您的 Bot 支援多國語言
+# <a name="translate-user-input"></a>翻譯使用者輸入 
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -103,7 +103,7 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 > [!TIP] 
-> BotBuilder SDK 會自動根據使用者提交的訊息偵測其所使用的語言。 若要覆寫此功能，您可以提供其他回呼參數，以新增自己用來偵測及變更使用者語言的邏輯。  
+> BotBuilder SDK 會自動根據使用者提交訊息，偵測其所使用的語言。 若要覆寫此功能，您可以提供其他回呼參數，以新增自己用來偵測及變更使用者語言的邏輯。  
 
 
 
@@ -243,7 +243,7 @@ if (context.activity.type === 'message') {
 
 ## <a name="translate-replies-back-to-the-users-language"></a>將回覆翻譯回使用者的語言
 
-將最後一個建構函式參數設定為 `true` ，也可以將回覆翻譯回使用者的語言。
+將最後一個建構函式參數設定為 `true`，也可以將回覆翻譯回使用者的語言。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 在 `Startup.cs` 中，更新 `ConfigureServices` 方法中的下列一行。
@@ -527,15 +527,15 @@ adapter.use(languageTranslator);
 如果需要將日期當地語系化，您可以新增 `LocaleConverterMiddleware`。 例如，如果您知道 Bot 接受 `MM/DD/YYYY` 格式的日期，而其他地區設定的使用者可能輸入了 `DD/MM/YYYY` 格式的日期，則地區設定轉換器中介軟體可自動將日期轉換為 Bot 接受的格式。
 
 > [!NOTE]
-> 地區設定轉換器中介軟體的用途是只轉換日期。 它並不知道翻譯中介軟體的結果。 如果您使用翻譯中介軟體，請注意它與地區設定轉換器的結合方式。 翻譯中介軟體會將一些文字格式的日期與其他文字輸入一起翻譯，但是它不會翻譯日期
+> 地區設定轉換器中介軟體的用途是只轉換日期。 它並不知道翻譯中介軟體的結果。 如果您使用翻譯中介軟體，請注意它與地區設定轉換器的結合方式。 翻譯中介軟體會將一些文字格式的日期，與其他文字輸入一起翻譯，但是它不會翻譯日期
 
 例如，下圖顯示 Bot 將英文翻譯成法文之後回應使用者輸入。 它使用 `TranslationMiddleware` 而未使用 `LocaleConverterMiddleware`。
 
-![Bot 翻譯日期而沒有轉換日期](./media/how-to-bot-translate/locale-date-before.png)
+![Bot 翻譯日期卻不會轉換日期](./media/how-to-bot-translate/locale-date-before.png)
 
 下面顯示如果新增 `LocaleConverterMiddleware` 的相同 Bot。
 
-![Bot 翻譯日期而沒有轉換日期](./media/how-to-bot-translate/locale-date-after.png)
+![Bot 翻譯日期卻不會轉換日期](./media/how-to-bot-translate/locale-date-after.png)
 
 地區設定轉換器可以支援英文、法文、德文及中文的地區設定。 <!-- TODO: ADD DETAIL ABOUT SUPPORTED LOCALES -->
 

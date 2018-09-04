@@ -8,17 +8,13 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 7/2/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6d2e22bdfaa9fc4e3ce55bc1dd969921e90c87cc
-ms.sourcegitcommit: 97bb24f15041caccef4ca5736aa14f144881e0c6
+ms.openlocfilehash: ca9ccb0f0425bd0cabf1ce7ef236acb7a008aefe
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39567507"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905909"
 ---
-# <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
-
-[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
-
 此教學課程將使用 Azure Bot 服務中的全新 Bot 驗證功能，並提供相關功能，讓您輕鬆開發可針對 Azure AD (Azure Active Directory)、GitHub、Uber 等不同身分識別提供者驗證使用者的 Bot。 此外，這些更新也排除了部分用戶端採用的_神奇代碼驗證 (Magic code verification)_，可進一步改善使用者體驗。
 
 在此之前，您的 Bot 必須加入 OAuth 控制器和登入連結、儲存目標用戶端識別碼及密碼，並執行使用者權杖管理作業。
@@ -48,7 +44,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 > [!NOTE]
 > 驗證功能亦可搭配 Node.js 和 BotBuilder v3 使用。 不過，本文內容僅涵蓋範例 C# 程式碼。
 
-如需其他資訊和支援，請參閱 [Bot Framework 其他資源](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-resources-links-help)。
+如需其他資訊和支援，請參閱 [Bot Framework 其他資源](https://docs.microsoft.com/azure/bot-service/bot-service-resources-links-help)。
 
 ## <a name="overview"></a>概觀
 
@@ -90,7 +86,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
    1. 將 [應用程式類型] 設為 [Web 應用程式/API]。
    1. 將 [登入 URL] 設為 `https://token.botframework.com/.auth/web/redirect`。
    1. 按一下頁面底部的 [新增] 。
-      - 建立後，即會顯示在 [註冊的應用程式] 刀鋒視窗中。
+      - 建立後，即會顯示在 [註冊的應用程式] 窗格中。
       - 記錄 [應用程式識別碼] 值。 您稍後需要提供此值做為_用戶端識別碼_。
 1. 按一下 [設定] 以設定應用程式。
 1. 按一下 [金鑰] 以開啟 [金鑰] 面板。
@@ -178,7 +174,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 #### <a name="to-register-an-azure-ad-v2-application"></a>註冊 Azure AD v2 應用程式
 
-1. 在 [Azure 入口網站](http://portal.azure.com/)上瀏覽至 Bot 的 [Bot 通道註冊] 刀鋒視窗。
+1. 在 [Azure 入口網站](http://portal.azure.com/)上瀏覽至 Bot 的 [Bot 通道註冊] 頁面。
 1. 按一下 [設定] 。
 1. 在靠近頁面底部的 [OAuth 連線設定] 下方，按一下 [新增設定]。
 1. 填寫表單，如下所示：
@@ -205,7 +201,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 #### <a name="to-test-your-connection"></a>測試連線
 
 1. 開啟您剛建立的連線。
-1. 按一下 [服務提供者連線設定] 刀鋒視窗頂端的 [測試連線]。
+1. 按一下 [服務提供者連線設定] 窗格頂端的 [測試連線]。
 1. 第一次將開啟新的瀏覽器索引標籤，其中列出應用程式要求的權限，並提示您接受要求。
 1. 按一下 [接受]。
 1. 此動作會將您重新導向 [測試對 `<your-connection-name>' 的連線已成功] 頁面。

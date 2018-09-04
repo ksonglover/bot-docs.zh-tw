@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 8f50c54c0841db5778c7966e30ec33f89938b376
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6aae4e9f6cb6a4e892b8036eafb9489dfaedbb36
+ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299167"
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42795094"
 ---
 # <a name="embed-a-bot-in-a-website"></a>將 Bot 嵌入網站
 
@@ -51,7 +51,7 @@ Skype web 控制項本質上是已啟用 web 控制項中的 Skype 用戶端。 
 ## <a name="additional-resources"></a>其他資源
 
 - [Direct Line API][directLineAPI]
-- [TODO](~/dotnet/bot-builder-dotnet-activities.md)
+- [開放原始碼網路聊天控制項](https://github.com/Microsoft/BotFramework-WebChat)
 - [使用 backchannel 機制](~/nodejs/bot-builder-nodejs-backchannel.md)
 
 [directLineAPI]: https://docs.botframework.com/en-us/restapi/directline3/#navtitle

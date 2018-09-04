@@ -1,5 +1,5 @@
 ---
-title: 使用 Bot 建立器 SDK 傳送訊息 | Microsoft Docs
+title: 傳送訊息 | Microsoft Docs
 description: 了解如何在 Bot 建立器 SDK 內傳送訊息。
 keywords: 傳送訊息, 訊息活動, 簡單的文字訊息, 語音, 語音訊息
 author: ivorb
@@ -7,18 +7,20 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 04/04/2018
+ms.date: 08/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b854eeb4ecb45a875ab3be5d867333cd63babffd
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b56ad56e19691cfbd7b39606832ed10fce951aa3
+ms.sourcegitcommit: f89ed979eb6321232fb21100ef376d9b0d5113c9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299663"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42914588"
 ---
-# <a name="sending-messages"></a>傳送訊息
+# <a name="send-messages"></a>傳送訊息
 
-您的 Bot 與使用者進行往來通訊的主要方式，都是透過**訊息**活動。 有些訊息可能只包含純文字，有些則可能包含更豐富的內容，例如卡片或附件。 Bot 回合處理常式會接收來自使用者的訊息，而您可以從該處將回應傳送給使用者。 回合內容物件會提供將訊息傳回給使用者的方法。 如需一般活動處理方式的詳細資訊，請參閱[活動處理](bot-builder-concept-activity-processing.md)。
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+
+您的 Bot 與使用者進行往來通訊的主要方式，都是透過**訊息**活動。 有些訊息可能只包含純文字，有些則可能包含更豐富的內容，例如卡片或附件。 Bot 回合處理常式會接收來自使用者的訊息，而您可以從該處將回應傳送給使用者。 [回合內容](bot-builder-concept-activity-processing.md#turn-context)物件會提供將訊息傳回給使用者的方法。 如需一般活動處理方式的詳細資訊，請參閱[活動處理](bot-builder-concept-activity-processing.md)。
 
 本文說明如何傳送簡單的文字和語音訊息。 如需傳送豐富內容的相關資訊，請參閱如何[新增豐富的媒體附件](bot-builder-howto-add-media-attachments.md)。 如需如何使用提示物件的相關資訊，請參閱如何[提示使用者輸入](bot-builder-prompts.md)。
 

@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/11/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 679109cad2f7b0c0c5826a47884b98e1149cb380
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: 32486cb024dfe852a7478ccba4a0eedc476431b0
+ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39300583"
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42795027"
 ---
 # <a name="conversation-flow"></a>交談流程
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -52,7 +52,7 @@ The EchoBot sample in the BotBuilder SDK is a single-turn bot. Here are other ex
 
 ![單一回合天氣 Bot](./media/concept-conversation/weather-single-turn.png)
 
-天氣 Bot 採用單一回合流程，其僅提供使用者天氣預報，不用來回詢問城市或日期。 顯示天氣預報的所有邏輯皆根據 Bot 剛剛收到的訊息。 在交談的每個回合中，Bot 都會收到回合內容，其便可利用這些內容判斷後續動作及交談走向。 
+天氣 Bot 採用單一回合流程，其僅提供使用者天氣預報，不用來回詢問城市或日期。 顯示天氣預報的所有邏輯皆根據 Bot 剛剛收到的訊息。 在對話的每個回合中，Bot 都會收到[回合內容](bot-builder-concept-activity-processing.md#turn-context)，其便可利用這些內容判斷後續動作及對話走向。 
 
 ## <a name="multiple-turns"></a>多回合
 
@@ -84,7 +84,7 @@ The EchoBot sample in the BotBuilder SDK is a single-turn bot. Here are other ex
 
 ### <a name="recognize-intent"></a>辨識意圖
 
-Bot Builder SDK 提供的_辨識器_可處理每個內送訊息，如此您的 Bot 即可起始適當的交談流程。 在_接收回呼_之前，辨識器會檢視使用者的訊息內容以判斷意圖，然後使用接收回呼中的回合內容物件，將意圖傳回至 Bot，並在回合內容物件中將其儲存為**最高意圖**。 
+Bot Builder SDK 提供的_辨識器_可處理每個內送訊息，如此您的 Bot 即可起始適當的交談流程。 在_接收回呼_之前，辨識器會檢視使用者的訊息內容以判斷意圖，然後使用接收回呼中的回合內容物件，將意圖傳回至 Bot，並在[回合內容](bot-builder-concept-activity-processing.md#turn-context)物件中將其儲存為**最高意圖**。 
 
 判斷出**最高意圖**的辨識器只要使用規則運算式、Language Understanding (LUIS) 或您開發的其他邏輯做為中介軟體即可。 以下是辨識器範例：
    
@@ -140,7 +140,7 @@ Bot 在通道上和使用者通訊，是透過與使用者彼此傳送及接收�
 - 每個交談在每個通道都有一個唯一識別碼。
 - 通道開啟交談時，會設定交談識別碼。
 - 不過若 Bot 已有交談識別碼就無法開啟交談，但可繼續已有的交談。
-- 並非所有通道都支援群組交談。
+- 並非所有通道都支援群組對話。
 
 ## <a name="next-steps"></a>後續步驟
 

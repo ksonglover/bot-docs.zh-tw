@@ -2,14 +2,14 @@
 
 某些通道所提供的功能，無法只透過[訊息文字和附件](../dotnet/bot-builder-dotnet-create-messages.md)來實作。 若要實作通道特定的功能，您可以將原生中繼資料傳遞至 `Activity` 物件的 `ChannelData` 屬性中的通道。 例如，Bot 可以使用 `ChannelData` 屬性，指示 Telegram 傳送貼紙或指示 Office365 傳送電子郵件。
 
-本文說明如何使用訊息活動的 `ChannelData` 屬性來實作此通道特定的功能：
+此文章說明如何使用訊息活動的 `ChannelData` 屬性來實作此通道特定的功能：
 
 | 通道 | 功能 |
 |----|----|
-| 電子郵件 | 傳送和接收電子郵件，其中包含本文、主旨和重要性中繼資料 |
+| 電子郵件 | 傳送及接收電子郵件，其中包含本文、主旨和重要性中繼資料 |
 | Slack | 傳送不失真的 Slack 訊息 |
 | Facebook | 原生傳送 Facebook 通知 |
-| Telegram | 執行 Telegram 特定動作，例如共用語音備忘或貼紙 |
+| Telegram | 執行 Telegram 特定動作，例如共用語音備忘或貼圖 |
 | Kik | 傳送和接收原生 Kik 訊息 | 
 
 > [!NOTE]
@@ -45,7 +45,7 @@
 > [!NOTE]
 > 若要在 Slack 訊息中支援按鈕，您必須在[將 Bot 連線](../bot-service-manage-channels.md)至 Slack 通道時啟用 [互動式訊息]。
 
-此程式碼片段會舉例說明自訂 Slack 訊息的 `channelData` 屬性。
+此程式碼片段顯示自訂 Slack 訊息的 `channelData` 屬性範例。
 
 ```json
 "channelData": {
@@ -102,7 +102,7 @@
 
 當使用者按一下 Slack 訊息中的按鈕時，Bot 會收到回應訊息，其中的 `ChannelData` 屬性已填入 `payload` JSON 物件。 `payload` 物件會指定原始訊息的內容、識別已按下的按鈕，並識別按下按鈕的使用者。 
 
-此程式碼片段會舉例說明 當使用者按一下 Slack 訊息中的按鈕時，Bot 所收到的訊息中所含有的 `channelData` 屬性。
+此程式碼片段顯示當使用者按一下 Slack 訊息中的按鈕時，Bot 所收到的訊息中所含有的 `channelData` 屬性範例。
 
 ```json
 "channelData": {
@@ -120,8 +120,125 @@
 }
 ```
 
-Bot 可以透過[正常方式](../dotnet/bot-builder-dotnet-connector.md#create-reply)回覆此訊息，也可以將其回應直接張貼到 `payload` 物件的 `response_url` 屬性所指定的端點。
+Bot 可以透過[正常方式](../dotnet/bot-builder-dotnet-connector.md#create-reply)回覆此訊息，也可以將其回應直接張貼到 `payload` 物件之 `response_url` 屬性所指定的端點。
 如需何時及如何將回應張貼到 `response_url` 的資訊，請參閱 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按鈕</a>。 
+
+您可以使用下列程式碼來建立動態按鈕：
+```cs
+private async Task DemoButtonsAsync(IDialogContext context)
+        {
+            var reply = context.MakeMessage();
+
+            string s = @"{
+                ""text"": ""Would you like to play a game ? "",
+                ""attachments"": [
+                    {
+                        ""text"": ""Choose a game to play!"",
+                        ""fallback"": ""You are unable to choose a game"",
+                        ""callback_id"": ""wopr_game"",
+                        ""color"": ""#3AA3E3"",
+                        ""attachment_type"": ""default"",
+                        ""actions"": [
+                            {
+                                ""name"": ""game"",
+                                ""text"": ""Chess"",
+                                ""type"": ""button"",
+                                ""value"": ""chess""
+                            },
+                            {
+                                ""name"": ""game"",
+                                ""text"": ""Falken's Maze"",
+                                ""type"": ""button"",
+                                ""value"": ""maze""
+                            },
+                            {
+                                ""name"": ""game"",
+                                ""text"": ""Thermonuclear War"",
+                                ""style"": ""danger"",
+                                ""type"": ""button"",
+                                ""value"": ""war"",
+                                ""confirm"": {
+                                    ""title"": ""Are you sure?"",
+                                    ""text"": ""Wouldn't you prefer a good game of chess?"",
+                                    ""ok_text"": ""Yes"",
+                                    ""dismiss_text"": ""No""
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }";
+
+            reply.Text = null;
+            reply.ChannelData = JObject.Parse(s);
+            await context.PostAsync(reply);
+            context.Wait(MessageReceivedAsync);
+        }
+```
+
+若要建立互動式功能表，請使用下列程式碼：
+```cs
+private async Task DemoMenuAsync(IDialogContext context)
+        {
+            var reply = context.MakeMessage();
+
+            string s = @"{
+                ""text"": ""Would you like to play a game ? "",
+                ""response_type"": ""in_channel"",
+                ""attachments"": [
+                    {
+                        ""text"": ""Choose a game to play"",
+                        ""fallback"": ""If you could read this message, you'd be choosing something fun to do right now."",
+                        ""color"": ""#3AA3E3"",
+                        ""attachment_type"": ""default"",
+                        ""callback_id"": ""game_selection"",
+                        ""actions"": [
+                            {
+                                ""name"": ""games_list"",
+                                ""text"": ""Pick a game..."",
+                                ""type"": ""select"",
+                                ""options"": [
+                                    {
+                                        ""text"": ""Hearts"",
+                                        ""value"": ""menu_id_hearts""
+                                    },
+                                    {
+                                        ""text"": ""Bridge"",
+                                        ""value"": ""menu_id_bridge""
+                                    },
+                                    {
+                                        ""text"": ""Checkers"",
+                                        ""value"": ""menu_id_checkers""
+                                    },
+                                    {
+                                        ""text"": ""Chess"",
+                                        ""value"": ""menu_id_chess""
+                                    },
+                                    {
+                                        ""text"": ""Poker"",
+                                        ""value"": ""menu_id_poker""
+                                    },
+                                    {
+                                        ""text"": ""Falken's Maze"",
+                                        ""value"": ""menu_id_maze""
+                                    },
+                                    {
+                                        ""text"": ""Global Thermonuclear War"",
+                                        ""value"": ""menu_id_war""
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }";
+
+            reply.Text = null;
+            reply.ChannelData = JObject.Parse(s);
+            await context.PostAsync(reply);
+            context.Wait(MessageReceivedAsync);
+        }
+```
 
 ## <a name="create-a-facebook-notification"></a>建立 Facebook 通知
 
@@ -135,7 +252,7 @@ Bot 可以透過[正常方式](../dotnet/bot-builder-dotnet-connector.md#create-
 > [!NOTE]
 > 如需 `notification_type` 屬性和 `attachment` 屬性的格式和內容詳細資料，請參閱 <a href="https://developers.facebook.com/docs/messenger-platform/send-api-reference#guidelines" target="_blank">Facebook API 文件</a>。 
 
-此程式碼片段會舉例說明 Facebook 回條附件的 `channelData` 屬性。
+此程式碼片段顯示 Facebook 回條附件的 `channelData` 屬性範例。
 
 ```json
 "channelData": {
@@ -183,11 +300,11 @@ Bot 可以透過[正常方式](../dotnet/bot-builder-dotnet-connector.md#create-
 如需這些 Telegram 方法和其參數的詳細資訊，請參閱 <a href="https://core.telegram.org/bots/api#available-methods" target="_blank">Telegram Bot API 文件</a>。
 
 > [!NOTE]
-> <ul><li><code>chat_id</code> 參數通用於所有 Telegram 方法。 如果您未指定 <code>chat_id</code> 作為參數，此架構會為您提供識別碼。</li>
+> <ul><li><code>chat_id</code> 參數通用於所有 Telegram 方法。 如果您未指定 <code>chat_id</code> 作為參數，架構會為您提供識別碼。</li>
 > <li>不要傳遞內嵌檔案內容，而是應該指定使用 URL 和媒體類型的檔案，如下列範例所示。</li>
 > <li>在 Bot 從 Telegram 通道所收到的每則訊息內，<code>ChannelData</code> 屬性會包含 Bot 先前傳送的訊息。</li></ul>
 
-此程式碼片段會舉例說明 `channelData` 屬性，此屬性會指定單一的 Telegram 方法。
+此程式碼片段顯示 `channelData` 屬性範例，此屬性指定單一 Telegram 方法。
 
 ```json
 "channelData": {
@@ -201,7 +318,7 @@ Bot 可以透過[正常方式](../dotnet/bot-builder-dotnet-connector.md#create-
 }
 ```
 
-此程式碼片段會舉例說明 `channelData` 屬性，此屬性會指定 Telegram 方法陣列。
+此程式碼片段顯示 `channelData` 屬性範例，此屬性指定 Telegram 方法陣列。
 
 ```json
 "channelData": [
@@ -232,7 +349,7 @@ Bot 可以透過[正常方式](../dotnet/bot-builder-dotnet-connector.md#create-
 |----|----|
 | 上限 | Kik 訊息的陣列。 如需 Kik 訊息格式的詳細資訊，請參閱 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 訊息格式</a>。 |
 
-此程式碼片段會舉例說明原生 Kik 訊息的 `channelData` 屬性。
+此程式碼片段顯示原生 Kik 訊息的 `channelData` 屬性範例。
 
 ```json
 "channelData": {

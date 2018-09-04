@@ -9,16 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/24/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9986ac7d46acfa94694456d653b91dd66c1f55f0
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: d8201da0fb406f30888dfaa4ff6017f125990104
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39300591"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905372"
 ---
 # <a name="middleware"></a>中介軟體
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 中介軟體只是一個介於介面卡和 Bot 邏輯之間的類別，會在初始化期間新增至您介面卡的中介軟體集合中。 SDK 可讓您撰寫自己的中介軟體，或新增其他人建立且可重複使用的中介軟體。 您可以在中介軟體中做什麼？ 幾乎任何事...每個透過中介軟體進出 Bot 流程的活動。
 
@@ -36,7 +36,7 @@ ms.locfileid: "39300591"
 
 ### <a name="modifying-or-enhancing-the-turn-context"></a>修改或增強回合內容
 
-如果 Bot 具有的資訊多過於活動中提供的資訊，則特定交談的成果內容可能更豐富。 在此情況下，中介軟體可查看其至目前為止的交談狀態、查詢外部資料來源，並將資料附加至內容物件，然後再將執行作業傳遞至該 Bot 邏輯。
+如果 Bot 具有的資訊多過於活動中提供的資訊，則特定交談的成果內容可能更豐富。 在此情況下，中介軟體可查看其至目前為止的對話狀態、查詢外部資料來源，並將資料附加至[回合內容](bot-builder-concept-activity-processing.md#turn-context)物件，然後再將執行作業傳遞至該 Bot 邏輯。
 例如，中介軟體可識別交談詳細資料 (例如交談識別碼和狀態)，然後查詢資訊的目錄服務。 中介軟體可從外部查詢擷取使用者物件，然後將其新增至內容物件再傳遞，提供更多有關使用者的資料，有助於 Bot 更妥善處理要求。
 
 中介軟體可能會有上述兩種使用情境或其他完全不同的使用方式，全都取決於您要如何安排 Bot 的結構，以及想讓 Bot 達成的任務。

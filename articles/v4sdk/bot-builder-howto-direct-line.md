@@ -1,5 +1,5 @@
 ---
-title: 如何建立直接線路 Bot 與用戶端 | Microsoft Docs
+title: 建立直接線路 Bot 與用戶端 | Microsoft Docs
 description: 了解如何使用 V4 版的適用於 .NET 的 Bot 建立器 SDK 建立直接線路 Bot 與用戶端。
 keywords: direct line bot, direct line client, custom channel, console-based, publish, 直接線路 Bot, 直接線路用戶端, 自訂通道, 主控台型, 發佈
 author: v-royhar
@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/16/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ac96e35763d690c91e6584ff9a840b490e0a32cd
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 23380231c15c40875f78921f72bcf9d57effb3bf
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298742"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905228"
 ---
-# <a name="how-to-create-a-direct-line-bot-and-client"></a>如何建立直接線路 Bot 與用戶端
+# <a name="create-a-direct-line-bot-and-client"></a>建立直接線路 Bot 與用戶端
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 Microsoft Bot Framework 直接線路 Bot 是能與您自有設計自訂用戶端搭配運作的 Bot。 直接線路 Bot 明顯地與一般 Bot 非常相似。 它們不需要使用提供的通道。
 
@@ -46,7 +48,7 @@ Microsoft Bot Framework 直接線路 Bot 是能與您自有設計自訂用戶端
 
 1. 按一下 [瀏覽]，然後確定已選取 [包含發行前版本] 核取方塊。
 
-1. 搜尋並安裝下列 NuGet 套件：
+1. 搜尋並安裝下列 NuGet 封裝：
     - Microsoft.Bot.Builder
     - Microsoft.Bot.Builder.Core.Extensions
     - Microsoft.Bot.Builder.Integration.AspNet.Core
@@ -191,9 +193,6 @@ namespace DirectLineBotSample
                 case ActivityTypes.Typing:
                     break;
 
-                case ActivityTypes.Ping:
-                    break;
-
                 case ActivityTypes.DeleteUserData:
                     break;
             }
@@ -271,7 +270,7 @@ namespace DirectLineBotSample
 
 1. 選取 [建立新的]。
 
-1. 按一下 [發佈] 按鈕。 [建立 App Service] 對話方塊隨即出現。
+1. 按一下 [發佈]  按鈕。 [建立 App Service] 對話方塊隨即出現。
 
     ![[建立 App Service] 對話方塊](media/bot-builder-howto-direct-line/create-app-service-dialog.png)
 
@@ -283,7 +282,7 @@ namespace DirectLineBotSample
 
     - 確認您使用的是正確的 App Service 方案。
     
-1. 按一下 [建立] 按鈕。 Visual Studio 將會開始部署您的 Bot。
+1. 按一下 [ **建立** ] 按鈕。 Visual Studio 將會開始部署您的 Bot。
 
 發佈 Bot 之後，將會開啟瀏覽器，其中會顯示您 Bot 的 URL 端點。
 
@@ -295,7 +294,7 @@ namespace DirectLineBotSample
 
 1. 在 Microsoft Azure 入口網站中，按一下 [建立資源]，然後搜尋「Bot 通道註冊」。
 
-1. 按一下頁面底部的 [新增]。 [Bot 通道註冊] 刀鋒視窗隨即出現。
+1. 按一下頁面底部的 [新增] 。 [Bot 通道註冊] 刀鋒視窗隨即出現。
 
     ![Bot 通道註冊刀鋒視窗，其中顯示 Bot 名稱、訂用帳戶、資源群組、位置、定價層、傳訊端點與其他欄位。](media/bot-builder-howto-direct-line/bot-service-registration-blade.png)
 
@@ -393,7 +392,7 @@ namespace DirectLineBotSample
 
 1. 在 Microsoft Azure 入口網站中，按一下 [建立資源]，然後搜尋「Web 應用程式 Bot」。
 
-1. 按一下頁面底部的 [新增]。 [Web 應用程式 Bot] 刀鋒視窗隨即出現。
+1. 按一下頁面底部的 [新增] 。 [Web 應用程式 Bot] 刀鋒視窗隨即出現。
 
 ![Web 應用程式 Bot 註冊](media/bot-builder-howto-direct-line/web-app-bot-registration.png)
 
@@ -520,13 +519,13 @@ server.post('/api/messages', (req, res) => {
 
 ### <a name="add-the-nuget-packages-to-the-console-app"></a>將 NuGet 套件新增至主控台應用程式
 
-1. 以滑鼠右鍵按一下 [參考]。
+1. 以滑鼠右鍵按一下 [參考] 。
 
-1. 按一下 [管理 NuGet 套件]。
+1. 按一下 [管理 NuGet 封裝] 。
 
-1. 按一下 [瀏覽]。 確定已選取 [包含發行前版本] 核取方塊。
+1. 按一下 [瀏覽] 。 確定已選取 [包含發行前版本] 核取方塊。
 
-1. 搜尋並安裝下列 NuGet 套件：
+1. 搜尋並安裝下列 NuGet 封裝：
     - Microsoft.Bot.Connector.DirectLine (v3.0.2)
     - Newtonsoft.Json
 

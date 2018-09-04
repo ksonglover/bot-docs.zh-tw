@@ -1,5 +1,5 @@
 ---
-title: 如何使用主動式傳訊 | Microsoft Docs
+title: 傳送主動訊息 | Microsoft Docs
 description: 了解如何搭配 Bot 進行主動式傳訊。
 keywords: 主動式訊息
 author: jonathanfingold
@@ -9,14 +9,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/01/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fd53a897d9847432fd337402d40edfcd6f4ff061
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: c22ce6a35d4d49506360a78a439f15137c429d9d
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299830"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905132"
 ---
-# <a name="how-to-use-proactive-messaging"></a>如何使用主動式傳訊
+# <a name="send-proactive-messages"></a>傳送主動訊息 
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+
 
 Bot 通常是傳送_被動式訊息_，但我們有時也必須傳送[主動式訊息](bot-builder-proactive-messages.md)。 
 
@@ -120,7 +123,7 @@ public void ConfigureServices(IServiceCollection services)
 
 我們要啟動的作業是簡單的 5 秒計時器，並會透過傳送主動式訊息來完成該作業。
 - 呼叫配接器的持續對話方法會建立由 Bot 所起始的新回合。
-- 此回合會有屬於自己的回合內容，我們會從其中擷取狀態資訊。
+- 此回合會有屬於自己的[回合內容](bot-builder-concept-activity-processing.md#turn-context)，我們會從其中擷取狀態資訊。
 - 我們會使用此內容來將主動式訊息傳送給使用者。
 
 

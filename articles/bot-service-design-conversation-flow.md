@@ -8,34 +8,37 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/8/2018
-ms.openlocfilehash: 09568fca31649880df0f5b4fbc47f50288e907cb
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6e661d030f49cb8004f122de72de7514e804cb9c
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298891"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905537"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
 # <a name="design-and-control-conversation-flow"></a>設計和控制對話流程
 
+[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
+
 在傳統的應用程式中，使用者介面 (UI) 是一系列的畫面。 
 單一應用程式或網站可以視需要，使用一個或多個畫面與使用者交換資訊。 
 大部分的應用程式是以主畫面啟動，使用者在其中開始進入並提供導覽，以導向其他畫面來使用不同的功能，例如開始新的訂單、瀏覽產品或尋求協助。
 
-如同應用程式和網站，Bot 具有使用者介面，不過是由**對話方塊**組成，而不是畫面。 
+如同應用程式和網站，Bot 具有使用者介面，不過是由**對話方塊**組成，而不是畫面。 對話方塊有助於保留您在對話內的位置，必要時提示使用者，以及執行輸入驗證。 很適合用於管理多回合對話和簡單的「表單型」資訊收集，以完成預訂班機等活動。
+
 對話方塊可讓 Bot 開發人員以邏輯方式區隔 Bot 功能的各個區域，並引導對話式流程。 例如，您可能會設計一個包含可協助使用者瀏覽產品邏輯的對話方塊，以及一個包含可協助使用者建立新訂單的不同對話方塊。 
 
 對話方塊不一定具有圖形化介面。 它們可能包含按鈕、文字和其他元素，或完全以語音為基礎。 對話方塊也包含可執行工作的動作，例如叫用其他對話方塊，或是處理使用者輸入。
 
 ## <a name="using-dialogs-to-manage-conversation-flow"></a>使用對話方塊來管理對話流程
 
-[!INCLUDE [Dialog flow example](~/includes/snippet-dotnet-manage-conversation-flow-intro.md)]
+[!INCLUDE [Dialog flow example](./includes/snippet-dotnet-manage-conversation-flow-intro.md)]
 
 如需使用對話方塊和 Bot 建立器 SDK 來管理對話流程的詳細逐步解說，請參閱：
 
-- [使用對話方塊來管理對話流程 (.NET)](~/dotnet/bot-builder-dotnet-manage-conversation-flow.md)
-- [使用對話方塊來管理對話流程 (Node.js)](~/nodejs/bot-builder-nodejs-manage-conversation-flow.md)
+- [使用對話方塊來管理對話流程 (.NET)](./dotnet/bot-builder-dotnet-manage-conversation-flow.md)
+- [使用對話方塊來管理對話流程 (Node.js)](./nodejs/bot-builder-nodejs-manage-conversation-flow.md)
 
 ## <a name="dialog-stack"></a>對話方塊堆疊
 
@@ -57,7 +60,7 @@ ms.locfileid: "39298891"
 人類不會以「堆疊」方式通訊。 他們通常會頻繁地改變心意。 
 請思考下列範例： 
 
-![Bot](~/media/bot-service-design-conversation-flow/stack-issue.png)
+![Bot](./media/bot-service-design-conversation-flow/stack-issue.png)
 
 雖然您的 Bot 可能會以邏輯方式建構對話方塊的堆疊，但使用者可能會決定要進行完全不同的事項，或是詢問可能與目前主題不相關的問題。 
 在範例中，使用者會詢問問題，而不是提供對話方塊所預期的 [是]/[否] 回應。 
@@ -65,14 +68,14 @@ ms.locfileid: "39298891"
 
 - 堅持由使用者先回答問題。 
 - 忽略使用者先前已完成的所有項目、重設整個對話方塊堆疊，並嘗試回答使用者的問題來從頭開始。 
-- 嘗試回答使用者的問題，然後返回 [是]/[否] 問題，接著嘗試從該處繼續執行。 
+- 嘗試回答使用者的問題，然後返回是/否問題，接著嘗試從該處繼續執行。 
 
-這個問題沒有任何「正確」答案，因為最好的解決方案將取決於您案例的細節，以及使用者會如何合理預期 Bot 回應。 
+這個問題沒有任何「正確」答案，因為最好的解決方案將取決於您案例的細節，以及使用者會如何合理預期 Bot 回應。 不過，隨著您的對話複雜度增加，**對話方塊**會變得更難管理。 在複雜分支的情況下，建立您自己的控制邏輯流程，可能比追蹤您的使用者對話更為輕鬆。
 
 ## <a name="next-steps"></a>後續步驟
 
 透過讓使用者可以達成其目標 (即使以非線性的方式) 的方式來管理使用者的對話方塊瀏覽及設計對話流程，是 Bot 設計的基本挑戰。 
-[下一篇文章](~/bot-service-design-navigation.md)會檢閱一些常見的瀏覽設計不良錯誤，並討論避免這些陷阱的策略。 
+[下一篇文章](./bot-service-design-navigation.md)會檢閱一些常見的瀏覽設計不良錯誤，並討論避免這些陷阱的策略。 
 
 ::: moniker-end
 
@@ -96,9 +99,9 @@ ms.locfileid: "39298891"
 
 您可用任何偏好的方式來建構這些模組，從自由格式到循序方式皆可。 Bot 建立器 SDK 提供多個程式庫，可讓您建構 Bot 所需的任何對話式流程。 例如，`prompts` 程式庫可讓您要求使用者輸入，`waterfall` 程式庫可讓您定義問題/答案組的序列，`dialog control` 程式庫可讓您將對話流程邏輯模組化等等。這些程式庫全都會透過 `dialogs` 物件繫結在一起。 讓我們進一步看看模組會如何實作為 `dialogs` 來設計和管理對話流程，並查看該流程與傳統應用程式流程有何相似之處。
 
-![Bot](~/media/designing-bots/core/dialogs-screens.png)
+![Bot](./media/designing-bots/core/dialogs-screens.png)
 
-在傳統的應用程式中，所有項目都是以**主畫面**開頭。
+在傳統的應用程式中，所有項目都是以**主畫面**開始。
 **主畫面**會叫用**新訂單畫面**。
 **新訂單畫面**會保持控制權，直到它關閉或叫用其他畫面 (例如**產品搜尋畫面**) 為止。 
 如果**新訂單畫面**關閉，使用者就會回到**主畫面**。
@@ -119,7 +122,7 @@ ms.locfileid: "39298891"
 人類不會以循序 `dialogs` 方式通訊。 他們通常會頻繁地改變心意。 
 請思考下列範例： 
 
-![Bot](~/media/bot-service-design-conversation-flow/stack-issue.png)
+![Bot](./media/bot-service-design-conversation-flow/stack-issue.png)
 
 雖然您的 Bot 可能會以程序為中心，但使用者可能會決定要進行完全不同的事項，或是詢問可能與目前主題不相關的問題。 
 在上述範例中，使用者會詢問問題，而不是提供 Bot 所預期的 [是]/[否] 回應。 

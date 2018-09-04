@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 1eb334f719279c987b30e604eacfb3878970ba02
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: d76daffcfc4661a87d1efaf85e6bb08e3e999988
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300327"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756529"
 ---
 # <a name="api-reference"></a>API 參考資料
 
@@ -22,7 +22,7 @@ ms.locfileid: "39300327"
 在 Bot Framework 內，Bot 連接器服務可讓 Bot 透過您在 Bot Framework 入口網站中設定的通道和使用者交換訊息；而 Bot 狀態服務則可讓 Bot 儲存和擷取其使用 Bot 連接器服務進行交談時的相關狀態資料。 這兩種服務皆透過 HTTPS 使用業界標準的 REST 和 JSON。
 
 > [!IMPORTANT]
-> 不建議將 Bot Framework State Service API 用於生產環境，未來版本可能會加以取代。 建議更新 Bot 程式碼以使用記憶體內部儲存體進行測試，或將任何一個 **Azure 延伸模組**用於生產 Bot。 如需詳細資訊，請參閱**管理狀態資料**主題，以了解 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或[節點](~/nodejs/bot-builder-nodejs-state.md)實作。
+> 不建議將 Bot Framework State Service API 用於生產環境，未來版本可能會加以取代。 建議更新您的 Bot 程式碼以使用記憶體內部儲存體進行測試，或將其中一個 **Azure 擴充功能**用於生產環境 Bot。 如需詳細資訊，請參閱 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 實作的＜管理狀態資料＞主題。
 
 ## <a name="base-uri"></a>基底 URI
 
@@ -420,7 +420,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **textFormat** | 字串 | 訊息**文字**的格式。 下列任一值：**markdown**、**plain**、**xml**。 如需有關文字格式的詳細資料，請參閱[建立訊息](bot-framework-rest-connector-create-messages.md)。 |
 | **timestamp** | 字串 | 訊息傳送時的 UTC 時區日期及時間，以 <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO-8601</a> 格式表示。 |
 | **topicName** | 字串 | 活動所屬交談的主題。 |
-| **type** | 字串 | 活動的類型。 下列任一值：**contactRelationUpdate**、**conversationUpdate**、**deleteUserData**、**message**、**ping**、**typing**、**endOfConversation**。 如需有關活動類型的詳細資料，請參閱[活動概觀](bot-framework-rest-connector-activities.md)。 |
+| **type** | 字串 | 活動的類型。 下列任一值：**contactRelationUpdate**、**conversationUpdate**、**deleteUserData**、**message**、**typing**、**endOfConversation**。 如需有關活動類型的詳細資料，請參閱[活動概觀](bot-framework-rest-connector-activities.md)。 |
 | **value** | 物件 | 開放端點的值。 |
 
 <a href="#objects">回到結構描述資料表</a>

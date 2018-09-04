@@ -7,17 +7,17 @@ ms.author: mateusv
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: 21f5b35e992f792a5667ef05d2708b5a446f8023
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 08/27/2018
+ms.openlocfilehash: 0bf58773cfbb6c58773cc5c63b735a0099ad569e
+ms.sourcegitcommit: 86ddf3ebe6cc3385d1c4d30b971ac9c3e1fc5a77
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299063"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43056012"
 ---
 # <a name="design-the-user-experience"></a>設計使用者體驗
 
-Bot 通常會使用**豐富使用者控制項**、**文字和自然語言**及**語音**的組合，來與使用者交換訊息。
+您可以建立各種不同功能的 Bot，例如文字、按鈕、影像、展示在轉盤或清單格式的多媒體卡片或更多功能。 不過，Facebook、Slack、Skype 等每個通道 最後會控制其訊息用戶端呈現功能。 即使有多個通道支援某項功能時，每個通道可以稍有不同的方式呈現該功能。 在一訊息中包含通道原本不支援的功能之情況下，該通道會嘗試關閉呈現訊息的內容變為文字或靜態影像，這可能會嚴重影響用戶端上的訊息的外觀。 在某些情況下，通道可能完全不支援特定的功能。 舉例來說，GroupMe 用戶端無法顯示正在輸入的指標。
 
 ## <a name="rich-user-controls"></a>豐富使用者控制項
 
@@ -44,39 +44,10 @@ Microsoft Bot 服務卡片是可以程式設計的物件，其中包含可在各
 | VideoCard | ![視訊卡片影像](~/media/video-card.png) | 可以播放影片的卡片。 通常用來開啟 URL 和串流可用的影片。 |
 | CardCarousel | ![卡片浮動切換影像](~/media/card-carousel.png) | 一組可水平捲動的卡片，可讓使用者輕鬆檢視一系列可能的使用者選擇。|
 
-卡片讓您只要設計一次 Bot，然後就能讓它在各種通道上運作。 不過，並非所有可用的通道都完整支援所有卡片類型。 下表顯示的取樣是挑選出的各個通道目前所支援的卡片類型。 如需有關通道支援的最新資訊，請務必使用[通道偵測器](bot-service-channel-inspector.md)來查看特定卡片在您有興趣的通道上，其外觀和功能是如何。 如需調適型卡片的詳細資訊，請務必參一併閱<a href="http://adaptivecards.io/visualizer/">調適型卡片視覺化檢視</a> \(英文\)。
-
-下表顯示通道對常用於浮動切換之卡片類型的支援。
-
-| 通道 | 調適性 | 主圖 | 縮圖 | 浮動切換 |
-| ---- | ---- | ---- | ---- | ---- |
-| Cortana | ✔ | ✔ | ✔ | ✔ |
-| O365 電子郵件 | ✔ | ✔ | ✔ | ✔ |
-| Facebook | - | ✔ | ✔ | ✔ |
-| Kik | ✔ | ✔ | ✔ | ✔ |
-| Skype | ✔ | ✔ | ✔ | ✔ |
-| Slack | ✔ | ✔ | ✔ | ✔ |
-| sms | ✔ | ✔ | ✔ | ✔ |
-| Teams | ✔ | ✔ | ✔ | ✔ |
-| 網路聊天 | ✔ | ✔ | ✔ | ✔ |
-
-以下表格顯示通道對其他類型 Microsoft Bot 服務卡片的支援。
-
-| 通道 | 影片 | 收據 | 登入 | SuggestedAction |
-| ---- | ---- | ---- | ---- | ---- |
-| Cortana | ✔ | ✔ | ✔ | - |
-| O365 電子郵件 | ✔ | ✔ | ✔ | ✔ |
-| Facebook | ✔ | ✔ | ✔ | ✔ |
-| Kik | ✔ | ✔ | ✔ | ✔ |
-| Skype | ✔ | ✔ | ✔ | ✔ |
-| Slack | ✔ | ✔ | ✔ | ✔ |
-| sms | ✔ | ✔ | - | ✔ |
-| Teams | - | ✔ | ✔ | - |
-| 網路聊天 | ✔ | ✔ | ✔ | ✔ |
-
-✔ = 支援
+卡片讓您只要設計一次 Bot，然後就能讓它在各種通道上運作。 不過，並非所有可用的通道都完整支援所有卡片類型。 
 
 將卡片新增到 Bot 的詳細指示可以在以下各節中找到：[新增豐富卡片媒體附件](v4sdk/bot-builder-howto-add-media-attachments.md)、[新增訊息的建議動作](v4sdk/bot-builder-howto-add-suggested-actions.md)。
+
 
 在設計您的 Bot 時，請不要因為「不夠智慧」而自動捨棄一般 UI 元素。 如[先前](~/bot-service-design-principles.md#designing-a-bot)所述，您的 Bot 應該設計成盡可能以最佳、最快且最輕鬆的方式來解決使用者的問題。 請避免因受到引誘而一開始就整合自然語言理解，它通常是非必要的，而且會造成不必要的複雜性。
 
@@ -129,5 +100,4 @@ Bot 可以使用**語音**輸入和/或輸出與使用者通訊。 如果 Bot �
 就像人使用手勢、聲音和符號的組合來互相溝通，Bot 可以使用豐富使用者控制項、文字 (有時包含自然語言) 與語音的組合來和使用者通訊。 這些通訊方法可以搭配在一起使用，您不需要選擇一個而捨棄其他的。 
 
 例如，請想像協助使用者使用食譜的「烹飪 Bot」，它可能透過撥放影片來提供指示，或顯示一系列的圖片來解釋要處理的事項。 某些使用者可能偏好在食譜上翻頁，或在按照食譜做菜時使用語音問 Bot 問題。 其他人可能偏好在裝置的螢幕上觸控，而不是透過語音和 Bot 互動。 在設計您的 Bot 時，請根據要支援的特定使用案例來整合使用者可能會想和您的 Bot 互動的 UX 元素。 
-
 

@@ -6,13 +6,13 @@ ms.author: mateusv
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: 3264388cf253bb949eabe3be04fdaebabdc36b99
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 08/15/2018
+ms.openlocfilehash: 68d2d4f7a19aecfcb2c630e5e9e55ca5b8a21d89
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299187"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756719"
 ---
 # <a name="embed-a-bot-in-an-app"></a>將 Bot 內嵌至應用程式
 
@@ -42,9 +42,7 @@ IoT 應用程式可以使用[直接線路 API][directLineAPI] 與 Bot Framework 
 
 在此範例中，是使用建立跨平台行動應用程式的熱門工具 <a href="https://www.xamarin.com/" target="_blank">Xamarin</a> 來建立執行 Bot 的行動應用程式。 
 
-首先，建立簡單的 Web 檢視元件，並運用在架設<a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">網路聊天控制項</a>。 然後，使用 Bot Framework 入口網站，[TODO](~/bot-service-manage-channels.md) 前往網路聊天頻道。 
-
-![Bot 組態設定](~/media/bot-service-design-pattern-embed-app/webchat-channel.png)
+首先，建立簡單的 Web 檢視元件，並運用在架設<a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">網路聊天控制項</a>。 然後，使用 Azure 入口網站，新增網路聊天頻道。 
 
 接下來，指定已註冊的網路聊天 URL 做為 Xamarin 應用程式中 Web 檢視控制項的來源：
 
@@ -70,7 +68,7 @@ public class WebPage : ContentPage
 
 ## <a name="additional-resources"></a>其他資源
 
-- [直接線路 API][directLineAPI]
+- [Direct Line API][directLineAPI]
 - <a href="https://www.microsoft.com/cognitive-services/" target="_blank">Microsoft 認知服務</a>
 
 [directLineAPI]: https://docs.botframework.com/en-us/restapi/directline3/#navtitle

@@ -8,14 +8,17 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/25/2018
-ms.openlocfilehash: 7cf05b3396099f1c65fce7abbceb143a3ad43e9a
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 8004389aba58b5cf79f1559b3ce65d1d66c5358c
+ms.sourcegitcommit: 44f100a588ffda19c275b118f4f97029f12d1449
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574584"
+ms.lasthandoff: 08/26/2018
+ms.locfileid: "42928336"
 ---
 # <a name="create-bots-with-botbuilder-templates"></a>使用 Botbuilder 範本來建立 Bot
+
+> [!NOTE]
+> 本主題適用於 SDK 的 v3 和 v4 版。 請參閱下面的其他注意事項。
 
 現在可使用範本在每個 Botbuilder SDK 平台上建立 Bot： 
 
@@ -96,7 +99,7 @@ npm install generator-botbuilder-java
 
 ## <a name="store-your-bot-information-with-msbot"></a>使用 MSBot 儲存您的 Bot 資訊
 
-新的 [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/MSBot) (英文) 工具可讓您建立 **.bot** 檔案，會儲存您 Bot 所取用不同服務的相關中繼資料，全都放在一個位置。 此檔案也可讓您的 Bot 從 CLI 連線到這些服務。 此工具會以 npm 模組的形式提供，若要安裝請執行：
+新的 [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/MSBot) (英文) 工具可讓您建立 **.bot** 檔案，會儲存您 Bot 所取用不同服務的相關中繼資料，全都放在一個位置。 此檔案也可讓您的 Bot 從 CLI 連線至這些服務。 此工具會以 npm 模組的形式提供，若要安裝請執行：
 
 ```shell
 npm install -g msbot 
@@ -119,9 +122,9 @@ msbot connect [Service]
 |localhost| 將您的 Bot 連線到 localhost 端點|
 |luis     | 將您的 Bot 連線到 LUIS 應用程式 |
 | qna     |將您的 Bot 連線到 QnA 知識庫|
-|說明 [cmd]  |顯示 [cmd] 的說明|
+|help [cmd]  |顯示 [cmd] 的說明|
 
-### <a name="connect-your-bot-to-abs-with-the-bot-file"></a>使用 .bot 檔案將您的 Bot 連線到 ABS
+### <a name="connect-your-bot-to-abs-with-the-bot-file"></a>使用 .bot 檔案將您的 Bot 連線至 ABS
 
 安裝 MSBot 工具後，您可以執行 az bot **show** 命令，輕鬆地將 Bot 連線到 Azure Bot Service 中現有的資源群組。 
 
@@ -134,7 +137,7 @@ az bot show -n <botname> -g <resourcegroup> --msbot | msbot connect azure --stdi
 
 ## <a name="manage-update-or-create-luis-and-qna-services-with--new-botbuilder-tools"></a>使用新的 Botbuilder 工具來管理、更新或建立 LUIS 和 QnA 服務
 
-[Bot 建立器工具](https://github.com/microsoft/botbuilder-tools)是新的工具組，可讓您直接從命令列管理 bot 資源並與其進行互動。 
+[Bot 建立器工具](https://github.com/microsoft/botbuilder-tools)是新的工具組，可讓您直接從命令列管理 Bot 資源並與其進行互動。 
 
 >[!TIP]
 > 每個 Bot 建立器工具都包含全域的 help 命令，可輸入 **-h** 或 **--help**，從命令列中加以存取。 您可隨時從任何動作中使用此命令，將提供可用選項與其描述的實用示範 
@@ -169,7 +172,7 @@ LUDown 工具可用來建立適用於 LUIS 和 QnA 的新 .json 模型。
 - please help
 ```
 
-### <a name="qna-pairs-with-ludown"></a>QnA 與 LUDown 組合
+### <a name="qna-pairs-with-ludown"></a>QnA 與 LUDown 的組合
 
 .lu 檔案格式也會使用下列標記法支援 QnA 組合： 
 
@@ -200,7 +203,7 @@ LUDown 工具會自動將問題和解答分開到 qnamaker JSON 檔案，以便�
 
 ### <a name="generating-json-models-with-ludown"></a>使用 LUDown 產生 .json 模型
 
-您以 .lu 格式定義 LUIS 或 QnA 語言元件之後，可以發行至 LUIS.json、QnA.json 或 QnA.tsv 檔案。 當執行時，LUDown 工具會在要剖析的相同工作目錄內尋找任何 .lu 檔案。 因為 LUDown 工具可以使用 .lu 檔案將目標鎖定為 LUIS 或 QnA，所以我們只需使用 **<luFile> 中的一般命令 ludown parse <Service> --**，指定所要產生的語言服務即可。 
+您以 .lu 格式定義 LUIS 或 QnA 語言元件之後，可以發佈至 LUIS.json、QnA.json 或 QnA.tsv 檔案。 當執行時，LUDown 工具會在要剖析的相同工作目錄內尋找任何 .lu 檔案。 因為 LUDown 工具可以使用 .lu 檔案將目標鎖定為 LUIS 或 QnA，所以我們只需使用 **<luFile> 中的一般命令 ludown parse <Service> --**，指定所要產生的語言服務即可。 
 
 在我們的範例工作目錄中，有兩個要剖析的 .lu 檔案，用來建立 LUIS 模型的 '1.lu'，以及用來建立 QnA 知識庫的 'qna1.lu'。
 
@@ -222,16 +225,16 @@ ludown parse ToQna --in <luFile>
 
 LUIS 和 QnA 可透過其個別的入口網站，或透過新的 CLI 工具來取用所產生的 JSON 檔案。 
 
-## <a name="connect-to-luis-an-qna-maker-services-from-the-cli"></a>從 CLI 連線到 LUIS QnA Maker 服務
+## <a name="connect-to-luis-an-qna-maker-services-from-the-cli"></a>從 CLI 連線至 LUIS 和 QnA Maker 服務
 
-### <a name="connect-to-luis-from-the-cli"></a>從 CLI 連線到 LUIS 
+### <a name="connect-to-luis-from-the-cli"></a>從 CLI 連線至 LUIS 
 
 新工具組中所包含的是 [LUIS 擴充功能](https://github.com/Microsoft/botbuilder-tools/tree/master/LUIS)https://github.com/Microsoft/botbuilder-tools/tree/master/LUIS，可讓您獨立管理您的 LUIS 資源。 它會以 npm 模組的形式提供，可供您下載：
 
 ```shell
 npm install -g luis-apis
 ```
-LUIS 工具從 CLI 中的基本命令使用方式為：
+從 CLI 使用 LUIS 工具基本命令的方式為：
 
 ```shell
 luis <action> <resource> <args...>

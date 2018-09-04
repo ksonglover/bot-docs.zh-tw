@@ -1,5 +1,5 @@
 ---
-title: 使用 QnA Maker | Microsoft Docs
+title: 使用 QnA Maker 回答問題 | Microsoft Docs
 description: 了解如何在 Bot 中使用 QnA Maker。
 keywords: 問題和解答, QnA, 常見問題集, 中介軟體
 author: ivorb
@@ -9,16 +9,18 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/13/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 78bc2c849a2c1900da33c7419693a7ff84c43cb0
-ms.sourcegitcommit: dcbc8ad992a3e242a11ebcdf0ee99714d919a877
+ms.openlocfilehash: 7dd973e2b5a151e754925e6f19c6e4f82507f745
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352947"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906172"
 ---
-# <a name="how-to-use-qna-maker"></a>如何使用 QnA Maker
+# <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答問題
 
-若要對 Bot 新增簡單的問題和解答支援，您可以使用 [QnA Maker](https://qnamaker.ai/) 服務。
+
+若要對 Bot 新增簡單的問題和解答支援，您可以使用 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/home) 服務。
+
 
 在撰寫您自己的 QnA Maker 服務時，其中一項基本需求是在服務中植入問題和解答。 許多時候，問題和解答早已存在於常見問題集或其他文件等內容中。 其他時候，您則會想要以更自然的對話方式自訂問題的解答。 
 
@@ -53,13 +55,13 @@ ms.locfileid: "39352947"
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
-對以下 NuGet 套件的 v4 發行前版本[新增參考](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui) \(機器翻譯\)：
+對以下 NuGet 套件的 v4 發行前版本[加入參考](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui) \(機器翻譯\)：
 
 * `Microsoft.Bot.Builder.Ai.QnA`
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-這些任一項服務都可以使用 botbuilder-ai 套件新增到您的 Bot。 可以透過 npm 將此套件新增到您的專案：
+在這些服務中，任一個服務都可以使用 botbuilder-ai 套件新增到您的 Bot。 可以透過 npm 將此套件新增到您的專案：
 
 * `npm install --save botbuilder@preview`
 * `npm install --save botbuilder-ai@preview`

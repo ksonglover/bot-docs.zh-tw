@@ -7,12 +7,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 ROBOTS: NoIndex, NoFollow
-ms.openlocfilehash: 01f52a6aa6e2c9fc3d2613ff03386a7d87e64a3a
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 2dec87fbdce1cc556c15f7220200da98a4496513
+ms.sourcegitcommit: a2f3d87c0f252e876b3e63d75047ad1e7e110b47
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300171"
+ms.lasthandoff: 08/25/2018
+ms.locfileid: "42928213"
 ---
 # <a name="configure-adaptive-cards"></a>設定調適型卡片
 > [!IMPORTANT]
@@ -24,18 +24,16 @@ ms.locfileid: "39300171"
 
 調適型卡片可以在幾個不同的關鍵處定義。
 
-- 針對工作對[動作](conversation-designer-tasks.md)的簡單回應。
+- 針對工作對動作的簡單回應。
 - 在對話方塊中的意見反應狀態。
 - 在對話方塊中的提示狀態。 請注意，提示可以有不同卡片：一個用於回應，另一個用於重新提示。
 
 若要定義調適型卡片，請瀏覽至相關的編輯器。 瀏覽並選擇其中一個現有的調適型卡片範本，或在 JSON 程式碼編輯器中建置您自己的範本。 
 
-<!--TODO: Insert screenshot -->
-
 建置卡片時，會在撰寫入口網站中提供卡片的多媒體預覽。
 
 > [!NOTE]
-> 調適型卡片的功能仍在進行開發。 所有通道目前皆無法支援全部的調適型卡片功能。 若要查看每個通道支援哪些功能，請參閱[通道狀態](/adaptive-cards/get-started/bots#channel-status)一節。
+> 調適型卡片的功能仍在進行開發。 所有通道目前皆無法支援全部的調適型卡片功能。 若要查看每個通道支援哪些功能，請參閱「通道狀態」一節。
 
 ## <a name="input-form"></a>輸入表單
 
@@ -74,13 +72,7 @@ ms.locfileid: "39300171"
 * `entityName` 會使用卡片內的實體。
 * `responseTemplateName` 會使用卡片內的簡單或條件式回應範本。
 
-<!--
-# Binding form flow input fields to bot entities
-TODO: fill this out based on design/ implementation -->
-
-<!-- ## Adaptive Card schema
-
-You can learn more about adaptive cards here  TODO: Insert link to adaptive cards schema documentation -->
+您可以在此深入了解調適型卡片 TODO：插入調適型卡片結構描述文件的連結 -->
 
 ## <a name="sample-adaptive-card-payload"></a>範例調適型卡片承載
 
@@ -149,6 +141,3 @@ You can learn more about adaptive cards here  TODO: Insert link to adaptive card
 }
 ```
 
-## <a name="next-step"></a>後續步驟
-> [!div class="nextstepaction"]
-> [連線到通道](conversation-designer-deploy.md)

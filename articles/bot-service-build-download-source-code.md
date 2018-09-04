@@ -1,5 +1,5 @@
 ---
-title: 下載並重新部署 Bot 服務的原始程式碼 | Microsoft Docs
+title: 下載並重新部署 Bot 服務原始程式碼 | Microsoft Docs
 description: 了解如何下載及發佈 Bot 服務。
 keywords: download source code, redeploy, deploy, zip file, publish, 下載原始程式碼, 重新部署, 部署, 壓縮文件, 發佈
 author: v-ducvo
@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/08/2018
-ms.openlocfilehash: 6d76388712ffeff94c56ba89b4bf4f4831caf45c
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b77e096d28f51f605db9c49d36e796553f9293ef
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299926"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756682"
 ---
-# <a name="download-and-redeploy-bot-service-source-code"></a>下載並重新部署 Bot 服務原始程式碼
+# <a name="download-and-redeploy-bot-source-code"></a>下載並重新部署 Bot 服務原始程式碼
 
 Bot 服務允許您下載 Bot 的整個來源專案。 這可讓您使用您選擇的 IDE，在本機上使用 Bot。 完成變更後，您可以將變更發佈回 Azure。 
 
@@ -68,7 +68,7 @@ npm run azure-publish
 1. 在 Visual Studio中，按一下 [方案總管]。
 2. 以滑鼠右鍵按一下專案名稱，然後按一下 [發佈]。[發佈] 視窗隨即開啟。
 3. 依序按一下 [建立新設定檔]、[匯入設定檔]，然後按一下 [確定]。
-4. 瀏覽至您的專案資料夾，然後瀏覽至 **PostDeployScripts** 資料夾，並選取以 **.PublishSettings** 結尾的檔案。 按一下 [開啟]。
+4. 瀏覽至您的專案資料夾，然後瀏覽至 **PostDeployScripts** 資料夾，並選取以 **.PublishSettings** 結尾的檔案。 按一下 [開啟] 。
 
 您的專案現在已設定為將變更發佈至 Azure。
 

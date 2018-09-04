@@ -1,5 +1,5 @@
 ---
-title: 運用認知服務為 Bot 新增智慧功能 | Microsoft Docs
+title: 認知服務 | Microsoft Docs
 description: 了解如何運用 Microsoft 認知服務為 Bot 加入人工智慧。
 keywords: 語言力解, 知識擷取, 語音辨識, web 搜尋
 author: RobStand
@@ -8,14 +8,14 @@ manager: rstand
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/17/2017
-ms.openlocfilehash: 168e538720423721a21b720b811d559d8c811adb
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 85b3c86582ce1d653159e0d36516b4a90f5a3220
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574574"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756551"
 ---
-# <a name="add-intelligence-to-bots-with-cognitive-services"></a>運用認知服務為 Bot 新增智慧功能
+# <a name="cognitive-services"></a>認知服務
 
 您可以藉由 Microsoft 認知服務，應用各領域專家不斷開發之一系列的強大 AI 演算法，包括電腦視覺、語音、自然語言處理、知識擷取和 Web 搜尋。 此服務簡化了各種 AI 工作，只要幾行程式碼，您就能快速在 Bot 中新增最新的智慧技術。 API 整合了大部分的新語言和平台。 API 亦可持續改善與學習，變得更聰明，讓服務體驗隨時保持最新狀態。 
 

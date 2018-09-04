@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 53643f21e2cf1ebdfd84caed38f8f84c330ef71b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 998586820a0489bc4cca1d25b53cb6ac8162c452
+ms.sourcegitcommit: 0b2be801e55f6baa048b49c7211944480e83ba95
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299675"
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43115043"
 ---
 # <a name="authentication"></a>驗證
 
@@ -24,14 +24,14 @@ ms.locfileid: "39299675"
 若您準備使用[適用於 .NET 的 Bot Builder SDK](../dotnet/bot-builder-dotnet-overview.md) 或[適用於 Node.js 的 Bot Builder SDK](../nodejs/index.md)，便不需要實作本文所述的安全性程序，因為 SDK 會自動實作那些程序。 您只需以在[註冊](../bot-service-quickstart-registration.md)期間為 Bot 取得的應用程式識別碼和密碼設定專案，SDK 便會處理剩餘的部分。
 
 > [!WARNING]
-> 在 2016 年 12 月，Bot Framework 安全性通訊協定 v3.1 已針對數個用於權杖產生及驗證的值導入變更。 在 2017 年秋末，將會推出 Bot Framework 安全性通訊協定 v3.2，其將再次針對用於權杖產生及驗證的值導入變更。
+> 在 2016 年 12 月，Bot Framework 安全性通訊協定 v3.1 已針對數個用於權杖產生及驗證的值導入變更。 在 2017 年秋末，已推出了 Bot Framework 安全性通訊協定 v3.2，其針對用於權杖產生及驗證的值納入變更。
 > 如需詳細資訊，請參閱[安全性通訊協定變更](#security-protocol-changes)。
 
 ## <a name="authentication-technologies"></a>驗證技術
 
 一共會使用四個驗證技術來在 Bot 和 Bot 連接器之間建立信任：
 
-| 技術 | 說明 |
+| Technology | 說明 |
 |----|----|
 | **SSL/TLS** | 會針對所有服務對服務連線使用 SSL/TLS。 會使用 `X.509v3` 憑證來建立所有 HTTPS 服務的身分識別。 **用戶端應一律檢查服務憑證以確保其為受信任且有效的憑證。** (此配置「不會」使用用戶端憑證。) |
 | **OAuth 2.0** | 會使用 OAuth 2.0 登入至 Microsoft 帳戶 (MSA)/AAD v2 登入服務來產生 Bot 可用來傳送訊息的安全權杖。 此權杖為服務對服務權杖，且不需要使用者登入。 |
@@ -232,7 +232,7 @@ payload:
 ## <a id="emulator-to-bot"></a> 驗證從 Bot Framework 模擬器傳送至 Bot 的要求
 
 > [!WARNING]
-> 在 2017 年秋末，將會推出 Bot Framework 安全性通訊協定 v3.2。 這個新的版本將會在 Bot Framework Eumaltor 和您的 Bot 之間交換的權杖內包含新的「簽發者」值。 為了針對此變更做準備，下列步驟概述檢查 v3.1 和 v3.2 簽發者值的方法。 
+> 在 2017 年秋末，已推出了 Bot Framework 安全性通訊協定 v3.2。 這個新的版本將會在 Bot Framework Eumaltor 和您的 Bot 之間交換的權杖內包含新的「簽發者」值。 為了針對此變更做準備，下列步驟概述檢查 v3.1 和 v3.2 簽發者值的方法。 
 
 [Bot Framework Emulator](../bot-service-debug-emulator.md) 是可用來測試 Bot 功能的傳統型工具。 雖然 Bot Framework Emulator 是使用和上述相同的[驗證技術](#authentication-technologies)，它並無法模擬真實的 Bot 連接器服務。 相反地，它會使用您將模擬器連線至 Bot 時所指定的 Microsoft 應用程式識別碼和 Microsoft 應用程式密碼，來建立與 Bot 所建立的權杖完全相同的權杖。 當模擬器傳送要求至您的 Bot 時，它會在要求的 `Authorization` 標頭中指定 JWT 權杖，基本上便是使用 Bot 自己的認證來驗證要求。 
 

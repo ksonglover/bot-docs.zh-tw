@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e276b7f3f4cc46e0978b3ee182b8251e39b86ead
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: fd81b9dfe5d3e16096ffd6ab25c1ee23ff77f79f
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299559"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904926"
 ---
 # <a name="key-concepts-in-the-bot-builder-sdk-for-nodejs"></a>適用於 Node.js 的 Bot 建立器 SDK 中的重要概念
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-concepts.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-concepts.md)
@@ -43,7 +46,8 @@ Bot Framework Connector 是一項可將 Bot 連線至多個*通道* (即 Skype�
 對話方塊可協助您組織 Bot 中的對話邏輯，而且可作為[設計對話流程](../bot-service-design-conversation-flow.md)的基礎。 如需對話的簡介，請參閱[使用對話方塊來管理對話](bot-builder-nodejs-dialog-manage-conversation.md)。
 
 ## <a name="actions"></a>動作
-您必須將 Bot 設計成具有中斷處理能力，例如，處理對話流程中隨時提出的取消或協助要求。 適用於 Node.js 的 Bot 建立器 SDK 提供全域訊息處理常式，可觸發如取消或叫用其他對話之類的動作。 如需如何使用 [triggerAction][triggerAction] 處理常式的範例，請參閱<!--[Handling cancel](bot-builder-nodejs-manage-conversation-flow.md#handling-cancel), [Confirming interruptions](bot-builder-nodejs-manage-conversation-flow.md#confirming-interruptions) and-->[處理使用者動作](bot-builder-nodejs-dialog-actions.md)。
+您必須將 Bot 設計成具有中斷處理能力，例如，處理對話流程中隨時提出的取消或協助要求。 適用於 Node.js 的 Bot 建立器 SDK 提供全域訊息處理常式，可觸發如取消或叫用其他對話之類的動作。 如需如何使用 [triggerAction][triggerAction] 處理常式的範例，請參閱[處理使用者動作](bot-builder-nodejs-dialog-actions.md)。
+<!--[Handling cancel](bot-builder-nodejs-manage-conversation-flow.md#handling-cancel), [Confirming interruptions](bot-builder-nodejs-manage-conversation-flow.md#confirming-interruptions) and-->
 
 
 ## <a name="recognizers"></a>辨識器

@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/01/2018
-ms.openlocfilehash: 984c0d59c0c80bb53c8cef42db79d444d85941f3
-ms.sourcegitcommit: dcbc8ad992a3e242a11ebcdf0ee99714d919a877
+ms.openlocfilehash: 8f4b6c27fc28e4cf3b800dad11c3e6bd58561387
+ms.sourcegitcommit: 0b2be801e55f6baa048b49c7211944480e83ba95
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352937"
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43115063"
 ---
 # <a name="entities-and-activity-types"></a>實體和活動類型
 
@@ -75,14 +75,14 @@ place 物件包含下列屬性：
 | 位址 | 說明或郵寄地址物件 (未來) |
 | 地理區域 | GeoCoordinates |
 | HasMap | 地圖的 URL 或地圖物件 (未來) |
-| Name | 位置的名稱 |
+| 名稱 | 位置的名稱 |
 
 geoCoordinates 物件包含下列屬性：
 
 | 屬性 | 說明 |
 |----|----|
 | 類型 | 實體的類型 ("GeoCoordinates") |
-| Name | 位置的名稱 |
+| 名稱 | 位置的名稱 |
 | 經度 | 位置的經度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |
 | 經度 | 位置的緯度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |
 | Elevation | 位置的提升 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |
@@ -226,7 +226,7 @@ Bot 可能會收到叫用活動，代表執行特定作業的要求。
 
 ## <a name="messagereaction"></a>messageReaction
 
-當使用者對現有活動做出回應，某些通道會傳送訊息回應活動給 Bot。 例如，使用者按了訊息上的「讚」按鈕。 reply toId 屬性會指出使用者回應了哪一個活動。
+當使用者對現有活動做出回應，某些通道會傳送訊息回應活動給 Bot。 例如，使用者按了訊息上的「讚」按鈕。 replyToId 屬性會指出使用者回應了哪一個活動。
 
 訊息回應活動可能對應到通道所定義任何數目的訊息回應類型。 比方說，「讚」或「PlusOne」為通道可能傳送的反應類型。
 
@@ -238,5 +238,5 @@ Bot 會傳送輸入活動，向使用者表示 Bot 正在運作以完成要求�
 ::: moniker range="azure-bot-service-3.0"
 ## <a name="additional-resources"></a>其他資源
 
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活動類別</a>
+- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a> \(英文\)
 ::: moniker-end

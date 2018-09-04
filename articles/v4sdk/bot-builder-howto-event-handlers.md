@@ -1,5 +1,5 @@
 ---
-title: 事件處理常式 | Microsoft Docs
+title: 使用事件處理常式 | Microsoft Docs
 description: 了解如何使用事件處理常式。
 author: ivorb
 ms.author: v-ivorb
@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 06/14/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0c054b8f4209004806e4564be45e83bdf3a8ec25
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 36bd2638c599de1662a37dd85790b6126184d51b
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300086"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905687"
 ---
-# <a name="event-handlers"></a>事件處理常式
+# <a name="using-event-handlers"></a>使用事件處理常式
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 事件處理常式是可新增至 [turn](bot-builder-basics.md#defining-a-turn) 內未來活動事件的函式。 這些活動是 `SendActivity`、`UpdateActivity` 和 `DeleteActivity`，各有其自己的處理常式。 當您需要對目前內容物件該類型的每一個未來活動做些什麼的時候，這些處理常式會很有用。
 

@@ -7,21 +7,19 @@ ms.author: RobStand
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: 0a9ad7d51234b417d5d0f27dbcffe4ce839ba94a
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 08/16/2018
+ms.openlocfilehash: 7fbff06966ac64260244e8af375aaa6f8f945fcd
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298899"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756477"
 ---
 # <a name="connect-a-bot-to-facebook-messenger"></a>將 Bot 連線到 Facebook Messenger
 
 若要深入了解如何針對 Facebook Messenger 進行開發，請參閱 [Messenger 平台文件](https://developers.facebook.com/docs/messenger-platform)。 您可以檢閱 Facebook 的[啟動前指導方針](https://developers.facebook.com/docs/messenger-platform/product-overview/launch#app_public)、[快速入門](https://developers.facebook.com/docs/messenger-platform/guides/quick-start)和[設定指南](https://developers.facebook.com/docs/messenger-platform/guides/setup)。
 
 若要設定 Bot 使用 Facebook Messenger 進行通訊，請在 Facebook 頁面上啟用 Facebook Messenger，然後將 Bot 連線到應用程式。
-
-[!INCLUDE [Channel Inspector intro](~/includes/snippet-channel-inspector.md)]
 
 > [!NOTE]
 > Facebook UI 可能會因為您所使用的版本而略有不同。
@@ -72,7 +70,7 @@ ms.locfileid: "39298899"
 
 ## <a name="provide-webhook-callback-url-and-verify-token"></a>提供 Webhook 回呼 URL 並確認權杖
 
-返回 [Bot Framework 入口網站](https://dev.botframework.com/)。 開啟 Bot，按一下 [通道] 索引標籤，然後按一下 [Facebook Messenger]。
+在 [Azure 入口網站](https://portal.azure.com/)中開啟 Bot，按一下 [通道] 索引標籤，然後按一下 [Facebook Messenger]。
 
 * 從入口網站複製 [回呼 URL] 和 [確認權杖] 值。
 
@@ -93,7 +91,7 @@ ms.locfileid: "39298899"
 
 ## <a name="provide-facebook-credentials"></a>提供 Facebook 認證
 
-在 Bot Framework 入口網站上，貼上先前從 Facebook Messenger 複製的 [頁面識別碼]、[應用程式識別碼]、[應用程式祕密] 及 [頁面存取權杖] 值。
+在 Azure 入口網站中，貼上先前從 Facebook Messenger 複製的 [Facebook 應用程式識別碼]、[Facebook 應用程式祕密]、[頁面識別碼] 及 [頁面存取權杖] 值。 您可以新增額外的頁面識別碼和存取權杖，以便在多個 Facebook 頁面上使用相同的 Bot。
 
 ![輸入認證](~/media/channels/fb-credentials2.png)
 
@@ -110,3 +108,6 @@ Bot 完成之後，Facebook 對於發佈到 Messenger 的應用程式有自己�
 
 審查成功之後，請在 [應用程式審查] 底下的 [應用程式儀表板] 中，將應用程式設為 [公用]。
 確保與這個 Bot 相關聯的 Facebook 頁面已發佈。 狀態會顯示在頁面設定中。
+
+> [!NOTE]
+> 您也可以使用 Facebook Workplace。 若要啟用，請為您的 Workplace 建立[自訂整合](https://developers.facebook.com/docs/workplace/custom-integrations-new)，並使用其應用程式識別碼、應用程式祕密和存取權杖。 請使用其 [關於] 頁面上整合名稱後面的數字，而不是傳統的 pageID。 Webhook 可透過 Azure 中顯示的認證來連線。

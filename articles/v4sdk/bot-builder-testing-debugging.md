@@ -1,5 +1,5 @@
 ---
-title: 針對 Bot 進行測試和偵錯 | Microsoft Docs
+title: 測試和偵錯指導方針 | Microsoft Docs
 description: 了解如何針對您的 Bot 進行測試和偵錯。
 keywords: 測試原則, 模擬元素, 常見問題集, 測試等級
 author: ivorb
@@ -9,16 +9,18 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/09/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ea1c458e98f67f76c56fdd70595307a0e0252c1d
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: caa424ed0ea0944805836739ed48a7a61f78d21c
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298754"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905257"
 ---
-# <a name="testing-and-debugging-your-bot"></a>針對您的 Bot 進行測試和偵錯
+# <a name="testing-and-debugging-guidelines"></a>測試和偵錯指導方針
 
-Bot 是複雜的應用程式，有許多不同的組件一起運作。 就像任何其他複雜的應用程式，這會導致一些有趣的錯誤 (bug)，或是讓 Bot 產生出乎意料的行為。
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+
+Bot 是將許多不同組件整合在一起運作的複雜應用程式。 就像任何其他複雜的應用程式，這會導致一些有趣的錯誤 (bug)，或是讓 Bot 產生出乎意料的行為。
 
 針對 Bot 進行測試以及後續的偵錯過程，有時候是很困難的工作。 每個開發人員都有自己慣用的方法來完成該工作。我們提供以下的指導方針給您做為建議，可適用於大部分的 Bot。
 
@@ -64,7 +66,7 @@ Bot 是複雜的應用程式，有許多不同的組件一起運作。 就像任
 
 不同類型的測試都可透過結合上述的等級，或是不同的角度 (例如壓力測試、效能測試或分析 Bot 活動) 來完成。 Visual Studio 提供達成此目的的本機方法以及[工具套件](https://www.visualstudio.com/team-services/testing-tools/)，可用來測試您的應用程式，而 [Azure 入口網站](https://portal.azure.com)則提供 Bot 執行狀況的見解。
 
-## <a name="debugging"></a>偵錯
+## <a name="debugging"></a>Debugging
 
 針對 Bot 進行偵錯的方式，與針對其他多執行緒應用程式進行偵錯的方式相似，都要使用設定中斷點或是如即時運算視窗的功能。 
 

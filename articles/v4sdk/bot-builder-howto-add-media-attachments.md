@@ -7,14 +7,14 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 04/03/2018
+ms.date: 08/24/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 30a0c463698d9ab7e3b2b0f9ddb0e872f007d1d8
-ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
+ms.openlocfilehash: 5883b31df95da26fa0432f4cfe195f12fc3089ad
+ms.sourcegitcommit: 86ddf3ebe6cc3385d1c4d30b971ac9c3e1fc5a77
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/04/2018
-ms.locfileid: "39515038"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43055992"
 ---
 # <a name="add-media-to-messages"></a>將媒體新增至訊息
 
@@ -233,8 +233,13 @@ await context.sendActivity(hero);
 ---
 
 ## <a name="send-an-adaptive-card"></a>傳送調適型卡片
+調適型卡片和 MessageFactory 都用於傳送豐富訊息 (包括文字、影像、視訊、音訊和檔案) 來與使用者進行通訊。 但是，兩者之間有一些差異。 
 
-您也可以傳送調適型卡片作為附件。 目前並非所有通道都支援調適型卡片。 如需調適型卡片通道支援的最新資訊，請參閱<a href="http://adaptivecards.io/visualizer/">調適型卡片視覺化檢視</a>。
+首先，只有某些通道支援調適型卡片，而提供支援的通道可能部分支援調適型卡片。 例如，如果您在 Facebook 中傳送調適型卡片，當文字和影像正常運作時，按鈕將無法運作。 MessageFactory 只是 Bot 建立器 SDK 內的協助程式類別，可為您將建立步驟自動化，而且大部分通道都提供支援。 
+
+再者，調適型卡片會以卡片格式傳遞訊息，而通道會決定卡片的版面配置。 MessageFactory 傳遞的訊息格式取決於通道，而且不一定是以卡片格式傳遞，除非調適型卡片是附件的一部分。 
+
+如需調適型卡片通道支援的最新資訊，請參閱<a href="http://adaptivecards.io/visualizer/">調適型卡片視覺化檢視</a>。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 若要使用調適型卡片，請務必新增 `Microsoft.AdaptiveCards`NuGet 套件。

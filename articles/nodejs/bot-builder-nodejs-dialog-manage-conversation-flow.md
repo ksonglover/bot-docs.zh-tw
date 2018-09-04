@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d6c8ad06b9fb198e684deae26e9cbad05a86a611
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 656b6304a576c553db948a348b1c6d8c3fc5ae71
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300279"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905662"
 ---
-# <a name="manage-conversation-flow-with-dialogs"></a>使用對話 (dialog) 管理對話 (conversation) 流程
+# <a name="manage-conversation-flow-with-dialogs"></a>使用對話方塊管理交談流程
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-manage-conversation-flow.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-dialog-manage-conversation-flow.md)
@@ -333,7 +336,7 @@ bot.dialog('orderDinner', [
 });
 ```
 
-在使用者開始對話並選取 `Dinner Reservation` 或 `Order Dinner` 之後，他們隨時都可能會改變心意。 例如，如果使用者在進行晚餐訂位的過程中輸入 "order dinner" (點晚餐)，Bot 將會說出 "This will cancel your current request. Are you sure?" (這將會取消您目前的要求。是否確定？) 來進行確認。 如果使用者輸入 "no" (否)，則會取消該要求，而使用者可以繼續進行晚餐訂位程序。 如果使用者輸入 "yes" (是)，Bot 將清除對話 (dialog) 堆疊，並將對話 (conversation) 的控制權轉給 `orderDinner` 對話 (dialog)。
+在使用者開始對話並選取 `Dinner Reservation` 或 `Order Dinner` 之後，他們隨時都可能會改變心意。 例如，如果使用者在預訂晚餐過程中輸入「訂購晚餐」，Bot 將藉由說出「這樣將會取消您目前的要求。 您確定嗎？」來進行確認。 如果使用者輸入 "no" (否)，則會取消該要求，而使用者可以繼續進行晚餐訂位程序。 如果使用者輸入 "yes" (是)，Bot 將清除對話 (dialog) 堆疊，並將對話 (conversation) 的控制權轉給 `orderDinner` 對話 (dialog)。
 
 ## <a name="end-conversation"></a>結束對話
 

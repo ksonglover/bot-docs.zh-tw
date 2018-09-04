@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: fbfe65526335b7a8797ab229871472d540735e20
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 35af3a339a20fe0e7e70d001db035aec2647aa35
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298895"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905317"
 ---
 # <a name="support-audio-calls-with-skype"></a>使用 Skype 支援語音通話
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 Skype 支援稱為「呼叫 Bot」的豐富功能。  當啟用時，使用者可以撥打語音電話給 Bot，並使用互動語音回應系統 (IVR) 與其進行互動。  適用於 Node.js SDK 的 Bot 建立器包含特殊的[呼叫 SDK][calling_sdk]，開發人員可用來將撥打功能新增至其聊天 Bot。   
 
@@ -70,7 +72,7 @@ bot.dialog('/', function (session) {
 如果您按下呼叫按鈕，應該會撥給您的 Bot，且您應該會聽到它說「Watson... 來這裡！」 然後掛斷。
 
 ## <a name="calling-basics"></a>呼叫基本概念
-[UniversalCallBot](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.universalcallbot) 和 [CallConnector](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callconnector) 類別可讓您使用與聊天 Bot 大致相同的方式來撰寫呼叫 Bot。 您要將基本上與[聊天對話方塊](bot-builder-nodejs-manage-conversation-flow.md)相同的對話方塊新增至您的 Bot。 您可以將[瀑布圖](bot-builder-nodejs-prompts.md)新增到您的 Bot。 工作階段物件 ([CallSession](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession) 類別)，其中包含已新增的 [answer()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#answer)、[hangup()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#hangup)，以及 [reject()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#reject) 方法，可管理目前的呼叫。 一般情況下，您不需要擔心這些呼叫控制方法，因為 CallSession 具有邏輯，可自動管理您的呼叫。 如果您採取例如傳送訊息或呼叫內建提示等動作，工作階段會自動接聽電話。 如果您呼叫 [endConversation()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#endconversation)，它也會自動掛斷/拒絕呼叫，或是會偵測到您已停止詢問呼叫者問題 (您未呼叫內建的提示)。
+[UniversalCallBot](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.universalcallbot) 和 [CallConnector](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callconnector) 類別可讓您使用與聊天 Bot 大致相同的方式來撰寫呼叫 Bot。 您要將基本上與[聊天對話方塊](bot-builder-nodejs-manage-conversation-flow.md)相同的對話方塊新增至您的 Bot。 您可以將[瀑布圖](bot-builder-nodejs-prompts.md)新增到您的 Bot。 有一個工作階段物件 ([CallSession](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession) 類別)，其中包含已新增的 [answer()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#answer)、[hangup()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#hangup)，以及 [reject()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#reject) 方法，可管理目前的呼叫。 一般情況下，您不需要擔心這些呼叫控制方法，因為 CallSession 具有邏輯，可自動管理您的呼叫。 如果您採取例如傳送訊息或呼叫內建提示等動作，工作階段會自動接聽電話。 如果您呼叫 [endConversation()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#endconversation)，它也會自動掛斷/拒絕呼叫，或是會偵測到您已停止詢問呼叫者問題 (您未呼叫內建的提示)。
 
 呼叫和聊天 Bot 的另一個差異是，聊天 Bot 通常會將訊息、卡片和鍵盤傳送給使用者，而呼叫 Bot 則會處理「動作」和「結果」。 建立組成一或多個[動作](http://docs.botframework.com/en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.iaction)的[工作流程](http://docs.botframework.com/en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.iworkflow)時，需要 Skype 呼叫 Bot。  這在實務上是您不需要太擔心的另一項事情，因為 Bot 建立器呼叫 SDK 幾乎都會為您管理。 [CallSession.send()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#send) 方法可讓您傳遞動作或字串，從而會變成 [PlayPromptActions](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.playpromptaction)。  工作階段包含自動批次邏輯，可將多個動作合併成提交給呼叫服務的單一工作流程，以便您可以安全地多次呼叫 send()。  且您應仰賴 SDK 的內建[提示](bot-builder-nodejs-prompts.md)，當使用者在處理所有結果時，向他們收集輸入。  
 

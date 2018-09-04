@@ -1,5 +1,5 @@
 ---
-title: 使用對話方塊容器建立模組化 Bot 邏輯 | Microsoft Docs
+title: 建立一組整合式對話方塊 | Microsoft Docs
 description: 了解如何在適用於 Node.js 的 Bot 建立器 SDK 和 C# 中，使用對話方塊容器將 Bot 邏輯模組化。
 keywords: 複合控制項, 模組化 Bot 邏輯
 author: v-ducvo
@@ -9,14 +9,14 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/27/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2441a32167618ebb08e6a43d68d74076c3351d8f
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 93037d70a33d66269f3a79ce7e2a55900d25a6a9
+ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300226"
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42795197"
 ---
-# <a name="create-modular-bot-logic-with-a-dialog-container"></a>使用對話方塊容器建立模組化 Bot 邏輯
+# <a name="create-an-integrated-set-of-dialogs"></a>建立一組整合式對話方塊
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -74,7 +74,7 @@ public class UserInfo
 ```
 
 在 Bot 回合中，對話方塊集合的 `CreateContext` 方法會建立對話方塊狀態。
-這個方法會將回合內容和狀態物件當做參數。
+這個方法會將[回合內容](bot-builder-concept-activity-processing.md#turn-context)和狀態物件當做參數。
 
 對於對話方塊，這個狀態物件必須實作 `IDictionary<string, object>` 介面。 於這個 Bot 只會使用對話狀態來容納對話方塊狀態，因此對話狀態類別可以是簡單的字典。
 
@@ -104,7 +104,7 @@ public class ConversationInfo : Dictionary<string, object> { }
 1. 詢問來賓想要住宿的房間。
 1. 傳送確認訊息，完成對話方塊。
 
-如需對話方塊和瀑布圖的詳細資訊，請參閱[使用對話方塊來管理對話流程](bot-builder-dialog-manage-conversation-flow.md)。
+如需對話方塊和瀑布的詳細資訊，請參閱[使用對話方塊來管理簡單對話流程](bot-builder-dialog-manage-conversation-flow.md)。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 

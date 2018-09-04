@@ -1,5 +1,5 @@
 ---
-title: 使用對話和使用者屬性儲存狀態 | Microsoft Docs
+title: 管理對話和使用者狀態 | Microsoft Docs
 description: 了解如何使用適用於 .NET 的 Bot 建立器 SDK V4 儲存和擷取資料。
 keywords: 對話狀態, 使用者狀態, 狀態中介軟體, 對話流程, 檔案儲存體, Azure 資料表儲存體
 author: ivorb
@@ -9,14 +9,14 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/03/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 16df371b1cabb4b3eb47d1f491a5d45e26627d38
-ms.sourcegitcommit: dcbc8ad992a3e242a11ebcdf0ee99714d919a877
+ms.openlocfilehash: a74c52af0ca56b62491ca3aa39d09885c2540c18
+ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352847"
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42795207"
 ---
-# <a name="save-state-using-conversation-and-user-properties"></a>使用對話和使用者屬性儲存狀態
+# <a name="manage-conversation-and-user-state"></a>管理對話和使用者狀態
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -30,6 +30,16 @@ ms.locfileid: "39352847"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 若要查看 `ConversationState` 的初始化方式，請參閱 Microsoft.Bot.Samples.EchoBot-AspNetCore 範例中的 `Startup.cs`。
+
+此程式碼所需的程式庫：
+
+```csharp
+using Microsoft.Bot.Builder.BotFramework;
+using Microsoft.Bot.Builder.Core.Extensions;
+using Microsoft.Bot.Builder.Integration.AspNet.Core;
+```
+
+正在初始化 `ConversationState`：
 
 ```csharp
 services.AddBot<EchoBot>(options =>
@@ -80,7 +90,7 @@ adapter.use(conversationState);
 ---
 
 > [!NOTE] 
-> 記憶體內部資料儲存體僅供測試之用。 這是會變動的暫存儲存體。 每次 Bot 重新啟動時，就會清除資料。 請參閱本文稍後的[檔案儲存體](#file-storage)和 [Azure 資料表儲存體](#azure-table-storage)，以設定對話狀態和使用者狀態的其他基礎儲存體媒體。 
+> 記憶體內部資料儲存體僅供測試之用。 這是可變更的臨時儲存體。 每次 Bot 重新啟動時，就會清除資料。 請參閱本文稍後的[檔案儲存體](#file-storage)和 [Azure 資料表儲存體](#azure-table-storage)，以設定對話狀態和使用者狀態的其他基礎儲存體媒體。 
 
 ### <a name="configuring-state-manager-middleware"></a>設定狀態管理員中介軟體
 
@@ -304,7 +314,7 @@ server.post('/api/messages', (req, res) => {
 
 ---
 
-另一種方法是使用「瀑布圖」模型的對話方塊。 對話會追蹤對話方塊狀態，讓您不需要建立旗標來追蹤狀態。 如需詳細資訊，請參閱[使用對話來管理對話方塊](bot-builder-dialog-manage-conversation-flow.md)。
+另一種方法是使用「瀑布圖」模型的對話方塊。 對話會追蹤對話方塊狀態，讓您不需要建立旗標來追蹤狀態。 如需詳細資訊，請參閱[使用對話方塊來管理簡單對話](bot-builder-dialog-manage-conversation-flow.md)。
 
 ## <a name="file-storage"></a>檔案儲存體
 
@@ -465,5 +475,5 @@ BotBuilder SDK 會新增 `$type` 和 `eTag` 欄位。 如需 eTags 的詳細資�
 如需更多關於儲存體的背景資料，請參閱 [Bot 建立器 SDK 中的儲存體](bot-builder-storage-concept.md)
 
 <!-- Links -->
-[AzureStorageEmulator]: https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator
-[AzureStorageExplorer]: https://azure.microsoft.com/en-us/features/storage-explorer/
+[AzureStorageEmulator]: https://docs.microsoft.com/azure/storage/common/storage-use-emulator
+[AzureStorageExplorer]: https://azure.microsoft.com/features/storage-explorer/

@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 503e9b2231b198346f5a7cd767a1e6a866e9e5b3
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3b0032db8e99c75ec8697f79a78cd6b0bd915db9
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299206"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756655"
 ---
 # <a name="bot-analytics"></a>Bot 分析
 Analytics 是 [Application Insights](/azure/application-insights/app-insights-analytics) 的擴充功能。 Application Insights 提供**服務層級**和檢測資料，例如流量、延遲和整合。 Analytics 提供關於使用者、訊息和通道資料的**對話層級**報告。
@@ -40,7 +40,7 @@ Analytics 是 [Application Insights](/azure/application-insights/app-insights-an
 請注意，變更整體時間範圍會導致圖表上的時間增量 (X 軸) 據以變更。
 
 ### <a name="grand-totals"></a>總計
-在指定時間範圍期間的作用中使用者，以及傳送及接收的訊息總數。
+在指定時間範圍內的作用中使用者，以及傳送及接收的訊息總數。
 破折號 `--` 表示沒有活動。
 
 ### <a name="retention"></a>保留
@@ -60,14 +60,14 @@ Analytics 是 [Application Insights](/azure/application-insights/app-insights-an
 * 折線圖會指出有多少使用者曾經在特定時間存取 Bot。
 * 折線圖的圖例會指出哪個色彩表示哪個通道，並且包含指定時間週期期間的使用者總數。
 
-### <a name="messages"></a>訊息
-訊息圖表會追蹤指定時間範圍期間，使用了哪個通道傳送及接收了多少訊息。
+### <a name="activities"></a>活動
+「活動」圖表會追蹤在指定的時間範圍內，使用了哪個通道傳送及接收了多少活動。
 
-![訊息圖表](~/media/analytics-messages.png)
+![活動圖表](~/media/analytics-activities.png)
 
-* 百分比圖表會顯示透過各個通道通訊的訊息百分比。
-* 折線圖會指出一段指定時間範圍內，已傳送及接收了多少訊息。
-* 折線圖的圖例會指出哪個線條色彩表示哪個通道，以及指定時間週期期間在該通道傳送及接收的訊息總數。 
+* 百分比圖表會顯示透過各個通道通訊的活動百分比。
+* 折線圖會指出在指定的時間範圍內，傳送及接收了多少活動。
+* 折線圖的圖例會指出哪個線條色彩表示哪個通道，以及指定的時間週期內，在該通道傳送及接收的活動總數。 
 
 ## <a name="enable-analytics"></a>啟用分析
 在啟用並設定 Application Insights 之前，都無法使用 Analytics。 Application Insights 一旦啟用，就會開始收集資料。 例如，如果 Application Insights 在一週前已針對六個月的 Bot 啟用，它就會收集一週的資料。

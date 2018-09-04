@@ -1,5 +1,5 @@
 ---
-title: 撰寫您自己的中介軟體 | Microsoft Docs
+title: 建立您自己的中介軟體 | Microsoft Docs
 description: 了解如何撰寫您自己的中介軟體。
 keywords: middleware, custom middleware, short circuit, fallback, activity handlers, 中介軟體, 自訂中介軟體, 最少運算, 後援, 活動處理常式
 author: ivorb
@@ -9,20 +9,22 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6bc73b2886374fbb50d8257c387df54f21a12ed7
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b774f2de5856e6001d1b75c47b92aff6399d8fe3
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299863"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904348"
 ---
-# <a name="write-your-own-middleware"></a>撰寫您自己的中介軟體
+# <a name="create-your-own-middleware"></a>建立您自己的中介軟體
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 中介軟體可讓您為自己的 Bot 撰寫功能豐富的外掛程式，且後續也可以供其他人使用。 我們將會示範如何新增並實作基本的中介軟體，並示範其運作方式。 v4 SDK 能為您提供一些中介軟體，可用於狀態管理、LUIS、QnAMaker 及轉譯等項目。 請參考適用於 [.NET](https://github.com/Microsoft/botbuilder-dotnet) \(英文\) 或 [JavaScript](https://github.com/Microsoft/botbuilder-js) \(英文\) 的 Bot 建立器 SDK 以取得詳細資訊。
 
 ## <a name="adding-middleware"></a>新增中介軟體
 
-在下列範例中，以我們的基本 HelloBot 範例為基礎，我們會將兩件不同的中介軟體新增至服務中，且那些類別都會有個別的新執行個體。
+在下列範例中，以我們透過[開始使用](~/bot-service-quickstart.md)建立的基本 Bot 範例為基礎，我們會將兩件不同的中介軟體新增至服務中，且那些類別都會有個別的新執行個體。
 
 > [!IMPORTANT]
 > 請記住，將它們新增至選項的順序將會決定其執行順序。 在使用超過一件中介軟體的情況下，請務必將此納入考量。

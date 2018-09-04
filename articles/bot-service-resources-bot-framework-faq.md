@@ -6,13 +6,13 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 05/03/2018
-ms.openlocfilehash: e59f9b10686b10ae821b8c4bf259a1fc301ac702
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 08/28/2018
+ms.openlocfilehash: 63aa65e2591d9f98d763863d8d4d56cd0df185ea
+ms.sourcegitcommit: f667ce3f1635ebb2cb19827016210a88c8e45d58
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298907"
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43142424"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常見問題集
 
@@ -50,20 +50,34 @@ Bot Framework 的設計訴求，是為 Skype 和其他許多通道建置、連�
 
 為了提供 I/O 服務，Bot Framework 會從您使用的聊天服務，將您的訊息和訊息內容 (包括您的識別碼) 傳輸到 Bot。
 
+### <a name="can-i-host-my-bot-on-my-own-servers"></a>可以在自己的伺服器上裝載 Bot 嗎？
+是。 您的 Bot 可以裝載在網際網路上的任何位置。 在您自己的伺服器上、在 Azure 中，或在任何其他資料中心。 唯一的需求是 Bot 必須公開可公開存取的 HTTPS 端點。
+
 ### <a name="how-do-you-ban-or-remove-bots-from-the-service"></a>如何從服務中禁止或移除 Bot？
 
 使用者可以透過目錄中 Bot 的連絡人卡片，回報行為異常的 Bot。 開發人員必須遵守 Microsoft 的服務條款，才能參與服務。
 
-### <a name="which-specific-urls-do-i-need-to-whitelist-in-my-corporate-firewall-to-access-bot-services"></a>我需要將哪個特定 URL 列入公司防火牆的白名單中，才能存取 Bot Service？
-
-您需要將下列 URL 列入公司防火牆的白名單中：
+### <a name="which-specific-urls-do-i-need-to-whitelist-in-my-corporate-firewall-to-access-bot-framework-services"></a>我需要將哪個特定 URL 列入公司防火牆的白名單中，才能存取 Bot Framework 服務？
+如果您有輸出防火牆會封鎖 Bot 對網際網路的流量，您必須將該防火牆中的下列 URL 列入白名單：
 - login.botframework.com (Bot 驗證)
 - login.microsoftonline.com (Bot 驗證)
 - westus.api.cognitive.microsoft.com (適用於 Luis.ai NLP 整合)
 - state.botframework.com (適用於原型設計的 Bot 狀態儲存體)
 - cortanabfchanneleastus.azurewebsites.net (Cortana 通道)
 - cortanabfchannelwestus.azurewebsites.net (Cortana 通道)
-- *.botFramework.com (通道)
+- *.botframework.com (通道)
+
+### <a name="can-i-block-all-traffic-to-my-bot-except-traffic-from-the-bot-connector-service"></a>我可以封鎖所有對 Bot 的流量 (來自 Bot 連接器服務的流量除外) 嗎？
+否。 這種將 IP 位址或 DNS 列入白名單的做法並不切實際。 Bot Framework Connector Service 裝載於全球的 Azure 資料中心，而 Azure IP 清單會不斷地變更。 將某些 IP 位址列入白名單可能會運作一天，並隨著 Azure IP 位址變更而造成隔天中斷。
+ 
+### <a name="what-keeps-my-bot-secure-from-clients-impersonating-the-bot-framework-connector-service"></a>何者可讓我的 Bot 保持安全，以便用戶端模擬 Bot Framework Connector Service？
+1. 每個 Bot 要求隨附的安全性權杖內都有 ServiceUrl 編碼，這表示即使攻擊者可以存取權杖，也無法將對話重新導向新的 ServiceUrl。 這是由 SDK 的所有實作強制執行，並記載於我們的驗證[參考](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-connector-authentication?view=azure-bot-service-3.0#bot-to-connector)資料中。
+
+2. 如果傳入權杖遺漏或格式不正確，Bot Framework SDK 不會在回應中產生權杖。 如果 Bot 的設定不正確，這會限制可以造成多少損害。
+3. 在 Bot 內，您可以手動檢查權杖中提供的 ServiceUrl。 這可讓 Bot 在發生服務拓撲變更時更容易受損，所以這是可行的，但不建議這麼做。
+
+
+請注意，這些都是從 Bot 到網際網路的輸出連線。 Bot Framework Connector Service 沒有將用來與 Bot 對話的 IP 位址或 DNS 名稱清單。 不支援將輸入 IP 位址列入白名單。
 
 ## <a name="rate-limiting"></a>速率限制
 ### <a name="what-is-rate-limiting"></a>什麼是速率限制？
