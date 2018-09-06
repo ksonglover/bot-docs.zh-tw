@@ -7,21 +7,19 @@ ms.author: v-ducvo
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 04/13/2018
-ms.openlocfilehash: fef9a3056839f99fe4da47bb22a1a0980293dc5d
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.date: 08/13/2018
+ms.openlocfilehash: e62d57a39c87e9de32a1a492b2dc1386d6574fd3
+ms.sourcegitcommit: bff936a6a3dd5b1bd3ddfeed8bd1023e52929f08
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905382"
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43312492"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
-[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
-
 # <a name="create-a-bot-with-bot-service"></a>使用 Bot 服務建立 Bot
 
-[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
 Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連接 Bot 與通道的 Bot Framework。 建立支援 .NET 和 Node.js 的 Bot 時，Bot 服務提供五種範本供您選擇。 在本主題中，您將了解如何使用 Bot 服務來建立使用 Bot Builder SDK 的新 Bot。
 
