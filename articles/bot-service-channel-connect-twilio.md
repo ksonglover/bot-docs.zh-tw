@@ -29,7 +29,7 @@ ms.locfileid: "39298903"
 
 ![建立應用程式](~/media/channels/twi-StepTwiml.png)
 
- 在 [傳訊] 底下，「要求 URL」應該是 **https://sms.botframework.com/api/sms** 。
+ 在 [傳訊] 底下，「要求 URL」應該是 https://sms.botframework.com/api/sms。
 
 ## <a name="select-or-add-a-phone-number"></a>選取或新增電話號碼
 
