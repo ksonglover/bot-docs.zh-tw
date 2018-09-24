@@ -1,6 +1,8 @@
-# [Bot Framework REST API](bot-framework-rest-overview.md)
-# [使用 REST 建立 Bot](~/rest-api/bot-framework-rest-connector-quickstart.md)
-# [重要概念](bot-framework-rest-connector-concepts.md)
+# Bot Framework REST API
+## [概觀](bot-framework-rest-overview.md)
+## [重要概念](bot-framework-rest-connector-concepts.md)
+## [使用 REST 建立 Bot](~/rest-api/bot-framework-rest-connector-quickstart.md)
+## [API 參考](bot-framework-rest-connector-api-reference.md)
 # 連接器
 ## [驗證](bot-framework-rest-connector-authentication.md)
 ## [活動概觀](bot-framework-rest-connector-activities.md)
