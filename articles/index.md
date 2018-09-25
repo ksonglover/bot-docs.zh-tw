@@ -7,23 +7,23 @@ manager: kamrani
 ms.topic: landing-page
 layout: LandingPage
 ms.prod: bot-framework
-ms.date: 05/03/2018
-ms.openlocfilehash: 6759a870538265fa9f8ae089486946b8fe648649
-ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
+ms.date: 09/17/2018
+ms.openlocfilehash: 737cd0f2f39ff512f82d4ea8611098fa265e4776
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/04/2018
-ms.locfileid: "39514988"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46706994"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
 > [!NOTE]
-> 本主題適用於 SDK v3 (穩定) 版本。 您可以在[這裡](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)找到發行前版本的 SDK v4 文件。
+> 本主題適用於舊版的 SDK (v3)。 您可以在[這裡](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)找到目前版本的 SDK (v4) 文件。
 
 <div class="content">
     <h1>Azure Bot 服務文件</h1>
     <div class="intro" style="min-width: 200px">
-        <p>Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Bot 服務會利用 Bot 建立器 SDK 以及對 .NET 和 Node.js 的支援。 了解如何透過我們的快速入門、教學課程和範例使用 Bot 服務。</p>
+        <p>Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot Builder SDK 以及對 .NET 和 Node.js 的支援。 了解如何透過我們的快速入門、教學課程和範例使用 Bot 服務。</p>
     </div>
 <h2 style="margin-top: 18px; margin-bottom: 0px;">5 分鐘快速入門</h2>
 <div class="ico48Case">
@@ -94,18 +94,24 @@ ms.locfileid: "39514988"
 ::: moniker range="azure-bot-service-4.0"
 
 > [!NOTE] 
-> 本主題為 V4 SDK 內容的發行前文件，且可能會有所變更。 您可以在[這裡](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-3.0)找到 V3 SDK (穩定) 內容。
+> 本主題適用於目前版本的 SDK (v4)。 您可以在[這裡](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-3.0)找到舊版的 SDK (v3) 文件。
 
 <div class="content">
     <h1>Azure Bot 服務文件</h1>
     <div class="intro" style="min-width: 200px">
-        <p>Azure Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot 建立器 SDK，並支援 C#、JavaScript、Python 和 Java。 了解如何透過我們的快速入門、教學課程和範例使用 Bot 服務。
+        <p>Azure Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot Builder SDK，並支援 C# 和 JavaScript。 了解如何透過我們的快速入門、教學課程和範例使用 Bot 服務。
 </p>
 </div>
 
 <h2 style="margin-top: 18px; margin-bottom: 0px;">5 分鐘快速入門</h2>
 <p style="margin-top: 6px; margin-bottom: 6px;"></p>
 <div class="ico48Case">
+    <div class="ico48Link">
+        <a href="/bot-framework/bot-service-quickstart">
+            <img src="v4sdk/media/logo_bot.svg" alt="">
+            <span>Azure</span>
+        </a>
+    </div>
     <div class="ico48Link">
         <a href="/bot-framework/dotnet/bot-builder-dotnet-sdk-quickstart">
             <img src="v4sdk/media/logo_csharp.svg" alt="">
@@ -118,28 +124,10 @@ ms.locfileid: "39514988"
             <span>JavaScript</span>
         </a>
     </div>
-    <div class="ico48Link">
-        <a href="/bot-framework/python/bot-builder-python-quickstart">
-            <img src="v4sdk/media/logo_python.svg" alt="">
-            <span>Python</span>
-        </a>
-    </div>
-    <div class="ico48Link">
-        <a href="/bot-framework/java/bot-builder-java-quickstart">
-            <img src="v4sdk/media/logo_java.svg" alt="">
-            <span>Java</span>
-        </a>
-    </div>
 </div>
- 
+
 <h2 style="margin-top: 36px">逐步教學課程</h2>
-<p>使用 Azure Bot 服務開發 Bot：</p>
-<ol>
-    <li><a href="/bot-framework/bot-builder-tutorial-waterfall">詢問使用者問題</a></li>
-    <li><a href="/bot-framework/bot-builder-tutorial-persist-user-inputs">保存對話中的使用者資料</a></li>
-    <li><a href="/bot-framework/bot-builder-howto-translation">讓您的 Bot 會使用多國語言</a></li>
-    <li><a href="/bot-framework/bot-builder-tutorial-dispatch">使用分派工具整合多個 LUIS 應用程式和 QnA 服務</a></li>
-</ol>
+<p><a href="/bot-framework/bot-builder-tutorial-dispatch">使用分派工具整合 LUIS 應用程式和 QnA 服務</a></p>
 
 <h2 style="margin-top: 36px">參考</h2>
 <ul class="panelContent cardsD">
@@ -151,7 +139,6 @@ ms.locfileid: "39514988"
                         <h3>API</h3>
                         <p><a href="https://aka.ms/dotnetsdk4">.NET</a></p>
                         <p><a href="https://aka.ms/jssdk4">JavaScript</a></p>
-                        <p><a href="/bot-framework/rest-api/bot-framework-rest-connector-api-reference">REST</a></p>
                     </div>
                 </div>
             </div>
@@ -165,8 +152,6 @@ ms.locfileid: "39514988"
                         <h3>SDK</h3>
                         <p><a href="https://github.com/Microsoft/botbuilder-dotnet">.NET</a></p>
                         <p><a href="https://github.com/Microsoft/botbuilder-js">JavaScript</a></p>
-                        <p><a href="https://github.com/Microsoft/botbuilder-python">Python</a></p>
-                        <p><a href="https://github.com/Microsoft/botbuilder-java">Java</a></p>
                     </div>
                 </div>
             </div>
