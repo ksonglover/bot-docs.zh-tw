@@ -5,8 +5,8 @@
 ## [自訂範本](../v4sdk/bot-builder-enterprise-template-customize.md)
 ## [部署範本](../v4sdk/bot-builder-enterprise-template-deployment.md)
 ## [分析](../v4sdk/bot-builder-enterprise-template-powerbi.md)
-# 自訂小幫手
-## [概觀](../v4sdk/bot-builder-custom-assistant-introduction.md)
+# 虛擬小幫手 
+## [概觀](../v4sdk/bot-builder-virtual-assistant-introduction.md)
 # [常見問題集](../bot-service-resources-bot-framework-faq.md)
 # [取得支援](../bot-service-resources-links-help.md)
 # [識別碼指南](../bot-service-resources-identifiers-guide.md)
