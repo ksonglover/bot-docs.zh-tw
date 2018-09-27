@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 08/24/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 02c6cf56a0c1161fa0393880810c1481c5eb2461
-ms.sourcegitcommit: f89ed979eb6321232fb21100ef376d9b0d5113c9
+ms.openlocfilehash: acf119a05d4c9f37b74c4fcaf2ad944978504560
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42914628"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707244"
 ---
 # <a name="add-input-hints-to-messages"></a>將輸入提示新增至訊息
 
@@ -122,3 +122,4 @@ await context.sendActivity(basicMessage);
 - 如果 Bot 傳送提示，訊息的輸入提示會指定 Bot **必須有輸入**。</li>
 - 如果 Bot 傳送單一訊息，訊息的輸入提示會指定 Bot **接受輸入**。</li>
 - 如果 Bot 傳送一系列的連續訊息，所有訊息 (系列中的最後一則訊息除外) 的輸入提示會指定 Bot 會**忽略輸入**，而且系列中最後一則訊息的輸入提示會指定 Bot 會**接受輸入**。
+

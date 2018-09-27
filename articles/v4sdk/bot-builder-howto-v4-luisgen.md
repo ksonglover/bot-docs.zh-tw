@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 5/16/17
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 07f4ad7d53c456de53be196977458a3d8b03c6f0
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 87ab8d3ceb872cdb0342458b24a9756ccb710fb6
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42906192"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46706984"
 ---
 # <a name="extract-intents-and-entities-using-luisgen"></a>使用 LUISGen 擷取意圖和實體
 
@@ -23,7 +23,7 @@ ms.locfileid: "42906192"
 除了辨識意圖，LUIS 應用程式也可以擷取實體，也就是滿足使用者要求的重要單字。 例如，在餐廳預訂的範例中，LUIS 應用程式可能可以從使用者的訊息中擷取派對人數、預訂日期或餐廳位置。 
 
 
-您可以使用 [LUISGen 工具](https://github.com/Microsoft/botbuilder-tools/tree/master/LUISGen)來產生類別，讓您更輕鬆地在 Bot 程式碼中從 LUIS 擷取實體。
+您可以使用 [LUISGen 工具](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUISGen)來產生類別，讓您更輕鬆地在 Bot 程式碼中從 LUIS 擷取實體。
 
 在 Node.js 命令列中，將 `luisgen` 安裝到全域路徑。
 ```

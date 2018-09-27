@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 2fbff9c6d7fe1e06fa87e5b2695056dbc1414570
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 62088ecdf2f8402ec5456eea758f5db994de0cf9
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300462"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707314"
 ---
 # <a name="create-messages"></a>建立訊息
 
@@ -23,8 +23,6 @@ Bot 會傳送**訊息**類型的 [Activity][Activity] 物件以傳達資訊給�
 使用 **plain**、**markdown** 或 **xml** 可以將訊息格式化。 `textFormat` 屬性的預設格式為 **markdown**，以及使用 Markdown 格式設定標準來解譯文字。 文字格式支援的層級因通道而異。 若要查看您鎖定通道是否支援想使用的功能，請使用[通道偵測器][ChannelInspector]來預覽此功能。 
 
 [Activity][Activity] 物件的 `textFormat` 屬性可以用來指定文字的格式。 例如，若要建立只包含純文字的基本訊息，請將 [Activity][Activity] 物件的 `textFormat` 屬性設定為 **plain**，將 `text` 屬性設定為訊息的內容，以及將 `locale` 屬性設定為寄件者的地區設定。 
-
-如需常支援的文字格式設定清單，請參閱[文字格式設定](../bot-service-channel-inspector.md#text-formatting)。
 
 ## <a name="attachments"></a>附件
 
@@ -56,7 +54,7 @@ Bot 會傳送**訊息**類型的 [Activity][Activity] 物件以傳達資訊給�
 
 ## <a name="additional-resources"></a>其他資源
 
-- [預覽使用通道偵測器的功能][ChannelInspector]
+- [使用頻道偵測器來預覽功能][ChannelInspector]
 - [活動概觀](bot-framework-rest-connector-activities.md)
 - [傳送及接收訊息](bot-framework-rest-connector-send-and-receive-messages.md)
 - [將媒體附件新增至訊息](bot-framework-rest-connector-add-media-attachments.md)

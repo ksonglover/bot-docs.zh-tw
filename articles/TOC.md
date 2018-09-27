@@ -69,6 +69,6 @@
 # 相關參考
 ## [Web Apps](https://docs.microsoft.com/azure/app-service/)
 ## [函式](https://docs.microsoft.com/azure/azure-functions/)
-## [認知服務](https://docs.microsoft.com/azure/index#pivot=products&panel=cognitive)
-## [Application Insights](https://docs.microsoft.com/azure/application-insights/)
+## [認知服務](https://docs.microsoft.com/azure/cognitive-services/)
+## [Application Insights](https://docs.microsoft.com/azure/azure-monitor/)
 # [資源](resources/TOC.md)

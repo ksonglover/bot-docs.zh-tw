@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 6/22/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 19dc16d6e90192ec758b4b73789d930053ad0462
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 41f3355102147e0d403629f23de79a90ac301209
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905792"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707894"
 ---
 # <a name="migrate-your-bot-to-azure"></a>將 Bot 移轉至 Azure
 
@@ -43,7 +43,7 @@ ms.locfileid: "42905792"
 
 使用 Node.js 建立的 Functions Bot 在移轉之前，必須先使用 [Funcpack](https://github.com/Azure/azure-functions-pack) 進行封裝。 若要以 Funcpack 封裝您的專案，請執行下列步驟：
 
-1.  將您的程式碼[下載](bot-service-build-download-source-code.md#download-bot-source-code)到本機 (如果尚未下載)。
+1.  將您的程式碼[下載](bot-service-build-download-source-code.md)到本機 (如果尚未下載)。
 2.  將 **packages.json** 中的 npm 套件更新為最新版本，然後執行 `npm install`。
 3.  開啟 **messages/index.js**，並將 `module.exports = { default: connector.listen() }` 變更為 `module.exports = connector.listen();`
 4.  透過 npm 安裝 Funcpack：`npm install -g azure-functions-pack`
