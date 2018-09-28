@@ -4,16 +4,13 @@
 # 快速入門
 ## [建立具有 Azure Bot Service 的 Bot](~/bot-service-quickstart.md)
 ## 在本機上建立 Bot
-### [.NET](dotnet/bot-builder-dotnet-quickstart.md)
 ### [.NET](dotnet/bot-builder-dotnet-sdk-quickstart.md)
-### [Node.js](nodejs/bot-builder-nodejs-quickstart.md)
 ### [JavaScript](javascript/bot-builder-javascript-quickstart.md)
 # 教學課程
 ## [使用 LUIS 和 QnA 服務搭配分派工具](v4sdk/bot-builder-tutorial-dispatch.md)
-## [使用 Azure CLI 建立 Bot](bot-builder-tools-az-cli.md)
+## [在您的 Bot 中新增驗證](bot-builder-tutorial-authentication.md)
 # 範例
-## [GitHub 範例存放庫](bot-builder-samples.md)
-## [Node.js](~/nodejs/bot-builder-nodejs-samples.md)
+## [範例存放庫](https://github.com/Microsoft/BotBuilder-Samples/blob/master/readme.md)
 # 概念
 ## [Bot 的運作方式](v4sdk/bot-builder-basics.md)
 ## [對話方塊程式庫](v4sdk/bot-builder-concept-dialog.md)
@@ -50,7 +47,7 @@
 ### [保存對話方塊中的資料](v4sdk/bot-builder-tutorial-persist-user-inputs.md)
 ### [使用語言理解的 LUIS](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答問題](v4sdk/bot-builder-howto-qna.md)
-### [在您的 Bot 中新增驗證](bot-builder-tutorial-authentication.md)
+### [在您的 Bot 中新增驗證](v4sdk/bot-builder-authentication.md)
 ### [下載並重新部署 Bot 程式碼](bot-service-build-download-source-code.md)
 ### [設定持續部署](bot-service-build-continuous-deployment.md)
 ### [將本機 Bot 部署至 Azure](bot-builder-howto-deploy-azure.md)
