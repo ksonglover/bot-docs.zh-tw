@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a8bc0b68b3dfa63ba4e91103c57d4fac60ddca79
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 55663bb493808d5efce2f25699f9df5aca4db968
+ms.sourcegitcommit: d4afc924b0e1907c4d6f7a6fc5ac1fe521aeef7e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574994"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47447333"
 ---
 # <a name="add-speech-to-messages"></a>將語音新增至訊息
 
@@ -24,7 +24,7 @@ ms.locfileid: "39574994"
 > - [Node.js](../nodejs/bot-builder-nodejs-text-to-speech.md)
 > - [REST](../rest-api/bot-framework-rest-connector-text-to-speech.md)
 
-如果您要針對啟用語音功能的通道 (例如 Cortana) 建置 Bot，您可以建構訊息，其中指定要由您的 Bot 讀出的文字。 您也可以指定[輸入提示](bot-builder-dotnet-add-input-hints.md)，藉由指出您的 Bot 要接受、需要或忽略使用者輸入，來嘗試影響用戶端的麥克風狀態。
+如果您要為具備語音功能的通道 (例如 Cortana) 建置 Bot，您可以建構訊息，其中指定要由 Bot 讀出的文字。 您也可以指定[輸入提示](bot-builder-dotnet-add-input-hints.md)，藉由指出您的 Bot 要接受、需要或忽略使用者輸入，來嘗試影響用戶端的麥克風狀態。
 
 ## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定要由您的 Bot 讀出的文字
 
@@ -58,7 +58,7 @@ ms.locfileid: "39574994"
 
 ## <a name="sample-code"></a>範例程式碼 
 
-如需示範如何使用適用於 .NET 的 Bot Builder SDK 來建立啟用語音功能之 Bot 的完整範例，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-RollerSkill" target="_blank">骰子機技能範例</a> \(英文\)。
+如需示範如何使用適用於 .NET 的 Bot Builder SDK 來建立啟用語音功能之 Bot 的完整範例，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp" target="_blank">骰子機技能範例</a> \(英文\)。
 
 ## <a name="additional-resources"></a>其他資源
 

@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 2/13/2018
-ms.openlocfilehash: 60a3796e255611ff09d5418cdeaa6f363ad8da15
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 3bf6bef805e4a86b6e070693660eb5cb20468ffd
+ms.sourcegitcommit: f0b22c6286e44578c11c9f15d22b542c199f0024
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42904964"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47404004"
 ---
 # <a name="create-task-automation-bots"></a>建立工作自動化 Bot
 
@@ -92,18 +92,20 @@ Contoso 的資深開發人員 John 決定建立 Bot，以將密碼重設工作�
 
 ## <a name="bot-app-or-website"></a>Bot、應用程式還是網站？
 
-您可能會好奇，如果工作自動化 Bot 十分類似應用程式或網站，為什麼不改為建置應用程式或網站就好？ 根據您的特定案例，建置應用程式或網站而不建置 Bot 可能是完全合理的選擇。 您可能甚至會使用 [Bot Framework Direct Line API][directLineAPI] 或 <a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">網路聊天控制項</a>，選擇將您的 Bot 內嵌到應用程式中。 在應用程式的內容中實作 Bot 有兩個優點：在同一個位置提供豐富的應用程式與對話體驗。 
+您可能會好奇，如果工作自動化 Bot 十分類似應用程式或網站，為什麼不改為建置應用程式或網站就好？ 根據您的特定案例，建置應用程式或網站而不建置 Bot 可能是完全合理的選擇。 您可能甚至會使用 [Bot Framework Direct Line API][directLineAPI] 或 <a href="https://aka.ms/BotFramework-WebChat" target="_blank">網路聊天控制項</a>，選擇將您的 Bot 內嵌到應用程式中。 在應用程式的內容中實作 Bot 有兩個優點：在同一個位置提供豐富的應用程式與對話體驗。 
 
 不過，在許多情況下，建置應用程式或網站可能遠比建置 Bot 還更複雜且更昂貴。 應用程式或網站通常必須支援多個用戶端和平台，因此封裝和部署可能會是既繁瑣又費時的流程，且必須下載及安裝應用程式的使用者經驗並不一定很理想。 基於這些理由，Bot 通常可提供較簡單的方式，來解決眼前的問題。 
 
 此外，Bot 能夠自由地輕鬆延伸及擴充。 例如，開發人員可以選擇將自然語言和語音功能新增至密碼重設 Bot，使其可透過語音通話進行存取，或可新增文字簡訊的支援。 該公司可能會在整個建置中設定 kiosk，並在這個體驗中內嵌密碼重設 Bot。
 
 ::: moniker range="azure-bot-service-3.0"
-## <a name="sample-code"></a>範例程式碼
+<!-- TODO: SimpleTaskAutomation no longer exists
+## Sample code
 
-如需示範如何使用適用於 .NET 的 Bot 建立器 SDK，來實作簡單工作自動化的完整範例，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/capability-SimpleTaskAutomation" target="_blank">簡單工作自動化範例</a>。
+For a complete sample that shows how to implement simple task automation using the Bot Builder SDK for .NET, see the <a href="https://aka.ms/capability-SimpleTaskAutomation" target="_blank">Simple Task Automation sample</a> in GitHub.
 
-如需示範如何使用適用於 Node.js 的 Bot 建立器 SDK，來實作簡單工作自動化的完整範例，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/capability-SimpleTaskAutomation" target="_blank">簡單工作自動化範例</a>。
+For a complete sample that shows how to implement simple task automation using the Bot Builder SDK for Node.js, see the <a href="https://aka.ms/capability-SimpleTaskAutomation" target="_blank">Simple Task Automation sample</a> in GitHub.
+-->
 
 ## <a name="additional-resources"></a>其他資源
 

@@ -6,13 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: ba5939faf95546b854703978bf7f512e7665eb3b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 09/28/2018
+ms.openlocfilehash: 3e9756f08690820950d0f6d0b8128521cb94f60b
+ms.sourcegitcommit: d4afc924b0e1907c4d6f7a6fc5ac1fe521aeef7e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300315"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47447373"
 ---
 # <a name="key-concepts-in-direct-line-api-30"></a>Direct Line API 3.0 中的重要概念
 
@@ -24,11 +24,11 @@ Direct Line API 3.0 要求可以使用您從 <a href="https://dev.botframework.c
 
 ## <a name="starting-a-conversation"></a>開始對話
 
-Direct Line 對話是由用戶端明確地開啟，且只要 Bot 和用戶端在參與且具有有效認證，對話就會繼續執行。 如需詳細資訊，請參閱[開始對話](bot-framework-rest-direct-line-3-0-start-conversation.md)。
+直接線路對話是由用戶端明確地開啟，且只要 Bot 和用戶端在參與且具有有效認證，對話就會繼續執行。 如需詳細資訊，請參閱[開始對話](bot-framework-rest-direct-line-3-0-start-conversation.md)。
 
 ## <a name="sending-messages"></a>傳送訊息
 
-用戶端可藉由使用 Direct Line API 3.0，來透過發出 `HTTP POST` 要求將訊息傳送給您的 Bot。 用戶端可能會每個要求都傳送單一訊息。 如需詳細資訊，請參閱[將活動傳送至 Bot](bot-framework-rest-direct-line-3-0-send-activity.md)。
+用戶端可藉由使用 Direct Line API 3.0，來透過發出 `HTTP POST` 要求將訊息傳送給您的 Bot。 用戶端可能會每個要求都傳送單一訊息。 如需詳細資訊，請參閱[將活動傳送到 Bot](bot-framework-rest-direct-line-3-0-send-activity.md)。
 
 ## <a name="receiving-messages"></a>接收訊息
 
@@ -46,17 +46,21 @@ Bot Framework 提供用戶端程式庫，可輔助透過 C# 和 Node.js 存取 D
 
 除了使用 C# 或 Node.js 用戶端程式庫之外，您也可以使用 <a href="https://docs.botframework.com/en-us/restapi/directline3/swagger.json" target="_blank">Direct Line API 3.0 Swagger 檔案</a>以所選語言產生自己的用戶端程式庫。
 
+::: moniker range="azure-bot-service-3.0"
+
 ### <a name="sample-code"></a>範例程式碼
 
-<a href="https://github.com/Microsoft/BotBuilder-Samples" target="_blank">BotBuilder-範例</a> GitHub 存放庫包含多個範例，說明如何搭配 C# 和 Node.js 使用 Direct Line API 3.0。
+<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples" target="_blank">BotBuilder-範例</a> GitHub 存放庫包含多個範例，說明如何搭配 C# 和 Node.js 使用 Direct Line API 3.0。
 
 | 範例 | 語言 | 說明 |
 |----|----|----|
-| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-DirectLine" target="_blank">Direct Line Bot 範例</a> | C# | Bot 範例和自訂用戶端，會使用 Direct Line API 彼此通訊。 |
-| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-DirectLineWebSockets" target="_blank">Direct Line Bot 範例 (使用用戶端 WebSocket)</a> | C# | Bot 範例和自訂用戶端，會使用 Direct Line API 和 WebSocket 來彼此通訊。 |
-| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-DirectLine" target="_blank">Direct Line Bot 範例</a> | JavaScript | Bot 範例和自訂用戶端，會使用 Direct Line API 彼此通訊。 |
-| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-DirectLineWebSockets" target="_blank">Direct Line Bot 範例 (使用用戶端 WebSocket)</a> | JavaScript | Bot 範例和自訂用戶端，會使用 Direct Line API 和 WebSocket 來彼此通訊。 |
+| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/core-DirectLine" target="_blank">Direct Line Bot 範例</a> | C# | Bot 範例和自訂用戶端，會使用 Direct Line API 彼此通訊。 |
+| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/core-DirectLineWebSockets" target="_blank">Direct Line Bot 範例 (使用用戶端 WebSocket)</a> | C# | Bot 範例和自訂用戶端，會使用 Direct Line API 和 WebSocket 來彼此通訊。 |
+| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/Node/core-DirectLine" target="_blank">Direct Line Bot 範例</a> | JavaScript | Bot 範例和自訂用戶端，會使用 Direct Line API 彼此通訊。 |
+| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/Node/core-DirectLineWebSockets" target="_blank">Direct Line Bot 範例 (使用用戶端 WebSocket)</a> | JavaScript | Bot 範例和自訂用戶端，會使用 Direct Line API 和 WebSocket 來彼此通訊。 |
+
+::: moniker-end
 
 ### <a name="web-chat-control"></a>網路聊天控制項 
 
-Bot Framework 提供可讓您將使用 Direct Line 的Bot 嵌入您的用戶端應用程式的控制項。 如需詳細資訊，請參閱 <a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">Microsoft Bot Framework WebChat 控制項</a>。
+Bot Framework 提供可讓您將使用直接線路的Bot 內嵌到您用戶端應用程式的控制項。 如需詳細資訊，請參閱 <a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">Microsoft Bot Framework WebChat 控制項</a>。

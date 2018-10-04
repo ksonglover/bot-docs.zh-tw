@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 5b510187f85a5384e976f239bc72c7aabf47f1cb
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: dd8869c26a87718177462db2508e41aa82810e21
+ms.sourcegitcommit: f0b22c6286e44578c11c9f15d22b542c199f0024
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39300599"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47404074"
 ---
 # <a name="design-knowledge-bots"></a>設計知識型 Bot
 
@@ -136,7 +136,9 @@ Bot Builder SDK 具備 LUIS 和 QnA Maker 內建支援。 此可讓您觸發對�
 
 ## <a name="sample-code"></a>範例程式碼
 
-- 如需相關範例以了解如何使用 Bot Builder SDK for .NET 建立基本知識型 Bot，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/sample-KnowledgeBot" target="_blank">知識型 Bot 範例</a>。 
-- 如需相關範例以了解如何使用 Bot Builder SDK for .NET 建立較複雜的知識型 Bot，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-Search" target="_blank">支援搜尋技術的 Bot 範例</a>。
+- 如需相關範例以了解如何使用 Bot Builder SDK for .NET 建立基本知識型 Bot，請參閱 GitHub 中的<a href="https://aka.ms/qna-with-appinsights" target="_blank">知識型 Bot 範例</a>。 
+<!-- TODO: Do not have a current bot sample to work with this
+- For a sample that shows how to create more complex knowledge bots using the Bot Builder SDK for .NET, see the <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-Search" target="_blank">Search-powered Bots sample</a> in GitHub.
+-->
 
 [qnamakerTemplate]: https://docs.botframework.com/en-us/azure-bot-service/templates/qnamaker/#navtitle

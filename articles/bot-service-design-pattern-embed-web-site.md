@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 6aae4e9f6cb6a4e892b8036eafb9489dfaedbb36
-ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
+ms.openlocfilehash: a19145c446c74468cef3ae5d9abf6e90e91196ff
+ms.sourcegitcommit: f0b22c6286e44578c11c9f15d22b542c199f0024
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/23/2018
-ms.locfileid: "42795094"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47403975"
 ---
 # <a name="embed-a-bot-in-a-website"></a>將 Bot 嵌入網站
 
@@ -30,7 +30,7 @@ Skype web 控制項本質上是已啟用 web 控制項中的 Skype 用戶端。 
 
 ## <a name="open-source-web-control"></a>開放原始碼 web 控制項
 
-<a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">開放原始碼網路聊天控制項</a>是以 ReactJS 為基礎，並使用 [Direct Line API] [ directLineAPI]與 Bot Framework 進行通訊。 網路聊天控制項提供實作網路聊天所需的空白畫布，讓您完整掌控其行為和其所提供的使用者體驗。 
+<a href="https://aka.ms/BotFramework-WebChat" target="_blank">開放原始碼網路聊天控制項</a>是以 ReactJS 為基礎，並使用 [Direct Line API] [ directLineAPI]與 Bot Framework 進行通訊。 網路聊天控制項提供實作網路聊天所需的空白畫布，讓您完整掌控其行為和其所提供的使用者體驗。 
 
 *Backchannel* 機制可讓裝載控制項的網頁，運用使用者完全無法察覺的方式與 Bot 直接進行通訊。 這項功能可讓數個實用案例變得可行︰ 
 
@@ -46,7 +46,7 @@ Skype web 控制項本質上是已啟用 web 控制項中的 Skype 用戶端。 
 
 ## <a name="sample-code"></a>範例程式碼
 
-<a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">開放原始碼網路聊天控制項</a>可透過 GitHub 取得。 如要深入了解如何使用開放原始碼網路聊天控制項實作 backchannel 機制和適用於 Node.js 的 Bot Builder SDK，請參閱[使用 backchannel 機制](~/nodejs/bot-builder-nodejs-backchannel.md)。
+<a href="https://aka.ms/BotFramework-WebChat" target="_blank">開放原始碼網路聊天控制項</a>可透過 GitHub 取得。 如要深入了解如何使用開放原始碼網路聊天控制項實作 backchannel 機制和適用於 Node.js 的 Bot Builder SDK，請參閱[使用 backchannel 機制](~/nodejs/bot-builder-nodejs-backchannel.md)。
 
 ## <a name="additional-resources"></a>其他資源
 
