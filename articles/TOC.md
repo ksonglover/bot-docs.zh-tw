@@ -19,7 +19,6 @@
 ## [歡迎使用者](v4sdk/bot-builder-welcome-user.md)
 ## [語言理解](v4sdk/bot-builder-concept-luis.md)
 ## [Bot 服務範本](bot-service-concept-templates.md)
-## [使用 Bot 建立器進行開發](bot-builder-overview-getstarted.md)
 ## [認知服務](bot-service-concept-intelligence.md)
 ## [Bot 的重要案例](bot-service-scenario-overview.md)
 ### [商務 Bot](bot-service-scenario-commerce.md)
