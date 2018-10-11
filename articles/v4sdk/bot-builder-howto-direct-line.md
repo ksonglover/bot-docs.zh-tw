@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/16/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dee0f9700fefede2a231ff2395e50ff17522806e
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 81b6f1f9373c18bd3aedb393cfc4966587bf24cb
+ms.sourcegitcommit: 6c2426c43cd2212bdea1ecbbf8ed245145b3c30d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707394"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48852203"
 ---
 # <a name="create-a-direct-line-bot-and-client"></a>建立直接線路 Bot 與用戶端
 
@@ -52,6 +52,7 @@ Microsoft Bot Framework 直接線路 Bot 是能與您自有設計自訂用戶端
     - Microsoft.Bot.Builder
     - Microsoft.Bot.Builder.Core.Extensions
     - Microsoft.Bot.Builder.Integration.AspNet.Core
+    - Microsoft.Rest.ClientRuntime
     - Newtonsoft.Json
 
 ### <a name="create-the-appsettingsjson-file"></a>建立 appsettings.json 檔案

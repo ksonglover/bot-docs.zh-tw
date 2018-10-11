@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/09/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: caa424ed0ea0944805836739ed48a7a61f78d21c
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 4195ae016513c809e4677879e0abe1b2bf8d799e
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905257"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389777"
 ---
 # <a name="testing-and-debugging-guidelines"></a>測試和偵錯指導方針
 
@@ -50,7 +50,7 @@ Bot 是將許多不同組件整合在一起運作的複雜應用程式。 就像
 
 ### <a name="level-2-use-a-direct-line-client"></a>等級 2：使用直接線路用戶端
 
-確認您的 Bot 如預期般運作之後，下一步就是將它連線至通道。 若要這樣做，您可以將 Bot 部署到預備伺服器，並建立自己 [直接線路用戶端](bot-builder-howto-direct-line.md)以供您的 Bot 連線。
+確認您的 Bot 如預期般運作之後，下一步就是將它連線至通道。 若要這樣做，您可以將 Bot 部署到預備伺服器，並建立自己 <!--IBTODO [Direct Line client](bot-builder-howto-direct-line.md)--> 直接線路用戶端以供您的 Bot 連線。
 
 建立自己的用戶端可讓您定義通道內部的運作方式，並且可特別針對 Bot 回應特定活動交換的方式進行測試。 一旦 Bot 連線到您的用戶端後，請執行您的測試以設定 Bot 狀態並驗證功能。 如果您的 Bot 會利用如語音之類的功能，使用這些通道可提供驗證該功能的方式。
 
@@ -64,7 +64,7 @@ Bot 是將許多不同組件整合在一起運作的複雜應用程式。 就像
 
 ### <a name="other-testing"></a>其他測試
 
-不同類型的測試都可透過結合上述的等級，或是不同的角度 (例如壓力測試、效能測試或分析 Bot 活動) 來完成。 Visual Studio 提供達成此目的的本機方法以及[工具套件](https://www.visualstudio.com/team-services/testing-tools/)，可用來測試您的應用程式，而 [Azure 入口網站](https://portal.azure.com)則提供 Bot 執行狀況的見解。
+不同類型的測試都可透過結合上述的等級，或是不同的角度 (例如壓力測試、效能測試或分析 Bot 活動) 來完成。 Visual Studio 提供達成此目的的本機方法以及[工具套件](https://azure.microsoft.com/en-us/solutions/dev-test/)，可用來測試您的應用程式，而 [Azure 入口網站](https://portal.azure.com)則提供 Bot 執行狀況的見解。
 
 ## <a name="debugging"></a>Debugging
 
@@ -74,7 +74,17 @@ Bot 遵循事件驅動程式設計架構，如果您還不熟悉，就很難進�
 
 **使用模擬器了解 Bot 活動**
 
-您的 Bot 除了處理一般的_訊息_活動之外，也會處理不同類型的[活動](bot-builder-concept-activity-processing.md)。 使用[模擬器](../bot-service-debug-emulator.md)會顯示那些活動的內容、發生的時機，以及它們所包含的內容。 了解那些活動有助於您更有效率地撰寫 Bot 的程式碼，並且可讓您確認 Bot 如預期地傳送和接收活動。
+您的 Bot 除了處理一般的_訊息_活動之外，也會處理不同類型的[活動](bot-builder-basics.md#the-activity-processing-stack)。 使用[模擬器](../bot-service-debug-emulator.md)會顯示那些活動的內容、發生的時機，以及它們所包含的內容。 了解那些活動有助於您更有效率地撰寫 Bot 的程式碼，並且可讓您確認 Bot 如預期地傳送和接收活動。
+
+**透過文字記錄儲存及擷取使用者互動**
+
+Azure Blob 文字記錄儲存體提供特製化資源，您可以在其中[儲存及擷取文字記錄](bot-builder-howto-v4-storage.md)，內含使用者與您的 bot 之間的互動。  
+
+此外，一旦儲存使用者輸入互動，您即可使用 Azure 的「儲存體總管」，手動檢視 Blob 文字記錄存放區內所儲存的文字記錄中包含的資料。 下列範例會從 "_mynewtestblobstorage_" 的設定開啟「儲存體總管」。 若要開啟已儲存的使用者輸入，請選取：Blob 容器 > ChannelId > TranscriptId > ConversationId
+
+![Examine_stored_transcript_text](./media/examine_transcript_text_in_azure.png)
+
+這會開啟以 JSON 格式儲存的使用者對話輸入。 使用者輸入會與索引鍵 "_text:_" 一起保存。
 
 **中介軟體的運作方式**
 
@@ -84,7 +94,7 @@ Bot 遵循事件驅動程式設計架構，如果您還不熟悉，就很難進�
 
 如果沒有呼叫 `next()` 委派，則稱之為[最少運算路由](bot-builder-concept-middleware.md#short-circuiting)。 當中介軟體滿足目前的活動，並判斷不需要傳遞執行時，就會發生此情況。 
 
-了解中介軟體最少運算發生的時機和原因，有助於指出在您管線中哪個中介軟體的部分應先出現。 此外，針對由 SDK 或其他開發人員提供的內建中介軟體，請務必了解它們預期會出現的內容。 在深入了解內建的中介軟體前，有些人發現先嘗試[建立自己的中介軟體](bot-builder-create-middleware.md)進行一些實驗非常有幫助。
+了解中介軟體最少運算發生的時機和原因，有助於指出在您管線中哪個中介軟體的部分應先出現。 此外，針對由 SDK 或其他開發人員提供的內建中介軟體，請務必了解它們預期會出現的內容。 在深入了解內建的中介軟體前，有些人發現先嘗試建立自己的中介軟體進行一些實驗非常有幫助。
 
 例如，[QnA maker](bot-builder-howto-qna.md) 是設計來處理特定的互動，且必要時會對管線進行最少運算，當第一次學習如何使用時很容易會混淆。
 
