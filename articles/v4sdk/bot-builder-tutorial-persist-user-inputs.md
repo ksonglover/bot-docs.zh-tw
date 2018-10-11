@@ -7,195 +7,594 @@ ms.author: v-ducvo
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 4/23/2018
+ms.date: 09/19/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 28377a1e611464012df28d3edf78d1cf01351345
-ms.sourcegitcommit: 44f100a588ffda19c275b118f4f97029f12d1449
+ms.openlocfilehash: b70f0bfbc76ad06be30fc7f590118b69ab1baf92
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/26/2018
-ms.locfileid: "42928366"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389737"
 ---
 # <a name="persist-user-data"></a>保存使用者資料
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-當 Bot 要求使用者輸入時，您可能會想要以某些形式的儲存體保存某些資訊。 Bot 建立器 SDK 可讓您使用「記憶體中的儲存體」、「檔案儲存體」或資料庫儲存體 (例如 CosmosDB 或 SQL) 來儲存使用者輸入，其中本機儲存體類型主要用於測試或原型設計，而後面的儲存體類型最適合用於生產 Bot。
+當 Bot 要求使用者輸入時，您可能會想要以某些形式的儲存體保存某些資訊。 Bot Builder SDK 可讓您使用「記憶體內部儲存體」或資料庫儲存體 (例如 CosmosDB) 來儲存使用者輸入。 針對 Bot 進行測試或建立原型期間，主要會使用本機儲存體類型。 不過，生產 Bot 最適合使用永續性儲存體類型 (例如資料庫儲存體)。 
 
-本教學課程說明如何定義您的儲存體物件，以及如何將使用者輸入儲存到該儲存體物件，以便保存。 
+本主題說明如何定義儲存體物件，以及如何將使用者輸入儲存到該儲存體物件，以便保存。 我們會使用對話方塊向使用者詢問其名稱 (如果我們還不知道的話)。 不論您選擇使用的儲存體類型為何，用於連結和保存資料的程序都相同。 本主題中的程式碼使用 `CosmosDB` 作為用來保存資料的儲存體。
 
-> [!NOTE]
-> 不論您選擇使用的儲存體類型為何，用於連結和保存資料的程序都相同。 本教學課程使用`FileStorage` 作為保存資料的儲存體。
-> 如需狀態和其他儲存體類型的詳細資訊，請參閱[管理交談和使用者狀態](bot-builder-howto-v4-state.md)。
+## <a name="prerequisites"></a>必要條件
 
-## <a name="prequisite"></a>必要條件 
+根據您想要使用的開發環境，您必須有某些資源。
 
-本教學課程是以[訂位](bot-builder-tutorial-waterfall.md)教學課程為基礎。 在該教學課程中，您可以建置一個 Bot，其要求使用者輸入有關餐廳訂位的三項資訊。 但是，不會保存使用者的輸入。 本教學課程會將資料儲存體持續性新增至該 Bot。
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-## <a name="add-storage-to-middleware-layer"></a>將儲存體新增至中介軟體層
+* [安裝 Visual Studio 2015 或更新版本](https://www.visualstudio.com/downloads/)。
+* [安裝 BotBuilder V4 範本](https://marketplace.visualstudio.com/items?itemName=BotBuilder.botbuilderv4)。
 
-Bot 建立器 V4 SDK 會透過狀態管理員中介軟體處理狀態和儲存體。 此中介軟體會提供抽象層，讓您使用簡單的索引鍵/值存放區存取屬性，而不受基礎儲存體類型所影響。 狀態管理員會負責將資料寫入至儲存體和管理並行執行，不論基礎儲存體類型是記憶體內部、檔案儲存體還是 Azure 資料表儲存體。 在本教學課程中，我們將使用 `FileStorage` 來保存使用者輸入。
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-`FileStorage` 提供者隨附 `bot-builder` 套件。 您一開始使用的範例會使用 `MemoryStorage` 提供者。 該儲存體類型會使用 Bot 的暫時性「內部記憶體」，而該記憶體會在 Bot 重新啟動時加以處置。 另一方面，`FileStorage` 程式庫的運作方式類似於資料庫。 也就是說，此程式庫會將儲存體資訊寫入至本機電腦上的檔案。 您可以指定要將此儲存體檔案放在放置，以便稍後加以檢查。
+* [安裝 Visual Studio Code](https://www.visualstudio.com/downloads/)。
+* [安裝 Node.js v8.5 或更新版本](https://nodejs.org/en/)。
+* [安裝 Yeoman](http://yeoman.io/)。
+* 安裝 Node.js v4 Botbuilder 範本產生器。
 
-若要使用 `FileStorage`，尋找 Bot 中 `conversationState` 物件定義所在的陳述式，並加以更新以建立 `new botbuilder.FileStorage("c:/temp")`。 此外，您可以定義此儲存體檔案應寫出的位置。 如此一來，您就可以輕鬆地找到它，以檢查已保存的內容。
-
-# <a name="ctabcstab"></a>[C#](#tab/cstab)
-```cs
-var storage = new FileStorage("c:/temp");
-
-// These two classes are simply Dictionaries to store state
-options.Middleware.Add(new ConversationState<MyBot.convoState>(storage));
-options.Middleware.Add(new UserState<MyBot.userState>(storage));
-```
-
-您可以從中選擇 Bot 建立器 SDK 所提供的三個不同範圍狀態物件。
-
-| State | 影響範圍 | 說明 |
-| ---- | ---- | ---- |
-| `dc.ActiveDialog.State` | 對話方塊 | 瀑布式對話方塊可用的狀態 |
-| `ConversationState` | 對話 | 目前對話可用的狀態。 |
-| `UserState` | user | 多重對話可用的狀態。 |
-
-# <a name="javascripttabjstab"></a>[JavaScript](#tab/jstab)
-
-**app.js**
-```javascript
-// Storage
-const storage = new FileStorage("c:/temp");
-const convoState = new ConversationState(storage);
-const userState  = new UserState(storage);
-adapter.use(new BotStateSet(convoState, userState));
-```
-
-`BotStateSet` 可以同時管理 `ConversationState` 和 `UserState`。 在儲存使用者資料時，您可以選擇它。 您可以從中選擇 Bot 建立器 SDK 所提供的三個不同範圍狀態物件。
-
-| State | 影響範圍 | 說明 |
-| ---- | ---- | ---- |
-| `dc.activeDialog.state` | 對話方塊 | 瀑布式對話方塊可用的狀態 |
-| `ConversationState` | 對話 | 目前對話可用的狀態。 |
-| `UserState` | user | 多重對話可用的狀態。 |
+    ```shell
+    npm install generator-botbuilder
+    ```
 
 ---
- 
 
-## <a name="persist-state"></a>保存狀態
+此教學課程會使用下列套件。
 
-視您要儲存的內容及其需要保存的時間長度而定，您可以對 Bot 寫入至上述其中一個狀態位置。  
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-# <a name="ctabcstab"></a>[C#](#tab/cstab)
+從 NuGet 套件管理員安裝這些套件。
 
-「狀態管理員中介軟體」會在每次結束時為您處理狀態寫入。 所以，您只需要在您的 Bot 中將資料指派給您所選的狀態物件。 在此範例中，我們使用 `dc.ActiveDialog.State` 來追蹤使用者對於預訂的輸入。 如此一來，您可以將使用者輸入儲存在對話方塊的暫存狀態物件範圍，而不需將它儲存在全域變數中。 只要對話方塊正在進行中，此物件就存在；如果您想要將該對話方塊保存更久，則必須將它移轉至其中一個其他狀態物件。 在此情況下，我們會將預訂 `msg` 指派給瀑布式對話方塊最後一個步驟中的對話狀態。
+* **Microsoft.Bot.Builder.Azure**
+* **Microsoft.Bot.Builder.Dialogs**
+* **Microsoft.Bot.Builder.Integration.AspNet.Core**
 
-```cs
-dialogs.Add("reserveTable", new WaterfallStep[]
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+瀏覽至您的 Bot 專案資料夾，然後安裝來自 NPM 的 `botbuilder-dialogs` 套件：
+
+```cmd
+npm install --save botbuilder-dialogs
+npm install --save botbuilder-azure
+```
+
+---
+
+若要測試您在本教學課程中建立的 Bot，您必須安裝 [BotFramework 模擬器](https://github.com/Microsoft/BotFramework-Emulator)。
+
+## <a name="create-a-cosmosdb-service-and-update-your-application-settings"></a>建立 CosmosDB 服務並更新應用程式設定
+若要設定 CosmosDB 服務和資料庫，請遵循[使用 CosmosDB](bot-builder-howto-v4-storage.md#using-cosmos-db) 的指示。 其步驟摘要如下︰
+   1. 在新的瀏覽器視窗中，登入 <a href="http://portal.azure.com/" target="_blank">Azure 入口網站</a>。
+   1. 按一下 [建立資源] > [資料庫] > [Azure Cosmos DB]。
+   1. 在 [新增帳戶] 頁面的 [識別碼] 欄位中，提供唯一的名稱。 針對 [API]，選取 [SQL]，然後提供 [訂用帳戶]、[位置] 和 [資源群組] 資訊。
+   1. 按一下頁面底部的 [新增] 。
+
+然後，在該服務中新增集合以用於此 Bot。
+
+將用來新增該集合的資料庫識別碼和集合識別碼，以及 URI 和集合中金鑰設定的主要金鑰記錄起來，以供之後用來將 Bot 連線至服務。
+
+### <a name="update-your-application-settings"></a>更新應用程式設定
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+更新 **appsettings.json** 檔案，在其中納入 CosmosDB 的連線資訊。
+
+```csharp
 {
-    async (dc, args, next) =>
-    {
-        // Prompt for the guest's name.
-        await dc.Context.SendActivity("Welcome to the reservation service.");
+  // Settings for CosmosDB.
+  "CosmosDB": {
+    "DatabaseID": "<your-database-identifier>",
+    "CollectionID": "<your-collection-identifier>",
+    "EndpointUri": "<your-CosmosDB-endpoint>",
+    "AuthenticationKey": "<your-primary-key>"
+  }
+}
+```
 
-        dc.ActiveDialog.State = new Dictionary<string, object>();
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-        await dc.Prompt("dateTimePrompt", "Please provide a reservation date and time.");
-    },
-    async(dc, args, next) =>
-    {
-        var dateTimeResult = ((DateTimeResult)args).Resolution.First();
+在專案資料夾中，找出 **.env** 檔案，然後使用 Cosmos 特有資料來新增這些項目。
 
-        dc.ActiveDialog.State["date"] = Convert.ToDateTime(dateTimeResult.Value);
-        
-        // Ask for next info
-        await dc.Prompt("partySizePrompt", "How many people are in your party?");
+**.env**
 
-    },
-    async(dc, args, next) =>
-    {
-        dc.ActiveDialog.State["partySize"] = (int)args["Value"];
+```cmd
+DB_SERVICE_ENDPOINT=<database service endpoint>
+AUTH_KEY=<authentication key>
+DATABASE=<database name>
+COLLECTION=<collection name>
+```
 
-        // Ask for next info
-        await dc.Prompt("textPrompt", "Who's name will this be under?");
-    },
-    async(dc, args, next) =>
-    {
-        dc.ActiveDialog.State["name"] = args["Text"];
-        string msg = "Reservation confirmed. Reservation details - " +
-        $"\nDate/Time: {dc.ActiveDialog.State["date"].ToString()} " +
-        $"\nParty size: {dc.ActiveDialog.State["partySize"].ToString()} " +
-        $"\nReservation name: {dc.ActiveDialog.State["name"]}";
+然後，在 Bot 的主要 **index.js** 檔案中，取代 `storage` 以使用 `CosmosDbStorage` 而非 `MemoryStorage`。 執行期間會提取環境變數，並填入這些欄位。
 
-        var convo = ConversationState<convoState>.Get(dc.Context);
-
-        // In production, you may want to store something more helpful
-        convo[$"{dc.ActiveDialog.State["name"]} reservation"] = msg;
-
-        await dc.Context.SendActivity(msg);
-        await dc.End();
-    }
+```javascript
+const storage = new CosmosDbStorage({
+    serviceEndpoint: process.env.DB_SERVICE_ENDPOINT, 
+    authKey: process.env.AUTH_KEY, 
+    databaseId: process.env.DATABASE,
+    collectionId: process.env.COLLECTION
 });
 ```
 
-# <a name="javascripttabjstab"></a>[JavaScript](#tab/jstab)
+---
 
-「狀態管理員中介軟體」會在每次結束時為您處理將狀態寫入至檔案。 所以，您只需要在您的 Bot 中將資料指派給您所選的狀態物件。 在此範例中，我們使用 `dc.activeDialog.state` 來追蹤 `reservervationInfo` 物件中的使用者輸入。 如此一來，您可以將使用者輸入儲存在對話方塊的暫存狀態物件範圍，而不需將它儲存在全域變數中。 因為只要對話方塊正在進行中，此物件就存在；如果您想要保存該對話方塊，則必須將它移轉至其中一個其他狀態物件。 在此情況下，我們會將 `reservationInfo` 指派給瀑布式對話方塊最後一個步驟中的 `convo` 狀態。
+## <a name="create-storage-state-manager-and-state-property-accessor-objects"></a>建立儲存體、狀態管理員和狀態屬性存取子物件
+
+Bot 會使用狀態管理和儲存體物件來管理和保存狀態。 管理員會提供抽象層，讓您使用狀態屬性存取子存取狀態屬性，而不受基礎儲存體類型所影響。 您可以使用狀態管理員來將資料寫入至儲存體。 
+
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+### <a name="define-a-class-for-your-user-data"></a>定義使用者資料的類別
+
+將檔案 **CounterState.cs** 重新命名為 **UserData.cs**，並將 **CounterState** 類別重新命名為 **UserData**。
+
+更新此類別來保存您會收集的資料。
+
+```csharp
+/// <summary>
+/// Class for storing persistent user data.
+/// </summary>
+public class UserData
+{
+    public string Name { get; set; }
+}
+```
+
+### <a name="define-a-class-for-your-state-and-state-property-accessor-objects"></a>為狀態和狀態屬性存取子物件定義類別
+
+將檔案 **EchoBotAccessors.cs** 重新命名為 **BotAccessors.cs**，並將 **EchoBotAccessors** 類別重新命名為 **BotAccessors**。
+
+更新此類別來儲存 Bot 需要用到的狀態物件和狀態屬性存取子。
+
+```csharp
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Dialogs;
+using System;
+
+public class BotAccessors
+{
+    public UserState UserState { get; }
+
+    public ConversationState ConversationState { get; }
+
+    public IStatePropertyAccessor<DialogState> DialogStateAccessor { get; set; }
+
+    public IStatePropertyAccessor<UserData> UserDataAccessor { get; set; }
+
+    public BotAccessors(UserState userState, ConversationState conversationState)
+    {
+        this.UserState = userState
+            ?? throw new ArgumentNullException(nameof(userState));
+
+        this.ConversationState = conversationState
+            ?? throw new ArgumentNullException(nameof(conversationState));
+    }
+}
+```
+
+### <a name="update-the-startup-code-for-your-bot"></a>更新 Bot 的啟動程式碼
+
+在 **Startup.cs** 檔案中，更新 using 陳述式。
+
+```csharp
+using System;
+using System.Linq;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Azure;
+using Microsoft.Bot.Builder.BotFramework;
+using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Integration;
+using Microsoft.Bot.Builder.Integration.AspNet.Core;
+using Microsoft.Bot.Builder.TraceExtensions;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+```
+
+在 `ConfigureServices` 方法中，更新新增 Bot 呼叫 (從備用儲存體物件建立所在位置開始)，然後註冊 Bot 存取子物件。
+
+我們需要 `DialogState` 物件的對話狀態才能追蹤對話方塊狀態。 我們會為 Bot 所會使用的對話方塊狀態屬性存取子和對話方塊集合，註冊單一資料庫。 Bot 會針對使用者狀態建立自己的狀態屬性存取子。
+
+`BotAccessors` 存取子可有效管理 Bot 多個狀態物件的儲存體。
+
+```cs
+public void ConfigureServices(IServiceCollection services)
+{
+    // Register your bot.
+    services.AddBot<UserDataBot>(options =>
+    {
+        // ...
+
+        // Use persistent storage and create state management objects.
+        var CosmosSettings = Configuration.GetSection("CosmosDB");
+        IStorage storage = new CosmosDbStorage(
+            new CosmosDbStorageOptions
+            {
+                DatabaseId = CosmosSettings["DatabaseID"],
+                CollectionId = CosmosSettings["CollectionID"],
+                CosmosDBEndpoint = new Uri(CosmosSettings["EndpointUri"]),
+                AuthKey = CosmosSettings["AuthenticationKey"],
+            });
+        options.State.Add(new ConversationState(storage));
+        options.State.Add(new UserState(storage));
+    });
+
+    // Register the bot's state and state property accessor objects.
+    services.AddSingleton<BotAccessors>(sp =>
+    {
+        var options = sp.GetRequiredService<IOptions<BotFrameworkOptions>>().Value;
+        var userState = options.State.OfType<UserState>().FirstOrDefault();
+        var conversationState = options.State.OfType<ConversationState>().FirstOrDefault();
+
+        return new BotAccessors(userState, conversationState)
+        {
+            UserDataAccessor = userState.CreateProperty<UserData>("UserDataBot.UserData"),
+            DialogStateAccessor = conversationState.CreateProperty<DialogState>("UserDataBot.DialogState"),
+        };
+    });
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+### <a name="indexjs"></a>index.js
+
+在主要 Bot 的 **index.js** 檔案中，更新下列 require 陳述式。
 
 ```javascript
-// Reserve a table:
-// Help the user to reserve a table
+const { BotFrameworkAdapter, ConversationState, UserState } = require('botbuilder');
+const { CosmosDbStorage } = require('botbuilder-azure');
+```
 
-dialogs.add('reserveTable', [
-    async function(dc, args, next){
-        await dc.context.sendActivity("Welcome to the reservation service.");
+我們會使用 `UserState` 來儲存本教學課程的資料。 我們需要建立新的 `userState` 物件，並更新這行程式碼以將第二個參數傳遞至 `MainDialog` 類別。
 
-        dc.activeDialog.state.reservationInfo = {}; // Clears any previous data
-        await dc.prompt('dateTimePrompt', "Please provide a reservation date and time.");
-    },
-    async function(dc, result){
-        dc.activeDialog.state.reservationInfo.dateTime = result[0].value;
+```javascript
+// Create conversation state with in-memory storage provider. 
+const conversationState = new ConversationState(storage);
+const userState = new UserState(storage);
 
-        // Ask for next info
-        await dc.prompt('partySizePrompt', "How many people are in your party?");
-    },
-    async function(dc, result){
-        dc.activeDialog.state.reservationInfo.partySize = result;
+// Create the main dialog.
+const mainDlg = new MainDialog(conversationState, userState);
+```
 
-        // Ask for next info
-        await dc.prompt('textPrompt', "Who's name will this be under?");
-    },
-    async function(dc, result){
-        dc.activeDialog.state.reservationInfo.reserveName = result;
-        
-        // Persist data
-        var convo = conversationState.get(dc.context);; // conversationState.get(dc.context);
-        convo.reservationInfo = dc.activeDialog.state.reservationInfo;
+### <a name="dialogsmaindialogindexjs"></a>dialogs/mainDialog/index.js
 
-        // Confirm reservation
-        var msg = `Reservation confirmed. Reservation details: 
-            <br/>Date/Time: ${dc.activeDialog.state.reservationInfo.dateTime} 
-            <br/>Party size: ${dc.activeDialog.state.reservationInfo.partySize} 
-            <br/>Reservation name: ${dc.activeDialog.state.reservationInfo.reserveName}`;
-            
-        await dc.context.sendActivity(msg);
-        await dc.end();
-    }
-]);
+在 `MainDialog` 類別中，需要有必要程式庫以供 Bot 操作。 在本教學課程中，我們會使用 **對話方塊**程式庫。
+
+```javascript
+// Required packages for this bot
+const { ActivityTypes } = require('botbuilder');
+const { DialogSet, WaterfallDialog, TextPrompt, NumberPrompt } = require('botbuilder-dialogs');
+
+```
+
+更新 `MainDialog` 類別的建構函式以接受將第二個參數作為 `userState`。 此外，更新建構函式以定義本教學課程所需的狀態、對話方塊和提示。 在此案例中，我們會定義有兩個步驟的瀑布，其中「步驟 1」會要求使用者輸入其名稱，「步驟 2」則會傳回使用者輸入。 該資訊則由 Bot 的主要邏輯保存。
+
+```javascript
+constructor (conversationState, userState) {
+
+    // creates a new state accessor property. see https://aka.ms/about-bot-state-accessors to learn more about the bot state and state accessors 
+    this.conversationState = conversationState;
+    this.userState = userState;
+
+    this.dialogState = this.conversationState.createProperty('dialogState');
+
+    this.userDataAccessor = this.userState.createProperty('userData');
+
+    this.dialogs = new DialogSet(this.dialogState);
+    
+    // Add prompts
+    this.dialogs.add(new TextPrompt('textPrompt'));
+    
+    // Check in user:
+    this.dialogs.add(new WaterfallDialog('greetings', [
+        async function (step) {
+            return await step.prompt('textPrompt', "What is your name?");
+        },
+        async function (step){
+            return await step.endDialog(step.result);
+        }
+    ]));
+}
 ```
 
 ---
 
-現在，您已準備好將此項目連結到 Bot 邏輯。
+在儲存使用者資料時，您有一些選擇。 您可以從中選擇 SDK 所提供的幾個具有不同範圍的狀態物件。 在這裡，我們會使用對話狀態來管理對話方塊狀態物件，使用使用者狀態來管理使用者資料。
 
-## <a name="start-the-dialog"></a>開始對話
+如需儲存體和狀態大致情形的詳細資訊，請參閱[儲存體](bot-builder-howto-v4-storage.md)和[如何管理對話和使用者狀態](bot-builder-howto-v4-state.md)。
 
-您不需要在此進行任何程式碼變更。 只要執行 Bot 並傳送訊息，即可開始 `reserveTable` 交談。
+## <a name="create-a-greeting-dialog"></a>建立問候語對話方塊
 
-## <a name="check-file-storage-content"></a>檢查檔案儲存體內容
+我們會使用對話方塊來收集使用者的名稱。 為了讓這個案例保持簡單，對話會傳回使用者的名稱，Bot 則會管理使用者資料物件和狀態。
 
-在您執行 Bot 並已經過 `reserveTable` 對話之後，請在您指定的位置尋找儲存至檔案的資訊 (例如："C:/temp")。 檔案名稱前面會加上 "conversation!" 或 "user!"。 這有助於依照日期將檔案排序，您就可以更輕鬆地找到最新的檔案。
+建立 **GreetingsDialog** 類別，並包含下列程式碼。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```cs
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Dialogs;
+
+/// <summary>Defines a dialog for collecting a user's name.</summary>
+public class GreetingsDialog : DialogSet
+{
+    /// <summary>The ID of the main dialog.</summary>
+    public const string MainDialog = "main";
+
+    /// <summary>The ID of the the text prompt to use in the dialog.</summary>
+    private const string TextPrompt = "textPrompt";
+
+    /// <summary>Creates a new instance of this dialog set.</summary>
+    /// <param name="dialogState">The dialog state property accessor to use for dialog state.</param>
+    public GreetingsDialog(IStatePropertyAccessor<DialogState> dialogState)
+        : base(dialogState)
+    {
+        // Add the text prompt to the dialog set.
+        Add(new TextPrompt(TextPrompt));
+
+        // Define the main dialog and add it to the set.
+        Add(new WaterfallDialog(MainDialog, new WaterfallStep[]
+        {
+            async (stepContext, cancellationToken) =>
+            {
+                // Ask the user for their name.
+                return await stepContext.PromptAsync(TextPrompt, new PromptOptions
+                {
+                    Prompt = MessageFactory.Text("What is your name?"),
+                }, cancellationToken);
+            },
+            async (stepContext, cancellationToken) =>
+            {
+                // Assume that they entered their name, and return the value.
+                return await stepContext.EndDialogAsync(stepContext.Result, cancellationToken);
+            },
+        }));
+    }
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+請參閱上一節，當中的對話方塊會建立在 `MainDialog` 的建構函式內。
+
+---
+
+如需對話的詳細資訊，請參閱[如何提示輸入](bot-builder-prompts.md)和[如何管理簡單的對話流程](bot-builder-dialog-manage-conversation-flow.md)。
+
+## <a name="update-your-bot-to-use-the-dialog-and-user-state"></a>更新 Bot 以使用對話方塊和使用者狀態
+
+我們將會討論 Bot 建構和如何分開管理使用者輸入。
+
+### <a name="add-the-dialog-and-a-user-state-accessor"></a>新增對話方塊和使用者狀態存取子
+
+我們需要追蹤對話方塊執行個體，和使用者資料的狀態屬性存取子。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+新增程式碼以將 Bot 初始化。
+
+```cs
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Schema;
+
+/// <summary>Defines the bot for the persisting user data tutorial.</summary>
+public class UserDataBot : IBot
+{
+    /// <summary>The bot's state and state property accessor objects.</summary>
+    private BotAccessors Accessors { get; }
+
+    /// <summary>The dialog set that has the dialog to use.</summary>
+    private GreetingsDialog GreetingsDialog { get; }
+
+    /// <summary>Create a new instance of the bot.</summary>
+    /// <param name="options">The options to use for our app.</param>
+    /// <param name="greetingsDialog">An instance of the dialog set.</param>
+    public UserDataBot(BotAccessors botAccessors)
+    {
+        // Retrieve the bot's state and accessors.
+        Accessors = botAccessors;
+
+        // Create the greetings dialog.
+        GreetingsDialog = new GreetingsDialog(Accessors.DialogStateAccessor);
+    }
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+請參閱上一節，當中的這些狀態存取子會定義在 `MainDialog` 的建構函式內。
+
+---
+
+### <a name="update-the-turn-handler"></a>更新回合處理常式
+
+回合處理常式會在使用者第一次加入對話時歡迎他們，並在他們傳送訊息給 Bot 時加以回應。 不論何時，如果 Bot 還不知道使用者的名稱，其就會開始問候語對話，向其詢問名稱。 對話方塊完成時，我們會使用狀態屬性存取子所產生的狀態物件，將其名稱儲存至使用者狀態。 當回合結束時，存取子和狀態管理員會將物件的變更寫出到儲存體。
+
+我們也會新增對於「刪除使用者資料」活動的支援。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+更新 Bot 的 `OnTurnAsync` 方法。
+
+```cs
+/// <summary>Handles incoming activities to the bot.</summary>
+/// <param name="turnContext">The context object for the current turn.</param>
+/// <param name="cancellationToken">A cancellation token that can be used by other objects
+/// or threads to receive notice of cancellation.</param>
+/// <returns>A task that represents the work queued to execute.</returns>
+public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
+{
+    // Retrieve user data from state.
+    UserData userData = await Accessors.UserDataAccessor.GetAsync(turnContext, () => new UserData());
+
+    // Establish context for our dialog from the turn context.
+    DialogContext dc = await GreetingsDialog.CreateContextAsync(turnContext);
+
+    // Handle conversation update, message, and delete user data activities.
+    switch (turnContext.Activity.Type)
+    {
+        case ActivityTypes.ConversationUpdate:
+
+            // Greet any user that is added to the conversation.
+            IConversationUpdateActivity activity = turnContext.Activity.AsConversationUpdateActivity();
+            if (activity.MembersAdded.Any(member => member.Id != activity.Recipient.Id))
+            {
+                if (userData.Name is null)
+                {
+                    // If we don't already have their name, start a dialog to collect it.
+                    await turnContext.SendActivityAsync("Welcome to the User Data bot.");
+                    await dc.BeginDialogAsync(GreetingsDialog.MainDialog);
+                }
+                else
+                {
+                    // Otherwise, greet them by name.
+                    await turnContext.SendActivityAsync($"Hi {userData.Name}! Welcome back to the User Data bot.");
+                }
+            }
+
+            break;
+
+        case ActivityTypes.Message:
+
+            // If there's a dialog running, continue it.
+            if (dc.ActiveDialog != null)
+            {
+                var dialogTurnResult = await dc.ContinueDialogAsync();
+                if (dialogTurnResult.Status == DialogTurnStatus.Complete
+                    && dialogTurnResult.Result is string name
+                    && !string.IsNullOrWhiteSpace(name))
+                {
+                    // If it completes successfully and returns a valid name, save the name and greet the user.
+                    userData.Name = name;
+                    await turnContext.SendActivityAsync($"Pleased to meet you {userData.Name}.");
+                }
+            }
+            // Else, if we don't have the user's name yet, ask for it.
+            else if (userData.Name is null)
+            {
+                await dc.BeginDialogAsync(GreetingsDialog.MainDialog);
+            }
+            // Else, echo the user's message text.
+            else
+            {
+                await turnContext.SendActivityAsync($"{userData.Name} said, '{turnContext.Activity.Text}'.");
+            }
+
+            break;
+
+        case ActivityTypes.DeleteUserData:
+
+            // Delete the user's data.
+            userData.Name = null;
+            await turnContext.SendActivityAsync("I have deleted your user data.");
+
+            break;
+    }
+
+    // Update the user data in the turn's state cache.
+    await Accessors.UserDataAccessor.SetAsync(turnContext, userData, cancellationToken);
+
+    // Persist any changes to storage.
+    await Accessors.UserState.SaveChangesAsync(turnContext, false, cancellationToken);
+    await Accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+更新 `MainDialog` 的 `onTurn` 處理常式。
+
+**dialogs/mainDialog/index.js**
+
+```javascript
+async onTurn(turnContext) {
+        
+    const dc = await this.dialogs.createContext(turnContext); // Create dialog context
+    const userData = await this.userDataAccessor.get(turnContext, {});
+
+    switch(turnContext.activity.type){
+        case ActivityTypes.ConversationUpdate:
+            if (turnContext.activity.membersAdded[0].name !== 'Bot') {
+                if(userData.name){
+                    await turnContext.sendActivity(`Hi ${userData.name}! Welcome back to the User Data bot.`);
+                }
+                else {
+                    // send a "this is what the bot does" message
+                    await turnContext.sendActivity('Welcome to the User Data bot.');
+                    await dc.beginDialog('greetings');
+                }
+            }
+        break;
+        case ActivityTypes.Message:
+            // If there is an active dialog running, continue it
+            if(dc.activeDialog){
+                var turnResult = await dc.continueDialog();
+                if(turnResult.status == "complete" && turnResult.result){
+                    // If it completes successfully and returns a value, save the name and greet the user.
+                    userData.name = turnResult.result;
+                    await this.userDataAccessor.set(turnContext, userData);
+                    await turnContext.sendActivity(`Pleased to meet you ${userData.name}.`);
+                }
+            }
+            // Else, if we don't have the user's name yet, ask for it.
+            else if(!userData.name){
+                await dc.beginDialog('greetings');
+            }
+            // Else, echo the user's message text.
+            else {
+                await turnContext.sendActivity(`${userData.name} said, ${turnContext.activity.text}.`);
+            }
+        break;
+        case "deleteUserData":
+            // Delete the user's data.
+            // Note: You can use the emuluator to send this activity.
+            userData.name = null;
+            await this.userDataAccessor.set(turnContext, userData);
+            await turnContext.sendActivity("I have deleted your user data.");
+        break;
+    }
+
+    // Save changes to the user name.
+    await this.userState.saveChanges(turnContext);
+
+    // End this turn by saving changes to the conversation state.
+    await this.conversationState.saveChanges(turnContext);
+
+}
+
+```
+
+---
+
+## <a name="start-your-bot-in-visual-studio"></a>在 Visual Studio 中啟動 Bot
+建置並執行應用程式。
+
+## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並且連線至您的 Bot
+
+接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
+
+1. 按一下模擬器 [歡迎使用] 索引標籤中的 [開啟 Bot] 連結。 
+2. 選取位於您建立 Visual Studio 解決方案的目錄中的 .bot 檔案。
+
+## <a name="interact-with-your-bot"></a>與您的 Bot 互動
+傳送訊息給 Bot，Bot 就會以訊息回應。
+![模擬器執行中](../media/emulator-v4/emulator-running.png)
+
 
 ## <a name="next-steps"></a>後續步驟
-
-既然您已經知道如何儲存使用者輸入，就讓我們看看您可使用提示程式庫，要求使用者提供哪種類型的輸入。
-
 > [!div class="nextstepaction"]
-> [提示使用者提供輸入](~/v4sdk/bot-builder-prompts.md)
+> [管理對話和使用者狀態](bot-builder-howto-v4-state.md)

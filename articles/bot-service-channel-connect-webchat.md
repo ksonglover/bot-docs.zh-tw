@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: b560f9f43fc596bc8062676136819922d227d37b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b5a9d20c058fe425d727bf2e39597e7dd29ec077
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298923"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389627"
 ---
 # <a name="connect-a-bot-to-web-chat"></a>將 Bot 連線至「網路聊天」
 當您使用 Bot Service [建立 Bot](bot-service-quickstart.md) 時，會自動為您設定網路聊天頻道。 網路聊天頻道包含網路聊天控制項，能夠讓您的使用者直接在網頁上與 Bot 進行互動。
@@ -52,7 +52,7 @@ Bot Framework 入口網站中的網路聊天頻道，包含您在網頁中內嵌
 
 2. 您 **GET** 要求的回應會包含權杖 (以引號括住)，可透過轉譯 **iframe** 內的 網路聊天控制項用來開始對話。 權杖僅對一個對話有效；若要開始另一個對話，您必須產生新的權杖。
 
-3. 在您從 Bot Framework 入口網站中的網路聊天頻道複製的 `iframe` **內嵌程式碼**內 (如上方[步驟 1](#step-1) 中所述)，將 `s=` 參數變更為 `t=`，並以您的權杖來取代 "YOUR_SECRET_HERE"。 
+3. 在您從 Bot Framework 入口網站中的網路聊天頻道複製的 `iframe` **內嵌程式碼**內 (如上方[取得您的 bot 祕密金鑰](#step-1)中所述)，將 `s=` 參數變更為 `t=`，並以您的權杖來取代 "YOUR_SECRET_HERE"。
 
 > [!NOTE]
 > 權杖在到期前會自動更新。 
@@ -109,7 +109,7 @@ Bot Framework 入口網站中的網路聊天頻道，包含您在網頁中內嵌
 
 若要藉由指定 `iframe` 標記內的祕密，在您的網站中內嵌 Bot：
 
-1. 請從 Bot Framework 入口網站內的網路聊天頻道，複製 `iframe` **內嵌程式碼** (如上方[步驟 1](#step-1) 中所述)。
+1. 請從 Bot Framework 入口網站內的網路聊天頻道，複製 `iframe` **內嵌程式碼** (如上方[取得您的 bot 祕密金鑰](#step-1)中所述)。
 
 2. 在**內嵌程式碼**內，將 "YOUR_SECRET_HERE" 取代為您從相同頁面中複製的**祕密金鑰**值。
 
@@ -131,4 +131,4 @@ Bot Framework 入口網站中的網路聊天頻道，包含您在網頁中內嵌
 
 ## <a name="additional-resources"></a>其他資源
 
-您可以在 GitHub 上[下載網路聊天控制項的來源程式碼](https://github.com/Microsoft/BotFramework-WebChat)。
+您可以在 GitHub 上[下載 Web 聊天控制項的原始程式碼](https://github.com/Microsoft/BotFramework-WebChat)。

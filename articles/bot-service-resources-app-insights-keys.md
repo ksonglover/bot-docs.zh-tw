@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 3d098afd70bef9cf1a3b3fab87455e96ffd9c292
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 07fb6e9630996a61932da99b0575d43f4604141e
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298724"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389427"
 ---
 # <a name="application-insights-keys"></a>Application Insights 金鑰
 
@@ -30,12 +30,12 @@ Azure **Application Insights** 會在 Microsoft Azure「資源」中顯示您應
 ## <a name="instrumentation-key"></a>檢測金鑰
 
 若要取得檢測金鑰，請執行下列動作：
-1. 從 [portal.azure.com](http://portal.azure.com) 的 [監視器] 區段下，建立新 **Application Insights** 資源 (或使用現有資源)。
+1. 從 [Azure 入口網站](http://portal.azure.com)的 [監視器] 區段下，建立新 **Application Insights** 資源 (或使用現有資源)。
 ![Application Insights 清單的入口網站螢幕擷取畫面](~/media/portal-app-insights-add-new.png)
 
 2. 從 Application Insights 資源清單中，按一下您剛建立的 Application Insight 資源。
 
-3. 按一下 [概觀]。
+3. 按一下 [概觀] 。
 
 4. 展開 [基本] 區塊並尋找 [檢測金鑰]。 
 ![檢測金鑰的入口網站螢幕擷取畫面](~/media/portal-app-insights-instrumentation-key.png)

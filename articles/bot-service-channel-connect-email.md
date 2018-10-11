@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: a8c3d4fb469ce7c52dfffbcfc3a17e08c167ea66
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 53ad7069f8ec8e7757c7ee4ea1a517d44436b8e9
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300011"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389667"
 ---
 # <a name="connect-a-bot-to-office-365-email"></a>將 Bot 連結到 Office 365 電子郵件
 
@@ -67,7 +67,7 @@ ms.locfileid: "39300011"
 ::: moniker-end
 
 ::: moniker range="azure-bot-service-4.0"
-如需有關使用 `channelData` 的詳細資訊，請參閱 [Node.js](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-ChannelData) 範例或 [.NET](~/v4sdk/bot-builder-channeldata.md) 文件。
+如需有關使用 `channelData` 的詳細資訊，請參閱[如何實作通道專屬功能](~/v4sdk/bot-builder-channeldata.md)。
 ::: moniker-end
 
 ## <a name="additional-resources"></a>其他資源

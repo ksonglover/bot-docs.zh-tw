@@ -1,7 +1,22 @@
-**臨機操作主動式訊息**是最簡單的主動式訊息類型。 Bot 只會在每次觸發時將訊息插入對話，不會顧及使用者目前是否與 Bot 在其他對話主題中，也不會嘗試以任何方式變更對話。 
+**臨機操作主動式訊息**是最簡單的主動式訊息類型。
+Bot 只會在每次觸發時將訊息插入對話，不會顧及使用者目前是否與 Bot 在其他對話主題中，也不會嘗試以任何方式變更對話。
 
-**對話方塊型主動式訊息**比臨機操作主動式訊息更為複雜。 在 Bot 可以將這種類型的主動式訊息插入對話之前，Bot 必須識別現有對話的內容，並且決定如何 (或是否) 在訊息中斷之後繼續該對話。 
+若要更順利地處理通知，請考慮使用其他方式將通知整合到對話流程中，例如在對話狀態中設定旗標，或將通知新增至佇列。
 
-例如，請設想需要在指定的時間點起始問卷的 Bot。 時間到的時候，Bot 會停止與使用者的現有對話，並且將使用者重新導向至 `SurveyDialog`。 系統會將 `SurveyDialog` 新增至對話方塊堆疊的頂端，並且取得對話的控制權。 當使用者在 `SurveyDialog` 完成所有必要的工作時，`SurveyDialog` 隨即關閉，將控制權交回給先前的對話方塊，使用者可以在其中繼續進行先前的對話主題。
+<!--Snip
+A **dialog-based proactive message** is more complex than an ad hoc proactive message. 
+Before it can inject this type of proactive message into the conversation, 
+the bot must identify the context of the existing conversation and decide how (or if)
+it will resume that conversation after the message interrupts. 
 
-對話方塊型主動式訊息不只是簡單的通知。 在傳送通知時，Bot 會變更現有對話的主題。 接著它必須決定稍後繼續該對話，還是藉由重設對話方塊堆疊以完全放棄該對話。 
+For example, consider a bot that needs to initiate a survey at a given point in time. 
+When that time arrives, the bot stops the existing conversation with the user and 
+redirects the user to a `SurveyDialog`. 
+The `SurveyDialog` is added to the top of the dialog stack and takes control of the conversation. 
+When the user finishes all required tasks at the `SurveyDialog`, the `SurveyDialog` closes,
+ returning control to the previous dialog, where the user can continue with the prior topic of conversation.
+
+A dialog-based proactive message is more than just simple notification. 
+In sending the notification, the bot changes the topic of the existing conversation. 
+It then must decide whether to resume that conversation later, or to abandon that conversation altogether by resetting the dialog stack. 
+/Snip-->

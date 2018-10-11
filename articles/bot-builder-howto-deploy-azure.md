@@ -7,23 +7,22 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: get-started-article
 ms.prod: bot-framework
-ms.date: 05/14/2018
-ms.openlocfilehash: f3e5ed5b14ffb81c597b10aeac45854464bad8b0
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.date: 09/19/2018
+ms.openlocfilehash: 1503d5e349839de6f3403ad9b769c7eb0ae41e78
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905590"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46706964"
 ---
 # <a name="deploy-your-bot-to-azure"></a>將 Bot 部署至 Azure
 
-[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
+[!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
 
-建立您的 Bot 並在本機驗證後，您可以將它推送至 Azure，以便可以從任何地方進行存取。 若要這樣做，首先您將在 [應用程式服務] 中將 Bot 部署到 Azure，然後使用 Bot 通道註冊項目向 Azure Bot 服務設定您的 Bot。
+建立您的 Bot 並在本機驗證後，您可以將它推送至 Azure，以便可以從任何地方進行存取。 針對 C# Bot，您可以使用 Visual Studio 或 Azure CLI 將 Bot 發行至 Azure。 
 
 ## <a name="publish-from-visual-studio"></a>從 Visual Studio 發佈
-
-使用 Visual Studio 在 Azure 中建立您的資源，並發佈您的程式碼。
+您會先在 App Service 中將 Bot 從 Visual Studio部署至 Azure。 然後，您將使用 Bot 通道註冊，透過 Azure Bot Service 設定您的 Bot。
 
 在 [方案總管] 視窗中，以滑鼠右鍵按一下專案的節點，然後選取 [發佈]。
 
@@ -127,13 +126,16 @@ ms.locfileid: "42905590"
 ## <a name="test-your-bot-in-production"></a>在生產環境中測試您的 Bot
 此時，您可以使用內建的 Web 聊天用戶端，從 Azure 測試您的 Bot。
 
-1. 返回您在入口網站中的資源群組
+1. 返回您在 Azure 入口網站中的資源群組
 
-2. 開啟您的 Bot 註冊。
+2. 開啟 Bot。
 
-3. 在 Bot 管理下，選取 [在 Web 聊天中測試]。
+3. 在 [Bot 管理] 下，選取 [在網路聊天中測試]。
 
 ![在 Web 聊天中測試](media/azure-bot-quickstarts/getting-started-test-webchat.png)
 
 4. 輸入訊息 (例如 `Hi`)，然後按 Enter。 Bot 將回應 `Turn 1: You sent Hi`。
 
+## <a name="next-steps"></a>後續步驟
+> [!div class="nextstepaction"]
+> [設定持續部署](bot-service-build-continuous-deployment.md)

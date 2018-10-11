@@ -7,25 +7,27 @@ ms.author: jonathanfingold
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 08/21/2018
+ms.date: 08/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6458bac5140fae14e8925e7af37aa8ac4ef1f1f5
-ms.sourcegitcommit: 7b5675bbf7f1c2432bfc831ee5d627f6e5659e01
+ms.openlocfilehash: 6b63fe2780c51e57ee16c5e3dba5a83f46566157
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/01/2018
-ms.locfileid: "43380994"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707276"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-python"></a>使用適用於 Python 的 Bot Builder SDK 建立 Bot
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-適用於 Python 的 Bot Builder SDK 是用來開發 Bot 且易於使用的架構。 本快速入門會逐步引導您建置 Bot，然後使用 Bot Framework Emulator 來測試它。 SDK v4 處於預覽狀態，如需詳細資訊，請前往 Python [GitHub 存放庫](https://github.com/Microsoft/botbuilder-python) \(英文\)。 
+>[!NOTE] 
+> Python SDK 處於**預覽**狀態，如需詳細資訊，請前往 Python [GitHub 存放庫](https://github.com/Microsoft/botbuilder-python)。 
+
+本快速入門會逐步引導您建置 Bot，然後使用 Bot Framework Emulator 來測試它。 
 
 ## <a name="pre-requisite"></a>必要條件
 - [Python 3.6.4](https://www.python.org/downloads/) 
 - [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases)
 
-# <a name="create-a-bot"></a>建立 Bot
+## <a name="create-a-bot"></a>建立 Bot
 在 main.py 檔案中，匯入下列標準模組：
 
 ```python
@@ -127,22 +129,20 @@ python main.py
 ```
 在您的本機終端機中，您應該會看到 'Started http server on localhost:9000' (已在 localhost:9000 上啟動 http 伺服器) 的訊息
 
-### <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並連線到您的 Bot
+## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並連線到您的 Bot
 
-接下來，啟動模擬器，然後在模擬器中連線到您的 Bot：
+接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 
+1. 按一下模擬器 [歡迎] 索引標籤中的 [開啟 Bot] 連結。 
+2. 選取位於您建立專案的目錄中的 .bot 檔案。
 
-1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定] 連結。 
+## <a name="interact-with-your-bot"></a>與您的 Bot 互動
 
-2. 輸入 **Bot 名稱**，然後輸入 Bot 程式碼的目錄路徑。 Bot 設定檔將會儲存至這個路徑。
+傳送訊息給 Bot，Bot 就會以訊息回應。
+![模擬器執行中](../media/emulator-v4/emulator-running.png)
 
-3. 將 `http://localhost:port-number/api/messages` 輸入至 [端點 URL] 欄位，其中連接埠號碼必須符合應用程式執行所在瀏覽器中顯示的連接埠號碼。
-
-4. 按一下 [連線] 來連線至 Bot。 您不需要指定 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**。 目前可以將這些欄位保留空白。 稍後註冊 Bot 時，您將會取得這項資訊。
-
-在模擬器中輸入 **Hello** (您好)，而 Bot 會回應 **You said "Hello"** (您說了「您好」)。
 
 ## <a name="next-steps"></a>後續步驟
 
 > [!div class="nextstepaction"]
-> [基本 Bot 概念](../v4sdk/bot-builder-basics.md)
+> [Bot 概念](../v4sdk/bot-builder-basics.md)

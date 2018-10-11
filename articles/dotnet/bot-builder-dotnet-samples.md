@@ -6,13 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 05/03/2018
-ms.openlocfilehash: 7aff56dfc60d9d5cce42a5b6a2624c1364ff1b72
-ms.sourcegitcommit: 44f100a588ffda19c275b118f4f97029f12d1449
+ms.date: 09/13/2018
+ms.openlocfilehash: 9f80fc551cac2f1994b0d398cd640d2ad3d78e61
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/26/2018
-ms.locfileid: "42928376"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707374"
 ---
 # <a name="bot-builder-sdk-for-net-samples"></a>適用於 .NET 的 Bot 建立器 SDK 範例
 
@@ -92,17 +92,12 @@ cd BotBuilder-Samples
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-這些範例會示範以工作為主的 Bot，示範如何利用適用於 .NET 的 Bot 建立器 SDK v4 功能。 您可使用這些範例，協助您快速開始建置具備豐富功能的絕佳 Bot。 
+Bot Builder 範例存放庫中有許多範例，這些範例會示範以工作為主的 Bot 如何利用適用於 .NET 的 SDK 功能。 您可使用這些範例，協助您快速開始建置具備豐富功能的絕佳 Bot。 請參閱[讀我檔案](https://github.com/Microsoft/BotBuilder-Samples/blob/master/README.md)，以取得範例清單和其他資訊。
 
-注意：SDK v4 目前還在開發階段，因此應僅用於測試。 
-
-若要取得範例，請複製使用 Git 的 [botbuilder-dotnet](https://github.com/Microsoft/botbuilder-dotnet) GitHub 存放庫。
+若要取得範例，請使用 Git 複製 [botbuilder-samples](https://github.com/Microsoft/botbuilder-samples)GitHub 存放庫。
 ```cmd
 git clone https://github.com/Microsoft/botbuilder-dotnet.git
-cd botbuilder-dotnet\samples-final
 ```
-以適用於 .NET 的 Bot 建立器 SDK 建置的 Bot 範例，會在 **samples-final** 目錄中進行組織。
-
 
 ::: moniker-end
 

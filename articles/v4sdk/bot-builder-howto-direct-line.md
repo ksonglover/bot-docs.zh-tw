@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/16/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 23380231c15c40875f78921f72bcf9d57effb3bf
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: dee0f9700fefede2a231ff2395e50ff17522806e
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905228"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707394"
 ---
 # <a name="create-a-direct-line-bot-and-client"></a>建立直接線路 Bot 與用戶端
 
@@ -492,7 +492,7 @@ server.post('/api/messages', (req, res) => {
 
 ```
 
-當您就緒時，您可以將原始程式檔發佈回 Azure。 [依照這些步驟了解如何將您的 Bot 發佈回 Azure](../bot-service-build-download-source-code.md#publish-node-bot-source-code-to-azure)
+當您就緒時，您可以將原始程式檔發佈回 Azure。 依照這些步驟了解如何將您的 Bot 發佈回 [Azure](../bot-service-build-download-source-code.md)
 
 ---
 

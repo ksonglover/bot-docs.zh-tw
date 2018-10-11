@@ -7,30 +7,26 @@ ms.author: jonathanfingold
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 05/02/2018
+ms.date: 08/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3b618bfb7cd1a462390aee4d564778c8ec0a7247
-ms.sourcegitcommit: d486dd088b87a44fc8142f7a08877ff993861a42
+ms.openlocfilehash: bcfc1c76199d8bc729376bbbfe229b0781eb82ab
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/26/2018
-ms.locfileid: "42928427"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707234"
 ---
-# <a name="create-a-bot-with-the-bot-builder-sdk-for-java"></a>使用適用於 Java 的 Bot 建立器 SDK 建立 Bot
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
-
-適用於 Java 的 Bot 建立器 SDK 為 Java 開發人員提供熟悉的方式來撰寫 Bot。 SDK v4 處於預覽狀態，如需詳細資訊，請造訪 Java [GitHub 存放庫](https://github.com/Microsoft/botbuilder-java)。
-
-> [!NOTE]
-> 我們的程式碼範例和文件目前的目標版本是 Java 1.8 版。
+# <a name="create-a-bot-with-the-bot-builder-sdk-for-java"></a>使用適用於 Java 的 Bot 建立器 SDK 建立 Bot 
+> [!NOTE] 
+> Java SDK v4 處於**預覽**階段。 如需詳細資訊，請造訪 Java [GitHub 存放庫](https://github.com/Microsoft/botbuilder-java)。 我們的程式碼範例和文件目前的目標版本是 Java 1.8 版。
 
 ## <a name="getting-started"></a>開始使用
 
-v4 SDK 包含一系列的[程式庫](https://github.com/Microsoft/botbuilder-java/tree/master/libraries)。 若要在本機建置，請參閱[建置 SDK](https://github.com/Microsoft/botbuilder-java/wiki/building-the-sdk)。
+Java SDK v4 包含一系列的[程式庫](https://github.com/Microsoft/botbuilder-java/tree/master/libraries)。 若要在本機建置，請參閱[建置 SDK](https://github.com/Microsoft/botbuilder-java/wiki/building-the-sdk)。
 
 - 安裝 [Bot Framework 模擬器](https://github.com/Microsoft/BotFramework-Emulator/releases)
 
-### <a name="create-echobot"></a>建立 EchoBot
+## <a name="create-echobot"></a>建立 EchoBot
 
 在 App.java 檔案中新增下列項目：
 
@@ -146,25 +142,21 @@ public class App {
 }
 ```
 
-如果您是使用 Maven，可以從這個存放庫中的範例資料夾複製 pom.xml 檔案。 一旦您開始執行可執行檔，就會啟動 Bot Framework 模擬器。
+如果您是使用 Maven，可以從這個存放庫中的範例資料夾複製 pom.xml 檔案。 執行可執行檔。 此時，Bot 正在本機執行。
 
-### <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並且連線到您的 Bot
+## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並且連線至您的 Bot
 
-此時，您的 Bot 正在本機執行。
 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 
-1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定] 連結。 
+1. 按一下模擬器 [歡迎使用] 索引標籤中的 [開啟 Bot] 連結。 
+2. 在您建立專案的目錄中選取 .bot 檔案。
 
-2. 輸入 **Bot 名稱**，然後輸入 Bot 程式碼的目錄路徑。 Bot 設定檔將會儲存至這個路徑。
+## <a name="interact-with-your-bot"></a>與您的 Bot 互動
 
-3. 將 `http://localhost:port-number/api/messages` 輸入至 [端點 URL] 欄位，其中連接埠號碼必須符合應用程式執行所在瀏覽器中顯示的連接埠號碼。
-
-4. 按一下 [連線] 來連線至 Bot。 您不需要指定 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**。 目前可以將這些欄位保留空白。 稍後註冊 Bot 時，您會取得這項資訊。
-
-### <a name="interact-with-your-bot"></a>與您的 Bot 互動
-傳送 "Hi" 給您的 Bot，Bot 會回應訊息。
+傳送訊息給 Bot，Bot 就會以訊息回應。
+![模擬器執行中](../media/emulator-v4/emulator-running.png)
 
 ## <a name="next-steps"></a>後續步驟
 
 > [!div class="nextstepaction"]
-> [基本 Bot 概念](../v4sdk/bot-builder-basics.md)
+> [Bot 概念](../v4sdk/bot-builder-basics.md)

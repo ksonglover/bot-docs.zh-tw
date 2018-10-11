@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 2e0b85af834bc92a9da8c9f9be2794da88c2b3bc
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: ba2aec255cf160a72c11c3ddfda021baae304568
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298894"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389637"
 ---
 # <a name="configure-speech-priming"></a>設定語音預備
 
@@ -26,6 +26,9 @@ ms.locfileid: "39298894"
 
 > [!IMPORTANT]
 > 語音預備僅適用於針對 Cortana 通道或網路聊天頻道設定的 Bot。
+
+> [!IMPORTANT]
+> 非美國地區的 LUIS 應用程式不支援預備，包括：eu.luis.ai 和 au.luis.ai
 
 ## <a name="change-the-list-of-luis-apps-your-bot-uses"></a>變更您 Bot 所使用的 LUIS 應用程式清單
 

@@ -7,13 +7,13 @@ ms.author: mateusv
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 08/27/2018
-ms.openlocfilehash: 0bf58773cfbb6c58773cc5c63b735a0099ad569e
-ms.sourcegitcommit: 86ddf3ebe6cc3385d1c4d30b971ac9c3e1fc5a77
+ms.date: 09/20/2018
+ms.openlocfilehash: 94882202eca48a4c662f0ffa32a80065953f13fa
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "43056012"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389787"
 ---
 # <a name="design-the-user-experience"></a>設計使用者體驗
 
@@ -33,20 +33,21 @@ Microsoft Bot 服務卡片是可以程式設計的物件，其中包含可在各
 
 | 卡片類型 | 範例 | 說明 |
 | ---- | ---- | ---- |
-| AdaptiveCard | ![調適型卡片影像](~/media/adaptive-card.png) | 轉譯為 JSON 物件的開放式卡片交換格式。 通常用於卡片的跨通道部署。 卡片會隨每個主通道調適其外觀與風格。 |
-| AnimationCard | ![動畫卡片影像](~/media/animation-card1.png) | 可以播放動畫 GIF 或短片的卡片。 |
-| AudioCard | ![音訊卡片影像](~/media/audio-card.png) | 可以播放音訊檔案的卡片。 |
-| HeroCard | ![主圖卡片影像](~/media/hero-card1.png) | 包含單一大型影像、一或多個按鈕與文字的卡片。 通常用來在視覺上醒目提示潛在的使用者選取。 |
-| ThumbnailCard | ![縮圖卡片影像](~/media/thumbnail-card.png) | 包含單一縮圖影像、一或多個按鈕與文字的卡片。 通常用來在視覺上醒目提示潛在的使用者選取的按鈕。 |
-| ReceiptCard | ![收據卡片影像](~/media/receipt-card1.png) | 讓 Bot 向使用者提供收據的卡片。 它通常包含收據上的項目清單 (稅金和總金額資訊) 與其他文字。 |
-| SignInCard | ![登入卡片影像](~/media/sign-in-card.png) | 可讓 Bot 要求使用者登入的卡片。 它通常包含文字，以及一或多個按鈕，使用者可以按一下按鈕來起始登入程序。 |
-| SuggestedAction | ![建議的動作卡片影像](~/media/suggested-actions.png) | 向使用者顯示一組代表使用者選擇的 CardActions。 選取其中任一個建議的動作之後，此卡片就會消失。 |
-| VideoCard | ![視訊卡片影像](~/media/video-card.png) | 可以播放影片的卡片。 通常用來開啟 URL 和串流可用的影片。 |
-| CardCarousel | ![卡片浮動切換影像](~/media/card-carousel.png) | 一組可水平捲動的卡片，可讓使用者輕鬆檢視一系列可能的使用者選擇。|
+| AdaptiveCard | ![調適型卡片影像](./media/adaptive-card.png) | 轉譯為 JSON 物件的開放式卡片交換格式。 通常用於卡片的跨通道部署。 卡片會隨每個主通道調適其外觀與風格。 |
+| AnimationCard | ![動畫卡片影像](./media/animation-card1.png) | 可以播放動畫 GIF 或短片的卡片。 |
+| AudioCard | ![音訊卡片影像](./media/audio-card.png) | 可以播放音訊檔案的卡片。 |
+| HeroCard | ![主圖卡片影像](./media/hero-card1.png) | 包含單一大型影像、一或多個按鈕與文字的卡片。 通常用來在視覺上醒目提示潛在的使用者選取。 |
+| ThumbnailCard | ![縮圖卡片影像](./media/thumbnail-card.png) | 包含單一縮圖影像、一或多個按鈕與文字的卡片。 通常用來在視覺上醒目提示潛在的使用者選取的按鈕。 |
+| ReceiptCard | ![收據卡片影像](./media/receipt-card1.png) | 讓 Bot 向使用者提供收據的卡片。 它通常包含收據上的項目清單 (稅金和總金額資訊) 與其他文字。 |
+| SignInCard | ![登入卡片影像](./media/sign-in-card.png) | 可讓 Bot 要求使用者登入的卡片。 它通常包含文字，以及一或多個按鈕，使用者可以按一下按鈕來起始登入程序。 |
+| SuggestedAction | ![建議的動作卡片影像](./media/suggested-actions.png) | 向使用者顯示一組代表使用者選擇的 CardActions。 選取其中任一個建議的動作之後，此卡片就會消失。 |
+| VideoCard | ![視訊卡片影像](./media/video-card.png) | 可以播放影片的卡片。 通常用來開啟 URL 和串流可用的影片。 |
+| CardCarousel | ![卡片浮動切換影像](./media/card-carousel.png) | 一組可水平捲動的卡片，可讓使用者輕鬆檢視一系列可能的使用者選擇。|
 
 卡片讓您只要設計一次 Bot，然後就能讓它在各種通道上運作。 不過，並非所有可用的通道都完整支援所有卡片類型。 
 
-將卡片新增到 Bot 的詳細指示可以在以下各節中找到：[新增豐富卡片媒體附件](v4sdk/bot-builder-howto-add-media-attachments.md)、[新增訊息的建議動作](v4sdk/bot-builder-howto-add-suggested-actions.md)。
+將卡片新增到 Bot 的詳細指示可以在以下各節中找到：[新增豐富卡片媒體附件](v4sdk/bot-builder-howto-add-media-attachments.md)、[新增訊息的建議動作](v4sdk/bot-builder-howto-add-suggested-actions.md)。 這裡也可以找到卡片的範例程式碼：[C#](https://aka.ms/bot-cards-sample-code-cs)/[JS](https://aka.ms/bot-cards-sample-code-js) 調適型卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)，附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-js-sample-code)，以及建議的動作：[C#](https://aka.ms/bot-suggested-actions-code)/[JS](https://aka.ms/bot-suggested-actions-js-code)。
+
 
 
 在設計您的 Bot 時，請不要因為「不夠智慧」而自動捨棄一般 UI 元素。 如[先前](~/bot-service-design-principles.md#designing-a-bot)所述，您的 Bot 應該設計成盡可能以最佳、最快且最輕鬆的方式來解決使用者的問題。 請避免因受到引誘而一開始就整合自然語言理解，它通常是非必要的，而且會造成不必要的複雜性。
@@ -85,7 +86,7 @@ Bot 可以接受使用者的**文字**輸入，然後嘗試使用規則運算式
 
 使用該 API，您的 Bot 就能從使用者的文字擷取關鍵要素以識別使用者的意圖。 在您的 Bot 中實作自然語言理解時，請針對使用者在其輸入中可能提供的詳細資料層級設定實際預期。 
 
-![使用者的說話方式](~/media/bot-service-design-user-experience/buy-house.png)
+![使用者的說話方式](./media/bot-service-design-user-experience/buy-house.png)
 
 > [!TIP]
 > 建置自然語言模型時，請勿假設使用者將會在初始查詢中就提供所有必要資訊。 請將您的 Bot 設計成明確地要求它所需的資訊，且如有必要，可以透過詢問一系列的問題來引導使用者提供資訊。 

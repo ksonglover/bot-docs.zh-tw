@@ -1,21 +1,18 @@
 ---
-title: 狀態和儲存體 | Microsoft Docs
-description: 描述 Bot Builder SDK 中有哪些狀態管理員、對話狀態和使用者狀態。
-keywords: LUIS, 對話狀態, 使用者狀態, 儲存體, 管理狀態
-author: DeniseMak
-ms.author: v-demak
-manager: kamrani
-ms.topic: article
-ms.prod: bot-framework
-ms.date: 02/15/2018
-monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e25ecec3aec1cdebe3b9eae4bff0d3c434cb610b
-ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
+redirect_url: /bot-framework/bot-builder-howto-v4-state
+ms.openlocfilehash: e5da105e32ae748383d376f90afd9aebbf4c7aa5
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/21/2018
-ms.locfileid: "42756531"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46708114"
 ---
+<a name="--"></a><!--
+---
+標題：狀態和儲存體 | Microsoft Docs 描述：描述 Bot Builder SDK 中有哪些狀態管理員、對話狀態和使用者狀態。
+關鍵字：LUIS, 對話狀態, 使用者狀態, 儲存體, 管理狀態 作者：DeniseMak ms.author: v-demak manager: kamrani ms.topic: article ms.prod: bot-framework ms.date: 02/15/2018 monikerRange: 'azure-bot-service-4.0'
+---
+
 # <a name="state-and-storage"></a>狀態和儲存體
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -37,30 +34,32 @@ You can also store *user state* that persists after a conversation ends. For exa
 <!-- You should generally avoid saving state using a global variable or function closures.
 Doing so will create issues when you want to scale out your bot. Instead, use the conversation state and user state middleware that the BotBuilder SDK provides --> 
 
+<!--
+## Types of underlying storage
 
-## <a name="types-of-underlying-storage"></a>基礎儲存體類型
+The SDK provides bot state manager middleware to persist conversation and user state. State can be accessed using the bot's context. This state manager can use Azure Table Storage, file storage, or memory storage as the underlying data storage. You can also create your own storage components for your bot.
 
-SDK 會提供 Bot 狀態管理員中介軟體來保存對話和使用者狀態。 您可以使用 Bot 的內容來存取狀態。 此狀態管理員可以使用 Azure 資料表儲存體、檔案儲存體或記憶體儲存體作為基礎資料儲存體。 您也可以為 Bot 建立自己的儲存體元件。
-
-您可以將使用 Azure 資料表儲存體建置的 Bot 設計為無狀態，且可在多個計算節點進行調整。
+Bots built using Azure Table Storage can be designed to be stateless and scalable across multiple compute nodes.
 
 > [!NOTE] 
-> 檔案和記憶體的儲存體不會跨節點調整。
+> File and memory storage won't scale across nodes.
 
-## <a name="writing-directly-to-storage"></a>直接寫入儲存體
+## Writing directly to storage
 
-您也可以使用 Bot Builder SDK 在儲存體中直接讀取和寫入資料，而不使用中介軟體或 Bot 內容。 這種方式適用於來自 Bot 對話流程以外來源的 Bot 使用者。
+You can also use the Bot Builder SDK to read and write data directly to storage, without using middleware or without using the bot context. This can be appropriate to data that your bot uses, that comes from a source outside your bot's conversation flow.
 
-例如，假設您的 Bot 允許使用者要求取得氣象報告，且 Bot 會透過外部資料庫讀取氣象報告，以擷取特定日期的報告內容。 氣象資料庫的內容不需依賴使用者的資訊或對話內容，因此您可以直接在儲存體中讀取，不需使用狀態管理員。  請參閱[如何直接寫入到儲存體](bot-builder-howto-v4-storage.md)的範例。
+For example, let's say your bot allows the user to ask for the weather report, and your bot retrieves the weather report for a specified date, by reading it from an external database. The content of the weather database isn't dependent on user information or the conversation context, so you could just read it directly from storage instead of using the state manager.  See [How to write directly to storage](bot-builder-howto-v4-storage.md) for an example.
 
-## <a name="next-steps"></a>後續步驟
+## Next steps
 
-接下來，請深入了解活動的處理方式，以及我們回應的方式。
+Next, lets get into how activities are processed, in depth, and how we respond to them.
 
 > [!div class="nextstepaction"]
-> [活動處理](bot-builder-concept-activity-processing.md)
+> [Activity Processing](bot-builder-concept-activity-processing.md)
 
-## <a name="additional-resources"></a>其他資源
+## Additional resources
 
-- [如何儲存狀態](bot-builder-howto-v4-state.md)
-- [如何直接寫入到儲存體](bot-builder-howto-v4-storage.md)
+- [How to save state](bot-builder-howto-v4-state.md)
+- [How to write directly to storage](bot-builder-howto-v4-storage.md)
+
+-->

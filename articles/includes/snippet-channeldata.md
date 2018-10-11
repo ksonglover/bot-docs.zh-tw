@@ -1,8 +1,8 @@
 # <a name="implement-channel-specific-functionality"></a>實作通道特定的功能
 
-某些通道所提供的功能，無法只透過[訊息文字和附件](../dotnet/bot-builder-dotnet-create-messages.md)來實作。 若要實作通道特定的功能，您可以將原生中繼資料傳遞至 `Activity` 物件的 `ChannelData` 屬性中的通道。 例如，Bot 可以使用 `ChannelData` 屬性，指示 Telegram 傳送貼紙或指示 Office365 傳送電子郵件。
+某些通道所提供的功能，無法只透過訊息文字和附件來實作。 若要實作通道特定的功能，您可以將原生中繼資料傳遞至活動物件「通道資料」屬性中的通道。 例如，Bot 可以使用通道資料屬性，指示 Telegram 傳送貼圖或指示 Office365 傳送電子郵件。
 
-此文章說明如何使用訊息活動的 `ChannelData` 屬性來實作此通道特定的功能：
+此文章說明如何使用訊息活動的通道資料屬性，來實作此通道特定的功能：
 
 | 通道 | 功能 |
 |----|----|
@@ -10,37 +10,52 @@
 | Slack | 傳送不失真的 Slack 訊息 |
 | Facebook | 原生傳送 Facebook 通知 |
 | Telegram | 執行 Telegram 特定動作，例如共用語音備忘或貼圖 |
-| Kik | 傳送和接收原生 Kik 訊息 | 
+| Kik | 傳送和接收原生 Kik 訊息 |
 
 > [!NOTE]
-> `Activity` 物件的 `ChannelData` 屬性值是一個 JSON 物件。 因此，本文中的範例會說明各種案例中 `channelData` JSON 屬性的預期格式。 若要使用 .NET 建立 JSON 物件，請使用 `JObject` (.NET) 類別。 
+> 活動物件的通道資料屬性值是一個 JSON 物件。
+> 因此，本文中的範例會說明各種案例中 `channelData` JSON 屬性的預期格式。
+> 若要使用 .NET 建立 JSON 物件，請使用 `JObject` (.NET) 類別。
 
 ## <a name="create-a-custom-email-message"></a>建立自訂的電子郵件訊息
 
-若要建立電子郵件訊息，請將 `Activity` 物件的 `ChannelData` 屬性設定為包含這些屬性的 JSON 物件： 
+若要建立電子郵件訊息，請將活動物件的通道資料屬性設定為包含這些屬性的 JSON 物件：
 
 | 屬性 | 說明 |
 |----|----|
+| bccRecipients | 以分號 (;) 分隔的電子郵件地址字串，用來新增至訊息的 [Bcc]\(密件副本\)欄位。 |
+| ccRecipients | 以分號 (;) 分隔的電子郵件地址字串，用來新增至訊息的 [Cc]\(副本\)欄位。 |
 | htmlBody | 會指定電子郵件訊息本文的 HTML 文件。 請參閱通道的文件，以取得受支援 HTML 元素和屬性的資訊。 |
 | importance | 電子郵件的重要性層級。 有效值為**高**、**一般**和**低**。 預設值為**一般**。 |
 | 主旨 | 電子郵件的主旨。 請參閱通道的文件，以取得欄位需求的資訊。 |
+| toRecipients | 以分號 (;) 分隔的電子郵件地址字串，用來新增至訊息的 [收件者] 欄位。 |
 
 > [!NOTE]
-> Bot 透過電子郵件通道從使用者收到的訊息，可能會包含 `ChannelData` 屬性，且其中已填入類似上述的 JSON 物件。
+> Bot 透過電子郵件通道從使用者收到的訊息，可能會包含通道資料屬性，且其中已填入類似上述的 JSON 物件。
 
-此程式碼片段會舉例說明自訂電子郵件訊息的 `channelData` 屬性。
+此程式碼片段顯示自訂電子郵件訊息的 `channelData` 屬性範例。
 
 ```json
 "channelData": {
-    "htmlBody" : "<html><body style=\"font-family: Calibri; font-size: 11pt;\">This is the email body!</body></html>",
-    "subject":"This is the email subject",
-    "importance":"high"
+    "type": "message",
+    "locale": "en-Us",
+    "channelID": "email",
+    "from": { "id": "mybot@mydomain.com", "name": "My bot"},
+    "recipient": { "id": "joe@otherdomain.com", "name": "Joe Doe"},
+    "conversation": { "id": "123123123123", "topic": "awesome chat" },
+    "channelData":
+    {
+        "htmlBody": "<html><body style = /"font-family: Calibri; font-size: 11pt;/" >This is more than awesome.</body></html>",
+        "subject": "Super awesome message subject",
+        "importance": "high",
+        "ccRecipients": "Yasemin@adatum.com;Temel@adventure-works.com"
+    }
 }
 ```
 
 ## <a name="create-a-full-fidelity-slack-message"></a>建立不失真的 Slack 訊息
 
-若要建立不失真的 Slack 訊息，請將 `Activity` 物件的 `ChannelData` 屬性設定為 JSON 物件，以指定 <a href="https://api.slack.com/docs/messages" target="_blank">Slack 訊息</a>、<a href="https://api.slack.com/docs/message-attachments" target="_blank">Slack 附件</a>和/或 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按鈕</a>。 
+若要建立不失真的 Slack 訊息，請將活動物件的通道資料屬性設定為 JSON 物件，以指定 <a href="https://api.slack.com/docs/messages" target="_blank">Slack 訊息</a>、<a href="https://api.slack.com/docs/message-attachments" target="_blank">Slack 附件</a>和/或 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按鈕</a>。
 
 > [!NOTE]
 > 若要在 Slack 訊息中支援按鈕，您必須在[將 Bot 連線](../bot-service-manage-channels.md)至 Slack 通道時啟用 [互動式訊息]。
@@ -100,7 +115,8 @@
 }
 ```
 
-當使用者按一下 Slack 訊息中的按鈕時，Bot 會收到回應訊息，其中的 `ChannelData` 屬性已填入 `payload` JSON 物件。 `payload` 物件會指定原始訊息的內容、識別已按下的按鈕，並識別按下按鈕的使用者。 
+當使用者按一下 Slack 訊息中的按鈕時，Bot 會收到回應訊息，其中的通道資料屬性已填入 `payload` JSON 物件。
+`payload` 物件會指定原始訊息的內容、識別已按下的按鈕，並識別按下按鈕的使用者。
 
 此程式碼片段顯示當使用者按一下 Slack 訊息中的按鈕時，Bot 所收到的訊息中所含有的 `channelData` 屬性範例。
 
@@ -120,8 +136,8 @@
 }
 ```
 
-Bot 可以透過[正常方式](../dotnet/bot-builder-dotnet-connector.md#create-reply)回覆此訊息，也可以將其回應直接張貼到 `payload` 物件之 `response_url` 屬性所指定的端點。
-如需何時及如何將回應張貼到 `response_url` 的資訊，請參閱 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按鈕</a>。 
+Bot 可以透過正常方式回覆此訊息，也可以將其回應直接張貼到 `payload` 物件的 `response_url` 屬性所指定的端點。
+如需何時及如何將回應張貼到 `response_url` 的資訊，請參閱 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按鈕</a>。
 
 您可以使用下列程式碼來建立動態按鈕：
 ```cs
@@ -242,7 +258,7 @@ private async Task DemoMenuAsync(IDialogContext context)
 
 ## <a name="create-a-facebook-notification"></a>建立 Facebook 通知
 
-若要建立 Facebook 通知，請將 `Activity` 物件的 `ChannelData` 屬性設定為指定這些屬性的 JSON 物件： 
+若要建立 Facebook 通知，請將活動物件的通道資料屬性設定為指定這些屬性的 JSON 物件：
 
 | 屬性 | 說明 |
 |----|----|
@@ -269,7 +285,7 @@ private async Task DemoMenuAsync(IDialogContext context)
 
 ## <a name="create-a-telegram-message"></a>建立 Telegram 訊息
 
-若要建立訊息來實作 Telegram 特定動作 (例如，共用語音備忘或貼紙)，請將 `Activity` 物件的 `ChannelData` 屬性設定為會指定這些屬性的 JSON 物件： 
+若要建立訊息來實作 Telegram 特定動作 (例如，共用語音備忘或貼圖)，請將活動物件的通道資料屬性設定為會指定這些屬性的 JSON 物件： 
 
 | 屬性 | 說明 |
 |----|----|
@@ -343,7 +359,7 @@ private async Task DemoMenuAsync(IDialogContext context)
 
 ## <a name="create-a-native-kik-message"></a>建立原生的 Kik 訊息
 
-若要建立原生的 Kik 訊息，請將 `Activity` 物件的 `ChannelData` 屬性設定為指定此屬性的 JSON 物件： 
+若要建立原生的 Kik 訊息，請將活動物件的通道資料屬性設定為指定此屬性的 JSON 物件：
 
 | 屬性 | 說明 |
 |----|----|
@@ -374,9 +390,8 @@ private async Task DemoMenuAsync(IDialogContext context)
     ]
 }
 ```
- 
+
 ## <a name="additional-resources"></a>其他資源
 
-- [活動概觀](../dotnet/bot-builder-dotnet-activities.md)
-- [建立訊息](../dotnet/bot-builder-dotnet-create-messages.md)
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活動類別</a>
+- [實體和活動類型](../bot-service-activities-entities.md)
+- [Bot Framework -- 活動結構描述](https://github.com/Microsoft/BotBuilder/blob/hub/specs/botframework-activity/botframework-activity.md)

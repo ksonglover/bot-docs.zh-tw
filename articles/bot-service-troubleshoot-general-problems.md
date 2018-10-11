@@ -6,29 +6,29 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: 648a2e3be901bfa82d84423358fa7df32d403391
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 09/26/2018
+ms.openlocfilehash: 410f50f02dcea2bb64ccf0389e20f5cb76e2fd6b
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299671"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389837"
 ---
 # <a name="troubleshooting-general-problems"></a>對一般問題進行疑難排解
 這些常見問答集可協助您對常見的 Bot 開發或作業問題進行疑難排解。
 
 ## <a name="how-can-i-troubleshoot-issues-with-my-bot"></a>如何對 Bot 的問題進行疑難排解？
 
-1. 使用 [Visual Studio Code](debug-bots-locally-vscode.md) 或 Visual Studio 對 Bot 的原始程式碼進行偵錯。
+1. 使用 [Visual Studio Code](debug-bots-locally-vscode.md) 或 [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/debugger/navigating-through-code-with-the-debugger?view=vs-2017) 針對 Bot 的原始程式碼進行偵錯。
 2. 在將 Bot 部署至雲端之前，使用[模擬器](bot-service-debug-emulator.md)來測試它。
-3. 將 Bot 部署至如 Azure 的雲端主機平台，然後在 <a href="https://dev.botframework.com" target="_blank">Bot Framework 入口網站</a> \(英文\) 中使用 Bot 儀表板上的內建網路聊天控制項來測試 Bot 的連線能力。 如果您在將 Bot 部署至 Azure 後遇到問題，則可以考慮使用此指南：[使用 Visual Studio 對 Azure App Service 中的 Web 應用程式進行疑難排解](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-bot-service-troubleshoot-visual-studio/)。
+3. 將 Bot 部署至如 Azure 的雲端主機平台，然後在 <a href="https://dev.botframework.com" target="_blank">Bot Framework 入口網站</a> \(英文\) 中使用 Bot 儀表板上的內建網路聊天控制項來測試 Bot 的連線能力。 如果您在將 Bot 部署至 Azure 後遇到問題，則可以考慮使用這篇部落格文章：[了解 Azure 疑難排解和支援](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)。
 4. 排除問題是由[驗證][TroubleshootingAuth]所導致的可能性。
 5. 在 Skype 上測試您的 Bot。 這將能協助您驗證端對端的使用者體驗。
 6. 請考慮在具有額外驗證需求的通道 (例如直接線路或網路聊天) 上測試 Bot。
 
 ## <a name="how-can-i-troubleshoot-authentication-issues"></a>如何對驗證問題進行疑難排解？
 
-如需有關對 Bot 驗證問題進行疑難排解的詳細資料，請參閱[對 Bot Framework 驗證進行疑難排解][TroubleshootingAuth]。
+如需有關對 Bot 驗證問題進行疑難排解的詳細資料，請參閱[針對 Bot Framework 驗證進行疑難排解][TroubleshootingAuth]。
 
 ## <a name="im-using-the-bot-builder-sdk-for-net-how-can-i-troubleshoot-issues-with-my-bot"></a>我是使用適用於 .NET 的 Bot 建立器 SDK。 如何對 Bot 的問題進行疑難排解？
 
@@ -87,7 +87,7 @@ Bot Framework 和許多通道都會把文字當成是以 [Markdown](https://en.w
 
 此[範例](https://github.com/Microsoft/BotBuilder/issues/2258#issuecomment-280506334) \(英文\) 示範如何以正確的 `MicrosoftAppCredentials` 設定 `Conversation.Container`，並使用簡單的 `MultiCredentialProvider` 來驗證多個應用程式識別碼與密碼。
 
-## <a name="identifiers"></a>識別碼
+## <a name="identifiers"></a>識別項
 
 ## <a name="how-do-identifiers-work-in-the-bot-framework"></a>識別碼在 Bot Framework 中的運作方式為何？
 
@@ -107,7 +107,7 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 
 ## <a name="how-can-i-use-authenticated-services-from-my-bot"></a>如何從 Bot 使用已驗證的服務？
 
-針對 Azure Active Directory 驗證，請考慮使用 [BotAuth NuGet](https://www.nuget.org/packages/BotAuth) 程式庫。 針對 Facebook 驗證範例，請參閱 GitHub 上的[適用於 .NET 的 Bot 建立器 SDK 範例](https://github.com/Microsoft/BotBuilder/tree/master/CSharp/Samples) \(英文\)。 
+如需 Azure Active Directory 驗證，請參閱新增驗證 [V3](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-3.0&tabs=csharp) | [V4](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-4.0&tabs=csharp)。 
 
 > [!NOTE] 
 > 如果您有將驗證和安全性功能加入您的 Bot，您應該確保自己在程式碼中所實作的模式會符合適用於您應用程式的安全性標準。
@@ -141,7 +141,7 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 
 ## <a name="how-can-i-send-proactive-messages-to-the-user"></a>如何傳送主動式訊息給使用者？
 
-如需如何傳送主動式訊息的範例，請參閱 GitHub 上 BotBuilder-Samples 存放庫內的 [C# 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-proactiveMessages) \(英文\) 和 [Node.js 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages) \(英文\)。
+如需如何傳送主動式訊息的範例，請參閱 GitHub 上 BotBuilder-Samples 存放庫內的 [C# V4 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/16.proactive-messages)和 [Node.js V4 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/16.proactive-messages)。
 
 ## <a name="how-can-i-reference-non-serializable-services-from-my-c-dialogs"></a>如何參考 C# 對話中不可序列化的服務？
 
@@ -151,6 +151,8 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 * 使用 [NonSerialized](https://msdn.microsoft.com/en-us/library/system.nonserializedattribute(v=vs.110).aspx) \(機器翻譯\) 和 [OnDeserialized](https://msdn.microsoft.com/en-us/library/system.runtime.serialization.ondeserializedattribute(v=vs.110).aspx) \(機器翻譯\) 屬性來還原針對還原序列化的相依性。 這是最簡單的解決方案。
 * 不儲存相依性，以使它不會被序列化。 此解決方案就技術上而言雖然可行，但並不建議。
 * 使用反映序列化代理。 此解決方案在某些情況下可能不可行，並會有過度序列化的風險。
+
+::: moniker range="azure-bot-service-3.0"
 
 ## <a name="where-is-conversation-state-stored"></a>交談狀態的儲存位置為何？
 
@@ -171,6 +173,8 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 > [!IMPORTANT]
 > 建議您不要將 Bot Framework 狀態服務 API 用於生產環境，未來版本可能會將它淘汰。 建議更新您的 Bot 程式碼以使用記憶體內部儲存體進行測試，或將其中一個 **Azure 擴充功能**用於生產環境 Bot。 如需詳細資訊，請參閱適用於 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 實作的**管理狀態資料**主題。
 
+::: moniker-end
+
 ## <a name="what-is-an-etag--how-does-it-relate-to-bot-data-bag-storage"></a>什麼是 ETag？  它與 Bot 資料包儲存體之間的關聯為何？
 
 [ETag](https://en.wikipedia.org/wiki/HTTP_ETag) 為適用於[開放式並行存取控制](https://en.wikipedia.org/wiki/Optimistic_concurrency_control)的機制。 Bot 資料包儲存體會使用 ETag 來防止資料更新衝突。 具有 HTTP 狀態碼 412「前置條件失敗」的 ETag 錯誤，表示針對該 Bot 資料包有多個並行執行的「讀取-修改-寫入」序列。
@@ -186,7 +190,11 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 
 ## <a name="how-can-i-fix-precondition-failed-412-or-conflict-409-errors"></a>如何修正「前置條件失敗」(412) 或「衝突」(409) 錯誤？
 
-這些錯誤表示您的 Bot 針對相同的交談同時處理多則訊息。 如果您的 Bot 已連線至要求精準排序之訊息的服務，您應該考慮鎖定交談狀態，以確保訊息不會以平行方式處理。 適用於 .NET 的 Bot 建立器 SDK 會提供機制 (會實作 `IScope` 的類別 `LocalMutualExclusion`) 以搭配記憶體內部旗號，來以保守模式序列化單一交談的處理。 您可以延伸此實作，以使用由交談位址設定範圍的 Redis 租用。
+這些錯誤表示您的 Bot 針對相同的交談同時處理多則訊息。 如果您的 Bot 已連線至要求精準排序之訊息的服務，您應該考慮鎖定交談狀態，以確保訊息不會以平行方式處理。 
+
+::: moniker range="azure-bot-service-3.0"
+
+適用於 .NET 的 Bot 建立器 SDK 會提供機制 (會實作 `IScope` 的類別 `LocalMutualExclusion`) 以搭配記憶體內部旗號，來以保守模式序列化單一交談的處理。 您可以延伸此實作，以使用由交談位址設定範圍的 Redis 租用。
 
 如果您的 Bot 未連線至外部服務，或服務可接受以平行方式處理來自相同交談的訊息，您便可以加入此程式碼以忽略發生在 Bot 狀態 API 中的任何衝突。 這將會允許最後的回覆設定交談狀態。
 
@@ -199,15 +207,18 @@ builder
     .InstancePerLifetimeScope();
 builder.Update(Conversation.Container);
 ```
+::: moniker-end
 
 ## <a name="is-there-a-limit-on-the-amount-of-data-i-can-store-using-the-state-api"></a>使用狀態 API 儲存的資料量是否有限制？
 
 是，每個狀態存放區 (也就是使用者、交談及私人 Bot 資料包) 可以包含最多 64kb 的資料。 如需詳細資訊，請參閱[管理狀態資料][StateAPI]。
 
+::: moniker range="azure-bot-service-3.0"
+
 ## <a name="how-do-i-version-the-bot-data-stored-through-the-state-api"></a>如何設定透過狀態 API 所儲存之 Bot 資料的版本？
 
 > [!IMPORTANT]
-> 建議您不要將 Bot Framework 狀態服務 API 用於生產環境，未來版本可能會將它淘汰。 建議更新您的 Bot 程式碼以使用記憶體內部儲存體進行測試，或將其中一個 **Azure 擴充功能**用於生產環境 Bot。 如需詳細資訊，請參閱適用於 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 實作的**管理狀態資料**主題。
+> 建議您不要將 Bot Framework 狀態服務 API 用於生產環境或 v4 Bot，因為未來版本可能會完全淘汰。 建議更新您的 Bot 程式碼以使用記憶體內部儲存體進行測試，或將其中一個 **Azure 擴充功能**用於生產環境 Bot。 如需詳細資訊，請參閱[管理狀態資料](v4sdk/bot-builder-howto-v4-state.md)主題。
 
 狀態服務可讓您保存交談中的對話進度，讓使用者於稍後繼續與 Bot 交談時不會失去原先的位置。 若要保留此進度，透過狀態 API 所儲存的 Bot 資料屬性包將不會於您修改 Bot 的程式碼時自動清除。 您應該根據已修改的程式碼是否能與舊版資料相容，來決定是否要清除 Bot 資料。 
 
@@ -216,6 +227,8 @@ builder.Update(Conversation.Container);
 
 > [!NOTE]
 > 如果對話堆疊因序列化格式變更或程式碼大幅變更而無法正確還原序列化，交談狀態將會重設。
+
+::: moniker-end
 
 ## <a name="what-are-the-possible-machine-readable-resolutions-of-the-luis-built-in-date-time-duration-and-set-entities"></a>LUIS 內建日期、時間、持續時間及設定實體有哪些可能的電腦可讀取解決方法？
 

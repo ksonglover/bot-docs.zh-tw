@@ -7,21 +7,22 @@ ms.author: v-ducvo
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 08/13/2018
-ms.openlocfilehash: e62d57a39c87e9de32a1a492b2dc1386d6574fd3
-ms.sourcegitcommit: bff936a6a3dd5b1bd3ddfeed8bd1023e52929f08
+ms.date: 09/18/2018
+ms.openlocfilehash: e676a9bf2c9dac46d728f8a37d87eae6e56df341
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/30/2018
-ms.locfileid: "43312492"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707684"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
-# <a name="create-a-bot-with-bot-service"></a>使用 Bot 服務建立 Bot
+
+# <a name="create-a-bot-with-azure-bot-service"></a>建立具有 Azure Bot Service 的 Bot
 
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
-Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連接 Bot 與通道的 Bot Framework。 建立支援 .NET 和 Node.js 的 Bot 時，Bot 服務提供五種範本供您選擇。 在本主題中，您將了解如何使用 Bot 服務來建立使用 Bot Builder SDK 的新 Bot。
+Bot 服務會提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連線 Bot 與通道的 Bot Framework。 建立支援 .NET 和 Node.js 的 Bot 時，Bot 服務提供五種範本供您選擇。 在本主題中，您將了解如何使用 Bot 服務來建立使用 Bot Builder SDK 的新 Bot。
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 登入 [Azure 入口網站](http://portal.azure.com)。
@@ -78,7 +79,7 @@ Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Buil
 
 ::: moniker range="azure-bot-service-4.0"
 
-# <a name="create-a-bot-with-bot-service"></a>使用 Bot 服務建立 Bot
+# <a name="create-a-bot-with-azure-bot-service"></a>建立具有 Azure Bot Service 的 Bot
 [!INCLUDE [pre-release-label](includes/pre-release-label.md)]
 
 Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連接 Bot 與通道的 Bot 服務。 在此主題中，您可以使用 Bot Builder SDK v4 的預覽版本，選擇 .NET 或 Node.js 範本來建立 Bot。
@@ -106,7 +107,7 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
  | **位置** | 預設的位置 | 選取資源群組的地理位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 一旦建立 Bot，就無法變更位置。 |
  | **定價層** | F0 | 選取定價層。 您可以隨時更新定價層。 如需詳細資訊，請參閱 [Bot 服務價格](https://azure.microsoft.com/en-us/pricing/details/bot-service/)。 |
  | **應用程式名稱** | 唯一的名稱 | Bot 的唯一 URL 名稱。 例如，如果您將 Bot 命名為 *myawesomebot*，則 Bot 的 URL 將會是 `http://myawesomebot.azurewebsites.net`。 名稱只能使用英數字元和底線字元。 此欄位有 35 個字元的長度限制。 一旦建立 Bot，就無法變更應用程式名稱。 |
- | **Bot 範本** | 基本 | 選擇 [SDK v4]。 選取 [C#] 或 [Node.js]，並選取 [基本] 範本以供本快速入門使用，然後按一下 [選取]。 基本範本會建立回應 Bot。 
+ | **Bot 範本** | 回應 Bot | 選擇 [SDK v4]。 選取 [C#] 或 [Node.js] 以供本快速入門使用，然後按一下 [選取]。  
  | **App Service 方案/位置** | 您的 App Service 方案  | 選取 [App Service 方案](https://azure.microsoft.com/en-us/pricing/details/app-service/plans/)位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 |
  | **Azure 儲存體** | 您的 Azure 儲存體帳戶 | 您可以建立新的資料儲存體帳戶，或使用現有的帳戶。 根據預設，Bot 會使用[表格儲存體](/azure/storage/common/storage-introduction#table-storage)。 |
  | **Application Insights** | 另一 | 決定您要**開啟**或**關閉** [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果您選取 [開啟]，您也必須指定區域位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 |
@@ -116,12 +117,18 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 
 勾選 [通知] 來確認已部署 Bot。 通知會從 [部署進行中] 變更為 [部署成功]。 按一下 [前往資源] 按鈕以開啟 Bot 的資源刀鋒視窗。
 
+現在，既然您已建立 Bot，請在 Web 聊天中測試。 
+
 ## <a name="test-the-bot"></a>測試 Bot
-現在，既然您已建立 Bot，請在 [Web 聊天](bot-service-manage-test-webchat.md)中測試它。 輸入訊息，您的 Bot 應會回應。
+在 [Bot 管理] 區段中，按一下 [在網路聊天中測試]。 Azure Bot Service 會將網路聊天控制項載入，並連線至 Bot。 
+
+![Azure 網路聊天測試](~/media/azure-bot-quickstarts/azure-webchat-test.png)
+
+輸入訊息，您的 Bot 應會回應。
 
 ## <a name="next-steps"></a>後續步驟
 
-在此主題中，您已了解如何使用 Bot 服務建立**基本** Web 應用程式 Bot，並在 Azure 中使用內建的 Web 聊天控制項驗證 Bot 功能。 現在，請了解如何管理 Bot 並開始處理其原始程式碼。
+在此主題中，您已了解如何使用 Azure Bot Service 建立**回應** Web 應用程式 Bot，並使用內建的網路聊天控制項驗證 Bot 功能。 現在，請了解如何管理 Bot 並開始處理其原始程式碼。
 
 > [!div class="nextstepaction"]
 > [管理 Bot](bot-service-manage-overview.md)

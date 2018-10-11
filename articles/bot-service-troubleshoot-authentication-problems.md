@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
-ms.openlocfilehash: a64edda73832f4d3fff49b08b5eaf6792c021ece
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 5373b18ce5c11dae4e971cb1a70307ae2901ad36
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299934"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389657"
 ---
 # <a name="troubleshooting-bot-framework-authentication"></a>針對 Bot Framework 驗證進行疑難排解
 
@@ -25,10 +25,10 @@ ms.locfileid: "39299934"
 
 Bot 安全性由您在使用 Bot Framework 註冊 Bot 時取得的**Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**進行設定。 這些值通常在 Bot 的設定檔內指定，且用來擷取來自 Microsoft 帳戶服務的存取權杖。 
 
-如果您還沒有這樣做，請[註冊您的 Bot](~/bot-service-quickstart-registration.md)以取得可用於進行驗證的 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**。 
+如果您還沒有這樣做，請[將您的 Bot 部署到 Azure](~/bot-builder-howto-deploy-azure.md)，以取得可用於進行驗證的 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**。 
 
 > [!NOTE]
-> 若要尋找您 Bot 的 **AppID** 和 **AppPassword**，請參閱 [MicrosoftAppID 和 MicrosoftAppPassword](bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
+> 若要尋找已部署 Bot 的 **AppID** 和 **AppPassword**，請參閱 [MicrosoftAppID 和 MicrosoftAppPassword](bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
 
 ## <a name="step-1-disable-security-and-test-on-localhost"></a>步驟 1：停用安全性，並在 localhost 上進行測試
 
@@ -68,7 +68,7 @@ var connector = new builder.ChatConnector({
 3. 使用模擬器連線至您的 Bot。
     - 將 `http://localhost:port-number/api/messages` 輸入模擬器的網址列，其中**連接埠號碼**必須符合應用程式執行所在瀏覽器中顯示的連接埠號碼。 
     - 請確定 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**欄位皆留白。
-    - 按一下 [連線]。
+    - 按一下 [ **連接**]。
 4. 若要測試與 Bot 的連線，請在模擬器中輸入一些文字，然後按 Enter。
 
 如果 Bot 回應輸入且聊天視窗中沒有任何錯誤，則您已驗證在停用安全性時，您的 Bot 可在 localhost 上存取和執行。 請繼續進行[步驟 2](#step-2)。
@@ -146,7 +146,7 @@ var connector = new builder.ChatConnector({
     - 將 `http://localhost:port-number/api/messages` 輸入模擬器的網址列，其中**連接埠號碼**必須符合應用程式執行所在瀏覽器中顯示的連接埠號碼。 
     - 在 **Microsoft 應用程式識別碼**欄位中輸入您 Bot 的應用程式識別碼。
     - 在 **Microsoft 應用程式密碼**欄位中輸入您的 Bot 密碼。
-    - 按一下 [連線]。
+    - 按一下 [ **連接**]。
 4. 若要測試與 Bot 的連線，請在模擬器中輸入一些文字，然後按 Enter。
 
 如果 Bot 回應輸入且聊天視窗中沒有任何錯誤，則您已驗證在啟用安全性時，您的 Bot 可在 localhost 上存取和執行。  請繼續進行[步驟 4](#step-4)。
