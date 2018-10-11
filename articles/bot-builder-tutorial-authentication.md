@@ -6,15 +6,17 @@ ms.author: JonathanFingold
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 7/2/2018
+ms.date: 10/04/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 37189bb9efbee5a2ad5f40f58106d4d85eda4473
-ms.sourcegitcommit: bff936a6a3dd5b1bd3ddfeed8bd1023e52929f08
+ms.openlocfilehash: be53d50ebfa7738b37fe9a25941fe29764f18c26
+ms.sourcegitcommit: 6c2426c43cd2212bdea1ecbbf8ed245145b3c30d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/30/2018
-ms.locfileid: "43312472"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48852193"
 ---
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
 此教學課程將使用 Azure Bot 服務中的全新 Bot 驗證功能，並提供相關功能，讓您輕鬆開發可針對 Azure AD (Azure Active Directory)、GitHub、Uber 等不同身分識別提供者驗證使用者的 Bot。 此外，這些更新也排除了部分用戶端採用的_神奇代碼驗證 (Magic code verification)_，可進一步改善使用者體驗。
 
@@ -37,10 +39,10 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 | 範例 | BotBuilder 版本 | 說明 |
 |:---|:---:|:---|
-| [AadV1Bot](https://github.com/Microsoft/BotBuilder/tree/master/CSharp/Samples/AadV1Bot) | v3 | 展使用 Azure AD v1 端點示 v3 C# SDK 中的 OAuthCard 支援 |
-| [AadV2Bot](https://github.com/Microsoft/BotBuilder/tree/master/CSharp/Samples/AadV2Bot) | v3 |  使用 Azure AD v2 端點展示 v3 C# SDK 中的 OAuthCard 支援 |
-| [GitHubBot](https://github.com/Microsoft/BotBuilder/tree/master/CSharp/Samples/GitHubBot) | v3 |  使用 GitHub 展示 v3 C# SDK 中的 OAuthCard 支援， |
-| [BasicOAuth](https://github.com/Microsoft/BotBuilder/tree/master/CSharp/Samples/Microsoft.Bot.Sample.BasicOAuth) | v3 |  展示 v3 C# SDK 中的 OAuth 2.0 支援 |
+| [AadV1Bot](https://aka.ms/AadV1Bot) | v3 | 展使用 Azure AD v1 端點示 v3 C# SDK 中的 OAuthCard 支援 |
+| [AadV2Bot](https://aka.ms/AadV2Bot) | v3 |  使用 Azure AD v2 端點展示 v3 C# SDK 中的 OAuthCard 支援 |
+| [GitHubBot](https://aka.ms/GitHubBot) | v3 |  使用 GitHub 展示 v3 C# SDK 中的 OAuthCard 支援， |
+| [BasicOAuth](https://aka.ms/BasicOAuth) | v3 |  展示 v3 C# SDK 中的 OAuth 2.0 支援 |
 
 > [!NOTE]
 > 驗證功能亦可搭配 Node.js 和 BotBuilder v3 使用。 不過，本文內容僅涵蓋範例 C# 程式碼。
@@ -360,3 +362,5 @@ else if(message.Type == ActivityTypes.Event)
     }
 }
 ```
+## <a name="additional-resources"></a>其他資源
+[Bot Builder SDK](https://github.com/microsoft/botbuilder)

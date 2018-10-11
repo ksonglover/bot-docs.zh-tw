@@ -8,14 +8,14 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f5cc520704c4bebef6250195fd3e6cbdc3b0be3f
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: c00913c4e6fa7133dad734e69167d2723257f75a
+ms.sourcegitcommit: 6c2426c43cd2212bdea1ecbbf8ed245145b3c30d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574954"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48852303"
 ---
-# <a name="send-proactive-messages"></a>傳送主動式訊息
+# <a name="send-proactive-messages"></a>傳送主動訊息
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
@@ -176,11 +176,11 @@ public class SurveyDialog : IDialog<object>
 
 ## <a name="sample-code"></a>範例程式碼
 
-如需示範如何使用適用於 .NET 的 Bot Builder SDK 傳送主動式訊息的完整範例，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-proactiveMessages" target="_blank">主動式訊息範例</a>。 在主動式訊息範例中，<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-proactiveMessages/simpleSendMessage" target="_blank">simpleSendMessage</a> 示範如何傳送臨機操作的主動式訊息，而 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-proactiveMessages/startNewDialog" target="_blank">startNewDialog</a> 示範如何傳送對話型的主動式訊息。 
+如需示範如何使用適用於 .NET 的 Bot Builder SDK 傳送主動式訊息的完整範例，請參閱 GitHub 中的<a href="https://aka.ms/proactive-messaging-cs-v3 " target="_blank">主動式訊息範例</a>。 在主動訊息範例中，<a href="https://aka.ms/proactive-sendmessage-cs-v3 " target="_blank">simpleSendMessage</a> 示範如何傳送臨機操作的主動訊息，而 <a href="https://aka.ms/proactive-newdialog-cs-v3 " target="_blank">startNewDialog</a> 示範如何傳送對話方塊式的主動訊息。 
 
 ## <a name="additional-resources"></a>其他資源
 
-- [設計和控制對話流程](../bot-service-design-conversation-flow.md)
+- [設計和控制交談流程](../bot-service-design-conversation-flow.md)
 - <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Builder SDK 參考</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-proactiveMessages" target="_blank">主動式訊息範例 (GitHub)</a>
 
