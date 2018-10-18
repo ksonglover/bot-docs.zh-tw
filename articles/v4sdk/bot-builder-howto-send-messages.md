@@ -9,18 +9,18 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 08/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 075e9b3a41462bfbb1398bd72840cc7e50d3cfca
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 5b7faaae63bdc084dac570cb33ebbc755ccbcc19
+ms.sourcegitcommit: aef7d80ceb9c3ec1cfb40131709a714c42960965
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707514"
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49383113"
 ---
 # <a name="send-text-and-spoken-messages"></a>傳送文字及語音訊息
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-您的 Bot 與使用者進行往來通訊的主要方式，都是透過**訊息**活動。 有些訊息可能只包含純文字，有些則可能包含更豐富的內容，例如卡片或附件。 Bot 回合處理常式會接收來自使用者的訊息，而您可以從該處將回應傳送給使用者。 [回合內容](bot-builder-concept-activity-processing.md#turn-context)物件會提供將訊息傳回給使用者的方法。 如需一般活動處理方式的詳細資訊，請參閱[活動處理](bot-builder-concept-activity-processing.md)。
+您的 Bot 與使用者進行往來通訊的主要方式，都是透過**訊息**活動。 有些訊息可能只包含純文字，有些則可能包含更豐富的內容，例如卡片或附件。 Bot 回合處理常式會接收來自使用者的訊息，而您可以從該處將回應傳送給使用者。 回合內容物件會提供將訊息傳回給使用者的方法。 如需一般活動處理方式的詳細資訊，請參閱[活動處理](~/v4sdk/bot-builder-basics.md#the-activity-processing-stack)。
 
 本文說明如何傳送簡單的文字和語音訊息。 如需傳送豐富內容的相關資訊，請參閱如何[新增豐富的媒體附件](bot-builder-howto-add-media-attachments.md)。 如需如何使用提示物件的相關資訊，請參閱如何[提示使用者輸入](bot-builder-prompts.md)。
 
