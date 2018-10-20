@@ -44,6 +44,7 @@
 ### [使用對話方塊來管理複雜的對話流程](v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)
 ### [處理使用者中斷](v4sdk/bot-builder-howto-handle-user-interrupt.md)
 ### [保存對話方塊中的資料](v4sdk/bot-builder-tutorial-persist-user-inputs.md)
+### [建立一組整合式對話方塊](v4sdk/bot-builder-compositcontrol.md)
 ### [使用語言理解的 LUIS](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答問題](v4sdk/bot-builder-howto-qna.md)
 ### [在您的 Bot 中新增驗證](v4sdk/bot-builder-authentication.md)

@@ -13,9 +13,9 @@
 # [App Insights 金鑰](../bot-service-resources-app-insights-keys.md)
 # [使用者代理程式要求](../bot-service-resources-user-agent.md)
 # [Bot 檢閱指導方針](../bot-service-review-guidelines.md)
-# [Bot Framework -- 活動結構描述](https://github.com/Microsoft/BotBuilder/blob/hub/specs/botframework-activity/botframework-activity.md)
-# [Bot Framework -- 卡片結構描述](https://github.com/Microsoft/BotBuilder/blob/hub/specs/botframework-activity/botframework-cards.md)
-# [Bot Framework -- 文字記錄結構描述](https://github.com/Microsoft/BotBuilder/blob/hub/specs/transcript/transcript.md)
+# [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)
+# [Bot Framework -- 卡片結構描述](https://aka.ms/botSpecs-cardSchema)
+# [Bot Framework -- 文字記錄結構描述](https://aka.ms/botSpecs-transcripts)
 # [Bot 服務合規性](../v4sdk/bot-service-compliance.md)
 # 疑難排解
 ## [針對一般問題進行疑難排解](../bot-service-troubleshoot-general-problems.md)
