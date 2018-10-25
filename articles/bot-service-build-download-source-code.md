@@ -6,14 +6,15 @@ author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 09/26/2018
-ms.openlocfilehash: ee7a7a9f1b4c06f8ad762f750099383e218d98f2
-ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
+ms.openlocfilehash: afb1c4a0e766df7ac2d122b3c7ca4e7959871dbb
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/15/2018
-ms.locfileid: "49326425"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997275"
 ---
 # <a name="download-and-redeploy-bot-code"></a>下載並重新部署 Bot 程式碼
 Azure Bot Service 允許您下載 Bot 的整個來源專案，以便您使用所選的 IDE 在本機作業。 程式碼更新完成後，您可以將變更發佈回到 Azure 入口網站。 我們將示範如何使用 Azure 入口網站和 `az` cli 下載程式碼。 我們也會說明如何使用 Visual Studio 和 `az` cli 工具重新部署已更新的 Bot 程式碼。 您可以選擇最適合您的方法。
