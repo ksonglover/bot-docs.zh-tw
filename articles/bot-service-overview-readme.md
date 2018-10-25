@@ -5,15 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3b238fee9bf0c08f1bd4c8feb1cf6b379294ecfc
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: bdc86e5e64971e503157fe69a8b962e1d9b88542
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299991"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998865"
 ---
 # <a name="how-bot-service-works"></a>Bot 服務 的運作方式
 
@@ -27,15 +27,15 @@ Bot 服務會為您的 Bot 提供兩項主控方案。 您可以選擇適合您�
 
 ### <a name="app-service-plan"></a>App Service 方案
 
-使用 App Service 方案的 Bot 是標準的 Azure Web 應用程式，您可以設定它以配置具有可預測成本和縮放比例的預先定義容量。 有使用此主控方案的 Bot，您可以：
+使用 App Service 方案的 Bot 是標準的 Azure Web 應用程式，您可以將它設定來配置可預測成本及規模的預先定義容量。 透過使用此主控方案的 Bot，您可以：
 
-* 使用進階的瀏覽器內程式碼編輯器在線上編輯 Bot 原始程式碼。
-* 使用 Visual Studio 下載、偵錯及重新發佈您的 C# Bot。
+* 使用進階的瀏覽器內程式碼編輯器，在線上編輯 Bot 原始程式碼。
+* 使用 Visual Studio 來對您的 C# Bot 進行下載、偵錯及重新發佈。
 * 輕鬆設定適用於 Visual Studio Online 和 Github 的持續部署。
-* 使用為 Bot Builder SDK 準備的範例程式碼。
+* 使用針對 Bot 建立器 SDK 準備的範例程式碼。
 
 ### <a name="consumption-plan"></a>取用方案
-使用取用方案的 Bot 是在 <a href="http://go.microsoft.com/fwlink/?linkID=747839" target="_blank">Azure Functions</a> 上執行的無伺服器 Bot，使用按執行數付費的 Azure Functions 定價。 使用此主控方案的 Bot 可調整處理大量的流量尖峰。 您可使用基本的瀏覽器內程式碼編輯器在線上編輯 Bot 原始程式碼。 如需取用方案 Bot 的執行階段環境詳細資訊，請參閱 <a target='_blank' href='/azure/azure-functions/functions-scale'>Azure Functions 取用方案和 App Service 方案</a>。
+使用取用方案的 Bot 是在 <a href="http://go.microsoft.com/fwlink/?linkID=747839" target="_blank">Azure Functions</a> 上執行的無伺服器 Bot，並使用按執行數付費的 Azure Functions 定價。 使用此主控方案的 Bot 可調整來處理大量的流量尖峰。 您可以使用基本的瀏覽器內程式碼編輯器，在線上編輯 Bot 原始程式碼。 如需取用方案 Bot 的執行階段環境詳細資訊，請參閱 <a target='_blank' href='/azure/azure-functions/functions-scale'>Azure Functions 取用和 App Service 方案</a>。
 
 ## <a name="templates"></a>範本
 

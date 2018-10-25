@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 6e83cc45e925f5d94b70260de6ac54e6f4052ca4
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 4f607050fd891eefe2129973a46d830aa0bab6c7
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299218"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997615"
 ---
 # <a name="authentication"></a>驗證
 
@@ -35,33 +36,33 @@ Authorization: BotConnector SECRET_OR_TOKEN
 
 ## <a name="secrets-and-tokens"></a>祕密和權杖
 
-Direct Line **祕密**是可用來存取屬於相關聯 bot 之任何對話的主要金鑰。 **祕密**也可用來取得**權杖**。 祕密不會過期。 
+Direct Line **祕密**是一個主要金鑰，可用來存取屬於相關聯 Bot 的任何對話。 **祕密**也可用來取得**權杖**。 祕密不會過期。 
 
 Direct Line **權杖**是一個金鑰，可用來存取單一對話。 權杖會過期，但可以重新整理。 
 
-如果您要建立服務對服務的應用程式，則在 Direct Line API 要求的 `Authorization` 標頭指定**祕密**可能是最簡單的方法。 如果您要撰寫用戶端在網頁瀏覽器或行動裝置應用程式中執行的應用程式，建議您交換權杖的祕密 (這只適用於單一對話，並且會過期，除非重新整理)，並在 Direct Line API 要求的 `Authorization` 標頭中指定**權杖**。 選擇最適合您的安全性模型。
+如果您要建立服務對服務的應用程式，則在 Direct Line API 要求的 `Authorization` 標頭中指定**祕密**可能是最簡單的方法。 如果您要撰寫用戶端在網頁瀏覽器或行動裝置應用程式中執行的應用程式，您可以將交換祕密以取得權杖 (這只適用於單一對話，而且除非重新整理，否則將會過期)，並在 Direct Line API 要求的 `Authorization` 標頭中指定**權杖**。 選擇最適合您的安全性模型。
 
 > [!NOTE]
-> 您的 Direct Line 用戶端認證與您的 Bot 認證不同。 這可讓您獨立修改金鑰，並可讓您共用用戶端權杖，而不會洩漏 Bot 的密碼。 
+> 您的 Direct Line 用戶端認證與您的 Bot 認證不同。 這可讓您獨立修訂金鑰，並讓您共用用戶端權杖，而不會洩漏 Bot 的密碼。 
 
 ## <a name="get-a-direct-line-secret"></a>取得 Direct Line 祕密
 
-您可以在 <a href="https://dev.botframework.com/" target="_blank">Bot Framework 入口網站</a>透過 Bot 的 Direct Line 頻道設定頁面，[取得 Direct Line 祕密](../bot-service-channel-connect-directline.md)：
+您可以在 <a href="https://dev.botframework.com/" target="_blank">Bot Framework 入口網站</a>中，透過 Bot 的 Direct Line 頻道設定頁面來[取得 Direct Line 祕密](../bot-service-channel-connect-directline.md)：
 
 ![Direct Line 設定](../media/direct-line-configure.png)
 
 ## <a id="generate-token"></a> 產生 Direct Line 權杖
 
-若要產生可用來存取單一對話的 Direct Line 權杖，請先在 <a href="https://dev.botframework.com/" target="_blank">Bot Framework 入口網站</a>從 Direct Line 頻道設定頁面取得 Direct Line 祕密。 然後發出這項要求，用 Direct Line 祕密交換 Direct Line 權杖：
+若要產生可用來存取單一對話的 Direct Line 權杖，請先從 <a href="https://dev.botframework.com/" target="_blank">Bot Framework 入口網站</a>的 Direct Line 頻道設定頁面取得 Direct Line 祕密。 然後發出此要求，將您的 Direct Line 祕密交換以取得 Direct Line 權杖：
 
 ```http
 POST https://directline.botframework.com/api/tokens/conversation
 Authorization: Bearer SECRET
 ```
 
-在此要求的 `Authorization` 標頭，將 **SECRET** 取代為 Direct Line 祕密的值。
+在此要求的 `Authorization` 標頭中，使用您的 Direct Line 祕密值來取代 **SECRET**。
 
-下列程式碼片段提供「產生權杖」要求和回應的範例。
+下列程式碼片段提供產生權杖要求和回應的範例。
 
 ### <a name="request"></a>要求
 
@@ -85,7 +86,7 @@ HTTP/1.1 200 OK
 
 產生權杖作業 (`POST /api/tokens/conversation`) 和[開始對話](bot-framework-rest-direct-line-1-1-start-conversation.md)作業 (`POST /api/conversations`) 類似，兩個作業都會傳回可用於存取單一對話的 `token`。 不過，不同於「開始對話」作業，產生權杖作業不會開始對話或連絡 Bot。 
 
-如果您計畫要將權杖散發給用戶端，並且要它們起始對話，請使用「產生權杖」作業。 如果您想要立即開始對話，請改為使用[開始對話](bot-framework-rest-direct-line-1-1-start-conversation.md)作業。
+如果您計畫要將權杖散發給用戶端，並且要它們起始對話，請使用「產生權杖」作業。 如果您想要立即開始對話，請改用[開始對話](bot-framework-rest-direct-line-1-1-start-conversation.md)作業。
 
 ## <a id="refresh-token"></a> 重新整理 Direct Line 權杖
 
@@ -98,7 +99,7 @@ Authorization: Bearer TOKEN_TO_BE_REFRESHED
 
 在此要求的 URI，將 **{conversationId}** 取代為權杖有效的對話識別碼，並在此要求的 `Authorization` 標頭中，將 **TOKEN_TO_BE_REFRESHED** 取代為您要重新整理的 Direct Line 權杖。
 
-下列程式碼片段提供「重新整理權杖」要求和回應的範例。
+下列程式碼片段提供重新整理權杖要求和回應的範例。
 
 ### <a name="request"></a>要求
 

@@ -1,31 +1,37 @@
 ---
 title: 將 Bot 連線至 Skype | Microsoft Docs
-description: 了解如何配置 Bot，以透過 Skpye 介面存取。
+description: 了解如何配置 Bot，以透過 Skype 介面存取。
 keywords: skype, Bot 頻道, 設定 skype, 發佈, 連接到頻道
 author: v-ducvo
 ms.author: RobStand
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 2/1/2018
-ms.openlocfilehash: 5dc4063125855113f813b8873b01df84c90e197e
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 10/11/2018
+ms.openlocfilehash: 6fec83e7e37ba4759e8e305be8c98382f0bedeff
+ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299194"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49315074"
 ---
 # <a name="connect-a-bot-to-skype"></a>將 Bot 連線至 Skype
 
 Skype 可讓您透過立即訊息、 電話和視訊通話連接使用者。 藉由建置使用者可以透過 Skype 介面探索與互動的 Bot 來擴充這項功能。
 
-若要新增 Skype 通道，請在 [Azure 入口網站](https://portal.azure.com/)中開啟 Bot，按一下 [**通道**] 刀鋒視窗，然後按一下 [**Skype**]。 系統會將您引導至 [**配置 Skype**] 設定頁面。 填妥關於 Bot 的所有必要資訊，然後按一下 [**儲存**] 以連接 Skype 頻道。 接受**服務條款**，Skype 頻道將會新增至您的 Bot。
+若要新增 Skype 通道，請在 [Azure 入口網站](https://portal.azure.com/)中開啟 Bot，按一下 [**通道**] 刀鋒視窗，然後按一下 [**Skype**]。
 
 ![新增 Skype 頻道](~/media/channels/skype-addchannel.png)
 
+系統會將您引導至 [**配置 Skype**] 設定頁面。
+
+![設定 Skype 通道](~/media/channels/skype_configure.png)
+
+您需要在 [Web 控制項]、[傳訊]、[呼叫]、[群組] 和 [發佈] 中進行設定。 讓我們逐一進行設定。
+
 ## <a name="web-control"></a>Web 控制項
 
-若要將 Bot 嵌入您的網站，您可以按一下 [**Web 控制項**] 區段中的 [**取得內嵌程式碼**] 按鈕。
+若要將 Bot 嵌入您的網站，請按一下 [Web 控制項] 區段中的 [取得內嵌程式碼] 按鈕。 這會將您導向 Skype for Developers 頁面。 請遵循那裡的指示來取得內嵌程式碼。
 
 ## <a name="messaging"></a>訊息
 
@@ -44,6 +50,8 @@ Skype 可讓您透過立即訊息、 電話和視訊通話連接使用者。 藉
 此區段會配置 Bot 的發佈設定。 所有標示「*」的欄位，皆為必填欄位。
 
 在**預覽**中的 Bot 限制為 100 名連絡人。 如果您需要 100 位以上的連絡人，請提交 Bot 進行審查。 按一下 [**提交以供審查**] 會在接受後自動讓您的 Bot 可在 Skype 中搜尋。 如果您的要求未通過核准，則會通知您需要變更才能通過核准的項目。
+
+完成設定之後，請按一下 [儲存] 並接受 [服務條款]。 Skype 通道現在已新增至您的 Bot。
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -9,18 +9,18 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 09/19/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b70f0bfbc76ad06be30fc7f590118b69ab1baf92
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 61e86ce9536bc5d77dc7bd411054b2f65bce8dd9
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389737"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326555"
 ---
 # <a name="persist-user-data"></a>保存使用者資料
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-當 Bot 要求使用者輸入時，您可能會想要以某些形式的儲存體保存某些資訊。 Bot Builder SDK 可讓您使用「記憶體內部儲存體」或資料庫儲存體 (例如 CosmosDB) 來儲存使用者輸入。 針對 Bot 進行測試或建立原型期間，主要會使用本機儲存體類型。 不過，生產 Bot 最適合使用永續性儲存體類型 (例如資料庫儲存體)。 
+當 Bot 要求使用者輸入時，您可能會想要以某些形式的儲存體保存某些資訊。 Bot Builder SDK 可讓您使用「記憶體內部儲存體」或資料庫儲存體 (例如 CosmosDB) 來儲存使用者輸入。 針對 Bot 進行測試或建立原型期間，主要會使用本機儲存體類型。 不過，生產 Bot 最適合使用永續性儲存體類型 (例如資料庫儲存體)。
 
 本主題說明如何定義儲存體物件，以及如何將使用者輸入儲存到該儲存體物件，以便保存。 我們會使用對話方塊向使用者詢問其名稱 (如果我們還不知道的話)。 不論您選擇使用的儲存體類型為何，用於連結和保存資料的程序都相同。 本主題中的程式碼使用 `CosmosDB` 作為用來保存資料的儲存體。
 
@@ -50,15 +50,18 @@ ms.locfileid: "47389737"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-從 NuGet 套件管理員安裝這些套件。
+我們先從基本的 EchoBot 範本開始。 如需指示，請參閱[適用於 .NET 的快速入門](~/dotnet/bot-builder-dotnet-quickstart.md)。
+
+從 NuGet 套件管理員安裝這些額外套件。
 
 * **Microsoft.Bot.Builder.Azure**
 * **Microsoft.Bot.Builder.Dialogs**
-* **Microsoft.Bot.Builder.Integration.AspNet.Core**
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-瀏覽至您的 Bot 專案資料夾，然後安裝來自 NPM 的 `botbuilder-dialogs` 套件：
+我們先從基本的 EchoBot 範本開始。 如需指示，請參閱[適用於 JavaScript 的快速入門](~/javascript/bot-builder-javascript-quickstart.md)。
+
+安裝這些額外的 npm 套件。
 
 ```cmd
 npm install --save botbuilder-dialogs
@@ -70,11 +73,13 @@ npm install --save botbuilder-azure
 若要測試您在本教學課程中建立的 Bot，您必須安裝 [BotFramework 模擬器](https://github.com/Microsoft/BotFramework-Emulator)。
 
 ## <a name="create-a-cosmosdb-service-and-update-your-application-settings"></a>建立 CosmosDB 服務並更新應用程式設定
+
 若要設定 CosmosDB 服務和資料庫，請遵循[使用 CosmosDB](bot-builder-howto-v4-storage.md#using-cosmos-db) 的指示。 其步驟摘要如下︰
-   1. 在新的瀏覽器視窗中，登入 <a href="http://portal.azure.com/" target="_blank">Azure 入口網站</a>。
-   1. 按一下 [建立資源] > [資料庫] > [Azure Cosmos DB]。
-   1. 在 [新增帳戶] 頁面的 [識別碼] 欄位中，提供唯一的名稱。 針對 [API]，選取 [SQL]，然後提供 [訂用帳戶]、[位置] 和 [資源群組] 資訊。
-   1. 按一下頁面底部的 [新增] 。
+
+1. 在新的瀏覽器視窗中，登入 <a href="http://portal.azure.com/" target="_blank">Azure 入口網站</a>。
+1. 按一下 [建立資源] > [資料庫] > [Azure Cosmos DB]。
+1. 在 [新增帳戶] 頁面的 [識別碼] 欄位中，提供唯一的名稱。 針對 [API]，選取 [SQL]，然後提供 [訂用帳戶]、[位置] 和 [資源群組] 資訊。
+1. 按一下頁面底部的 [新增] 。
 
 然後，在該服務中新增集合以用於此 Bot。
 
@@ -104,18 +109,18 @@ npm install --save botbuilder-azure
 
 **.env**
 
-```cmd
-DB_SERVICE_ENDPOINT=<database service endpoint>
+```text
+DB_SERVICE_ENDPOINT=<your-CosmosDB-endpoint>
 AUTH_KEY=<authentication key>
-DATABASE=<database name>
-COLLECTION=<collection name>
+DATABASE=<your-primary-key>
+COLLECTION=<your-collection-identifier>
 ```
 
 然後，在 Bot 的主要 **index.js** 檔案中，取代 `storage` 以使用 `CosmosDbStorage` 而非 `MemoryStorage`。 執行期間會提取環境變數，並填入這些欄位。
 
 ```javascript
 const storage = new CosmosDbStorage({
-    serviceEndpoint: process.env.DB_SERVICE_ENDPOINT, 
+    serviceEndpoint: process.env.DB_SERVICE_ENDPOINT,
     authKey: process.env.AUTH_KEY, 
     databaseId: process.env.DATABASE,
     collectionId: process.env.COLLECTION
@@ -126,8 +131,7 @@ const storage = new CosmosDbStorage({
 
 ## <a name="create-storage-state-manager-and-state-property-accessor-objects"></a>建立儲存體、狀態管理員和狀態屬性存取子物件
 
-Bot 會使用狀態管理和儲存體物件來管理和保存狀態。 管理員會提供抽象層，讓您使用狀態屬性存取子存取狀態屬性，而不受基礎儲存體類型所影響。 您可以使用狀態管理員來將資料寫入至儲存體。 
-
+Bot 會使用狀態管理和儲存體物件來管理和保存狀態。 管理員會提供抽象層，讓您使用狀態屬性存取子存取狀態屬性，而不受基礎儲存體類型所影響。 您可以使用狀態管理員來將資料寫入至儲存體。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -190,13 +194,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Azure;
-using Microsoft.Bot.Builder.BotFramework;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Integration;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
-using Microsoft.Bot.Builder.TraceExtensions;
+using Microsoft.Bot.Configuration;
+using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 ```
 
@@ -215,14 +220,14 @@ public void ConfigureServices(IServiceCollection services)
         // ...
 
         // Use persistent storage and create state management objects.
-        var CosmosSettings = Configuration.GetSection("CosmosDB");
+        var cosmosSettings = Configuration.GetSection("CosmosDB");
         IStorage storage = new CosmosDbStorage(
             new CosmosDbStorageOptions
             {
-                DatabaseId = CosmosSettings["DatabaseID"],
-                CollectionId = CosmosSettings["CollectionID"],
-                CosmosDBEndpoint = new Uri(CosmosSettings["EndpointUri"]),
-                AuthKey = CosmosSettings["AuthenticationKey"],
+                DatabaseId = cosmosSettings["DatabaseID"],
+                CollectionId = cosmosSettings["CollectionID"],
+                CosmosDBEndpoint = new Uri(cosmosSettings["EndpointUri"]),
+                AuthKey = cosmosSettings["AuthenticationKey"],
             });
         options.State.Add(new ConversationState(storage));
         options.State.Add(new UserState(storage));
@@ -246,11 +251,12 @@ public void ConfigureServices(IServiceCollection services)
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-### <a name="indexjs"></a>index.js
+### <a name="update-your-server-code"></a>更新您的伺服器程式碼
 
-在主要 Bot 的 **index.js** 檔案中，更新下列 require 陳述式。
+在專案的 **index.js** 檔案中，更新下列 require 陳述式。
 
 ```javascript
+// Import required bot services.
 const { BotFrameworkAdapter, ConversationState, UserState } = require('botbuilder');
 const { CosmosDbStorage } = require('botbuilder-azure');
 ```
@@ -258,17 +264,49 @@ const { CosmosDbStorage } = require('botbuilder-azure');
 我們會使用 `UserState` 來儲存本教學課程的資料。 我們需要建立新的 `userState` 物件，並更新這行程式碼以將第二個參數傳遞至 `MainDialog` 類別。
 
 ```javascript
-// Create conversation state with in-memory storage provider. 
+// Create conversation state with in-memory storage provider.
 const conversationState = new ConversationState(storage);
 const userState = new UserState(storage);
 
 // Create the main dialog.
-const mainDlg = new MainDialog(conversationState, userState);
+const bot = new MyBot(conversationState, userState);
 ```
 
-### <a name="dialogsmaindialogindexjs"></a>dialogs/mainDialog/index.js
+如果發生一般錯誤，請清除對話和使用者狀態。
 
-在 `MainDialog` 類別中，需要有必要程式庫以供 Bot 操作。 在本教學課程中，我們會使用 **對話方塊**程式庫。
+```javascript
+// Catch-all for errors.
+adapter.onTurnError = async (context, error) => {
+    // This check writes out errors to console log .vs. app insights.
+    console.error(`\n [onTurnError]: ${error}`);
+    // Send a message to the user
+    context.sendActivity(`Oops. Something went wrong!`);
+    // Clear out state
+    await conversationState.load(context);
+    await conversationState.clear(context);
+    await userState.load(context);
+    await userState.clear(context);
+    // Save state changes.
+    await conversationState.saveChanges(context);
+    await userState.saveChanges(context);
+};
+```
+
+並且更新 HTTP 伺服器迴圈來呼叫我們的 Bot 物件。
+
+```javascript
+// Listen for incoming requests.
+server.post('/api/messages', (req, res) => {
+    adapter.processActivity(req, res, async (context) => {
+        // Route to main dialog.
+        await bot.onTurn(context);
+    });
+});
+```
+
+### <a name="update-your-bot-logic"></a>更新您的 Bot 邏輯
+
+在 `MyBot` 類別中，需要有必要程式庫以供 Bot 操作。 在本教學課程中，我們會使用 **對話方塊**程式庫。
 
 ```javascript
 // Required packages for this bot
@@ -277,30 +315,29 @@ const { DialogSet, WaterfallDialog, TextPrompt, NumberPrompt } = require('botbui
 
 ```
 
-更新 `MainDialog` 類別的建構函式以接受將第二個參數作為 `userState`。 此外，更新建構函式以定義本教學課程所需的狀態、對話方塊和提示。 在此案例中，我們會定義有兩個步驟的瀑布，其中「步驟 1」會要求使用者輸入其名稱，「步驟 2」則會傳回使用者輸入。 該資訊則由 Bot 的主要邏輯保存。
+更新 `MyBot` 類別的建構函式以接受第二個參數 `userState`。 此外，更新建構函式以定義本教學課程所需的狀態、對話方塊和提示。 在此案例中，我們會定義有兩個步驟的瀑布，其中「步驟 1」會要求使用者輸入其名稱，而「步驟 2」則會傳回使用者的回應。 該資訊則由 Bot 的主要邏輯保存。
 
 ```javascript
-constructor (conversationState, userState) {
+constructor(conversationState, userState) {
 
-    // creates a new state accessor property. see https://aka.ms/about-bot-state-accessors to learn more about the bot state and state accessors 
+    // creates a new state accessor property.
     this.conversationState = conversationState;
     this.userState = userState;
 
     this.dialogState = this.conversationState.createProperty('dialogState');
-
     this.userDataAccessor = this.userState.createProperty('userData');
 
     this.dialogs = new DialogSet(this.dialogState);
-    
+
     // Add prompts
     this.dialogs.add(new TextPrompt('textPrompt'));
-    
-    // Check in user:
+
+    // Add a waterfall dialog to collect and return the user's name.
     this.dialogs.add(new WaterfallDialog('greetings', [
         async function (step) {
             return await step.prompt('textPrompt', "What is your name?");
         },
-        async function (step){
+        async function (step) {
             return await step.endDialog(step.result);
         }
     ]));
@@ -331,7 +368,7 @@ public class GreetingsDialog : DialogSet
     /// <summary>The ID of the main dialog.</summary>
     public const string MainDialog = "main";
 
-    /// <summary>The ID of the the text prompt to use in the dialog.</summary>
+    /// <summary>The ID of the text prompt to use in the dialog.</summary>
     private const string TextPrompt = "textPrompt";
 
     /// <summary>Creates a new instance of this dialog set.</summary>
@@ -483,14 +520,14 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
                     await turnContext.SendActivityAsync($"Pleased to meet you {userData.Name}.");
                 }
             }
-            // Else, if we don't have the user's name yet, ask for it.
             else if (userData.Name is null)
             {
+                // Else, if we don't have the user's name yet, ask for it.
                 await dc.BeginDialogAsync(GreetingsDialog.MainDialog);
             }
-            // Else, echo the user's message text.
             else
             {
+                // Else, echo the user's message text.
                 await turnContext.SendActivityAsync($"{userData.Name} said, '{turnContext.Activity.Text}'.");
             }
 
@@ -516,20 +553,17 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-更新 `MainDialog` 的 `onTurn` 處理常式。
-
-**dialogs/mainDialog/index.js**
+更新的 Bot 的 `onTurn` 處理常式。
 
 ```javascript
 async onTurn(turnContext) {
-        
     const dc = await this.dialogs.createContext(turnContext); // Create dialog context
     const userData = await this.userDataAccessor.get(turnContext, {});
 
-    switch(turnContext.activity.type){
+    switch (turnContext.activity.type) {
         case ActivityTypes.ConversationUpdate:
             if (turnContext.activity.membersAdded[0].name !== 'Bot') {
-                if(userData.name){
+                if (userData.name) {
                     await turnContext.sendActivity(`Hi ${userData.name}! Welcome back to the User Data bot.`);
                 }
                 else {
@@ -538,12 +572,12 @@ async onTurn(turnContext) {
                     await dc.beginDialog('greetings');
                 }
             }
-        break;
+            break;
         case ActivityTypes.Message:
             // If there is an active dialog running, continue it
-            if(dc.activeDialog){
+            if (dc.activeDialog) {
                 var turnResult = await dc.continueDialog();
-                if(turnResult.status == "complete" && turnResult.result){
+                if (turnResult.status == "complete" && turnResult.result) {
                     // If it completes successfully and returns a value, save the name and greet the user.
                     userData.name = turnResult.result;
                     await this.userDataAccessor.set(turnContext, userData);
@@ -551,50 +585,48 @@ async onTurn(turnContext) {
                 }
             }
             // Else, if we don't have the user's name yet, ask for it.
-            else if(!userData.name){
+            else if (!userData.name) {
                 await dc.beginDialog('greetings');
             }
             // Else, echo the user's message text.
             else {
                 await turnContext.sendActivity(`${userData.name} said, ${turnContext.activity.text}.`);
             }
-        break;
-        case "deleteUserData":
+            break;
+        case ActivityTypes.DeleteUserData:
             // Delete the user's data.
-            // Note: You can use the emuluator to send this activity.
+            // Note: You can use the Emulator to send this activity.
             userData.name = null;
             await this.userDataAccessor.set(turnContext, userData);
             await turnContext.sendActivity("I have deleted your user data.");
-        break;
+            break;
     }
 
-    // Save changes to the user name.
-    await this.userState.saveChanges(turnContext);
-
-    // End this turn by saving changes to the conversation state.
+    // Save changes to the conversation and user states.
     await this.conversationState.saveChanges(turnContext);
-
+    await this.userState.saveChanges(turnContext);
 }
-
 ```
 
 ---
 
 ## <a name="start-your-bot-in-visual-studio"></a>在 Visual Studio 中啟動 Bot
+
 建置並執行應用程式。
 
 ## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並且連線至您的 Bot
 
 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 
-1. 按一下模擬器 [歡迎使用] 索引標籤中的 [開啟 Bot] 連結。 
+1. 按一下模擬器 [歡迎] 索引標籤中的 [開啟 Bot] 連結。
 2. 選取位於您建立 Visual Studio 解決方案的目錄中的 .bot 檔案。
 
 ## <a name="interact-with-your-bot"></a>與您的 Bot 互動
+
 傳送訊息給 Bot，Bot 就會以訊息回應。
 ![模擬器執行中](../media/emulator-v4/emulator-running.png)
 
-
 ## <a name="next-steps"></a>後續步驟
+
 > [!div class="nextstepaction"]
 > [管理對話和使用者狀態](bot-builder-howto-v4-state.md)

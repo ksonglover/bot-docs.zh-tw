@@ -5,15 +5,16 @@ author: MalarGit
 ms.author: malarch
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 35aca6f5f50602d0a90c41997eff2e8b1d2cdb4e
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 6ceeca9adc9cad9e60a73c1c7c91bea43b97fdd9
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905610"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997917"
 ---
 # <a name="build-a-real-time-media-bot-for-skype"></a>建置適用於 Skype 的即時媒體 Bot
 
@@ -30,11 +31,11 @@ ms.locfileid: "42905610"
 
 若要使用即時媒體平台，則必須具備下列服務組態。
 
-* Bot 必須知道其服務的完整網域名稱 (FQDN)。 這不是由 Azure RoleEnvironment API 所提供；反而，FQDN 必須儲存在 Bot 的雲端服務組態中，並且在服務啟動期間讀取。
+* Bot 必須知道其服務的完整網域名稱 (FQDN)。 FQDN 不會由 Azure RoleEnvironment API 來提供；相反地，FQDN 必須儲存在 Bot 的雲端服務組態中，並且在服務啟動期間讀取。
 
-* Bot Service 必須具有由公認的憑證授權單位簽發。 憑證的指紋必須儲存在 Bot 的雲端服務組態中，並且在服務啟動期間讀取。
+* Bot Service 必須具有由公認的授權單位所簽發的憑證。 憑證的指紋必須儲存在 Bot 的雲端服務組態中，並且在服務啟動期間讀取。
 
-* 必須佈建公用<a href="/azure/cloud-services/cloud-services-enable-communication-role-instances#instance-input-endpoint">執行個體輸入點</a>。 這會將唯一的公用連接埠，指派給 Bot Service 中的每個虛擬機器 (VM) 執行個體。 即時媒體平台會使用此連接埠來與 Skype Calling Cloud 通訊。
+* 必須佈建公用<a href="/azure/cloud-services/cloud-services-enable-communication-role-instances#instance-input-endpoint">執行個體輸入點</a>。 這會將唯一的公用連接埠，指派給 Bot Service 中的每個虛擬機器 (VM) 執行個體。 即時媒體平台會使用此連接埠來與 Skype Calling Cloud 通訊。
   ```xml
   <InstanceInputEndpoint name="InstanceMediaControlEndpoint" protocol="tcp" localPort="20100">
     <AllocatePublicPortFrom>
@@ -65,12 +66,12 @@ ms.locfileid: "42905610"
   </NetworkConfiguration>
   ```
 
-* 在服務執行個體啟動期間，指令碼 `MediaPlatformStartupScript.bat` (當作 Nuget 套件的一部分提供) 必須以提升的權限作為啟動工作執行。 呼叫平台的初始化方法之前，必須完成指令碼執行。 
+* 在服務執行個體啟動期間，指令碼 `MediaPlatformStartupScript.bat` (當作 Nuget 套件的一部分提供) 必須以提升的權限作為啟動工作執行。 呼叫平台的初始化方法之前，必須完成指令碼執行。 
 
 ```xml
 <Startup>
-<Task commandLine="MediaPlatformStartupScript.bat" executionContext="elevated" taskType="simple" />      
-</Startup> 
+<Task commandLine="MediaPlatformStartupScript.bat" executionContext="elevated" taskType="simple" />      
+</Startup> 
 ```
 
 ## <a name="initialize-the-media-platform-on-service-startup"></a>在服務啟動時初始化媒體平台
@@ -237,25 +238,25 @@ private Task OnIncomingCallReceived(RealTimeMediaIncomingCallEvent incomingCallE
 `AnswerAppHostedMedia` 動作完成時會引發 `OnAnswerAppHostedMediaCompleted`。 `AnswerAppHostedMediaOutcomeEvent` 中的 `Outcome` 屬性可指出成功或失敗。 如果無法建立通話，則 Bot 應該處置它為通話所建立的 AudioSocket 和 VideoSocket 物件。
 
 ## <a name="receive-audio-media"></a>接收音訊媒體
-如果透過接收音訊功能建立 `AudioSocket`，則會在每次收到音訊框架時叫用 `AudioMediaReceived` 事件。 不論可能成為音訊內容來源的對等裝置為何，Bot 都應該要每秒處理大約 50 次這個事件 (因為若未從對等裝置收到任何音訊，就會在本機產生舒適雜訊緩衝區)。 音訊內容的每個封包都是在 `AudioMediaBuffer` 物件中傳遞。 此物件包含一個指標，可指出包含已解碼音訊內容的原生堆積配置記憶體緩衝區。 
+如果透過接收音訊功能建立 `AudioSocket`，則會在每次收到音訊框架時叫用 `AudioMediaReceived` 事件。 不論可能成為音訊內容來源的對等裝置為何，Bot 都應該要每秒處理大約 50 次這個事件 (因為若未從對等裝置收到任何音訊，就會在本機產生舒適雜訊緩衝區)。 音訊內容的每個封包都是在 `AudioMediaBuffer` 物件中傳遞。 此物件包含一個指標，可指出包含已解碼音訊內容的原生堆積配置記憶體緩衝區。 
 
 ```cs
 void OnAudioMediaReceived(
-            object sender,
-            AudioMediaReceivedEventArgs args)
+            object sender,
+            AudioMediaReceivedEventArgs args)
 {
-   var buffer = args.Buffer;
+   var buffer = args.Buffer;
 
    // native heap-allocated memory containing decoded content
-   IntPtr rawData = buffer.Data;            
+   IntPtr rawData = buffer.Data;            
 }
 ```
 
-事件處理常式必須快速傳回。 建議應用程式將 `AudioMediaBuffer` 排成以非同步方式處理。 `OnAudioMediaReceived` 事件會由即時媒體平台序列化 (也就是，直到目前的事件傳回，才會引發下一個事件)。 取用 `AudioMediaBuffer` 之後，應用程式就必須呼叫緩衝區的 Dispose 方法，以便媒體平台回收基礎非受控記憶體。 
+事件處理常式必須快速傳回。 建議應用程式將 `AudioMediaBuffer` 排成以非同步方式處理。 `OnAudioMediaReceived` 事件會由即時媒體平台序列化 (也就是，直到目前的事件傳回，才會引發下一個事件)。 取用 `AudioMediaBuffer` 之後，應用程式就必須呼叫緩衝區的 Dispose 方法，以便媒體平台回收基礎非受控記憶體。 
 
 ```cs
-   // release/dispose buffer when done 
-   buffer.Dispose();
+   // release/dispose buffer when done 
+   buffer.Dispose();
 ```
 
 > [!IMPORTANT]
@@ -269,15 +270,15 @@ void OnAudioMediaReceived(
 
 ```cs
 void AudioSocket_OnSendStatusChanged(
-             object sender,
-             AudioSendStatusChangedEventArgs args)
+             object sender,
+             AudioSendStatusChangedEventArgs args)
 {
     switch (args.MediaSendStatus)
     {
     case MediaSendStatus.Active:
-        // notify bot to begin sending audio 
+        // notify bot to begin sending audio 
         break;
-     
+     
     case MediaSendStatus.Inactive:
         // notify bot to stop sending audio
         break;
@@ -294,19 +295,19 @@ void AudioSocket_OnSendStatusChanged(
 
 ```cs
 void VideoSocket_OnSendStatusChanged(
-            object sender,
-            VideoSendStatusChangedEventArgs args)
+            object sender,
+            VideoSendStatusChangedEventArgs args)
 {
     VideoFormat preferredVideoFormat;
 
     switch (args.MediaSendStatus)
     {
     case MediaSendStatus.Active:
-        // notify bot to begin sending audio 
+        // notify bot to begin sending audio 
         // bot is recommended to use this format for sourcing video content.
         preferredVideoFormat = args.PreferredVideoSourceFormat;
         break;
-     
+     
     case MediaSendStatus.Inactive:
         // notify bot to stop sending audio
         break;

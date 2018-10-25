@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: dd8869c26a87718177462db2508e41aa82810e21
-ms.sourcegitcommit: f0b22c6286e44578c11c9f15d22b542c199f0024
+ms.openlocfilehash: ab7e6a8e6bbb2cf12fca0371f2de561f4fb47fd8
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47404074"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326525"
 ---
 # <a name="design-knowledge-bots"></a>設計知識型 Bot
 
@@ -129,7 +129,7 @@ Bot 可正確回答直接對應至知識庫中已經配置的問題。 不過，
 2. 先呼叫 LUIS，如果沒有任何意圖符合特定閾值分數 (即觸發「無」意圖)，則呼叫 QnA Maker。 或者，針對 QnA Maker 建立 LUIS 意圖，並使用對應至「QnAIntent」的範例 QnA 問題饋送至 LUIS 模型。 
 3. 先呼叫 QnA Maker，如果沒有任何答案符合特定閾值分數，則呼叫 LUIS。 
 
-Bot Builder SDK 具備 LUIS 和 QnA Maker 內建支援。 此可讓您觸發對話方塊，或使用 LUIS 和/或 QnA Maker 自動回答問題，而無須實作這兩項工具的自訂呼叫。 如需詳細資訊，請參閱 [Bot 服務範本](bot-service-concept-templates.md)。
+Bot Builder SDK 具備 LUIS 和 QnA Maker 內建支援。 此可讓您觸發對話方塊，或使用 LUIS 和/或 QnA Maker 自動回答問題，而無須實作這兩項工具的自訂呼叫。 如需詳細資訊，請參閱 [Bot Builder 分派工具教學課程](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0)。
 
 > [!TIP]
 > 實作 LUIS、QnA Maker 和/或 Azure 搜尋服務組合時，使用每項工具測試輸入，以判斷每個模型的閾值分數。 LUIS、QnA Maker 和 Azure 搜尋服務會各自使用不同的評分條件來產生分數，因此這些工具產生的分數不一定相容。 此外，LUIS 和 QnA Maker 會標準化分數。 在 LUIS 模型中視為「良好」的分數，在其他模型不一定分類到「良好」。 

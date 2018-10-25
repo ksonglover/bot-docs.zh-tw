@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: ca54abf89f8967b2b109895326d13a601030fdec
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6ee7120536d42257dde2ed1411df32d807268e33
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299402"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000015"
 ---
 # <a name="upgrade-your-bot-to-bot-framework-api-v3"></a>將 Bot 升級為 Bot Framework API 第 3 版
 
@@ -33,7 +34,7 @@ ms.locfileid: "39299402"
 1. 按一下 [Manage Microsoft App ID and password] \(管理 Microsoft 應用程式識別碼和密碼\)。  
 ![組態](~/media/upgrade/manage-app-id.png)
 
-2. 按一下 [Generate New Password] \(產生新密碼\)。  
+2. 按一下 [產生新密碼]。  
 ![產生新密碼](~/media/upgrade/generate-new-password.png)
 
 3. 複製並儲存新密碼以及 MSA 應用程式識別碼；您在未來將需要這些值。  
@@ -128,7 +129,7 @@ Bot Framework API 第 3 版引入了更健全的附件和卡片實作。 API 第
 在 Bot Framework API 第 1 版中，用於管理 Bot 狀態資料的 API 包含在傳訊 API 中。 而在 Bot Framework API 第 3 版中，這些 API 是分開的。 現在，您必須使用 Bot 狀態服務來取得狀態資料 (而不是假設它將包含在 `Message` 物件內)，以及儲存狀態資料 (而不是作為 `Message` 物件的一部分傳遞)。 如需使用 Bot 狀態服務管理 Bot 狀態資料的資訊，請參閱[管理狀態資料](~/dotnet/bot-builder-dotnet-state.md)。
 
 > [!IMPORTANT]
-> 建議您不要將 Bot Framework State Service API 用於生產環境，未來版本可能會將其淘汰。 建議更新 Bot 程式碼以使用記憶體內部儲存體進行測試，或將任何一個 **Azure 延伸模組**用於生產 Bot。 如需詳細資訊，請參閱**管理狀態資料**主題，以了解 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或[節點](~/nodejs/bot-builder-nodejs-state.md)實作。
+> 建議您不要將 Bot Framework State Service API 用於生產環境，未來版本可能會將其淘汰。 建議更新您的 Bot 程式碼以使用記憶體內部儲存體進行測試，或將其中一個 **Azure 擴充功能**用於生產環境 Bot。 如需詳細資訊，請參閱**管理狀態資料**主題，以了解 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或[節點](~/nodejs/bot-builder-nodejs-state.md)實作。
 
 ### <a name="webconfig-changes"></a>Web.config 變更
 

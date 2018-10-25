@@ -6,15 +6,16 @@ author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 9/25/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c70711d747e9646acf63b6ee206d0b8db25ef202
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 07035c8f0dfc7473192d8c51667ed1f5cefbc555
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389683"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999391"
 ---
 # <a name="manage-simple-conversation-flow-with-dialogs"></a>使用對話方塊來管理簡單對話流程
 
@@ -236,7 +237,7 @@ private async Task<DialogTurnResult> SummaryStepAsync(WaterfallStepContext stepC
 }
 ```
 
-對話會從 Bot 的 on turn 處理常式來執行，其會先建立對話方塊內容並視情況繼續 (continue) 或開始對話方塊，然後在回合結束時儲存對話和使用者狀態。
+對話方塊會從 Bot 的 on turn 處理常式來執行，其會先建立對話方塊內容並視情況繼續 (continue) 或開始對話方塊，然後在回合結束時儲存對話和使用者狀態。
 
 ```csharp
 // Run the DialogSet - let the framework identify the current state of the dialog from

@@ -7,34 +7,32 @@ ms.author: jonathanfingold
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 07/12/2018
+ms.date: 09/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 21a9aa5b1d108b5d03b108278a81229e16b5bc99
-ms.sourcegitcommit: a2f3d87c0f252e876b3e63d75047ad1e7e110b47
+ms.openlocfilehash: 3e721c9142ffb1511ef926f5b1caca782e0919ed
+ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/25/2018
-ms.locfileid: "42928124"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49315084"
 ---
-# <a name="create-a-bot-with-the-bot-builder-sdk-v4-preview-for-javascript"></a>使用適用於 JavaScript 的 Bot 建立器 SDK v4 (預覽) 建立 Bot
+# <a name="create-a-bot-with-the-bot-builder-sdk-for-javascript"></a>使用適用於 JavaScript 的 Bot Builder SDK 建立 Bot
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-本快速入門會逐步引導您使用 Yeoman Bot 建立器 產生器和適用於 JavaScript 的 Bot 建立器 SDK 建置 Bot，然後使用 Bot Framework 模擬器進行測試。 本文以 [Microsoft Bot Builder SDK 4 版](https://github.com/Microsoft/botbuilder-js)作為基礎。
+本快速入門會逐步引導您使用 Yeoman Bot 建立器 產生器和適用於 JavaScript 的 Bot 建立器 SDK 建置 Bot，然後使用 Bot Framework 模擬器進行測試。 
 
 ## <a name="prerequisites"></a>必要條件
 
 - [Visual Studio Code](https://www.visualstudio.com/downloads)
-- [Node.js](https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/)
 - [Yeoman](http://yeoman.io/)，可使用產生器為您建立 Bot
-- [Bot 模擬器](https://github.com/Microsoft/BotFramework-Emulator)
+- [Bot Framework 模擬器](https://github.com/Microsoft/BotFramework-Emulator) (英文)
 - 了解 [restify](http://restify.com/) 和 JavaScript 中的非同步程式設計
 
 > [!NOTE]
 > 在某些安裝中，restify 的安裝步驟會產生與 node-gyp 相關的錯誤。
 > 如果您遇到這種情況，請嘗試執行 `npm install -g windows-build-tools`。
-
-適用於 JavaScript 的 Bot 建立器 SDK 包含一系列[套件](https://github.com/Microsoft/botbuilder-js/tree/master/libraries)，您可以使用特殊的 `@preview` 標記從 NPM 進行安裝。
 
 ## <a name="create-a-bot"></a>建立 Bot
 
@@ -45,11 +43,16 @@ md myJsBots
 cd myJsBots
 ```
 
+確保您的 npm 版本是最新版本。
+```bash
+npm i npm
+```
+
 接下來，安裝適用於 JavaScript 的 Yeoman 和產生器。
 
 ```bash
 npm install -g yo
-npm install -g generator-botbuilder@preview
+npm install -g generator-botbuilder
 ```
 
 然後，使用產生器來建立 echo Bot。
@@ -63,88 +66,26 @@ Yeoman 會提示您輸入一些用來建立 Bot 的資訊。
 - 輸入 Bot 的名稱。
 - 輸入描述。
 - 選擇 Bot 的語言，可以是 `JavaScript` 或 `TypeScript`。
-- 選擇要使用的範本。 目前，`Echo` 是唯一的範本，但很快就會新增其他範本。
+- 選擇 `Echo` 範本。
 
-Yeoman 會在新資料夾中建立 Bot。
+由於有範本，專案中會包含要在本快速入門建立 Bot 所需的所有程式碼。 您實際上不需要撰寫任何額外的程式碼。
 
-## <a name="explore-code"></a>探索程式碼
-
-當您開啟新建立的 Bot 資料夾時，您會看到 `app.js` 檔案。 這個 `app.js` 檔案會包含執行 Bot 應用程式所需的所有程式碼。 此檔案內所包含的 echo Bot 會回傳您所輸入的任何內容，並將計數器遞增。
-
-在下列程式碼中，對話狀態中介軟體會使用記憶體內部儲存體。 它會在儲存體中讀取和寫入狀態物件。 計數變數會追蹤傳送至 Bot 的訊息數目。 您可以使用類似技巧，讓狀態維持到下個回合。
-
-**app.js**
-```javascript
-// Packages are installed for you
-const { BotFrameworkAdapter, MemoryStorage, ConversationState } = require('botbuilder');
-const restify = require('restify');
-
-// Create server
-let server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function () {
-    console.log(`${server.name} listening to ${server.url}`);
-});
-
-// Create adapter
-const adapter = new BotFrameworkAdapter({
-    appId: process.env.MICROSOFT_APP_ID,
-    appPassword: process.env.MICROSOFT_APP_PASSWORD
-});
-
-// Add conversation state middleware
-const conversationState = new ConversationState(new MemoryStorage());
-adapter.use(conversationState);
-```
-
-下列程式碼會接聽傳入要求，並在傳送回覆給使用者之前，先檢查傳入的活動類型。
-
-```javascript
-// Listen for incoming requests
-server.post('/api/messages', (req, res) => {
-    // Route received request to adapter for processing
-    adapter.processActivity(req, res, (context) => {
-        // This bot is only handling Messages
-        if (context.activity.type === 'message') {
-
-            // Get the conversation state
-            const state = conversationState.get(context);
-
-            // If state.count is undefined set it to 0, otherwise increment it by 1
-            const count = state.count === undefined ? state.count = 0 : ++state.count;
-
-            // Echo back to the user whatever they typed.
-            return context.sendActivity(`${count}: You said "${context.activity.text}"`);
-        } else {
-            // Echo back the type of activity the bot detected if not of type message
-            return context.sendActivity(`[${context.activity.type} event detected]`);
-        }
-    });
-});
-```
+> [!NOTE]
+> 對於基本 Bot，您需要 LUIS 語言模型。 您可以在 [luis.ai](https://www.luis.ai) 上建立一個模型。 建立模型之後，請更新 .bot 檔案。 您的 Bot 檔案應該看起來類似這[一個](../v4sdk/bot-builder-service-file.md)。 
 
 ## <a name="start-your-bot"></a>啟動 Bot
 
-變更為針對 Bot 所建立的目錄，並加以啟動。
+在 Powershell/Bash 中，將目錄變更為針對您的 Bot 所建立的目錄，並使用 `npm start` 加以啟動。 此時，Bot 正在本機執行。
 
-```bash
-cd <bot directory>
-node app.js
-```
+## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並且連線至您的 Bot
+1. 啟動模擬器。
+2. 按一下模擬器 [歡迎] 索引標籤中的 [開啟 Bot] 連結。
+3. 選取位於您建立專案的目錄中的 .bot 檔案。
 
-## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並連線到 Bot
-
-此時，您的 Bot 正在本機執行。 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
-
-1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定] 連結。
-1. 輸入 **Bot 名稱**，然後輸入 Bot 程式碼的目錄路徑。 Bot 設定檔將會儲存至這個路徑。
-1. 將 `http://localhost:port-number/api/messages` 輸入至 [端點 URL] 欄位，其中連接埠號碼必須符合應用程式執行所在瀏覽器中顯示的連接埠號碼。
-1. 按一下 [連線] 來連線至 Bot。 您不需要指定 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**。 目前可以將這些欄位保留空白。 稍後註冊 Bot 時，您會取得這項資訊。
-
-傳送 "Hi" 給 Bot，然後 Bot 就會對該訊息回應 '0: You said "Hi"'。
+傳送訊息給 Bot，Bot 就會以訊息回應。
+![模擬器執行中](../media/emulator-v4/emulator-running.png)
 
 ## <a name="next-steps"></a>後續步驟
 
-接下來，請[將 Bot 部署至 Azure](../bot-builder-howto-deploy-azure.md) 或跳至說明 Bot 及其運作方式的概念。
-
 > [!div class="nextstepaction"]
-> [基本 Bot 概念](../v4sdk/bot-builder-basics.md)
+> [Bot 的運作方式](../v4sdk/bot-builder-basics.md) 

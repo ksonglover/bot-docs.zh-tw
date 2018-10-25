@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 09/13/2018
-ms.openlocfilehash: 9f80fc551cac2f1994b0d398cd640d2ad3d78e61
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 0ee2f062b66db8a09be844a6a2af33bb12a1d7fd
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707374"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000245"
 ---
 # <a name="bot-builder-sdk-for-net-samples"></a>適用於 .NET 的 Bot 建立器 SDK 範例
 
@@ -94,7 +95,7 @@ cd BotBuilder-Samples
 
 Bot Builder 範例存放庫中有許多範例，這些範例會示範以工作為主的 Bot 如何利用適用於 .NET 的 SDK 功能。 您可使用這些範例，協助您快速開始建置具備豐富功能的絕佳 Bot。 請參閱[讀我檔案](https://github.com/Microsoft/BotBuilder-Samples/blob/master/README.md)，以取得範例清單和其他資訊。
 
-若要取得範例，請使用 Git 複製 [botbuilder-samples](https://github.com/Microsoft/botbuilder-samples)GitHub 存放庫。
+若要取得範例，請使用 Git 複製 [botbuilder-samples](https://github.com/Microsoft/botbuilder-samples) \(英文\) GitHub 存放庫。
 ```cmd
 git clone https://github.com/Microsoft/botbuilder-dotnet.git
 ```

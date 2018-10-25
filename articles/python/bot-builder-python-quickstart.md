@@ -6,15 +6,16 @@ author: jonathanfingold
 ms.author: jonathanfingold
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 08/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6b63fe2780c51e57ee16c5e3dba5a83f46566157
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 4536bef820bc1e6e21ba2905fb643fe5608b3788
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707276"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999015"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-python"></a>使用適用於 Python 的 Bot Builder SDK 建立 Bot
 
@@ -134,7 +135,7 @@ python main.py
 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 
 1. 按一下模擬器 [歡迎] 索引標籤中的 [開啟 Bot] 連結。 
-2. 選取位於您建立專案的目錄中的 .bot 檔案。
+2. 在您建立專案的目錄中選取 .bot 檔案。
 
 ## <a name="interact-with-your-bot"></a>與您的 Bot 互動
 

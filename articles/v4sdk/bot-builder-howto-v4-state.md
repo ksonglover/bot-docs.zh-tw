@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 09/18/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 44ec9274e2edcb05a069d353ee5caffec66bb3ca
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 21f864ba6f5beba5205e860f4a56697997048dfb
+ms.sourcegitcommit: 6c2426c43cd2212bdea1ecbbf8ed245145b3c30d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389747"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48852293"
 ---
 # <a name="manage-conversation-and-user-state"></a>管理對話和使用者狀態
 
@@ -62,6 +62,8 @@ public class UserProfile
 
 已更新建構函式來包含 `UserState`，如下所示：
 ```csharp
+using EchoBotWithCounter;
+
 public EchoBotAccessors(ConversationState conversationState, UserState userState)
 {
     ConversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
@@ -135,6 +137,8 @@ services.AddSingleton<EchoBotAccessors>(sp =>
 在 `EchoWithCounterBot : IBot` 類別的 `OnTurnAsync` 處理常式中，修改程式碼以提示輸入使用者名稱，然後輸入電話號碼。 為了追蹤我們在對話中的何處，我們會使用 TopicState 中定義的 Prompt 屬性。 這個屬性已初始化為 "askName"。 一旦取得使用者名稱，我們會將其設定為 "askNumber "，並將 UserName 設定為使用者輸入的名稱。 收到電話號碼之後，您可傳送確認訊息並將提示設定為「確認」，因為您位於對話的結尾。
 
 ```csharp
+using EchoBotWithCounter;
+
 if (turnContext.Activity.Type == ActivityTypes.Message)
 {
     // Get the conversation state from the turn context.
@@ -181,8 +185,9 @@ if (turnContext.Activity.Type == ActivityTypes.Message)
 
         await turnContext.SendActivityAsync($"Got it, {user.UserName}. I'll call you later.");
 
-        // initialize prompt
-        convo.Prompt = ""; // End of conversation
+        // reset initial prompt state
+        convo.Prompt = "askName"; // Reset for a new conversation.
+        
         await _accessors.TopicState.SetAsync(turnContext, convo);
         await _accessors.ConversationState.SaveChangesAsync(turnContext);
     }
@@ -212,15 +217,18 @@ const { BotFrameworkAdapter, MemoryStorage, ConversationState, UserState } = req
 // Create conversation state with in-memory storage provider. 
 const conversationState = new ConversationState(memoryStorage);
 const userState = new UserState(memoryStorage);
-// Create the main dialog.
-const mainDlg = new MainDialog(conversationState, userState);
+// Create the main bot.
+const bot = new EchBot(conversationState, userState);
 ```
 
-在 `dialogs/mainDialog/index.js` 檔案中，更新建構函式以接受 `userState` 作為第二個引數。 然後從 `conversationState` 建立 `topicStates` 屬性，並從 `userState` 建立 `userProfile` 屬性。
+在 `bot.js` 檔案中，更新建構函式以接受 `userState` 作為第二個引數。 然後從 `conversationState` 建立 `topicState` 屬性，並從 `userState` 建立 `userProfile` 屬性。
 
-**dialogs/mainDialog/index.js**
+**bot.js**
 
 ```javascript
+const TOPIC_STATE = 'topic';
+const USER_PROFILE = 'user';
+
 constructor (conversationState, userState) {
     // creates a new state accessor property.see https://aka.ms/about-bot-state-accessors to learn more about the bot state and state accessors 
     this.conversationState = conversationState;
@@ -240,63 +248,63 @@ constructor (conversationState, userState) {
 
 ```javascript
 // see https://aka.ms/about-bot-activity-message to learn more about the message and other activity types
-if (context.activity.type === 'message') {
+if (turnContext.activity.type === 'message') {
     // read from state and set default object if object does not exist in storage.
-    let topicState = await this.topicState.get(context, {
+    let topicState = await this.topicState.get(turnContext, {
         //Define the topic state object
         prompt: "askName"
     });
-    let userProfile = await this.userProfile.get(context, {  
+    let userProfile = await this.userProfile.get(turnContext, {  
         // Define the user's profile object
-        "userName": undefined,
-        "telephoneNumber": undefined
+        "userName": "",
+        "telephoneNumber": ""
     });
 
     if(topicState.prompt == "askName"){
-        await context.sendActivity("What is your name?");
+        await turnContext.sendActivity("What is your name?");
 
         // Set next prompt state
         topicState.prompt = "askNumber";
 
         // Update state
-        await this.topicState.set(context, topicState);
+        await this.topicState.set(turnContext, topicState);
     }
     else if(topicState.prompt == "askNumber"){
         // Set the UserName that is defined in the UserProfile class
-        userProfile.userName = context.activity.text;
+        userProfile.userName = turnContext.activity.text;
 
         // Use the user name to prompt the user for phone number
-        await context.sendActivity(`Hello, ${userProfile.userName}. What's your telephone number?`);
+        await turnContext.sendActivity(`Hello, ${userProfile.userName}. What's your telephone number?`);
 
         // Set next prompt state
         topicState.prompt = "confirmation";
 
         // Update states
-        await this.topicState.set(context, topicState);
-        await this.userProfile.set(context, userProfile);
+        await this.topicState.set(turnContext, topicState);
+        await this.userProfile.set(turnContext, userProfile);
     }
     else if(topicState.prompt == "confirmation"){
         // Set the phone number
-        userProfile.telephoneNumber = context.activity.text;
+        userProfile.telephoneNumber = turnContext.activity.text;
 
         // Sent confirmation
-        await context.sendActivity(`Got it, ${userProfile.userName}. I'll call you later.`)
+        await turnContext.sendActivity(`Got it, ${userProfile.userName}. I'll call you later.`)
 
-        // Set next prompt state
-        topicState.prompt = undefined; // End of conversation
+        // reset initial prompt state
+        topicState.prompt = "askName"; // Reset for a new conversation
 
         // Update states
-        await this.topicState.set(context, topicState);
-        await this.userProfile.set(context, userProfile);
+        await this.topicState.set(turnContext, topicState);
+        await this.userProfile.set(turnContext, userProfile);
     }
     
     // Save state changes to storage
-    await this.conversationState.saveChanges(context);
-    await this.userState.saveChanges(context);
+    await this.conversationState.saveChanges(turnContext);
+    await this.userState.saveChanges(turnContext);
     
 }
 else {
-    await context.sendActivity(`[${context.activity.type} event detected]`);
+    await turnContext.sendActivity(`[${context.activity.type} event detected]`);
 }
 ```
 

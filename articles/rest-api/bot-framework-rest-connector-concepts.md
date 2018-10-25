@@ -5,21 +5,22 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 0bd98805023bc8f968ece591967ab2f4196531d4
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 20ae641a23399f5ee10aed9b31c4521f355903cf
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299887"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998949"
 ---
 # <a name="key-concepts"></a>重要概念
 
 您可以使用 Bot 連接器服務和 Bot 狀態服務跨多個頻道 (例如 Skype、電子郵件、Slack 等等) 和使用者通訊。 此文章介紹 Bot 連接器服務和 Bot 狀態服務中的重要概念。
 
 > [!IMPORTANT]
-> 建議您不要將 Bot Framework 狀態服務 API 用於生產環境，未來版本可能會將它淘汰。 建議更新您的 Bot 程式碼以使用記憶體內部儲存體進行測試，或將其中一個 **Azure 延伸模組**用於生產環境 Bot。 如需詳細資訊，請參閱 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 實作的＜管理狀態資料＞主題。
+> 建議您不要將 Bot Framework 狀態服務 API 用於生產環境，未來版本可能會將它淘汰。 建議更新您的 Bot 程式碼以使用記憶體內部儲存體進行測試，或將其中一個 **Azure 擴充功能**用於生產環境 Bot。 如需詳細資訊，請參閱 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 實作的＜管理狀態資料＞主題。
 
 ## <a name="bot-connector-service"></a>Bot 連接器服務
 

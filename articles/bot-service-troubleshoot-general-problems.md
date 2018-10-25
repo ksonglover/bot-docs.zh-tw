@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 09/26/2018
-ms.openlocfilehash: 410f50f02dcea2bb64ccf0389e20f5cb76e2fd6b
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 42273044cd1e32a3c78fa7fb1b83beac061ce0b8
+ms.sourcegitcommit: aef7d80ceb9c3ec1cfb40131709a714c42960965
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389837"
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49383173"
 ---
 # <a name="troubleshooting-general-problems"></a>對一般問題進行疑難排解
 這些常見問答集可協助您對常見的 Bot 開發或作業問題進行疑難排解。
@@ -39,10 +39,7 @@ ms.locfileid: "47389837"
 在 Visual Studio 中，您可以選擇是否要對 [Just My Code](https://msdn.microsoft.com/en-us/library/dn457346.aspx) 進行偵錯。 檢查完整的呼叫堆疊可能可以針對問題提供額外的見解。
 
 **確保所有對話方法都會以能處理下一個訊息的方案作為結尾。**  
-所有的 `IDialog` 方法都應該以 `IDialogStack.Call`、`IDialogStack.Wait`，或 `IDialogStack.Done` 作為結尾。 這些 `IDialogStack` 方法會透過傳遞至每個 `IDialog` 方法的 `IDialogContext` 公開。 透過 `PromptDialog` 靜態方法呼叫 `IDialogStack.Forward` 並使用系統提示將會於上述其中一種方法的實作中呼叫它們。
-
-**確保所有對話皆可序列化。**  
-這可以簡單地使用您 `IDialog` 實作上的 `[Serializable]` 屬性來達成。 不過，請留意在匿名方法會參考其外部環境以擷取變數的情況下，其關閉並無法序列化。 Bot Framework 支援反映式序列化代理，以協助對未被標記為可序列化的類型進行序列化。
+所有對話方塊步驟都必須饋送到瀑布的下一個步驟，或結束目前的對話方塊才能脫離堆疊。 如果未正確處理步驟，如您所預期，將不會繼續對話。 查看[對話方塊](v4sdk/bot-builder-concept-dialog.md)概念文章，更進一步了解對話方塊。
 
 ## <a name="why-doesnt-the-typing-activity-do-anything"></a>為何輸入活動不會執行任何動作？
 某些通道在其用戶端中並不支援暫時性輸入更新。
@@ -54,7 +51,14 @@ ms.locfileid: "47389837"
 ## <a name="what-causes-an-error-with-http-status-code-429-too-many-requests"></a>造成具有 HTTP 狀態碼 429「太多要求」之錯誤的原因為何？
 
 具有 HTTP 狀態碼 429 的錯誤回應，表示在特定期間內發出太多要求。 回應的主體應該會包含問題的解釋，也可能會指定要求之間所需的最低間隔。 此錯誤其中一個可能的來源為 [ngrok](https://ngrok.com/) \(英文\)。 如果您是使用免費方案並達到 ngrok 的限制，請移至其網站的定價與限制頁面以取得更多[選項](https://ngrok.com/product#pricing) \(英文\)。 
- 
+
+## <a name="why-arent-my-bot-messages-getting-received-by-the-user"></a>我的 Bot 訊息為何不是由使用者接收？
+
+回應中產生的訊息活動必須正確地定址，否則無法送達其目的地。 在大部分情況下，您不需要明確處理此事，SDK 會負責為您將訊息活動定址。 
+
+將活動正確地定址，表示包含適當的「對話參考」詳細資料，以及傳送者和接收者的相關詳細資料。 在大部分情況下，訊息活動會以回應形式傳送至已送達的其中一個活動。 因此，可以從輸入活動取得定址詳細資料。 
+
+如果您檢查追蹤或稽核記錄，您可以檢查以確保您的訊息正確地定址。 若非如此，請在 Bot 中設定中斷點，並查看在何處針對您的訊息設定識別碼。
 
 ## <a name="how-can-i-run-background-tasks-in-aspnet"></a>如何在 ASP.NET 中執行背景工作？ 
 
@@ -77,7 +81,7 @@ Bot Framework 將會盡可能地保留訊息排序。 例如，如果您先傳�
 
 ## <a name="how-can-i-intercept-all-messages-between-the-user-and-my-bot"></a>如何攔截使用者與我的 Bot 之間的所有訊息？
 
-使用適用於 .NET 的 Bot 建立器 SDK 時，您可以對 `Autofac` 相依性插入容器提供 `IPostToBot` 和 `IBotToUser` 介面的實作。 使用適用於 Node.js 的 Bot 建立器 SDK 時，您可以針對大致相同的目的使用中介軟體。 [BotBuilder-Azure](https://github.com/Microsoft/BotBuilder-Azure) \(英文\) 存放庫包含 C# 和 Node.js 程式庫，並能將此資料記錄至 Azure 資料表。
+使用適用於 .NET 的 Bot 建立器 SDK 時，您可以對 `Autofac` 相依性插入容器提供 `IPostToBot` 和 `IBotToUser` 介面的實作。 使用適用於任何語言的 Bot Builder SDK 時，您可以針對大致相同的目的使用中介軟體。 [BotBuilder-Azure](https://github.com/Microsoft/BotBuilder-Azure) \(英文\) 存放庫包含 C# 和 Node.js 程式庫，並能將此資料記錄至 Azure 資料表。
 
 ## <a name="why-are-parts-of-my-message-text-being-dropped"></a>我的訊息文字為何有一部分被卸除？
 
@@ -116,7 +120,7 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 
 某些通道 (例如 SMS 和電子郵件) 會提供不限範圍的位址。 在這些情況下，來自使用者的訊息將會在 `from.Id` 屬性中包含未經處理的使用者識別碼。
 
-其他通道 (例如 Skype、Facebook 和 Slack) 會提供	有範圍或承租的位址，這會使 Bot 無法預估使用者的識別碼。 在這些情況下，您將會需要透過登入連結或共用祕密來驗證使用者，以判斷該使用者是否有使用 Bot 的授權。
+其他通道 (例如 Skype、Facebook 和 Slack) 會提供有範圍或承租的位址，這會使 Bot 無法預估使用者的識別碼。 在這些情況下，您將會需要透過登入連結或共用祕密來驗證使用者，以判斷該使用者是否有使用 Bot 的授權。
 
 ## <a name="why-does-my-direct-line-11-conversation-start-over-after-every-message"></a>為何我的直接線路 1.1 交談會在每則訊息之後重新開始？
 
@@ -127,6 +131,8 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 ## <a name="what-causes-the-direct-line-30-service-to-respond-with-http-status-code-502-bad-gateway"></a>造成直接線路 3.0 服務回應 HTTP 狀態碼 502「不正確的閘道」的原因為何？
 直接線路 3.0 會在嘗試連絡 Bot 但無法成功完成要求的情況下，傳回 HTTP 狀態碼 502。 此錯誤表示 Bot 傳回錯誤或要求逾時。如需 Bot 會產生之錯誤的詳細資訊，請在 <a href="https://dev.botframework.com" target="_blank">Bot Framework 入口網站</a> \(英文\) 內移至 Bot 的儀表板，然後按一下 [問題] 連結以了解受影響的通道。 如果您已經針對 Bot 設定 Application Insights，便也可以在那裡找到詳細的錯誤資訊。 
 
+::: moniker range="azure-bot-service-3.0"
+
 ## <a name="what-is-the-idialogstackforward-method-in-the-bot-builder-sdk-for-net"></a>適用於 .NET 的 Bot 建立器 SDK 中的 IDialogStack.Forward 方法是什麼？
 
 `IDialogStack.Forward` 的主要目的是重複使用經常為「被動」的現有子對話；在此情況下，(`IDialog.StartAsync` 中的) 子對話會針對某些 `ResumeAfter` 處理常式等候物件 `T`。 特別是在具有會等候 `IMessageActivity` `T` 之子對話的情況下，您可以使用 `IDialogStack.Forward` 方法來轉送傳入的 `IMessageActivity` (已由某些父對話接收)。 例如，若要將傳入的 `IMessageActivity` 轉送至 `LuisDialog`，請呼叫 `IDialogStack.Forward` 以將 `LuisDialog` 推送至對話堆疊上，在 `LuisDialog.StartAsync` 中執行程式碼直到其針對下則訊息做出等候的排程為止，然後立即透過轉送的 `IMessageActivity` 來滿足該等候。
@@ -134,6 +140,8 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 `T` 通常是 `IMessageActivity`，因為 `IDialog.StartAsync` 通常會建構為等候該類型的活動。 您可以針對 `LuisDialog` 使用 `IDialogStack.Forward` 作為攔截來自使用者之訊息的機制，以在將該訊息轉送至現有 `LuisDialog` 之前進行某些處理。 或者，您也可以針對該目的搭配 `ContinueToNextGroup` 使用 `DispatchDialog`。
 
 您可以預期在由 `StartAsync` 所排程的第一個 `ResumeAfter` 處理常式 (例如 `LuisDialog.MessageReceived`) 中找到已轉送的項目。
+
+::: moniker-end
 
 ## <a name="what-is-the-difference-between-proactive-and-reactive"></a>「主動」和「被動」之間的差異為何？
 

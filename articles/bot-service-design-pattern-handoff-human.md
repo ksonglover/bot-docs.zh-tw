@@ -5,14 +5,14 @@ author: matvelloso
 ms.author: mateusv
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: f786f79011da5e50b37f9797dca694f0e132296c
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6b50df60c3a8165198e8f9a55964f2f596d62406
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299447"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998725"
 ---
 # <a name="transition-conversations-from-bot-to-human"></a>將交談從 Bot 切換為人類
 
@@ -80,15 +80,15 @@ Bot 正在等待人類時，它可能會以預設回應 (例如「在佇例中�
 
 ::: moniker range="azure-bot-service-4.0"
 
-- [對話](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
+- [對話方塊](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
 - <a href="https://www.microsoft.com/cognitive-services/en-us/text-analytics-api" target="blank">文字分析 API</a>
 
 ::: moniker-end
 
 ::: moniker range="azure-bot-service-3.0"
 
-- [使用對話管理交談流程 (.NET)](~/dotnet/bot-builder-dotnet-manage-conversation-flow.md)
-- [使用對話管理交談流程 (Node.js)](~/nodejs/bot-builder-nodejs-manage-conversation-flow.md)
+- [使用對話方塊來管理對話流程 (.NET)](~/dotnet/bot-builder-dotnet-manage-conversation-flow.md)
+- [使用對話方塊來管理對話流程 (Node.js)](~/nodejs/bot-builder-nodejs-manage-conversation-flow.md)
 - <a href="https://www.microsoft.com/cognitive-services/en-us/text-analytics-api" target="blank">文字分析 API</a>
 
 

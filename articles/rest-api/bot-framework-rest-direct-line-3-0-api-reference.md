@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 2e47591b04a91ce02cfeb6bd6485080426d201b5
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: d69f1f658520790ff429ecd25a190319e321164d
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299198"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998104"
 ---
 # <a name="api-reference---direct-line-api-30"></a>API 參考 - Direct Line API 3.0
 
@@ -26,7 +27,7 @@ ms.locfileid: "39299198"
 
 ## <a name="headers"></a>headers
 
-除了標準的 HTTP 要求標題之外，Direct Line API 要求必須包含指定祕密或權杖的 `Authorization` 標題，藉此驗證發出要求的用戶端。 請使用此格式指定 `Authorization` 標頭：
+除了標準的 HTTP 要求標頭之外，直接線路 API 要求必須包含指定密碼或權杖的 `Authorization` 標頭，藉此驗證發出要求的用戶端。 請使用此格式指定 `Authorization` 標頭：
 
 ```http
 Authorization: Bearer SECRET_OR_TOKEN
@@ -36,7 +37,7 @@ Authorization: Bearer SECRET_OR_TOKEN
 
 ## <a name="http-status-codes"></a>HTTP 狀態碼
 
-與每個回應一起傳回的 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank">HTTP 狀態碼</a>會指出對應要求的結果。 
+與每個回應一併傳回的 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank">HTTP 狀態碼</a>會指出對應要求的結果。 
 
 | HTTP 狀態碼 | 意義 |
 |----|----|
@@ -44,8 +45,8 @@ Authorization: Bearer SECRET_OR_TOKEN
 | 201 | 要求成功。 |
 | 202 | 已接受要求進行處理。 |
 | 204 | 要求成功，但未傳回任何內容。 |
-| 400 | 要求的格式不正確，或有其他錯誤。 |
-| 401 | 用戶端未獲授權，無法提出要求。 此狀態碼出現的原因通常是遺漏 `Authorization` 標題或格式不正確。 |
+| 400 | 要求的格式不正確或有其他錯誤。 |
+| 401 | 用戶端未獲授權，無法提出要求。 此狀態碼出現的原因通常是遺漏 `Authorization` 標頭或格式不正確。 |
 | 403 | 不允許用戶端執行要求的作業。 如果要求指定先前有效但已過期的權杖，在 [ErrorResponse](bot-framework-rest-connector-api-reference.md#errorresponse-object) 物件內傳回之[錯誤](bot-framework-rest-connector-api-reference.md#error-object)的 `code` 屬性會設定為 `TokenExpired`。 |
 | 404 | 找不到要求的資源。 此狀態碼通常表示要求的 URI 無效。 |
 | 500 | Direct Line 服務內發生內部伺服器錯誤。 |
@@ -56,7 +57,7 @@ Authorization: Bearer SECRET_OR_TOKEN
 
 ### <a name="errors"></a>Errors
 
-若回應顯示的 HTTP 狀態碼位於 4xx 或 5xx 範圍內，則會在回應本文中納入 [ErrorResponse](bot-framework-rest-connector-api-reference.md#errorresponse-object) 物件，提供錯誤相關資訊。 如果您收到 4xx 範圍的錯誤訊息，請檢查 **ErrorResponse** 物件以找出錯誤原因，並在重新提交要求之前先解決問題。
+若回應顯示的 HTTP 狀態碼位於 4xx 或 5xx 範圍內，則會在提供錯誤相關資訊的回應本文中加入 [ErrorResponse](bot-framework-rest-connector-api-reference.md#errorresponse-object) 物件。 如果您收到 4xx 範圍的錯誤訊息，請檢查 **ErrorResponse** 物件以找出錯誤原因，並在重新提交要求之前先解決問題。
 
 > [!NOTE]
 > **ErrorResponse** 物件內 `code` 屬性指定的 HTTP 狀態碼和值很穩定。 **ErrorResponse** 物件內 `message` 屬性指定的值可能會隨著時間改變。

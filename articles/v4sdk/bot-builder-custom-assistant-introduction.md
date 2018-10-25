@@ -5,15 +5,15 @@ author: darrenj
 ms.author: darrenj
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 13/12/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ddb1a7f8f189705de6b40bf2802a7bc2d1b49135
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: dcef01d8ba07d44aebaeeeecb5637af691caccb9
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46708532"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997075"
 ---
 ## <a name="custom-assistant-overview"></a>自訂小幫手概觀
 
@@ -64,7 +64,7 @@ ms.locfileid: "46708532"
 [調適性卡片](https://adaptivecards.io/)可讓自訂小幫手傳回使用者體驗元素 (例如卡片、影像、按鈕) 及文字回應。 如果裝置或對話畫布上有一個畫面，這些調適性卡片可以跨各種支援使用者體驗的裝置與平台進行轉譯 (如果適用)。 您可以在[此處](https://adaptivecards.io/samples/)找到調適性卡片的範例，而[此處](https://docs.microsoft.com/en-us/adaptive-cards/rendering-cards/getting-started)的文件中有轉譯選項的相關資訊。
 
 
-## <a name="skills"></a>技能
+## <a name="skills"></a>技術
 
 除了基本的小幫手功能，還有一組廣泛的常見功能需要每位開發人員自行建置。 生產力是絕佳範例，每個組織可能都需要建立語言模型 (LUIS)、對話方塊 (程式碼)、整合 (程式碼) 和語言產生 (回應)，以啟用常見案例，例如，景點、電子郵件、行事曆或工作等。
 
@@ -82,7 +82,7 @@ ms.locfileid: "46708532"
 
 - 旅遊服務業：將啟用語音的個人助理整合到旅館房間裝置，可提供廣泛的住宿相關案例 (例如延長您的住宿時間、要求延後退房、客房服務)，包括門房服務和尋找當地餐廳和景點的功能。 若連結您的生產力帳戶 (選用)，可開啟更多個人化體驗，例如建議的提醒呼叫、天氣警告及留宿期間的模式學習。 目前您已可以在飯店內體驗到電視的個人化發展。
 
-- 企業：藉由將啟用語音和文字的品牌員工助理體驗整合到企業裝置和現有的交談畫布 (例如 Teams、WebChat、Slack) 中，可讓員工管理他們的行事曆、尋找可用的會議室、尋找有特定技能的人員，或執行 HR 相關的作業。 
+- 企業：藉由將啟用語音和文字的品牌員工助理體驗整合到企業裝置和現有的對話畫布 (例如 Teams、WebChat、Slack) 中，可讓員工管理他們的行事曆、尋找可用的會議室、尋找有特定技術的人員，或執行 HR 相關的作業。 
 
 ## <a name="getting-started"></a>開始使用
 

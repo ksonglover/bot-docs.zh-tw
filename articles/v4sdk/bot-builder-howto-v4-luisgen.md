@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 5/16/17
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 87ab8d3ceb872cdb0342458b24a9756ccb710fb6
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: f0e428ca0aa1b0208538e2de7fc0a293763062a1
+ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46706984"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49315204"
 ---
 # <a name="extract-intents-and-entities-using-luisgen"></a>使用 LUISGen 擷取意圖和實體
 
@@ -23,7 +23,7 @@ ms.locfileid: "46706984"
 除了辨識意圖，LUIS 應用程式也可以擷取實體，也就是滿足使用者要求的重要單字。 例如，在餐廳預訂的範例中，LUIS 應用程式可能可以從使用者的訊息中擷取派對人數、預訂日期或餐廳位置。 
 
 
-您可以使用 [LUISGen 工具](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUISGen)來產生類別，讓您更輕鬆地在 Bot 程式碼中從 LUIS 擷取實體。
+您可以使用 [LUISGen 工具](https://aka.ms/botbuilder-tools-luisgen)來產生類別，讓您更輕鬆地在 Bot 程式碼中從 LUIS 擷取實體。
 
 在 Node.js 命令列中，將 `luisgen` 安裝到全域路徑。
 ```
@@ -60,7 +60,7 @@ public class _Entities
     public string[] partySize;
 
     // Built-in entities
-    public Microsoft.Bot.Builder.Ai.LUIS.DateTimeSpec[] datetime;
+    public Microsoft.Bot.Builder.Ai.Luis.DateTimeSpec[] datetime;
     public double[] number;
 
     // Lists
@@ -69,10 +69,10 @@ public class _Entities
     // Instance
     public class _Instance
     {
-        public Microsoft.Bot.Builder.Ai.LUIS.InstanceData[] partySize;
-        public Microsoft.Bot.Builder.Ai.LUIS.InstanceData[] datetime;
-        public Microsoft.Bot.Builder.Ai.LUIS.InstanceData[] number;
-        public Microsoft.Bot.Builder.Ai.LUIS.InstanceData[] cafeLocation;
+        public Microsoft.Bot.Builder.Ai.Luis.InstanceData[] partySize;
+        public Microsoft.Bot.Builder.Ai.Luis.InstanceData[] datetime;
+        public Microsoft.Bot.Builder.Ai.Luis.InstanceData[] number;
+        public Microsoft.Bot.Builder.Ai.Luis.InstanceData[] cafeLocation;
     }
     [JsonProperty("$instance")]
     public _Instance _instance;

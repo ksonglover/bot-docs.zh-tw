@@ -2,26 +2,28 @@
 title: 處理使用者中斷 | Microsoft Docs
 description: 深入了解如何處理使用者中斷和直接對話流程。
 keywords: 中斷, 切換主題, 中斷
-author: v-ducvo
-ms.author: v-ducvo
+author: ivorb
+ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 04/17/2018
+ms.date: 09/20/2018
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fff4f8e2a4d2d86cf440bee7ab40216e93a8c8c5
-ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
+ms.openlocfilehash: 15c3ed60dacf1751e82c2bb0804cdd938f286f40
+ms.sourcegitcommit: 6c2426c43cd2212bdea1ecbbf8ed245145b3c30d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/21/2018
-ms.locfileid: "42756569"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48852323"
 ---
 # <a name="handle-user-interruptions"></a>處理使用者中斷
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-處理使用者中斷是強固 Bot 很重要的層面。 您也許會認為使用者會乖乖逐步遵循您定義的對話流程，但是他們很有可能會改變心意，或者在程序中途詢問問題而不是回答問題。 在這些情況下，您的 Bot 要如何處理使用者的輸入？ 使用者體驗會是如何？ 如何維護使用者狀態資料？
+處理中斷是強固 Bot 很重要的層面。
+
+您也許會認為使用者會乖乖逐步遵循您定義的對話流程，但是他們很有可能會改變心意，或者在程序中途詢問問題而不是回答問題。 在這些情況下，您的 Bot 要如何處理使用者的輸入？ 使用者體驗會是如何？ 如何維護使用者狀態資料？ 處理中斷表示確定 Bot 已準備好處理這種情況。
 
 這些問題沒有正確答案，因為每種情況對於您的 Bot 設計來處理的案例都是獨一無二的。 在本主題中，我們將會探索一些處理使用者插斷的常見方式，並且建議在您的 Bot 中加以實作的一些方法。
 
@@ -49,43 +51,110 @@ ms.locfileid: "42756569"
 
 # <a name="ctabcsharptab"></a>[C#](#tab/csharptab)
 
-```cs
-public class dinnerItem
+我們會將對話集定義為 **DialogSet** 的子類別。
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Builder.Dialogs.Choices;
+
+public class OrderDinnerDialogs : DialogSet
 {
-    public string Description;
-    public double Price;
+    public OrderDinnerDialogs(IStatePropertyAccessor<DialogState> dialogStateAccessor)
+        : base(dialogStateAccessor)
+    {
+    }
+}
+```
+
+我們會定義幾個內部類別來描述功能表。
+
+```cs
+/// <summary>
+/// Contains information about an item on the menu.
+/// </summary>
+public class DinnerItem
+{
+    public string Description { get; set; }
+
+    public double Price { get; set; }
 }
 
-public class dinnerMenu
+/// <summary>
+/// Describes the dinner menu, including the items on the menu and options for
+/// interrupting the ordering process.
+/// </summary>
+public class DinnerMenu
 {
-    static public Dictionary<string, dinnerItem> dinnerChoices = new Dictionary<string, dinnerItem>
+    /// <summary>Gets the items on the menu.</summary>
+    public static Dictionary<string, DinnerItem> MenuItems { get; } = new Dictionary<string, DinnerItem>
     {
-        { "potato salad", new dinnerItem { Description="Potato Salad", Price=5.99 } },
-        { "tuna sandwich", new dinnerItem { Description="Tuna Sandwich", Price=6.89 } },
-        { "clam chowder", new dinnerItem { Description="Clam Chowder", Price=4.50 } }
+        ["Potato salad"] = new DinnerItem { Description = "Potato Salad", Price = 5.99 },
+        ["Tuna sandwich"] = new DinnerItem { Description = "Tuna Sandwich", Price = 6.89 },
+        ["Clam chowder"] = new DinnerItem { Description = "Clam Chowder", Price = 4.50 },
     };
 
-    static public string[] choices = new string[] {"Potato Salad", "Tuna Sandwich", "Clam Chowder", "more info", "Process order", "help", "Cancel"};
+    /// <summary>Gets all the "interruptions" the bot knows how to process.</summary>
+    public static List<string> Interrupts { get; } = new List<string>
+    {
+        "More info", "Process order", "Help", "Cancel",
+    };
+
+    /// <summary>Gets all of the valid inputs a user can make.</summary>
+    public static List<string> Choices { get; }
+        = MenuItems.Select(c => c.Key).Concat(Interrupts).ToList();
 }
 ```
 
 # <a name="javascripttabjstab"></a>[JavaScript](#tab/jstab)
 
+我們先從基本的 EchoBot 範本開始。 如需指示，請參閱[適用於 JavaScript 的快速入門](~/javascript/bot-builder-javascript-quickstart.md)。
+
+可以從 NPM 下載 `botbuilder-dialogs` 程式庫。 若要安裝 `botbuilder-dialogs` 程式庫，請執行下列 npm 命令：
+
+```cmd
+npm install --save botbuilder-dialogs
+```
+
+在 **bot.js** 檔案中，參考我們將會參考的類別，並定義我們將用於對話方塊的識別碼。
+
 ```javascript
-var dinnerMenu = {
+const { ActivityTypes } = require('botbuilder');
+const { DialogSet, ChoicePrompt, WaterfallDialog, DialogTurnStatus } = require('botbuilder-dialogs');
+
+// Name for the dialog state property accessor.
+const DIALOG_STATE_PROPERTY = 'dialogStateProperty';
+
+// Name of the order-prompt dialog.
+const ORDER_PROMPT = 'orderingDialog';
+
+// Name for the choice prompt for use in the dialog.
+const CHOICE_PROMPT = 'choicePrompt';
+```
+
+定義我們想要顯示在排序對話方塊上的選項。
+
+```javascript
+// The options on the dinner menu, including commands for the bot.
+const dinnerMenu = {
     choices: ["Potato Salad - $5.99", "Tuna Sandwich - $6.89", "Clam Chowder - $4.50",
-            "more info", "Process order", "Cancel"],
+        "Process order", "Cancel", "More info", "Help"],
     "Potato Salad - $5.99": {
-        Description: "Potato Salad",
-        Price: 5.99
+        description: "Potato Salad",
+        price: 5.99
     },
     "Tuna Sandwich - $6.89": {
-        Description: "Tuna Sandwich",
-        Price: 6.89
+        description: "Tuna Sandwich",
+        price: 6.89
     },
     "Clam Chowder - $4.50": {
-        Description: "Clam Chowder",
-        Price: 4.50
+        description: "Clam Chowder",
+        price: 4.50
     }
 }
 ```
@@ -96,213 +165,283 @@ var dinnerMenu = {
 
 # <a name="ctabcsharptab"></a>[C#](#tab/csharptab)
 
-首先，我們需要定義協助程式來追蹤我們的訂單
+首先，我們需要定義協助程式來追蹤我們的訂單。
 
 ```cs
-// Helper class for storing the order in the dictionary
-public class Orders
+/// <summary>Helper class for storing the order.</summary>
+public class Order
 {
-    public double total;
-    public string order;
-    public bool processOrder;
+    public double Total { get; set; } = 0.0;
 
-    // Initialize order values
-    public Orders()
+    public List<DinnerItem> Items { get; set; } = new List<DinnerItem>();
+
+    public bool ReadyToProcess { get; set; } = false;
+
+    public bool OrderProcessed { get; set; } = false;
+}
+```
+
+新增一些常數，以追蹤我們需要的識別碼。
+
+```csharp
+/// <summary>The ID of the top-level dialog.</summary>
+public const string MainDialogId = "mainMenu";
+
+/// <summary>The ID of the choice prompt.</summary>
+public const string ChoicePromptId = "choicePrompt";
+
+/// <summary>The ID of the order card value, tracked inside the dialog.</summary>
+public const string OrderCartId = "orderCart";
+```
+
+更新建構函式，以新增選擇提示和瀑布對話。 我們也會定義可實作瀑布步驟的方法。
+
+```cs
+public OrderDinnerDialogs(IStatePropertyAccessor<DialogState> dialogStateAccessor)
+    : base(dialogStateAccessor)
+{
+    // Add a choice prompt for the dialog.
+    Add(new ChoicePrompt(ChoicePromptId));
+
+    // Define and add the main waterfall dialog.
+    WaterfallStep[] steps = new WaterfallStep[]
     {
-        total = 0;
-        order = "";
-        processOrder = false;
+        PromptUserAsync,
+        ProcessInputAsync,
+    };
+
+    Add(new WaterfallDialog(MainDialogId, steps));
+}
+
+/// <summary>
+/// Defines the first step of the main dialog, which is to ask for input from the user.
+/// </summary>
+/// <param name="stepContext">The current waterfall step context.</param>
+/// <param name="cancellationToken">The cancellation token.</param>
+/// <returns>The task to perform.</returns>
+private async Task<DialogTurnResult> PromptUserAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+{
+    // Initialize order, continuing any order that was passed in.
+    Order order = (stepContext.Options is Order oldCart && oldCart != null)
+        ? new Order
+        {
+            Items = new List<DinnerItem>(oldCart.Items),
+            Total = oldCart.Total,
+            ReadyToProcess = oldCart.ReadyToProcess,
+            OrderProcessed = oldCart.OrderProcessed,
+        }
+        : new Order();
+
+    // Set the order cart in dialog state.
+    stepContext.Values[OrderCartId] = order;
+
+    // Prompt the user.
+    return await stepContext.PromptAsync(
+        "choicePrompt",
+        new PromptOptions
+        {
+            Prompt = MessageFactory.Text("What would you like for dinner?"),
+            RetryPrompt = MessageFactory.Text(
+                "I'm sorry, I didn't understand that. What would you like for dinner?"),
+            Choices = ChoiceFactory.ToChoices(DinnerMenu.Choices),
+        },
+        cancellationToken);
+}
+
+/// <summary>
+/// Defines the second step of the main dialog, which is to process the user's input, and
+/// repeat or exit as appropriate.
+/// </summary>
+/// <param name="stepContext">The current waterfall step context.</param>
+/// <param name="cancellationToken">The cancellation token.</param>
+/// <returns>The task to perform.</returns>
+private async Task<DialogTurnResult> ProcessInputAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+{
+    // Get the order cart from dialog state.
+    Order order = stepContext.Values[OrderCartId] as Order;
+
+    // Get the user's choice from the previous prompt.
+    string response = (stepContext.Result as FoundChoice).Value;
+
+    if (response.Equals("process order", StringComparison.InvariantCultureIgnoreCase))
+    {
+        order.ReadyToProcess = true;
+
+        await stepContext.Context.SendActivityAsync(
+            "Your order is on it's way!",
+            cancellationToken: cancellationToken);
+
+        // In production, you may want to store something more helpful.
+        // "Process" the order and exit.
+        order.OrderProcessed = true;
+        return await stepContext.EndDialogAsync(null, cancellationToken);
+    }
+    else if (response.Equals("cancel", StringComparison.InvariantCultureIgnoreCase))
+    {
+        // Cancel the order.
+        await stepContext.Context.SendActivityAsync(
+            "Your order has been canceled",
+            cancellationToken: cancellationToken);
+
+        // Exit without processing the order.
+        return await stepContext.EndDialogAsync(null, cancellationToken);
+    }
+    else if (response.Equals("more info", StringComparison.InvariantCultureIgnoreCase))
+    {
+        // Send more information about the options.
+        string message = "More info: <br/>" +
+            "Potato Salad: contains 330 calories per serving. Cost: 5.99 <br/>"
+            + "Tuna Sandwich: contains 700 calories per serving. Cost: 6.89 <br/>"
+            + "Clam Chowder: contains 650 calories per serving. Cost: 4.50";
+        await stepContext.Context.SendActivityAsync(
+            message,
+            cancellationToken: cancellationToken);
+
+        // Continue the ordering process, passing in the current order cart.
+        return await stepContext.ReplaceDialogAsync(MainDialogId, order, cancellationToken);
+    }
+    else if (response.Equals("help", StringComparison.InvariantCultureIgnoreCase))
+    {
+        // Provide help information.
+        string message = "To make an order, add as many items to your cart as " +
+            "you like. Choose the `Process order` to check out. " +
+            "Choose `Cancel` to cancel your order and exit.";
+        await stepContext.Context.SendActivityAsync(
+            message,
+            cancellationToken: cancellationToken);
+
+        // Continue the ordering process, passing in the current order cart.
+        return await stepContext.ReplaceDialogAsync(MainDialogId, order, cancellationToken);
+    }
+
+    // We've checked for expected interruptions. Check for a valid item choice.
+    if (!DinnerMenu.MenuItems.ContainsKey(response))
+    {
+        await stepContext.Context.SendActivityAsync("Sorry, that is not a valid item. " +
+            "Please pick one from the menu.");
+
+        // Continue the ordering process, passing in the current order cart.
+        return await stepContext.ReplaceDialogAsync(MainDialogId, order, cancellationToken);
+    }
+    else
+    {
+        // Add the item to cart.
+        DinnerItem item = DinnerMenu.MenuItems[response];
+        order.Items.Add(item);
+        order.Total += item.Price;
+
+        // Acknowledge the input.
+        await stepContext.Context.SendActivityAsync(
+            $"Added `{response}` to your order; your total is ${order.Total:0.00}.",
+            cancellationToken: cancellationToken);
+
+        // Continue the ordering process, passing in the current order cart.
+        return await stepContext.ReplaceDialogAsync(MainDialogId, order, cancellationToken);
     }
 }
 ```
 
-然後，將對話新方塊增至您的 Bot。
-
-```cs
-dialogs.Add("orderPrompt", new WaterfallStep[]
-{
-    async (dc, args, next) =>
-    {
-        // Prompt the user
-        await dc.Prompt("choicePrompt",
-            "What would you like for dinner?",
-            new ChoicePromptOptions
-            {
-                Choices = dinnerMenu.choices.Select( s => new Choice { Value = s }).ToList(),
-                RetryPromptString = "I'm sorry, I didn't understand that. What would you " +
-                    "like for dinner?"
-            });
-    },
-    async(dc, args, next) =>
-    {
-        var convo = ConversationState<Dictionary<string,object>>.Get(dc.Context);
-
-        // Get the user's choice from the previous prompt
-        var response = (args["Value"] as FoundChoice).Value.ToLower();
-
-        if(response == "process order")
-        {
-            try
-            {
-                var order = convo["order"];
-
-                await dc.Context.SendActivity("Order is on it's way!");
-
-                // In production, you may want to store something more helpful,
-                // such as send order off to be made
-                (order as Orders).processOrder = true;
-
-                // Once it's submitted, clear the current order
-                convo.Remove("order");
-                await dc.End();
-            }
-            catch
-            {
-                await dc.Context.SendActivity("Your order is empty, please add your order choice");
-                // Ask again
-                await dc.Replace("orderPrompt");
-            }
-        }
-        else if(response == "cancel" )
-        {
-            // Get rid of current order
-            convo.Remove("order");
-            await dc.Context.SendActivity("Your order has been canceled");
-            await dc.End();
-        }
-        else if(response == "more info")
-        {
-            // Send more information about the options
-            var msg = "More info: <br/>" +
-                "Potato Salad: contains 330 calaries per serving. Cost: 5.99 <br/>"
-                + "Tuna Sandwich: contains 700 calaries per serving. Cost: 6.89 <br/>"
-                + "Clam Chowder: contains 650 calaries per serving. Cost: 4.50";
-            await dc.Context.SendActivity(msg);
-
-            // Ask again
-            await dc.Replace("orderPrompt");
-        }
-        else if(response == "help")
-        {
-            // Provide help information
-            await dc.Context.SendActivity("To make an order, add as many items to your cart as " +
-                "you like then choose the \"Process order\" option to check out.");
-
-            // Ask again
-            await dc.Replace("orderPrompt");
-        }
-        else
-        {
-            // Unlikely to get past the prompt verification, but this will catch
-            // anything that isn't a valid menu choice
-            if(!dinnerMenu.dinnerChoices.ContainsKey(response))
-            {
-                await dc.Context.SendActivity("Sorry, that is not a valid item. " +
-                    "Please pick one from the menu.");
-
-                // Ask again
-                await dc.Replace("orderPrompt");
-            }
-            else {
-                // Add the item to cart
-                Orders currentOrder;
-
-                // If there is a current order going, add to it. If not, start a new one
-                try
-                {
-                    currentOrder = convo["order"] as Orders;
-                }
-                catch
-                {
-                    convo["order"] = new Orders();
-                    currentOrder = convo["order"] as Orders;
-                }
-
-                // Add to the current order
-                currentOrder.order += (dinnerMenu.dinnerChoices[$"{response}"].Description) + ", ";
-                currentOrder.total += (double)dinnerMenu.dinnerChoices[$"{response}"].Price;
-
-                // Save back to the conversation state
-                convo["order"] = currentOrder;
-
-                await dc.Context.SendActivity($"Added to cart. Current order: " +
-                    $"{currentOrder.order} " +
-                    $"<br/>Current total: ${currentOrder.total}");
-
-                // Ask again to allow user to add more items or process order
-                await dc.Replace("orderPrompt");
-            }
-        }
-    }
-});
-```
-
 # <a name="javascripttabjstab"></a>[JavaScript](#tab/jstab)
 
+在 Bot 建構函式中定義您的對話方塊。 請注意，程式碼會先檢查並處理中斷，然後繼續進行下一個邏輯步驟。
+
 ```javascript
-// Helper dialog to repeatedly prompt user for orders
-dialogs.add('orderPrompt', [
-    async function(dc){
-        await dc.prompt('choicePrompt', "What would you like?", dinnerMenu.choices);
-    },
-    async function(dc, choice){
-        if(choice.value.match(/process order/ig)){
-            if(orderCart.orders.length > 0) {
-                // Process the order
-                dc.context.activity.conversation.dinnerOrder = orderCart;
+constructor(conversationState) {
+    this.dialogStateAccessor = conversationState.createProperty(DIALOG_STATE_PROPERTY);
+    this.conversationState = conversationState;
 
-                await dc.end();
+    this.dialogs = new DialogSet(this.dialogStateAccessor)
+        .add(new ChoicePrompt(CHOICE_PROMPT))
+        .add(new WaterfallDialog(ORDER_PROMPT, [
+            async (step) => {
+                if (step.options && step.options.orders) {
+                    // If an order cart was passed in, continue to use it.
+                    step.values.orderCart = step.options;
+                } else {
+                    // Otherwise, start a new cart.
+                    step.values.orderCart = {
+                        orders: [],
+                        total: 0
+                    };
+                }
+                return await step.prompt(CHOICE_PROMPT, "What would you like?", dinnerMenu.choices);
+            },
+            async (step) => {
+                const choice = step.result;
+                if (choice.value.match(/process order/ig)) {
+                    if (step.values.orderCart.orders.length > 0) {
+                        // If the cart is not empty, process the order by returning the order to the parent context.
+                        await step.context.sendActivity("Your order has been processed.");
+                        return await step.endDialog(step.values.orderCart);
+                    } else {
+                        // Otherwise, prompt again.
+                        await step.context.sendActivity("Your cart was empty. Please add at least one item to the cart.");
+                        return await step.replaceDialog(ORDER_PROMPT);
+                    }
+                } else if (choice.value.match(/cancel/ig)) {
+                    // Cancel the order, and return "cancel" to the parent context.
+                    await step.context.sendActivity("Your order has been canceled.");
+                    return await step.endDialog("cancelled");
+                } else if (choice.value.match(/more info/ig)) {
+                    // Provide more information, and then continue the ordering process.
+                    var msg = "More info: <br/>Potato Salad: contains 330 calories per serving. <br/>"
+                        + "Tuna Sandwich: contains 700 calories per serving. <br/>"
+                        + "Clam Chowder: contains 650 calories per serving."
+                    await step.context.sendActivity(msg);
+                    return await step.replaceDialog(ORDER_PROMPT, step.values.orderCart);
+                } else if (choice.value.match(/help/ig)) {
+                    // Provide help information, and then continue the ordering process.
+                    var msg = `Help: <br/>`
+                        + `To make an order, add as many items to your cart as you like then choose `
+                        + `the "Process order" option to check out.`
+                    await step.context.sendActivity(msg);
+                    return await step.replaceDialog(ORDER_PROMPT, step.values.orderCart);
+                } else {
+                    // The user has chosen a food item from the menu. Add the item to cart.
+                    var item = dinnerMenu[choice.value];
+                    step.values.orderCart.orders.push(item.description);
+                    step.values.orderCart.total += item.price;
+
+                    await step.context.sendActivity(`Added ${item.description} to your cart. <br/>`
+                        + `Current total: $${step.values.orderCart.total}`);
+
+                    // Continue the ordering process.
+                    return await step.replaceDialog(ORDER_PROMPT, step.values.orderCart);
+                }
             }
-            else {
-                await dc.context.sendActivity("Your cart was empty. Please add at least one item to the cart.");
-                // Ask again
-                await dc.replace('orderPrompt');
+        ]));
+}
+```
+
+更新回合處理常式，以呼叫對話方塊並顯示排序程序的結果。
+
+```javascript
+async onTurn(turnContext) {
+    if (turnContext.activity.type === ActivityTypes.Message) {
+        let dc = await this.dialogs.createContext(turnContext);
+        let dialogTurnResult = await dc.continueDialog();
+        if (dialogTurnResult.status === DialogTurnStatus.complete) {
+            // The dialog completed this turn.
+            const result = dialogTurnResult.result;
+            if (!result || result === "cancelled") {
+                await turnContext.sendActivity('You cancelled your order.');
+            } else {
+                await turnContext.sendActivity(`Your order came to $${result.total}`);
             }
+        } else if (!turnContext.responded) {
+            // No dialog was active.
+            await turnContext.sendActivity("Let's order dinner...");
+            await dc.cancelAllDialogs();
+            await dc.beginDialog(ORDER_PROMPT);
+        } else {
+            // The dialog is active.
         }
-        else if(choice.value.match(/cancel/ig)){
-            orderCart.clear(context);
-            await dc.context.sendActivity("Your order has been canceled.");
-            await dc.end(choice.value);
-        }
-        else if(choice.value.match(/more info/ig)){
-            var msg = "More info: <br/>Potato Salad: contains 330 calaries per serving. <br/>"
-                + "Tuna Sandwich: contains 700 calaries per serving. <br/>" 
-                + "Clam Chowder: contains 650 calaries per serving."
-            await dc.context.sendActivity(msg);
-
-            // Ask again
-            await dc.replace('orderPrompt');
-        }
-        else if(choice.value.match(/help/ig)){
-            var msg = `Help: <br/>To make an order, add as many items to your cart as you like then choose the "Process order" option to check out.`
-            await dc.context.sendActivity(msg);
-
-            // Ask again
-            await dc.replace('orderPrompt');
-        }
-        else {
-            var choice = dinnerMenu[choice.value];
-
-            // Only proceed if user chooses an item from the menu
-            if(!choice){
-                await dc.context.sendActivity("Sorry, that is not a valid item. Please pick one from the menu.");
-
-                // Ask again
-                await dc.replace('orderPrompt');
-            }
-            else {
-                // Add the item to cart
-                orderCart.orders.push(choice);
-                orderCart.total += dinnerMenu[choice.value].Price;
-
-                await dc.context.sendActivity(`Added to cart: ${choice.value}. <br/>Current total: $${orderCart.total}`);
-
-                // Ask again
-                await dc.replace('orderPrompt');
-            }
-        }
+    } else {
+        await turnContext.sendActivity(`[${turnContext.activity.type} event detected]`);
     }
-]);
+    // Save state changes
+    await this.conversationState.saveChanges(turnContext);
+}
 ```
 
 ---
@@ -321,24 +460,26 @@ dialogs.add('orderPrompt', [
 
 ### <a name="apply-artificial-intelligence"></a>套用人工智慧
 
-針對範圍之外的中斷，您可以嘗試猜測使用者的想法。 您可以使用 AI 服務 (例如 QnAMaker、LUIS) 或您的自訂邏輯，然後針對 Bot 所判斷的使用者需求的提供建議，來達到這項目的。
+針對範圍之外的中斷，您可以嘗試猜測使用者的想法。 您可以使用 AI 服務 (例如 QnA Maker、LUIS) 或您的自訂邏輯，然後針對 Bot 所判斷的使用者需求的提供建議，來達到這項目的。
 
 例如，在餐廳訂位流程當中，使用者說：「我想要訂購漢堡」。 Bot 不會知道要如何在這個對話流程中處理這個訊息。 因為目前的流程與訂購毫無相關，Bot 的其他對話命令是「訂購晚餐」，所以 Bot 不知道要怎麼處理這個輸入。 舉例來說，如果您套用 LUIS，您可以訓練模型來辨識使用者想要訂購餐點 (例如：LUIS 可以傳回 "orderFood" 意圖)。 因此，Bot 就可以回應：「您似乎想要訂購餐點。 您要切換到我們的訂購晚餐程序嗎？」 如需訓練 LUIS 並且偵測使用者意圖的詳細資訊，請參閱[使用 LUIS 理解語言](bot-builder-howto-v4-luis.md)。
 
 ### <a name="default-response"></a>預設回應
 
-如果所有解決方案都失敗，您可以傳送通用預設回應，而不是毫無作為，讓使用者臆測究竟發生什麼事。 預設回應應該告知使用者 Bot 可以理解哪些命令，讓使用者可以回到正軌。
+如果所有解決方案都失敗，您應該傳送預設回應，而不是毫無作為，讓使用者臆測究竟發生什麼事。 預設回應應該告知使用者 Bot 可以理解哪些命令，讓使用者可以回到正軌。
 
 您可以檢查 Bot 邏輯結尾的內容**已回應**旗標，以查看 Bot 是否在使用者等待時將任何項目傳回給使用者。 如果 Bot 會處理使用者的輸入，但是不會回應，有可能是 Bot 不知道該如何處理輸入。 在此情況下，您可以攔截它，並且將預設訊息傳送給使用者。
 
-此 Bot 的預設值是對使用者顯示 `mainMenu` 對話方塊。 遇到 Bot 發生這種情形時，使用者會有何種體驗全操之在您。
+如果 Bot 的預設值是要對使用者顯示 `mainMenu` 對話方塊。 遇到 Bot 發生這種情形時，使用者會有何種體驗全操之在您。
 
 # <a name="ctabcsharptab"></a>[C#](#tab/csharptab)
 
 ```cs
-if(!context.Responded)
+// Check whether we replied. If not then clear the dialog stack and present the main menu.
+if (!turnContext.Responded)
 {
-    await dc.EndAll().Begin("mainMenu");
+    await dc.CancelAllDialogsAsync(cancellationToken);
+    await dc.BeginDialogAsync(OrderDinnerDialogs.MainDialogId, null, cancellationToken);
 }
 ```
 
@@ -347,7 +488,82 @@ if(!context.Responded)
 ```javascript
 // Check to see if anyone replied. If not then clear all the stack and present the main menu
 if (!context.responded) {
-    await dc.endAll().begin('mainMenu');
+    await dc.cancelAllDialogs();
+    await step.beginDialog('mainMenu');
+}
+```
+
+---
+
+## <a name="handling-global-interruptions"></a>處理全域中斷
+
+在上述範例中，我們會處理可能在特定對話方塊中的特定回合發生的中斷。 如果我們想要處理全域中斷 - 隨時可能發生的種類，該怎麼做？
+
+做法是將中斷處理邏輯放入 Bot 的主要處理常式中 - 這是可處理傳入 `turnContext` 並決定其處理方式的函式。
+
+在以下範例中，Bot 進行的「第一件事」是檢查傳入訊息文字中是否有使用者需要協助或想要取消的徵象 - Bot 很常遇到的兩種中斷情形。 在這項檢查完成之後，Bot 會呼叫 `dc.continueDialog()` 以處理仍然擱置的任何使用中對話方塊。
+
+# <a name="ctabcsharptab"></a>[C#](#tab/csharptab)
+
+```cs
+// Check for top-level interruptions.
+string utterance = turnContext.Activity.Text.Trim().ToLowerInvariant();
+
+if (utterance == "help")
+{
+    // Start a general help dialog. Dialogs already on the stack remain and will continue
+    // normally if the help dialog exits normally.
+    await dc.BeginDialogAsync(OrderDinnerDialogs.HelpDialogId, null, cancellationToken);
+}
+else if (utterance == "cancel")
+{
+    // Cancel any dialog on the stack.
+    await turnContext.SendActivityAsync("Canceled.", cancellationToken: cancellationToken);
+    await dc.CancelAllDialogsAsync(cancellationToken);
+}
+else
+{
+    await dc.ContinueDialogAsync(cancellationToken);
+
+    // Check whether we replied. If not then clear the dialog stack and present the main menu.
+    if (!turnContext.Responded)
+    {
+        await dc.CancelAllDialogsAsync(cancellationToken);
+        await dc.BeginDialogAsync(OrderDinnerDialogs.MainDialogId, null, cancellationToken);
+    }
+}
+```
+
+# <a name="javascripttabjstab"></a>[JavaScript](#tab/jstab)
+
+我們會先處理中斷，再將使用者回應傳送至對話方塊。
+
+此程式碼片段假設我們的對話方塊集中有 `helpDialog` 和`mainMenu`。
+
+```javascript
+const utterance = (context.activity.text || '').trim();
+
+// Let's look for some interruptions first!
+if (utterance.match(/help/ig)) {
+    // Launch a new help dialog if the user asked for help
+    await dc.beginDialog('helpDialog');
+} else if (utterance.match(/cancel/ig)) {
+    // Cancel any active dialogs if the user says cancel
+    await dc.context.sendActivity('Canceled.');
+    await dc.cancelAllDialogs();
+}
+
+// If the bot hasn't yet responded...
+if (!context.responded) {
+    // Continue any active dialog, which might send a response...
+    await dc.continueDialog();
+
+    // Finally, if the bot still hasn't sent a response, send instructions.
+    if (!context.responded) {
+        await dc.cancelAllDialogs();
+        await context.sendActivity("Starting the main menu...");
+        await dc.beginDialog('mainMenu');
+    }
 }
 ```
 

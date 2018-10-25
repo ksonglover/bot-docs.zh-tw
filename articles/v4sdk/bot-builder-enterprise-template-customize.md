@@ -5,15 +5,15 @@ author: darrenj
 ms.author: darrenj
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6fc7f73d406c1bbbc2b2671c9336df6bda10ade6
-ms.sourcegitcommit: 87b5b0ca9b0d5e028ece9f7cc4948c5507062c2b
+ms.openlocfilehash: b9c8a0bc04cfcf96f6c81b624464e9698eab1699
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/24/2018
-ms.locfileid: "47029756"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998951"
 ---
 # <a name="enterprise-bot-template---customize-your-bot"></a>企業 Bot 範本 - 自訂您的 Bot
 
@@ -80,7 +80,7 @@ Bot 的資料夾結構如下所示，且代表我們建議的最佳做法，可�
 ```
 3. 從每個已更新模型的專案根目錄執行下列命令，以更新其相關聯的 LuisGen 類別： 
 ```shell
-    luis export version --appId [LUIS_APP_ID] --versionId [LUIS_APP_VERSION] --authoringKey [YOUR_LUIS_AUTHORING_KEY] | luisgen - -cs [CS_FILE_NAME] -o "\Dialogs\Shared\Resources"
+    luis export version --appId [LUIS_APP_ID] --versionId [LUIS_APP_VERSION] --authoringKey [YOUR_LUIS_AUTHORING_KEY] | luisgen --cs [CS_FILE_NAME] -o "\Dialogs\Shared\Resources"
 ```
 
 ### <a name="updating-an-existing-qnamaker-knowledge-base"></a>更新現有的 QnAMaker 知識庫

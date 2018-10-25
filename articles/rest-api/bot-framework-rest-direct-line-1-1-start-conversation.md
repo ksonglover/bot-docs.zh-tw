@@ -5,21 +5,22 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 36645ce3811c77a3ca7ed697eeae63027fa1644a
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: da81182d80ebac0d5aaba5a2660899d87c7e2b40
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299519"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000215"
 ---
 # <a name="start-a-conversation"></a>開始對話
 
 > [!IMPORTANT]
 > 此文章說明如何使用直接線路 API 1.1 開始對話。 如果要在用戶端應用程式與 Bot 之間建立新連線，請改為使用[直接線路 API 3.0](bot-framework-rest-direct-line-3-0-start-conversation.md)。
 
-直接線路對話是由用戶端明確地開啟，且只要 Bot 和用戶端在參與且具有有效認證，對話就會繼續執行。 只要對話還是開啟的，Bot 和用戶端就都會傳送訊息。 可以有超過一個的用戶端連線到指定對話，且每個用戶端都可以代表多個使用者參與對話。
+直接線路對話是由用戶端明確地開啟，且只要 Bot 和用戶端在參與且具有有效認證，對話就會繼續執行。 對話開啟時，Bot 和用戶端可以傳送訊息。 可以有超過一個用戶端連線到指定對話，且每個用戶端都可以代表多個使用者參與對話。
 
 ## <a name="open-a-new-conversation"></a>開啟新的對話
 
@@ -39,7 +40,7 @@ POST https://directline.botframework.com/api/conversations
 Authorization: Bearer RCurR_XV9ZA.cwA.BKA.iaJrC8xpy8qbOF5xnR2vtCX7CZj0LdjAPGfiCpg4Fv0y8qbOF5xPGfiCpg4Fv0y8qqbOF5x8qbOF5xn
 ```
 
-### <a name="response"></a>回應
+### <a name="response"></a>Response
 
 如果要求成功，回應將會包含對話識別碼、權杖，以及表示權杖過期前秒數的值。
 

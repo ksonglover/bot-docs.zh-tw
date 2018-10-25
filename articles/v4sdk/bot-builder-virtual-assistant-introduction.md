@@ -5,15 +5,15 @@ author: darrenj
 ms.author: darrenj
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 13/12/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 075c090571eb7a45efc57b915a4bc912fc9c55df
-ms.sourcegitcommit: 87b5b0ca9b0d5e028ece9f7cc4948c5507062c2b
+ms.openlocfilehash: e93f7d24396b4e35fc81960d42148dd8942362d7
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/24/2018
-ms.locfileid: "47029844"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998957"
 ---
 # <a name="virtual-assistant-solution-overview"></a>虛擬小幫手解決方案概觀
 
@@ -34,7 +34,7 @@ ms.locfileid: "47029844"
 
 功能 | 說明 |
 ------------ | -------------
-上線 | 可讓您的小幫手歡迎使用者及收集初始資訊的範例上線流程。
+登入 | 可讓您的小幫手歡迎使用者及收集初始資訊的範例上線流程。
 事件架構 | 虛擬小幫手的內容中的事件可讓用戶端應用程式主控小幫手 (在網頁瀏覽器中或在汽車或喇叭等裝置上)，以交換有關使用者或裝置事件的資訊，同時也能接收事件以執行裝置作業。
 連結的帳戶 | 在語音導向的案例中，使用者透過語音命令輸入其使用者名稱和密碼來支援系統並不切實際。 因此，個別的小幫手體驗讓使用者有機會登入，並提供虛擬小幫手擷取權杖以供日後使用的權限。
 技術提升 | 目前有一組廣泛的常見功能需要每位開發人員自行建置。 我們的虛擬小幫手解決方案包含新的「技術」功能，僅透過設定就可讓新功能插入虛擬小幫手，並提供技術的驗證機制來要求下游活動的權杖。

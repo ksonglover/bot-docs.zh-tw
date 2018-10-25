@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: d9f1821767e5bd26c9a8bfdf3927f257077f0e79
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6679afa688917bdf3d558d5ed47717ee30d0e52e
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299931"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999355"
 ---
 # <a name="receive-messages-from-the-bot"></a>從 Bot 接收訊息
 
@@ -69,11 +70,11 @@ HTTP/1.1 200 OK
 
 - 服務對服務應用程式通常會使用 5 秒或 10 秒的輪詢間隔。
 
-- 用戶端對應應用程式通常使用 1 秒的輪詢間隔，並在用戶端傳送的每則訊息後，發出約 300 毫秒的其他要求 (以快速擷取 Bot 的回應)。 此 300 毫秒的延遲應根據 Bot 的速度和傳輸時間加以調整。
+- 面向用戶端的應用程式通常使用 1 秒的輪詢間隔，並在用戶端傳送的每則訊息後，發出約 300 毫秒的其他要求 (以快速擷取 Bot 的回應)。 此 300 毫秒的延遲應根據 Bot 的速度和傳輸時間加以調整。
 
 ## <a name="additional-resources"></a>其他資源
 
 - [重要概念](bot-framework-rest-direct-line-1-1-concepts.md)
 - [驗證](bot-framework-rest-direct-line-1-1-authentication.md)
-- [開始交談](bot-framework-rest-direct-line-1-1-start-conversation.md)
+- [開始對話](bot-framework-rest-direct-line-1-1-start-conversation.md)
 - [將訊息傳送至 Bot](bot-framework-rest-direct-line-1-1-send-message.md)

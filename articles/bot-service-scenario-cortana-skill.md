@@ -5,15 +5,16 @@ author: BrianRandell
 ms.author: v-brra
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: cognitive-services
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 049dffd2adc700323bec943e090d369a14ff696b
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 7676b7bd75a45130b62c1a691499095d6ba07291
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574844"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000225"
 ---
 # <a name="cortana-skills-bot-scenario"></a>Cortana 技能 Bot 案例
 
@@ -48,7 +49,7 @@ Cortana Bot 會使用下列元件：
 現在，您可以透過建立 Cortana 技能，將支援新增至您的 Bot。 您可以使用 Cortana 技能集為 Cortana 建置新功能 (稱為技能)。 技能是一種允許 Cortana 做更多事情的建構。 您可以建置與 Bot 整合的技能，從而讓 Cortana 完成工作。 作為叫用程序的一部分，Cortana 可以 (在使用者同意之後) 在執行階段將使用者的相關資訊傳遞給技能，以便技能可以相應地自訂其體驗。 Cortana 的內容相關的知識可讓您的 Bot 變得實用，甚至可能更聰明。 一旦叫用，特定類型的技能可以操作 Cortana 的介面，以在技能和使用者之間進行交談。 發佈之後，使用者就可以在 Cortana for Windows 10 年度更新+ (電腦和行動裝置)、iOS 和 Android 上查看和使用您的技能。
 
 ### <a name="application-insights"></a>Application Insights
-Application Insights 可協助您透過應用程式效能管理和立即分析，取得可操作的見解。 根據預設，您可以取得豐富的效能監視、強大的警示與便於取用的儀表板，以協助確保您的 Bot 可供使用，並如預期般執行。 您可以快速查看是否遇到問題，然後執行根本原因分析以找出並修正問題。
+Application Insights 可協助您透過應用程式效能管理和立即分析，取得可操作的見解。 根據預設，您可以取得豐富的效能監視、強大的警示與便於取用的儀表板，以協助確保您的 Bot 可供使用，並如預期般執行。 您可以快速查看是否遇到問題，然後執行根本原因分析以找出問題，並加以修正。
 
 ## <a name="next-steps"></a>後續步驟
 接下來，了解企業生產力 Bot 案例。

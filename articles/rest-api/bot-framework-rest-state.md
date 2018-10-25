@@ -5,21 +5,22 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 1557941d4e5413108ea3ce788f7d5d684252b657
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b0d5ca6893d70a73bc005a949ef6cc2518d3862f
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298748"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000025"
 ---
 # <a name="manage-state-data"></a>管理狀態資料
 
 Bot 狀態服務可讓您的 Bot 儲存及擷取與使用者、對話或特定對話內容中特定使用者相關聯的狀態資料。 您最多可以為頻道上的每個使用者、頻道上的每個對話，以及頻道上對話內容中的每個使用者儲存 32 KB 的資料。 狀態資料有許多用途，例如判斷先前離開對話的位置，或單純地以名字向回來的使用者問候。 如果您儲存使用者的喜好設定，下次聊天時就可以使用該資訊來自訂對話。 例如，您可能會在有使用者感興趣的主題之新聞文章，或有可用約會時通知使用者。 
 
 > [!IMPORTANT]
-> 建議您不要將 Bot Framework 狀態服務 API 用於生產環境，未來版本可能會將它淘汰。 建議更新您的 Bot 程式碼以使用記憶體內部儲存體進行測試，或將其中一個 **Azure 延伸模組**用於生產環境 Bot。 如需詳細資訊，請參閱 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 實作的＜管理狀態資料＞主題。
+> 建議您不要將 Bot Framework 狀態服務 API 用於生產環境，未來版本可能會將它淘汰。 建議更新您的 Bot 程式碼以使用記憶體內部儲存體進行測試，或將其中一個 **Azure 擴充功能**用於生產環境 Bot。 如需詳細資訊，請參閱 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 實作的＜管理狀態資料＞主題。
 
 ## <a id="concurrency"></a> 資料並行
 
@@ -50,7 +51,7 @@ POST /v3/botstate/{channelId}/users/{userId}
 
 ### <a name="request"></a>要求 
 
-下列範例顯示儲存特定頻道上使用者資料的要求。 在此範例要求中，`https://smba.trafficmanager.net/apis` 表示基底 URI，您的 Bot 所發出之要求的基底 URI 可能和這個不同。 如需設定基底 URI 的詳細資訊，請參閱 [API 參考](bot-framework-rest-connector-api-reference.md#base-uri)。
+下列範例顯示儲存特定頻道上使用者資料的要求。 在此範例要求中，`https://smba.trafficmanager.net/apis` 表示基底 URI，您的 Bot 所發出之要求的基底 URI 可能和這個不同。 如需設定基底 URI 的詳細資料，請參閱 [API 參考](bot-framework-rest-connector-api-reference.md#base-uri)。
 
 ```http
 POST https://smba.trafficmanager.net/apis/v3/botstate/abcd1234/users/12345678
@@ -76,7 +77,7 @@ Content-Type: application/json
 }
 ```
 
-### <a name="response"></a>回應 
+### <a name="response"></a>Response 
 
 回應將會包含具有新 `eTag` 值的 [BotData][BotData] 物件。
 
@@ -92,7 +93,7 @@ GET /v3/botstate/{channelId}/users/{userId}
 
 ### <a name="request"></a>要求
 
-下列範例顯示取得先前為使用者儲存之資料的要求。 在此範例要求中，`https://smba.trafficmanager.net/apis` 表示基底 URI，您的 Bot 所發出之要求的基底 URI 可能和這個不同。 如需設定基底 URI 的詳細資訊，請參閱 [API 參考](bot-framework-rest-connector-api-reference.md#base-uri)。
+下列範例顯示取得先前為使用者儲存之資料的要求。 在此範例要求中，`https://smba.trafficmanager.net/apis` 表示基底 URI，您的 Bot 所發出之要求的基底 URI 可能和這個不同。 如需設定基底 URI 的詳細資料，請參閱 [API 參考](bot-framework-rest-connector-api-reference.md#base-uri)。
 
 ```http
 GET https://smba.trafficmanager.net/apis/v3/botstate/abcd1234/users/12345678
@@ -100,7 +101,7 @@ Authorization: Bearer ACCESS_TOKEN
 Content-Type: application/json
 ```
 
-### <a name="response"></a>回應
+### <a name="response"></a>Response
 
 回應將會包含 [BotData][BotData] 物件，其中 `data` 屬性包含您先前為使用者儲存的資料，而 `eTag` 屬性包含您在後續儲存使用者資料的要求中使用的 Etag。 如果您先前沒有為使用者儲存資料，則 `data` 屬性將會是 `null`，而且 `eTag` 屬性將會包含星號 (`*`)。
 
@@ -139,7 +140,7 @@ POST /v3/botstate/{channelId}/conversations/{conversationId}
 > [!IMPORTANT]
 > 因為[刪除使用者資料](#delete-user-data)作業不會刪除已經使用**儲存對話資料**作業儲存的資料，請勿使用此作業儲存使用者的個人識別資訊 (PII)。
 
-### <a name="response"></a>回應
+### <a name="response"></a>Response
 
 回應將會包含具有新 `eTag` 值的 [BotData][BotData] 物件。
 
@@ -153,7 +154,7 @@ GET /v3/botstate/{channelId}/conversations/{conversationId}
 
 在此要求 URI 中，將 **{channelId}** 取代為頻道的識別碼，並將 **{conversationId}** 取代為對話的識別碼。 您的 Bot 先前在對話內容中傳送或接收的任何訊息內的 `channelId` 和 `conversation` 屬性將會包含這些識別碼。 您也可以將這些值快取在安全的位置，這樣就可以在未來存取對話的資料，而不需要從訊息中擷取它們。
 
-### <a name="response"></a>回應
+### <a name="response"></a>Response
 
 回應將會包含具有新 `eTag` 值的 [BotData][BotData] 物件。
 
@@ -169,7 +170,7 @@ POST /v3/botstate/{channelId}/conversations/{conversationId}/users/{userId}
 
 將要求主體設定為 [BotData][BotData] 物件，如[儲存使用者資料](#save-user-data)中所述。
 
-### <a name="response"></a>回應
+### <a name="response"></a>Response
 
 回應將會包含具有新 `eTag` 值的 [BotData][BotData] 物件。
 
@@ -183,7 +184,7 @@ GET /v3/botstate/{channelId}/conversations/{conversationId}/users/{userId}
 
 在此要求 URI 中，將 **{channelId}** 取代為頻道的識別碼，將 **{conversationId}** 取代為對話的識別碼，並將 **{userId}** 取代為該頻道上的使用者識別碼。 您的 Bot 先前在對話內容中從使用者接收的任何訊息內的 `channelId`、`conversation` 和 `from` 屬性將會包含這些識別碼。 您也可以將這些值快取在安全的位置，這樣就可以在未來存取對話的資料，而不需要從訊息中擷取它們。
 
-### <a name="response"></a>回應
+### <a name="response"></a>Response
 
 回應將會包含具有新 `eTag` 值的 [BotData][BotData] 物件。
 

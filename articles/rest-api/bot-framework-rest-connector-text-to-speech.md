@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 91385fa3e8ae1410679ca5274e40db7fe38bafea
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 2aac000b7e8dd52b00659ffecde5184df6c29991
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300375"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998685"
 ---
 # <a name="add-speech-to-messages"></a>將語音新增至訊息
 > [!div class="op_single_selector"]
@@ -20,7 +21,7 @@ ms.locfileid: "39300375"
 > - [Node.js](../nodejs/bot-builder-nodejs-text-to-speech.md)
 > - [REST](../rest-api/bot-framework-rest-connector-text-to-speech.md)
 
-如果您要針對啟用語音的通道 (例如 Cortana) 建置 Bot，您可以建構訊息，其中指定要由您的 Bot 讀出的文字。 您也可以嘗試影響用戶端的麥克風狀態，做法是指定[輸入提示](bot-framework-rest-connector-add-input-hints.md)，表示您的 Bot 會接受、需要或忽略使用者輸入。
+如果您要為具備語音功能的通道 (例如 Cortana) 建置 Bot，您可以建構訊息，其中指定要由 Bot 讀出的文字。 您也可以指定[輸入提示](bot-framework-rest-connector-add-input-hints.md)，藉由指出您的 Bot 要接受、需要或忽略使用者輸入，來嘗試影響用戶端的麥克風狀態。
 
 ## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定要由您的 Bot 讀出的文字
 
@@ -58,7 +59,7 @@ Content-Type: application/json
 
 ## <a name="input-hints"></a>輸入提示
 
-當您在啟用語音的通道上傳送訊息時，您也可以嘗試影響用戶端的麥克風狀態，做法是包含輸入提示以表示 Bot 會接受、需要或忽略使用者輸入。 如需詳細資訊，請參閱[將輸入提示新增至訊息](bot-framework-rest-connector-add-input-hints.md)。
+當您在啟用語音功能的通道上傳送訊息時，您也可以藉由包含輸入提示以指出 Bot 要接受、需要或忽略使用者輸入，來嘗試影響用戶端的麥克風狀態。 如需詳細資訊，請參閱[將輸入提示新增至訊息](bot-framework-rest-connector-add-input-hints.md)。
 
 ## <a name="additional-resources"></a>其他資源
 

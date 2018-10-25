@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: f37d8e9215b0a2cd640431f237d1b8c53fad576b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: a049d77d506fa3fa678a079de52aa424264847c9
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298727"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997045"
 ---
 # <a name="key-concepts-in-direct-line-api-11"></a>直接線路 API 1.1 中的重要概念
 
@@ -27,7 +28,7 @@ ms.locfileid: "39298727"
 
 ## <a name="starting-a-conversation"></a>開始對話
 
-直接線路對話是由用戶端明確地開啟，且只要 Bot 和用戶端在參與且具有有效認證，對話就會繼續執行。 如需詳細資訊，請參閱[ 開始對話](bot-framework-rest-direct-line-1-1-start-conversation.md)。
+直接線路對話是由用戶端明確地開啟，且只要 Bot 和用戶端在參與且具有有效認證，對話就會繼續執行。 如需詳細資訊，請參閱[開始對話](bot-framework-rest-direct-line-1-1-start-conversation.md)。
 
 ## <a name="sending-messages"></a>傳送訊息
 
@@ -47,4 +48,4 @@ Bot Framework 提供用戶端程式庫，有助於透過 C# 存取直接線路 A
 
 ### <a name="web-chat-control"></a>Web 聊天控制項 
 
-Bot Framework 提供可讓您將使用直接線路的Bot 內嵌到您用戶端應用程式的控制項。 如需詳細資訊，請參閱 <a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">Microsoft Bot Framework WebChat 控制項</a> \(英文\)。
+Bot Framework 提供可讓您將使用直接線路的Bot 內嵌到您用戶端應用程式的控制項。 如需詳細資訊，請參閱 <a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">Microsoft Bot Framework WebChat 控制項</a>。

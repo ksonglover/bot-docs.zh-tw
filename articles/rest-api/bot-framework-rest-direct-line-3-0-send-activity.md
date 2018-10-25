@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 3f881f353f04be95ce3785c2fd82b724dd58cb88
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 290a2733b96a458eb3529b0b0854703631e05f22
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299666"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000035"
 ---
 # <a name="send-an-activity-to-the-bot"></a>將活動傳送至 Bot
 
@@ -62,11 +63,11 @@ HTTP/1.1 200 OK
 
 將訊息發佈至 Direct Line 交談的時間總計，是以下幾項的總和：
 
-- HTTP 要求從用戶端移至 Direct Line 服務的傳輸時間
+- HTTP 要求從用戶端到 Direct Line 服務的傳輸時間
 - Direct Line 中的內部處理時間 (通常少於 120 毫秒)
 - 從 Direct Line 服務到 Bot 的傳輸時間
 - Bot 內的處理時間
-- HTTP 回應移回至用戶端的傳輸時間
+- HTTP 回應回到用戶端的傳輸時間
 
 ## <a name="send-attachments-to-the-bot"></a>將附件傳送至 Bot
 
@@ -78,7 +79,7 @@ HTTP/1.1 200 OK
 
 ## <a id="upload-attachments"></a>藉由上傳來傳送附件
 
-用戶端的裝置上有影像或文件要傳送至 Bot，但卻沒有對應至這些檔案的 URL，是很常見的情況。 在此情況下，用戶端可以發出 `POST /v3/directline/conversations/{conversationId}/upload` 要求，以藉由上傳將附件傳送至 Bot。 要求的格式和內容將取決於用戶端是要[傳送單一附件](#upload-one-attachment)還是[傳送多個附件](#upload-multiple-attachments)。
+常常用戶端的裝置上有影像或文件要傳送至 Bot，但卻沒有對應至這些檔案的 URL。 在此情況下，用戶端可以發出 `POST /v3/directline/conversations/{conversationId}/upload` 要求，以藉由上傳將附件傳送至 Bot。 要求的格式和內容，將取決於用戶端是要[傳送單一附件](#upload-one-attachment)還是[傳送多個附件](#upload-multiple-attachments)。
 
 ### <a id="upload-one-attachment"></a>藉由上傳來傳送單一附件
 
@@ -127,7 +128,7 @@ HTTP/1.1 200 OK
 
 ### <a id="upload-multiple-attachments"></a>藉由上傳來傳送多個附件
 
-若要藉由上傳來傳送多個附件，請將多部分的要求 `POST` 至 `/v3/directline/conversations/{conversationId}/upload` 端點。 請將要求的`Content-Type` 標頭設定為 `multipart/form-data`，並且為每個部分納入 `Content-Type` 標頭和 `Content-Disposition` 標頭，以指定每個附件的類型和檔案名稱。 在要求 URI 中，請將 `userId` 參數設定為訊息傳送者的使用者識別碼。 
+若要藉由上傳來傳送多個附件，請將有多個部分的要求 `POST` 至 `/v3/directline/conversations/{conversationId}/upload` 端點。 請將要求的 `Content-Type` 標頭設定為 `multipart/form-data`，並且為每個部分納入 `Content-Type` 標頭和 `Content-Disposition` 標頭，以指定每個附件的類型和檔案名稱。 在要求 URI 中，請將 `userId` 參數設定為訊息傳送者的使用者識別碼。 
 
 您可以藉由新增一個指定 `Content-Type` 標頭值 `application/vnd.microsoft.activity` 的部分，在要求內納入[活動](bot-framework-rest-connector-api-reference.md#activity-object)物件。 如果要求中包含活動，則承載的其他部分所指定的附件會先新增為該活動的附件，然後才會傳送。 如果要求未包含活動，則會建立空的活動，作為指定的附件藉以傳送的容器。
 
@@ -182,7 +183,7 @@ HTTP/1.1 200 OK
 
 - [重要概念](bot-framework-rest-direct-line-3-0-concepts.md)
 - [驗證](bot-framework-rest-direct-line-3-0-authentication.md)
-- [開始交談](bot-framework-rest-direct-line-3-0-start-conversation.md)
+- [開始對話](bot-framework-rest-direct-line-3-0-start-conversation.md)
 - [重新連線至交談](bot-framework-rest-direct-line-3-0-reconnect-to-conversation.md)
 - [從 Bot 接收活動](bot-framework-rest-direct-line-3-0-receive-activities.md)
 - [結束交談](bot-framework-rest-direct-line-3-0-end-conversation.md)

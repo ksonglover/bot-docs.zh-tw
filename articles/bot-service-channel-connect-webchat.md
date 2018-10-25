@@ -7,32 +7,33 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: b5a9d20c058fe425d727bf2e39597e7dd29ec077
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.date: 10/10/2018
+ms.openlocfilehash: 6e81b51243afc15714653aed7b9ca6513314071c
+ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389627"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49315154"
 ---
 # <a name="connect-a-bot-to-web-chat"></a>將 Bot 連線至「網路聊天」
+
+[!INCLUDE pre-release-label]
+
 當您使用 Bot Service [建立 Bot](bot-service-quickstart.md) 時，會自動為您設定網路聊天頻道。 網路聊天頻道包含網路聊天控制項，能夠讓您的使用者直接在網頁上與 Bot 進行互動。
 
-![網路聊天範例](~/media/bot-service-channel-webchat/webchat-sample.png)
+![網路聊天範例](./media/bot-service-channel-webchat/create-a-bot.png)
 
 Bot Framework 入口網站中的網路聊天頻道，包含您在網頁中內嵌網路聊天控制項所需的所有項目。 如需使用網路聊天控制項，您只需要取得 Bot 的祕密金鑰，並在網頁中內嵌控制項即可。
-
-[!INCLUDE [Channel Inspector intro](~/includes/snippet-channel-inspector.md)]
 
 ## <a id="step-1"></a> 取得您的 bot 祕密金鑰
 
 1. 在 [Azure 入口網站](http://portal.azure.com)中開啟您的 Bot，然後按一下 [通道] 刀鋒視窗。
 
 2. 針對 **網路聊天**頻道，按一下 [編輯]。  
-![網路聊天頻道](~/media/bot-service-channel-webchat/bot-service-channel-list.png)
+![網路聊天頻道](./media/bot-service-channel-webchat/bot-service-channel-list.png)
 
 3. 在 [祕密金鑰] 底下，按一下第一個金鑰的 [顯示]。  
-![祕密金鑰](~/media/bot-service-channel-webchat/secret-key.png)
+![祕密金鑰](./media/bot-service-channel-webchat/secret-key.png)
 
 4. 複製 [祕密金鑰] 和 [內嵌程式碼]。
 
@@ -127,8 +128,8 @@ Bot Framework 入口網站中的網路聊天頻道，包含您在網頁中內嵌
 <iframe style="height:480px; width:402px" src="... SEE ABOVE ..."></iframe>
 ```
 
-![聊天控制項用戶端](~/media/chatwidget-client.png)
+![聊天控制項用戶端](./media/chatwidget-client.png)
 
 ## <a name="additional-resources"></a>其他資源
 
-您可以在 GitHub 上[下載 Web 聊天控制項的原始程式碼](https://github.com/Microsoft/BotFramework-WebChat)。
+您可以在 GitHub 上[下載 Web 聊天控制項的原始程式碼](https://aka.ms/BotFramework-WebChat-V4)。

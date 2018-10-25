@@ -6,14 +6,14 @@ author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 09/18/2018
-ms.openlocfilehash: 45c89c911106d5b6a1e250f6e6ab3d472c90ab92
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 62cbbcc560e049776b8aa891c167b9a6eaba3264
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707984"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997795"
 ---
 # <a name="set-up-continuous-deployment"></a>設定連續部署
 如果您將程式碼簽入 **GitHub** 或 **Azure DevOps (前身為 Visual Studio Team Services)**，請使用持續部署來自動將來源存放庫中的程式碼變更部署至 Azure。 在本主題中，我們將討論如何設定 **GitHub** 和 **Azure DevOps** 的持續部署。

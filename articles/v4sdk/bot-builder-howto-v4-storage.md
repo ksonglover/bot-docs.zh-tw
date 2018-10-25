@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 09/14/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0bbb507484840ab1fb0dc7c209b5d7ca8e9c9cfb
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 3c28ad1fd14fab90c558ece4736423be2cabd78b
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46708144"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326545"
 ---
 # <a name="write-directly-to-storage"></a>直接寫入儲存體
 
@@ -194,7 +194,7 @@ async function logMessageText(storage, context) {
 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 
 1. 按一下模擬器 [歡迎] 索引標籤中的 [開啟 Bot] 連結。 
-2. 選取位於您建立專案的目錄中的 .bot 檔案。
+2. 在您建立專案的目錄中選取 .bot 檔案。
 
 ### <a name="interact-with-your-bot"></a>與您的 Bot 互動
 傳送訊息給 Bot，Bot 就會列出所收到的訊息。
@@ -336,7 +336,7 @@ adapter.use(conversationState);
 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 
 1. 按一下模擬器 [歡迎] 索引標籤中的 [開啟 Bot] 連結。 
-2. 選取位於您建立專案的目錄中的 .bot 檔案。
+2. 在您建立專案的目錄中選取 .bot 檔案。
 
 ## <a name="interact-with-your-bot"></a>與您的 Bot 互動
 傳送訊息給 Bot，Bot 就會列出所收到的訊息。
@@ -502,10 +502,11 @@ Azure Blob 儲存體是 Microsoft 針對雲端推出的物件儲存體解決方�
 ```csharp
 using Microsoft.Bot.Builder.Azure;
 ```
-
 更新可將 "myStorage" 指向現有 Blob 儲存體帳戶的程式碼行。
 
 ```csharp
+
+
 private static readonly AzureBlobStorage _myStorage = new AzureBlobStorage("<your-blob-storage-account-string>", "<your-blob-storage-container-name>");
 ```
 
@@ -528,7 +529,7 @@ const mystorage = new BlobStorage({
 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 
 1. 按一下模擬器 [歡迎] 索引標籤中的 [開啟 Bot] 連結。 
-2. 選取位於您建立專案的目錄中的 .bot 檔案。
+2. 在您建立專案的目錄中選取 .bot 檔案。
 
 ## <a name="interact-with-your-bot"></a>與您的 Bot 互動
 傳送訊息給 Bot，Bot 就會列出所收到的訊息。
@@ -544,36 +545,71 @@ Azure Blob 文字記錄儲存體會提供一個特製化儲存體選項，讓您
 Azure Blob 文字記錄儲存體可以使用遵循上面「建立 Blob 儲存體帳戶」和「新增組態資訊」小節中詳述的步驟所建立的相同 Blob 儲存體帳戶。 在本文中，我們新增了新的 Blob 容器 "mybottranscripts"。 
 
 ### <a name="implementation"></a>實作 
-下列程式碼會將文字記錄儲存體指標 "myTranscripts" 連到新的 Azure Blob 文字記錄儲存體帳戶。 可連接文字記錄儲存體指標 "myTranscripts" 的單一程式碼行。
+下列程式碼會將文字記錄儲存體指標 "transcriptStore" 連到新的 Azure Blob 文字記錄儲存體帳戶。 要儲存此處所示使用者對話的原始程式碼是以[對話歷程記錄](https://aka.ms/bot-history-sample-code)範例為基礎。 
 
 ```csharp
+// In Startup.cs
 using Microsoft.Bot.Builder.Azure;
-private readonly AzureBlobTranscriptStore _myTranscripts = new AzureBlobTranscriptStore("<your-blob-storage-account-string>", "<your-blob-storage-account-name>");
+
+// Enable the conversation transcript middleware.
+blobStore = new AzureBlobTranscriptStore(blobStorageConfig.ConnectionString, storageContainer);
+var transcriptMiddleware = new TranscriptLoggerMiddleware(blobStore);
+options.Middleware.Add(transcriptMiddleware);
+
+// In ConversationHistoryBot.cs
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Azure;
+using Microsoft.Bot.Connector;
+using Microsoft.Bot.Schema;
+
+private readonly AzureBlobTranscriptStore _transcriptStore;
+
+/// <param name="transcriptStore">Injected via ASP.NET dependency injection.</param>
+public ConversationHistoryBot(AzureBlobTranscriptStore transcriptStore)
+{
+    _transcriptStore = transcriptStore ?? throw new ArgumentNullException(nameof(transcriptStore));
+}
+
 ```
 
 ### <a name="store-user-conversations-in-azure-blob-transcripts"></a>在 Azure blob 文字記錄中儲存使用者對話
-在 Blob 容器可用於儲存文字記錄之後，您可以開始保留使用者與 Bot 的對話。 這些對話稍後可當作偵錯工具，查看使用者與 Bot 的互動方式。 下列程式碼可保留使用者對話輸入，以便稍後檢閱。
+在 Blob 容器可用於儲存文字記錄之後，您可以開始保留使用者與 Bot 的對話。 這些對話稍後可當作偵錯工具，查看使用者與 Bot 的互動方式。 當 ctivity.text 收到輸入訊息 _!history_ 時，下列程式碼會保留使用者對話輸入。
 
 
 ```csharp
 /// <summary>
 /// Every Conversation turn for our EchoBot will call this method. 
 /// </summary>
-/// <param name="context">Turn scoped context containing all the data needed
+/// <param name="turnContext">A <see cref="ITurnContext"/> containing all the data needed
 /// for processing this conversation turn. </param>        
-public async Task OnTurnAsync(ITurnContext context, CancellationToken cancellationToken = default(CancellationToken))
+public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
 {
-    var activityType = context.Activity.Type;
-
-    await context.SendActivityAsync($"Activity type: {context.Activity.Type}.");
-
-    // This bot is processing Messages
-    if (activityType == ActivityTypes.Message)
+    var activity = turnContext.Activity;
+    if (activity.Type == ActivityTypes.Message)
     {
-        // save user input into bot transcript storage for later debugging and review.
-        await _myTranscripts.LogActivityAsync(context.Activity);
-```
+        if (activity.Text == "!history")
+        {
+           // Download the activities from the Transcript (blob store) when a request to upload history arrives.
+           var connectorClient = turnContext.TurnState.Get<ConnectorClient>(typeof(IConnectorClient).FullName);
+           // Get all the message type activities from the Transcript.
+           string continuationToken = null;
+           var count = 0;
+           do
+           {
+               var pagedTranscript = await _transcriptStore.GetTranscriptActivitiesAsync(activity.ChannelId, activity.Conversation.Id);
+               var activities = pagedTranscript.Items
+                  .Where(a => a.Type == ActivityTypes.Message)
+                  .Select(ia => (Activity)ia)
+                  .ToList();
+               
+               var transcript = new Transcript(activities);
 
+               await connectorClient.Conversations.SendConversationHistoryAsync(activity.Conversation.Id, transcript, cancellationToken: cancellationToken);
+
+               continuationToken = pagedTranscript.ContinuationToken;
+           }
+           while (continuationToken != null);
+```
 
 ### <a name="find-all-stored-transcripts-for-your-channel"></a>針對您的通道尋找所有預存的文字記錄
 若要查看您已儲存哪些資料，您可使用下列程式碼，以程式設計方式尋找您已儲存的所有文字記錄的 "ConversationIDs"。 使用 Bot 模擬器來測試您的程式碼時，選取 [從頭開始] 可以開始新的文字記錄，其具有新的 "ConversationID"。
@@ -584,7 +620,7 @@ PagedResult<Transcript> pagedResult = null;
 var pageSize = 0;
 do
 {
-    pagedResult = await _myTranscripts.ListTranscriptsAsync("emulator", pagedResult?.ContinuationToken);
+    pagedResult = await _transcriptStore.ListTranscriptsAsync("emulator", pagedResult?.ContinuationToken);
     
     // transcript item contains ChannelId, Created, Id.
     // save the converasationIds (Id) found by "ListTranscriptsAsync" to a local list.
@@ -596,7 +632,6 @@ do
     }
 } while (pagedResult.ContinuationToken != null);
 ```
-
 
 ### <a name="retrieve-user-conversations-from-azure-blob-transcript-storage"></a>從 Azure blob 文字記錄儲存體擷取使用者對話
 將 Bot 互動文字記錄儲存到 Azure Blob 文字記錄存放區之後，您可以使用 AzureBlobTranscriptStorage 方法 "GetTranscriptActivities"，以程式設計方式擷取這些文字記錄進行測試或偵錯。 下列程式碼片段可擷取在前 24 小時內，從每個預存的文字記錄接收，並儲存的所有使用者輸入文字記錄。
@@ -635,7 +670,7 @@ for (int i = 0; i < numTranscripts; i++)
    if (i > 0)
    {
        string thisConversationId = storedTranscripts[i];    
-       await _myTranscripts.DeleteTranscriptAsync("emulator", thisConversationId);
+       await _transcriptStore.DeleteTranscriptAsync("emulator", thisConversationId);
     }
 }
 ```

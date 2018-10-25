@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/24/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 38f1bced73251eea11be86a76963aeaf1ec0f718
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 20f5387e7c1ea40e6b9848a1071e542dcd1cacaa
+ms.sourcegitcommit: aef7d80ceb9c3ec1cfb40131709a714c42960965
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389697"
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49383163"
 ---
 # <a name="middleware"></a>中介軟體
 
@@ -24,7 +24,7 @@ ms.locfileid: "47389697"
 
 介面器透過 Bot 中介軟體管道處理內送活動，並導向至 Bot 邏輯再送出。 如同每個進出 Bot 的活動流程，每個中介軟體都可檢視活動，或在 Bot 邏輯執行之前或之後採取行動。
 
-在說明中介軟體之前，請務必先了解 [Bot 基本資訊](~/v4sdk/bot-builder-basics.md)，以及其[如何處理活動](~/v4sdk/bot-builder-concept-activity-processing.md)。
+在說明中介軟體之前，請務必先了解 [Bot 基本資訊](~/v4sdk/bot-builder-basics.md)，以及其[如何處理活動](~/v4sdk/bot-builder-basics.md#the-activity-processing-stack)。
 
 ## <a name="uses-for-middleware"></a>使用中介軟體
 我們常會遇到這個問題：「何時應該將動作實作為中介軟體，何時又該使用一般的 Bot 邏輯？」 中介軟體會讓您有額外的機會，可在對話的每個「回合」進行處理之前和之後，與使用者的對話流程互動。 中介軟體也可讓您儲存和擷取關於對話的資訊，並於需要時呼叫其他處理邏輯。 以下是一些常見的案例，可說明中介軟體實用之處。
@@ -33,9 +33,9 @@ ms.locfileid: "47389697"
 在很多情況下，我們會要求 Bot 對每個活動或特定類型的每個活動採取行動。 例如：您可能想記錄 Bot 接收到的每個訊息活動，或如果 Bot 未在該回合產生回應則提供後援回應。 中介軟體是很好的著手點，其可在其餘 Bot 邏輯執行之前或之後執行。
 
 ### <a name="modifying-or-enhancing-the-turn-context"></a>修改或增強回合內容
-如果 Bot 具有的資訊多過於活動中提供的資訊，則特定交談的成果內容可能更豐富。 在此情況下，中介軟體可查看其至目前為止的對話狀態、查詢外部資料來源，並將資料附加至[回合內容](bot-builder-concept-activity-processing.md#turn-context)物件，然後再將執行作業傳遞至該 Bot 邏輯。 
+如果 Bot 具有的資訊多過於活動中提供的資訊，則特定交談的成果內容可能更豐富。 在此情況下，中介軟體可查看其至目前為止的對話狀態、查詢外部資料來源，並將資料附加至[回合內容](~/v4sdk/bot-builder-basics.md#defining-a-turn)物件，然後再將執行作業傳遞至該 Bot 邏輯。 
 
-SDK 會定義可記錄內送和連出活動的記錄中介軟體，但您也可以定義您自己的中介軟體。
+SDK 會定義可記錄傳入和傳出活動的記錄中介軟體，但您也可以定義您自己的中介軟體。
 
 ## <a name="the-bot-middleware-pipeline"></a>Bot 中介軟體管道
 針對每個活動，介面卡可依您新增中介軟體的順序進行呼叫。 針對該回合和 _next_ 委派，介面卡會在內容物件中傳遞，然後中介軟體會呼叫委派，並將控制項傳遞至管道中的下個中介軟體。 中介軟體也有機會在 _next_ 委派傳回之後，先執行其他工作，再完成方法。 您可以想成每個中介軟體物件都有第一次和最後一次的機會，能在管道中和接續於中介軟體物件之後的項目進行互動。
@@ -65,7 +65,7 @@ Bot 中介軟體管道完成後，該回合即結束，且回合內容將超出�
 中介軟體管道的最後一個項目是 Bot 特定中介軟體，即您實作的中介軟體，用來處理每次傳送給 Bot 的訊息。 如果您的中介軟體使用狀態資訊或其他 Bot 內容中設定的資訊，請將其新增至中介軟體管道中，用於修改狀態或內容的中介軟體之後。
 
 ## <a name="short-circuiting"></a>最少運算路由
-另一個有關中介軟體 (和[回應處理常式](./bot-builder-concept-activity-processing.md#response-event-handlers)) 的重要概念是_最少運算路由_。 如果系統繼續透過後續的執行層處理該執行作業，則中介軟體 (或回應處理常式) 必須呼叫其 _next_ 委派傳遞執行。  如果未在該中介軟體 (或回應處理常式) 中呼叫下個委派，則相關聯的管線會產生最少運算路由，而後續執行層也不會執行。 這表示所有 Bot 邏輯，以及關線中後續的任何中介軟體都會略過。 中介軟體與對一回合，產生最少運算路由的回應處理常式之間有細微差異。
+另一個有關中介軟體 (和[回應處理常式](bot-builder-basics.md#response-event-handlers)) 的重要概念是_最少運算路由_。 如果系統繼續透過後續的執行層處理該執行作業，則中介軟體 (或回應處理常式) 必須呼叫其 _next_ 委派傳遞執行。  如果未在該中介軟體 (或回應處理常式) 中呼叫下個委派，則相關聯的管線會產生最少運算路由，而後續執行層也不會執行。 這表示所有 Bot 邏輯，以及關線中後續的任何中介軟體都會略過。 中介軟體與對一回合，產生最少運算路由的回應處理常式之間有細微差異。
 
 中介軟體會對一回合，產生最少運算路由，不會呼叫 Bot 回合處理常式，但在管線中此時點之前執行的所有中介軟體程式碼仍會執行到完成為止。 
 

@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 8210f08ce3a14b9abb2638ef8be4b8b418dd69f7
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: f67c7ba658923873470e9653b38cd63fd1068491
+ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300179"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49315114"
 ---
 # <a name="connect-a-bot-to-skype-for-business"></a>將 Bot 連結到商務用 Skype
 
@@ -29,7 +29,7 @@ ms.locfileid: "39300179"
 將 Bot 與商務用 Skype Online 連結，是由商務用 Skype 租用戶的**租用戶系統管理員**執行。
 
 ## <a name="next-steps"></a>後續步驟
-* [將 Bot 與商務用 Skype 連結](https://msdn.microsoft.com/en-us/skype/Skype-For-Business-Bot-Framework/docs/overview)
+* [商務用 Skype Online Bot Framework](https://msdn.microsoft.com/en-us/skype/Skype-For-Business-Bot-Framework/docs/overview)
 
 
 

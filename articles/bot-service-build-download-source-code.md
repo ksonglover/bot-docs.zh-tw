@@ -2,84 +2,118 @@
 title: 下載並重新部署 Bot 服務原始程式碼 | Microsoft Docs
 description: 了解如何下載及發佈 Bot 服務。
 keywords: download source code, redeploy, deploy, zip file, publish, 下載原始程式碼, 重新部署, 部署, 壓縮文件, 發佈
-author: v-ducvo
-ms.author: v-ducvo
+author: ivorb
+ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 03/08/2018
-ms.openlocfilehash: b77e096d28f51f605db9c49d36e796553f9293ef
-ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
+ms.date: 09/26/2018
+ms.openlocfilehash: ee7a7a9f1b4c06f8ad762f750099383e218d98f2
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/21/2018
-ms.locfileid: "42756682"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326425"
 ---
-# <a name="download-and-redeploy-bot-source-code"></a>下載並重新部署 Bot 服務原始程式碼
+# <a name="download-and-redeploy-bot-code"></a>下載並重新部署 Bot 程式碼
+Azure Bot Service 允許您下載 Bot 的整個來源專案，以便您使用所選的 IDE 在本機作業。 程式碼更新完成後，您可以將變更發佈回到 Azure 入口網站。 我們將示範如何使用 Azure 入口網站和 `az` cli 下載程式碼。 我們也會說明如何使用 Visual Studio 和 `az` cli 工具重新部署已更新的 Bot 程式碼。 您可以選擇最適合您的方法。
 
-Bot 服務允許您下載 Bot 的整個來源專案。 這可讓您使用您選擇的 IDE，在本機上使用 Bot。 完成變更後，您可以將變更發佈回 Azure。 
+## <a name="prerequisites"></a>必要條件
+- 安裝 [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest)
+- 使用 `az extension add -n botservice` 命令安裝 az botservice 擴充功能
 
-本主題將說明如何下載您的 Bot 原始程式碼，並將變更發佈回 Azure。 
+### <a name="download-code-using-the-azure-portal"></a>使用 Azure 入口網站下載程式碼
+若要從 [Azure 入口網站](https://portal.azure.com)下載程式碼，請執行下列作業：
+1. 開啟 Bot 的刀鋒視窗。
+1. 在 [Bot 管理] 區段下，按一下 [建置]。
+1. 在 [下載原始程式碼] 下，按一下 [下載 zip 檔案]。
+1. 等待 Azure 準備您的下載 URI，然後按一下通知中的 [下載 zip 檔案]。
+1. 儲存 .zip 檔案並解壓縮至本機目錄。
 
-## <a name="download-bot-source-code"></a>下載 Bot 原始程式碼
+如果您有 C# Bot，請更新 `appsettings.json` 檔案以納入 .bot 檔案資訊，如下所示：
 
-若要在本機開發您的 Bot，請執行下列動作：
+```
+{
+  "botFilePath": "yourbasicBot.bot",
+  "botFileSecret": "ukxxxxxxxxxxxs="
+}
+```
+`botFilePath` 會參考您的 Bot 名稱，只要以您自己的 Bot 名稱取代 "yourbasicBot.bot" 即可。 若要取得 `botFileSecret` 金鑰，請參閱 [Bot 檔案加密](https://aka.ms/bot-file-encryption)一文，了解如何為您的 Bot 產生金鑰。
 
-1. 在 Azure 入口網站中，開啟 Bot 的刀鋒視窗。
-2. 在 [BOT 管理] 區段下，按一下 [建置]。
-3. 按一下 [下載 zip 檔案]。 
 
-   ![下載原始程式碼](~/media/azure-bot-build/download-zip-file.png)
-
-4. 將 .zip 檔案解壓縮至本機目錄。
-5. 瀏覽到解壓縮的資料夾並在您慣用的 IDE 中開啟原始程式檔。
-6. 對資源進行變更。 編輯現有的來源檔案，或在專案中加入新的檔案。
-
-當您就緒時，您可以將原始程式檔發佈回 Azure。
-
-## <a name="publish-node-bot-source-code-to-azure"></a>將節點 Bot 原始程式碼發佈至 Azure
-
-若要安裝這些套件，請從命令提示字元瀏覽至您的專案目錄，然後執行下列 NPM 命令。
-
-**注意：** 這些套件只需要加入一次。
-
-```console
-npm install --save fs
-npm install --save path
-npm install --save request
-npm install --save zip-folder
+如果您有 node.js Bot，請新增含有下列項目的 `.env` 檔案：
+```
+botFilePath=yourbasicBot.bot
+botFileSecret=ukxxxxxxxxxxxxs=
 ```
 
-現在您已準備好將專案發佈至 Microsoft Azure。 若要將專案發佈至 Microsoft Azure 中，請在命令提示字元中執行下列 NPM 命令：
+接下來，編輯現有的來源檔案，或在專案中新增來源檔案，對您的來源進行變更。 使用模擬器測試您的程式碼。 當您準備要將修改過的程式碼重新部署至 Azure 入口網站時，請遵循下列指示。
 
-```console
-npm run azure-publish
+### <a name="publish-code-using-visual-studio"></a>使用 Visual Studio 發佈程式碼
+1. 在 Visual Studio 中，以滑鼠右鍵按一下專案名稱，然後按一下 [發佈]。[發佈] 視窗隨即開啟。
+
+![Azure 發佈](~/media/azure-bot-build/azure-csharp-publish.png)
+
+2. 選取您專案的設定檔。
+3. 在您的專案中複製 _publish.cmd_ 檔案中所列的密碼。
+4. 按一下 [發佈] 。
+5. 出現提示時，輸入您在步驟 3 複製的密碼。   
+
+設定您的專案之後，您的專案變更會發佈至 Azure。 
+
+接下來，讓我們了解如何使用 `az` cli 來下載和重新部署程式碼。
+
+### <a name="download-code-using-azure-cli"></a>使用 Azure CLI 下載程式碼
+
+首先，使用 az cli 工具登入 Azure 入口網站。
+
+```azcli
+az login
 ```
 
-> [!NOTE]
-> 如果在此 NPM 命令之後遇到錯誤，則您可能需要將 `"scripts": {"azure-publish": "node publish.js"}` 新增到您的 `package.json` 檔案，然後再執行一次。
+系統會提示您提供唯一的暫時性驗證碼。 若要登入，請使用網頁瀏覽器瀏覽 Microsoft [裝置登入](https://microsoft.com/devicelogin)，並貼上 CLI 所提供的程式碼，以繼續操作。
 
-## <a name="publish-c-bot-source-code-to-azure"></a>將 C# Bot 原始程式碼發佈至 Azure
+若要使用 `az` cli 上傳程式碼，請使用下列命令：
+```azcli
+az bot download --name "my-bot-name" --resource-group "my-resource-group"`
+```
+下載程式碼之後，請執行下列作業：
+- 針對 C# Bot，更新 appsettings.json 檔案以納入 .bot 檔案資訊，如下所示：
 
-使用 Visual Studio 將 C# 程式碼發佈至 Azure 是兩個步驟的程序：首先，您必須設定發佈設定。 然後，您就可以發佈您的變更。
+```
+{
+  "botFilePath": "yourbasicBot.bot",
+  "botFileSecret": "ukxxxxxxxxxxxs="
+}
+```
 
-若要設定從 Visual Studio 發佈，請執行下列動作：
+- 針對 node.js Bot，新增含有下列項目的 .env 檔案：
 
-1. 在 Visual Studio中，按一下 [方案總管]。
-2. 以滑鼠右鍵按一下專案名稱，然後按一下 [發佈]。[發佈] 視窗隨即開啟。
-3. 依序按一下 [建立新設定檔]、[匯入設定檔]，然後按一下 [確定]。
-4. 瀏覽至您的專案資料夾，然後瀏覽至 **PostDeployScripts** 資料夾，並選取以 **.PublishSettings** 結尾的檔案。 按一下 [開啟] 。
+```
+botFilePath=yourbasicBot.bot
+botFileSecret=ukxxxxxxxxxxxxs=
+```
 
-您的專案現在已設定為將變更發佈至 Azure。
+接下來，編輯現有的來源檔案，或在專案中新增來源檔案，對您的來源進行變更。 使用模擬器測試您的程式碼。 當您準備要將修改過的程式碼重新部署至 Azure 入口網站時，請遵循下列指示。
 
-設定您的專案後，您可以透過執行下列動作將 Bot 原始程式碼發佈回 Azure：
+### <a name="login-to-azure-cli-by-running-the-following-command"></a>執行下列命令以登入 Azure CLI。
+如果您已經登入，則可略過此步驟。
 
-1. 在 Visual Studio中，按一下 [方案總管]。
-2. 以滑鼠右鍵按一下專案名稱，然後按一下 [發佈]。
-3. 按一下 [發佈] 按鈕，將變更發佈至 Azure。
+```azcli
+az login
+```
+系統會提示您提供唯一的暫時性驗證碼。 若要登入，請使用網頁瀏覽器瀏覽 Microsoft [裝置登入](https://microsoft.com/devicelogin)，並貼上 CLI 所提供的程式碼，以繼續操作。
+
+### <a name="publish-code-using-azure-cli"></a>使用 Azure CLI 發佈程式碼
+若要使用 `az` cli 將程式碼發佈回到 Azure，請使用下列命令：
+```azcli
+az bot publish --name "my-bot-name" --resource-group "my-resource-group" --code-dir <path to directory> 
+```
+
+您可以使用 `code-dir` 選項，指出要使用哪個目錄。 如未提供，`az bot publish` 命令會使用本機目錄來發佈。
 
 ## <a name="next-steps"></a>後續步驟
-現在您已了解如何在本機建置 Bot，您可以為您的 Bot 設定持續部署。
+您現在已了解如何將變更上傳回到 Azure，即可為您的 Bot 設定持續部署。
 
 > [!div class="nextstepaction"]
 > [設定持續部署](bot-service-build-continuous-deployment.md)

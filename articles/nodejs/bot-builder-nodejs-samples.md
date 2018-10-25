@@ -5,15 +5,16 @@ author: v-ducvo
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 43c178c4bbdf0bb04384bb8ada397066e6f7dd12
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: f22e9e6c27b36955aa09953b7fc5d67f97674181
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574614"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997755"
 ---
 # <a name="bot-builder-sdk-for-nodejs-samples"></a>適用於 Node.js 的 Bot 建立器 SDK 範例
 
@@ -59,12 +60,12 @@ cd BotBuilder-Samples
 
 
 ## <a name="cards"></a>卡片
-下列範例示範如何在 Bot Framework 中傳送複合式資訊卡。
+下列範例說明如何在 Bot Framework 中傳送複合式資訊卡 (Rich Card)。
 
 範例 | 說明
 ------------ | -------------
-[複合式資訊卡](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/cards-RichCards) \(英文\) | 會傳送許多不同類型之複合式資訊卡的範例 Bot。
-[浮動切換的卡片](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/cards-CarouselCards) \(英文\) | 會使用浮動切換版面配置，在單一訊息內傳送多張複合式資訊卡的範例 Bot。
+[複合式資訊卡 (Rich Card)](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/cards-RichCards) | Bot 範例，會傳送許多不同類型的複合式資訊卡 (Rich Card)。
+[浮動切換的卡片](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/cards-CarouselCards) \(英文\) | Bot 範例會使用浮動切換版面配置，在單一訊息內傳送多個複合式資訊卡 (Rich Card)。
 
 ## <a name="intelligence"></a>智慧
 下列範例示範如何使用 Bing 和 Microsoft 認知服務 API，對 Bot 新增人工智慧功能。

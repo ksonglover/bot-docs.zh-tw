@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 39247ec3be4da7129989041269e930de8fa766ae
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 2a2cc13020c87616799ee768fbab6e72ab81cc8b
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299410"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997635"
 ---
 # <a name="add-media-attachments-to-messages"></a>將媒體附件新增至訊息
 > [!div class="op_single_selector"]
@@ -20,7 +21,7 @@ ms.locfileid: "39299410"
 > - [Node.js](../nodejs/bot-builder-nodejs-send-receive-attachments.md)
 > - [REST](../rest-api/bot-framework-rest-connector-add-media-attachments.md)
 
-Bot 和通道通常會交換文字字串，但某些通道也支援交換附件，讓您的 Bot 可將更豐富的訊息傳送給使用者。 例如，您的 Bot 可以傳送媒體附件 (例如，影像、影片、音訊、檔案) 和[複合式資訊卡](bot-framework-rest-connector-add-rich-cards.md)。 本文描述如何使用 Bot 連接器服務，將媒體附件新增至訊息。
+Bot 和頻道通常會交換文字字串，但某些頻道也支援交換附件，讓您的 Bot 可將更豐富的訊息傳送給使用者。 例如，您的 Bot 可以傳送媒體附件 (例如，影像、影片、音訊、檔案) 和[複合式資訊卡](bot-framework-rest-connector-add-rich-cards.md)。 本文描述如何使用 Bot 連接器服務，將媒體附件新增至訊息。
 
 > [!TIP]
 > 若要確認某個通道所支援的附件類型和數目，以及該通道呈現附件的方式，請參閱[通道偵測器][ChannelInspector]。

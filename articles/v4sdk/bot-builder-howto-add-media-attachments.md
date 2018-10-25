@@ -1,26 +1,26 @@
 ---
 title: 將媒體新增至訊息 | Microsoft Docs
 description: 了解如何使用 Bot 建立器 SDK 將媒體新增至訊息。
-keywords: 媒體, 訊息, 影像, 音訊, 視訊, 檔案, MessageFactory, 豐富訊息
+keywords: 媒體, 訊息, 影像, 音訊, 視訊, 檔案, MessageFactory, 複合式資訊卡, 訊息, 調適型卡片, 主圖卡片, 建議動作
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 08/24/2018
+ms.date: 09/10/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5883b31df95da26fa0432f4cfe195f12fc3089ad
-ms.sourcegitcommit: 86ddf3ebe6cc3385d1c4d30b971ac9c3e1fc5a77
+ms.openlocfilehash: 87862e8fcbfa357c27a1c8fac0e8dd71d9bc2998
+ms.sourcegitcommit: bd4f9669c0d26ac2a4be1ab8e508f163a1f465f3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/27/2018
-ms.locfileid: "43055992"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47430327"
 ---
 # <a name="add-media-to-messages"></a>將媒體新增至訊息
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-使用者與 Bot 之間的訊息交換可以包含媒體附件，例如影像、視訊、音訊和檔案等。 Bot 建立器 SDK 包含新的 `Microsoft.Bot.Builder.MessageFactory` 類別，可簡化將豐富訊息傳送給使用者的工作。
+使用者與 Bot 之間交換的訊息可以包含媒體附件，例如影像、視訊、音訊和檔案等。 Bot Builder SDK 支援將豐富訊息傳送給使用者的工作。 若要判斷通道 (Facebook、Skype、Slack 等等) 支援的豐富訊息類型，請參閱通道文件中的限制相關資訊。 請參閱[設計使用者體驗](../bot-service-design-user-experience.md)，以取得一份可用的卡片。 
 
 ## <a name="send-attachments"></a>傳送附件
 
@@ -28,71 +28,55 @@ ms.locfileid: "43055992"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-`Activity` 物件的 `Attachments` 屬性包含 `Attachment` 物件的陣列，代表附加至訊息的媒體附件和複合式資訊卡 (Rich Card)。 若要將媒體附件新增至訊息，請建立 `message` 活動的 `Attachment` 物件，並設定 `ContentType`、`ContentUrl` 和 `Name` 屬性。 
+`Activity` 物件的 `Attachments` 屬性包含 `Attachment` 物件的陣列，代表附加至訊息的媒體附件和複合式資訊卡 (Rich Card)。 若要將媒體附件新增至訊息，請建立 `message` 活動的 `Attachment` 物件，並設定 `ContentType`、`ContentUrl` 和 `Name` 屬性。 `Activity` 物件的 `Attachments` 屬性包含 `Attachment` 物件的陣列，代表附加至訊息的媒體附件和複合式資訊卡 (Rich Card)。 若要將媒體附件新增至訊息，請使用 `Attachment` 方法來建立 `message` 活動的 `Attachment` 物件，並設定 `ContentType`、`ContentUrl` 和 `Name` 屬性。 這裡顯示的原始程式碼是以[處理附件](https://aka.ms/bot-attachments-sample-code)範例為基礎。 
 
 ```csharp
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Schema;
 
-// Create the activity and add an attachment.
-var activity = MessageFactory.Attachment(
-    new Attachment { ContentUrl = "imageUrl.png", ContentType = "image/png" }
-);
+var reply = turnContext.Activity.CreateReply();
+
+// Create an attachment.
+var attachment = new Attachment
+    {
+        ContentUrl = "imageUrl.png",
+        ContentType = "image/png",
+        Name = "imageName",
+    };
+    
+// Add the attachment to our reply.
+reply.Attachments = new List<Attachment>() { attachment };
 
 // Send the activity to the user.
-await context.SendActivity(activity);
-```
-
-訊息處理站的 `Attachment` 方法也可以傳送漸次堆疊的附件清單。
-
-```csharp
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Core.Extensions;
-using Microsoft.Bot.Schema;
-
-// Create the activity and add an attachment.
-var activity = MessageFactory.Attachment(new Attachment[]
-{
-    new Attachment { ContentUrl = "imageUrl1.png", ContentType = "image/png" },
-    new Attachment { ContentUrl = "imageUrl2.png", ContentType = "image/png" },
-    new Attachment { ContentUrl = "imageUrl3.png", ContentType = "image/png" }
-});
-
-// Send the activity to the user.
-await context.SendActivity(activity);
+await turnContext.SendActivityAsync(reply, cancellationToken);
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
+這裡顯示的原始程式碼是以 [JS 處理附件](https://aka.ms/bot-attachments-sample-code-js)範例為基礎。
 若要將影像或影片等單項內容傳送給使用者，您可以傳送包含在 URL 中的媒體：
 
 ```javascript
-const {MessageFactory} = require('botbuilder');
-let imageOrVideoMessage = MessageFactory.contentUrl('imageUrl.png', 'image/jpeg')
-
+const { ActionTypes, ActivityTypes, CardFactory } = require('botbuilder');
+// Call function to get an attachment.
+reply.attachments = [this.getInternetAttachment()];
+reply.text = 'This is an internet attachment.';
 // Send the activity to the user.
-await context.sendActivity(imageOrVideoMessage);
-```
+await turnContext.sendActivity(reply);
 
-若要傳送漸次堆疊的附件清單：<!-- TODO: Convert the hero cards to image attachments in this example. -->
-
-```javascript
-// require MessageFactory and CardFactory from botbuilder.
-const {MessageFactory, CardFactory} = require('botbuilder');
-
-let messageWithCarouselOfCards = MessageFactory.list([
-    CardFactory.heroCard('title1', ['imageUrl1'], ['button1']),
-    CardFactory.heroCard('title2', ['imageUrl2'], ['button2']),
-    CardFactory.heroCard('title3', ['imageUrl3'], ['button3'])
-]);
-
-await context.sendActivity(messageWithCarouselOfCards);
+/* function getInternetAttachment - Returns an attachment to be sent to the user from a HTTPS URL */
+getInternetAttachment() {
+        return {
+            name: 'imageName.png',
+            contentType: 'image/png',
+            contentUrl: 'imageUrl.png'}
+}
 ```
 
 ---
 
-如果附件是影像、音訊或視訊，則連接器服務會以可讓[通道](~/v4sdk/bot-builder-channeldata.md)在對話內轉譯該附件的方式，將附件資料傳輸至通道。 如果附件是檔案，檔案 URL 將會轉譯為對話內的超連結。
+如果附件是影像、音訊或視訊，則連接器服務會以可讓[通道](bot-builder-channeldata.md)在對話內轉譯該附件的方式，將附件資料傳輸至通道。 如果附件是檔案，檔案 URL 將會轉譯為對話內的超連結。
 
 ## <a name="send-a-hero-card"></a>傳送主圖卡
 
@@ -100,56 +84,57 @@ await context.sendActivity(messageWithCarouselOfCards);
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-若要撰寫含有主圖卡和按鈕的訊息，您可以將 `HeroCard` 附加至訊息：
+若要撰寫含有主圖卡和按鈕的訊息，您可以將 `HeroCard` 附加至訊息。 這裡顯示的原始程式碼是以[處理附件](https://aka.ms/bot-attachments-sample-code)範例為基礎。 
 
 ```csharp
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Schema;
 
-// Create the activity and attach a Hero card.
-var activity = MessageFactory.Attachment(
-    new HeroCard(
-        title: "White T-Shirt",
-        images: new CardImage[] { new CardImage(url: "imageUrl.png") },
-        buttons: new CardAction[]
-        {
-            new CardAction(title: "buy", type: ActionTypes.ImBack, value: "buy")
-        })
-    .ToAttachment());
+var reply = turnContext.Activity.CreateReply();
 
-// Send the activity as a reply to the user.
-await context.SendActivity(activity);
+// Create a HeroCard with options for the user to choose to interact with the bot.
+var card = new HeroCard
+{
+    Text = "You can upload an image or select one of the following choices",
+    Buttons = new List<CardAction>()
+    {
+        new CardAction(ActionTypes.ImBack, title: "1. Inline Attachment", value: "1"),
+        new CardAction(ActionTypes.ImBack, title: "2. Internet Attachment", value: "2"),
+        new CardAction(ActionTypes.ImBack, title: "3. Uploaded Attachment", value: "3"),
+    },
+};
+
+// Add the card to our reply.
+reply.Attachments = new List<Attachment>() { card.ToAttachment() };
+
+await turnContext.SendActivityAsync(reply, cancellationToken);
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-若要將卡片和按鈕傳送給使用者，您可以將 `heroCard` 附加至訊息：
+若要撰寫含有主圖卡和按鈕的訊息，您可以將 `HeroCard` 附加至訊息。 這裡顯示的原始程式碼是以 [JS 處理附件](https://aka.ms/bot-attachments-sample-code-js)範例為基礎：
 
 ```javascript
-// require MessageFactory and CardFactory from botbuilder.
-const {MessageFactory} = require('botbuilder');
-const {CardFactory} = require('botbuilder');
+const { ActionTypes, ActivityTypes, CardFactory } = require('botbuilder');
+// build buttons to display.
+const buttons = [
+            { type: ActionTypes.ImBack, title: '1. Inline Attachment', value: '1' },
+            { type: ActionTypes.ImBack, title: '2. Internet Attachment', value: '2' },
+            { type: ActionTypes.ImBack, title: '3. Uploaded Attachment', value: '3' }
+];
 
-const message = MessageFactory.attachment(
-     CardFactory.heroCard(
-        'White T-Shirt',
-        ['https://example.com/whiteShirt.jpg'],
-        ['buy']
-    )
- );
+// construct hero card.
+const card = CardFactory.heroCard('', undefined,
+buttons, { text: 'You can upload an image or select one of the following choices.' });
 
-await context.sendActivity(message);
+// add card to Activity.
+reply.attachments = [card];
+
+// Send hero card to the user.
+await turnContext.sendActivity(reply);
 ```
-
 ---
-
-<!--Lifted from the RESP API documentation-->
-
-複合式資訊卡 (Rich Card) 包含標題、描述、連結和影像。 訊息可包含多個複合式資訊卡 (Rich Card)，並以清單格式或浮動切換格式顯示。 Bot 建立器 SDK 目前支援多種複合式資訊卡 (Rich Card)。 若要查看複合式資訊卡 (Rich Card) 及其支援通道的清單，請參閱[設計 UX 元素](../bot-service-design-user-experience.md)。
-
-> [!TIP]
-> 若要確認某個通道所支援的複合式資訊卡類型，以及該通道轉譯複合式資訊卡 (Rich Card) 的方式，請參閱[通道偵測器](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-channel-inspector?view=azure-bot-service-4.0)。 如需卡片內容的限制 (例如，按鈕數目上限或標題長度上限) 的相關資訊，請參閱通道的文件。
 
 ## <a name="process-events-within-rich-cards"></a>處理複合式資訊卡 (Rich Card) 內的事件
 
@@ -180,30 +165,24 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Schema;
 
-// Create the activity and attach a Hero card.
-var activity = MessageFactory.Attachment(
-    new HeroCard(
-        title: "Holler Back Buttons",
-        images: new CardImage[] { new CardImage(url: "imageUrl.png") },
-        buttons: new CardAction[]
-        {
-            new CardAction(title: "Shout Out Loud", type: ActionTypes.imBack, value: "You can ALL hear me!"),
-            new CardAction(title: "Much Quieter", type: ActionTypes.postBack, value: "Shh! My Bot friend hears me."),
-            new CardAction(title: "Show me how to Holler", type: ActionTypes.openURL, value: $"https://en.wikipedia.org/wiki/{cardContent.Key}")
-        })
-    .ToAttachment());
+var reply = turnContext.Activity.CreateReply();
 
-// Send the activity as a reply to the user.
-await context.SendActivity(activity);
+var card = new HeroCard
+{
+    Buttons = new List<CardAction>()
+    {
+        new CardAction(title: "Much Quieter", type: ActionTypes.PostBack, value: "Shh! My Bot friend hears me."),
+        new CardAction(ActionTypes.OpenUrl, title: "Azure Bot Service", value: "https://azure.microsoft.com/en-us/services/bot-service/"),
+    },
+};
+
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
 const {ActionTypes} = require("botbuilder");
-```
 
-```javascript
 const hero = MessageFactory.attachment(
     CardFactory.heroCard(
         'Holler Back Buttons',
@@ -241,12 +220,15 @@ await context.sendActivity(hero);
 
 如需調適型卡片通道支援的最新資訊，請參閱<a href="http://adaptivecards.io/visualizer/">調適型卡片視覺化檢視</a>。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-若要使用調適型卡片，請務必新增 `Microsoft.AdaptiveCards`NuGet 套件。
+若要使用調適型卡片，請務必新增 `Microsoft.AdaptiveCards`NuGet 套件。 
 
 
 > [!NOTE]
 > 您應對 Bot 所將使用的通道測試這項功能，以確認這些通道是否支援調適型卡片。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+這裡顯示的原始程式碼是以[使用調適型卡片](https://aka.ms/bot-adaptive-cards-sample-code)範例為基礎：
 
 ```csharp
 using AdaptiveCards;
@@ -254,164 +236,56 @@ using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Schema;
 
-// Create the activity and attach an Adaptive Card.
-var card = new AdaptiveCard();
-card.Body.Add(new TextBlock()
+// Creates an attachment that contains an adaptive card
+// filePath is the path to JSON file
+private static Attachment CreateAdaptiveCardAttachment(string filePath)
 {
-    Text = "<title>",
-    Size = TextSize.Large,
-    Wrap = true,
-    Weight = TextWeight.Bolder
-});
-card.Body.Add(new TextBlock() { Text = "<message text>", Wrap = true });
-card.Body.Add(new TextInput()
-{
-    Id = "Title",
-    Value = string.Empty,
-    Style = TextInputStyle.Text,
-    Placeholder = "Title",
-    IsRequired = true,
-    MaxLength = 50
-});
-card.Actions.Add(new SubmitAction() { Title = "Submit", DataJson = "{ Action:'Submit' }" });
-card.Actions.Add(new SubmitAction() { Title = "Cancel", DataJson = "{ Action:'Cancel'}" });
+    var adaptiveCardJson = File.ReadAllText(filePath);
+    var adaptiveCardAttachment = new Attachment()
+    {
+        ContentType = "application/vnd.microsoft.card.adaptive",
+        Content = JsonConvert.DeserializeObject(adaptiveCardJson),
+    };
+    return adaptiveCardAttachment;
+}
 
-var activity = MessageFactory.Attachment(new Attachment(AdaptiveCard.ContentType, content: card));
+// Create adaptive card and attach it to the message 
+var cardAttachment = CreateAdaptiveCardAttachment(adaptiveCardJsonFilePath);
+var reply = turnContext.Activity.CreateReply();
+reply.Attachments = new List<Attachment>() { cardAttachment };
 
-// Send the activity as a reply to the user.
-await context.SendActivity(activity);
+await turnContext.SendActivityAsync(reply, cancellationToken);
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
+這裡顯示的原始程式碼是以 [JS 使用調適型卡片](https://aka.ms/bot-adaptive-cards-js-sample-code)範例為基礎：
+
 ```javascript
-const {CardFactory} = require("botbuilder");
+const { BotFrameworkAdapter } = require('botbuilder');
 
-const message = CardFactory.adaptiveCard({
-    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-    "version": "1.0",
-    "type": "AdaptiveCard",
-    "speak": "Your flight is confirmed for you from San Francisco to Amsterdam on Friday, October 10 8:30 AM",
-    "body": [
-        {
-            "type": "TextBlock",
-            "text": "Passenger",
-            "weight": "bolder",
-            "isSubtle": false
-        },
-        {
-            "type": "TextBlock",
-            "text": "Sarah Hum",
-            "separator": true
-        },
-        {
-            "type": "TextBlock",
-            "text": "1 Stop",
-            "weight": "bolder",
-            "spacing": "medium"
-        },
-        {
-            "type": "TextBlock",
-            "text": "Fri, October 10 8:30 AM",
-            "weight": "bolder",
-            "spacing": "none"
-        },
-        {
-            "type": "ColumnSet",
-            "separator": true,
-            "columns": [
-                {
-                    "type": "Column",
-                    "width": 1,
-                    "items": [
-                        {
-                            "type": "TextBlock",
-                            "text": "San Francisco",
-                            "isSubtle": true
-                        },
-                        {
-                            "type": "TextBlock",
-                            "size": "extraLarge",
-                            "color": "accent",
-                            "text": "SFO",
-                            "spacing": "none"
-                        }
-                    ]
-                },
-                {
-                    "type": "Column",
-                    "width": "auto",
-                    "items": [
-                        {
-                            "type": "TextBlock",
-                            "text": " "
-                        },
-                        {
-                            "type": "Image",
-                            "url": "http://messagecardplayground.azurewebsites.net/assets/airplane.png",
-                            "size": "small",
-                            "spacing": "none"
-                        }
-                    ]
-                },
-                {
-                    "type": "Column",
-                    "width": 1,
-                    "items": [
-                        {
-                            "type": "TextBlock",
-                            "horizontalAlignment": "right",
-                            "text": "Amsterdam",
-                            "isSubtle": true
-                        },
-                        {
-                            "type": "TextBlock",
-                            "horizontalAlignment": "right",
-                            "size": "extraLarge",
-                            "color": "accent",
-                            "text": "AMS",
-                            "spacing": "none"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "ColumnSet",
-            "spacing": "medium",
-            "columns": [
-                {
-                    "type": "Column",
-                    "width": "1",
-                    "items": [
-                        {
-                            "type": "TextBlock",
-                            "text": "Total",
-                            "size": "medium",
-                            "isSubtle": true
-                        }
-                    ]
-                },
-                {
-                    "type": "Column",
-                    "width": 1,
-                    "items": [
-                        {
-                            "type": "TextBlock",
-                            "horizontalAlignment": "right",
-                            "text": "$1,032.54",
-                            "size": "medium",
-                            "weight": "bolder"
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+// Import AdaptiveCard content.
+const FlightItineraryCard = require('./resources/FlightItineraryCard.json');
+const ImageGalleryCard = require('./resources/ImageGalleryCard.json');
+const LargeWeatherCard = require('./resources/LargeWeatherCard.json');
+const RestaurantCard = require('./resources/RestaurantCard.json');
+const SolitaireCard = require('./resources/SolitaireCard.json');
+
+// Create array of AdaptiveCard content, this will be used to send a random card to the user.
+const CARDS = [
+    FlightItineraryCard,
+    ImageGalleryCard,
+    LargeWeatherCard,
+    RestaurantCard,
+    SolitaireCard
+];
+// Select a random card to send.
+const randomlySelectedCard = CARDS[Math.floor((Math.random() * CARDS.length - 1) + 1)];
+// Send adaptive card.
+await context.sendActivity({
+      text: 'Here is an Adaptive Card:',
+       attachments: [CardFactory.adaptiveCard(randomlySelectedCard)]
 });
-
-// send adaptive card as attachment 
-await context.sendActivity({ attachments: [message] })
 ```
 
 ---
@@ -480,7 +354,4 @@ await context.sendActivity(messageWithCarouselOfCards);
 ---
 
 ## <a name="additional-resources"></a>其他資源
-
-[使用通道偵測器預覽功能](../bot-service-channel-inspector.md)
-
----
+這裡可以找到卡片的範例程式碼：[C#](https://aka.ms/bot-cards-sample-code)/[JS](https://aka.ms/bot-cards-js-sample-code) 調適型卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)，附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-sample-code-js)，以及建議的動作：[C#](https://aka.ms/SuggestedActionsCSharp)/[JS](https://aka.ms/SuggestedActionsJS)。 如需其他範例，請參考 [GitHub](https://github.com/Microsoft/BotBuilder-Samples) 上的 Bot Builder 範例存放庫。

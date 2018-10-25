@@ -5,15 +5,16 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 2a5c9dcad0d9fd70caaf28ff7ac95830bd47e2d6
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 393490fd97ce0d09b4087ad7598ee30b0fdc8c0e
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574594"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997785"
 ---
 # <a name="send-and-receive-activities"></a>傳送及接收活動
 
@@ -65,7 +66,7 @@ Connector 會使用 [Activity](bot-builder-dotnet-activities.md) 物件，在 Bo
 您可以使用 `CreateReply` 方法來初始化新訊息 (這會自動設定訊息的 `Recipient`、`From` 和 `Conversation` 屬性)。 或者，您可以使用 `CreateMessageActivity` 方法來建立新訊息，並自行設定所有的屬性值。
 
 > [!NOTE]
-> Bot Framework 對於 Bot 可傳送的訊息數目並無任何限制。 不過，大部分的通道都會強制執行節流限制，來限制 Bot 在短時間內傳送大量訊息。 此外，如果 Bot 連續快速地傳送多則訊息，通道不一定會依照正確順序呈現訊息。
+> Bot Framework 對於 Bot 可傳送的訊息數目並無任何限制。 不過，大部分的通道會強制執行節流限制，限制 Bot 在短時間內傳送大量的訊息。 此外，如果 Bot 連續快速地傳送多則訊息，通道可能不一定會依照正確順序轉譯訊息。
 
 ## <a name="start-a-conversation"></a>開始對話
 

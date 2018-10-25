@@ -9,12 +9,12 @@ ms.topic: get-started-article
 ms.prod: bot-framework
 ms.date: 09/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5f3a02783242697fccf267bef2d56ed453880c67
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: d299e4bdfd503475bf1ec560da2aff1d3a199e47
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707974"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326385"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-net"></a>使用適用於 .NET 的 Bot Builder SDK 建立 Bot
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -35,7 +35,7 @@ ms.locfileid: "46707974"
 ![Visual Studio 專案](../media/azure-bot-quickstarts/bot-builder-dotnet-project.png)
 
 > [!TIP] 
-> 視需要更新 [NuGet 套件](https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
+> 如有需要，請將專案組建類型變更為 ``.Net Core 2.1``。請視需要更新 [NuGet 套件](https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
 
 由於有範本，專案中會包含要在本快速入門建立 Bot 所需的所有程式碼。 您實際上不需要撰寫任何額外的程式碼。
 
@@ -47,13 +47,17 @@ ms.locfileid: "46707974"
 
 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 
-1. 按一下模擬器 [歡迎使用] 索引標籤中的 [開啟 Bot] 連結。 
+1. 按一下模擬器 [歡迎] 索引標籤中的 [開啟 Bot] 連結。 
 2. 選取位於您建立 Visual Studio 解決方案的目錄中的 .bot 檔案。
 
 ## <a name="interact-with-your-bot"></a>與您的 Bot 互動
 
 傳送訊息給 Bot，Bot 就會以訊息回應。
-![模擬器執行中](../media/emulator-v4/emulator-running.png)
+
+![執行中模擬器](../media/emulator-v4/emulator-running.png)
+
+> [!NOTE]
+> 如果您發現訊息無法傳送，則可能需要重新啟動電腦，因為 ngrok 尚未在您的系統上取得所需的權限 (只需要進行一次)。
 
 ## <a name="next-steps"></a>後續步驟
 

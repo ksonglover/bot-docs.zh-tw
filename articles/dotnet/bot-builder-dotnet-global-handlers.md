@@ -5,15 +5,16 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 796e36fdfd5ef2ee20ba1f5e000f92ef3e4ec1ae
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 3f180e721dc6ca2cf1ca85f5ff54137f16b36be5
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574654"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998361"
 ---
 # <a name="implement-global-message-handlers"></a>實作全域訊息處理常式
 
@@ -95,6 +96,6 @@ protected override async Task PostAsync(IActivity item, string state, Cancellati
 
 ## <a name="additional-resources"></a>其他資源
 
-- [設計和控制對話流程](../bot-service-design-conversation-flow.md)
+- [設計和控制交談流程](../bot-service-design-conversation-flow.md)
 - <a href="/dotnet/api/?view=botbuilder-3.12.2.4" target="_blank">適用於 .NET 的 Bot Builder SDK 參考</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-GlobalMessageHandlers" target="_blank">全域訊息處理常式範例 (GitHub)</a> \(英文\)

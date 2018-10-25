@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 56fe0af4d34e6e0aa4bc420112c541a410aa1301
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: e2176d3eb5584a1d9a234d4ab94c69451f0db6ef
+ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299211"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49315224"
 ---
 # <a name="connect-a-bot-to-slack"></a>將 Bot 連線至 Slack
 
@@ -21,7 +21,7 @@ ms.locfileid: "39299211"
 
 ## <a name="create-a-slack-application-for-your-bot"></a>為您的 Bot 建立 Slack 應用程式
 
-登入 Slack 並[建立 Slack 應用程式](https://api.slack.com/applications/new)。
+登入 [Slack](https://slack.com/signin)，然後前往[建立 Slack 應用程式](https://api.slack.com/apps)通道。
 
 ![設定 Bot](~/media/channels/slack-NewApp.png)
 
@@ -63,23 +63,23 @@ ms.locfileid: "39299211"
 請遵循下列步驟來訂閱六個特定的 Bot 事件。 藉由訂閱 Bot 事件，應用程式將會收到所指定 URL 上的使用者活動通知。
 
 > [!TIP]
-> 您的 Bot 控制代碼就是 Bot 的屬性。 若要尋找 Bot 的控制代碼，請瀏覽 [https://dev.botframework.com/bots](https://dev.botframework.com/bots)，然後選擇 Bot 並按一下 [設定]。
+> 您的 Bot 控制代碼就是您的 Bot 名稱。 若要尋找 Bot 的控制代碼，請瀏覽 [https://dev.botframework.com/bots](https://dev.botframework.com/bots)，然後選擇 Bot 並記錄 Bot 名稱。
 
 1. 選取 [事件訂用帳戶] 索引標籤。
 2. 將 [啟用事件] 設定為 [開啟]。
-3. 在 [要求 URL] 中輸入此 URL，但以您的 Bot 控制代碼取代 `{YourBotHandle}`。
+3. 在 [要求 URL] 中輸入此 URL，但以您的 Bot 控制代碼取代 `{YourBotHandle}`。 本教學課程中使用的 Bot 控制代碼為 testChannels。
         `https://slack.botframework.com/api/Events/{YourBotHandle}`
-4. 在 [訂閱 Bot 事件] 中，按一下 [新增 Bot 使用者事件]。
-5. 在事件清單中，按一下 [新增 Bot 使用者事件]，並選取下列六種事件類型：
+4. 在 [訂閱工作區事件] 中，按一下 [新增工作區事件]。
+5. 在事件清單中，選取以下六個事件類型：
     * `member_joined_channel`
     * `member_left_channel`
     * `message.channels`
     * `message.groups`
     * `message.im`
     * `message.mpim`
-6. 按一下 [儲存變更] 。
 
-![訂閱事件](~/media/channels/slack-EnableEvents.png)
+![訂閱事件](~/media/channels/slack-SubscribeEvents.png)
+6. 按一下 [儲存變更] 。
 
 ## <a name="add-and-configure-interactive-messages-optional"></a>新增和設定互動式訊息 (選擇性)
 
@@ -87,7 +87,7 @@ ms.locfileid: "39299211"
 
 1. 選取 [互動式元件] 索引標籤，然後按一下 [啟用互動式元件]。
 2. 輸入 `https://slack.botframework.com/api/Actions` 作為**要求 URL**。
-3. 按一下 [啟用互動式訊息] 按鈕，然後再按一下 [儲存變更] 按鈕。
+3. 按一下 [儲存變更] 按鈕。
 
 ![啟用訊息](~/media/channels/slack-MessageURL.png)
 
@@ -103,7 +103,7 @@ ms.locfileid: "39299211"
 在另一個瀏覽器視窗中，返回 Bot Framework 網站 `https://dev.botframework.com/`。
 
 1. 選取 [我的 Bot]，然後選擇要連線至 Slack 的 Bot。
-2. 在 [新增通道] 區段中，按一下 [Slack] 圖示。
+2. 在 [通道] 區段中，按一下 Slack 圖示。
 3. 在 [輸入 Slack 認證] 區段中，將 Slack 網站中的「應用程式認證」貼到適當的欄位。
 4. **登陸頁面 URL** 是選擇性的。 您可以省略或變更此 URL。
 5. 按一下 [檔案] 。

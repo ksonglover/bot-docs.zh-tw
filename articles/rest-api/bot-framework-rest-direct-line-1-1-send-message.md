@@ -5,21 +5,22 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 3bc56d08f45ffd1e389a2dca1868a788d65e087e
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 360ec3a6a6c9a3be16370aaf445f24a237a702e3
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300214"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998014"
 ---
 # <a name="send-a-message-to-the-bot"></a>將訊息傳送至 Bot
 
 > [!IMPORTANT]
 > 本文說明如何使用 Direct Line API 1.1，將訊息傳送至 Bot。 如果要在用戶端應用程式與 Bot 之間建立新連線，請改為使用 [Direct Line API 3.0](bot-framework-rest-direct-line-3-0-send-activity.md)。
 
-使用 Direct Line 1.1 通訊協定，用戶端可以與 Bot 交換訊息。 這些訊息會轉換成 Bot 支援 (Bot Framework v1 或 Bot Framework v3) 的結構描述。 對於每個要求，用戶端可傳送一個訊息。 
+使用 Direct Line 1.1 通訊協定，用戶端可以與 Bot 交換訊息。 這些訊息會轉換成 Bot 支援 (Bot Framework v1 或 Bot Framework v3) 的結構描述。 用戶端可能會為每個要求都傳送單一訊息。 
 
 ## <a name="send-a-message"></a>傳送訊息
 
@@ -56,7 +57,7 @@ HTTP/1.1 204 No Content
 將訊息 POST 至 Direct Line 對話的時間總計，是以下幾項的總和：
 
 - HTTP 要求從用戶端到 Direct Line 服務的傳輸時間
-- Direct Line 內的內部處理時間 (通常少於 120 毫秒)
+- Direct Line 中的內部處理時間 (通常少於 120 毫秒)
 - 從 Direct Line 服務到 Bot 的傳輸時間
 - Bot 內的處理時間
 - HTTP 回應回到用戶端的傳輸時間

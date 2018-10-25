@@ -2,28 +2,26 @@
 title: 將 Bot 設定為在一或多個通道上執行 | Microsoft Docs
 description: 了解如何使用 Bot Framework 入口網站，將 Bot 設定為在一或多個通道上執行。
 keywords: Bot 通道, 設定, cortana, facebook messenger, kik, slack, skype, azure 入口網站
-author: RobStand
-ms.author: kamrani
+author: ivorb
+ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: cb682bf77f801c98d00deffa0fc63249962248cd
-ms.sourcegitcommit: dcbc8ad992a3e242a11ebcdf0ee99714d919a877
+ms.date: 09/22/2018
+ms.openlocfilehash: 8c7f10f5f7ce507c367f12b01b4b28ff1cc01c0f
+ms.sourcegitcommit: d4afc924b0e1907c4d6f7a6fc5ac1fe521aeef7e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352917"
+ms.lasthandoff: 10/05/2018
+ms.locfileid: "47418820"
 ---
 # <a name="connect-a-bot-to-channels"></a>將 Bot 連線至通道
 
-通道會連接 Bot Framework 和通訊應用程式。 您可以將 Bot 設定為連線到您想要提供此 Bot 的通道。 例如，您可以將連線至 Skype 通道的 Bot 新增至連絡人清單，讓人們可以在 Skype 中與其互動。 
+通道可連接 Bot 與通訊應用程式。 您可以將 Bot 設定為連線到您想要提供此 Bot 的通道。 透過 Azure 入口網站設定的 Bot Framework Service，可將您的 Bot 連接至這些通道，以利 Bot 和使用者之間的通訊。 您可以連線至許多熱門服務，例如 [Cortana](bot-service-channel-connect-cortana.md)、[Facebook Messenger](bot-service-channel-connect-facebook.md)、[Kik](bot-service-channel-connect-kik.md) 和 [Slack](bot-service-channel-connect-slack.md)，以及數個其他服務。 已為您預先設定 [Skype](https://dev.skype.com/bots) 和網路聊天。 除了 Bot Connector Service 所提供的標準通道，您也可以使用 Direct Line 作為通道，將 Bot 連接到您自己的用戶端應用程式。
 
-通道包含許多熱門服務，例如 [Cortana](bot-service-channel-connect-cortana.md)、[Facebook Messenger](bot-service-channel-connect-facebook.md)、[Kik](bot-service-channel-connect-kik.md) 和 [Slack](bot-service-channel-connect-slack.md)，以及數個其他服務。 已為您預先設定 [Skype](https://dev.skype.com/bots) 和網路聊天。 
+藉由將 Bot 傳送給通道的訊息正規化，Bot Framework Service 可讓您以不限通道的方式開發 Bot。 這牽涉到從 Bot 建立器結構描述轉換成通道的結構描述。 不過，如果通道不支援 Bot 建立器結構描述的所有層面，則服務會嘗試將訊息轉換成通道支援的格式。 比方說，如果 Bot 將訊息傳送至 SMS 通道，而訊息中包含具有動作按鈕的卡片，則連接器可能會將卡片傳送為映像，並在訊息文字中將動作包含為連結。
 
-在 [Azure 入口網站](https://portal.azure.com)中即可快速又容易地連線到通道。
 
-## <a name="get-started"></a>開始使用
 
 針對大部分的通道，您必須提供通道設定資訊，才能在通道上執行 Bot。 大部分的通道會要求 Bot 要有通道帳戶，Facebook Messenger 等其他通道則會要求 Bot 也要有已向通道註冊的應用程式。
 
@@ -34,7 +32,7 @@ ms.locfileid: "39352917"
 3. 在 [Bot Service] 刀鋒視窗中，按一下 [Bot 管理] 底下的 [通道]。
 4. 按一下想要在 Bot 中新增的通道圖示。
 
-![連線到通道](~/media/channels/connect-to-channels.png)
+![連線到通道](./media/channels/connect-to-channels.png)
 
 設定通道後，該通道上的使用者就可以開始使用 Bot。
 
@@ -42,5 +40,7 @@ ms.locfileid: "39352917"
 
 每個通道的發佈程序不同。
 
-[!INCLUDE [publishing](~/includes/snippet-publish-to-channel.md)]
+[!INCLUDE [publishing](./includes/snippet-publish-to-channel.md)]
 
+## <a name="additional-resources"></a>其他資源
+SDK 包含您可用來建置 Bot 的範例。 請瀏覽 [GitHub](https://github.com/Microsoft/BotBuilder-samples) 存放庫，以查看範例清單。

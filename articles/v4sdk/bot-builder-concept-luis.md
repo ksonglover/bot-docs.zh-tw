@@ -10,12 +10,12 @@ ms.prod: bot-framework
 ms.date: 09/19/2018
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: af79bb40e3d24557fd898fa0a0ca2ef7b0286af4
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: bef0d5f3220cd818767f4eead5c5f4a09d047c26
+ms.sourcegitcommit: aef7d80ceb9c3ec1cfb40131709a714c42960965
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707544"
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49383153"
 ---
 # <a name="language-understanding"></a>Language Understanding
 
@@ -56,11 +56,11 @@ Bot 會使用由 LUIS 辨識的意圖來判斷對話主題，或開始對話流�
 
 ## <a name="how-your-bot-gets-messages-from-luis"></a>您的 Bot 如何從 LUIS 取得訊息
 
-一旦您已設定 LUIS 並與之連線，您的 Bot 就可以傳送訊息給 LUIS 應用程式，以傳回包含意圖和實體的 JSON 回應。 然後，您可以使用 Bot _回合處理常式_中的[回合內容](bot-builder-concept-activity-processing.md#turn-context)，根據 LUIS 回應中的意圖來路由傳送對話流程。 
+一旦您已設定 LUIS 並與之連線，您的 Bot 就可以傳送訊息給 LUIS 應用程式，以傳回包含意圖和實體的 JSON 回應。 然後，您可以使用 Bot _回合處理常式_中的[回合內容](~/v4sdk/bot-builder-basics.md#defining-a-turn)，根據 LUIS 回應中的意圖來路由傳送對話流程。 
 
 ![意圖和實體如何傳遞至您的 Bot](./media/cognitive-services-add-bot-language/cognitive-services-luis-message-flow-bot-code.png)
 
-若要開始搭配使用 LUIS 應用程式與 Bot，請參閱 [使用 LUIS 理解語言][luis-v4-how-to]。
+若要開始搭配使用 LUIS 應用程式與 Bot，請參閱[使用 LUIS 理解語言](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0)。
 
 ## <a name="best-practices-for-language-understanding"></a>Language Understanding 的最佳做法
 
@@ -99,7 +99,7 @@ LUIS 應用程式提供功能，可藉由檢閱使用者傳送的訊息，改善
 
 ## <a name="use-luis-to-improve-speech-recognition"></a>使用 LUIS 改善語音辨識
 
-對於使用者會與其對話的 Bot，與 LUIS 整合可協助 Bot 識別從語音轉換文字時可能會遭誤解的字組。  例如，在西洋棋的情境中，使用者可能會說：「騎士移動到 A 7 (Move knight to A 7)」。 若沒有使用者意圖的背景，該語句可能會識別為：「移動晚上 287 (Move night 287)」。 藉由建立代表西洋棋和座標的實體，並將其標記在語句中，您可以提供語音辨識的背景來識別它們。 您可以使用與 Bing 語音整合的 Bot Framework 通道 (例如網路聊天、Bot Framework 模擬器和 Cortana) 來[啟用語音辨識預備][speechrecognitionpriming]。  
+對於使用者會與其對話的 Bot，與 LUIS 整合可協助 Bot 識別從語音轉換文字時可能會遭誤解的字組。  例如，在西洋棋的情境中，使用者可能會說：「騎士移動到 A 7 (Move knight to A 7)」。 若沒有使用者意圖的背景，該語句可能會識別為：「移動晚上 287 (Move night 287)」。 藉由建立代表西洋棋和座標的實體，並將其標記在語句中，您可以提供語音辨識的背景來識別它們。 您可以使用與 Bing 語音整合的 Bot Framework 通道 (例如 Web Chat、Bot Framework 模擬器和 Cortana) 來[啟用語音辨識預備](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-manage-speech-priming?view=azure-bot-service-4.0)。  
 
 ## <a name="additional-resources"></a>其他資源
 如需詳細資訊，請參閱[認知服務](https://docs.microsoft.com/en-us/azure/cognitive-services/)文件。

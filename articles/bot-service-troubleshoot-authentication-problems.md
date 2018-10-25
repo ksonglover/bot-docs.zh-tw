@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
-ms.openlocfilehash: 5373b18ce5c11dae4e971cb1a70307ae2901ad36
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 9e86ea0fb677105be920e031979980baf479e42f
+ms.sourcegitcommit: abde9e0468b722892f94caf2029fae165f96092f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389657"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48875725"
 ---
 # <a name="troubleshooting-bot-framework-authentication"></a>針對 Bot Framework 驗證進行疑難排解
 
@@ -41,7 +41,9 @@ Bot 安全性由您在使用 Bot Framework 註冊 Bot 時取得的**Microsoft �
 
 若要停用 Bot 的安全性，請編輯其組態設定，以移除應用程式識別碼和密碼的值。 
 
-如果您使用 Bot Builder SDK for .NET，請在 Web.config 檔案中編輯這些設定：
+::: moniker range="azure-bot-service-3.0"
+
+如果您使用 Bot Builder SDK for .NET，請在 Web.config 檔案中編輯這些設定： 
 
 ```xml
 <appSettings>
@@ -58,6 +60,32 @@ var connector = new builder.ChatConnector({
   appPassword: null
 });
 ```
+
+::: moniker-end
+
+::: moniker range="azure-bot-service-4.0"
+
+如果您使用 Bot Builder SDK for .NET，請在 `appsettings.config` 檔案中編輯這些設定：
+
+```xml
+<appSettings>
+  <add key="MicrosoftAppId" value="" />
+  <add key="MicrosoftAppPassword" value="" />
+</appSettings>
+```
+
+如果您使用 Bot Builder SDK for Node.js，請編輯這些值 (或更新對應的環境變數)：
+
+```javascript
+const adapter = new BotFrameworkAdapter({
+    appId: null,
+    appPassword: null
+});
+```
+
+如果使用 `.bot` 檔案進行設定，您可以將 `appId` 和 `appPassword` 更新為 `""`。
+
+::: moniker-end
 
 ### <a name="test-your-bot-on-localhost"></a>在 localhost 上測試您的 Bot 
 
@@ -115,7 +143,7 @@ curl -k -X POST https://login.microsoftonline.com/botframework.com/oauth2/v2.0/t
 
 您的 Bot 的安全性依賴 Microsoft 服務，即使您的 Bot 只在 localhost 上執行。 若要啟用 Bot 的安全性，請編輯其組態設定，以使用您在[步驟 2](#step-2) 中驗證的值填入應用程式識別碼和密碼。
 
-如果您使用 Bot Builder SDK for .NET，請在 Web.config 檔案中填入這些設定：
+如果您使用 Bot Builder SDK for .NET，請在 `.bot` 或 `appsettings.config` 檔案中填入這些設定：
 
 ```xml
 <appSettings>

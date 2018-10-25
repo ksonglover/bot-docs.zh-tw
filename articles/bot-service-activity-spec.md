@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 03/07/2018
-ms.openlocfilehash: 0406d489f7d1e27131b4b01411e86850ca4a17b8
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 06e2289dd0176364467d34846ffa7716483f6578
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297575"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000405"
 ---
 # <a name="bot-framework----activity"></a>Bot Framework -- 活動
 
@@ -478,7 +479,7 @@ field
 
 `R5000`：通道「可以」允許在用戶端與 Bot 之間傳送應用程式定義的事件訊息 (如果用戶端允許自訂的話)。
 
-### <a name="name"></a>Name
+### <a name="name"></a>名稱
 
 `name` 欄位會控制事件的意義和 `value` 欄位的結構描述。 `name` 欄位的值是字串類型。
 
@@ -512,7 +513,7 @@ field
 
 `R5301`：通道「不應該」允許在用戶端和 Bot 之間傳送應用程式定義的叫用訊息。
 
-### <a name="name"></a>Name
+### <a name="name"></a>名稱
 
 `name` 欄位會控制叫用的意義和 `value` 欄位的結構描述。 `name` 欄位的值是字串類型。
 
@@ -636,7 +637,7 @@ field
 
 `R7123`：通道「不應該」將資料 URI 傳送給用戶端或 Bot。
 
-#### <a name="name"></a>Name
+#### <a name="name"></a>名稱
 
 `name` 欄位會包含附件的選擇性名稱和檔名。 `name` 欄位的值是字串類型。
 

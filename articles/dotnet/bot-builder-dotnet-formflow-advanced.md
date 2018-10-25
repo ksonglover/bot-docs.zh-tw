@@ -5,15 +5,16 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6637876b016b8680fe722602f530a0c6b0ddfc5a
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: fbdaa845c86150a572772c4aae8239880f42dd9e
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905402"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997775"
 ---
 # <a name="advanced-features-of-formflow"></a>FormFlow 的進階功能
 

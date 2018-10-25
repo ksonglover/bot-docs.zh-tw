@@ -1,19 +1,20 @@
 ---
 title: 將輸入提示新增至訊息 | Microsoft Docs
-description: 了解如何使用適用於 .NET 的 Bot Builder SDK，將輸入提示新增至訊息。
+description: 了解如何使用適用於 .NET 的 Bot 建立器 SDK，將輸入提示新增至訊息。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 87fc068c831dba752fa52a6430327232719a74a9
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: a88461e8a03ac941671cc78080e38efecc26aa30
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574824"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998395"
 ---
 # <a name="add-input-hints-to-messages"></a>將輸入提示新增至訊息
 
@@ -61,7 +62,7 @@ await connector.Conversations.ReplyToActivityAsync(reply);
 
 ## <a name="default-values-for-input-hint"></a>輸入提示的預設值
 
-如果您未設定訊息的輸入提示，Bot Builder SDK 將使用下列邏輯自動為您設定：
+如果您未設定訊息的輸入提示，Bot 建立器 SDK 會使用下列邏輯自動為您設定：
 
 - 如果 Bot 傳送提示，訊息的輸入提示將指定 Bot **需要輸入**。</li>
 - 如果 Bot 傳送單一訊息，訊息的輸入提示將指定 Bot 會**接受輸入**。</li>
