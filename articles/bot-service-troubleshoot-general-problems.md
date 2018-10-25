@@ -5,14 +5,14 @@ author: DeniseMak
 ms.author: v-demak
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 09/26/2018
-ms.openlocfilehash: 42273044cd1e32a3c78fa7fb1b83beac061ce0b8
-ms.sourcegitcommit: aef7d80ceb9c3ec1cfb40131709a714c42960965
+ms.openlocfilehash: 3d9c41d0c0c51d00dc5ce86dfb774228e53ff3a3
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "49383173"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999065"
 ---
 # <a name="troubleshooting-general-problems"></a>對一般問題進行疑難排解
 這些常見問答集可協助您對常見的 Bot 開發或作業問題進行疑難排解。
@@ -120,7 +120,7 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 
 某些通道 (例如 SMS 和電子郵件) 會提供不限範圍的位址。 在這些情況下，來自使用者的訊息將會在 `from.Id` 屬性中包含未經處理的使用者識別碼。
 
-其他通道 (例如 Skype、Facebook 和 Slack) 會提供有範圍或承租的位址，這會使 Bot 無法預估使用者的識別碼。 在這些情況下，您將會需要透過登入連結或共用祕密來驗證使用者，以判斷該使用者是否有使用 Bot 的授權。
+其他通道 (例如 Skype、Facebook 和 Slack) 會提供	有範圍或承租的位址，這會使 Bot 無法預估使用者的識別碼。 在這些情況下，您將會需要透過登入連結或共用祕密來驗證使用者，以判斷該使用者是否有使用 Bot 的授權。
 
 ## <a name="why-does-my-direct-line-11-conversation-start-over-after-every-message"></a>為何我的直接線路 1.1 交談會在每則訊息之後重新開始？
 

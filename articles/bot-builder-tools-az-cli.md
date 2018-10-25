@@ -5,15 +5,16 @@ author: matthewshim-ms
 ms.author: v-shimma
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: tools
 ms.date: 08/31/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 96660ecb8bf7a69115e517bfa8ec97a79a3e8c90
-ms.sourcegitcommit: f0b22c6286e44578c11c9f15d22b542c199f0024
+ms.openlocfilehash: b614b11852516ec8dd426d210aacc85a0f39c813
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47404014"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999415"
 ---
 # <a name="create-bots-with-azure-cli"></a>使用 Azure CLI 建立 Bot
 

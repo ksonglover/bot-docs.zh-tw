@@ -6,21 +6,22 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: f67c7ba658923873470e9653b38cd63fd1068491
-ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
+ms.openlocfilehash: 7af27340f92e3768bc00125205d5040fe3ea4d32
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/13/2018
-ms.locfileid: "49315114"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998225"
 ---
 # <a name="connect-a-bot-to-skype-for-business"></a>將 Bot 連結到商務用 Skype
 
 商務用 Skype Online 可讓您與同事和商務夥伴，透過立即訊息、電話和視訊通話連線。 藉由建置使用者可以透過商務用 Skype 介面探索與互動的 Bot 來擴充此功能。
 
 > [!NOTE]
-> 商務用 Skype Bot Framework 頻道目前支援商務用 Skype Online。 不支援商務用 Skype Server 2015。 
+> 商務用 Skype Bot Framework 頻道目前支援商務用 Skype Online。 不支援商務用 Skype Server 2015。 
 
 ## <a name="enable-the-channel"></a>啟用頻道
 
