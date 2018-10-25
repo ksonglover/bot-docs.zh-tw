@@ -5,15 +5,16 @@ author: JonathanFingold
 ms.author: JonathanFingold
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: abs
 ms.date: 09/27/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 444440c3861e2a0b68eb49c5f3469419ad55ec99
-ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
+ms.openlocfilehash: 93d32d5d0ac35dead8e9f1c48b526058449fabad
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/15/2018
-ms.locfileid: "49326585"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998785"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
 
