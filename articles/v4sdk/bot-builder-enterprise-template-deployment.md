@@ -5,15 +5,15 @@ author: darrenj
 ms.author: darrenj
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0f4c5e0db9dae86f81414ccd9bbb1e5de4dce624
-ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
+ms.openlocfilehash: 32be8e2a4047c3c25dcdf2598eea3a7bbd12fbcc
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/15/2018
-ms.locfileid: "49326395"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999025"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企業 Bot 範本 - 部署您的 Bot
 
@@ -30,7 +30,7 @@ ms.locfileid: "49326395"
 npm install -g ludown luis-apis qnamaker botdispatch msbot luisgen chatdown
 ```
 
-- 從[這裡](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)安裝 Azure 命令列工具 (CLI)
+- 從[這裡](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)安裝 Azure 命令列工具 (CLI)。 如果您已安裝 Azure Bot Service 命令列 (CLI) 工具，請務必先將目前版本解除安裝，再安裝新版本，以更新為最新版本。
 
 - 安裝適用於 Bot 服務的 AZ 擴充功能
 ```shell
@@ -101,6 +101,8 @@ msbot 工具會概述部署計畫，包括位置和 SKU。 確保在繼續前進
 
 然後輸入 ```hi``` 來確認一切運作正常。
 
+如果 Bot Framework 模擬器沒有任何問題，請先確定您有最新的 Bot Framework 模擬器。 如果您的舊版模擬器無法正確更新，請將其解除安裝，然後重新安裝模擬器。
+
 ## <a name="deploy-to-azure"></a>部署至 Azure
 
 您可以在本機端執行對端測試。 當您準備好將 Bot 部署至 Azure 進行額外測試時，您可以使用下列命令來發行原始程式碼，每當您想要推送原始程式碼更新時即可執行此原始程式碼。
@@ -123,7 +125,7 @@ az bot publish -g YOUR_BOT_NAME -n YOUR_BOT_NAME --proj-file YOUR_BOT_NAME.cspro
 
 在您的程式碼中所要的位置新增下列內容，來測試簡單登入流程：
     
-`var signInResult = await dc.BeginAsync(SignInDialog.Name);`
+`var signInResult = await dc.BeginDialogAsync(nameof(SignInDialog));`
 
 ### <a name="content-moderation"></a>內容仲裁
 

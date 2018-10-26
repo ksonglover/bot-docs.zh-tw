@@ -6,44 +6,47 @@ author: RobStand
 ms.author: RobStand
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: f9abc3ad8de2c766abc3bf3b8df9f540f261a733
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3072694307ace7c8821fd9e61fe8204acca97efb
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39300007"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49996726"
 ---
 # <a name="connect-a-bot-to-kik"></a>將 Bot 連線至 Kik
 
 您可以使用 Kik 傳訊應用程式配置 Bot 以便與其他人通訊。
 
-[!INCLUDE [Channel Inspector intro](~/includes/snippet-channel-inspector.md)]
-
 ## <a name="install-kik-on-your-phone"></a>在手機上安裝 Kik
 
-如果您並未在手機上安裝 Kik，則可以透過手機 App Store 或 <a href="https://www.kik.com/" target="_blank">Kik 網站</a>安裝。
+如果您並未在手機上安裝 Kik，則可以透過手機 App Store 或 <a href="https://www.kik.com/" target="_blank">Kik 網站</a>安裝。 您需要使用現有的 Kik 使用者帳戶或註冊新帳戶。
+
+![Kik 註冊](./media/channels/kik-signup.png)
 
 ## <a name="log-into-the-dev-portal-with-your-mobile-phone"></a>藉由行動電話登入開發人員入口網站
 
-透過行動電話<a href="https://dev.kik.com" target="_blank">登入 Kik入口網站</a>。
+使用行動電話<a href="https://dev.kik.com" target="_blank">登入 Kik入口網站</a>。 若出現提示：在 "Kik" 中開啟在此頁面嗎？ 請選取 [開啟]。 
+
+![Kik 開發人員入口網站](./media/channels/kik-dev-portal.png)
 
 ## <a name="follow-the-bot-setup-process"></a>遵循 Bot 安裝程序
 
-為 Bot 命名。
+指定您的 Bot 名稱。
 
-![設定 Bot](~/media/channels/kik-phone.png)
+![設定 Bot](./media/channels/kik-phone.png)
 
 ## <a name="gather-credentials"></a>收集認證
 
 在 [設定] 索引標籤中，複製**名稱**和 **API 金鑰**。
 
-![複製 Bot 資訊](~/media/channels/kik-configure.png)
+![複製 Bot 資訊](./media/channels/kik-configure.png)
 
 ## <a name="submit-credentials"></a>提交認證
 
-![貼上認證](~/media/channels/kik-creds.png)
+![貼上認證](./media/channels/kik-creds.png)
 
 按一下 [**送出 Kik 認證**]。
 

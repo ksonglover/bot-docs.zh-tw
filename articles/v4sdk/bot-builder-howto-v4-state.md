@@ -6,15 +6,16 @@ author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 09/18/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 21f864ba6f5beba5205e860f4a56697997048dfb
-ms.sourcegitcommit: 6c2426c43cd2212bdea1ecbbf8ed245145b3c30d
+ms.openlocfilehash: 972df2a12ffa7901ed4e4ecf14ce99233293c5a2
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/08/2018
-ms.locfileid: "48852293"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997705"
 ---
 # <a name="manage-conversation-and-user-state"></a>管理對話和使用者狀態
 
@@ -58,7 +59,7 @@ public class UserProfile
 `TopicState` 類別有一個旗標可追蹤我們在對話中的位置，並使用對話狀態來儲存。 Prompt 會初始化為 "askName" 以起始對話。 一旦 Bot 收到來自使用者的回應，Prompt 就會重新定義為 "askNumber" 以起始下一次對話。 `UserProfile` 類別會追蹤使用者名稱和電話號碼，並將其儲存在使用者狀態中。
 
 ### <a name="property-accessors"></a>屬性存取子
-我們範例中的 `EchoBotAccessors` 類別在建立為單一實體，並透過相依性插入傳入 `class EchoWithCounterBot : IBot` 建構函式。 `EchoBotAccessors` 類別建構函式會初始化 `EchoBotAccessors` 類別的新執行個體。 其中包含 `ConversationState`、`UserState`，以及相關聯的 `IStatePropertyAccessor`。 `conversationState` 物件會儲存主題狀態，而 `userState` 物件會儲存使用者設定檔資訊。 `ConversationState` 和 `UserState` 物件會建立於 Startup.cs 檔案中。 對話和使用者狀態物件都是我們保存對話和使用者範圍內任何項目的位置。 
+我們範例中的 `EchoBotAccessors` 類別在建立為單一實體，並透過相依性插入傳入 `class EchoWithCounterBot : IBot` 建構函式。 `EchoBotAccessors` 類別包含 `ConversationState`、`UserState`，以及相關聯的 `IStatePropertyAccessor`。 `conversationState` 物件會儲存主題狀態，而 `userState` 物件會儲存使用者設定檔資訊。 `ConversationState` 和 `UserState` 物件稍後會在 Startup.cs 檔案中建立。 對話和使用者狀態物件都是我們保存對話和使用者範圍內任何項目的位置。 
 
 已更新建構函式來包含 `UserState`，如下所示：
 ```csharp
@@ -102,7 +103,7 @@ services.AddBot<EchoWithCounterBot>(options =>
     options.State.Add(userState);
 });
 ```
-`options.State.Add(ConversationState);` 和 `options.State.Add(userState);` 兩行分別會新增對話狀態和使用者狀態。 接下來，建立並註冊狀態存取子。 這裡建立的存取子都次都會傳入 IBot 衍生的類別。 修改程式碼以包含使用者狀態，如下所示：
+`options.State.Add(ConversationState);` 和 `options.State.Add(userState);` 兩行分別會新增對話狀態和使用者狀態。 接下來，建立並註冊狀態存取子。 這裡建立的存取子每次都會傳入 IBot 衍生的類別。 修改程式碼以包含使用者狀態，如下所示：
 ```csharp
 services.AddSingleton<EchoBotAccessors>(sp =>
 {
@@ -121,17 +122,17 @@ services.AddSingleton<EchoBotAccessors>(sp =>
 services.AddSingleton<EchoBotAccessors>(sp =>
 {
    ...
-    var accessors = new BotAccessors(conversationState, userState)
+    var accessors = new EchoBotAccessors(conversationState, userState)
     {
-        TopicState = conversationState.CreateProperty<TopicState>("TopicState"),
-        UserProfile = userState.CreateProperty<UserProfile>("UserProfile"),
+        TopicState = conversationState.CreateProperty<TopicState>(EchoBotAccessors.TopicStateName),
+        UserProfile = userState.CreateProperty<UserProfile>(EchoBotAccessors.UserProfileName),
      };
 
      return accessors;
  });
 ```
 
-對話和使用者狀態會透過 `services.AddSingleton` 程式碼區塊連結到單一實體，並透過程式碼中以 `var accessors = new BotAccessor(conversationState, userState)` 開頭的狀態存放區存取子儲存。
+對話和使用者狀態會透過 `services.AddSingleton` 程式碼區塊連結到單一實體，並透過程式碼中以 `var accessors = new EchoBotAccessor(conversationState, userState)` 開頭的狀態存放區存取子儲存。
 
 ### <a name="use-conversation-and-user-state-properties"></a>使用對話和使用者狀態屬性 
 在 `EchoWithCounterBot : IBot` 類別的 `OnTurnAsync` 處理常式中，修改程式碼以提示輸入使用者名稱，然後輸入電話號碼。 為了追蹤我們在對話中的何處，我們會使用 TopicState 中定義的 Prompt 屬性。 這個屬性已初始化為 "askName"。 一旦取得使用者名稱，我們會將其設定為 "askNumber "，並將 UserName 設定為使用者輸入的名稱。 收到電話號碼之後，您可傳送確認訊息並將提示設定為「確認」，因為您位於對話的結尾。

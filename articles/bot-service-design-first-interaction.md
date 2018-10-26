@@ -6,14 +6,15 @@ author: matvelloso
 ms.author: mateusv
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: d36f043ec3e268b7c56abef7253ddf6274a71a7e
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: f59a7acbdb7d580aebeef6ffe81d8b15505aed90
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299526"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999805"
 ---
 # <a name="design-a-bots-first-user-interaction"></a>設計 Bot 的首次使用者互動
 
@@ -34,7 +35,7 @@ ms.locfileid: "39299526"
 
 ![Bot](~/media/bot-service-design-first-interaction/hello2.png)
 
-作為開始，我們通常不建議讓 Bot 詢問像是 "How can I help you?" (我可以如何協助您？) 這樣的開放式問題。 假設您的 Bot 能夠執行一百種不同的工作，使用者應該不太可能自行猜出大部分的工作。 這是因為您的 Bot 並沒有告訴使用者它可以做什麼，所以他們怎麼可能會知道呢？
+一開始，讓 Bot 詢問像是 "How can I help you?" (我可以如何協助您？) 這樣的開放式問題 通常是不建議的。 假設您的 Bot 能夠執行一百種不同的工作，使用者應該不太可能自行猜出大部分的工作。 這是因為您的 Bot 並沒有告訴使用者它可以做什麼，所以他們怎麼可能會知道呢？
 
 功能表能為此問題提供簡單的解決方案。 首先，透過列出可用的選項，您的 Bot 便能將自己的功能傳達給使用者。 再來，功能表可讓使用者無需自行輸入太多內容，而只需要按一下即可。 最後，使用功能表將能縮小 Bot 可從使用者接收之輸入的範圍，並大幅簡化您的自然語言模型。 
 

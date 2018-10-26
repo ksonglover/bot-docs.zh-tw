@@ -6,15 +6,16 @@ author: dashel
 ms.author: dashel
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 09/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2d32e618325e9ddc4abb5c3b42114c86c7644001
-ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
+ms.openlocfilehash: 09ace7b625fe0c66b3ba853249ef5bfc9c32084b
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/13/2018
-ms.locfileid: "49315134"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998525"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
@@ -24,7 +25,7 @@ ms.locfileid: "49315134"
 
 ## <a name="same-welcome-for-different-channels"></a>不同通道使用相同的歡迎
 
-下列範例可監看新的「對話更新」活動，根據加入對話的使用者只傳送一則歡迎訊息，以及設定提示狀態旗標來忽略使用者的初始對話輸入。 下列程式碼會使用 [GitHub](https://github.com/Microsoft/BotBuilder-Samples/) 存放庫中的歡迎使用者範例。
+下列範例可監看新的「對話更新」活動，根據加入對話的使用者只傳送一則歡迎訊息，以及設定提示狀態旗標來忽略使用者的初始對話輸入。 下列程式碼範例會使用 Github 存放庫中適用於 [C#](https://aka.ms/bot-welcome-sample-cs) 和 [JS](https://aka.ms/bot-welcome-sample-js) 程式碼的歡迎使用者範例。
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -176,6 +177,16 @@ class MainDialog {
                 // Set the flag indicating the bot handled the user's first message.
                 await this.welcomedUserPropery.set(turnContext, true);
             }
+            . . .
+            
+            // Save state changes
+            await this.userState.saveChanges(turnContext);
+        } else if (turnContext.activity.type === ActivityTypes.ConversationUpdate) {
+            // Send greeting when users are added to the conversation.
+            await this.sendWelcomeMessage(turnContext);
+        } else {
+            // Generic message for all other activities
+            await turnContext.sendActivity(`[${ turnContext.activity.type } event detected]`);
         }
     }
     

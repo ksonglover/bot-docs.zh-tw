@@ -6,15 +6,15 @@ author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 04/09/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4195ae016513c809e4677879e0abe1b2bf8d799e
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 27516a73f625eea9c6d2cf8a09234f4068d380e3
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389777"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997455"
 ---
 # <a name="testing-and-debugging-guidelines"></a>測試和偵錯指導方針
 
@@ -50,7 +50,8 @@ Bot 是將許多不同組件整合在一起運作的複雜應用程式。 就像
 
 ### <a name="level-2-use-a-direct-line-client"></a>等級 2：使用直接線路用戶端
 
-確認您的 Bot 如預期般運作之後，下一步就是將它連線至通道。 若要這樣做，您可以將 Bot 部署到預備伺服器，並建立自己 <!--IBTODO [Direct Line client](bot-builder-howto-direct-line.md)--> 直接線路用戶端以供您的 Bot 連線。
+確認您的 Bot 如預期般運作之後，下一步就是將它連線至通道。 若要這樣做，您可以將 Bot 部署到預備伺服器，並建立自己的直接線路用戶端以供 Bot 連線。
+<!--IBTODO [Direct Line client](bot-builder-howto-direct-line.md)-->
 
 建立自己的用戶端可讓您定義通道內部的運作方式，並且可特別針對 Bot 回應特定活動交換的方式進行測試。 一旦 Bot 連線到您的用戶端後，請執行您的測試以設定 Bot 狀態並驗證功能。 如果您的 Bot 會利用如語音之類的功能，使用這些通道可提供驗證該功能的方式。
 

@@ -5,18 +5,22 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: ac984609acfdd8f85088bd47ccded1f45e953b2c
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: f0985f28fd1744bcfb6bf5cea1c2230254670e01
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39299678"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000205"
 ---
 # <a name="end-a-conversation"></a>結束對話
 
 用戶端或 Bot 可以透過傳送 **endOfConversation** [活動](bot-framework-rest-connector-activities.md)來表示直接對話的結束。 
+
+> [!NOTE] 
+> 僅 Cortana 通道可支援 endOfConversation 事件，其他通道不會實作這項功能。 每個通道會決定如何回應 endOfConversation 活動。 如果您要設計 DirectLine 用戶端，您會更新用戶端以做出正確行為，例如，如果 Bot 傳送活動給已經結束的對話，則會產生錯誤。
 
 ## <a name="send-an-endofconversation-activity"></a>傳送 endOfConversation 活動
 
@@ -41,7 +45,7 @@ Authorization: Bearer RCurR_XV9ZA.cwA.BKA.iaJrC8xpy8qbOF5xnR2vtCX7CZj0LdjAPGfiCp
 }
 ```
 
-### <a name="response"></a>回應
+### <a name="response"></a>Response
 
 如果要求成功，則回應將包含已傳送之活動的識別碼。
 

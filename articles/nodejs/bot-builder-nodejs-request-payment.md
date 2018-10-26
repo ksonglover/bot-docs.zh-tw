@@ -5,15 +5,16 @@ author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 783d9e1fb3b90f6ba977440b3eefae5c16a1b8ca
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 5bdb699e242784883f7c1a5dda895a31ff80efb1
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905833"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999157"
 ---
 # <a name="request-payment"></a>要求付款
 
@@ -101,7 +102,8 @@ HTTP 回呼將傳送至 Bot，指出它應該執行特定作業。 每個回呼�
 ### <a name="shipping-address-update-and-shipping-option-update-callbacks"></a>交貨地址更新和交貨選項更新回呼
 
 接收「交貨地址更新」或「交貨選項更新」回呼，用戶端會在事件的 `value` 屬性中將目前付款狀態的詳細資料提供給 Bot。
-如果您是商家，則應將這些回呼視為靜態，根據輸入付款詳細資料，將會計算某些輸出付款詳細資料，而如果用戶端所提供的輸入狀態因任何理由而無效，則回呼會失敗。 如果 Bot 判斷指定的現況資訊有效，則只要傳送 HTTP 狀態碼 `200 OK` 以及未經修改的付款詳細資料。 或者，Bot 可以先傳送 HTTP 狀態碼 `200 OK` 以及應套用的更新後付款詳細資料，才能處理訂單。 在某些情況下，Bot 可能會判斷更新後的資訊無效，所以無法照現況處理訂單。 例如，使用者的交貨地址可能會指定產品供應商不出貨的國家/地區。 在此情況下，Bot 可以傳送 HTTP 狀態碼 `200 OK` 和一則訊息，其中填入付款詳細資料物件的錯誤屬性。 傳送任何 `400` 至 `500` 範圍內的 HTTP 狀態碼會導致客戶發生一般錯誤。
+如果您是商家，則應將這些回呼視為靜態，根據輸入付款詳細資料，將會計算某些輸出付款詳細資料，而如果用戶端所提供的輸入狀態因任何理由而無效，則回呼會失敗。 
+如果 Bot 判斷指定的現況資訊有效，則只要傳送 HTTP 狀態碼 `200 OK` 以及未經修改的付款詳細資料。 或者，Bot 可以先傳送 HTTP 狀態碼 `200 OK` 以及應套用的更新後付款詳細資料，才能處理訂單。 在某些情況下，Bot 可能會判斷更新後的資訊無效，所以無法照現況處理訂單。 例如，使用者的交貨地址可能會指定產品供應商不出貨的國家/地區。 在此情況下，Bot 可以傳送 HTTP 狀態碼 `200 OK` 和一則訊息，其中填入付款詳細資料物件的錯誤屬性。 傳送任何 `400` 至 `500` 範圍內的 HTTP 狀態碼會導致客戶發生一般錯誤。
 
 ### <a name="payment-complete-callbacks"></a>付款完成回呼
 

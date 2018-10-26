@@ -6,15 +6,16 @@ author: kamrani
 ms.author: kamrani
 manager: kamrani
 ms.topic: get-started-article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 09/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d299e4bdfd503475bf1ec560da2aff1d3a199e47
-ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
+ms.openlocfilehash: 32743e895f2390fe018dc3801ed5b8a67b32a8cc
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/15/2018
-ms.locfileid: "49326385"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999375"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-net"></a>使用適用於 .NET 的 Bot Builder SDK 建立 Bot
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -30,7 +31,7 @@ ms.locfileid: "49326385"
 ## <a name="create-a-bot"></a>建立 Bot
 安裝您在必要條件區段下載的 BotBuilderVSIX.vsix 範本。 
 
-在 Visual Studio 中建立新 Bot 專案。
+在 Visual Studio 中，使用 Bot Builder Echo Bot V4 範本建立新的 Bot 專案。
 
 ![Visual Studio 專案](../media/azure-bot-quickstarts/bot-builder-dotnet-project.png)
 

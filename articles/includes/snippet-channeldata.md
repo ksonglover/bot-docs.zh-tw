@@ -139,121 +139,103 @@
 Bot 可以透過正常方式回覆此訊息，也可以將其回應直接張貼到 `payload` 物件的 `response_url` 屬性所指定的端點。
 如需何時及如何將回應張貼到 `response_url` 的資訊，請參閱 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按鈕</a>。
 
-您可以使用下列程式碼來建立動態按鈕：
-```cs
-private async Task DemoButtonsAsync(IDialogContext context)
+您可以使用下列 JSON 來建立動態按鈕。
+
+```json
+{
+    "text": "Would you like to play a game ? ",
+    "attachments": [
         {
-            var reply = context.MakeMessage();
-
-            string s = @"{
-                ""text"": ""Would you like to play a game ? "",
-                ""attachments"": [
-                    {
-                        ""text"": ""Choose a game to play!"",
-                        ""fallback"": ""You are unable to choose a game"",
-                        ""callback_id"": ""wopr_game"",
-                        ""color"": ""#3AA3E3"",
-                        ""attachment_type"": ""default"",
-                        ""actions"": [
-                            {
-                                ""name"": ""game"",
-                                ""text"": ""Chess"",
-                                ""type"": ""button"",
-                                ""value"": ""chess""
-                            },
-                            {
-                                ""name"": ""game"",
-                                ""text"": ""Falken's Maze"",
-                                ""type"": ""button"",
-                                ""value"": ""maze""
-                            },
-                            {
-                                ""name"": ""game"",
-                                ""text"": ""Thermonuclear War"",
-                                ""style"": ""danger"",
-                                ""type"": ""button"",
-                                ""value"": ""war"",
-                                ""confirm"": {
-                                    ""title"": ""Are you sure?"",
-                                    ""text"": ""Wouldn't you prefer a good game of chess?"",
-                                    ""ok_text"": ""Yes"",
-                                    ""dismiss_text"": ""No""
-                                }
-                            }
-                        ]
+            "text": "Choose a game to play!",
+            "fallback": "You are unable to choose a game",
+            "callback_id": "wopr_game",
+            "color": "#3AA3E3",
+            "attachment_type": "default",
+            "actions": [
+                {
+                    "name": "game",
+                    "text": "Chess",
+                    "type": "button",
+                    "value": "chess"
+                },
+                {
+                    "name": "game",
+                    "text": "Falken's Maze",
+                    "type": "button",
+                    "value": "maze"
+                },
+                {
+                    "name": "game",
+                    "text": "Thermonuclear War",
+                    "style": "danger",
+                    "type": "button",
+                    "value": "war",
+                    "confirm": {
+                        "title": "Are you sure?",
+                        "text": "Wouldn't you prefer a good game of chess?",
+                        "ok_text": "Yes",
+                        "dismiss_text": "No"
                     }
-                ]
-            }";
-
-            reply.Text = null;
-            reply.ChannelData = JObject.Parse(s);
-            await context.PostAsync(reply);
-            context.Wait(MessageReceivedAsync);
+                }
+            ]
         }
+    ]
+}
 ```
 
-若要建立互動式功能表，請使用下列程式碼：
-```cs
-private async Task DemoMenuAsync(IDialogContext context)
+若要建立互動式功能表，請使用下列 JSON：
+
+```json
+{
+    "text": "Would you like to play a game ? ",
+    "response_type": "in_channel",
+    "attachments": [
         {
-            var reply = context.MakeMessage();
-
-            string s = @"{
-                ""text"": ""Would you like to play a game ? "",
-                ""response_type"": ""in_channel"",
-                ""attachments"": [
-                    {
-                        ""text"": ""Choose a game to play"",
-                        ""fallback"": ""If you could read this message, you'd be choosing something fun to do right now."",
-                        ""color"": ""#3AA3E3"",
-                        ""attachment_type"": ""default"",
-                        ""callback_id"": ""game_selection"",
-                        ""actions"": [
-                            {
-                                ""name"": ""games_list"",
-                                ""text"": ""Pick a game..."",
-                                ""type"": ""select"",
-                                ""options"": [
-                                    {
-                                        ""text"": ""Hearts"",
-                                        ""value"": ""menu_id_hearts""
-                                    },
-                                    {
-                                        ""text"": ""Bridge"",
-                                        ""value"": ""menu_id_bridge""
-                                    },
-                                    {
-                                        ""text"": ""Checkers"",
-                                        ""value"": ""menu_id_checkers""
-                                    },
-                                    {
-                                        ""text"": ""Chess"",
-                                        ""value"": ""menu_id_chess""
-                                    },
-                                    {
-                                        ""text"": ""Poker"",
-                                        ""value"": ""menu_id_poker""
-                                    },
-                                    {
-                                        ""text"": ""Falken's Maze"",
-                                        ""value"": ""menu_id_maze""
-                                    },
-                                    {
-                                        ""text"": ""Global Thermonuclear War"",
-                                        ""value"": ""menu_id_war""
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }";
-
-            reply.Text = null;
-            reply.ChannelData = JObject.Parse(s);
-            await context.PostAsync(reply);
-            context.Wait(MessageReceivedAsync);
+            "text": "Choose a game to play",
+            "fallback": "If you could read this message, you'd be choosing something fun to do right now.",
+            "color": "#3AA3E3",
+            "attachment_type": "default",
+            "callback_id": "game_selection",
+            "actions": [
+                {
+                    "name": "games_list",
+                    "text": "Pick a game...",
+                    "type": "select",
+                    "options": [
+                        {
+                            "text": "Hearts",
+                            "value": "menu_id_hearts"
+                        },
+                        {
+                            "text": "Bridge",
+                            "value": "menu_id_bridge"
+                        },
+                        {
+                            "text": "Checkers",
+                            "value": "menu_id_checkers"
+                        },
+                        {
+                            "text": "Chess",
+                            "value": "menu_id_chess"
+                        },
+                        {
+                            "text": "Poker",
+                            "value": "menu_id_poker"
+                        },
+                        {
+                            "text": "Falken's Maze",
+                            "value": "menu_id_maze"
+                        },
+                        {
+                            "text": "Global Thermonuclear War",
+                            "value": "menu_id_war"
+                        }
+                    ]
+                }
+            ]
         }
+    ]
+}
 ```
 
 ## <a name="create-a-facebook-notification"></a>建立 Facebook 通知
@@ -394,4 +376,4 @@ private async Task DemoMenuAsync(IDialogContext context)
 ## <a name="additional-resources"></a>其他資源
 
 - [實體和活動類型](../bot-service-activities-entities.md)
-- [Bot Framework -- 活動結構描述](https://github.com/Microsoft/BotBuilder/blob/hub/specs/botframework-activity/botframework-activity.md)
+- [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)

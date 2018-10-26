@@ -6,15 +6,16 @@ author: johnataylor
 ms.author: johtaylo
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 9/22/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2cf5da32b563c310ee201090c938da9ff410a70c
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 45bca42ddce527826d2723bc9a20a3c3e6c5aebe
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46708579"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998605"
 ---
 # <a name="dialogs-library"></a>對話方塊程式庫
 
@@ -22,7 +23,7 @@ ms.locfileid: "46708579"
 
 SDK 中用來管理對話的中心概念是對話方塊這個想法。 對話方塊物件可處理輸入活動，並產生輸出回應。 Bot 的商務邏輯會在對話方塊類別中直接或間接地執行。
 
-在執行階段，對話方塊執行個體會在堆疊中排列。 堆疊頂端的對話方塊稱為 ActiveDialog。 目前使用中的對話方塊會處理輸入活動。 堆疊會在每回合對話之間保存下來 (不受時間限制，且可能會保存超過好幾天)。 
+在執行階段，對話方塊執行個體會在堆疊中排列。 堆疊頂端的對話方塊稱為 ActiveDialog。 目前使用中的對話方塊會處理輸入活動。 堆疊會在每回合對話之間保存下來 (不受時間限制，且可能會橫跨好幾天)。 
 
 對話方塊會實作三項主要功能：
 - BeginDialog
