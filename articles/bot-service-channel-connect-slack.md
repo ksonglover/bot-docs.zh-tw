@@ -40,7 +40,7 @@ ms.locfileid: "50000125"
 
 1. 選取 [OAuth 與權限] 索引標籤。
 2. 按一下 [新增重新導向 URL]。
-3. 輸入 https://slack.botframework.com。
+3. 輸入 https://slack.botframework.com 。
 4. 按一下 [新增] 。
 5. 按一下 [儲存 URL]。
 
