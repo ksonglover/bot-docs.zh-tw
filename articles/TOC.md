@@ -28,7 +28,6 @@
 ### [物聯網 Bot](bot-service-scenario-internet-things.md)
 # 作法
 ## [設計](design/TOC.md)
-## [管理](manage/TOC.md)
 ## 開發
 ### [將歡迎訊息傳送給使用者](v4sdk/bot-builder-send-welcome-message.md)
 ### [傳送文字及語音訊息](v4sdk/bot-builder-howto-send-messages.md)
@@ -48,13 +47,15 @@
 ### [使用語言理解的 LUIS](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答問題](v4sdk/bot-builder-howto-qna.md)
 ### [在您的 Bot 中新增驗證](v4sdk/bot-builder-authentication.md)
-### [下載並重新部署 Bot 程式碼](bot-service-build-download-source-code.md)
-### [設定持續部署](bot-service-build-continuous-deployment.md)
-### [將本機 Bot 部署至 Azure](bot-builder-howto-deploy-azure.md)
 ### [實作通道特有功能](v4sdk/bot-builder-channeldata.md)
 ### [.NET](dotnet/TOC.md)
 ### [Node.js](nodejs/TOC.md)
 ## [偵錯](debug/TOC.md)
+## 部署
+### [下載並重新部署 Bot 程式碼](bot-service-build-download-source-code.md)
+### [設定持續部署](bot-service-build-continuous-deployment.md)
+### [將本機 Bot 部署至 Azure](bot-builder-howto-deploy-azure.md)
+## [管理](manage/TOC.md)
 # 參考
 ## [Bot Builder 工具](bot-builder-tools.md)
 ## [.NET SDK v4](https://aka.ms/dotnetsdk4)

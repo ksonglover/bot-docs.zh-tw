@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/23/2018
+ms.date: 10/31/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 09ace7b625fe0c66b3ba853249ef5bfc9c32084b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f5549385106cab890269e9a5fafacc00dc331520
+ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998525"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50736606"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
@@ -26,6 +26,8 @@ ms.locfileid: "49998525"
 ## <a name="same-welcome-for-different-channels"></a>不同通道使用相同的歡迎
 
 下列範例可監看新的「對話更新」活動，根據加入對話的使用者只傳送一則歡迎訊息，以及設定提示狀態旗標來忽略使用者的初始對話輸入。 下列程式碼範例會使用 Github 存放庫中適用於 [C#](https://aka.ms/bot-welcome-sample-cs) 和 [JS](https://aka.ms/bot-welcome-sample-js) 程式碼的歡迎使用者範例。
+
+[!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
