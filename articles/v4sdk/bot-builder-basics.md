@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 9/26/2018
+ms.date: 10/31/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fde88929c688c25d473ce8242ebfd5d44dc3a22f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f86c666b7a8ff754681a7eca7005fc42676705fc
+ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998125"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50736706"
 ---
 # <a name="understanding-how-bots-work"></a>了解 Bot 的運作方式
 
@@ -41,7 +41,7 @@ Bot 是使用者可運用文字、圖形 (例如卡片或影像) 或語音等對
 
 ### <a name="defining-a-turn"></a>定義一個回合
 
-回合 (由於它適合我們的 Bot) 用來描述與活動送達相關聯的所有處理。 
+在對話中，人們通常一次一個人發言，輪流發言。 Bot 通常會回應使用者輸入。 在 Bot Builder SDK 內，一個「回合」是由使用者對 Bot 的傳入活動，以及 Bot 傳回給使用者作為立即回應的任何活動所組成。 您可以將回合視為與特定活動送達相關聯的處理。
 
 「回合內容」物件會提供活動相關資訊，例如傳送者和接收者、通道、以及處理活動所需的其他資料。 也允許在遍及 Bot 各種階層的回合期間新增資訊。
 
@@ -75,8 +75,7 @@ Bot 的「回合處理常式」 構成大部分的應用程式邏輯，其將回
 
 此外，這也表示不保證獨立活動呼叫的回應順序，特別是其中一個工作比另一個更複雜的時候。 如果 Bot 可對內送活動產生多個回應，請確保使用者收到時無論什麼順序都符合常理。 唯一的例外是「傳送活動」方法，該方法可讓您傳送已排序的活動集合。
 
-> [!IMPORTANT]
-> 處理主要 Bot 回合的執行緒可在其完成後處置內容物件。 **請務必`await`任何活動呼叫**，這樣主要執行緒才能先等候已產生的活動，再結束其正在處理的工作並處置回合內容。 否則，如果回應 (包含其處理常式) 佔用大量時間，並嘗試在內容物件上動作，則可能會取得 `Context was disposed` 錯誤。 
+[!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
 
 ## <a name="response-event-handlers"></a>回應事件處理常式
 
@@ -92,6 +91,8 @@ Bot 的「回合處理常式」 構成大部分的應用程式邏輯，其將回
 ## <a name="bot-structure"></a>Bot 結構
 
 讓我們看看 Echo Bot With Counter [[C#](https://aka.ms/EchoBotWithStateCSharp) | [JS](https://aka.ms/EchoBotWithStateJS)] 範例，並檢查 Bot 的主要部分。
+
+[!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 

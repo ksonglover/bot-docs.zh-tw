@@ -1,5 +1,5 @@
 ---
-title: 使用分派工具整合多個 LUIS 和 QnA 服務 | Microsoft Docs
+title: 使用 LUIS 和 QnA 服務搭配分派工具 | Microsoft Docs
 description: 了解如何在 Bot 中使用 LUIS 和 QnA Maker。
 keywords: Luis, QnA, 分派工具, 多種服務
 author: DeniseMak
@@ -8,16 +8,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/09/2018
+ms.date: 10/31/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e59a7fd86e3802ea23d59a439165a194314639f8
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 4d029dc7361ac8a7fadb61141faf60d8a62eab3c
+ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997395"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50736676"
 ---
-# <a name="integrate-multiple-luis-and-qna-services-with-the-dispatch-tool"></a>使用分派工具整合多個 LUIS 和 QnA 服務
+# <a name="use-luis-and-qna-services-with-the-dispatch-tool"></a>使用 LUIS 和 QnA 服務搭配分派工具
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -31,7 +31,9 @@ ms.locfileid: "49997395"
 | LUIS 應用程式 | Weather | 使用位置資料辨識 Weather.GetForecast 和 Weather.GetCondition 意圖。|
 | QnAMaker 服務 | 常見問題集  | 提供 Bot 相關簡單問題的解答。 |
 
-本文的程式碼取自 **NLP with Dispatch** 範例 [[C#](https://aka.ms/dispatch-sample-cs)<!-- | [JS](https://aka.ms/dispatch-sample-js)-->]。
+本文的程式碼取自 **NLP with Dispatch** 範例 [[C#](https://aka.ms/dispatch-sample-cs)]。
+
+<!-- | [JS](https://aka.ms/dispatch-sample-js)-->
 
 如需語言服務概觀，請參閱[語言理解](bot-builder-concept-luis.md)。 請參閱 [LUIS](bot-builder-howto-v4-luis.md) 和 [QnA Maker](bot-builder-howto-qna.md) 的操作說明文章，以取得在 Bot 中實作這些服務的指示。
 

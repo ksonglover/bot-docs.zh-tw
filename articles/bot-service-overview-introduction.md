@@ -7,13 +7,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 10/08/2018
-ms.openlocfilehash: 3ca80439a44ac7e715d19f8e47683ac9b5a5721a
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 10/31/2018
+ms.openlocfilehash: 616c3bfd5fcb36c06f4e2acf032ba3cf5fc125d3
+ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998875"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50736696"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -89,14 +89,15 @@ Bot 很類似現代化 Web 應用程式，在網際網路上運作，並使用 A
 Bot 可執行其他類型的軟體可以執行的作業：讀取和寫入檔案、使用資料庫和 API，以及進行一般計算工作。 Bot 的特點就是其使用通常保留給人與人通訊的機制。 
 
 Bot 通常是由下列元件組成：
-* 在大部分情況下可在公用網際網路上使用的網路伺服器
-* 可提供介面以供開發 Bot 的 Bot Builder SDK 和 Bot Builder Tools
-* Azure 認知服務 
-* Azure 儲存體
+
+- 在大部分情況下可在公用網際網路上使用的網路伺服器
+- 可提供介面以供開發 Bot 的 Bot Builder SDK 和 Bot Builder Tools
+- Azure 認知服務
+- Azure 儲存體
 
 ## <a name="building-a-bot"></a>建立 Bot 
 
-Azure Bot Service 提供一組整合式工具與服務，可加快此程序。 選擇您慣用的開發環境或命令列工具，以 C#、JavaScript 或 Typescript 來建立 Bot。 (即將推出 Java 和 Python！)我們在 Bot 各種開發階段皆提供各項工具，可協助您建立 Bot 並開始運用。
+Azure Bot Service 提供一組整合式工具與服務，可加快此程序。 選擇您慣用的開發環境或命令列工具來建立 Bot。 C#、JavaScript 和 Typescript 均有 SDK。 (適用於 Java 和 Python 的 SDK 正在開發中。)我們在 Bot 各種開發階段皆提供各項工具，協助您設計及建置 Bot。
 
 ![Bot 概觀](media/bot-service-overview.png) 
 

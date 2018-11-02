@@ -47,6 +47,7 @@
 ### [使用語言理解的 LUIS](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答問題](v4sdk/bot-builder-howto-qna.md)
 ### [在您的 Bot 中新增驗證](v4sdk/bot-builder-authentication.md)
+### [為您的 Bot 實作自訂儲存空間](v4sdk/bot-builder-custom-storage.md)
 ### [實作通道特有功能](v4sdk/bot-builder-channeldata.md)
 ### [.NET](dotnet/TOC.md)
 ### [Node.js](nodejs/TOC.md)

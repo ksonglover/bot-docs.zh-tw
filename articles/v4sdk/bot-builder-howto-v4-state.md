@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/18/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 972df2a12ffa7901ed4e4ecf14ce99233293c5a2
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 30ce9c9ff5c458758a4cc9612b8f9947fa12734c
+ms.sourcegitcommit: 782b3a2e788c25effd7d150a070bd2819ea92dad
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997705"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50743652"
 ---
 # <a name="manage-conversation-and-user-state"></a>管理對話和使用者狀態
 
@@ -63,8 +63,6 @@ public class UserProfile
 
 已更新建構函式來包含 `UserState`，如下所示：
 ```csharp
-using EchoBotWithCounter;
-
 public EchoBotAccessors(ConversationState conversationState, UserState userState)
 {
     ConversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
@@ -138,8 +136,6 @@ services.AddSingleton<EchoBotAccessors>(sp =>
 在 `EchoWithCounterBot : IBot` 類別的 `OnTurnAsync` 處理常式中，修改程式碼以提示輸入使用者名稱，然後輸入電話號碼。 為了追蹤我們在對話中的何處，我們會使用 TopicState 中定義的 Prompt 屬性。 這個屬性已初始化為 "askName"。 一旦取得使用者名稱，我們會將其設定為 "askNumber "，並將 UserName 設定為使用者輸入的名稱。 收到電話號碼之後，您可傳送確認訊息並將提示設定為「確認」，因為您位於對話的結尾。
 
 ```csharp
-using EchoBotWithCounter;
-
 if (turnContext.Activity.Type == ActivityTypes.Message)
 {
     // Get the conversation state from the turn context.
@@ -305,7 +301,7 @@ if (turnContext.activity.type === 'message') {
     
 }
 else {
-    await turnContext.sendActivity(`[${context.activity.type} event detected]`);
+    await turnContext.sendActivity(`[${turnContext.activity.type} event detected]`);
 }
 ```
 
@@ -322,7 +318,7 @@ else {
 
 ### <a name="interact-with-your-bot"></a>與您的 Bot 互動
 
-傳送訊息給 Bot，Bot 就會以訊息回應。
+將 "Hi" 訊息傳送給 Bot，Bot 會詢問您的名稱和電話號碼。 在您提供該資訊之後，Bot 會傳送確認訊息。 如果您繼續執行，則 Bot 會再次經歷相同的週期。
 ![模擬器執行中](../media/emulator-v4/emulator-running.png)
 
 如果您決定自行管理狀態，請參閱[使用自己的提示來管理對話流程](bot-builder-primitive-prompts.md)。 另一種方法是使用瀑布圖對話方塊。 對話會追蹤對話方塊狀態，讓您不需要建立旗標來追蹤狀態。 如需詳細資訊，請參閱[使用對話來管理簡單對話方塊](bot-builder-dialog-manage-conversation-flow.md)。

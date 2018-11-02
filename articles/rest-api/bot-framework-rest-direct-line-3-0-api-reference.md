@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: d69f1f658520790ff429ecd25a190319e321164d
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 36a95ec60af117a9a13843dc078bd9bd5cfde635
+ms.sourcegitcommit: 6ed90a4c90add925a0a865be1127041b7775fd3d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998104"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50234471"
 ---
 # <a name="api-reference---direct-line-api-30"></a>API 參考 - Direct Line API 3.0
 
@@ -223,5 +223,6 @@ Direct Line 3.0 結構描述包含 [Bot Framework v3 結構描述](bot-framework
 - `from` 屬性必須填入使用者識別碼，由用戶端選擇。
 - 附件可能包含現有資源的 URL，或透過 Direct Line 附件端點上傳的 URL。
 - `channelData` 屬性已保留而不修改。
+- 若序列化為 JSON，活動的總大小必須不超過 30 萬個字元。
 
 對於每個要求，用戶端可[傳送](bot-framework-rest-direct-line-3-0-send-activity.md)一個活動。 

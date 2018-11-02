@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 6ee7120536d42257dde2ed1411df32d807268e33
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3e99828e7c26b10c39bef4c8db79f92ff5f2b30c
+ms.sourcegitcommit: 49a76dd34d4c93c683cce6c2b8b156ce3f53280e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000015"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "50134708"
 ---
 # <a name="upgrade-your-bot-to-bot-framework-api-v3"></a>將 Bot 升級為 Bot Framework API 第 3 版
 
@@ -23,53 +23,73 @@ ms.locfileid: "50000015"
 
 ## <a name="step-1-get-your-app-id-and-password-from-the-bot-framework-portal"></a>步驟 1：從 Bot Framework 入口網站取得您的應用程式識別碼和密碼
 
-登入 [Bot Framework 入口網站](https://dev.botframework.com/)，按一下 [My bots] \(我的 Bot\)，然後選取您的 Bot 以開啟其儀表板。 接下來，按一下位於頁面右上角附近的 [SETTINGS] \(設定\) 連結。 
+登入 [Bot Framework 入口網站](https://dev.botframework.com/)，按一下 [My bots] \(我的 Bot\)，然後選取您的 Bot 以開啟其儀表板。 接下來，按一下位於頁面左側 [Bot 管理] 之下的 [設定] 連結。 
 
-在設定頁面的 [Configuration] \(組態\) 區段內，檢查 [App ID] \(應用程式識別碼\) 欄位的內容，然後根據 [App ID] \(應用程式識別碼\) 欄位是否已填入資料，繼續進行接下來的步驟。
+在 [設定] 頁面的 [組態] 區段內，檢查 [Microsoft 應用程式識別碼] 欄位的內容並繼續進行接下來的步驟。
 
-### <a name="case-1-app-id-field-is-already-populated"></a>案例 1：已填入 [App ID] \(應用程式識別碼\) 欄位
+<!-- TODO: Remove this 
+### Case 1: App ID field is already populated
 
-如果已填入 [App ID] \(應用程式識別碼\) 欄位，請完成下列步驟：
+If the **App ID** field is already populated, complete these steps:
+-->
 
 1. 按一下 [Manage Microsoft App ID and password] \(管理 Microsoft 應用程式識別碼和密碼\)。  
-![組態](~/media/upgrade/manage-app-id.png)
+![組態](./media/upgrade/manage-app-id.png)
 
 2. 按一下 [產生新密碼]。  
-![產生新密碼](~/media/upgrade/generate-new-password.png)
+![產生新密碼](./media/upgrade/generate-new-password.png)
 
 3. 複製並儲存新密碼以及 MSA 應用程式識別碼；您在未來將需要這些值。  
-![新密碼](~/media/upgrade/new-password-generated.png)
+![新密碼](./media/upgrade/new-password-generated.png)
 
-### <a name="case-2-app-id-field-is-empty"></a>案例 2：[App ID] \(應用程式識別碼\) 欄位是空的
+依照這些[指示](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret/)，即可用另一種方法擷取 [Microsoft 應用程式識別碼和密碼]。
 
-如果 [App ID] \(應用程式識別碼\) 欄位是空的，請完成下列步驟：
+<!-- TODO: These steps are no longer valid. AppID will always be generated, confirmed with Support Engineers
+### Case 2: App ID field is empty
 
-1. 按一下 [Create Microsoft App ID and password] \(建立 Microsoft 應用程式識別碼和密碼\)。  
-   ![建立應用程式識別碼和密碼](~/media/upgrade/generate-appid-and-password.png)
+If the **App ID** field is empty, complete these steps:
+
+1. Click **Create Microsoft App ID and password**.  
+   ![Create App ID and password](~/media/upgrade/generate-appid-and-password.png)
    > [!IMPORTANT]
-   > 尚未選取 [Version 3.0] \(3.0 版\) 選項按鈕。 在[更新 Bot 程式碼](#update-code)之後，您將於稍後執行此動作。</div>
+   > Do not select the **Version 3.0** radio button yet. You will do this later, after you have [updated your bot code](#update-code).</div>
 
-2. 按一下 [Generate a password to continue] \(產生密碼以繼續\)。  
-   ![產生應用程式密碼](~/media/upgrade/generate-a-password-to-continue.png)
+2. Click **Generate a password to continue**.  
+   ![Generate app password](~/media/upgrade/generate-a-password-to-continue.png)
 
-3. 複製並儲存新密碼以及 MSA 應用程式識別碼；您在未來將需要這些值。  
-   ![新密碼](~/media/upgrade/new-password-generated.png)
+3. Copy and save the new password along with the MSA App Id; you will need these values in the future.  
+   ![New password](~/media/upgrade/new-password-generated.png)
 
-4. 按一下 [Finish and go back to Bot Framework] \(完成並返回 Bot Framework\)。  
-   ![完成並返回 Bot Framework](~/media/upgrade/finish-and-go-back-to-bot-framework.png)
+4. Click **Finish and go back to Bot Framework**.  
+   ![Finish and go back to Portal](~/media/upgrade/finish-and-go-back-to-bot-framework.png)
 
-5. 返回 Bot Framework 入口網站中的 Bot 設定頁面，捲動到頁面底部，然後按一下 [Save changes] \(儲存變更\)。  
-   ![儲存變更](~/media/upgrade/save-changes.png)
+5. Back on the bot settings page in the Bot Framework Portal, scroll to the bottom of the page and click **Save changes**.  
+   ![Save changes](~/media/upgrade/save-changes.png)
+-->
 
-## <a id="update-code"></a> 步驟 2：將 Bot 程式碼更新為 3.0 版
+## <a id="update-code"></a> 步驟 2：將 Bot 程式碼更新為 4.0 版
 
-若要將 Bot 程式碼更新為 3.0 版，請完成下列步驟：
+V1 Bot 不再相容。 若要更新 Bot，您必須改為建立 V3 以下的新 Bot。 如果您想要保留任何舊程式碼，則必須手動遷移程式碼。
 
-1. 針對 Bot 的語言更新為最新版的 [Bot 建立器 SDK](https://github.com/Microsoft/BotBuilder)。
-2. 根據下列指導方針，更新您的程式碼以套用必要的變更。
-3. 使用 [Bot Framework 模擬器](~/bot-service-debug-emulator.md)在本機上測試 Bot，然後在雲端中測試 Bot。
+最簡單的解決方法是使用新的 [SDK](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0) 重建 Bot 並加以部署。 
 
-下列各節描述 API 第 1 版與 API 第 3 版之間的主要差異。 在程式碼更新為 API 第 3 版之後，您可以在 Bot Framework 入口網站中[更新 Bot 設定](#step-3)來完成升級程序。
+如果您想要保留舊程式碼，請遵循下列步驟：
+
+1. 建立新的 Bot 應用程式。
+2. 將舊的程式碼複製到新的 Bot 應用程式。
+3. 透過 NuGet 套件管理員，將 SDK 升級為最新版本。
+4. 修正任何出現的錯誤，參考新的 [SDK](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)。
+5. 依照這些[指示](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)，將 Bot 部署至 Azure
+
+<!-- TODO: Remove outdated code 
+To update your bot code to version 3.0, complete these steps:
+
+1. Update to the latest version of the [Bot Builder SDK](https://github.com/Microsoft/BotBuilder) for your bot's language.
+2. Update your code to apply the necessary changes, according the guidance below.
+3. Use the [Bot Framework Emulator](~/bot-service-debug-emulator.md) to test your bot locally and then in the cloud.
+
+The following sections describe the key differences between API v1 and API v3. After you have updated your code to API v3, you can finish the upgrade process by [updating your bot settings](#step-3) in the Bot Framework Portal.
+-->
 
 ### <a name="botbuilder-and-connector-are-now-one-sdk"></a>Bot 建立器和連接器現在是一個 SDK
 
@@ -143,21 +163,23 @@ Bot Framework API 第 3 版則會使用在 **Web.Config** 中的下列索引鍵�
 - `MicrosoftAppID`
 - `MicrosoftAppPassword`
 
-## <a id="step-3"></a> 步驟 3：在 Bot Framework 入口網站中更新 Bot 設定
+## <a id="step-3"></a> 步驟 3：將更新 Bot 部署至 Azure。
 
-在您將 Bot 程式碼升級為 API 第 3 版並將它部署到雲端之後，請完成下列步驟來完成升級程序： 
+將 Bot 程式碼升級至 API v3 之後，只要依照這些[指示](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)將 Bot 部署至 Azure 即可。 因為不再支援 V1，所有 Bot 在部署至 Azure 服務時都會自動使用 V3 API。
 
-1. 登入 [Bot Framework 入口網站](https://dev.botframework.com/)。
+<!-- TODO: Documentation set for removal 
+1. Sign in to the [Bot Framework Portal](https://dev.botframework.com/).
 
-2. 按一下 [My bots] \(我的機器人\)，然後選取 Bot 以開啟其儀表板。 
+2. Click **My bots** and select your bot to open its dashboard. 
 
-3. 按一下位於頁面右上角附近的 [SETTINGS] \(設定\) 連結。 
+3. Click the **SETTINGS** link that is located near the top-right corner of the page. 
 
-4. 在 [Configuration] \(組態\) 區段內的 [Version 3.0] \(3.0 版\) 底下，將 Bot 端點貼入 [Messaging endpoint] \(傳訊端點\) 欄位。  
-![第 3 版組態](~/media/upgrade/paste-new-v3-enpoint-url.png)
+4. Under **Version 3.0** within the **Configuration** section, paste your bot's endpoint into the **Messaging endpoint** field.  
+![Version 3 configuration](~/media/upgrade/paste-new-v3-enpoint-url.png)
 
-5. 選取 [Version 3.0] \(3.0 版\) 選項按鈕。  
-![選取 3.0 版](~/media/upgrade/switch-to-v3-endpoint.png)
+5. Select the **Version 3.0** radio button.  
+![Select version 3.0](~/media/upgrade/switch-to-v3-endpoint.png)
 
-6. 捲動到頁面底部，然後按一下 [Save changes] \(儲存變更\)。  
-![儲存變更](~/media/upgrade/save-changes.png)
+6. Scroll to the bottom of the page and click **Save changes**.  
+![Save changes](~/media/upgrade/save-changes.png)
+-->

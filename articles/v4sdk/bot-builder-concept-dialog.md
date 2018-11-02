@@ -10,18 +10,18 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 9/22/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 45bca42ddce527826d2723bc9a20a3c3e6c5aebe
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 97f280d1698e8670be81572a2891c18bc7bf47ab
+ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998605"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50736666"
 ---
 # <a name="dialogs-library"></a>對話方塊程式庫
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-SDK 中用來管理對話的中心概念是對話方塊這個想法。 對話方塊物件可處理輸入活動，並產生輸出回應。 Bot 的商務邏輯會在對話方塊類別中直接或間接地執行。
+SDK 的核心是透過「對話方塊」的概念管理對話。 對話方塊物件可處理輸入活動，並產生輸出回應。 Bot 的商務邏輯會在對話方塊類別中直接或間接地執行。
 
 在執行階段，對話方塊執行個體會在堆疊中排列。 堆疊頂端的對話方塊稱為 ActiveDialog。 目前使用中的對話方塊會處理輸入活動。 堆疊會在每回合對話之間保存下來 (不受時間限制，且可能會橫跨好幾天)。 
 

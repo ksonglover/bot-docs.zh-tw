@@ -1,19 +1,19 @@
 ---
 title: API 參考資料 | Microsoft Docs
 description: 了解 Bot 連接器服務和 Bot 狀態服務中的標頭、作業、物件及錯誤。
-author: RobStand
-ms.author: kamrani
+author: ivorb
+ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: cd4a0dd73feb18aa6f82699a51ab086c55c5d2cf
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 10/24/2018
+ms.openlocfilehash: 18f353ce6535dd56ca7a581776fdfab822555f2d
+ms.sourcegitcommit: 49a76dd34d4c93c683cce6c2b8b156ce3f53280e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998300"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "50134738"
 ---
 # <a name="api-reference"></a>API 參考資料
 
@@ -130,6 +130,7 @@ Authorization: Bearer ACCESS_TOKEN
 | [傳送至交談](#send-to-conversation) | 將活動 (訊息) 傳送至指定交談的結尾處。 | 
 | [回覆活動](#reply-to-activity) | 將活動 (訊息) 傳送至指定交談，以回覆指定活動。 | 
 | [取得交談成員](#get-conversation-members) | 取得指定交談的成員。 |
+| [取得對話分頁成員](#get-conversation-paged-members) | 取得指定對話的成員 (一次一頁)。 |
 | [取得活動成員](#get-activity-members) | 取得指定交談中指定活動的成員。 | 
 | [更新活動](#update-activity) | 更新現有作業。 | 
 | [刪除活動](#delete-activity) | 刪除現有活動。 | 
@@ -178,6 +179,17 @@ GET /v3/conversations/{conversationId}/members
 |----|----|
 | **要求本文** | n/a |
 | **傳回** | [ChannelAccount](#channelaccount-object) 物件陣列 | 
+
+### <a name="get-conversation-paged-members"></a>取得對話分頁成員
+取得指定對話的成員 (一次一頁)。
+```http
+GET /v3/conversations/{conversationId}/pagedmembers
+```
+
+| | |
+|----|----|
+| **要求本文** | n/a |
+| **傳回** | [ChannelAccount](#channelaccount-object)件陣列，以及可用來取得更多值的接續權杖|
 
 ### <a name="get-activity-members"></a>取得活動成員
 取得指定交談中指定活動的成員。
@@ -386,7 +398,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | [ThumbnailCard 物件](#thumbnailcard-object) | 定義具有縮圖影像、標題、文字和動作按鈕的資訊卡。 |
 | [ThumbnailUrl 物件](#thumbnailurl-object) | 定義影像來源的 URL。 |
 | [VideoCard 物件](#videocard-object) | 定義可播放影片的資訊卡。 |
-
+| [SemanticAction 物件](#semanticaction-object) | 定義程式設計動作的參考。 |
 
 ### <a name="activity-object"></a>活動物件
 定義 Bot 和使用者之間交換的訊息。<br/><br/> 
@@ -423,6 +435,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **topicName** | 字串 | 活動所屬交談的主題。 |
 | **type** | 字串 | 活動的類型。 下列任一值：**contactRelationUpdate**、**conversationUpdate**、**deleteUserData**、**message**、**typing**、**endOfConversation**。 如需有關活動類型的詳細資料，請參閱[活動概觀](bot-framework-rest-connector-activities.md)。 |
 | **value** | 物件 | 開放端點的值。 |
+| **semanticAction** |[SemanticAction](#semanticaction-object) | **SemanticAction** 物件，代表程式設計動作的參考。 |
 
 <a href="#objects">回到結構描述資料表</a>
 
@@ -852,5 +865,15 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **text** | 字串 | 顯示在資訊卡標題或子標題下方的描述或提示。 |
 | **title** | 字串 | 資訊卡的標題。 |
 | **value** | 物件 | 此資訊卡的增補參數|
+
+<a href="#objects">回到結構描述資料表</a>
+
+### <a name="semanticaction-object"></a>SemanticAction 物件
+定義程式設計動作的參考。<br/><br/>
+
+| 屬性 | 類型 | 說明 |
+|----|----|----|
+| **id** | 字串 | 此動作的識別碼 |
+| **entities** | [實體](#entity-object) | 與此動作相關聯的實體 |
 
 <a href="#objects">回到結構描述資料表</a>

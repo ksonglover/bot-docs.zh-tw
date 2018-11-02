@@ -1,6 +1,6 @@
 ---
-title: 使用對話方塊程式庫提示使用者輸入 | Microsoft Docs
-description: 了解如何在適用於 Node.js 的 Bot 建立器 SDK 中使用 Dailogs 程式庫提示使用者輸入。
+title: 使用對話方塊程式庫來收集使用者輸入 | Microsoft Docs
+description: 了解如何在 Bot Builder SDK 中使用對話方塊 程式庫來提示使用者輸入。
 keywords: 提示, 對話, AttachmentPrompt, ChoicePrompt, ConfirmPrompt, DatetimePrompt, NumberPrompt, TextPrompt, 重新提示, 驗證
 author: v-ducvo
 ms.author: v-ducvo
@@ -8,16 +8,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 9/25/2018
+ms.date: 10/25/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bd1fe8516cddaf2b75d3c11b469e372265b59be3
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 9b668ed67c34dcd0f8618852375e684b23e34408
+ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997625"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50736686"
 ---
-# <a name="prompt-users-for-input-using-the-dialogs-library"></a>使用 Dialogs 程式庫提示使用者輸入
+# <a name="use-dialog-library-to-gather-user-input"></a>使用對話方塊程式庫來收集使用者輸入
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
