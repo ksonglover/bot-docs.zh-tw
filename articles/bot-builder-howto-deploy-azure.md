@@ -51,7 +51,7 @@ ms.locfileid: "49999365"
 ## <a name="create-your-bot-channels-registration"></a>建立您的 Bot 通道註冊
 在 Azure 中部署 Bot 時，您需要向 Azure Bot 服務註冊它。
 
-1. 存取 Azure 入口網站： https://portal.azure.com。
+1. 存取 Azure 入口網站： https://portal.azure.com 。
 
 2. 使用您之前從 Visual Studio 用來發佈 Bot 的相同身分識別登入。
 
