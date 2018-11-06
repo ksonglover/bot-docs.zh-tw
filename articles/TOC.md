@@ -55,7 +55,7 @@
 ## 部署
 ### [下載並重新部署 Bot 程式碼](bot-service-build-download-source-code.md)
 ### [設定持續部署](bot-service-build-continuous-deployment.md)
-### [將本機 Bot 部署至 Azure](bot-builder-howto-deploy-azure.md)
+### [部署您的 C# bot 至 Azure](bot-builder-howto-deploy-azure.md)
 ## [管理](manage/TOC.md)
 # 參考
 ## [Bot Builder 工具](bot-builder-tools.md)
