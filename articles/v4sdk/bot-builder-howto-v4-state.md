@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/18/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 30ce9c9ff5c458758a4cc9612b8f9947fa12734c
-ms.sourcegitcommit: 782b3a2e788c25effd7d150a070bd2819ea92dad
+ms.openlocfilehash: 2a3709111b048730805b5578306c669591122dda
+ms.sourcegitcommit: 633008f8db06f1bb5be7bacdb7dd8de6f8165328
 ms.translationtype: HT
 ms.contentlocale: zh-TW
 ms.lasthandoff: 11/01/2018
-ms.locfileid: "50743652"
+ms.locfileid: "50753606"
 ---
 # <a name="manage-conversation-and-user-state"></a>管理對話和使用者狀態
 
@@ -319,7 +319,8 @@ else {
 ### <a name="interact-with-your-bot"></a>與您的 Bot 互動
 
 將 "Hi" 訊息傳送給 Bot，Bot 會詢問您的名稱和電話號碼。 在您提供該資訊之後，Bot 會傳送確認訊息。 如果您繼續執行，則 Bot 會再次經歷相同的週期。
-![模擬器執行中](../media/emulator-v4/emulator-running.png)
+
+![執行中模擬器](../media/emulator-v4/emulator-running-manage-state.png)
 
 如果您決定自行管理狀態，請參閱[使用自己的提示來管理對話流程](bot-builder-primitive-prompts.md)。 另一種方法是使用瀑布圖對話方塊。 對話會追蹤對話方塊狀態，讓您不需要建立旗標來追蹤狀態。 如需詳細資訊，請參閱[使用對話來管理簡單對話方塊](bot-builder-dialog-manage-conversation-flow.md)。
 

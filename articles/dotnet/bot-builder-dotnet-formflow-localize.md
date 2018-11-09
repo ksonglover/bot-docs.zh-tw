@@ -7,20 +7,22 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
+ms.date: 11/02/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: dbf2fd06d76b3e79fbcdd30891807ea71329bffd
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 914c33033be3fe35db7cae6d54b5835cb032a5fd
+ms.sourcegitcommit: 984705927561cc8d6a84f811ff24c8c71b71c76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999055"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50965686"
 ---
 # <a name="localize-form-content"></a>將表單內容當地語系化
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-表單的當地語系化語言是由目前執行緒的 [CurrentUICulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentuiculture(v=vs.110).aspx) 和 [CurrentCulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentculture(v=vs.110).aspx) 所決定。 根據預設，文化特性是衍生自目前訊息的 [地區設定] 欄位，但是您可以覆寫該預設行為。 根據您建構 Bot 的方式，當地語系化資訊可能來自最多三種不同的來源：
+表單的當地語系化語言是由目前執行緒的 [CurrentUICulture](https://msdn.microsoft.com/library/system.threading.thread.currentuiculture(v=vs.110).aspx) 和 [CurrentCulture](https://msdn.microsoft.com/library/system.threading.thread.currentculture(v=vs.110).aspx) 所決定。
+根據預設，文化特性是衍生自目前訊息的 [地區設定] 欄位，但是您可以覆寫該預設行為。
+根據您建構 Bot 的方式，當地語系化資訊可能來自最多三種不同的來源：
 
 - **PromptDialog** 和 **FormFlow** 的內建當地語系化
 - 您在表單中針對靜態字串產生的資源檔
@@ -28,7 +30,10 @@ ms.locfileid: "49999055"
 
 ## <a name="generate-a-resource-file-for-the-static-strings-in-your-form"></a>在表單中針對靜態字串產生資源檔
 
-表單中的靜態字串包含表單從 C# 類別中的資訊所產生的字串，以及您指定為提示、範本、訊息或確認的字串。 系統不會將從內建範本產生的字串視為靜態字串，因為這些字串已當地語系化。 因為表單中有許多字串是自動產生的，所以直接使用一般 C# 資源字串並不可行。 相反地，您可以藉由呼叫 `IFormBuilder.SaveResources` 或使用適用於 .NET 的 Bot 建立器 SDK
+表單中的靜態字串包含表單從 C# 類別中的資訊所產生的字串，以及您指定為提示、範本、訊息或確認的字串。
+系統不會將從內建範本產生的字串視為靜態字串，因為這些字串已當地語系化。
+因為表單中有許多字串是自動產生的，所以直接使用一般 C# 資源字串並不可行。
+相反地，您可以藉由呼叫 `IFormBuilder.SaveResources` 或使用適用於 .NET 的 Bot 建立器 SDK
  隨附的 **RView** 工具，為表單中的靜態字串產生資源檔。
 
 ### <a name="use-iformbuildersaveresources"></a>使用 IFormBuilder.SaveResources
@@ -38,7 +43,9 @@ ms.locfileid: "49999055"
 ### <a name="use-rview"></a>使用 RView
 
 或者，您也可以藉由使用適用於 .NET 的 Bot 建立器 SDK
- 隨附的 <a href="https://github.com/Microsoft/BotBuilder/tree/master/CSharp/Tools/RView" target="_blank">RView</a> 工具，建立以 .dll 或 .exe 為基礎的資源檔。 若要產生 .resx 檔案，請執行 **rview** 並且指定組件，其中包含您的靜態表單建置方法和該方法的路徑。 此程式碼片段示範如何使用 **RView** 來產生 `Microsoft.Bot.Sample.AnnotatedSandwichBot.SandwichOrder.resx` 資源檔。 
+ 隨附的 <a href="https://aka.ms/v3-cs-RView-library" target="_blank">RView</a> 工具，建立以 .dll 或 .exe 為基礎的資源檔。
+若要產生 .resx 檔案，請執行 **rview** 並且指定組件，其中包含您的靜態表單建置方法和該方法的路徑。
+此程式碼片段示範如何使用 **RView** 來產生 `Microsoft.Bot.Sample.AnnotatedSandwichBot.SandwichOrder.resx` 資源檔。
 
 ```csharp
 rview -g Microsoft.Bot.Sample.AnnotatedSandwichBot.dll Microsoft.Bot.Sample.AnnotatedSandwichBot.SandwichOrder.BuildForm
@@ -85,7 +92,7 @@ rview -g Microsoft.Bot.Sample.AnnotatedSandwichBot.dll Microsoft.Bot.Sample.Anno
 
 ### <a name="localize-resource-files"></a>將資源檔當地語系化 
 
-將資源檔新增至您的專案之後，您可以使用<a href="https://developer.microsoft.com/en-us/windows/develop/multilingual-app-toolkit" target="_blank">多語應用程式工具組 (MAT)</a> 將資源檔當地語系化。 安裝 **MAT**，然後藉由完成下列步驟針對專案加以啟用：
+將資源檔新增至您的專案之後，您可以使用<a href="https://developer.microsoft.com/windows/develop/multilingual-app-toolkit" target="_blank">多語應用程式工具組 (MAT)</a> 將資源檔當地語系化。 安裝 **MAT**，然後藉由完成下列步驟針對專案加以啟用：
 
 1. 在 Visual Studio 方案總管中選取您的專案。
 2. 按一下 [工具]、[多語應用程式工具組]，然後按一下 [啟用]。
