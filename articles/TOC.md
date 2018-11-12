@@ -13,11 +13,10 @@
 ## [在 GitHub 上的範例存放庫](https://github.com/Microsoft/BotBuilder-Samples/blob/master/readme.md)
 # 概念
 ## [Bot 的運作方式](v4sdk/bot-builder-basics.md)
-## [對話方塊程式庫](v4sdk/bot-builder-concept-dialog.md)
-## [對話方塊狀態](v4sdk/bot-builder-dialog-state.md)
 ## [中介軟體](v4sdk/bot-builder-concept-middleware.md)
-## [歡迎使用者](v4sdk/bot-builder-welcome-user.md)
-## [語言理解](v4sdk/bot-builder-concept-luis.md)
+## [關於對話方塊程式庫](v4sdk/bot-builder-concept-dialog.md)
+## [了解對話方塊狀態](v4sdk/bot-builder-dialog-state.md)
+<!-- [Language understanding](v4sdk/bot-builder-concept-luis.md) -->
 ## [Bot 服務範本](bot-service-concept-templates.md)
 ## [認知服務](bot-service-concept-intelligence.md)
 ## [Bot 的重要案例](bot-service-scenario-overview.md)
@@ -26,31 +25,31 @@
 ### [企業生產力 Bot](bot-service-scenario-enterprise-productivity.md)
 ### [資訊 Bot](bot-service-scenario-informational.md)
 ### [物聯網 Bot](bot-service-scenario-internet-things.md)
-# 作法
+# 作法 
 ## [設計](design/TOC.md)
 ## 開發
+<!-- ## [Best practice for welcoming the user](v4sdk/bot-builder-welcome-user.md) -->
+### [傳送及接收文字訊息](v4sdk/bot-builder-howto-send-messages.md)
+### [將媒體新增至訊息](v4sdk/bot-builder-howto-add-media-attachments.md)
+### [使用按鈕來輸入](v4sdk/bot-builder-howto-add-suggested-actions.md)
 ### [將歡迎訊息傳送給使用者](v4sdk/bot-builder-send-welcome-message.md)
-### [傳送文字及語音訊息](v4sdk/bot-builder-howto-send-messages.md)
-### [在訊息中包含媒體附件](v4sdk/bot-builder-howto-add-media-attachments.md)
-### [將輸入提示新增至訊息](v4sdk/bot-builder-howto-add-input-hints.md)
-### [建議動作給使用者](v4sdk/bot-builder-howto-add-suggested-actions.md)
-<!-- ### [Save user input](v4sdk/bot-builder-primitive-prompts.md) -->
-### [管理狀態](v4sdk/bot-builder-howto-v4-state.md) 
-### [主動將訊息傳送給使用者](v4sdk/bot-builder-howto-proactive-message.md)
-### [新增語言理解能力](v4sdk/bot-builder-howto-v4-luis.md)
+<!-- ## [Add input hints to messages](v4sdk/bot-builder-howto-add-input-hints.md) -->
+### [從 Bot 取得通知](v4sdk/bot-builder-howto-proactive-message.md)
+<!-- ## [Save user input](v4sdk/bot-builder-primitive-prompts.md) -->
+### [儲存使用者和對話資料](v4sdk/bot-builder-howto-v4-state.md) 
+### [將自然語言理解新增至您的 Bot](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答使用者的問題](v4sdk/bot-builder-howto-qna.md)
 ### 使用對話方塊程式庫管理對話 
 #### [收集使用者輸入](v4sdk/bot-builder-prompts.md)
-#### [實作基本的循序對話流程](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
+#### [實作循序對話流程](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
 #### [使用分支和迴圈建立進階的對話流程](v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)
 #### [處理使用者中斷](v4sdk/bot-builder-howto-handle-user-interrupt.md)
-#### [保存對話方塊中的資料](v4sdk/bot-builder-tutorial-persist-user-inputs.md)
+#### [留存使用者資料](v4sdk/bot-builder-tutorial-persist-user-inputs.md)
 #### [重複使用對話方塊](v4sdk/bot-builder-compositcontrol.md)
 ### [直接寫入儲存體](v4sdk/bot-builder-howto-v4-storage.md)
 ### [在您的 Bot 中新增驗證](v4sdk/bot-builder-authentication.md)
 ### [為您的 Bot 實作自訂儲存空間](v4sdk/bot-builder-custom-storage.md)
 ### [使用 CLI 工具管理 Bot](bot-builder-tools.md)
-### [實作通道特有功能](v4sdk/bot-builder-channeldata.md)
 ### [.NET](dotnet/TOC.md)
 ### [Node.js](nodejs/TOC.md)
 ## [偵錯](debug/TOC.md)
@@ -66,9 +65,4 @@
 ## [.NET SDK v3](/dotnet/api/?view=botbuilder-3.12.2.4)
 ## [Node.js SDK v3](https://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_.html)
 ## [實體和活動類型](bot-service-activities-entities.md)
-# 相關參考
-## [Web Apps](https://docs.microsoft.com/azure/app-service/)
-## [函式](https://docs.microsoft.com/azure/azure-functions/)
-## [認知服務](https://docs.microsoft.com/azure/cognitive-services/)
-## [Application Insights](https://docs.microsoft.com/azure/azure-monitor/)
 # [資源](resources/TOC.md)
