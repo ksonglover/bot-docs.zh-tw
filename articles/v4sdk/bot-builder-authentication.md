@@ -2,19 +2,19 @@
 title: 透過 Azure Bot 服務將驗證新增至您的 Bot | Microsoft Docs
 description: 了解如何使用 Azure Bot 服務驗證功能以便將 SSO 新增至您的 Bot。
 author: JonathanFingold
-ms.author: JonathanFingold
+ms.author: v-jofing
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 09/27/2018
+ms.date: 10/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: aa9b08ff44df8cef5031b5e9dbf260839f0804c3
-ms.sourcegitcommit: 45dca6ed59bc90b2ad0b0de8dd42b00f36a8fe77
+ms.openlocfilehash: 14a56749c68cfe89ed4a0da3c046a39a8e0783fe
+ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/29/2018
-ms.locfileid: "50217770"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916785"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
 
@@ -363,7 +363,7 @@ private async Task SendOAuthCardAsync(ITurnContext turnContext, IMessageActivity
             },
         },
     });
-    
+
     await turnContext.SendActivityAsync(message, cancellationToken).ConfigureAwait(false);
 }
 ```
@@ -386,7 +386,7 @@ private async sendOAuthCardAsync(context: TurnContext, prompt?: string|Partial<A
             this.settings.text
         ));
     }
-    
+
     // Send prompt
     await context.sendActivity(msg);
 }
@@ -481,7 +481,6 @@ private isTeamsVerificationInvoke(context: TurnContext): boolean {
 ```
 
 ---
-
 
 ### <a name="message-controller"></a>訊息控制器
 

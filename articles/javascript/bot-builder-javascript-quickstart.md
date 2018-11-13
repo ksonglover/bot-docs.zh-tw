@@ -3,25 +3,25 @@ title: 使用適用於 JavaScript 的 Bot 建立器 SDK 建立 Bot | Microsoft D
 description: 使用適用於 JavaScript 的 Bot 建立器 SDK 快速建立 Bot。
 keywords: 快速入門, Bot 建立器 sdk, 開始使用
 author: jonathanfingold
-ms.author: jonathanfingold
+ms.author: v-jofing
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/15/2018
+ms.date: 10/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: aa13889cea2a26bf094a919f5d05905d65f7661f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 1b111125ea240bf89f506106c948c6b5d3be7649
+ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998851"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916815"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-javascript"></a>使用適用於 JavaScript 的 Bot Builder SDK 建立 Bot
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-本快速入門會逐步引導您使用 Yeoman Bot 建立器 產生器和適用於 JavaScript 的 Bot 建立器 SDK 建置 Bot，然後使用 Bot Framework 模擬器進行測試。 
+本快速入門會逐步引導您使用 Yeoman Bot Builder 產生器和適用於 JavaScript 的 Bot Builder SDK 建置單一 Bot，然後使用 Bot Framework 模擬器進行測試。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -34,60 +34,67 @@ ms.locfileid: "49998851"
 
 > [!NOTE]
 > 在某些安裝中，restify 的安裝步驟會產生與 node-gyp 相關的錯誤。
-> 如果您遇到這種情況，請嘗試執行 `npm install -g windows-build-tools`。
+> 如果情況如此，請嘗試以提升的權限執行此命令：
+> ```bash
+> npm install -g windows-build-tools
+> ```
 
 ## <a name="create-a-bot"></a>建立 Bot
 
-開啟提升權限的命令提示字元、建立目錄，然後為 Bot 初始化套件。
+建立 Bot 並初始化其套件
 
-```bash
-md myJsBots
-cd myJsBots
-```
+1. 開啟終端機或提升權限的命令提示字元。
+1. 如果您的 JavaScript Bot 還沒有目錄，請加以建立並切換到該目錄。 (即使我們在本教學課程中只建立一個 Bot，但是在一般情況下，我們會為 JavaScript Bot 建立目錄。)
 
-確保您的 npm 版本是最新版本。
-```bash
-npm i npm
-```
+   ```bash
+   md myJsBots
+   cd myJsBots
+   ```
 
-接下來，安裝適用於 JavaScript 的 Yeoman 和產生器。
+1. 確保您的 npm 版本是最新版本。
 
-```bash
-npm install -g yo
-npm install -g generator-botbuilder
-```
+   ```bash
+   npm install -g npm
+   ```
 
-然後，使用產生器來建立 echo Bot。
+1. 接下來，安裝適用於 JavaScript 的 Yeoman 和產生器。
 
-```bash
-yo botbuilder
-```
+   ```bash
+   npm install -g yo generator-botbuilder
+   ```
 
-Yeoman 會提示您輸入一些用來建立 Bot 的資訊。
+1. 然後，使用產生器來建立 echo Bot。
 
-- 輸入 Bot 的名稱。
-- 輸入描述。
-- 選擇 Bot 的語言，可以是 `JavaScript` 或 `TypeScript`。
-- 選擇 `Echo` 範本。
+   ```bash
+   yo botbuilder
+   ```
+
+Yeoman 會提示您輸入一些用來建立 Bot 的資訊。 本教學課程使用預設值。
+
+- 輸入 Bot 的名稱。 (myChatBot)
+- 輸入描述。 (示範 Microsoft Bot Framework 的核心功能)
+- 選擇 Bot 的語言。 (JavaScript)
+- 選擇要使用的範本。 (Echo)
 
 由於有範本，專案中會包含要在本快速入門建立 Bot 所需的所有程式碼。 您實際上不需要撰寫任何額外的程式碼。
 
 > [!NOTE]
-> 對於基本 Bot，您需要 LUIS 語言模型。 您可以在 [luis.ai](https://www.luis.ai) 上建立一個模型。 建立模型之後，請更新 .bot 檔案。 您的 Bot 檔案應該看起來類似這[一個](../v4sdk/bot-builder-service-file.md)。 
+> 如果選擇建立 `Basic` Bot，您需要 LUIS 語言模型。 您可以在 [luis.ai](https://www.luis.ai) 上建立一個模型。 建立模型之後，請更新 .bot 檔案。 您的 Bot 檔案應該看起來類似這[一個](../v4sdk/bot-builder-service-file.md)。
 
 ## <a name="start-your-bot"></a>啟動 Bot
 
-在 Powershell/Bash 中，將目錄變更為針對您的 Bot 所建立的目錄，並使用 `npm start` 加以啟動。 此時，Bot 正在本機執行。
+在終端機或命令提示字元中，將目錄變更為針對您的 Bot 所建立的目錄，並以 `npm start` 開頭。 此時，Bot 正在本機執行。
 
-## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並且連線至您的 Bot
-1. 啟動模擬器。
+## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並連線至您的 Bot
+
+1. 啟動 Bot Framework 模擬器。
 2. 按一下模擬器 [歡迎] 索引標籤中的 [開啟 Bot] 連結。
 3. 選取位於您建立專案的目錄中的 .bot 檔案。
 
 傳送訊息給 Bot，Bot 就會以訊息回應。
-![模擬器執行中](../media/emulator-v4/emulator-running.png)
+![模擬器執行中](../media/emulator-v4/js-quickstart.png)
 
 ## <a name="next-steps"></a>後續步驟
 
 > [!div class="nextstepaction"]
-> [Bot 的運作方式](../v4sdk/bot-builder-basics.md) 
+> [Bot 的運作方式](../v4sdk/bot-builder-basics.md)

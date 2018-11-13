@@ -7,13 +7,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: 2a2cc13020c87616799ee768fbab6e72ab81cc8b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 10/25/2018
+ms.openlocfilehash: eb08ca3b560f5058526387c71eca4b790d033a1e
+ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997635"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916805"
 ---
 # <a name="add-media-attachments-to-messages"></a>將媒體附件新增至訊息
 > [!div class="op_single_selector"]
@@ -24,7 +24,7 @@ ms.locfileid: "49997635"
 Bot 和頻道通常會交換文字字串，但某些頻道也支援交換附件，讓您的 Bot 可將更豐富的訊息傳送給使用者。 例如，您的 Bot 可以傳送媒體附件 (例如，影像、影片、音訊、檔案) 和[複合式資訊卡](bot-framework-rest-connector-add-rich-cards.md)。 本文描述如何使用 Bot 連接器服務，將媒體附件新增至訊息。
 
 > [!TIP]
-> 若要確認某個通道所支援的附件類型和數目，以及該通道呈現附件的方式，請參閱[通道偵測器][ChannelInspector]。
+> 若要確認某個通道所支援的附件類型和數目，以及該通道呈現附件的方式，請參閱 [通道偵測器][通道偵測器]。
 
 ## <a name="add-a-media-attachment"></a>新增媒體附件  
 
@@ -126,6 +126,7 @@ Content-Type: application/json
         "title": "Allegro in C Major",
         "subtitle": "Allegro Duet",
         "text": "No Image, No Buttons, Autoloop, Autostart, Sharable",
+        "duration": "PT2M55S",
         "media": [
           {
             "url": "https://contoso.com/media/AllegrofromDuetinCMajor.mp3"
@@ -175,9 +176,7 @@ Content-Type: application/json
 - [建立訊息](bot-framework-rest-connector-create-messages.md)
 - [傳送及接收訊息](bot-framework-rest-connector-send-and-receive-messages.md)
 - [將複合式資訊卡 (Rich Card) 新增至訊息](bot-framework-rest-connector-add-rich-cards.md)
-- [通道偵測器][ChannelInspector]
-
-[ChannelInspector]: ../bot-service-channel-inspector.md
+- [Bot Framework 卡片結構描述](https://aka.ms/botSpecs-cardSchema)
 
 [Activity]: bot-framework-rest-connector-api-reference.md#activity-object
 [Attachment]: bot-framework-rest-connector-api-reference.md#attachment-object

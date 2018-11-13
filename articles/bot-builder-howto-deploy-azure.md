@@ -1,5 +1,5 @@
 ---
-title: 將 Bot 部署至 Azure | Microsoft Docs
+title: 將 C# Bot 部署至 Azure | Microsoft Docs
 description: 將您的 Bot 部署至 Azure 雲端。
 keywords: deploy bot, azure deploy, bot channel registration, publish visual studio, 部署 Bot, azure 部署, Bot 頻道註冊, 發佈 visual studio
 author: ivorb
@@ -8,22 +8,24 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 09/19/2018
-ms.openlocfilehash: 5f3fc43bed16d50c347d4e07a9154dfd307f0dc0
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 11/05/2018
+ms.openlocfilehash: f30a038c6bc5e435ade421e24b05d0b31a143538
+ms.sourcegitcommit: 9acac75f85d36c81b8bf4edec916dd0b52a4a5c7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999365"
+ms.lasthandoff: 11/06/2018
+ms.locfileid: "51028735"
 ---
-# <a name="deploy-your-bot-to-azure"></a>將 Bot 部署至 Azure
+# <a name="deploy-your-c-bot-to-azure"></a>將 C# bot 部署至 Azure
 
 [!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
 
-建立您的 Bot 並在本機驗證後，您可以將它推送至 Azure，以便可以從任何地方進行存取。 針對 C# Bot，您可以使用 Visual Studio 或 Azure CLI 將 Bot 發行至 Azure。 
+建立 Bot 並在本機測試後，您可以發佈至 Azure，以便可以從任何地方進行存取。
 
 ## <a name="publish-from-visual-studio"></a>從 Visual Studio 發佈
 您會先在 App Service 中將 Bot 從 Visual Studio部署至 Azure。 然後，您將使用 Bot 通道註冊，透過 Azure Bot Service 設定您的 Bot。
+
+**注意：如果 Visual Studio 專案名稱包含空格，如下所述的部署步驟將無法運作。**
 
 在 [方案總管] 視窗中，以滑鼠右鍵按一下專案的節點，然後選取 [發佈]。
 

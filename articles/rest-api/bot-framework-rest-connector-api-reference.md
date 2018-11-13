@@ -7,13 +7,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/24/2018
-ms.openlocfilehash: 18f353ce6535dd56ca7a581776fdfab822555f2d
-ms.sourcegitcommit: 49a76dd34d4c93c683cce6c2b8b156ce3f53280e
+ms.date: 10/25/2018
+ms.openlocfilehash: 81192c9b5806d467c2a1fd292ee3d5db539e9ead
+ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/26/2018
-ms.locfileid: "50134738"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916865"
 ---
 # <a name="api-reference"></a>API 參考資料
 
@@ -447,6 +447,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **autoloop** | 布林值 | 用於指出最後一個動畫 GIF 播放完畢後是否要重播動畫 GIF 清單的旗標。 將此屬性設為 **true** 可自動重播動畫；如不重播則設為 **false**。 預設值為 **true**。 |
 | **autostart** | 布林值 | 用於指出資訊卡顯示時是否要自動播放動畫的旗標。 將此屬性設為 **true** 可自動播放動畫；如不播放則設為 **false**。 預設值為 **true**。 |
 | **buttons** | [CardAction](#cardaction-object)[] | 可讓使用者執行一或多個動作的 **CardAction** 物件陣列。 此通道可決定您能指定的按鈕數目。 |
+| **duration** | 字串 | 媒體內容的長度，採用 [ISO 8601 持續時間格式](https://www.iso.org/iso-8601-date-and-time-format.html)。 |
 | **映像** | [ThumbnailUrl](#thumbnailurl-object) | 可指定要在資訊卡上顯示之影像的 **ThumbnailUrl** 物件。 |
 | **media** | [MediaUrl](#mediaurl-object)[] | 用於指定要播放之動畫 GIF 清單的 **MediaUrl** 物件陣列。 |
 | **shareable** | 布林值 | 用於指出是否要與他人共用動畫的旗標。 將此屬性設為 **true** 可與他人共用動畫；如不共用則設為 **false**。 預設值為 **true**。 |
@@ -523,6 +524,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **autoloop** | 布林值 | 用於指出最後一個音訊檔案播放完畢後是否要重播音訊清單的旗標。 將此屬性設為 **true** 可自動重播音訊檔案；如不重播則設為 **false**。 預設值為 **true**。 |
 | **autostart** | 布林值 | 用於指出資訊卡顯示時是否要自動播放音訊的旗標。 將此屬性設為 **true** 可自動播放音訊；如不播放則設為 **false**。 預設值為 **true**。 |
 | **buttons** | [CardAction](#cardaction-object)[] | 可讓使用者執行一或多個動作的 **CardAction** 物件陣列。 此通道可決定您能指定的按鈕數目。 |
+| **duration** | 字串 | 媒體內容的長度，採用 [ISO 8601 持續時間格式](https://www.iso.org/iso-8601-date-and-time-format.html)。 |
 | **映像** | [ThumbnailUrl](#thumbnailurl-object) | 可指定要在資訊卡上顯示之影像的 **ThumbnailUrl** 物件。 |
 | **media** | [MediaUrl](#mediaurl-object)[] | 用於指定要播放之音訊檔案清單的 **MediaUrl** 物件陣列。 |
 | **shareable** | 布林值 | 用於指出是否要與他人共用音訊檔案的旗標。 將此屬性設為 **true** 可與他人共用音訊；如不共用則設為 **false**。 預設值為 **true**。 |
@@ -858,6 +860,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **autoloop** | 布林值 | 用於指出最後一個影片播放完畢後是否要重播影片清單的旗標。 將此屬性設為 **true** 可自動重播影片；如不重播則設為 **false**。 預設值為 **true**。 |
 | **autostart** | 布林值 | 用於指出資訊卡顯示時是否要自動播放影片的旗標。 將此屬性設為 **true** 可自動播放影片；如不播放則設為 **false**。 預設值為 **true**。 |
 | **buttons** | [CardAction](#cardaction-object)[] | 可讓使用者執行一或多個動作的 **CardAction** 物件陣列。 此通道可決定您能指定的按鈕數目。 |
+| **duration** | 字串 | 媒體內容的長度，採用 [ISO 8601 持續時間格式](https://www.iso.org/iso-8601-date-and-time-format.html)。 |
 | **映像** | [ThumbnailUrl](#thumbnailurl-object) | 可指定要在資訊卡上顯示之影像的 **ThumbnailUrl** 物件。 |
 | **media** | [MediaUrl](#mediaurl-object)[] | 用於指定要播放之影片清單的 **MediaUrl** 物件。 |
 | **shareable** | 布林值 | 用於指出是否要與他人共用影片的旗標。 將此屬性設為 **true** 可與他人共用影片；如不共用則設為 **false**。 預設值為 **true**。 |

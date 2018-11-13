@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 9/25/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 07035c8f0dfc7473192d8c51667ed1f5cefbc555
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 0225b6d81b8eb9899a5dda8dc032dcbfb573afc1
+ms.sourcegitcommit: 984705927561cc8d6a84f811ff24c8c71b71c76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999391"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50965706"
 ---
 # <a name="manage-simple-conversation-flow-with-dialogs"></a>使用對話方塊來管理簡單對話流程
 
@@ -39,7 +39,10 @@ ms.locfileid: "49999391"
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-若要在一般情況下使用對話方塊，您需要 `botbuilder-dialogs` 程式庫，從 NPM 即可下載。
+若要在一般情況下使用對話方塊，您需要 `botbuilder-dialogs` 程式庫。 若要安裝此程式庫，請執行下列 npm 命令：
+```cmd
+npm install --save botbuilder-dialogs
+```
 
 ---
 

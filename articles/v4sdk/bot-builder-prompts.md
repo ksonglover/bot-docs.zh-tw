@@ -2,448 +2,229 @@
 title: 使用對話方塊程式庫來收集使用者輸入 | Microsoft Docs
 description: 了解如何在 Bot Builder SDK 中使用對話方塊 程式庫來提示使用者輸入。
 keywords: 提示, 對話, AttachmentPrompt, ChoicePrompt, ConfirmPrompt, DatetimePrompt, NumberPrompt, TextPrompt, 重新提示, 驗證
-author: v-ducvo
-ms.author: v-ducvo
+author: JonathanFingold
+ms.author: v-jofing
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/25/2018
+ms.date: 11/02/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9b668ed67c34dcd0f8618852375e684b23e34408
-ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
+ms.openlocfilehash: 150d5f0a68d897ac278026a7cf36609aca05bb80
+ms.sourcegitcommit: 984705927561cc8d6a84f811ff24c8c71b71c76b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2018
-ms.locfileid: "50736686"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50965716"
 ---
 # <a name="use-dialog-library-to-gather-user-input"></a>使用對話方塊程式庫來收集使用者輸入
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-張貼問題來收集資訊是 Bot 與使用者互動時的其中一種主要方式。 您可以使用[回合內容](~/v4sdk/bot-builder-basics.md#defining-a-turn)物件的「傳送活動」方法直接這麼做，然後以回應的形式來處理下一個傳入訊息。 不過，Bot Builder SDK 會提供 **對話方塊** 程式庫，其所提供的方式經過設計，可讓您更容易地問問題，以及確保回應符合特定資料類型或符合自訂驗證規則。 本主題詳細說明如何使用**提示**要求使用者輸入，來實現這一點。
+張貼問題來收集資訊是 Bot 與使用者互動時的其中一種主要方式。 您可以使用[回合內容](~/v4sdk/bot-builder-basics.md#defining-a-turn)物件的「傳送活動」方法直接這麼做，然後以回應的形式來處理下一個傳入訊息。 不過，Bot Builder SDK 會提供 [dialogs 程式庫](bot-builder-concept-dialog.md)，其所提供的方式經過設計，可讓您更容易地問問題，以及確保回應符合特定資料類型或符合自訂驗證規則。 本主題詳細說明如何使用提示要求使用者提供輸入，來實現這一點。
 
-本文說明如何在對話內使用提示。 如需在一般情況下使用對話方塊的相關資訊，請參閱[使用對話方塊來管理簡單對話流程](bot-builder-dialog-manage-conversation-flow.md)。
+本文說明如何建立提示以及從對話方塊內呼叫提示。
+如需不使用對話方塊提示輸入的做法，請參閱[使用您自己的提示來提示使用者提供輸入](bot-builder-primitive-prompts.md)。
+如需在一般情況下使用對話方塊的做法，請參閱[使用對話方塊來管理簡單對話流程](bot-builder-dialog-manage-conversation-flow.md)。
 
 ## <a name="prompt-types"></a>提示類型
 
-對話方塊程式庫提供多種不同類型的提示，分別用於收集不同類型的回應。
+在幕後，提示為兩個步驟的對話方塊。 第一步，提示會要求輸入；第二步，會傳回有效值，或利用重新提示從頂端重新開始。
 
-| Prompt | 說明 |
-|:----|:----|
-| **AttachmentPrompt** | 提示使用者提供附件，例如文件或影像。 |
-| **ChoicePrompt** | 提示使用者從選項集中進行選擇。 |
-| **ConfirmPrompt** | 提示使用者確認其動作。 |
-| **DatetimePrompt** | 提示使用者提供日期時間。 使用者可以使用「明天晚上 8 點」或「週五早上 10 點」之類的自然語言來回應。 Bot Framework SDK 會使用 LUIS `builtin.datetimeV2` 預先建置的實體。 如需詳細資訊，請參閱 [builtin.datetimev2](https://docs.microsoft.com/azure/cognitive-services/luis/luis-reference-prebuilt-entities#builtindatetimev2)。 |
-| **NumberPrompt** | 提示使用者提供數字。 使用者可以使用 "10" 或「十」來回應。 舉例來說，如果回應是「十」，則提示會將回應轉換為數字，並傳回 `10` 作為結果。 |
-| **TextPrompt** | 提示使用者提供文字字串。 |
+對話方塊 程式庫提供數個基本提示，分別用於收集不同類型的回應。
 
-## <a name="add-references-to-prompt-library"></a>將參考新增至提示庫
+| Prompt | 說明 | 傳回 |
+|:----|:----|:----|
+| _附件提示_ | 要求一或多個附件，例如文件或影像。 | 「附件」物件的集合。 |
+| _選擇提示_ | 要求從一組選項中選擇。 | 「找到的選擇」物件。 |
+| _確認提示_ | 要求確認。 | 布林值。 |
+| _日期時間提示_ | 要求日期時間。 | 「日期時間解析」物件的集合。 |
+| _數字提示_ | 要求數字。 | 數值。 |
+| _文字提示_ | 要求一般文字輸入。 | 字串。 |
 
-將 **botbuilder-dialogs** 套件新增至 Bot，即可取得**對話方塊** 程式庫。 我們將在[使用對話方塊來管理簡單對話流程](bot-builder-dialog-manage-conversation-flow.md)中討論對話方塊，但會將對話方塊用於我們的提示中。
+此程式庫也包含可供取得 _OAuth 權杖_的 _OAuth 提示_，該權杖用於存取代表使用者的另一個應用程式。 如需驗證的詳細資訊，請參閱如何[將驗證新增至 Bot](bot-builder-authentication.md)。
+
+基本提示可解譯自然語言輸入，例如 "ten" 或 "a dozen" 是指數字，或 "tomorrow" 或 "Friday at 10am" 是指日期時間。
+
+## <a name="using-prompts"></a>使用提示
+
+唯有對話方塊與提示位於相同對話方塊集時，對話方塊才可以使用提示。
+
+1. 為對話方塊狀態定義狀態屬性存取子。
+1. 建立對話方塊集。
+1. 建立提示，並將其新增至對話方塊集。
+1. 建立將使用提示的對話方塊，並將其新增至對話方塊集。
+1. 在對話方塊內，新增對提示的呼叫以及擷取提示結果。
+
+本文討論如何建立提示，以及如何從瀑布式對話方塊呼叫。
+如需對話方塊的詳細資訊，請參閱[對話方塊程式庫](bot-builder-concept-dialog.md)。
+如需使用對話方塊和提示的完整 Bot 討論，請參閱如何[使用對話方塊來管理簡單對話流程](bot-builder-dialog-manage-conversation-flow.md)。
+
+在相同對話方塊集內的一個對話方塊或多個對話方塊中，您可以在多個步驟中使用相同的提示。
+不過，您可在初始化階段建立自訂驗證與提示的關聯。
+因此如果您需要對同類型的提示進行不同的驗證，您則需要該提示 類型的多個執行個體，而每個執行個體都有自己的驗證碼。
+
+### <a name="create-a-prompt"></a>建立提示
+
+若要提示使用者提供輸入，請使用其中一個內建類別 (例如_文字提示_) 定義提示，然後將其新增至對話方塊集。
+
+* 提示有固定的識別碼。 (識別碼在對話方塊集內必須是唯一的。)
+* 提示可以有自訂驗證程式。 (請參閱[自訂驗證](#custom-validation)。)
+* 對於某些提示，您可以指定「預設地區設定」。
+
+一般而言，在初始化 Bot 時，建立提示和對話方塊，並將其新增到對話方塊集。 然後，當 Bot 收到來自使用者的輸入時，對話方塊集即可解析提示的識別碼。
+
+例如，下列程式碼會建立兩個文字提示，並將其新增至現有的對話方塊集。 第二個文字提示會參考此處未顯示的驗證方法。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-從 NuGet 安裝 **Microsoft.Bot.Builder.Dialogs** 套件。
+在此，`_dialogs` 包含現有的對話方塊集，而 `NameValidator` 是一種驗證方法。
 
-然後，納入 Bot 程式碼中程式庫的參考。
-
-```cs
-using Microsoft.Bot.Builder.Dialogs;
-```
-
-您必須透過存取子設定對話對話方塊狀態。 我們不會在此深入探討這個程式碼，但您可以在[狀態](bot-builder-howto-v4-state.md)一文中了解更多。
-
-在 **Startup.cs** 中的 Bot 選項內，請先定義狀態物件，然後新增單一資料庫以提供存取子類別給 Bot 建構函式。 `BotAccessor` 的類別只會儲存對話與使用者狀態，以及這些項目各自的存取子。 本文結尾處所連結的範例會提供完整類別定義。 
-
-```cs
-    services.AddBot<MultiTurnPromptsBot>(options =>
-    {
-        InitCredentialProvider(options);
-
-        // Create and add conversation state.
-        var convoState = new ConversationState(dataStore);
-        options.State.Add(convoState);
-
-        // Create and add user state.
-        var userState = new UserState(dataStore);
-        options.State.Add(userState);
-    });
-
-    services.AddSingleton(sp =>
-    {
-        // We need to grab the conversationState we added on the options in the previous step
-        var options = sp.GetRequiredService<IOptions<BotFrameworkOptions>>().Value;
-        if (options == null)
-        {
-            throw new InvalidOperationException("BotFrameworkOptions must be configured prior to setting up the State Accessors");
-        }
-
-        var conversationState = options.State.OfType<ConversationState>().FirstOrDefault();
-        if (conversationState == null)
-        {
-            throw new InvalidOperationException("ConversationState must be defined and added before adding conversation-scoped state accessors.");
-        }
-
-        var userState = options.State.OfType<UserState>().FirstOrDefault();
-        if (userState == null)
-        {
-            throw new InvalidOperationException("UserState must be defined and added before adding user-scoped state accessors.");
-        }
-
-        // The dialogs will need a state store accessor. Creating it here once (on-demand) allows the dependency injection
-        // to hand it to our IBot class that is create per-request.
-        var accessors = new BotAccessors(conversationState, userState)
-        {
-            ConversationDialogState = conversationState.CreateProperty<DialogState>("DialogState"),
-            UserProfile = userState.CreateProperty<UserProfile>("UserProfile"),
-        };
-
-        return accessors;
-    });
-```
-
-然後，在 Bot 程式碼中定義對話方塊集合的下列物件。
-
-```cs
-    private readonly BotAccessors _accessors;
-
-    /// <summary>
-    /// The <see cref="DialogSet"/> that contains all the Dialogs that can be used at runtime.
-    /// </summary>
-    private DialogSet _dialogs;
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="MultiTurnPromptsBot"/> class.
-    /// </summary>
-    /// <param name="accessors">A class containing <see cref="IStatePropertyAccessor{T}"/> used to manage state.</param>
-    public MultiTurnPromptsBot(BotAccessors accessors)
-    {
-        _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-
-        // The DialogSet needs a DialogState accessor, it will call it when it has a turn context.
-        _dialogs = new DialogSet(accessors.ConversationDialogState);
-
-        // ...
-        // other constructor items
-        // ...
-    }
+```csharp
+_dialogs.Add(new TextPrompt("nickNamePrompt"));
+_dialogs.Add(new TextPrompt("namePrompt", NameValidator));
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-使用 Echo 範本建立 JavaScript Bot。 如需詳細資訊，請參閱 [JavaScript 快速入門](../javascript/bot-builder-javascript-quickstart.md)。
+在此，`this.dialogs` 包含現有的對話方塊集，而 `NameValidator` 是一個驗證函式。
 
-從 npm 安裝對話方塊套件：
-
-```cmd
-npm install --save botbuilder-dialogs
+```javascript
+this.dialogs.add(new TextPrompt('nickNamePrompt'));
+this.dialogs.add(new TextPrompt('namePrompt', NameValidator));
 ```
-
-若要在 Bot 中使用**對話**，請將其包含在 Bot 程式碼中。
-
-1. 在 **bot.js** 檔案中，新增下列內容。
-
-    ```javascript
-    // Import components from the dialogs library.
-    const { DialogSet, TextPrompt, WaterfallDialog } = require("botbuilder-dialogs");
-
-    // Name for the dialog state property accessor.
-    const DIALOG_STATE_PROPERTY = 'dialogState';
-
-    // Define the names for the prompts and dialogs for the dialog set.
-    const TEXT_PROMPT = 'textPrompt';
-    const MAIN_DIALOG = 'mainDialog';
-    ```
-
-    「對話方塊集」會包含此 Bot 的對話方塊，而我們會使用「文字提示」要求使用者輸入資料。 我們也需要對話方塊，可用來追蹤其狀態的對話方塊狀態屬性存取子。
-
-1. 更新您的 Bot 建構函式程式碼。 我們很快就會新增更多項目。
-
-    ```javascript
-      constructor(conversationState) {
-        // Track the conversation state object.
-        this.conversationState = conversationState;
-
-        // Create a state property accessor for the dialog set.
-        this.dialogState = conversationState.createProperty(DIALOG_STATE_PROPERTY);
-    }
-    ```
 
 ---
 
-## <a name="prompt-the-user"></a>提示使用者
+#### <a name="locales"></a>Locales
 
-若要提示使用者輸入，請使用其中一個內建類別 (如 **TextPrompt**) 定義提示，然後將其新增至對話方塊集合，再對其指派對方塊話識別碼。
+地區設定用來決定**選擇**、**確認**、**日期時間**和**數字**提示的特定語言行為。 對於來自使用者的任何指定輸入：
 
-新增提示後，請將其用在有兩個步驟的瀑布對話中，「瀑布」對話方塊可用來定義一系列的步驟。 多個提示可以鏈結在一起，以建立多重步驟的對話。 如需詳細資訊，請參閱[使用對話方塊來管理簡單對話流程](bot-builder-dialog-manage-conversation-flow.md)的[使用對話方塊](bot-builder-dialog-manage-conversation-flow.md#using-dialogs-to-guide-the-user-through-steps)一節。
+* 如果通道在使用者的訊息中提供了 _locale_ 屬性，則會使用該屬性。
+* 否則，如果在呼叫提示的建構函式時提供提示的「預設地區設定」，或藉由稍後設定，則會使用該預設地區設定。
+* 否則，會以英文 ("en-us") 作為地區設定。
 
-例如，下列對話方塊會提示使用者提供其名稱，然後使用回應向他們打招呼。 在第一回合，對話方塊會提示使用者輸入自己的名稱。 使用者的回應會作為參數傳遞至第二個步驟函式，由該函式處理輸入並傳送個人化的問候語。
+> [!NOTE]
+> 地區設定是 2、3 或 4 個字元的 ISO 639 代碼，其代表某個語言或語言系列。
+
+### <a name="call-a-prompt-from-a-waterfall-dialog"></a>從瀑布式對話方塊呼叫提示
+
+新增提示後，請在瀑布式對話方塊的一個步驟中呼叫該提示，並在下列對話方塊步驟中取得提示結果。
+若要在瀑布式步驟內呼叫提示，請呼叫「瀑布式步驟內容」物件的 _prompt_ 方法。 第一個參數是要使用的提示識別碼，而第二個參數包含提示的選項，例如用來要求使用者提供輸入的文字。
+
+假設使用者正與 Bot 互動，則 Bot 具有作用中的瀑布式對話方塊，而對話方塊中的下一個步驟會使用提示。
+
+1. 當使用者傳送訊息給 Bot 時，其會執行下列作業：
+   1. Bot 的回合處理常式會建立對話方塊內容，並呼叫其 _continue_ 方法。
+   1. 控制權會傳給作用中對話方塊的下一個步驟，在此例中是您的瀑布式對話方塊。
+   1. 此步驟會呼叫其瀑布式步驟內容的 _prompt_ 方法，以要求使用者提供輸入。
+   1. 瀑布式步驟內容會將提示推送到堆疊並啟動。
+   1. 提示會將活動傳送給使用者，要求他們輸入。
+1. 當使用者將其下一則訊息傳送給 Bot 時，其會執行下列作業：
+   1. Bot 的回合處理常式會建立對話方塊內容，並呼叫其 _continue_ 方法。
+   1. 控制權會傳給作用中對話方塊的下一個步驟，這是提示的第二回合。
+   1. 提示會驗證使用者的輸入。
+      * 如果其輸入無效，則會重新啟動提示，而導致其重新提示輸入，而這組步驟會在下一回合重複。
+      * 否則，提示會結束並將「對話方塊回合結果」物件傳回給父代對話方塊。 控制權會傳給瀑布式對話方塊的下一個步驟，而在瀑布式步驟內容的 _result_ 屬性中可取得提示結果。
+
+<!--
+> [!NOTE]
+> A waterfall step delegate takes a _waterfall step context_ parameter and returns a _dialog turn result_.
+> A prompt's result is contained within the prompt's return value (a dialog turn result object) when it ends.
+> The waterfall dialog provides the return value in the waterfall step context parameter when it calls the next waterfall step.
+-->
+
+當提示傳回時，瀑布式步驟內容的 _result_ 屬性會設定為提示的傳回值。
+
+這個範例顯示兩個連續瀑布式步驟的部分。 第一個步驟會使用提示來要求使用者提供其名稱。 第二個步驟會取得提示的傳回值。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-您在對話方塊中使用的每個提示也會有指定的名稱，供對話方塊或 Bot 用來存取提示。 在此處的所有範例中，我們都會將提示識別碼公開為常數。
-
-在 Bot 建構函式內，新增雙步驟瀑布的定義，以及供對話方塊使用的提示。 在此，我們要將其新增為獨立函式，但您也可以將其定義為內嵌 lambda (如果想要的話)。
+在此，`name` 是文字提示的識別碼，而 `NameStepAsync` 和 `GreetingStepAsync` 是瀑布式對話方塊的兩個連續步驟委派。
 
 ```csharp
- public MultiTurnPromptsBot(BotAccessors accessors)
+private static async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
 {
-    _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
+    // ...
 
-    // The DialogSet needs a DialogState accessor, it will call it when it has a turn context.
-    _dialogs = new DialogSet(accessors.ConversationDialogState);
+    // Prompt for the user's name.
+    return await stepContext.PromptAsync(
+        "name",
+         new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") },
+         cancellationToken);
+}
 
-    // This array defines how the Waterfall will execute.
-    var waterfallSteps = new WaterfallStep[]
-    {
-        NameStepAsync,
-        SayHiAsync,
-    };
+private static async Task<DialogTurnResult> GreetingStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+{
+    // Get the user's name from the prompt result.
+    string name = (string)stepContext.Result;
+    await stepContext.Context.SendActivityAsync(
+        MessageFactory.Text($"Pleased to meet you, {name}."),
+         cancellationToken);
 
-    _dialogs.Add(new WaterfallDialog("details", waterfallSteps));
-    _dialogs.Add(new TextPrompt("name"));
+    // ...
 }
 ```
 
-然後，在 Bot 內定義兩個瀑布步驟。 針對文字提示，您要指定上面所定義 `TextPrompt` 的「名稱」識別碼。 請注意，方法名稱與上方 `WaterfallStep[]` 的名稱相符。 這裡的未來範例不會包含該程式碼，但您要知道在該 `WaterfallStep[]` 中必須以正確順序新增方法名稱的其他步驟。
-
-```cs
-    private static async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-    {
-        // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-        // Running a prompt here means the next WaterfallStep will be run when the users response is received.
-        return await stepContext.PromptAsync("name", new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") }, cancellationToken);
-    }
-
-    private static async Task<DialogTurnResult> SayHiAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-    {
-        await stepContext.Context.SendActivityAsync($"Hi {stepContext.Result}");
-
-        return await stepContext.EndDialogAsync(cancellationToken);
-    }
-```
-
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-1. 在 Bot 的建構函式中，建立對話方塊集，並且在其中新增文字提示和瀑布對話方塊。
-
-    ```javascript
-    // Create the dialog set, and add the prompt and the waterfall dialog.
-    this.dialogs = new DialogSet(this.dialogState)
-        .add(new TextPrompt(TEXT_PROMPT))
-        .add(new WaterfallDialog(MAIN_DIALOG, [
-            async (step) => {
-                // The results of this prompt will be passed to the next step.
-                return await step.prompt(TEXT_PROMPT, 'What is your name?');
-            },
-            async (step) => {
-                // The result property contains the result from the previous step.
-                const userName = step.result;
-                await step.context.sendActivity(`Hi ${userName}!`);
-                return await step.endDialog();
-            }
-        ]));
-    ```
-
-1. 更新 Bot 的回合處理常式以執行對話方塊。
-
-    ```javascript
-    async onTurn(turnContext) {
-        // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
-        if (turnContext.activity.type === ActivityTypes.Message) {
-            // Create a dialog context for the dialog set.
-            const dc = await this.dialogs.createContext(turnContext);
-            // Continue the dialog if it's active.
-            await dc.continueDialog();
-            if (!turnContext.responded) {
-                // Otherwise, start the dialog.
-                await dc.beginDialog(MAIN_DIALOG);
-            }
-        } else {
-            // Send a default message for activity types that we don't handle.
-            await turnContext.sendActivity(`[${turnContext.activity.type} event detected]`);
-        }
-        // Save state changes
-        await this.conversationState.saveChanges(turnContext);
-        }
-    }
-    ```
-
----
-
-> [!NOTE]
-> 若要開始對話方塊，請取得對話方塊內容，並使用其 _begin dialog_ 方法。 如需詳細資訊，請參閱[使用對話方塊來管理簡單對話流程](./bot-builder-dialog-manage-conversation-flow.md)。
-
-## <a name="reusable-prompts"></a>可重複使用的提示
-
-只要答案屬於相同類型，便可重複使用提示來提出不同問題。 例如，上述範例程式碼定義了文字提示，並將它用來要求使用者提供其名稱。 您也可以使用這個相同的提示來要求使用者提供其他文字字串，例如「您在哪裡工作？」。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-在此範例中，文字提示的識別碼「名稱」並無法讓程式碼變得清楚。 不過，卻是理想的範例，可讓您知道提示識別碼可以是任何所選項目。
-
-現在，我們的方法包含了要詢問使用者工作位置的第三個步驟。
-
-```cs
-    private static async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-    {
-        // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-        // Running a prompt here means the next WaterfallStep will be run when the users response is received.
-        return await stepContext.PromptAsync("name", new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") }, cancellationToken);
-    }
-
-    private static async Task<DialogTurnResult> WorkAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-    {
-        await stepContext.Context.SendActivityAsync($"Hi {stepContext.Result}!");
-
-        return await stepContext.PromptAsync("name", new PromptOptions { Prompt = MessageFactory.Text("Where do you work?") }, cancellationToken);
-    }
-
-    private static async Task<DialogTurnResult> SayHiAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-    {
-        await stepContext.Context.SendActivityAsync($"{stepContext.Result} is a cool place!");
-
-        return await stepContext.EndDialogAsync(cancellationToken);
-    }
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 Bot 的建構函式中，修改瀑布以提出第二個問題。
+在此，`name` 是文字提示的識別碼，而 `nameStep` 和 `greetingStep` 是瀑布式對話方塊的兩個連續步驟函式。
 
 ```javascript
-// Create the dialog set, and add the prompt and the waterfall dialog.
-this.dialogs = new DialogSet(this.dialogState)
-    .add(new TextPrompt(TEXT_PROMPT))
-    .add(new WaterfallDialog(MAIN_DIALOG, [
-    async (step) => {
-        // Ask the user for their name.
-        return await step.prompt(TEXT_PROMPT, 'What is your name?');
-    },
-    async (step) => {
-        // Acknowledge their response and ask for their place of work.
-        const userName = step.result;
-        return await step.prompt(TEXT_PROMPT, `Hi ${userName}; where do you work?`);
-    },
-    async (step) => {
-        // Acknowledge their response and exit the dialog.
-        const workPlace = step.result;
-        await step.context.sendActivity(`${workPlace} is a cool place!`);
-        return await step.endDialog();
-    }
-    ]));
+async nameStep(step) {
+    // ...
+
+    return await step.prompt('name', 'Please enter your name.');
+}
+
+async greetingStep(step) {
+    // Get the user's name from the prompt result.
+    const name = step.result;
+    await step.context.sendActivity(`Pleased to meet you, ${name}.`);
+
+    // ...
+}
 ```
 
 ---
 
-如果您需要使用多個不同的提示，請讓每個提示具有唯一的 dialogId。 每個新增至對話方塊集合的對話或提示都需要唯一的識別碼。 您也可以建立多個相同類型的**提示**對話方塊。 例如，您可以為上述範例建立兩個 **TextPrompt** 對話方塊：
+### <a name="call-a-prompt-from-the-bots-turn-handler"></a>從 Bot 的回合處理常式呼叫提示
+
+使用對話方塊內容的 _prompt_ 方法，即可直接從回合處理常式呼叫提示。
+您必須在下一回合呼叫對話方塊內容的 _continue dialog_ 方法，並檢閱其傳回值 (_dialog turn result_ 物件)。 如需如何執行這項操作的範例，請參閱提示驗證範例 ([C#](https://aka.ms/cs-prompt-validation-sample) | [JS](https://aka.ms/js-prompt-validation-sample))，或請參閱如何[使用自己的提示來提示使用者提供輸入](bot-builder-primitive-prompts.md)以取得替代方法。
+
+## <a name="prompt-options"></a>提示選項
+
+_prompt_ 方法的第二個參數會採用「提示選項」物件，其具有下列屬性。
+
+| 屬性 | 說明 |
+| :--- | :--- |
+| prompt | 要傳送給使用者、要求他們輸入的初始活動。 |
+| _retry prompt_ | 如果使用者的第一項輸入未經驗證，要傳送給使用者的活動。 |
+| _選擇_ | 可供使用者從中選擇、搭配選擇提示使用的選擇清單。 |
+
+一般而言，prompt 和 retry prompt 屬性都是活動，雖然其在不同程式設計語言中的處理方式有一些差異。
+
+您應該一律指定要傳送給使用者的初始提示活動。
+
+如果使用者的輸入因提示無法剖析其格式 (例如對數字提示輸入 "tomorrow")，或因輸入不符合驗證準則而驗證失敗，則指定 retry prompt 將有其效用。 在此情況下，如果未提供任何 retry prompt，則提示會使用初始提示活動，來重新提示使用者提供輸入。
+
+對於選擇提示，您應該一律提供可用的選擇清單。
+
+此範例示範如何使用選擇提示，並提供三個屬性。 _favorite color_ 方法可作為瀑布式對話方塊中的步驟，而我們的對話方塊集包含瀑布式對話方塊，以及識別碼為 `colorChoice` 的選擇提示。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-```cs
-_dialogs.Add(new WaterfallDialog("details", waterfallSteps));
-_dialogs.Add(new TextPrompt("name"));
-_dialogs.Add(new TextPrompt("workplace"));
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-比方說，您可以取代此項。
-
-```javascript
-.add(new TextPrompt(TEXT_PROMPT))
-```
-
-取代下列項目。
-
-```javascript
-.add(new TextPrompt('namePrompt'))
-.add(new TextPrompt('workPlacePrompt'))
-```
-
-然後更新個別的瀑布步驟，依其各自的名稱使用這些提示。
-
----
-
-為了要重複使用程式碼，為所有提示定義單一 `TextPrompt` 是可行的，因為這些提示全都應該以文字作為回應。 在您需要對提示的輸入套用不同的驗證規則時，為對話方塊命名的功能才會真的派上用場。 讓我們看看如何使用 `NumberPrompt` 來驗證提示回應。
-
-## <a name="specify-prompt-options"></a>指定提示選項
-
-當您在對話方塊步驟中使用提示時，您也可以提供提示選項，例如重新提示字串。
-
-如果使用者輸入因其格式無法由提示剖析 (例如對數字提示輸入「明天」)，或因輸入不符合驗證準則，而無法滿足提示，則指定重新提示字串將有其效用。 數字提示可解譯多種不同的輸入，例如「十二」或「四分之一」，以及 "12" 和 "0.25"。
-
-地區設定是某些提示上的選擇性參數，例如 **NumberPrompt**。 這可幫助提示更精確地剖析輸入，但並非必要項目。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-下列程式碼會將數字提示，新增至現有的對話方塊集合 **_dialogs** 中。
-
-```csharp
-_dialogs.Add(new NumberPrompt<int>("age"));
-```
-
-在對話方塊步驟中，下列程式碼會提示使用者輸入，並提供重新提示字串以備其輸入無法解譯為數字時使用。
-
-```csharp
-return await stepContext.PromptAsync(
-    "age",
-    new PromptOptions {
-        Prompt = MessageFactory.Text("Please enter your age."),
-        RetryPrompt = MessageFactory.Text("I didn't get that. Please enter a valid age."),
-    },
-    cancellationToken);
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-從 dialogs 程式庫匯入 `NumberPrompt` 類別。
-
-```javascript
-const { NumberPrompt } = require("botbuilder-dialogs");
-```
-
-使用您瀑布對話方塊中的數字提示，並指定初始和重試提示字串。
-
-```javascript
-// Create the dialog set, and add the prompt and the waterfall dialog.
-this.dialogs = new DialogSet(this.dialogState)
-    .add(new NumberPrompt('partySize'))
-    .add(new WaterfallDialog(MAIN_DIALOG, [
-    async (step) => {
-        // Ask the user for their party size.
-        return await step.prompt('partySize', {
-            prompt: 'How many people in your party?',
-            retryPrompt: 'Sorry, please specify the number of people in your party.'
-        });
-    },
-    async (step) => {
-        // Acknowledge their response and exit the dialog.
-        const partySize = step.result;
-        await step.context.sendActivity(`That's a party of ${partySize}, thanks.`);
-        return await step.endDialog();
-    }
-]));
-```
-
----
-
-選擇提示有額外的必要參數：可供使用者使用的選擇清單。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-當我們使用 **ChoicePrompt** 要求使用者從一組選項中選擇時，我們必須在提示中附上在 **PromptOptions** 物件內提供的該組選項。 在此，我們使用 **ChoiceFactory** 將選項清單轉換為適當的格式。
 
 ```csharp
 private static async Task<DialogTurnResult> FavoriteColorAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
 {
-    await stepContext.Context.SendActivityAsync($"Hi {stepContext.Result}!");
+    // ...
 
     return await stepContext.PromptAsync(
-        "color",
+        "colorChoice",
         new PromptOptions {
-            Prompt = MessageFactory.Text("What's your favorite color?"),
+            Prompt = MessageFactory.Text("Please choose a color."),
+            RetryPrompt = MessageFactory.Text("Sorry, please choose a color from the list."),
             Choices = ChoiceFactory.ToChoices(new List<string> { "blue", "green", "red" }),
         },
         cancellationToken);
@@ -452,207 +233,620 @@ private static async Task<DialogTurnResult> FavoriteColorAsync(WaterfallStepCont
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-從 dialogs 程式庫匯入 `NumberPrompt` 類別。
+在 JavaScript SDK 中，您可以針對 `prompt` 和 `retryPrompt` 屬性提供字串。 提示會為您將這些屬性轉換為訊息活動。
 
 ```javascript
-const { ChoicePrompt } = require("botbuilder-dialogs");
-```
+async favoriteColor(step) {
+    // ...
 
-在您的瀑布對話方塊中使用選擇提示字元，並指定可用的選項。
-
-```javascript
-// Create the dialog set, and add the prompt and the waterfall dialog.
-const list = ['green', 'blue', 'red', 'yellow'];
-this.dialogs = new DialogSet(this.dialogState)
-    .add(new ChoicePrompt('choicePrompt'))
-    .add(new WaterfallDialog(MAIN_DIALOG, [
-    async (step) => {
-        // Ask the user for their party size.
-        return await step.prompt('choicePrompt', {
-            prompt: 'Please choose a color:',
-            retryPrompt: 'Sorry, please choose a color from the list.',
-            choices: list
-        });
-    },
-    async (step) => {
-        // Acknowledge their response and exit the dialog.
-        const choice = step.result;
-        await step.context.sendActivity(`That's ${choice.value}, thanks.`);
-        return await step.endDialog();
-    }
-]));
+    return await step.prompt('colorChoice', {
+        prompt: 'Please choose a color:',
+        retryPrompt: 'Sorry, please choose a color from the list.',
+        choices: [ 'red', 'green', 'blue' ]
+    });
+}
 ```
 
 ---
 
-## <a name="validate-a-prompt-response"></a>驗證提示回應
+## <a name="custom-validation"></a>自訂驗證
 
-您可以先驗證提示回應，再將值傳回至**瀑布**的下一個步驟。 例如，若要驗證 **6** 到 **20** 數字範圍內的 **NumberPrompt**，您可以納入如下的驗證函式：
+您可以先驗證提示回應，再將值傳回至**瀑布**的下一個步驟。 驗證程式函式具有「提示驗證程式內容」參數並且會傳回布林值，指出輸入是否通過驗證。
+
+提示驗證程式內容包含下列屬性：
+
+| 屬性 | 說明 |
+| :--- | :--- |
+| _內容_ | Bot 目前的回合內容。 |
+| _Recognized_ | 「提示辨識器結果」，其中包含使用者輸入的相關資訊 (如辨識器所處理)。 |
+
+提示辨識器結果具有下列屬性：
+
+| 屬性 | 說明 |
+| :--- | :--- |
+| _已成功_ | 表示辨識器是否能夠剖析輸入。 |
+| _值_ | 來自辨識器的傳回值。 如有必要，驗證碼可以修改此值。 |
+
+### <a name="setup"></a>設定
+
+我們必須先進行些許設定，再新增我們的驗證碼。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-在提示新增至對話方塊集合時變更，以包含驗證程式函式
+在 Bot 的 **.cs** 檔案中，定義預訂資訊的內部類別。
 
-```cs
-_dialogs.Add(new NumberPrompt<int>("partySize", PartySizeValidatorAsync));
+```csharp
+public class Reservation
+{
+    public int Size { get; set; }
+
+    public string Date { get; set; }
+}
 ```
 
-驗證隨即會定義為自己的方法，根據其是否通過驗證來指出 true 或 false。 如果傳回 false，則會重新提示使用者。
+在 **BotAccessors.cs** 中，新增預訂資料的狀態屬性存取子。
 
-```cs
-private Task<bool> PartySizeValidatorAsync(PromptValidatorContext<int> promptContext, CancellationToken cancellationToken)
+```csharp
+public class BotAccessors
 {
-    var result = promptContext.Recognized.Value;
-
-    if (result < 6 || result > 20)
+    public BotAccessors(ConversationState conversationState)
     {
-        return Task.FromResult(false);
+        ConversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
     }
 
-    return Task.FromResult(true);
+    public static string DialogStateAccessorKey { get; } = "BotAccessors.DialogState";
+    public static string ReservationAccessorKey { get; } = "BotAccessors.Reservation";
+
+    public IStatePropertyAccessor<DialogState> DialogStateAccessor { get; set; }
+    public IStatePropertyAccessor<ReservationBot.Reservation> ReservationAccessor { get; set; }
+
+    public ConversationState ConversationState { get; }
+}
+```
+
+在 **Startup.cs** 中，更新 `ConfigureServices` 以設定存取子。
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    // ...
+
+    // Create and register state accesssors.
+    // Acessors created here are passed into the IBot-derived class on every turn.
+    services.AddSingleton<BotAccessors>(sp =>
+    {
+        // ...
+
+        // Create the custom state accessor.
+        // State accessors enable other components to read and write individual properties of state.
+        var accessors = new BotAccessors(conversationState)
+        {
+            DialogStateAccessor = conversationState.CreateProperty<DialogState>(BotAccessors.DialogStateAccessorKey),
+            ReservationAccessor = conversationState.CreateProperty<ReservationBot.Reservation>(BotAccessors.ReservationAccessorKey),
+        };
+
+        return accessors;
+    });
 }
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-在您建立提示字元時新增驗證方法。
+不需要針對 JavaScript 變更 HTTP 服務程式碼，因此我們可讓 **index.js** 檔案保持原狀。
+
+在 **bot.js** 中，更新 require 陳述式並新增狀態屬性存取子的識別碼。
 
 ```javascript
-// Create the dialog set, and add the prompt and the waterfall dialog.
-this.dialogs = new DialogSet(this.dialogState)
-    .add(new NumberPrompt('partySizePrompt', async (promptContext) =>                                                 {
-        // Check to make sure a value was recognized.
-        if (promptContext.recognized.succeeded) {
-            const value = promptContext.recognized.value;
-            try {
-                if (value < 6) {
-                    throw new Error('Party size too small.');
-                } else if (value > 20) {
-                    throw new Error('Party size too big.')
-                } else {
-                    return true; // Indicate that this is a valid value.
-                }
-            } catch (err) {
-                await promptContext.context.sendActivity(`${err.message} <br/>Please provide a valid number between 6 and 20.`);
-                return false; // Indicate that this is invalid.
-            }
-        } else {
-            return false;
-        }
-    }))
-    .add(new WaterfallDialog(MAIN_DIALOG, [
-        async (step) => {
-            // Ask the user for their party size.
-            return await step.prompt('partySizePrompt', {
-                prompt: 'How large is your party?',
-                retryPrompt: 'Sorry, please specify a size between 6 and 20.'
-            });
-        },
-        async (step) => {
-            // Acknowledge their response and exit the dialog.
-            const size = step.result;
-            await step.context.sendActivity(`That's a party of ${size}, thanks.`);
-            return await step.endDialog();
-        }
-    ]));
+const { ActivityTypes } = require('botbuilder');
+const { DialogSet, WaterfallDialog, NumberPrompt, DateTimePrompt, DialogTurnStatus } = require('botbuilder-dialogs');
+
+// Define identifiers for our state property accessors.
+const DIALOG_STATE_ACCESSOR = 'dialogStateAccessor';
+const RESERVATION_ACCESSOR = 'reservationAccessor';
 ```
 
 ---
 
-同樣地，如果您想要對未來的日期和時間驗證 **DatetimePrompt** 回應，您可以使用如下的驗證邏輯：
+在 Bot 檔案中，新增對話方塊和提示的識別碼。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-```cs
-    private Task<bool> DateTimeValidatorAsync(PromptValidatorContext<IList<DateTimeResolution>> prompt, CancellationToken cancellationToken)
-    {
-        if (prompt.Recognized.Succeeded)
-        {
-            var resolution = prompt.Recognized.Value.First();
-
-            // Verify that the Timex received is within the desired bounds, compared to today.
-            var now = DateTime.Now;
-            DateTime.TryParse(resolution.Value, out var time);
-
-            if (time < now)
-            {
-                return Task.FromResult(false);
-            }
-
-            return Task.FromResult(true);
-        }
-
-        return Task.FromResult(false);
-    }
-```
-
 ```csharp
-_dialogs.Add(new DateTimePrompt("date", DateTimeValidatorAsync));
+// Define identifiers for our dialogs and prompts.
+private const string ReservationDialog = "reservationDialog";
+private const string PartySizePrompt = "partyPrompt";
+private const string ReservationDatePrompt = "reservationDatePrompt";
 ```
-
-其他範例可在[範例存放庫](https://aka.ms/bot-samples-readme)中找到。
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
-const { DateTimePrompt } = require("botbuilder-dialogs");
+// Define identifiers for our dialogs and prompts.
+const RESERVATION_DIALOG = 'reservationDialog';
+const PARTY_SIZE_PROMPT = 'partySizePrompt';
+const RESERVATION_DATE_PROMPT = 'reservationDatePrompt';
 ```
-
-```JavaScript
-// Create the dialog set, and add the prompt and the waterfall dialog.
-this.dialogs = new DialogSet(this.dialogState)
-    .add(new DateTimePrompt('dateTimePrompt', async (promptContext) => {
-        try {
-            if (!promptContext.recognized.succeeded) { throw new Error('Value not recognized.') }
-            const values = promptContext.recognized.value;
-            if (!Array.isArray(values) || values.length < 0) { throw new Error('Value missing.'); }
-            if ((values[0].type !== 'datetime') && (values[0].type !== 'date')) { throw new Error('Unsupported type.'); }
-            const now = new Date();
-            const value = new Date(values[0].value);
-            if (value.getTime() < now.getTime()) { throw new Error('Value in the past.') }
-
-            // update the return value of the prompt to be a real date object
-            promptContext.recognized.value = [value];
-            return true; // indicate valid
-        } catch (err) {
-            await promptContext.context.sendActivity(`${err} Please specify a date or a date and time in the future, like tomorrow at 9am.`);
-            return false; // indicate invalid
-        }
-    }))
-    .add(new WaterfallDialog(MAIN_DIALOG, [
-        async (step) => {
-            // Ask the user for their party size.
-            return await step.prompt('dateTimePrompt', 'When would you like to schedule that for?');
-        },
-        async (step) => {
-            // Acknowledge their response and exit the dialog.
-            const time = step.result;
-            await step.context.sendActivity(`That's ${time}, thanks.`);
-            return await step.endDialog();
-        }
-    ]));
-```
-
-其他範例可在[範例存放庫](https://aka.ms/bot-samples-readme)中找到。
 
 ---
 
-> [!TIP]
-> 如果使用者提供了模稜兩可的答案，日期時間提示可能會解析成數個不同的日期。 根據提示的用途，您可能會想要檢查提示結果所提供的所有解析，而不只是第一個解析。
+### <a name="define-the-prompts-and-dialogs"></a>定義提示和對話方塊
+
+在 Bot 的建構函式程式碼中，建立對話方塊集、新增提示，以及新增預訂對話方塊。
+我們會在建立提示時包含自訂驗證。 我們會接著實作驗證函式。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```csharp
+public ReservationBot(BotAccessors accessors, ILoggerFactory loggerFactory)
+{
+    // ...
+    _accessors = accessors ?? throw new System.ArgumentNullException(nameof(accessors));
+
+    // Create the dialog set and add the prompts, including custom validation.
+    _dialogSet = new DialogSet(_accessors.DialogStateAccessor);
+    _dialogSet.Add(new NumberPrompt<int>(PartySizePrompt, PartySizeValidatorAsync));
+    _dialogSet.Add(new DateTimePrompt(ReservationDatePrompt, DateValidatorAsync));
+
+    // Define the steps of the waterfall dialog and add it to the set.
+    WaterfallStep[] steps = new WaterfallStep[]
+    {
+        PromptForPartySizeAsync,
+        PromptForReservationDateAsync,
+        AcknowledgeReservationAsync,
+    };
+    _dialogSet.Add(new WaterfallDialog(ReservationDialog, steps));
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+```javascript
+constructor(conversationState) {
+    // Creates our state accessor properties.
+    // See https://aka.ms/about-bot-state-accessors to learn more about the bot state and state accessors.
+    this.dialogStateAccessor = conversationState.createProperty(DIALOG_STATE_ACCESSOR);
+    this.reservationAccessor = conversationState.createProperty(RESERVATION_ACCESSOR);
+    this.conversationState = conversationState;
+
+    // Create the dialog set and add the prompts, including custom validation.
+    this.dialogSet = new DialogSet(this.dialogStateAccessor);
+    this.dialogSet.add(new NumberPrompt(PARTY_SIZE_PROMPT, partySizeValidator));
+    this.dialogSet.add(new DateTimePrompt(RESERVATION_DATE_PROMPT, dateValidator));
+
+    // Define the steps of the waterfall dialog and add it to the set.
+    this.dialogSet.add(new WaterfallDialog(RESERVATION_DIALOG, [
+        this.promptForPartySize.bind(this),
+        this.promptForReservationDate.bind(this),
+        this.acknowledgeReservation.bind(this),
+    ]));
+}
+```
+
+---
+
+### <a name="implement-validation-code"></a>實作驗證碼
+
+實作派對規模驗證程式。 我們會將預訂限制為 6 到 20 人的派對。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```csharp
+/// <summary>Validates whether the party size is appropriate to make a reservation.</summary>
+/// <param name="promptContext">The validation context.</param>
+/// <param name="cancellationToken">A cancellation token that can be used by other objects
+/// or threads to receive notice of cancellation.</param>
+/// <returns>A task that represents the work queued to execute.</returns>
+/// <remarks>Reservations can be made for groups of 6 to 20 people.
+/// If the task is successful, the result indicates whether the input was valid.</remarks>
+private async Task<bool> PartySizeValidatorAsync(
+    PromptValidatorContext<int> promptContext,
+    CancellationToken cancellationToken)
+{
+    // Check whether the input could be recognized as an integer.
+    if (!promptContext.Recognized.Succeeded)
+    {
+        await promptContext.Context.SendActivityAsync(
+            "I'm sorry, I do not understand. Please enter the number of people in your party.",
+            cancellationToken: cancellationToken);
+        return false;
+    }
+
+    // Check whether the party size is appropriate.
+    int size = promptContext.Recognized.Value;
+    if (size < 6 || size > 20)
+    {
+        await promptContext.Context.SendActivityAsync(
+            "Sorry, we can only take reservations for parties of 6 to 20.",
+            cancellationToken: cancellationToken);
+        return false;
+    }
+
+    return true;
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+```javascript
+async partySizeValidator(promptContext) {
+    // Check whether the input could be recognized as an integer.
+    if (!promptContext.recognized.succeeded) {
+        await promptContext.context.sendActivity(
+            "I'm sorry, I do not understand. Please enter the number of people in your party.");
+        return false;
+    }
+    if (promptContext.recognized.value % 1 != 0) {
+        await promptContext.context.sendActivity(
+            "I'm sorry, I don't understand fractional people.");
+        return false;
+    }
+    // Check whether the party size is appropriate.
+    var size = promptContext.recognized.value;
+    if (size < 6 || size > 20) {
+        await promptContext.context.sendActivity(
+            'Sorry, we can only take reservations for parties of 6 to 20.');
+        return false;
+    }
+
+    return true;
+}
+```
+
+---
+
+日期時間提示會傳回符合使用者輸入的可能「日期時間解析」陣列。 例如，9:00 可能表示 9 AM 或 9 PM，星期日也模稜兩可。 此外，日期時間解析可以代表日期、時間、日期時間或範圍。 日期時間提示會字元使用 [Microsoft/Recognizers-Text](https://github.com/Microsoft/Recognizers-Text) 來剖析使用者輸入。
+
+實作預訂日期驗證程式。 我們會將預訂限制為從目前時間算起的一小時或更多小時。 我們會保留符合準則的第一個解析，並且清除其餘解析。
+
+此驗證碼並不詳盡。 適合用於可剖析為日期和時間的輸入。 驗證碼會示範可供驗證日期時間提示的一些選項，而您的實作會取決於您嘗試向使用者收集哪些資訊。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```csharp
+/// <summary>Validates whether the reservation date is appropriate.</summary>
+/// <param name="promptContext">The validation context.</param>
+/// <param name="cancellationToken">A cancellation token that can be used by other objects
+/// or threads to receive notice of cancellation.</param>
+/// <returns>A task that represents the work queued to execute.</returns>
+/// <remarks>Reservations must be made at least an hour in advance.
+/// If the task is successful, the result indicates whether the input was valid.</remarks>
+private async Task<bool> DateValidatorAsync(
+    PromptValidatorContext<IList<DateTimeResolution>> promptContext,
+    CancellationToken cancellationToken = default(CancellationToken))
+{
+    // Check whether the input could be recognized as an integer.
+    if (!promptContext.Recognized.Succeeded)
+    {
+        await promptContext.Context.SendActivityAsync(
+            "I'm sorry, I do not understand. Please enter the date or time for your reservation.",
+            cancellationToken: cancellationToken);
+        return false;
+    }
+
+    // Check whether any of the recognized date-times are appropriate,
+    // and if so, return the first appropriate date-time.
+    DateTime earliest = DateTime.Now.AddHours(1.0);
+    DateTimeResolution value = promptContext.Recognized.Value.FirstOrDefault(v =>
+        DateTime.TryParse(v.Value ?? v.Start, out DateTime time) && DateTime.Compare(earliest,time) <= 0);
+    if (value != null)
+    {
+        promptContext.Recognized.Value.Clear();
+        promptContext.Recognized.Value.Add(value);
+        return true;
+    }
+
+    await promptContext.Context.SendActivityAsync(
+            "I'm sorry, we can't take reservations earlier than an hour from now.",
+            cancellationToken: cancellationToken);
+    return false;
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+```javascript
+async dateValidator(promptContext) {
+// Check whether the input could be recognized as an integer.
+if (!promptContext.recognized.succeeded) {
+    await promptContext.context.sendActivity(
+        "I'm sorry, I do not understand. Please enter the date or time for your reservation.");
+    return false;
+}
+
+// Check whether any of the recognized date-times are appropriate,
+// and if so, return the first appropriate date-time.
+const earliest = Date.now() + (60 * 60 * 1000);
+let value = null;
+promptContext.recognized.value.forEach(candidate => {
+    // TODO: update validation to account for time vs date vs date-time vs range.
+    const time = new Date(candidate.value || candidate.start);
+    if (earliest < time.getTime()) {
+        value = candidate;
+    }
+});
+if (value) {
+    promptContext.recognized.value = [value];
+    return true;
+}
+
+await promptContext.context.sendActivity(
+    "I'm sorry, we can't take reservations earlier than an hour from now.");
+return false;
+}
+```
+
+---
+
+### <a name="implement-the-dialog-steps"></a>實作對話方塊步驟
+
+使用我們新增到對話方塊集的提示。 我們在 Bot 的建構函式中建立提示時，便已新增提示的驗證。 提示第一次要求使用者輸入時，其會從所提供的選項傳送 _prompt_ 活動。 如果驗證失敗，其會傳送 _retry prompt_ 活動，要求使用者提供不同的輸入。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```csharp
+/// <summary>First step of the main dialog: prompt for party size.</summary>
+/// <param name="stepContext">The context for the waterfall step.</param>
+/// <param name="cancellationToken">A cancellation token that can be used by other objects
+/// or threads to receive notice of cancellation.</param>
+/// <returns>A task that represents the work queued to execute.</returns>
+/// <remarks>If the task is successful, the result contains information from this step.</remarks>
+private async Task<DialogTurnResult> PromptForPartySizeAsync(
+    WaterfallStepContext stepContext,
+    CancellationToken cancellationToken = default(CancellationToken))
+{
+    // Prompt for the party size. The result of the prompt is returned to the next step of the waterfall.
+    return await stepContext.PromptAsync(
+        PartySizePrompt,
+        new PromptOptions
+        {
+            Prompt = MessageFactory.Text("How many people is the reservation for?"),
+            RetryPrompt = MessageFactory.Text("How large is your party?"),
+        },
+        cancellationToken);
+}
+
+/// <summary>Second step of the main dialog: record the party size and prompt for the
+/// reservation date.</summary>
+/// <param name="stepContext">The context for the waterfall step.</param>
+/// <param name="cancellationToken">A cancellation token that can be used by other objects
+/// or threads to receive notice of cancellation.</param>
+/// <returns>A task that represents the work queued to execute.</returns>
+/// <remarks>If the task is successful, the result contains information from this step.</remarks>
+private async Task<DialogTurnResult> PromptForReservationDateAsync(
+    WaterfallStepContext stepContext,
+    CancellationToken cancellationToken = default(CancellationToken))
+{
+    // Record the party size information in the current dialog state.
+    int size = (int)stepContext.Result;
+    stepContext.Values["size"] = size;
+
+    // Prompt for the reservation date. The result of the prompt is returned to the next step of the waterfall.
+    return await stepContext.PromptAsync(
+        ReservationDatePrompt,
+        new PromptOptions
+        {
+            Prompt = MessageFactory.Text("Great. When will the reservation be for?"),
+            RetryPrompt = MessageFactory.Text("What time should we make your reservation for?"),
+        },
+        cancellationToken);
+}
+
+/// <summary>Third step of the main dialog: return the collected party size and reservation date.</summary>
+/// <param name="stepContext">The context for the waterfall step.</param>
+/// <param name="cancellationToken">A cancellation token that can be used by other objects
+/// or threads to receive notice of cancellation.</param>
+/// <returns>A task that represents the work queued to execute.</returns>
+/// <remarks>If the task is successful, the result contains information from this step.</remarks>
+private async Task<DialogTurnResult> AcknowledgeReservationAsync(
+    WaterfallStepContext stepContext,
+    CancellationToken cancellationToken = default(CancellationToken))
+{
+    // Retrieve the reservation date.
+    DateTimeResolution resolution = (stepContext.Result as IList<DateTimeResolution>).First();
+    string time = resolution.Value ?? resolution.Start;
+
+    // Send an acknowledgement to the user.
+    await stepContext.Context.SendActivityAsync(
+        "Thank you. We will confirm your reservation shortly.",
+        cancellationToken: cancellationToken);
+
+    // Return the collected information to the parent context.
+    Reservation reservation = new Reservation
+    {
+        Date = time,
+        Size = (int)stepContext.Values["size"],
+    };
+    return await stepContext.EndDialogAsync(reservation, cancellationToken);
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+```javascript
+async promptForPartySize(stepContext) {
+    // Prompt for the party size. The result of the prompt is returned to the next step of the waterfall.
+    return await stepContext.prompt(
+        PARTY_SIZE_PROMPT, {
+            prompt: 'How many people is the reservation for?',
+            retryPrompt: 'How large is your party?'
+        });
+}
+
+async promptForReservationDate(stepContext) {
+    // Record the party size information in the current dialog state.
+    stepContext.values.size = stepContext.result;
+
+    // Prompt for the reservation date. The result of the prompt is returned to the next step of the waterfall.
+    return await stepContext.prompt(
+        RESERVATION_DATE_PROMPT, {
+            prompt: 'Great. When will the reservation be for?',
+            retryPrompt: 'What time should we make your reservation for?'
+        });
+}
+
+async acknowledgeReservation(stepContext) {
+    // Retrieve the reservation date.
+    const resolution = stepContext.result[0];
+    const time = resolution.value || resolution.start;
+
+    // Send an acknowledgement to the user.
+    await stepContext.context.sendActivity(
+        'Thank you. We will confirm your reservation shortly.');
+
+    // Return the collected information to the parent context.
+    return await stepContext.endDialog({ date: time, size: stepContext.values.size });
+}
+```
+
+---
+
+### <a name="update-the-turn-handler"></a>更新回合處理常式
+
+更新 Bot 的回合處理常式以開始對話方塊，並且在完成時接受來自對話的傳回值。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```csharp
+public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
+{
+    switch (turnContext.Activity.Type)
+    {
+        // On a message from the user:
+        case ActivityTypes.Message:
+
+            // Get the current reservation info from state.
+            Reservation reservation = await _accessors.ReservationAccessor.GetAsync(
+                turnContext, () => null, cancellationToken);
+
+            // Generate a dialog context for our dialog set.
+            DialogContext dc = await _dialogSet.CreateContextAsync(turnContext, cancellationToken);
+
+            if (dc.ActiveDialog is null)
+            {
+                // If there is no active dialog, check whether we have a reservation yet.
+                if (reservation is null)
+                {
+                    // If not, start the dialog.
+                    await dc.BeginDialogAsync(ReservationDialog, null, cancellationToken);
+                }
+                else
+                {
+                    // Otherwise, send a status message.
+                    await turnContext.SendActivityAsync(
+                        $"We'll see you {reservation.Date}.",
+                        cancellationToken: cancellationToken);
+                }
+            }
+            else
+            {
+                // Continue the dialog.
+                DialogTurnResult dialogTurnResult = await dc.ContinueDialogAsync(cancellationToken);
+
+                // If the dialog completed this turn, record the reservation info.
+                if (dialogTurnResult.Status is DialogTurnStatus.Complete)
+                {
+                    reservation = (Reservation)dialogTurnResult.Result;
+                    await _accessors.ReservationAccessor.SetAsync(
+                        turnContext,
+                        reservation,
+                        cancellationToken);
+
+                    // Send a confirmation message to the user.
+                    await turnContext.SendActivityAsync(
+                        $"Your party of {reservation.Size} is confirmed for {reservation.Date}.",
+                        cancellationToken: cancellationToken);
+                }
+            }
+
+            // Save the updated dialog state into the conversation state.
+            await _accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
+            break;
+
+        // Handle other incoming activity types as appropriate to your bot.
+        default:
+            await turnContext.SendActivityAsync($"{turnContext.Activity.Type} event detected");
+            break;
+    }
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+```javascript
+async onTurn(turnContext) {
+    switch (turnContext.activity.type) {
+        case ActivityTypes.Message:
+            // Get the current reservation info from state.
+            const reservation = await this.reservationAccessor.get(turnContext, null);
+
+            // Generate a dialog context for our dialog set.
+            const dc = await this.dialogSet.createContext(turnContext);
+
+            if (!dc.activeDialog) {
+                // If there is no active dialog, check whether we have a reservation yet.
+                if (!reservation) {
+                    // If not, start the dialog.
+                    await dc.beginDialog(RESERVATION_DIALOG);
+                }
+                else {
+                    // Otherwise, send a status message.
+                    await turnContext.sendActivity(
+                        `We'll see you ${reservation.date}.`);
+                }
+            }
+            else {
+                // Continue the dialog.
+                const dialogTurnResult = await dc.continueDialog();
+
+                // If the dialog completed this turn, record the reservation info.
+                if (dialogTurnResult.status === DialogTurnStatus.complete) {
+                    await this.reservationAccessor.set(
+                        turnContext,
+                        dialogTurnResult.result);
+
+                    // Send a confirmation message to the user.
+                    await turnContext.sendActivity(
+                        `Your party of ${dialogTurnResult.result.size} is ` +
+                        `confirmed for ${dialogTurnResult.result.date}.`);
+                }
+            }
+
+            // Save the updated dialog state into the conversation state.
+            await this.conversationState.saveChanges(turnContext, false);
+            break;
+        default:
+            break;
+    }
+}
+```
+
+---
+
+其他範例可在[範例存放庫](https://aka.ms/bot-samples-readme)中找到。
 
 您可以使用類似的技巧，來驗證任何提示類型的提示回應。
 
-## <a name="save-user-data"></a>儲存使用者資料
+## <a name="handling-prompt-results"></a>處理提示結果
 
-當您提示使用者輸入時，您可以選擇數種不同的方式來處理該輸入。 例如，您可以取用和捨棄輸入、將其儲存至全域變數、將其儲存至揮發性記憶體或記憶體中的儲存體容器、將其儲存至檔案，或是，將其儲存至外部資料庫。 如需如何儲存使用者資料的詳細資訊，請參閱[管理使用者資料](bot-builder-howto-v4-state.md)。
+您對提示結果所做的動作，取決於您為何向使用者要求此資訊。 選項包括：
+
+* 使用此資訊來控制對話方塊流程，例如使用者何時回應確認或選擇提示。
+* 快取對話方塊狀態中的資訊，例如在瀑布式步驟內容的 _values_ 屬性中設定一個值，然後在對話結束時傳回所收集的資訊。
+* 將資訊儲存到 Bot 狀態。 這需要您設計對話方塊，以取得 Bot 的狀態屬性存取子存取權。
+
+請參閱其他資源，以取得涵蓋這些案例的主題和範例。
 
 ## <a name="additional-resources"></a>其他資源
 
-如需使用了其中某些提示的完整範例，請參閱 [C#](https://aka.ms/cs-multi-prompts-sample) 或 [JavaScript](https://aka.ms/js-multi-prompts-sample) 的多回合提示 Bot。
+* [管理簡單對話流程](bot-builder-dialog-manage-conversation-flow.md)
+* [管理複雜交談流程](bot-builder-dialog-manage-complex-conversation-flow.md)
+* [建立一組整合式對話方塊](bot-builder-compositcontrol.md)
+* [保存對話方塊中的資料](bot-builder-tutorial-persist-user-inputs.md)
+* **多回合提示** 範例 ([C#](https://aka.ms/cs-multi-prompts-sample) | [JS](https://aka.ms/js-multi-prompts-sample))
 
 ## <a name="next-steps"></a>後續步驟
 
 現在您已了解如何提示使用者輸入，接下來我們將透過對話方塊來管理各種對話流程，以強化 Bot 程式碼並提升使用者體驗。
 
 > [!div class="nextstepaction"]
-> [使用對話方塊來管理簡單對話流程](bot-builder-dialog-manage-conversation-flow.md)
+> [管理複雜交談流程](bot-builder-dialog-manage-complex-conversation-flow.md)

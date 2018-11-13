@@ -1,45 +1,25 @@
 ---
-title: 使用 Bot Builder 工具管理 Bot
+title: 使用 CLI 工具管理 Bot
 description: Bot Builder 工具可讓您直接從命令列管理 Bot 資源
-keywords: botbuilder 範本、ludown、qna、luis、msbot
+keywords: botbuilder 範本, ludown, qna, luis, msbot, 管理, cli, .bot, bot
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: tools
-ms.date: 09/18/2018
+ms.date: 11/07/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ef57cdf6a202679f9fc3a83e3e44640b43adb67f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 357f9fdc3da4c703dbcd5c1fa347176002006567
+ms.sourcegitcommit: a54a70106b9fdf278fd7270b25dd51c9bd454ab1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998356"
+ms.lasthandoff: 11/08/2018
+ms.locfileid: "51273105"
 ---
-# <a name="bot-builder-tools"></a>Bot Builder 工具
+# <a name="manage-bots-using-cli-tools"></a>使用 CLI 工具管理 Bot
 
-Bot Builder [工具][cliTools]涵蓋端對端 Bot 開發工作流程，其中包括規劃、建置、測試、發行、連線及評估階段。 我們來看看這些工具如何協助您進行開發週期中的每個階段。
-
-[規劃](#plan)
-- 一開始先檢閱 Bot 的[設計指導方針](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-design-principles)以了解最佳作法
-- 使用 [Chatdown](#create-mock-conversations-using-chatdown) 工具建立模擬對話
-
-[建置](#build)
-- 使用 [Ludown](#bootstrap-language-understanding-with-ludown) 開始進行 Language Understanding
-- 使用 [MSBot](#keep-track-of-service-references-using-bot-file) 追蹤服務參考
-- 使用 [LUIS CLI](#create-and-manage-luis-applications-using-luis-cli) 建立和管理 LUIS 應用程式
-- 使用 [QnA Maker CLI](#create-qna-maker-kb-using-qna-maker-cli) 建立 QnA Maker KB
-- 使用[分派 CLI](#create-dipsatch-model-using-dispatch-cli) 建立分派模型
-
-[Test](#test)
-- 使用 [Bot Framework 模擬器 V4](https://aka.ms/bot-framework-emulator-v4-overview) 測試您的 Bot
-
-[Publish](#publish)
-- 使用 [Azure CLI][azureCli] 建立和下載 Bot，並將其發行至 Azure Bot Service
-
-[連線](#configure-channels)
-- 使用 [Azure CLI][azureCli] 將 Bot 連線至 Azure Bot Service 通道
+Bot Builder 工具涵蓋端對端 Bot 開發工作流程，其中包括規劃、建置、測試、發佈、連線及評估階段。 我們來看看這些工具如何協助您進行開發週期中的每個階段。
 
 ## <a name="plan"></a>規劃
 
@@ -51,7 +31,7 @@ Chatdown 是一個文字記錄產生器，會使用 .chat 檔案來產生模擬�
 
 - 塑造 Bot 所支援的案例。
 - 讓商務決策者檢視，並提供意見。
-- 透過使用者與 Bot 之間的對話流程定義「理想路徑 (happy path)」(以及其他路徑) .chat 檔案格式可協助您建立使用者與 Bot 之間的對話原型。 Chatdown CLI 工具會將 .chat 檔案轉換成對話文字記錄 (.transc ript 檔案)，而您可以在 [Bot Framework 模擬器 V4](https://github.com/microsoft/botframework-emulator) 中加以檢視。
+- 透過使用者與 Bot 之間的對話流程定義「理想路徑 (happy path)」(以及其他路徑)。.chat 檔案格式可協助您建立使用者與 Bot 之間的對話原型。 Chatdown CLI 工具會將 .chat 檔案轉換成對話文字記錄 (.transc ript 檔案)，而您可以在 [Bot Framework 模擬器 V4](https://github.com/microsoft/botframework-emulator) 中加以檢視。
 
 以下是 `.chat` 檔案的範例：
 
@@ -165,10 +145,9 @@ ludown parse ToLuis --in <luFile>
 ludown parse ToQna --in <luFile> 
 ```
 
-LUIS 和 QnA 可透過其個別的入口網站，或透過新的 CLI 工具來取用所產生的 JSON 檔案。
+LUIS 和 QnA 可透過其個別的入口網站，或透過新的 CLI 工具來取用所產生的 JSON 檔案。 若要深入了解，請參閱 [LUdown CLI][ludown] GitHub 存放庫。
 
-若要深入了解，請參閱 [LUdown CLI][ludown] GitHub 存放庫。
-## <a name="track-service-references-using-bot-file"></a>使用.bot 檔案追蹤服務參考
+### <a name="track-service-references-using-bot-file"></a>使用.bot 檔案追蹤服務參考
 
 新的 [MSBot][msbotCli] (英文) 工具可讓您建立 **.bot** 檔案，這會儲存您 Bot 所取用不同服務的相關中繼資料，全都放在一個位置。 此檔案也可讓您的 Bot 從 CLI 連線至這些服務。 此工具會以 npm 模組的形式提供，若要安裝請執行：
 
@@ -189,7 +168,7 @@ msbot connect [Service]
 
 若要取得支援的服務清單，請參閱[讀我檔案][msbotCli]。
 
-## <a name="create-and-manage-luis-applications-using-luis-cli"></a>使用 LUIS CLI 建立和管理 LUIS 應用程式
+### <a name="create-and-manage-luis-applications-using-luis-cli"></a>使用 LUIS CLI 建立和管理 LUIS 應用程式
 
 新工具組中所包含的是 [LUIS 擴充功能][luisCli]，可讓您獨立管理您的 LUIS 資源。 它會以 npm 模組的形式提供，可供您下載：
 
@@ -215,7 +194,7 @@ luis import application --in luis-app.json | msbot connect luis --stdin
 ```
 若要深入了解，請參閱 [LUIS CLI][luisCli] GitHub 存放庫。
 
-## <a name="create-qna-maker-kb-using-qna-maker-cli"></a>使用 QnA Maker CLI 建立 QnA Maker KB
+### <a name="create-qna-maker-kb-using-qna-maker-cli"></a>使用 QnA Maker CLI 建立 QnA Maker KB
 
 新工具組中所包含的是 [QnA 擴充功能][qnaCli] (英文)，可讓您獨立管理您的 LUIS 資源。 它會以 npm 模組的形式提供，可供您下載。
 
@@ -230,7 +209,7 @@ qnamaker create --in qnaKB.json --msbot | msbot connect qna --stdin
 
 若要深入了解，請參閱 [QnA Maker CLI][qnaCli] GitHub 存放庫。
 
-## <a name="create-dispatch-model-using-dispatch-cli"></a>使用分派 CLI 建立分派模型
+### <a name="create-dispatch-model-using-dispatch-cli"></a>使用分派 CLI 建立分派模型
 
 分派是建立和評估 LUIS 模型的工具，用來將意圖分派到多個 Bot 模組，例如 LUIS 模型、QnA 知識庫和其他項目 (已新增並分派為檔案類型)。
 
@@ -253,12 +232,14 @@ dispatch create -b <YOUR-BOT-FILE> | msbot connect dispatch --stdin
 
 ## <a name="publish"></a>發佈
 
-您可以使用 [Azure CLI][azureCli] 來[建立](#create-azure-bot-service-bot)和[下載](#download-azure-bot-service-bot)您的 Bot，並將其[發行](#publish-azure-bot-service-bot)至 Azure Bot Service。 透過下列命令安裝 Bot 擴充功能： 
+您可以使用 Azure CLI 來建立和下載 Bot，並將其發佈至 Azure Bot Service。 透過下列命令安裝 Bot 擴充功能： 
 ```shell
 az extension add -n botservice
 ```
 
-## <a name="create-azure-bot-service-bot"></a>建立 Azure Bot Service Bot
+### <a name="create-azure-bot-service-bot"></a>建立 Azure Bot Service Bot
+
+附註：您必須使用最新版的 `az cli`。 請升級，以便 az cli 搭配 MSBot 工具運作。 
 
 透過下列命令登入您的 Azure 帳戶 
 ```shell
@@ -322,7 +303,7 @@ Group
 ```
 
 ## <a name="additional-information"></a>其他資訊
-- [Bot Builder 工具][cliTools]
+- [GitHub 上的 Bot Builder 工具][cliTools]
 
 <!-- Footnote links -->
 

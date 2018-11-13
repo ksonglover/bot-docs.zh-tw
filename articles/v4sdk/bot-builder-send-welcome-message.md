@@ -1,7 +1,7 @@
 ---
-title: 開發歡迎使用者 | Microsoft Docs
+title: 將歡迎訊息傳送給使用者 | Microsoft Docs
 description: 了解如何開發 Bot，以提供親切的使用者體驗。
-keywords: 概觀, 開發, 使用者體驗, 歡迎, 個人化體驗, C#, JS
+keywords: 概觀, 開發, 使用者體驗, 歡迎, 個人化體驗, C#, JS, 歡迎訊息, Bot, 問候, 問候語
 author: dashel
 ms.author: dashel
 manager: kamrani
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/31/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f5549385106cab890269e9a5fafacc00dc331520
-ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
+ms.openlocfilehash: b3582d962911b6024062942a6d9f6ff1efab4022
+ms.sourcegitcommit: a54a70106b9fdf278fd7270b25dd51c9bd454ab1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2018
-ms.locfileid: "50736606"
+ms.lasthandoff: 11/08/2018
+ms.locfileid: "51273085"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
@@ -418,4 +418,4 @@ switch (text)
 
 ## <a name="next-steps"></a>後續步驟
 > [!div class="nextstepaction"]
-> [使用對話方塊程式庫提示使用者輸入](bot-builder-prompts.md)
+> [收集使用者輸入](bot-builder-prompts.md)
