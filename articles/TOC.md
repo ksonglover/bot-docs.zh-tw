@@ -13,6 +13,7 @@
 ## [在 GitHub 上的範例存放庫](https://github.com/Microsoft/BotBuilder-Samples/blob/master/readme.md)
 # 概念
 ## [Bot 的運作方式](v4sdk/bot-builder-basics.md)
+## [使用 Bot 檔案管理 Bot 資源](v4sdk/bot-file-basics.md)
 ## [中介軟體](v4sdk/bot-builder-concept-middleware.md)
 ## [關於對話方塊程式庫](v4sdk/bot-builder-concept-dialog.md)
 ## [了解對話方塊狀態](v4sdk/bot-builder-dialog-state.md)
