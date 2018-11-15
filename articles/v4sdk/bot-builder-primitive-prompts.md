@@ -1,18 +1,22 @@
 ---
-redirect_url: /bot-framework/bot-builder-howto-v4-state
-ms.openlocfilehash: 081c7c1f3e354d4352baea029840c8175152116e
-ms.sourcegitcommit: a54a70106b9fdf278fd7270b25dd51c9bd454ab1
+title: 建立您自己的提示，以收集使用者輸入 | Microsoft Docs
+description: 了解如何在 Bot 建立器 SDK 中，使用基本提示來管理對話流程。
+keywords: 對話流程, 提示
+author: v-ducvo
+ms.author: v-ducvo
+manager: kamrani
+ms.topic: article
+ms.service: bot-service
+ms.subservice: sdk
+ms.date: 11/12/2018
+monikerRange: azure-bot-service-4.0
+ms.openlocfilehash: bc223008778f0396b9bc7ff0c2ef48eb3773a105
+ms.sourcegitcommit: 0702305523f8c816b2eb95dce2ea9effb9e5ee5a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/08/2018
-ms.locfileid: "51273115"
+ms.lasthandoff: 11/12/2018
+ms.locfileid: "51562091"
 ---
-<a name="--"></a><!--
----
-標題：建立自己的提示以收集使用者輸入 | Microsoft Docs 描述：了解如何在 Bot Builder SDK 中，使用基本提示來管理對話流程。
-關鍵字：對話流程, 提示作者: v-ducvo ms.author: v-ducvo manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date: 10/31/2018 monikerRange: 'azure-bot-service-4.0'
----
-
 # <a name="create-your-own-prompts-to-gather-user-input"></a>建立您自己的提示，以收集使用者輸入
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -694,4 +698,3 @@ async onTurn(turnContext) {
 > [!div class="nextstepaction"]
 > [使用對話方塊來提示使用者輸入](bot-builder-prompts.md)
 
--->

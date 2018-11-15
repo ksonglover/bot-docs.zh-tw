@@ -7,20 +7,20 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 09/20/2018
-ms.openlocfilehash: b1a20875eb25cbf4a07d8a96d79eed665b26157b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 11/13/2018
+ms.openlocfilehash: f3a6a57a5fd01061493e5c216875f0c4210483f6
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996795"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645608"
 ---
 # <a name="debug-with-the-emulator"></a>使用模擬器進行偵錯
 
 Bot Framework 模擬器是一項桌面應用程式，可讓 Bot 開發人員在本機或從遠端對其 Bot 進行測試和偵錯。 使用此模擬器時，您能與您的 Bot 聊天，並檢查您的 Bot 所傳送及接收的訊息。 模擬器會顯示在 Web 聊天 UI 中出現的相同訊息，並在您與 Bot 交換訊息時記錄 JSON 要求和回應。 將您的 Bot 部署至雲端之前，請先在本機使用模擬器加以測試。 即使您尚未使用 Azure Bot Service [建好](./bot-service-quickstart.md) Bot 或將其設定為在任何通道上執行，您仍可使用模擬器來測試 Bot。
 
 ## <a name="prerequisites"></a>必要條件
-- 安裝[模擬器](https://github.com/Microsoft/BotFramework-Emulator/releases)
+- 安裝[模擬器](https://aka.ms/Emulator-wiki-getting-started)
 - 安裝 [ngrok][ngrokDownload]通道軟體
 
 ## <a name="connect-to-a-bot-running-on-localhost"></a>連線至執行於本機主機的 Bot

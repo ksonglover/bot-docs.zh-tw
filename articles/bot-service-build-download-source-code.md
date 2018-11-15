@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/26/2018
-ms.openlocfilehash: afb1c4a0e766df7ac2d122b3c7ca4e7959871dbb
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 19dd474c16224cc811a214acea6e9cb51da95b3f
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997275"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332762"
 ---
 # <a name="download-and-redeploy-bot-code"></a>下載並重新部署 Bot 程式碼
 Azure Bot Service 允許您下載 Bot 的整個來源專案，以便您使用所選的 IDE 在本機作業。 程式碼更新完成後，您可以將變更發佈回到 Azure 入口網站。 我們將示範如何使用 Azure 入口網站和 `az` cli 下載程式碼。 我們也會說明如何使用 Visual Studio 和 `az` cli 工具重新部署已更新的 Bot 程式碼。 您可以選擇最適合您的方法。
@@ -39,14 +39,14 @@ Azure Bot Service 允許您下載 Bot 的整個來源專案，以便您使用所
   "botFileSecret": "ukxxxxxxxxxxxs="
 }
 ```
-`botFilePath` 會參考您的 Bot 名稱，只要以您自己的 Bot 名稱取代 "yourbasicBot.bot" 即可。 若要取得 `botFileSecret` 金鑰，請參閱 [Bot 檔案加密](https://aka.ms/bot-file-encryption)一文，了解如何為您的 Bot 產生金鑰。
-
 
 如果您有 node.js Bot，請新增含有下列項目的 `.env` 檔案：
 ```
 botFilePath=yourbasicBot.bot
 botFileSecret=ukxxxxxxxxxxxxs=
 ```
+
+`botFilePath` 會參考您的 Bot 名稱，只要以您自己的 Bot 名稱取代 "yourbasicBot.bot" 即可。 若要取得 `botFileSecret` 金鑰，請參閱 [Bot 檔案加密](https://aka.ms/bot-file-encryption)一文，了解如何為您的 Bot 產生金鑰。
 
 接下來，編輯現有的來源檔案，或在專案中新增來源檔案，對您的來源進行變更。 使用模擬器測試您的程式碼。 當您準備要將修改過的程式碼重新部署至 Azure 入口網站時，請遵循下列指示。
 

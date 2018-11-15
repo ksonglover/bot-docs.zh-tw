@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: dc77a09f1eb7d6ccbdf98d1bee22000c56fe8e6b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d2a66955a8691210901ad5f15c9f0419eb88ab77
+ms.sourcegitcommit: 873361802bd1802f745544ba903aecf658cce639
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999685"
+ms.lasthandoff: 11/13/2018
+ms.locfileid: "51610995"
 ---
 # <a name="use-the-backchannel-mechanism"></a>使用 backchannel 機制
 
@@ -113,7 +113,7 @@ bot.on("event", function (event) {
 
 - [Direct Line API][directLineAPI]
 - <a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">Microsoft Bot Framework WebChat 控制項</a>
-- <a href="https://github.com/Microsoft/BotFramework-WebChat/blob/master/samples/backchannel/index.html" target="_blank">Backchannel 範例</a>
+- <a href="https://aka.ms/v3-js-backchannel-sample" target="_blank">Backchannel 範例</a>
 - <a href="https://github.com/ryanvolum/backChannelBot" target="_blank">Backchannel Bot</a>
 
 [directLineAPI]: https://docs.botframework.com/en-us/restapi/directline3/#navtitle

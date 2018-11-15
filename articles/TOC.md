@@ -41,8 +41,8 @@
 ### [將自然語言理解新增至您的 Bot](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答使用者的問題](v4sdk/bot-builder-howto-qna.md)
 ### 使用對話方塊程式庫管理對話 
-#### [收集使用者輸入](v4sdk/bot-builder-prompts.md)
 #### [實作循序對話流程](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
+#### [使用對話方塊提示收集使用者輸入](v4sdk/bot-builder-prompts.md)
 #### [使用分支和迴圈建立進階的對話流程](v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)
 #### [處理使用者中斷](v4sdk/bot-builder-howto-handle-user-interrupt.md)
 #### [留存使用者資料](v4sdk/bot-builder-tutorial-persist-user-inputs.md)
