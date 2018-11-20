@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f81bba9077f4935a29f47eddf078932731cdec20
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f5aacc693fb2e8987d6b59db67d0272423a4cf44
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997285"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645551"
 ---
 # <a name="enterprise-bot-template"></a>企業 Bot 範本 
 

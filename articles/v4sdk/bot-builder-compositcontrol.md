@@ -1,5 +1,5 @@
 ---
-title: 建立一組整合式對話方塊 | Microsoft Docs
+title: 重複使用對話方塊 | Microsoft Docs
 description: 了解如何在適用於 Node.js 的 Bot 建立器 SDK 和 C# 中，使用對話方塊容器將 Bot 邏輯模組化。
 keywords: 複合控制項, 模組化 Bot 邏輯
 author: v-ducvo
@@ -8,16 +8,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/08/2018
+ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0fdb80e45b343faa0eac50db045637e1ee61186e
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 5e1ddbef6181e265213ffa1fdcb65909e524be51
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999786"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332992"
 ---
-# <a name="create-an-integrated-set-of-dialogs"></a>建立一組整合式對話方塊
+# <a name="reuse-dialogs"></a>重複使用對話方塊
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 

@@ -8,20 +8,20 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/24/2018
+ms.date: 11/8/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 38d876e11d00a5471f2dcbfca44eb23290b7476c
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 713a53947a8ea6681f1793f9796a86c6d8014e29
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997975"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332922"
 ---
 # <a name="middleware"></a>中介軟體
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-中介軟體只是一個介於介面卡和 Bot 邏輯之間的類別，會在初始化期間新增至您介面卡的中介軟體集合中。 SDK 可讓您撰寫自己的中介軟體，或新增其他人建立且可重複使用的中介軟體。 每個透過中介軟體進出 Bot 流程的活動。
+中介軟體只是一個介於介面卡和 Bot 邏輯之間的類別，會在初始化期間新增至您介面卡的中介軟體集合中。 SDK 可讓您撰寫自己的中介軟體，或新增他人所建立的中介軟體。 每個透過中介軟體進出 Bot 流程的活動。
 
 介面器透過 Bot 中介軟體管道處理內送活動，並導向至 Bot 邏輯再送出。 如同每個進出 Bot 的活動流程，每個中介軟體都可檢視活動，或在 Bot 邏輯執行之前或之後採取行動。
 
@@ -66,7 +66,7 @@ Bot 中介軟體管道完成後，該回合即結束，且回合內容將超出�
 中介軟體管道的最後一個項目是 Bot 特定中介軟體，即您實作的中介軟體，用來處理每次傳送給 Bot 的訊息。 如果您的中介軟體使用狀態資訊或其他 Bot 內容中設定的資訊，請將其新增至中介軟體管道中，用於修改狀態或內容的中介軟體之後。
 
 ## <a name="short-circuiting"></a>最少運算路由
-另一個有關中介軟體 (和[回應處理常式](bot-builder-basics.md#response-event-handlers)) 的重要概念是_最少運算路由_。 如果系統繼續透過後續的執行層處理該執行作業，則中介軟體 (或回應處理常式) 必須呼叫其 _next_ 委派傳遞執行。  如果未在該中介軟體 (或回應處理常式) 中呼叫下個委派，則相關聯的管線會產生最少運算路由，而後續執行層也不會執行。 這表示所有 Bot 邏輯，以及關線中後續的任何中介軟體都會略過。 中介軟體與對一回合，產生最少運算路由的回應處理常式之間有細微差異。
+另一個有關中介軟體和回應處理常式的重要概念是「最少運算路由」。 如果系統繼續透過後續的執行層處理該執行作業，則中介軟體 (或回應處理常式) 必須呼叫其 _next_ 委派傳遞執行。  如果未在該中介軟體 (或回應處理常式) 中呼叫下個委派，則相關聯的管線會產生最少運算路由，而後續執行層也不會執行。 這表示所有 Bot 邏輯，以及關線中後續的任何中介軟體都會略過。 中介軟體與對一回合，產生最少運算路由的回應處理常式之間有細微差異。
 
 中介軟體會對一回合，產生最少運算路由，不會呼叫 Bot 回合處理常式，但在管線中此時點之前執行的所有中介軟體程式碼仍會執行到完成為止。 
 
@@ -75,5 +75,14 @@ Bot 中介軟體管道完成後，該回合即結束，且回合內容將超出�
 > [!TIP]
 > 如果您執行最少運算路由回應事件 (例如 `SendActivities`)，請確保其為您預期的行為。 否則可能會導致您難以修正錯誤。
 
+## <a name="response-event-handlers"></a>回應事件處理常式
+除了應用程式和中介軟體邏輯，回應處理常式 (有時也指事件處理常式，或活動事件處理常式) 亦可新增至內容物件。 目前的內容物件發生相關聯回應時，系統在執行實際回應之前會先呼叫處理常式。 如果您已經知道想要針對其餘目前回應中，該類型的每個活動要執行哪些動作 (無論是在實際事件之前或之後執行)，這些處理常式非常實用。
+
+> [!WARNING] 
+> 請特別小心，不要在其本身的個別回應事件處理常式內，呼叫活動回應方法，例如：從傳送活動處理常式內呼叫傳送活動方法。 這樣可能會產生無限迴圈。
+
+請記住，每個新活動都取得要在其中執行的新執行緒。 建立執行緒處理活動時，該活動的處理常式清單會複製到該執行緒。 系統不會針對該特定活動事件，執行該時間點後新增的任何處理常式。
+內容物件上所註冊的處理常式，其處理方式非常類似於介面卡管理中介軟體管線的方式。 也就是說，系統將依照處理常式新增的順序進行呼叫，然後再呼叫下一個委派，將控制項傳遞至下個註冊的事件處理常式。 如果處理常式未呼叫下個委派，則不會呼叫任何後續的事件處理常式，事件會產生最少運算路由，而且介面卡不會傳送回應給通道。
+
 ## <a name="additional-resources"></a>其他資源
-您可以看一下文稿記錄器中介軟體，其實作於 Bot Builder SDK 中 [[C#](https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Builder/TranscriptLoggerMiddleware.cs)|[JS](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-core/src/transcriptLogger.ts)]。
+您可以看一下文稿記錄器中介軟體，其實作於 Bot Builder SDK 中 [[C#](https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Builder/TranscriptLoggerMiddleware.cs) | [JS](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-core/src/transcriptLogger.ts)]。

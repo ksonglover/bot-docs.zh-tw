@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b9c8a0bc04cfcf96f6c81b624464e9698eab1699
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: ea507bbdf916ff1955aea0db17b765791432f430
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998951"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645578"
 ---
 # <a name="enterprise-bot-template---customize-your-bot"></a>企業 Bot 範本 - 自訂您的 Bot
 
@@ -108,7 +108,28 @@ Bot 的資料夾結構如下所示，且代表我們建議的最佳做法，可�
     dispatch refresh -bot "YOURBOT.bot" -secret YOURSECRET
 ```
 
-## <a name="adding-a-new-dialog"></a>新增對話方塊 
+### <a name="adding-an-additional-qnamaker-knowledgebase"></a>新增額外的 QnAMaker 知識庫
+
+在某些情況下，您可能想要將額外的 QnAMaker 知識庫新增至 Bot，這可透過下列步驟執行。
+
+1. 使用下列在輔助目錄中執行的命令，從 JSON 檔案建立新的 QnAMaker 知識庫
+```shell
+qnamaker create kb --in <KB.json> --msbot | msbot connect qna --stdin --bot "YOURBOT.bot" --secret YOURSECRET
+```
+2. 執行下列命令來更新分派模型，以反映您的變更
+```shell
+dispatch refresh --bot "YOURBOT.bot" --secret YOURSECRET
+```
+3. 更新強型別分派類別以反映新的 QnA 來源
+```shell
+msbot get dispatch --bot "YOURBOT.bot" | luis export version --stdin > dispatch.json
+luisgen dispatch.json -cs Dispatch -o Dialogs\Shared
+```
+4.  更新 `Dialogs\Main\MainDialog.cs` 檔案，以在所提供的範例後面，包含新 QnA 來源的對應分派意圖。
+
+您現在應該能夠利用多個 QnA 來源作為 Bot 的一部分。
+
+## <a name="adding-a-new-dialog"></a>新增對話方塊
 
 若要將對話方塊新增至 Bot，您必須先在對話方塊底下建立新的資料夾，並確定此類別衍生自 `EnterpriseDialog`。 接著，您必須連接對話方塊基礎結構。 上線對話方塊會顯示一個簡單範例供您參考，而底下會顯示摘錄以及步驟概觀。
 

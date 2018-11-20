@@ -1,7 +1,7 @@
 ---
-title: 使用對話方塊程式庫來收集使用者輸入 | Microsoft Docs
+title: 使用對話方塊提示收集使用者輸入 | Microsoft Docs
 description: 了解如何在 Bot Builder SDK 中使用對話方塊 程式庫來提示使用者輸入。
-keywords: 提示, 對話, AttachmentPrompt, ChoicePrompt, ConfirmPrompt, DatetimePrompt, NumberPrompt, TextPrompt, 重新提示, 驗證
+keywords: 提示, 提示, 使用者輸入, 對話方塊, AttachmentPrompt, ChoicePrompt, ConfirmPrompt, DatetimePrompt, NumberPrompt, TextPrompt, 重新提示, 驗證
 author: JonathanFingold
 ms.author: v-jofing
 manager: kamrani
@@ -10,22 +10,18 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/02/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 150d5f0a68d897ac278026a7cf36609aca05bb80
-ms.sourcegitcommit: 984705927561cc8d6a84f811ff24c8c71b71c76b
+ms.openlocfilehash: ec0cc5e942ed66c8683f8b0cc92ba7df2e36db42
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50965716"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645668"
 ---
-# <a name="use-dialog-library-to-gather-user-input"></a>使用對話方塊程式庫來收集使用者輸入
+# <a name="gather-user-input-using-a-dialog-prompt"></a>使用對話方塊提示蒐集使用者輸入
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 張貼問題來收集資訊是 Bot 與使用者互動時的其中一種主要方式。 您可以使用[回合內容](~/v4sdk/bot-builder-basics.md#defining-a-turn)物件的「傳送活動」方法直接這麼做，然後以回應的形式來處理下一個傳入訊息。 不過，Bot Builder SDK 會提供 [dialogs 程式庫](bot-builder-concept-dialog.md)，其所提供的方式經過設計，可讓您更容易地問問題，以及確保回應符合特定資料類型或符合自訂驗證規則。 本主題詳細說明如何使用提示要求使用者提供輸入，來實現這一點。
-
-本文說明如何建立提示以及從對話方塊內呼叫提示。
-如需不使用對話方塊提示輸入的做法，請參閱[使用您自己的提示來提示使用者提供輸入](bot-builder-primitive-prompts.md)。
-如需在一般情況下使用對話方塊的做法，請參閱[使用對話方塊來管理簡單對話流程](bot-builder-dialog-manage-conversation-flow.md)。
 
 ## <a name="prompt-types"></a>提示類型
 
@@ -431,13 +427,6 @@ constructor(conversationState) {
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```csharp
-/// <summary>Validates whether the party size is appropriate to make a reservation.</summary>
-/// <param name="promptContext">The validation context.</param>
-/// <param name="cancellationToken">A cancellation token that can be used by other objects
-/// or threads to receive notice of cancellation.</param>
-/// <returns>A task that represents the work queued to execute.</returns>
-/// <remarks>Reservations can be made for groups of 6 to 20 people.
-/// If the task is successful, the result indicates whether the input was valid.</remarks>
 private async Task<bool> PartySizeValidatorAsync(
     PromptValidatorContext<int> promptContext,
     CancellationToken cancellationToken)
@@ -469,7 +458,7 @@ private async Task<bool> PartySizeValidatorAsync(
 
 ```javascript
 async partySizeValidator(promptContext) {
-    // Check whether the input could be recognized as an integer.
+    // Check whether the input could be recognized as date.
     if (!promptContext.recognized.succeeded) {
         await promptContext.context.sendActivity(
             "I'm sorry, I do not understand. Please enter the number of people in your party.");
@@ -503,13 +492,8 @@ async partySizeValidator(promptContext) {
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```csharp
-/// <summary>Validates whether the reservation date is appropriate.</summary>
-/// <param name="promptContext">The validation context.</param>
-/// <param name="cancellationToken">A cancellation token that can be used by other objects
-/// or threads to receive notice of cancellation.</param>
-/// <returns>A task that represents the work queued to execute.</returns>
-/// <remarks>Reservations must be made at least an hour in advance.
-/// If the task is successful, the result indicates whether the input was valid.</remarks>
+// Validates whether the reservation date is appropriate.
+// Reservations must be made at least an hour in advance.
 private async Task<bool> DateValidatorAsync(
     PromptValidatorContext<IList<DateTimeResolution>> promptContext,
     CancellationToken cancellationToken = default(CancellationToken))
@@ -584,12 +568,7 @@ return false;
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```csharp
-/// <summary>First step of the main dialog: prompt for party size.</summary>
-/// <param name="stepContext">The context for the waterfall step.</param>
-/// <param name="cancellationToken">A cancellation token that can be used by other objects
-/// or threads to receive notice of cancellation.</param>
-/// <returns>A task that represents the work queued to execute.</returns>
-/// <remarks>If the task is successful, the result contains information from this step.</remarks>
+// First step of the main dialog: prompt for party size.
 private async Task<DialogTurnResult> PromptForPartySizeAsync(
     WaterfallStepContext stepContext,
     CancellationToken cancellationToken = default(CancellationToken))
@@ -605,13 +584,8 @@ private async Task<DialogTurnResult> PromptForPartySizeAsync(
         cancellationToken);
 }
 
-/// <summary>Second step of the main dialog: record the party size and prompt for the
-/// reservation date.</summary>
-/// <param name="stepContext">The context for the waterfall step.</param>
-/// <param name="cancellationToken">A cancellation token that can be used by other objects
-/// or threads to receive notice of cancellation.</param>
-/// <returns>A task that represents the work queued to execute.</returns>
-/// <remarks>If the task is successful, the result contains information from this step.</remarks>
+// Second step of the main dialog: record the party size and prompt for the
+// reservation date.
 private async Task<DialogTurnResult> PromptForReservationDateAsync(
     WaterfallStepContext stepContext,
     CancellationToken cancellationToken = default(CancellationToken))
@@ -631,12 +605,7 @@ private async Task<DialogTurnResult> PromptForReservationDateAsync(
         cancellationToken);
 }
 
-/// <summary>Third step of the main dialog: return the collected party size and reservation date.</summary>
-/// <param name="stepContext">The context for the waterfall step.</param>
-/// <param name="cancellationToken">A cancellation token that can be used by other objects
-/// or threads to receive notice of cancellation.</param>
-/// <returns>A task that represents the work queued to execute.</returns>
-/// <remarks>If the task is successful, the result contains information from this step.</remarks>
+// Third step of the main dialog: return the collected party size and reservation date.
 private async Task<DialogTurnResult> AcknowledgeReservationAsync(
     WaterfallStepContext stepContext,
     CancellationToken cancellationToken = default(CancellationToken))
@@ -822,8 +791,6 @@ async onTurn(turnContext) {
 
 ---
 
-其他範例可在[範例存放庫](https://aka.ms/bot-samples-readme)中找到。
-
 您可以使用類似的技巧，來驗證任何提示類型的提示回應。
 
 ## <a name="handling-prompt-results"></a>處理提示結果
@@ -834,19 +801,10 @@ async onTurn(turnContext) {
 * 快取對話方塊狀態中的資訊，例如在瀑布式步驟內容的 _values_ 屬性中設定一個值，然後在對話結束時傳回所收集的資訊。
 * 將資訊儲存到 Bot 狀態。 這需要您設計對話方塊，以取得 Bot 的狀態屬性存取子存取權。
 
-請參閱其他資源，以取得涵蓋這些案例的主題和範例。
-
 ## <a name="additional-resources"></a>其他資源
-
-* [管理簡單對話流程](bot-builder-dialog-manage-conversation-flow.md)
-* [管理複雜交談流程](bot-builder-dialog-manage-complex-conversation-flow.md)
-* [建立一組整合式對話方塊](bot-builder-compositcontrol.md)
-* [保存對話方塊中的資料](bot-builder-tutorial-persist-user-inputs.md)
-* **多回合提示** 範例 ([C#](https://aka.ms/cs-multi-prompts-sample) | [JS](https://aka.ms/js-multi-prompts-sample))
+若要深入了解多個提示，請參閱 [[C#](https://aka.ms/cs-multi-prompts-sample) 或 [JS](https://aka.ms/js-multi-prompts-sample)] 中的範例。
 
 ## <a name="next-steps"></a>後續步驟
 
-現在您已了解如何提示使用者輸入，接下來我們將透過對話方塊來管理各種對話流程，以強化 Bot 程式碼並提升使用者體驗。
-
 > [!div class="nextstepaction"]
-> [管理複雜交談流程](bot-builder-dialog-manage-complex-conversation-flow.md)
+> [實作基本的循序對話流程](bot-builder-dialog-manage-conversation-flow.md)

@@ -1,22 +1,18 @@
 ---
-title: 歡迎使用者 | Microsoft Docs
-description: 了解如何設計 Bot，以提供親切的使用者體驗。
-keywords: 概觀, 設計, 使用者體驗, 歡迎, 個人化體驗
-author: dashel
-ms.author: dashel
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 8/30/2018
-monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f9c58762e0733fbb379b43375710e651424095fc
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+redirect_url: /bot-framework/bot-builder-send-welcome-message
+ms.openlocfilehash: ef281fd1b6539484c06f68caffbd4e87ec8acc2b
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998745"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332902"
 ---
+<a name="--"></a><!--
+---
+標題：歡迎使用者 | Microsoft Docs 描述：了解如何設計 Bot，以提供親切的使用者體驗。
+關鍵字：概觀, 設計, 使用者體驗, 歡迎, 個人化體驗 作者：dashel ms.author: dashel manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date: 8/30/2018 monikerRange: 'azure-bot-service-4.0'
+---
+
 # <a name="welcoming-the-user"></a>歡迎使用者
 
 建立任何 Bot 時的主要目標就是讓您的使用者參與有意義的對話。 達成此目標的最佳方式之一就是確保從使用者第一次連線的那一刻，他們就了解您 Bot 的主要用途和功能，以及您 Bot 的建立原因。
@@ -74,3 +70,5 @@ ms.locfileid: "49998745"
 ## <a name="next-steps"></a>後續步驟
 > [!div class="nextstepaction"]
 > [將歡迎訊息傳送給使用者](bot-builder-send-welcome-message.md)
+
+-->

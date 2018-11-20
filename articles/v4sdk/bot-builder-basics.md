@@ -1,5 +1,5 @@
 ---
-title: Bot Builder SDK 中的 Bot 活動 | Microsoft Docs
+title: Bot 的運作方式 | Microsoft Docs
 description: 說明 Bot Builder SDK 內的活動和 http 運作方式。
 keywords: 對話流程, 回合, bot 對話, 對話方塊, 提示, 瀑布, 對話方塊集
 author: johnataylor
@@ -8,16 +8,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/31/2018
+ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f86c666b7a8ff754681a7eca7005fc42676705fc
-ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
+ms.openlocfilehash: 852740695f4d5719ba4dc4cc3d49c6820d95b3ef
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2018
-ms.locfileid: "50736706"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51333002"
 ---
-# <a name="understanding-how-bots-work"></a>了解 Bot 的運作方式
+# <a name="how-bots-work"></a>Bot 的運作方式
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -55,38 +55,13 @@ Bot 是使用者可運用文字、圖形 (例如卡片或影像) 或語音等對
 
 在上述範例中，Bot 使用了包含相同文字訊息的另一個訊息活動回覆訊息活動。 處理會從送達網路伺服器的 HTTP POST 要求 (以 JSON 承載形式隨附活動資訊) 著手。 在 C# 中，這通常會是 ASP.NET 專案，在 JavaScript Node.js 專案中，這可能是其中一種熱門架構，例如 Express 或 Restify。
 
-「配接器」是 SDK 的整合式元件，可作為架構的導體。 此服務會使用活動資訊來建立活動物件，然後呼叫配接器的「處理活動」方法，同時傳入活動物件和驗證資訊 (此呼叫會包裝在適用於 C# 的程式庫中，但您會在 JavaScript 中看到)。 收到活動時，配接器會建立回合內容物件並呼叫[中介軟體](#middleware)。 處理會繼續進行中介軟體之後的 Bot 邏輯，管線會完成，而配接器會處置回合內容物件。
-
-Bot 的「回合處理常式」 構成大部分的應用程式邏輯，其將回合內容作為其引數。 回合處理常式通常會處理輸入活動的內容，並且在回應時產生一或多個活動，然後使用回合內容的「傳送活動」方法將這些回動送出。 呼叫傳送活動方法就會將活動傳送到使用者的通道，除非處理發生中斷。 活動會先通過任何已註冊的[事件處理常式](#response-event-handlers)，再傳送到通道。
-
-## <a name="middleware"></a>中介軟體
-
-中介軟體是一組依序新增和執行的線性元件，可讓每個原則有機會在 Bot 的回合處理常式前後在活動上運作，並可存取該活動的回合內容。 除非中介軟體[短路](~/v4sdk/bot-builder-concept-middleware.md#short-circuiting)，否則中介軟體管線的最後階段是可叫用 Bot 回合處理常式的回呼，而後傳回堆疊。 如需有關中介軟體的深入詳細資訊，請參閱[中介軟體主題](~/v4sdk/bot-builder-concept-middleware.md)。
-
-## <a name="generating-responses"></a>產生回應
-
-回合內容會提供活動回應方法，讓程式碼回應活動：
-
-* _傳送活動_和_傳送活動_方法可傳送一或多個活動至對話。
-* 如果通道支援，_更新活動_方法也可更新交談內的活動。
-* 如果通道支援，_刪除活動_方法也可移除交談內的活動。
-
-每個回應方法都會以非同步程序執行。 系統呼叫活動回應方法時，該方法開始呼叫處理常式之前，會先複製相關聯的[事件處理常式](#response-event-handlers)清單，這代表其中包含每個要在此點上新增的每個處理常式，但不包含處理程序開始後新增的項目。
-
-此外，這也表示不保證獨立活動呼叫的回應順序，特別是其中一個工作比另一個更複雜的時候。 如果 Bot 可對內送活動產生多個回應，請確保使用者收到時無論什麼順序都符合常理。 唯一的例外是「傳送活動」方法，該方法可讓您傳送已排序的活動集合。
+「配接器」 (SDK 的整合式元件) 是 SDK 執行階段的核心。 在 HTTP POST 主體中會以 JSON 形式隨附活動。 此 JSON 會還原序列化以建立活動物件，而該物件會透過呼叫「處理活動」方法送交配接器。 接收活動時，配接器會建立「回合內容」並呼叫中介軟體。 「回合內容」這個名稱沿用「回合」這個字，用來描述與活動送達相關聯的所有處理。 回合內容是 SDK 中重要的抽象概念之一，不只隨附所有中介軟體元件的輸入活動和應用程式邏輯，但也提供中介軟體元件和應用程式邏輯用以傳送輸出活動的機制。 回合內容會提供「傳送、更新和刪除活動」回應方法來回應活動。 每個回應方法都會以非同步程序執行。 
 
 [!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
 
-## <a name="response-event-handlers"></a>回應事件處理常式
 
-除了應用程式和中介軟體邏輯，回應處理常式 (有時也指事件處理常式，或活動事件處理常式) 亦可新增至內容物件。 目前的內容物件發生相關聯[回應](#generating-responses)時，系統在執行實際回應之前會先呼叫處理常式。 如果您已經知道想要針對其餘目前回應中，該類型的每個活動要執行哪些動作 (無論是在實際事件之前或之後執行)，這些處理常式非常實用。
-
-> [!WARNING]
-> 請特別小心，不要在其本身的個別回應事件處理常式內呼叫活動回應方法，例如：從_傳送活動_處理常式內呼叫傳送活動方法。 這樣可能會產生無限迴圈。
-
-請記住，每個新活動都取得要在其中執行的新執行緒。 建立執行緒處理活動時，該活動的處理常式清單會複製到該執行緒。 系統不會針對該特定活動事件，執行該時間點後新增的任何處理常式。
-
-內容物件上所註冊的處理常式，其處理方式非常類似於介面卡管理[中介軟體管線](~/v4sdk/bot-builder-concept-middleware.md#the-bot-middleware-pipeline)的方式。 也就是說，系統將依照處理常式新增的順序進行呼叫，然後再呼叫 _next_ 委派，將控制項傳遞至下個註冊的事件處理常式。 如果處理常式未呼叫下個委派，則不會呼叫任何後續的事件處理常式，事件會產生[最少運算路由](~/v4sdk/bot-builder-concept-middleware.md#short-circuiting)，而且介面卡不會傳送回應給通道。
+## <a name="middleware"></a>中介軟體
+中介軟體就像任何其他傳訊中介軟體，包含一組依序執行的線性元件，可讓每個元件都有機會在活動上運作。 中介軟體管線的最後一個階段是回呼，可在應用程式已向配接器註冊的 Bot 類別上叫用回合處理常式 (在 C# 中為 `OnTurnAsync` 以及在 JS 中為 `onTurn`) 函式。 回合處理常式會以回合內容作為其引數，在回合處理常式函式內執行的應用程式邏輯，通常會處理輸入活動的內容，並且在回應時產生一或多個活動，然後使用回合內容的「傳送活動」函式將這些活動送出。 對回合內容呼叫「傳送活動」會導致在輸出活動上叫用中介軟體元件。 中介軟體元件會在 Bot 的回合處理常式函式前後執行。 此執行原本就是巢狀，因此有時候會比喻為俄羅斯娃娃。 如需有關中介軟體的深入詳細資訊，請參閱[中介軟體主題](~/v4sdk/bot-builder-concept-middleware.md)。
 
 ## <a name="bot-structure"></a>Bot 結構
 
@@ -96,7 +71,7 @@ Bot 的「回合處理常式」 構成大部分的應用程式邏輯，其將回
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
-Bot 是一種 [ASP.NET Core](https://docs.microsoft.com/aspnet/core/?view=aspnetcore-2.1) Web 應用程式。 如果您查看 [ASP.NET](https://docs.microsoft.com/aspnet/core/fundamentals/index?view=aspnetcore-2.1&tabs=aspnetcore2x) 基礎，您會在 Program.cs 和 Startup.cs 等檔案中看到類似的程式碼。 所有 Web 應用程式都需要這些檔案，並不是 Bot 特有的。 有些檔案中的程式碼不會複製於此，但是您可以參考 Echo Bot With Counter 範例。
+Bot 是一種 [ASP.NET Core](https://docs.microsoft.com/aspnet/core/?view=aspnetcore-2.1) Web 應用程式。 如果您查看 [ASP.NET](https://docs.microsoft.com/aspnet/core/fundamentals/index?view=aspnetcore-2.1&tabs=aspnetcore2x) 基礎，您會在 **Program.cs** 和 **Startup.cs** 等檔案中看到類似的程式碼。 所有 Web 應用程式都需要這些檔案，並不是 Bot 特有的。 有些檔案中的程式碼不會複製於此，但是您可以參考 [C# echobot-with-counter](https://aka.ms/EchoBot-With-Counter) 範例。
 
 ### <a name="echowithcounterbotcs"></a>EchoWithCounterBot.cs
 
@@ -245,7 +220,7 @@ public class EchoBotAccessors
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-系統區段主要包含 **package.json**、**.env**、**index.js** 及 **README.md** 檔案。 有些檔案中的程式碼不會複製於此，但是您會在執行 Bot 時看到。
+Yeoman 產生器會建立 [Restify](http://restify.com/) Web 應用程式。 如果您查看其文件中的 Restify 快速入門，您會看到類似於所產生 **index.js** 檔案的應用程式。 本節主要說明 **package.json****.env** 、**index.js**、**bot.js** 和 **echobot-with-counter.bot** 檔案。 有些檔案中的程式碼不會複製於此，但是您會在執行 Bot 時看到，還可參考 [Node.js echobot-with-counter](https://aka.ms/js-echobot-with-counter) 範例。
 
 ### <a name="packagejson"></a>package.json
 

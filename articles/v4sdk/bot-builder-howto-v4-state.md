@@ -1,5 +1,5 @@
 ---
-title: 管理對話和使用者狀態 | Microsoft Docs
+title: 儲存使用者和對話資料 | Microsoft Docs
 description: 了解如何藉由 Bot Builder SDK for .NET 儲存及擷取資料。
 keywords: 對話狀態、使用者狀態、對話流程
 author: ivorb
@@ -8,16 +8,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/18/18
+ms.date: 11/14/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2a3709111b048730805b5578306c669591122dda
-ms.sourcegitcommit: 633008f8db06f1bb5be7bacdb7dd8de6f8165328
+ms.openlocfilehash: 5698c50b167e7162ef6910b7c428dab5ceb51d0e
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2018
-ms.locfileid: "50753606"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645638"
 ---
-# <a name="manage-conversation-and-user-state"></a>管理對話和使用者狀態
+# <a name="save-user-and-conversation-data"></a>儲存使用者和對話資料
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -308,7 +308,9 @@ else {
 ---
 
 ## <a name="start-your-bot"></a>啟動 Bot
-在本機執行您的 Bot。
+- 針對 JavaScript Bot：在終端機或命令提示字元中，將目錄變更為針對您的 Bot 所建立的目錄，並以 `npm start` 開頭。 此時，Bot 正在本機執行。
+
+- 針對 C# Bot：使用 Visual Studio 在本機執行 Bot。 按一下執行按鈕，Visual Studio 將會建置應用程式、將其部署到 localhost，並啟動 Web 瀏覽器來顯示應用程式的 ``default.htm`` 頁面。 此時，Bot 正在本機執行。
 
 ### <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並且連線至您的 Bot
 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：

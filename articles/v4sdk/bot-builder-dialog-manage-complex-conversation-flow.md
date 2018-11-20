@@ -1,5 +1,5 @@
 ---
-title: 使用對話方塊管理複雜的對話流程 | Microsoft Docs
+title: 使用分支和迴圈建立進階的對話流程 | Microsoft Docs
 description: 了解如何在適用於 Node.js 的 Bot 建立器 SDK 中，使用對話方塊來管理複雜的對話流程。
 keywords: 複雜對話流程, 重複, 迴圈, 選單, 對話方塊, 提示, 瀑布, 對話方塊集
 author: v-ducvo
@@ -8,24 +8,24 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/03/2018
+ms.date: 11/03/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bbb038554801f4585cbc1e3186d139232405b47d
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 9605a2f078be753023e6d178247a211ace107873
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999825"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51333022"
 ---
-# <a name="manage-complex-conversation-flows-with-dialogs"></a>使用對話方塊來管理複雜的對話流程
+# <a name="create-advance-conversation-flow-using-branches-and-loops"></a>使用分支和迴圈建立進階的對話流程
 
 [!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
-在上一篇文章中，我們已示範如何使用對話方塊程式庫來管理簡單的對話。 在[簡單對話流程](bot-builder-dialog-manage-conversation-flow.md)中，使用者從「瀑布圖」的第一個步驟開始，持續進行到最後一個步驟，對話交換即完成。 在本文中，我們會使用對話方塊來管理更複雜的對話，其中部分可以進行分支和迴圈。 為完成此作業，我們將使用對話方塊內容上定義的各種方法及瀑布步驟內容，而且我們會在對話方塊的不同部分之間傳遞引數。
+在上一篇文章中，我們已示範如何使用對話方塊程式庫來管理簡單的對話。 在[循序對話流程](bot-builder-dialog-manage-conversation-flow.md)中，使用者從「瀑布」的第一個步驟開始，持續進行到最後一個步驟，對話交換即完成。 在本文中，我們會使用對話方塊來管理更複雜的對話，其中部分可以進行分支和迴圈。 為完成此作業，我們將使用對話方塊內容上定義的各種方法及瀑布步驟內容，而且我們會在對話方塊的不同部分之間傳遞引數。
 
 請參閱[對話方塊程式庫](bot-builder-concept-dialog.md)，以深入了解對話方塊的背景資訊。
 
-為了讓您可以更充分地控制「對話方塊堆疊」，**對話方塊**程式庫提供了 _replace dialog_ 方法。 此方法可讓您將目前使用中的對話方塊交換成另一個對話方塊，同時維持對話的狀態或流程。 如果您要建立更複雜的互動，_begin dialog_ 和 _replace dialog_ 方法可讓您建立必要的分支和迴圈。 如果您的對話複雜性升高到難以管理瀑布對話方塊的情況，請使用[元件對話方塊](bot-builder-compositcontrol.md)，或根據基底 `Dialog` 類別建置自訂對話方塊管理類別，來研究此狀況。
+為了讓您可以更充分地控制「對話方塊堆疊」，**對話方塊**程式庫提供了 _replace dialog_ 方法。 此方法可讓您將目前使用中的對話方塊交換成另一個對話方塊，同時維持對話的狀態或流程。 如果您要建立更複雜的互動，_begin dialog_ 和 _replace dialog_ 方法可讓您建立必要的分支和迴圈。 如果您的對話複雜性升高到難以管理瀑布式對話方塊的情況，請調查[對話方塊重複使用](bot-builder-compositcontrol.md)情況，或根據基底 `Dialog` 類別建置自訂對話方塊管理類別。
 
 在本文中，我們將針對旅館門房 Bot 建立範例對話，來賓可能會使用此 Bot 來取得常見服務：預訂旅館餐廳和透過客房服務訂餐。  這每一個功能 (包含將其連接在一起的功能表) 會建立為對話方塊集合中的對話方塊。
 

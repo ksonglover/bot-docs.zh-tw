@@ -8,24 +8,38 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/31/2018
+ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b3582d962911b6024062942a6d9f6ff1efab4022
-ms.sourcegitcommit: a54a70106b9fdf278fd7270b25dd51c9bd454ab1
+ms.openlocfilehash: 25745d380e53173c4dc67d280c120ced5845078b
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/08/2018
-ms.locfileid: "51273085"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332912"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-我們先前的[歡迎使用者](./bot-builder-welcome-user.md)設計文章討論了您可以實作各種最佳做法，確保使用者能與您的 Bot 擁有良好的初始互動。 這篇文章提供簡短的程式碼範例，協助您歡迎使用者使用您的 Bot，以擴充該主題。
+建立任何 Bot 時的主要目標就是讓您的使用者參與有意義的對話。 達成此目標的最佳方式之一就是確保從使用者第一次連線的那一刻，他們就了解您 Bot 的主要用途和功能，以及您 Bot 的建立原因。 這篇文章提供程式碼範例，協助您歡迎使用者使用 Bot。
 
 ## <a name="same-welcome-for-different-channels"></a>不同通道使用相同的歡迎
+每當使用者第一次與您的 Bot 互動時，應該就會產生歡迎訊息。 若要達成此目的，您可以監視 Bot 的 [活動] 類型並監看新的連線。 視通道而定，每個新連線都可以產生最多兩個對話更新活動。
 
-下列範例可監看新的「對話更新」活動，根據加入對話的使用者只傳送一則歡迎訊息，以及設定提示狀態旗標來忽略使用者的初始對話輸入。 下列程式碼範例會使用 Github 存放庫中適用於 [C#](https://aka.ms/bot-welcome-sample-cs) 和 [JS](https://aka.ms/bot-welcome-sample-js) 程式碼的歡迎使用者範例。
+- 當使用者的 Bot 連線到對話時產生一個。
+- 當使用者加入對話時產生一個。
+
+每當偵測到新的對話更新時，只會產生歡迎訊息，但是透過各種通道存取您的 Bot 時，可能會導致無法預期的結果。
+
+當使用者最初連結至該通道時，有些通道會建立一個對話更新，而只有在收到來自使用者的初始輸入訊息之後，才會建立不同的對話更新。 當使用者最初連線至通道時，其他通道會產生這兩個活動。 如果您只監看對話更新事件，並且在具有兩個對話更新活動的通道上顯示歡迎訊息，使用者可能會收到下列訊息：
+
+![雙重歡迎訊息](./media/double_welcome_message.png)
+
+只針對第二個對話更新事件，產生初始歡迎訊息，可以避免此重複訊息。 在下列兩種情況下，可以偵測到第二個事件：
+- 已發生對話更新事件。
+- 新的成員 (使用者) 已加入對話。
+
+下列範例可監看新的「對話更新」活動，根據加入對話的使用者只傳送一則歡迎訊息，以及設定提示狀態旗標來忽略使用者的初始對話輸入。 您可以從 GitHub 下載完整原始程式碼 [[C#](https://aka.ms/bot-welcome-sample-cs) 或 [JS](https://aka.ms/bot-welcome-sample-js)]。
 
 [!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
 
@@ -231,8 +245,7 @@ module.exports = MainDialog;
 ---
 
 ## <a name="discard-initial-user-input"></a>捨棄初始使用者輸入
-
-為了確保您的使用者在所有可能的通道上均有良好的體驗，我們會提供初始提示，並設定要在使用者的回覆中尋找的關鍵字，以避免處理無效的回應資料。
+此外，務必考量使用者的輸入何時實際上可能包含實用資訊，而這也可能因通道而異。 為了確保您的使用者在所有可能的通道上均有良好的體驗，我們會提供初始提示，並設定要在使用者的回覆中尋找的關鍵字，以避免處理無效的回應資料。
 
 ## <a name="ctabcsharpmulti"></a>[C#](#tab/csharpmulti)
 
@@ -363,12 +376,12 @@ private static async Task SendIntroCardAsync(ITurnContext turnContext, Cancellat
 }
 ```
 
-接下來，我們可以使用下列 await 命令來傳送卡片。 讓我們將此放入 Bot _switch (text)_ _case "hel
+接下來，我們可以使用下列 await 命令來傳送卡片。 讓我們將此放入 Bot _switch (text) case "help"_。
 
 ```csharp
 switch (text)
 {
-    case "hello":
+    case "hello":"
     case "hi":
         await turnContext.SendActivityAsync($"You said {text}.", cancellationToken: cancellationToken);
         break;

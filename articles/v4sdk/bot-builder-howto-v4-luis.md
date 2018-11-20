@@ -1,5 +1,5 @@
 ---
-title: 將 LUIS 用於 Language Understanding | Microsoft Docs
+title: 將自然語言理解新增至您的 Bot | Microsoft Docs
 description: 了解如何搭配 Bot Builder SDK 將 LUIS 用於自然語言理解。
 keywords: Language Understanding, LUIS, intent, recognizer, entities, middleware, 意圖, 辨識器, 實體, 中介軟體
 author: ivorb
@@ -8,20 +8,20 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 10/12/18
+ms.date: 11/08/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 395db5e1913b840340e5887cf09e6c59f90742a4
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: eab8e2f9d437748d0bb0fefd31c03c8fb350c6b1
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997665"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645698"
 ---
-# <a name="using-luis-for-language-understanding"></a>將 LUIS 用於 Language Understanding
+# <a name="add-natural-language-understanding-to-your-bot"></a>將自然語言理解新增至您的 Bot
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-讓您的 Bot 能透過對話和上下文了解使用者的意思，並不是簡單的工作，但這樣的功能可讓您的 Bot 使用起來更有自然對話的感覺。 Language Understanding (稱為 LUIS) 能讓您這麼做，使您的 Bot 可以辨識使用者訊息的意圖，這樣使用者就能使用更自然的語言，且更順利地引導交談流程。 如果您需要 LUIS 與 Bot 之整合方式的詳細背景資訊，請參閱[Bot 的語言理解](./bot-builder-concept-LUIS.md)。
+讓您的 Bot 能透過對話和上下文了解使用者的意思，並不是簡單的工作，但這樣的功能可讓您的 Bot 使用起來更有自然對話的感覺。 Language Understanding (稱為 LUIS) 能讓您這麼做，使您的 Bot 可以辨識使用者訊息的意圖，這樣使用者就能使用更自然的語言，且更順利地引導交談流程。 如需 LUIS 的更多背景資訊，請參閱 Bot 的 [Language Understanding](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/what-is-luis)。
 
 ## <a name="prerequisites"></a>必要條件
 此主題逐步引導您設定簡單的 Bot，並使用 LUIS 辨識幾個不同的意圖。 本文中的程式碼是以 NLP 為基礎，包含 [C#](https://aka.ms/cs-luis-sample) 和 [JavaScript](https://aka.ms/js-luis-sample) 的 LUIS 範例。
@@ -253,7 +253,7 @@ public class LuisBot : IBot
 }
 ```
 
-在 **index.js** 檔案中，我們會讀入組態資訊以產生 LUIS 服務及初始化 Bot。
+在 **bot.js** 檔案中，我們會讀入組態資訊以產生 LUIS 服務及初始化 Bot。
 將 `LUIS_CONFIGURATION` 的值更新為您的 LUIS 應用程式名稱，因為其會出現在您的組態檔中。
 
 ```javascript

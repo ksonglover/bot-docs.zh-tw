@@ -1,23 +1,23 @@
 ---
-title: 如何使用主動式傳訊 | Microsoft Docs
-description: 了解如何使用 Bot 傳送主動傳訊。
-keywords: 主動式訊息
+title: 從 Bot 取得通知 | Microsoft Docs
+description: 了解如何傳送通知訊息
+keywords: 主動式訊息, 通知訊息, bot 通知,
 author: jonathanfingold
 ms.author: jonathanfingold
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/27/2018
+ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 032d7027db3ce83c54bbacf913c2021a22c3f356
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: fac1e026ac92fcbe1b5c5bb9363c29e1d9e9b02a
+ms.sourcegitcommit: b6327fa0b4547556d2d45d8910796e0c02948e43
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997585"
+ms.lasthandoff: 11/15/2018
+ms.locfileid: "51681585"
 ---
-# <a name="how-to-use-proactive-messaging"></a>如何使用主動式傳訊
+# <a name="get-notification-from-a-bot"></a>從 Bot 取得通知
 
 [!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
@@ -38,111 +38,67 @@ Bot 只會在每次觸發時將訊息插入對話，不會顧及使用者目前�
 
 若要更順利地處理通知，請考慮使用其他方式將通知整合到對話流程中，例如在對話狀態中設定旗標，或將通知新增至佇列。
 
-## <a name="prerequisites"></a>必要條件
+### <a name="prerequisites"></a>必要條件
+- 採用 [C#](https://aka.ms/proactive-sample-cs) 或 [JS](https://aka.ms/proactive-sample-js) 的一份**主動式訊息範例**。
+- 針對 JS，安裝適用於 Node.js 的 [Bot Builder](https://www.npmjs.com/package/botbuilder)
 
-若要傳送主動式訊息，Bot 必須擁有有效的應用程式識別碼和密碼。 不過，如需在模擬器中進行本機測試，您可以使用預留位置應用程式識別碼。
 
-若要取得要用於 Bot 的應用程式識別碼和密碼，您可以登入 [Azure 入口網站](https://portal.azure.com)並建立 **Bot 通道註冊**資源。 基於測試目的，您可以接著在本機對 Bot 使用此應用程式識別碼和密碼，而不需部署至 Azure。
+### <a name="about-the-sample-code"></a>關於範例程式碼
 
-> [!TIP]
-> 若您還沒有訂用帳戶，則可以註冊<a href="https://azure.microsoft.com/en-us/free/" target="_blank">免費帳戶</a>。
+主動式訊息範例展示可能需要不定量時間的使用者工作。 Bot 會儲存有關該工作的資訊，告訴使用者將會在工作完成時通知他們，並且讓對話繼續。 當工作完成時，Bot 會在原始對話上主動傳送確認訊息。
 
-### <a name="required-libraries"></a>必要的程式庫
+#### <a name="define-job-data-and-state"></a>定義作業資料和狀態
 
-如果您從其中一個 BotBuilder 範本著手，則會為您安裝必要的程式庫。 這些是主動式傳訊所需的特定 BotBuilder 程式庫：
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-**Microsoft.Bot.Builder.Integration.AspNet.Core** NuGet 套件。 (安裝此套件也會安裝 **Microsoft.Bot.Builder** 套件。)
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-**Microsoft.Bot.Builder** npm 套件。
-
----
-
-## <a name="notes-on-the-sample-code"></a>範例程式碼的注意事項
-
-本文的程式碼取自主動式訊息範例 [[C#](https://aka.ms/proactive-sample-cs) | [JS](https://aka.ms/proactive-sample-js)]。
-
-此範例展示可能需要不定量時間的使用者工作。 Bot 會儲存有關該工作的資訊，告訴使用者將會在工作完成時通知他們，並且讓對話繼續。 當工作完成時，Bot 會在原始對話上主動傳送確認訊息。
-
-## <a name="define-job-data-and-state"></a>定義作業資料和狀態
-
-在此案例中，我們會追蹤可由各種使用者在不同的對話中建立的任意作業。 我們需要儲存每項工作的相關資訊，包括對話參考和作業識別碼。
-
-- 我們需要對話參考，才能將主動式訊息傳送至適當的對話。
-- 我們需要可識別作業的方法。 在此範例中，我們使用簡單的時間戳記。
-- 我們需要將作業狀態與對話或使用者狀態分開儲存。
+在此案例中，我們會追蹤可由各種使用者在不同的對話中建立的任意作業。 我們需要儲存每項工作的相關資訊，包括對話參考和作業識別碼。 我們需要：
+- 對話參考，才能將主動式訊息傳送至適當的對話。
+- 可識別作業的方法。 在此範例中，我們使用簡單的時間戳記。
+- 將作業狀態與對話或使用者狀態分開儲存。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 我們需要定義作業資料和工作狀態的類別。 我們也需要註冊我們的 Bot，並設定作業記錄的狀態屬性存取子。
 
-### <a name="define-a-class-for-job-data"></a>定義作業資料的類別
+#### <a name="define-a-class-for-job-data"></a>定義作業資料的類別
 
-**JobLog** 類別會追蹤作業資料 (依作業編號 (時間戳記) 編製索引)。 作業資料會定義為字典的內部類別。
+`JobLog` 類別會追蹤作業資料 (依作業編號 (時間戳記) 編製索引)。 `JobLog` 類別可追蹤所有未完成的作業。  每項作業是透過唯一索引鍵來識別。 `Job data` 會描述作業狀態，並且定義為字典的內部類別。
 
 ```csharp
-/// <summary>Contains a dictionary of job data, indexed by job number.</summary>
-/// <remarks>The JobLog class tracks all the outstanding jobs.  Each job is
-/// identified by a unique key.</remarks>
 public class JobLog : Dictionary<long, JobLog.JobData>
 {
-    /// <summary>Describes the state of a job.</summary>
     public class JobData
     {
-        /// <summary>Gets or sets the time-stamp for the job.</summary>
-        /// <value>
-        /// The time-stamp for the job when the job needs to fire.
-        /// </value>
+        // Gets or sets the time-stamp for the job.
         public long TimeStamp { get; set; } = 0;
 
-        /// <summary>Gets or sets a value indicating whether indicates whether the job has completed.</summary>
-        /// <value>
-        /// A value indicating whether indicates whether the job has completed.
-        /// </value>
+        // Gets or sets a value indicating whether indicates whether the job has completed.
         public bool Completed { get; set; } = false;
 
-        /// <summary>
-        /// Gets or sets the conversation reference to which to send status updates.
-        /// </summary>
-        /// <value>
-        /// The conversation reference to which to send status updates.
-        /// </value>
+        // Gets or sets the conversation reference to which to send status updates.
         public ConversationReference Conversation { get; set; }
     }
 }
 ```
 
-### <a name="define-a-state-middleware-class"></a>定義狀態中介軟體類別
+#### <a name="define-a-state-middleware-class"></a>定義狀態中介軟體類別
 
 **JobState** 可將作業狀態與對話或使用者狀態分開管理。
 
 ```csharp
 using Microsoft.Bot.Builder;
 
-/// <summary>A <see cref="BotState"/> for managing bot state for "bot jobs".</summary>
-/// <remarks>Independent from both <see cref="UserState"/> and <see cref="ConversationState"/> because
-/// the process of running the jobs and notifying the user interacts with the
-/// bot as a distinct user on a separate conversation.</remarks>
+/// A BotState for managing bot state for "bot jobs".
 public class JobState : BotState
 {
-    /// <summary>The key used to cache the state information in the turn context.</summary>
+    // The key used to cache the state information in the turn context.
     private const string StorageKey = "ProactiveBot.JobState";
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="JobState"/> class.</summary>
-    /// <param name="storage">The storage provider to use.</param>
+    // Initializes a new instance of the JobState class.
     public JobState(IStorage storage)
         : base(storage, StorageKey)
     {
     }
 
-    /// <summary>Gets the storage key for caching state information.</summary>
-    /// <param name="turnContext">A <see cref="ITurnContext"/> containing all the data needed
-    /// for processing this conversation turn.</param>
-    /// <returns>The storage key.</returns>
+    // Gets the storage key for caching state information.
     protected override string GetStorageKey(ITurnContext turnContext) => StorageKey;
 }
 ```
@@ -150,24 +106,6 @@ public class JobState : BotState
 ### <a name="register-the-bot-and-required-services"></a>註冊 Bot 和必要的服務
 
 **Startup.cs** 檔案可註冊 Bot 和相關聯的服務。
-
-1. 這組 using 陳述式會擴展為參考這些命名空間：
-
-    ```csharp
-    using System;
-    using System.Linq;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Bot.Builder;
-    using Microsoft.Bot.Builder.Integration;
-    using Microsoft.Bot.Builder.Integration.AspNet.Core;
-    using Microsoft.Bot.Configuration;
-    using Microsoft.Bot.Connector.Authentication;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
-    ```
 
 1. `ConfigureServices` 方法可註冊 Bot，包括錯誤處理和狀態管理。 也可註冊 Bot 的端點服務和作業狀態存取子。
 
@@ -233,20 +171,12 @@ public class JobState : BotState
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-### <a name="set-up-the-server-code"></a>設定伺服器程式碼
-
-**Index.js** 檔案可進行下列作業：
-
-- 包含必要的套件和服務
+**index.js** 檔案中的程式碼可進行下列作業：
 - 參考 Bot 類別和 **.bot** 檔案
-- 建立 HTTP 伺服器
-- 建立 Bot 配接器和儲存體物件
+- 建立 HTTP 伺服器、Bot 配接器和儲存體物件
 - 建立 Bot 並啟動伺服器，以將活動傳遞到 Bot
 
 ```javascript
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
-
 const restify = require('restify');
 const path = require('path');
 
@@ -329,24 +259,15 @@ adapter.onTurnError = async (context, error) => {
 
 ---
 
-<!--TODO: (Post-Ignite) -- link to a second topic on how to write a job completion DirectLine client that will generate appropriate job completed event activities.-->
+### <a name="define-the-bot"></a>定義 Bot
 
-## <a name="define-the-bot"></a>定義 Bot
-
-使用者可以要求 Bot 為他們建立及執行作業。 當作業完成後，個別的作業服務可以通知 Bot。
-
-Bot 的設計訴求：
+使用者可以要求 Bot 為他們建立及執行作業。 當作業完成後，個別的作業服務可以通知 Bot。 Bot 的設計訴求：
 
 - 建立作業，以回應來自使用者的 `run` 或 `run job` 訊息。
 - 顯示所有已註冊的作業，以回應來自使用者的 `show` 或 `show jobs` 訊息。
 - 完成作業，以回應可識別已完成作業的「作業已完成」事件。
 - 模擬「作業已完成」事件，以回應 `done <jobIdentifier>` 訊息。
 - 當作業完成時，使用原始對話，將主動式訊息傳送給使用者。
-
-我們不會示範如何實作可將事件活動傳送至 Bot 的系統。
-<!--TODO: DirectLine--Add back in once the DirectLine topic is added back to the TOC.
-See [how to create a Direct Line bot and client](bot-builder-howto-direct-line.md) for information on how to do so.
--->
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -356,29 +277,19 @@ Bot 有幾個層面：
 - 回合處理常式
 - 用於建立和完成工作的方法
 
-### <a name="declare-the-class"></a>宣告類別
+#### <a name="declare-the-class"></a>宣告類別
 
 ```csharp
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Configuration;
-using Microsoft.Bot.Schema;
-
 namespace Microsoft.BotBuilderSamples
 {
-    /// <summary>
-    /// For each interaction from the user, an instance of this class is called.
-    /// This is a Transient lifetime service.  Transient lifetime services are created
-    /// each time they're requested. For each Activity received, a new instance of this
-    /// class is created. Objects that are expensive to construct, or have a lifetime
-    /// beyond the single Turn, should be carefully managed.
-    /// </summary>
+    // For each interaction from the user, an instance of this class is called.
+    // This is a Transient lifetime service.  Transient lifetime services are created
+    // each time they're requested. For each Activity received, a new instance of this
+    // class is created. Objects that are expensive to construct, or have a lifetime
+    // beyond the single Turn, should be carefully managed.
     public class ProactiveBot : IBot
     {
-        /// <summary>The name of events that signal that a job has completed.</summary>
+        // The name of events that signal that a job has completed.
         public const string JobCompleteEventName = "jobComplete";
 
         public const string WelcomeText = "Type 'run' or 'run job' to start a new job.\r\n" +
@@ -388,7 +299,7 @@ namespace Microsoft.BotBuilderSamples
 }
 ```
 
-### <a name="add-initialization-code"></a>新增初始化程式碼
+#### <a name="add-initialization-code"></a>新增初始化程式碼
 
 ```csharp
 private readonly JobState _jobState;
@@ -407,14 +318,13 @@ public ProactiveBot(JobState jobState, EndpointService endpointService)
 private string AppId { get; }
 ```
 
-### <a name="add-a-turn-handler"></a>新增回合處理常式
+#### <a name="add-a-turn-handler"></a>新增回合處理常式
 
 每個 Bot 都必須實作回合處理常式。 配接器會將活動轉送至這個方法。
 
 ```csharp
 public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
 {
-    // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
     if (turnContext.Activity.Type != ActivityTypes.Message)
     {
         // Handle non-message activities.
@@ -537,7 +447,7 @@ private async Task OnSystemActivityAsync(ITurnContext turnContext)
 }
 ```
 
-### <a name="add-job-creation-and-completion-methods"></a>新增作業建立和完成方法
+#### <a name="add-job-creation-and-completion-methods"></a>新增作業建立和完成方法
 
 若要開始作業，Bot 會建立作業，以及在作業記錄中記錄其相關資訊和目前的對話。 當 Bot 在任何對話中收到「作業已完成」事件時，會先驗證作業識別碼，再呼叫程式碼來完成作業。
 
@@ -602,7 +512,7 @@ Bot 定義於 **bot.js**，而且有幾個層面：
 - 回合處理常式
 - 用於建立和完成工作的方法
 
-### <a name="declare-the-class-and-add-initialization-code"></a>類別宣告及新增初始化程式碼
+#### <a name="declare-the-class-and-add-initialization-code"></a>類別宣告及新增初始化程式碼
 
 ```javascript
 const { ActivityTypes, TurnContext } = require('botbuilder');
@@ -633,7 +543,7 @@ function isEmpty(obj) {
 module.exports.ProactiveBot = ProactiveBot;
 ```
 
-### <a name="the-turn-handler"></a>回合處理常式
+#### <a name="the-turn-handler"></a>回合處理常式
 
 `onTurn` 和 `showJobs` 方法定義於 `ProactiveBot` 類別中。 `onTurn` 會處理來自使用者的輸入。 其也會接收來自假設作業履行系統的事件活動。 `showJobs` 會將作業記錄格式化並且傳送。
 
@@ -695,7 +605,7 @@ async showJobs(turnContext) {
 }
 ```
 
-### <a name="logic-to-start-a-job"></a>開始作業的邏輯
+#### <a name="logic-to-start-a-job"></a>開始作業的邏輯
 
 `createJob` 方法定義於 `ProactiveBot` 類別中。 其會為使用者建立並記錄新作業。 理論上，其也會將此資訊轉送到作業履行系統。
 
@@ -738,7 +648,7 @@ async createJob(turnContext) {
 }
 ```
 
-### <a name="logic-to-complete-a-job"></a>完成作業的邏輯
+#### <a name="logic-to-complete-a-job"></a>完成作業的邏輯
 
 `completeJob` 方法定義於 `ProactiveBot` 類別中。 其會執行一些簿記工作，並將主動式訊息傳送給作業已完成的使用者 (在使用者的原始對話中)。
 
@@ -783,7 +693,7 @@ async completeJob(turnContext, jobIdNumber) {
 
 ---
 
-## <a name="test-your-bot"></a>測試 Bot
+### <a name="test-your-bot"></a>測試 Bot
 
 在本機建置及執行 Bot，然後開啟兩個模擬器視窗。
 

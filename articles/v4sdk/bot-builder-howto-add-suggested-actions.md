@@ -1,5 +1,5 @@
 ---
-title: 將建議的動作新增至訊息 | Microsoft Docs
+title: 使用按鈕進行輸入 | Microsoft Docs
 description: 了解如何使用適用於 JavaScript 的 Bot Builder SDK 在訊息內傳送建議的動作。
 keywords: 建訢動作, 按鈕, 額外輸入
 author: Kaiqb
@@ -8,24 +8,24 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 03/13/2018
+ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 88186d3c6c925220fba099a5983c86b305f2dcae
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 5e97bc4a991a9c9b27e9c14eb44f5fd1e230985f
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997096"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332784"
 ---
-# <a name="add-suggested-actions-to-messages"></a>將建議的動作新增至訊息
+# <a name="use-button-for-input"></a>使用按鈕進行輸入
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-[!include[Introduction to suggested actions](../includes/snippet-suggested-actions-intro.md)] 
+您可以讓 Bot 顯示可供使用者點選，以提供輸入的按鈕。 按鈕讓使用者只要點選按鈕，即可回答問題或進行選取，而無需使用鍵盤輸入回應，藉以提升使用者體驗。 不同於複合式資訊卡 (Rich Card) 中出現的按鈕 (即使在點選之後，使用者仍可看見並可存取)，出現在建議動作窗格內的按鈕會在使用者進行選取後消失。 這可以避免使用者在對話中點選過時的按鈕，並簡化 Bot 的開發 (因為您不需要再說明該情境)。 
 
-## <a name="send-suggested-actions"></a>傳送建議的動作
+## <a name="suggest-action-using-button"></a>使用按鈕建議動作
 
-您可以建立一份將在交談單一回合顯示給使用者的建議動作清單 (也稱為「快速回覆」)： 
+「建議動作」可讓 Bot 顯示按鈕。 您可以建立一份將在交談單一回合顯示給使用者的建議動作清單 (也稱為「快速回覆」)： 
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 

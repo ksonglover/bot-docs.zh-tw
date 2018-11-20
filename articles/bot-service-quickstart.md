@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 09/18/2018
-ms.openlocfilehash: 43dacff8f3ce1e4c1fbae663ee607a1965c7f782
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: b5b02773ab71801132f2a73f81123588e7ddfcdb
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000185"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645688"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -83,7 +83,7 @@ Bot 服務會提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot B
 # <a name="create-a-bot-with-azure-bot-service"></a>建立具有 Azure Bot Service 的 Bot
 [!INCLUDE [pre-release-label](includes/pre-release-label.md)]
 
-Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連接 Bot 與通道的 Bot 服務。 在此主題中，您可以使用 Bot Builder SDK v4 的預覽版本，選擇 .NET 或 Node.js 範本來建立 Bot。
+Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連接 Bot 與通道的 Bot 服務。 在此主題中，您可以使用 Bot Builder SDK v4，選擇 .NET 或 Node.js 範本來建立 Bot。
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 登入 [Azure 入口網站](http://portal.azure.com)。
