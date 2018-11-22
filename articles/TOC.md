@@ -14,9 +14,9 @@
 # 概念
 ## [Bot 的運作方式](v4sdk/bot-builder-basics.md)
 ## [使用 Bot 檔案管理 Bot 資源](v4sdk/bot-file-basics.md)
+## [管理狀態](v4sdk/bot-builder-concept-state.md)
 ## [中介軟體](v4sdk/bot-builder-concept-middleware.md)
-## [關於對話方塊程式庫](v4sdk/bot-builder-concept-dialog.md)
-## [了解對話方塊狀態](v4sdk/bot-builder-dialog-state.md)
+## [對話方塊程式庫](v4sdk/bot-builder-concept-dialog.md)
 <!-- [Language understanding](v4sdk/bot-builder-concept-luis.md) -->
 ## [Bot 服務範本](bot-service-concept-templates.md)
 ## [認知服務](bot-service-concept-intelligence.md)
