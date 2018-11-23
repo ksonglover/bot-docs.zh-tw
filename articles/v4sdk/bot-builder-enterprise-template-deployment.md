@@ -42,7 +42,7 @@ az extension add -n botservice
 ## <a name="configuration"></a>組態
 
 - 擷取您的 LUIS 撰寫金鑰
-   - 檢閱[這個](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-reference-regions)文件頁面，以取得您打算部署至區域的正確 LUIS 入口網站。 請注意，www.luis.ai 涉及美國地區，而從這個入口網站擷取的撰寫金鑰不適用於歐洲部署。
+   - 檢閱[這個](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-reference-regions)文件頁面，以取得您打算部署至區域的正確 LUIS 入口網站。 請注意， www.luis.ai 涉及美國地區，而從這個入口網站擷取的撰寫金鑰不適用於歐洲部署。
    - 登入後，按一下右上角您的名稱。
    - 選擇 [設定]，並記下編寫索引鍵，以供下一個步驟使用。
 
