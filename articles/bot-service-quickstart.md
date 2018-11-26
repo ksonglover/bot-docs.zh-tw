@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 09/18/2018
-ms.openlocfilehash: b5b02773ab71801132f2a73f81123588e7ddfcdb
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.date: 11/15/2018
+ms.openlocfilehash: 3c5b12bb804477ae41cf70d2ce955066801f5916
+ms.sourcegitcommit: d92fd6233295856052305e0d9e3cba29c9ef496e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645688"
+ms.lasthandoff: 11/16/2018
+ms.locfileid: "51715132"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -85,17 +85,17 @@ Bot 服務會提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot B
 
 Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連接 Bot 與通道的 Bot 服務。 在此主題中，您可以使用 Bot Builder SDK v4，選擇 .NET 或 Node.js 範本來建立 Bot。
 
-## <a name="log-in-to-azure"></a>登入 Azure
-登入 [Azure 入口網站](http://portal.azure.com)。
+## <a name="prerequisites"></a>必要條件
+- [Azure](http://portal.azure.com) 帳戶
 
-> [!TIP]
-> 若您還沒有訂用帳戶，則可以註冊<a href="https://azure.microsoft.com/en-us/free/" target="_blank">免費帳戶</a>。
+### <a name="create-a-new-bot-service"></a>建立新的 Bot 服務
 
-## <a name="create-a-new-bot-service"></a>建立新的 Bot 服務
-
+1. 登入 [Azure 入口網站](http://portal.azure.com/)。
 1. 按一下 Azure 入口網站左上角的 [建立新資源] 連結，然後選取 [AI + 機器學習服務] > [Web 應用程式 Bot]。 
 
-2. 隨即開啟含有 **Web 應用程式 Bot** 相關資訊的新刀鋒視窗。  
+![建立 Bot](~/media/azure-bot-quickstarts/abs-create-blade.png)
+
+2. 隨即開啟含有 *Web 應用程式 Bot* 相關資訊的「新刀鋒視窗」。  
 
 3. 在 [Bot 服務] 刀鋒視窗中，依照下圖下方表格中說明的內容，提供有關您 Bot 的必要資訊。  <br/>
  ![建立 Web 應用程式 Bot 刀鋒視窗](~/media/azure-bot-quickstarts/sdk-create-bot-service-blade.png)
@@ -132,6 +132,6 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 在此主題中，您已了解如何使用 Azure Bot Service 建立**回應** Web 應用程式 Bot，並使用內建的網路聊天控制項驗證 Bot 功能。 現在，請了解如何管理 Bot 並開始處理其原始程式碼。
 
 > [!div class="nextstepaction"]
-> [管理 Bot](bot-service-manage-overview.md)
+> [Bot 的運作方式](~/v4sdk/bot-builder-basics.md)
 
 ::: moniker-end

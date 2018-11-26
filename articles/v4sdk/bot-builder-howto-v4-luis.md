@@ -8,120 +8,89 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 11/08/18
+ms.date: 11/16/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: eab8e2f9d437748d0bb0fefd31c03c8fb350c6b1
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: faf26b1c4ba87061631f217ee074283759f77c97
+ms.sourcegitcommit: 392c581aa2f59cd1798ee2136b6cfee56aa3ee6d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645698"
+ms.lasthandoff: 11/20/2018
+ms.locfileid: "52156697"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>將自然語言理解新增至您的 Bot
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-讓您的 Bot 能透過對話和上下文了解使用者的意思，並不是簡單的工作，但這樣的功能可讓您的 Bot 使用起來更有自然對話的感覺。 Language Understanding (稱為 LUIS) 能讓您這麼做，使您的 Bot 可以辨識使用者訊息的意圖，這樣使用者就能使用更自然的語言，且更順利地引導交談流程。 如需 LUIS 的更多背景資訊，請參閱 Bot 的 [Language Understanding](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/what-is-luis)。
-
+讓您的 Bot 能透過對話和上下文了解使用者的意思，並不是簡單的工作，但這樣的功能可讓您的 Bot 使用起來更有自然對話的感覺。 Language Understanding (稱為 LUIS) 能讓您這麼做，使您的 Bot 可以辨識使用者訊息的意圖，這樣使用者就能使用更自然的語言，且更順利地引導交談流程。 此主題逐步引導您設定簡單的 Bot，並使用 LUIS 辨識幾個不同的意圖。 
 ## <a name="prerequisites"></a>必要條件
-此主題逐步引導您設定簡單的 Bot，並使用 LUIS 辨識幾個不同的意圖。 本文中的程式碼是以 NLP 為基礎，包含 [C#](https://aka.ms/cs-luis-sample) 和 [JavaScript](https://aka.ms/js-luis-sample) 的 LUIS 範例。
+- [luis.ai](https://www.luis.ai) 帳戶
+- [Bot Framework 模擬器](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download) (英文)
+- 本文中的程式碼是以**採用 LUIS 的 NLP** 範例為基礎。 您需要採用 [C#](https://aka.ms/cs-luis-sample) 或 [JS](https://aka.ms/js-luis-sample) 的一份範例。 
+- [Bot 基本概念](bot-builder-basics.md)、[自然語言處理](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/what-is-luis)和 [.bot](bot-file-basics.md) 檔案的知識。
 
 ## <a name="create-a-luis-app-in-the-luis-portal"></a>在 LUIS 入口網站中建立 LUIS 應用程式
+登入 LUIS 入口網站以建立自己的範例 LUIS 應用程式版本。 您可以在 [我的應用程式] 上建立和管理應用程式。 
 
-首先，在 [luis.ai](https://www.luis.ai) 登入帳戶，並依照[這裡](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-how-to-start-new-app)顯示的指示在 LUIS 入口網站中建立 LUIS 應用程式。 如果您想要建立本文中所用範例 LUIS 應用程式的自有版本，請在 LUIS 入口網站中[匯入](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/create-new-app#import-new-app) 此 `LUIS.Reminders.json` 檔案 ([C#](https://github.com/Microsoft/BotBuilder-Samples/blob/v4/samples/csharp_dotnetcore/12.nlp-with-luis/CognitiveModels/LUIS-Reminders.json) | [JS](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/javascript_nodejs/12.nlp-with-luis/cognitiveModels/reminders.json)) 以建置 LUIS 應用程式，然後加以[訓練](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-how-to-train)及[發佈](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)。
+1. 選取 [匯入新的應用程式]。 
+1. 按一下 [選擇應用程式檔案 (JSON 格式)...] 
+1. 選取 `reminders.json` 檔案，該檔案位於範例的 `CognitiveModels` 資料夾中。 在 [選擇性名稱] 中，輸入 **LuisBot**。 此檔案包含三個意圖：Calendar-Add、Calendar-Find 和 None。 我們將使用這些意圖，了解使用者將訊息傳送給 Bot 時的用意。 
+1. [訓練](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-how-to-train)應用程式。
+1. 將應用程式[發佈](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)到「生產」環境。
 
 ### <a name="obtain-values-to-connect-to-your-luis-app"></a>取得值以連線到您的 LUIS 應用程式
 
-在您的 LUIS 應用程式發佈之後，您即可從 Bot 進行存取。 您必須記錄數個值，以從 Bot 存取您的 LUIS 應用程式。 您可以使用 LUIS 入口網站或 CLI 工具擷取該資訊。
+在您的 LUIS 應用程式發佈之後，您即可從 Bot 進行存取。 您必須記錄數個值，以從 Bot 存取您的 LUIS 應用程式。 您可以使用 LUIS 入口網站擷取該資訊。
 
-#### <a name="using-luis-portal"></a>使用 LUIS 入口網站
-- 從 [luis.ai](https://www.luis.ai) 中選取已發佈的 LUIS 應用程式。
-- 開啟已發佈的 LUIS 應用程式後，選取 [管理] 索引標籤。
-- 選取左側的 [應用程式資訊] 索引標籤，將針對 [應用程式識別碼] 顯示的值記錄為 <YOUR_APP_ID>。
-- 選取左側 [金鑰和端點] 索引標籤，將針對 [撰寫金鑰] 所顯示的值記錄為 <YOUR_AUTHORING_KEY>。 請注意 <YOUR_SUBSCRIPTION_KEY> 與 <YOUR_AUTHORING_KEY> 相同。 向下捲動到頁面結尾，將針對 [地區] 顯示的值記錄為 <YOUR_REGION>，並記將針對 [端點] 顯示的值記錄為 <YOUR_ENDPOINT>。
+#### <a name="retrieve-application-information-from-the-luisai-portal"></a>從 LUIS.ai 入口網站擷取應用程式資訊
+.bot 檔案可作為將所有服務參考匯合在一起的位置。 您所擷取的資訊會新增至下一節中的 .bot 檔案。 
+1. 從 [luis.ai](https://www.luis.ai) 中選取已發佈的 LUIS 應用程式。
+1. 開啟已發佈的 LUIS 應用程式後，選取 [管理] 索引標籤。
+1. 選取左側的 [應用程式資訊] 索引標籤，將針對 [應用程式識別碼] 顯示的值記錄為 <YOUR_APP_ID>。
+1. 選取左側 [金鑰和端點] 索引標籤，將針對 [撰寫金鑰] 所顯示的值記錄為 <YOUR_AUTHORING_KEY>。 請注意，「您的訂用帳戶金鑰」與「您的撰寫金鑰」相同。 
+1. 向下捲動到頁面結尾，將針對 [地區] 顯示的值記錄為 <YOUR_REGION>。
+1. 將針對 [端點] 顯示的值記錄為 <YOUR_ENDPOINT>。
 
-#### <a name="using-cli-tools"></a>使用 CLI 工具
+#### <a name="update-the-bot-file"></a>更新 Bot 檔案
+將存取 LUIS 應用程式所需的資訊 (包括應用程式識別碼、撰寫金鑰、訂用帳戶金鑰、端點和區域) 新增至 `nlp-with-luis.bot` 檔案中。 這些是您先前從已發佈的 LUIS 應用程式儲存的值。
 
-您可以使用 [luis](https://aka.ms/botbuilder-tools-luis) 和 [msbot](https://aka.ms/botbuilder-tools-msbot-readme) BotBuilder CLI 工具來取得您的 LUIS 應用程式相關中繼資料，並將其新增至 **.bot** 檔案。
-
-1. 開啟終端機或命令提示字元，然後瀏覽至您 Bot 專案的根目錄。
-2. 請確定已安裝 `luis` 和 `msbot` 工具。
-
-    ```shell
-    npm install luis msbot
-    ```
-
-3. 執行 `luis init` 以建立 LUIS 資源檔 (**.luisrc**)。 出現提示時，請提供您的 LUIS 撰寫金鑰和您的區域。 此時您不需要輸入應用程式識別碼。
-4. 執行下列命令以下載您的中繼資料，並將其新增至 Bot 的組態檔。
-    如果您已加密組態檔，則必須提供祕密金鑰以更新檔案。
-
-    ```shell
-    luis get application --appId <your-app-id> --msbot | msbot connect luis --stdin [--secret <YOUR-SECRET>]
-    ```
+```json
+{
+    "name": "LuisBot",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "name": "development",
+            "endpoint": "http://localhost:3978/api/messages",
+            "appId": "",
+            "appPassword": "",
+            "id": "166"
+        },
+        {
+            "type": "luis",
+            "name": "LuisBot",
+            "appId": "<luis appid>",
+            "version": "0.1",
+            "authoringKey": "<luis authoring key>",
+            "subscriptionKey": "<luis subscription key>",
+            "region": "<luis region>",
+            "id": "158"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0"
+}
+```
+# <a name="ctabcs"></a>[C#](#tab/cs)
 
 ## <a name="configure-your-bot-to-use-your-luis-app"></a>設定 Bot 來使用 LUIS 應用程式
 
-初始化 Bot 時，會首度新增 LUIS 應用程式的參考。 然後，我們可以在 Bot 邏輯內呼叫。
-
-### <a name="prerequisite"></a>必要條件
-
-開始撰寫程式碼之前，請先確定您有 LUIS 應用程式所需的套件。
-
-# <a name="ctabcs"></a>[C#](#tab/cs)
-
-將下列 [NuGet 套件](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui)新增到您的 Bot。
-
-* `Microsoft.Bot.Builder.AI.Luis`
-
-# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
-
-LUIS 功能位於 `botbuilder-ai` 套件中。 可以透過 npm 將此套件新增到您的專案：
-
-```shell
-npm install --save botbuilder-ai
-```
-
----
-
-# <a name="ctabcs"></a>[C#](#tab/cs)
-
-下載並開啟這裡找到的 [NLP LUIS 範例程式碼](https://aka.ms/cs-luis-sample)。 我們會視需要修改程式碼。 
-
-首先，將存取 LUIS 應用程式所需的資訊 (包括應用程式識別碼、撰寫金鑰、訂用帳戶金鑰、端點和區域) 新增至 `BotConfiguration.bot` 檔案中。 這些是您先前從已發佈的 LUIS 應用程式儲存的值。
-
-```csharp
-{
-  "name": "LuisBot",
-  "services": [
-    {
-      "type": "endpoint",
-      "name": "development",
-      "endpoint": "http://localhost:3978/api/messages",
-      "appId": "",
-      "appPassword": "",
-      "id": "1"
-    },
-    {
-      "type": "luis",
-      "name": "LuisBot",
-      "AppId": "<YOUR_APP_ID>",
-      "SubscriptionKey": "<YOUR_SUBSCRIPTION_KEY>",
-      "AuthoringKey": "<YOUR_AUTHORING_KEY>",
-      "GetEndpoint": "<YOUR_ENDPOINT>",
-      "Region": "<YOUR_REGION>"
-    }
-  ],
-  "padlock": "",
-  "version": "2.0"
-}
-```
-
-接下來，我們會初始化 BotService 類別 `BotServices.cs` 的新執行個體，這會從 `.bot` 檔案擷取上述資訊。 將下列程式碼新增至 `BotServices.cs` 檔案。
+接下來，我們會在 `BotServices.cs` 中初始化 BotService 類別的新執行個體，這會從 `.bot` 檔案擷取上述資訊。 外部服務是使用 `BotConfiguration` 類別來設定。
 
 ```csharp
 public class BotServices
 {
-    /// Initializes a new instance of the BotServices class
+    // Initializes a new instance of the BotServices class
     public BotServices(BotConfiguration botConfiguration)
     {
         foreach (var service in botConfiguration.Services)
@@ -145,13 +114,12 @@ public class BotServices
             }
         }
 
-    /// Gets the set of LUIS Services used.
-    /// LuisServices is represented as a dictionary.  
+    // Gets the set of LUIS Services used. LuisServices is represented as a dictionary.  
     public Dictionary<string, LuisRecognizer> LuisServices { get; } = new Dictionary<string, LuisRecognizer>();
 }
 ```
 
-然後在 `ConfigureServices` 內新增下列程式碼，以在 `Startup.cs` 檔案中將 LUIS 應用程式註冊為單一應用程式。
+然後在 `ConfigureServices` 方法內新增下列程式碼，以在 `Startup.cs` 檔案中將 LUIS 應用程式註冊為單一應用程式。
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -160,7 +128,7 @@ public void ConfigureServices(IServiceCollection services)
     var botFilePath = Configuration.GetSection("botFilePath")?.Value;
 
     // Loads .bot configuration file and adds a singleton that your Bot can access through dependency injection.
-    var botConfig = BotConfiguration.Load(botFilePath ?? @".\BotConfiguration.bot", secretKey);
+    var botConfig = BotConfiguration.Load(botFilePath ?? @".\nlp-with-luis.bot", secretKey);
     services.AddSingleton(sp => botConfig ?? throw new InvalidOperationException($"The .bot config file could not be loaded. ({botConfig})"));
 
     // Initialize Bot Connected Services clients.
@@ -179,22 +147,13 @@ public void ConfigureServices(IServiceCollection services)
         }
 
         options.CredentialProvider = new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);
-
-        // Creates a logger for the application to use.
-        ILogger logger = _loggerFactory.CreateLogger<LuisBot>();
-
-        // Catches any errors that occur during a conversation turn and logs them.
-        options.OnTurnError = async (context, exception) =>
-        {
-            logger.LogError($"Exception caught : {exception}");
-            await context.SendActivityAsync("Sorry, it looks like something went wrong.");
-        };
-        /// ...
+        
+        // ...
     });
 }
 ```
 
-接下來，我們需要將這個 LUIS 執行個體提供給 Bot。 開啟 `LuisBot.cs` 檔案，並且在檔案開頭處新增下列程式碼。
+接下來，在 `Luis.cs` 檔案中，Bot 會取得此 LUIS 執行個體。
 
 ```csharp
 public class LuisBot : IBot
@@ -202,56 +161,25 @@ public class LuisBot : IBot
     public static readonly string LuisKey = "LuisBot";
     private const string WelcomeText = "This bot will introduce you to natural language processing with LUIS. Type an utterance to get started";
 
-    /// Services configured from the ".bot" file.
+    // Services configured from the ".bot" file.
     private readonly BotServices _services;
 
-    /// Initializes a new instance of the LuisBot class.
+    // Initializes a new instance of the LuisBot class.
     public LuisBot(BotServices services)
     {
         _services = services ?? throw new System.ArgumentNullException(nameof(services));
         if (!_services.LuisServices.ContainsKey(LuisKey))
         {
-            throw new System.ArgumentException($"Invalid configuration. Please check your '.bot' file for a LUIS service named '{LuisKey}'.");
+            throw new System.ArgumentException($"Invalid configuration....");
         }
     }
-    /// ...
+    // ...
 }
 ```
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
 在我們的範例中，啟動程式碼位於 **index.js** 檔案、Bot 邏輯的程式碼位於 **bot.js** 檔案，而其他組態資訊位於 **nlp-with-luis.bot** 檔案。
-
-遵循指示來建立 LUIS 應用程式以及更新 **.bot** 檔案之後，**nlp-with-luis.bot** 檔案應該包含 LUIS 應用程式的服務項目。
-
-```json
-{
-    "name": "YOUR_LUIS_APP_NAME",
-    "description": "",
-    "services": [
-        {
-            "type": "endpoint",
-            "name": "development",
-            "endpoint": "http://localhost:3978/api/messages",
-            "appId": "",
-            "appPassword": "",
-            "id": "35"
-        },
-        {
-            "type": "luis",
-            "name": "YOUR_LUIS_APP_NAME",
-            "appId": "<YOUR_APP_ID>",
-            "version": "0.1",
-            "authoringKey": "<YOUR_AUTHORING_KEY>",
-            "subscriptionKey": "<YOUR_SUBSCRIPTION_KEY>>",
-            "region": "<YOUR_REGION>",
-            "id": "83"
-        }
-    ],
-    "padlock": "",
-    "version": "2.0"
-}
-```
 
 在 **bot.js** 檔案中，我們會讀入組態資訊以產生 LUIS 服務及初始化 Bot。
 將 `LUIS_CONFIGURATION` 的值更新為您的 LUIS 應用程式名稱，因為其會出現在您的組態檔中。
@@ -423,13 +351,14 @@ LUIS 辨識器會傳回語句與可用意圖的相符程度相關資訊。 結�
 
 ---
 
-## <a name="extract-entities"></a>擷取實體
+<!--
+## Extract entities
 
-除了辨識意圖，LUIS 應用程式也可以擷取實體，也就是滿足使用者要求的重要單字。 例如，在天氣 Bot 中，LUIS 應用程式可能可以從使用者的訊息中擷取天氣預報的位置。
+Besides recognizing intent, a LUIS app can also extract entities, which are important words for fulfilling a user's request. For example, for a weather bot, the LUIS app might be able to extract the location for the weather report from the user's message.
 
-建構對話的常見方法是識別使用者訊息中的任何實體，然後針對必要但未找到的實體發出提示。 接著，後續的步驟會處理對提示的回應。
+A common way to structure your conversation is to identify any entities in the user's message, and prompt for any of the required entities that are not found. Then, the subsequent steps handle the response to the prompt.
 
-<!--Snip
+
 # [C#](#tab/cs)
 
 Let's say the message from the user was "What's the weather in Seattle"? The [LuisRecognizer](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.ai.luis.luisrecognizer) gives you a [RecognizerResult](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.core.extensions.recognizerresult) with an [`Entities` property](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.core.extensions.recognizerresult#properties-) that has this structure:
@@ -505,16 +434,25 @@ function findEntities(entityName, entityResults) {
     }
     return entities.length > 0 ? entities : undefined;
 }
-```
-/Snip-->
 
-從對話中的多個步驟蒐集實體等資訊時，在狀態中儲存您需要的資訊會很有幫助。 如果找到實體，則可將其新增至適當的狀態欄位。 在對話中，如果目前的步驟已經完成相關聯的欄位，則可以略過提示輸入該資訊的步驟。
 
-## <a name="additional-resources"></a>其他資源
+When gathering information like entities from multiple steps in a conversation, it can be helpful to save the information you need in your state. If an entity is found, it can be added to the appropriate state field. In your conversation if the current step already has the associated field completed, the step to prompt for that information can be skipped.
 
-如需使用 LUIS 的範例，請查看 [[C#](https://aka.ms/cs-luis-sample)] 或 [[JavaScript](https://aka.ms/js-luis-sample)] 的專案。
+/Snip -->
+
+## <a name="test-the-bot"></a>測試 Bot
+
+1. 在您的電腦本機執行範例。 如需指示，請參閱 [C#](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/csharp_dotnetcore/12.nlp-with-luis/README.md) 或 [JS](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/javascript_nodejs/12.nlp-with-luis/README.md) 範例的讀我檔案。
+
+1. 在模擬器中，輸入如下所示的訊息。 
+
+![測試 nlp 範例](~/media/emulator-v4/nlp-luis-sample-testing.png)
+
+Bot 會以最高評分意圖來回應，在此情況下是 `Calendar-Add` 意圖。 請記得，您在 luis.ai 入口網站中匯入的 `reminders.json` 檔案定義了意圖。
+
+預測分數表示 LUIS 對預測結果的信賴程度。 預測分數介於零 (0) 到一 (1) 之間。 高信賴度 LUIS 分數的範例是 0.99。 低信賴度的範例是 0.01。 
 
 ## <a name="next-steps"></a>後續步驟
 
 > [!div class="nextstepaction"]
-> [使用分派工具結合 LUIS 和 QnA 服務](./bot-builder-tutorial-dispatch.md)
+> [使用 QnA Maker 回答問題](./bot-builder-howto-qna.md)

@@ -8,20 +8,24 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/08/2018
+ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 25745d380e53173c4dc67d280c120ced5845078b
-ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
+ms.openlocfilehash: eb62df9bd1f74ab6de9b67fe352b1af4620a6bc6
+ms.sourcegitcommit: d92fd6233295856052305e0d9e3cba29c9ef496e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51332912"
+ms.lasthandoff: 11/16/2018
+ms.locfileid: "51715102"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 建立任何 Bot 時的主要目標就是讓您的使用者參與有意義的對話。 達成此目標的最佳方式之一就是確保從使用者第一次連線的那一刻，他們就了解您 Bot 的主要用途和功能，以及您 Bot 的建立原因。 這篇文章提供程式碼範例，協助您歡迎使用者使用 Bot。
+
+## <a name="prerequisites"></a>必要條件
+- 了解 [bot 基本概念](bot-builder-basics.md)。 
+- 採用 [C#](https://aka.ms/proactive-sample-cs) 或 [JS](https://aka.ms/proactive-sample-js) 的一份**歡迎使用者範例**。 此範例中的程式碼用來說明如何傳送歡迎訊息。
 
 ## <a name="same-welcome-for-different-channels"></a>不同通道使用相同的歡迎
 每當使用者第一次與您的 Bot 互動時，應該就會產生歡迎訊息。 若要達成此目的，您可以監視 Bot 的 [活動] 類型並監看新的連線。 視通道而定，每個新連線都可以產生最多兩個對話更新活動。
@@ -39,25 +43,13 @@ ms.locfileid: "51332912"
 - 已發生對話更新事件。
 - 新的成員 (使用者) 已加入對話。
 
-下列範例可監看新的「對話更新」活動，根據加入對話的使用者只傳送一則歡迎訊息，以及設定提示狀態旗標來忽略使用者的初始對話輸入。 您可以從 GitHub 下載完整原始程式碼 [[C#](https://aka.ms/bot-welcome-sample-cs) 或 [JS](https://aka.ms/bot-welcome-sample-js)]。
+下列範例可監看新的「對話更新」活動，根據加入對話的使用者只傳送一則歡迎訊息，以及設定提示狀態旗標來忽略使用者的初始對話輸入。 
 
 [!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-這組程式庫用來支援下列所有 C# 程式碼範例
-
-```csharp
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Schema;
-```
-
-我們現在需要建立對話中，指定使用者的狀態物件及其存取子。
+我們必須為交談中指定的使用者建立狀態物件及其存取子。
 
 ```csharp
 /// The state object is used to keep track of various state related to a user in a conversation.
@@ -428,6 +420,8 @@ switch (text)
 }
 ```
 ---
+## <a name="test-the-bot"></a>測試 Bot
+如需執行 Bot 的相關指示，請參閱[讀我](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/csharp_dotnetcore/03.welcome-user/readme.md)檔案。 
 
 ## <a name="next-steps"></a>後續步驟
 > [!div class="nextstepaction"]

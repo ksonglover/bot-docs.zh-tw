@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/8/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 713a53947a8ea6681f1793f9796a86c6d8014e29
-ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
+ms.openlocfilehash: bd431da58d13f3024617900bbeabd8007a2e3bb8
+ms.sourcegitcommit: 6cb37f43947273a58b2b7624579852b72b0e13ea
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51332922"
+ms.lasthandoff: 11/22/2018
+ms.locfileid: "52288798"
 ---
 # <a name="middleware"></a>中介軟體
 
@@ -83,6 +83,16 @@ Bot 中介軟體管道完成後，該回合即結束，且回合內容將超出�
 
 請記住，每個新活動都取得要在其中執行的新執行緒。 建立執行緒處理活動時，該活動的處理常式清單會複製到該執行緒。 系統不會針對該特定活動事件，執行該時間點後新增的任何處理常式。
 內容物件上所註冊的處理常式，其處理方式非常類似於介面卡管理中介軟體管線的方式。 也就是說，系統將依照處理常式新增的順序進行呼叫，然後再呼叫下一個委派，將控制項傳遞至下個註冊的事件處理常式。 如果處理常式未呼叫下個委派，則不會呼叫任何後續的事件處理常式，事件會產生最少運算路由，而且介面卡不會傳送回應給通道。
+
+## <a name="handling-state-in-middleware"></a>處理中介軟體中的狀態
+
+儲存狀態的常見方法是在回合處理常式的結尾呼叫「儲存變更」方法。 以下是著重於該呼叫的圖表。
+
+![狀態中介軟體問題](media/bot-builder-dialog-state-problem.png)
+
+此方法的問題是，若是在 Bot 的回合處理常式傳回之後，從某些自訂中介軟體更新任何狀態，則狀態不會儲存到永久性儲存體。 解決方法是將 AutoSaveChangesMiddleware 新增至中介軟體堆疊的開頭，或至少在任何可能更新狀態的中介軟體之前，以將對「儲存變更」方法的呼叫移到完成自訂中介軟體之後。 執行如下所示。
+
+![狀態中介軟體解決方案](media/bot-builder-dialog-state-solution.png)
 
 ## <a name="additional-resources"></a>其他資源
 您可以看一下文稿記錄器中介軟體，其實作於 Bot Builder SDK 中 [[C#](https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Builder/TranscriptLoggerMiddleware.cs) | [JS](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-core/src/transcriptLogger.ts)]。

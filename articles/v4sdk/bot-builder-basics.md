@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/08/2018
+ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 852740695f4d5719ba4dc4cc3d49c6820d95b3ef
-ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
+ms.openlocfilehash: 15cd6c998abf37b1c7b9a9e2659b7390370f7f10
+ms.sourcegitcommit: d92fd6233295856052305e0d9e3cba29c9ef496e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51333002"
+ms.lasthandoff: 11/16/2018
+ms.locfileid: "51715122"
 ---
 # <a name="how-bots-work"></a>Bot 的運作方式
 
@@ -64,16 +64,16 @@ Bot 是使用者可運用文字、圖形 (例如卡片或影像) 或語音等對
 中介軟體就像任何其他傳訊中介軟體，包含一組依序執行的線性元件，可讓每個元件都有機會在活動上運作。 中介軟體管線的最後一個階段是回呼，可在應用程式已向配接器註冊的 Bot 類別上叫用回合處理常式 (在 C# 中為 `OnTurnAsync` 以及在 JS 中為 `onTurn`) 函式。 回合處理常式會以回合內容作為其引數，在回合處理常式函式內執行的應用程式邏輯，通常會處理輸入活動的內容，並且在回應時產生一或多個活動，然後使用回合內容的「傳送活動」函式將這些活動送出。 對回合內容呼叫「傳送活動」會導致在輸出活動上叫用中介軟體元件。 中介軟體元件會在 Bot 的回合處理常式函式前後執行。 此執行原本就是巢狀，因此有時候會比喻為俄羅斯娃娃。 如需有關中介軟體的深入詳細資訊，請參閱[中介軟體主題](~/v4sdk/bot-builder-concept-middleware.md)。
 
 ## <a name="bot-structure"></a>Bot 結構
+在下列各節中，我們會檢查 Bot 的重要部分。
 
-讓我們看看 Echo Bot With Counter [[C#](https://aka.ms/EchoBotWithStateCSharp) | [JS](https://aka.ms/EchoBotWithStateJS)] 範例，並檢查 Bot 的主要部分。
-
-[!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
+### <a name="prerequisites"></a>必要條件
+- 採用 [C#](https://aka.ms/EchoBotWithStateCSharp) 或 [JS](https://aka.ms/EchoBotWithStateJS) 的一份 **EchoBotWithCounter** 範例。 這裡只會顯示相關的程式碼，但您可以參考範例中的完整原始程式碼。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
-Bot 是一種 [ASP.NET Core](https://docs.microsoft.com/aspnet/core/?view=aspnetcore-2.1) Web 應用程式。 如果您查看 [ASP.NET](https://docs.microsoft.com/aspnet/core/fundamentals/index?view=aspnetcore-2.1&tabs=aspnetcore2x) 基礎，您會在 **Program.cs** 和 **Startup.cs** 等檔案中看到類似的程式碼。 所有 Web 應用程式都需要這些檔案，並不是 Bot 特有的。 有些檔案中的程式碼不會複製於此，但是您可以參考 [C# echobot-with-counter](https://aka.ms/EchoBot-With-Counter) 範例。
+Bot 是一種 [ASP.NET Core](https://docs.microsoft.com/aspnet/core/?view=aspnetcore-2.1) Web 應用程式。 如果您查看 [ASP.NET](https://docs.microsoft.com/aspnet/core/fundamentals/index?view=aspnetcore-2.1&tabs=aspnetcore2x) 基礎，您會在 **Program.cs** 和 **Startup.cs** 等檔案中看到類似的程式碼。 所有 Web 應用程式都需要這些檔案，並不是 Bot 特有的。 
 
-### <a name="echowithcounterbotcs"></a>EchoWithCounterBot.cs
+### <a name="bot-logic"></a>Bot 邏輯
 
 主要 Bot 邏輯定義於 `EchoWithCounterBot` 類別，該類別衍生自 `IBot` 介面。 `IBot` 會定義單一方法 `OnTurnAsync`。 您的應用程式必須實作這個方法。 `OnTurnAsync` 具有 turnContext，其可提供傳入活動的相關資訊。 傳入活動會對應至輸入 HTTP 要求。 活動可能是各種類型，因此我們會先查看您的 Bot 是否已收到訊息。 如果這是一則訊息，我們從回合內容取得對話狀態、讓回合計數器遞增，然後將新的回合計數器值保存在對話狀態中。 接著使用 SendActivityAsync 呼叫，將訊息傳回給使用者。 傳出活動會對應至輸出 HTTP 要求。
 
@@ -105,9 +105,9 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
 }
 ```
 
-### <a name="startupcs"></a>Startup.cs
+### <a name="set-up-services"></a>設定服務
 
-`ConfigureServices` 方法會從 [.bot](bot-builder-basics.md#the-bot-file) 檔案載入已連線的服務，攔截在對話回合期間發生的任何錯誤並加以記錄，設定您的認證提供者，以及建立對話狀態物件以在記憶體中儲存對話資料。
+startup.cs 檔案中的 `ConfigureServices` 方法會從 [.bot](bot-builder-basics.md#the-bot-file) 檔案載入連線服務，攔截在交談回合期間發生的任何錯誤並加以記錄，設定您的認證提供者，以及建立交談狀態物件以在記憶體中儲存交談資料。
 
 ```csharp
 services.AddBot<EchoWithCounterBot>(options =>
@@ -162,10 +162,9 @@ services.AddBot<EchoWithCounterBot>(options =>
 });
 ```
 
-其也會建立並註冊 `EchoBotAccessors`，這些存取只定義於 **EchoBotStateAccessors.cs** 檔案中，並且會使用 ASP.NET Core 中的相依性插入架構傳入公用 `EchoWithCounterBot` 建構函式。
+`ConfigureServices` 方法也會建立並註冊 `EchoBotAccessors`，這些存取只定義於 **EchoBotState Accessors.cs** 檔案中，並且會使用 ASP.NET Core 中的相依性插入架構傳入公用 `EchoWithCounterBot` 建構函式。
 
 ```csharp
-// Create and register state accessors.
 // Accessors created here are passed into the IBot-derived class on every turn.
 services.AddSingleton<EchoBotAccessors>(sp =>
 {
@@ -187,7 +186,7 @@ services.AddSingleton<EchoBotAccessors>(sp =>
 
 `Configure` 方法會指定應用程式使用 Bot Framework 和一些其他檔案，以完成您應用程式的設定。 所有使用 Bot Framework 的 Bot 都需要該組態呼叫。 `ConfigureServices` 和 `Configure` 會在應用程式啟動由執行階段呼叫。
 
-### <a name="counterstatecs"></a>CounterState.cs
+### <a name="manage-state"></a>管理狀態
 
 此檔案包含 Bot 用來維護目前狀態的簡單類別。 其只包含我們用於使計數器遞增的 `int`。
 
@@ -198,7 +197,7 @@ public class CounterState
 }
 ```
 
-### <a name="echobotaccessorscs"></a>EchoBotAccessors.cs
+### <a name="accessor-class"></a>存取子類別
 
 `EchoBotAccessors` 類別會建立為 `Startup` 類別中的單一項目，並傳入 IBot 衍生類別中。 在此案例中為 `public class EchoWithCounterBot : IBot`。 Bot 會使用存取子來保存對話資料。 `EchoBotAccessors` 的建構函式會傳入 Startup.cs 檔案中建立的對話物件。
 
@@ -401,7 +400,7 @@ exports.EchoBot = EchoBot;
 
 ---
 
-### <a name="the-bot-file"></a>Bot 檔案
+## <a name="the-bot-file"></a>Bot 檔案
 
 **.bot** 檔案包含端點、應用程式識別碼和密碼等資訊，並且參考 Bot 所使用的服務。 當您開始從範本建置 Bot 時，系統會為您建立這個檔案，但也可以透過模擬器或其他工具建立自己的檔案。 使用[模擬器](../bot-service-debug-emulator.md)測試 Bot 時，您可以指定所要使用的 .bot 檔案。
 
@@ -425,7 +424,7 @@ exports.EchoBot = EchoBot;
 
 ## <a name="additional-resources"></a>其他資源
 
-如需狀態管理的詳細資訊，請參閱[如何管理對話和使用者狀態](bot-builder-howto-v4-state.md)
+若要了解 Bot 檔案在管理資源中所扮演的角色，請參閱 [Bot 檔案](bot-file-basics.md)。
 
 ## <a name="next-steps"></a>後續步驟
 

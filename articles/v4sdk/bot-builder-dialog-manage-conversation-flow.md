@@ -8,45 +8,30 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/13/2018
+ms.date: 11/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 06eb7d80ca8baa91c619b31dc61c7f78856a3b7c
-ms.sourcegitcommit: 873361802bd1802f745544ba903aecf658cce639
+ms.openlocfilehash: e774d6360968e5059588dbdb476cfd1f35fb464e
+ms.sourcegitcommit: 6cb37f43947273a58b2b7624579852b72b0e13ea
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51611045"
+ms.lasthandoff: 11/22/2018
+ms.locfileid: "52288827"
 ---
 # <a name="implement-sequential-conversation-flow"></a>實作循序對話流程
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-您可以使用對話方塊程式庫來管理簡單和複雜的對話流程。
+您可以使用對話方塊程式庫來管理簡單和複雜的對話流程。 在簡單互動中，Bot 透過一連串固定的步驟執行，然後完成對話。 在本文中，我們會使用「瀑布式對話方塊」一些「提示」和一個「對話方塊集」來建立簡單互動，以詢問使用者一系列的問題。
 
-在簡單互動中，Bot 透過一連串固定的步驟執行，然後完成對話。
-在本文中，我們會使用「瀑布式對話方塊」一些「提示」和一個「對話方塊集」來建立簡單互動，以詢問使用者一系列的問題。
-我們會在來自**多回合提示**的程式碼 [[C#](https://aka.ms/cs-multi-prompts-sample) | [JS](https://aka.ms/js-multi-prompts-sample)] 範例上繪製。
+## <a name="prerequisites"></a>必要條件
+- [Bot Framework 模擬器](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download) (英文)
+- 本文中的程式碼是以 **multi-turn-prompt** 範例為基礎。 您需要採用 [C#](https://aka.ms/cs-multi-prompts-sample) 或 [JS](https://aka.ms/js-multi-prompts-sample) 的一份範例。
+- [Bot 基本概念](bot-builder-basics.md)、[對話程式庫](bot-builder-concept-dialog.md)、[對話狀態](bot-builder-dialog-state.md) 和 [.bot](bot-file-basics.md)檔案的知識。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-若要在一般情況下使用對話方塊，您需要專案或解決方案的 `Microsoft.Bot.Builder.Dialogs` NuGet 套件。
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-若要在一般情況下使用對話方塊，您需要 `botbuilder-dialogs` 程式庫，透過 npm 即可下載。
-
-若要安裝此套件並將其儲存為相依性，請瀏覽至您專案的目錄並使用此命令。
-
-```shell
-npm install botbuilder-dialogs --save
-```
-
----
 下列各節反映您對大部分 Bot 實作簡單對話方塊時所會採取的步驟：
 
 ## <a name="configure-your-bot"></a>設定 Bot
-
-我們需要已指派給對話方塊集的狀態屬性存取子，以便 Bot 用來管理[對話方塊狀態](bot-builder-dialog-state.md)。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -132,7 +117,7 @@ Bot 的建構函式會為 Bot 建立狀態屬性存取子：`this.dialogState` �
 
 ## <a name="update-the-bot-turn-handler-to-call-the-dialog"></a>更新 Bot 回合處理常式以呼叫對話方塊
 
-若要執行對話方塊，Bot 的回合處理常式必須針對包含 Bot 對話的對話方塊集，建立對話方塊內容。 (Bot 可以定義多個對話方塊集，但一般而言，您應該只能為您的 Bot 義一個對話方塊集。 [對話方塊程式庫](bot-builder-concept-dialog.md)描述對話方塊的重要層面。)
+若要執行對話方塊，Bot 的回合處理常式必須針對包含 Bot 對話的對話方塊集，建立對話方塊內容。 Bot 可以定義多個對話集，但一般而言，您應該只能為 Bot 義一個對話集。 
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -228,8 +213,6 @@ async onTurn(turnContext) {
 
 狀態屬性存取子的 _get_ 和 _set_ 方法，會取得及設定狀態管理物件的快取中的屬性值。 快取會第一次填入回合中要求的狀態屬性值，但必須明確地保存。 為了保存這兩個狀態屬性的變更，我們會呼叫對應狀態管理物件的「儲存變更」方法。
 
-如需詳細資訊，請參閱[對話方塊狀態](bot-builder-dialog-state.md)。
-
 ## <a name="initialize-your-bot-and-define-your-dialog"></a>初始化 Bot 並定義對話方塊
 
 我們的簡單對話會塑造為一系列對使用者提出的問題。 C# 和 JavaScript 版本的步驟稍有不同：
@@ -260,7 +243,7 @@ async onTurn(turnContext) {
 以下是在定義自己的瀑布式步驟時，所要記住的幾個事項。
 
 * 每個 Bot 回合都會反映使用者的輸入，後面接著來自 Bot 的回應。 因此，您會在瀑布式步驟的結尾要求使用者輸入，並且在下一個瀑布式步驟中接收其答案。
-* 每個提示實際上是兩個步驟的對話方塊，該對話方塊會顯示其提示並執行迴圈，直到其收到「有效」輸入為止。 (您可以依賴每種提示類型的內建驗證，也可以將自己的自訂驗證新增至提示。 如需詳細資訊，請參閱[取得使用者輸入](bot-builder-prompts.md)。)
+* 每個提示實際上是兩個步驟的對話方塊，該對話方塊會顯示其提示並執行迴圈，直到其收到「有效」輸入為止。 
 
 在此範例中，對話會定義於 Bot 檔案內，並在 Bot 的建構函式中初始化。
 
@@ -528,11 +511,11 @@ async displayProfile(step) {
 
 ## <a name="test-your-dialog"></a>測試對話方塊
 
-在本機建置並執行 Bot，然後使用[模擬器](../bot-service-debug-emulator.md)與 Bot 互動。
+在本機建置並執行 Bot，然後使用模擬器與 Bot 互動。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-1. Bot 會傳送初始問候訊息，以回應使用者加入對話的對話更新活動。
+1. Bot 會傳送初始問候訊息，以回應使用者加入對話方塊的對話方塊更新活動。
 1. 輸入 `hi` 或其他輸入。 因為這回合還沒有作用中的對話方塊，所以 Bot 會開始 `details` 對話方塊。
    * Bot 會傳送對話方塊的第一個提示，並等候更多輸入。
 1. 在 Bot 詢問他們時回答問題，並透過對話方塊進行。
@@ -551,6 +534,9 @@ async displayProfile(step) {
    * Bot 會開始單一步驟的 `hello_user` 對話方塊，這會顯示所收集資料中的資訊，然後立即結束。
 
 ---
+
+## <a name="additional-resources"></a>其他資源
+您可以依賴每種提示類型的內建驗證 (如這裡所示)，也可以將自己的自訂驗證新增至提示。 如需詳細資訊，請參閱[使用對話提示收集使用者輸入](bot-builder-prompts.md)。
 
 ## <a name="next-steps"></a>後續步驟
 
