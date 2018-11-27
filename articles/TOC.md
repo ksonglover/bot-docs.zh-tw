@@ -7,7 +7,7 @@
 ### [.NET](dotnet/bot-builder-dotnet-sdk-quickstart.md)
 ### [JavaScript](javascript/bot-builder-javascript-quickstart.md)
 # 教學課程
-## [使用 LUIS 和 QnA 服務搭配分派工具](v4sdk/bot-builder-tutorial-dispatch.md)
+## [使用多個 LUIS 和 QnA 模型](v4sdk/bot-builder-tutorial-dispatch.md)
 ## [在您的 Bot 中新增驗證](bot-builder-tutorial-authentication.md)
 # 範例
 ## [在 GitHub 上的範例存放庫](https://github.com/Microsoft/BotBuilder-Samples/blob/master/readme.md)
