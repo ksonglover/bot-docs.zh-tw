@@ -10,7 +10,7 @@
 ## [使用多個 LUIS 和 QnA 模型](v4sdk/bot-builder-tutorial-dispatch.md)
 ## [在您的 Bot 中新增驗證](bot-builder-tutorial-authentication.md)
 # 範例
-## [在 GitHub 上的範例存放庫](https://github.com/Microsoft/BotBuilder-Samples/blob/master/readme.md)
+## [在 GitHub 上的範例存放庫](https://github.com/Microsoft/BotBuilder-Samples/blob/master/README.md)
 # 概念
 ## [Bot 的運作方式](v4sdk/bot-builder-basics.md)
 ## [管理狀態](v4sdk/bot-builder-concept-state.md)
