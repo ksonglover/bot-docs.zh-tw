@@ -43,7 +43,7 @@
 ### 使用對話方塊程式庫管理對話 
 #### [實作循序對話流程](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
 #### [使用對話方塊提示收集使用者輸入](v4sdk/bot-builder-prompts.md)
-#### [使用分支和迴圈建立進階的對話流程](v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)
+#### [使用分支和迴圈建立進階的交談流程](v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)
 #### [處理使用者中斷](v4sdk/bot-builder-howto-handle-user-interrupt.md)
 #### [留存使用者資料](v4sdk/bot-builder-tutorial-persist-user-inputs.md)
 #### [重複使用對話方塊](v4sdk/bot-builder-compositcontrol.md)
