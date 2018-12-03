@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/8/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bd431da58d13f3024617900bbeabd8007a2e3bb8
-ms.sourcegitcommit: 6cb37f43947273a58b2b7624579852b72b0e13ea
+ms.openlocfilehash: dacf952e6554eb76e0a41418791fb954e82d4f38
+ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "52288798"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52452060"
 ---
 # <a name="middleware"></a>中介軟體
 
@@ -36,7 +36,7 @@ ms.locfileid: "52288798"
 ### <a name="modifying-or-enhancing-the-turn-context"></a>修改或增強回合內容
 如果 Bot 具有的資訊多過於活動中提供的資訊，則特定交談的成果內容可能更豐富。 在此情況下，中介軟體可查看其至目前為止的對話狀態、查詢外部資料來源，並將資料附加至[回合內容](~/v4sdk/bot-builder-basics.md#defining-a-turn)物件，然後再將執行作業傳遞至該 Bot 邏輯。 
 
-SDK 會定義可記錄傳入和傳出活動的記錄中介軟體，但您也可以定義您自己的中介軟體。
+SDK 會定義可記錄傳入和傳出活動的記錄中介軟體，但您也可以定義自己的中介軟體。
 
 ## <a name="the-bot-middleware-pipeline"></a>Bot 中介軟體管道
 針對每個活動，介面卡可依您新增中介軟體的順序進行呼叫。 針對該回合和 _next_ 委派，介面卡會在內容物件中傳遞，然後中介軟體會呼叫委派，並將控制項傳遞至管道中的下個中介軟體。 中介軟體也有機會在 _next_ 委派傳回之後，先執行其他工作，再完成方法。 您可以想成每個中介軟體物件都有第一次和最後一次的機會，能在管道中和接續於中介軟體物件之後的項目進行互動。

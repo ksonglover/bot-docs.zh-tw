@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/13/2018
-ms.openlocfilehash: 997d907bfabb284e079f21437418645a7dac061e
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: fcda5c57a96b6f93aad965e868c824577616f630
+ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645648"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52452040"
 ---
 # <a name="debug-a-bot"></a>對 Bot 進行偵錯
 
@@ -29,8 +29,7 @@ ms.locfileid: "51645648"
 若要使用命令列執行 JavaScript Bot 並使用模擬器測試 Bot，請執行下列操作：
 1. 從命令列將目錄變更至 Bot 專案目錄。
 1. 執行命令 **node app.js** 以啟動 Bot。
-1. 按一下模擬器 [歡迎] 索引標籤中的 [開啟 Bot] 連結。
-1. 在您建立專案的目錄中選取 .bot 檔案。
+1. 啟動模擬器，然後連線到 Bot 的端點 (例如：**http://localhost:3978/api/messages**)。 如果這是您第一次執行 Bot，請按一下 [檔案] > [新的 Bot]，並遵循畫面上的指示。 否則，請按一下 [檔案] > [開啟 Bot] 以開啟現有的 Bot。 由於這個 Bot 在本機電腦上執行，您可以將 **MSA 應用程式識別碼**和 **MSA 應用程式密碼**欄位留白。 如需詳細資訊，請參閱[使用模擬器進行偵錯](bot-service-debug-emulator.md)。
 1. 在模擬器中，向 Bot 傳送訊息 (例如：傳送「嗨」訊息)。 
 1. 使用模擬器視窗右側的 [偵測器] 和 [記錄] 面板來對您的 Bot 進行偵錯。 比方說，按一下任何一個訊息泡泡 (例如：在下方螢幕擷取畫面中的「嗨」訊息泡泡)，在 [偵測器] 面板中會向您顯示該訊息的詳細資料。 您可以用它來檢視要求和回應，因訊息會在模擬器和 Bot 之間交換。 或者，您也可以按一下 [記錄] 面板中任何連結的文字，以在 [偵測器] 面板中檢視詳細資料。
 

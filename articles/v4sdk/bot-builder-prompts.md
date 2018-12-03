@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1c69b438c739ac9c47d40e53f1300a4773fc1a1d
-ms.sourcegitcommit: 6cb37f43947273a58b2b7624579852b72b0e13ea
+ms.openlocfilehash: 9d8caf19a98fb595e4b1e27b0635d2a752b88390
+ms.sourcegitcommit: bbfb171f515c50a3c8bba5ca898daf25cf764378
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "52288787"
+ms.lasthandoff: 11/23/2018
+ms.locfileid: "52293600"
 ---
 # <a name="gather-user-input-using-a-dialog-prompt"></a>使用對話方塊提示蒐集使用者輸入
 
@@ -24,28 +24,10 @@ ms.locfileid: "52288787"
 張貼問題來收集資訊是 Bot 與使用者互動時的其中一種主要方式。 *dialogs* 程式庫可讓您輕鬆地詢問問題，以及驗證回應以確保回應符合特定資料類型或符合自訂驗證規則。 本主題詳細說明如何從瀑布式對話建立並呼叫提示。
 
 ## <a name="prerequisites"></a>必要條件
-- 本文中的程式碼是以 dialog-prompt 範例為基礎。 您需要採用 [C#](https://aka.ms/dialog-prompt-cs) 或 [JS](https://aka.ms/dialog-prompt-js) 的一份範例。
+
+- 本文中的程式碼是以 **DialogPromptBot** 範例為基礎。 您需要採用 [C#](https://aka.ms/dialog-prompt-cs) 或 [JS](https://aka.ms/dialog-prompt-js) 的一份範例。
 - 需要基本了解 [dialogs 程式庫](bot-builder-concept-dialog.md)以及如何[管理交談](bot-builder-dialog-manage-conversation-flow.md)。 
 - 用於測試的 [Bot Framework 模擬器](https://github.com/Microsoft/BotFramework-Emulator)。
-
-## <a name="about-prompt-types"></a>關於提示類型
-
-在幕後，提示為兩個步驟的對話方塊。 第一步，提示會要求輸入；第二步，會傳回有效值，或利用重新提示從頂端重新開始。 對話方塊 程式庫提供數個基本提示，分別用於收集不同類型的回應。 基本提示可解譯自然語言輸入，例如 "ten" 或 "a dozen" 是指數字，或 "tomorrow" 或 "Friday at 10am" 是指日期時間。
-
-| Prompt | 說明 | 傳回 |
-|:----|:----|:----|
-| _附件提示_ | 要求一或多個附件，例如文件或影像。 | 「附件」物件的集合。 |
-| _選擇提示_ | 要求從一組選項中選擇。 | 「找到的選擇」物件。 |
-| _確認提示_ | 要求確認。 | 布林值。 |
-| _日期時間提示_ | 要求日期時間。 | 「日期時間解析」物件的集合。 |
-| _數字提示_ | 要求數字。 | 數值。 |
-| _文字提示_ | 要求一般文字輸入。 | 字串。 |
-
-若要提示使用者提供輸入，請使用其中一個內建類別 (例如_文字提示_) 定義提示，然後將其新增至對話方塊集。 提示已修正在對話集內必須是唯一的識別碼。 您可以讓每個提示都有自訂驗證程式，而對於某些提示，您可以指定「預設地區設定」。 
-
-### <a name="prompt-locale"></a>提示地區設定
-
-地區設定用來決定**選擇**、**確認**、**日期時間**和**數字**提示的特定語言行為。 對於來自使用者的任何指定輸入，如果通道在使用者的訊息中提供了 _locale_ 屬性，則會使用該屬性。 否則，如果在呼叫提示的建構函式時提供提示的「預設地區設定」，或藉由稍後設定，則會使用該預設地區設定。 若未提供任何一項，則會以英文 ("en-us") 作為地區設定。 注意：地區設定是 2、3 或 4 個字元的 ISO 639 代碼，其代表某個語言或語言系列。
 
 ## <a name="using-prompts"></a>使用提示
 

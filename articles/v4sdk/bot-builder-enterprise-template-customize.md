@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ea507bbdf916ff1955aea0db17b765791432f430
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: 319700f8b7b236ce74058bac5fabb84f21e04d69
+ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645578"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52452010"
 ---
 # <a name="enterprise-bot-template---customize-your-bot"></a>企業 Bot 範本 - 自訂您的 Bot
 
@@ -36,7 +36,13 @@ Bot 的資料夾結構如下所示，且代表我們建議的最佳做法，可�
     | - CognitiveModels     
         | - LUIS            // .LU file containing base conversational intents (Greeting, Help, Cancel)
         | - QnA             // .LU file containing example QnA items
-    | - DeploymentScripts   // msbot clone recipe for deployment
+    | - DeploymentScripts   // msbot clone recipes for deployment
+        | - de              // Deployment files for German
+        | - en              // Deployment files for English        
+        | - es              // Deployment files for Spanish
+        | - fr              // Deployment files for French
+        | - it              // Deployment files for Italian
+        | - zh              // Deployment files for Chinese
     | - Dialogs             // All Bot dialogs sit under this folder
         | - Main            // Root Dialog for all messages
             | - MainDialog.cs       // Dialog Logic
@@ -69,26 +75,26 @@ Bot 的資料夾結構如下所示，且代表我們建議的最佳做法，可�
 
 ## <a name="updating-your-cognitive-models"></a>更新您的認知模型
 
-根據預設，企業範本隨附兩個認知模型：範例常見問題集 QnAMaker 知識庫，以及適用於一般意圖 (問候語、協助、取消等等) 的 LUIS 模型。 您可以自訂這些模型，以符合您的需求。 您也可以新增 LUIS 模型和 QnAMaker 知識庫，以擴充您的 Bot 功能。
+根據預設，企業範本隨附兩個認知模型：範例常見問題集 QnA Maker 知識庫，以及適用於一般意圖 (問候語、協助、取消等等) 的 LUIS 模型。 您可以自訂這些模型，以符合您的需求。 您也可以新增 LUIS 模型和 QnA Maker 知識庫，以擴充您的 Bot 功能。
 
 ### <a name="updating-an-existing-luis-model"></a>更新現有的 LUIS 模型
 若要更新企業範本現有的 LUIS 模型，請執行下列步驟：
 1. 在 [LUIS 入口網站](http://luis.ai)中或使用 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 和 [Luis](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUIS) CLI 工具，對 LUIS 模型進行變更。 
 2. 執行下列命令來更新分派模型，以反映您的變更 (確保正確的訊息路由)：
 ```shell
-    dispatch refresh --bot "YOURBOT.bot" --secret YOURSECRET
+    dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
 ```
 3. 從每個已更新模型的專案根目錄執行下列命令，以更新其相關聯的 LuisGen 類別： 
 ```shell
     luis export version --appId [LUIS_APP_ID] --versionId [LUIS_APP_VERSION] --authoringKey [YOUR_LUIS_AUTHORING_KEY] | luisgen --cs [CS_FILE_NAME] -o "\Dialogs\Shared\Resources"
 ```
 
-### <a name="updating-an-existing-qnamaker-knowledge-base"></a>更新現有的 QnAMaker 知識庫
-若要更新現有的 QnAMaker 知識庫，請執行下列步驟：
-1. 透過 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 和 [QnAMaker](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/QnAMaker) CLI 工具或 [QnAMaker 入口網站](https://qnamaker.ai)，對您的 QnAMaker 知識庫進行變更。
+### <a name="updating-an-existing-qna-maker-knowledge-base"></a>更新現有的 QnA Maker 知識庫
+若要更新現有的 QnA Maker 知識庫，請執行下列步驟：
+1. 透過 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 和 [QnA Maker](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/QnAMaker) CLI 工具或 [QnA Maker 入口網站](https://qnamaker.ai)，變更您的 QnA Maker 知識庫。
 2. 執行下列命令來更新分派模型，以反映您的變更 (確保正確的訊息路由)：
 ```shell
-    dispatch refresh --bot "YOURBOT.bot" --secret YOURSECRET
+    dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
 ```
 
 ### <a name="adding-a-new-luis-model"></a>新增 LUIS 模型
@@ -101,28 +107,28 @@ Bot 的資料夾結構如下所示，且代表我們建議的最佳做法，可�
 ```
 3. 透過下列命令將這個新的 LUIS 模型新增至您的發送器
 ```shell
-    dispatch add -t luis -id YOUR_LUIS_APPID -bot "YOURBOT.bot" -secret YOURSECRET
+    dispatch add -t luis -id LUIS_APP_ID -bot "YOUR_BOT.bot" -secret YOURSECRET
 ```
 4. 重新整理分派模型，以透過下列命令反映 LUIS 模型變更
 ```shell
-    dispatch refresh -bot "YOURBOT.bot" -secret YOURSECRET
+    dispatch refresh -bot "YOUR_BOT.bot" -secret YOUR_SECRET
 ```
 
-### <a name="adding-an-additional-qnamaker-knowledgebase"></a>新增額外的 QnAMaker 知識庫
+### <a name="adding-an-additional-qna-maker-knowledge-base"></a>新增額外的 QnA Maker 知識庫
 
-在某些情況下，您可能想要將額外的 QnAMaker 知識庫新增至 Bot，這可透過下列步驟執行。
+在某些情況下，您可能想要將額外的 QnA Maker 知識庫新增至 Bot，這可透過下列步驟執行。
 
-1. 使用下列在輔助目錄中執行的命令，從 JSON 檔案建立新的 QnAMaker 知識庫
+1. 使用下列在輔助目錄中執行的命令，從 JSON 檔案建立新的 QnA Maker 知識庫
 ```shell
-qnamaker create kb --in <KB.json> --msbot | msbot connect qna --stdin --bot "YOURBOT.bot" --secret YOURSECRET
+qnamaker create kb --in <KB.json> --msbot | msbot connect qna --stdin --bot "YOUR_BOT.bot" --secret YOURSECRET
 ```
 2. 執行下列命令來更新分派模型，以反映您的變更
 ```shell
-dispatch refresh --bot "YOURBOT.bot" --secret YOURSECRET
+dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
 ```
 3. 更新強型別分派類別以反映新的 QnA 來源
 ```shell
-msbot get dispatch --bot "YOURBOT.bot" | luis export version --stdin > dispatch.json
+msbot get dispatch --bot "YOUR_BOT.bot" | luis export version --stdin > dispatch.json
 luisgen dispatch.json -cs Dispatch -o Dialogs\Shared
 ```
 4.  更新 `Dialogs\Main\MainDialog.cs` 檔案，以在所提供的範例後面，包含新 QnA 來源的對應分派意圖。
@@ -141,52 +147,57 @@ luisgen dispatch.json -cs Dispatch -o Dialogs\Shared
 - 將 InitialDialogId 設定為您希望元件執行的第一個對話方塊
 
 ```
-InitialDialogId = nameof(OnboardingDialog);
+    InitialDialogId = nameof(OnboardingDialog);
 
-var onboarding = new WaterfallStep[]
-{
-    AskForName,
-    AskForEmail,
-    AskForLocation,
-    FinishOnboardingDialog,
-};
+    var onboarding = new WaterfallStep[]
+    {
+        AskForName,
+        AskForEmail,
+        AskForLocation,
+        FinishOnboardingDialog,
+    };
 
-AddDialog(new WaterfallDialog(InitialDialogId, onboarding));
-AddDialog(new TextPrompt(NamePrompt));
-AddDialog(new TextPrompt(EmailPrompt));
-AddDialog(new TextPrompt(LocationPrompt));
+    AddDialog(new WaterfallDialog(InitialDialogId, onboarding));
+    AddDialog(new TextPrompt(DialogIds.NamePrompt));
+    AddDialog(new TextPrompt(DialogIds.EmailPrompt));
+    AddDialog(new TextPrompt(DialogIds.LocationPrompt));
 ```
 
 然後，您必須建立範本管理員來處理回應。 建立新的類別並從 TemplateManager 衍生，OnboardingResponses.cs 檔案中會提供範例，而摘錄如下所示。
 
-```
-public const string _namePrompt = "namePrompt";
-public const string _haveName = "haveName";
-public const string _emailPrompt = "emailPrompt";
-      
-private static LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
-{
-    ["default"] = new TemplateIdMap
-    {
-        {
-            _namePrompt,
-            (context, data) => OnboardingStrings.NAME_PROMPT
-        },
-        {
-            _haveName,
-            (context, data) => string.Format(OnboardingStrings.HAVE_NAME, data.name)
-        },
-        {
-            _emailPrompt,
-            (context, data) => OnboardingStrings.EMAIL_PROMPT
-        },
+```    
+ ["default"] = new TemplateIdMap
+            {
+                { ResponseIds.EmailPrompt,
+                    (context, data) =>
+                    MessageFactory.Text(
+                        text: OnboardingStrings.EMAIL_PROMPT,
+                        ssml: OnboardingStrings.EMAIL_PROMPT,
+                        inputHint: InputHints.ExpectingInput)
+                },
+                { ResponseIds.HaveEmailMessage,
+                    (context, data) =>
+                    MessageFactory.Text(
+                        text: string.Format(OnboardingStrings.HAVE_EMAIL, data.email),
+                        ssml: string.Format(OnboardingStrings.HAVE_EMAIL, data.email),
+                        inputHint: InputHints.IgnoringInput)
+                },
+                { ResponseIds.HaveLocationMessage,
+                    (context, data) =>
+                    MessageFactory.Text(
+                        text: string.Format(OnboardingStrings.HAVE_LOCATION, data.Name, data.Location),
+                        ssml: string.Format(OnboardingStrings.HAVE_LOCATION, data.Name, data.Location),
+                        inputHint: InputHints.IgnoringInput)
+                },
+                
+                ...
 ```
 
 若要轉譯回應，您可以透過 `ReplyWith` 或 `RenderTemplate` 提示使用範本管理員執行個體來存取這些回應。 範例如下所示。
 
 ```
-Prompt = await _responder.RenderTemplate(sc.Context, "en", OnboardingResponses._namePrompt),
-await _responder.ReplyWith(sc.Context, OnboardingResponses._haveName, new { name });
+Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, OnboardingResponses.ResponseIds.NamePrompt)
+await _responder.ReplyWith(sc.Context, OnboardingResponses.ResponseIds.HaveNameMessage, new { name });
 ```
 
 對話方塊基礎結構的最後一步，是建立範圍僅限於您對話方塊的狀態類別。 建立新的類別，並確保其衍生自 `DialogState`
@@ -195,4 +206,3 @@ await _responder.ReplyWith(sc.Context, OnboardingResponses._haveName, new { name
 
 ## <a name="conversational-insights-using-powerbi-dashboard-and-application-insights"></a>使用 PowerBI 儀表板和 Application Insights 的對話式見解
 - 若要從取得對話式見解著手，請繼續進行[使用 PowerBI 儀表板設定對話式分析](bot-builder-enterprise-template-powerbi.md)。
-

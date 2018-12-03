@@ -1,1017 +1,632 @@
 ---
-title: 使用分支和迴圈建立進階的對話流程 | Microsoft Docs
-description: 了解如何在適用於 Node.js 的 Bot 建立器 SDK 中，使用對話方塊來管理複雜的對話流程。
+title: 使用分支和迴圈建立進階交談流程 | Microsoft Docs
+description: 了解如何在 Bot Builder SDK 中使用對話來管理複雜的交談流程。
 keywords: 複雜對話流程, 重複, 迴圈, 選單, 對話方塊, 提示, 瀑布, 對話方塊集
-author: v-ducvo
-ms.author: v-ducvo
+author: JonathanFingold
+ms.author: v-jofing
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/03/2018
+ms.date: 11/28/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9605a2f078be753023e6d178247a211ace107873
-ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
+ms.openlocfilehash: da891fad019fc1725242404905565bb1072f8540
+ms.sourcegitcommit: 4db09039effc5259feba163128f4e9a3ccdd3d0d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51333022"
+ms.lasthandoff: 11/29/2018
+ms.locfileid: "52585889"
 ---
-# <a name="create-advance-conversation-flow-using-branches-and-loops"></a>使用分支和迴圈建立進階的對話流程
+# <a name="create-advanced-conversation-flow-using-branches-and-loops"></a>使用分支和迴圈建立進階的交談流程
 
 [!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
-在上一篇文章中，我們已示範如何使用對話方塊程式庫來管理簡單的對話。 在[循序對話流程](bot-builder-dialog-manage-conversation-flow.md)中，使用者從「瀑布」的第一個步驟開始，持續進行到最後一個步驟，對話交換即完成。 在本文中，我們會使用對話方塊來管理更複雜的對話，其中部分可以進行分支和迴圈。 為完成此作業，我們將使用對話方塊內容上定義的各種方法及瀑布步驟內容，而且我們會在對話方塊的不同部分之間傳遞引數。
+在本文中，我們會說明如何管理可進行分支和迴圈處理的複雜交談。 我們也會說明如何在對話塊的不同部分之間傳遞引數。
 
-請參閱[對話方塊程式庫](bot-builder-concept-dialog.md)，以深入了解對話方塊的背景資訊。
+## <a name="prerequisites"></a>必要條件
 
-為了讓您可以更充分地控制「對話方塊堆疊」，**對話方塊**程式庫提供了 _replace dialog_ 方法。 此方法可讓您將目前使用中的對話方塊交換成另一個對話方塊，同時維持對話的狀態或流程。 如果您要建立更複雜的互動，_begin dialog_ 和 _replace dialog_ 方法可讓您建立必要的分支和迴圈。 如果您的對話複雜性升高到難以管理瀑布式對話方塊的情況，請調查[對話方塊重複使用](bot-builder-compositcontrol.md)情況，或根據基底 `Dialog` 類別建置自訂對話方塊管理類別。
+- [Bot Framework 模擬器](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download) (英文)
+- 本文中的程式碼是以**複雜對話**範例為基礎。 您需要採用 [C#](https://aka.ms/cs-complex-dialog-sample) 或 [JS](https://aka.ms/js-complex-dialog-sample) 的一份範例。
+- [Bot 基本概念](bot-builder-basics.md)、[Dialogs 程式庫](bot-builder-concept-dialog.md)、[對話狀態](bot-builder-dialog-state.md) 和 [.bot](bot-file-basics.md) 檔案的知識。
 
-在本文中，我們將針對旅館門房 Bot 建立範例對話，來賓可能會使用此 Bot 來取得常見服務：預訂旅館餐廳和透過客房服務訂餐。  這每一個功能 (包含將其連接在一起的功能表) 會建立為對話方塊集合中的對話方塊。
+## <a name="about-the-sample"></a>關於範例
 
-Bot 最上層的對話方塊會提供來賓這兩個選項。 如果來賓想要訂位，最上層的對話方塊就會使用 _begin dialog_ 非同步方法來啟動訂位對話方塊。 如果來賓想要預訂客房服務，最上層的對話方塊會改為啟動 [晚餐訂購] 對話方塊。
+此範例所代表的 Bot 可讓使用者註冊，以評論清單中最多兩家公司。
 
-[晚餐訂購] 對話方塊會先要求來賓從菜單中選取食物項目，然後詢問房間號碼。 食物項目的選取「也是」對話方塊，來賓從菜單中選取項目時，此對話方塊會受到呼叫並執行多次，直到送出晚餐訂單為止。
+- 其會要求使用者的名稱和年齡，然後根據使用者的年齡「分支」。
+  - 如果使用者太年輕，其不會要求使用者評論任何公司。
+  - 如果使用者年紀夠大，就會開始收集使用者的評論喜好設定。
+    - 其可讓使用者選取要評論的公司。
+    - 如果使用者選擇某家公司，Bot 則會「迴圈處理」以允許他們選擇第二家公司。
+- 最後，其會感謝使用者的參與。
 
-此圖說明本文中將建立的對話方塊，以及對話彼此的關聯。
+其會使用兩個瀑布式對話，和一些提示來管理複雜交談。
 
-![本文中所使用的對話方塊說明](~/media/complex-conversation-flows.png)
-
-## <a name="how-to-branch"></a>如何分支
-
-對話方塊內容會維持_對話方塊堆疊_，對於堆疊中的每個對話方塊，追蹤哪個步驟是下一步。 「開始對話方塊」方法會將對話方塊推送至堆疊頂端，而其「結束對話方塊」方法則會將頂端的對話方塊從堆疊中移除。
-
-若要建立分支，請從一組子對話方塊中選取一個來開始。 如需有關此概念的詳細資訊，請參閱[建立對話分支](bot-builder-concept-dialog.md#branch-a-conversation)。
-
-## <a name="how-to-loop"></a>如何執行迴圈
-
-對話方塊內容的 _replace dialog_ 方法可讓您取代堆疊頂端的對話方塊。 舊對話方塊的狀態會遭捨棄，而新對話方塊會從頭開始。 藉由以對話方塊本身來取代對話，您可以使用這個方法來建立迴圈。 不過，為了[保存 Bot 已收集的任何資訊](bot-builder-howto-v4-state.md)，您必須在對 _replace dialog_ 方法的呼叫中，將該資訊傳遞至對話方塊的新執行個體。
-
-在下列範例中，您會看到客房服務訂單會儲存在對話狀態方塊中，而當 `orderPrompt` 對話方塊重複時，目前的對話方塊狀態會傳入，以便新對話方塊的狀態可以繼續新增項目。 如果您想要將此資訊儲存在對話方塊以外的 Bot 狀態，請參閱如何[保存使用者資料](bot-builder-tutorial-persist-user-inputs.md)。
-
-## <a name="create-the-dialogs-for-the-hotel-bot"></a>建立旅館 Bot 的對話方塊
-
-在本節中，我們將針對所描述的旅館 Bot 建立對話方塊來管理對話。
-
-### <a name="install-the-dialogs-library"></a>安裝 dialogs 程式庫
+## <a name="configure-state-for-your-bot"></a>設定 Bot 的狀態
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-我們先從基本的 EchoBot 範本開始。 如需指示，請參閱[適用於 .NET 的快速入門](../dotnet/bot-builder-dotnet-sdk-quickstart.md)。
-
-若要使用對話，請為專案或解決方案安裝 `Microsoft.Bot.Builder.Dialogs` NuGet 套件。
-然後視需要在程式碼檔案中的 using 陳述式，參考對話方塊程式庫。
+定義我們將要收集的使用者資訊。
 
 ```csharp
-using Microsoft.Bot.Builder.Dialogs;
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-我們先從 EchoBot 範本開始。 如需指示，請參閱[適用於 JavaScript 的快速入門](../javascript/bot-builder-javascript-quickstart.md)。
-
-
-
-可以從 npm 下載 `botbuilder-dialogs` 程式庫。 若要安裝 `botbuilder-dialogs` 程式庫，請執行下列 npm 命令：
-
-```cmd
-npm install --save botbuilder-dialogs
-```
-
-若要在 Bot 中使用**對話**，請將其包含在 Bot 程式碼中。 例如，將下列內容新增至您的 **index.js** 檔案中：
-
-```javascript
-const { DialogSet } = require('botbuilder-dialogs');
-```
-
-以及將下列內容新增至 **bot.js** 檔案：
-
-```javascript
-const { DialogSet, NumberPrompt, ChoicePrompt, WaterfallDialog } = require('botbuilder-dialogs');
-```
-
----
-
-### <a name="create-a-dialog-set"></a>建立對話方塊集
-
-建立_對話方塊集_，我們會將此範例的所有對話方塊加入其中。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-建立 **HotelDialogs** 類別，並新增所需的 using 陳述式。
-
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Builder.Dialogs.Choices;
-using Microsoft.Bot.Schema;
-```
-
-從 **DialogSet** 衍生類別。 包含使用 `IStatePropertyAccessor<DialogState>` 參數的建構函式，以管理對話方塊集合的執行個體內部狀態。 此外，請定義識別碼和金鑰，以用來識別此對話方塊集的對話方塊、提示和狀態資訊。
-
-```csharp
-/// <summary>Contains the set of dialogs and prompts for the hotel bot.</summary>
-public class HotelDialogs : DialogSet
+public class UserProfile
 {
-    /// <summary>The ID of the top-level dialog.</summary>
-    public const string MainMenu = "mainMenu";
-
-    public HotelDialogs(IStatePropertyAccessor<DialogState> dialogStateAccessor)
-        : base(dialogStateAccessor)
-    {
-    }
-
-    /// <summary>Contains the IDs for the other dialogs in the set.</summary>
-    private static class Dialogs
-    {
-        public const string OrderDinner = "orderDinner";
-        public const string OrderPrompt = "orderPrompt";
-        public const string ReserveTable = "reserveTable";
-    }
-
-    /// <summary>Contains the IDs for the prompts used by the dialogs.</summary>
-    private static class Inputs
-    {
-        public const string Choice = "choicePrompt";
-        public const string Number = "numberPrompt";
-    }
-
-    /// <summary>Contains the keys used to manage dialog state.</summary>
-    private static class Outputs
-    {
-        public const string OrderCart = "orderCart";
-        public const string OrderTotal = "orderTotal";
-        public const string RoomNumber = "roomNumber";
-    }
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 **index.js** 檔案中，新增程式碼以建立管理對話方塊狀態的狀態屬性存取子，並使用此存取子來建立供 Bot 使用的對話方塊集合。
-
-```javascript
-// Create conversation state with in-memory storage provider.
-const conversationState = new ConversationState(memoryStorage);
-const dialogStateAccessor = conversationState.createProperty('dialogState');
-
-// Create a dialog set for the bot.
-const dialogSet = new DialogSet(dialogStateAccessor);
-
-// Create the bot.
-const bot = new MyBot(conversationState, dialogSet)
-```
-
-接著，更新活動處理呼叫以使用 Bot 物件。
-
-```javascript
-// Listen for incoming requests.
-server.post('/api/messages', (req, res) => {
-    adapter.processActivity(req, res, async (context) => {
-        // Route to the bot's turn handler.
-        await bot.onTurn(context);
-    });
-});
-```
-
----
-
-### <a name="add-the-prompts-to-the-set"></a>將提示新增至集合
-
-我們將使用 **ChoicePrompt** 向來賓詢問要訂購晚餐或預訂餐廳，以及晚餐的菜單要選取哪個選項。 若是訂購晚餐，接著會使用 **NumberPrompt** 詢問來賓的房號。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-在 **HotelDialogs** 建構函式中，新增兩個提示。
-
-```csharp
-// Add the prompts.
-Add(new ChoicePrompt(Inputs.Choice));
-Add(new NumberPrompt<int>(Inputs.Number));
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-更新 Bot 建構函式，並將兩個提示新增至對話方塊集合。
-
-```javascript
-constructor(conversationState, dialogSet) {
-    // Creates a new state accessor property.
-    // See https://aka.ms/about-bot-state-accessors to learn more about the bot state and state accessors.
-    this.countProperty = conversationState.createProperty(TURN_COUNTER_PROPERTY);
-    this.conversationState = conversationState;
-    this.dialogSet = dialogSet;
-
-    this.dialogSet.add(new ChoicePrompt('choicePrompt'));
-    this.dialogSet.add(new NumberPrompt('numberPrompt'));
-}
-```
-
----
-
-### <a name="define-some-of-the-supporting-information"></a>定義一些支援的資訊
-
-由於我們需要晚餐菜單上每個選項的相關資訊，現在讓我們來設定。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-建立內部靜態**清單**類別以包含這項資訊。 我們也會建立內部 **WelcomeChoice** 和 **MenuChoice** 類別以包含每個選項的相關資訊。
-
-處理這個時，我們將在最上層的歡迎對話方塊中新增選項清單的資訊，也會建立稍後提示來賓輸入此資訊時會使用的支援清單。 這是一些新增的前置工作，可讓對話方塊程式碼更簡單。
-
-```csharp
-/// <summary>Describes an option for the top-level dialog.</summary>
-private class WelcomeChoice
-{
-    /// <summary>Gets or sets the text to show the guest for this option.</summary>
-    public string Description { get; set; }
-
-    /// <summary>Gets or sets the ID of the associated dialog for this option.</summary>
-    public string DialogName { get; set; }
-}
-
-/// <summary>Describes an option for the food-selection dialog.</summary>
-/// <remarks>We have two types of options. One represents meal items that the guest
-/// can add to their order. The other represents a request to process or cancel the
-/// order.</remarks>
-private class MenuChoice
-{
-    /// <summary>The request text for cancelling the meal order.</summary>
-    public const string Cancel = "Cancel order";
-
-    /// <summary>The request text for processing the meal order.</summary>
-    public const string Process = "Process order";
-
-    /// <summary>Gets or sets the name of the meal item or the request.</summary>
     public string Name { get; set; }
+    public int Age { get; set; }
 
-    /// <summary>Gets or sets the price of the meal item; or NaN for a request.</summary>
-    public double Price { get; set; }
-
-    /// <summary>Gets the text to show the guest for this option.</summary>
-    public string Description => double.IsNaN(Price) ? Name : $"{Name} - ${Price:0.00}";
+    //The list of companies the user wants to review.
+    public List<string> CompaniesToReview { get; set; } = new List<string>();
 }
 ```
 
+定義類別，以保存 Bot 的狀態管理物件和狀態屬性存取子。
+
 ```csharp
-/// <summary>Contains the lists used to present options to the guest.</summary>
-private static class Lists
+public class ComplexDialogBotAccessors
 {
-    /// <summary>Gets the options for the top-level dialog.</summary>
-    public static List<WelcomeChoice> WelcomeOptions { get; } = new List<WelcomeChoice>
-    {
-        new WelcomeChoice { Description = "Order dinner", DialogName = Dialogs.OrderDinner },
-        new WelcomeChoice { Description = "Reserve a table", DialogName = Dialogs.ReserveTable },
-    };
-
-    private static readonly List<string> _welcomeList = WelcomeOptions.Select(x => x.Description).ToList();
-
-    /// <summary>Gets the choices to present in the choice prompt for the top-level dialog.</summary>
-    public static IList<Choice> WelcomeChoices { get; } = ChoiceFactory.ToChoices(_welcomeList);
-
-    /// <summary>Gets the reprompt action for the top-level dialog.</summary>
-    public static Activity WelcomeReprompt
-    {
-        get
-        {
-            var reprompt = MessageFactory.SuggestedActions(_welcomeList, "Please choose an option");
-            reprompt.AttachmentLayout = AttachmentLayoutTypes.List;
-            return reprompt as Activity;
-        }
-    }
-
-    /// <summary>Gets the options for the food-selection dialog.</summary>
-    public static List<MenuChoice> MenuOptions { get; } = new List<MenuChoice>
-    {
-        new MenuChoice { Name = "Potato Salad", Price = 5.99 },
-        new MenuChoice { Name = "Tuna Sandwich", Price = 6.89 },
-        new MenuChoice { Name = "Clam Chowder", Price = 4.50 },
-        new MenuChoice { Name = MenuChoice.Process, Price = double.NaN },
-        new MenuChoice { Name = MenuChoice.Cancel, Price = double.NaN },
-    };
-
-    private static readonly List<string> _menuList = MenuOptions.Select(x => x.Description).ToList();
-
-    /// <summary>Gets the choices to present in the choice prompt for the food-selection dialog.</summary>
-    public static IList<Choice> MenuChoices { get; } = ChoiceFactory.ToChoices(_menuList);
-
-    /// <summary>Gets the reprompt action for the food-selection dialog.</summary>
-    public static Activity MenuReprompt
-    {
-        get
-        {
-            var reprompt = MessageFactory.SuggestedActions(_menuList, "Please choose an option");
-            reprompt.AttachmentLayout = AttachmentLayoutTypes.List;
-            return reprompt as Activity;
-        }
-    }
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 **bot.js** 檔案中，建立 **dinnerMenu** 常數以包含這項資訊。
-
-```javascript
-const dinnerMenu = {
-    choices: ["Potato Salad - $5.99", "Tuna Sandwich - $6.89", "Clam Chowder - $4.50",
-        "Process order", "Cancel"],
-    "Potato Salad - $5.99": {
-        Description: "Potato Salad",
-        Price: 5.99
-    },
-    "Tuna Sandwich - $6.89": {
-        Description: "Tuna Sandwich",
-        Price: 6.89
-    },
-    "Clam Chowder - $4.50": {
-        Description: "Clam Chowder",
-        Price: 4.50
-    }
-}
-```
-
----
-
-### <a name="create-the-welcome-dialog"></a>建立 [歡迎] 對話方塊
-
-這個對話方塊會使用 `ChoicePrompt` 顯示功能表，然後等候使用者選擇選項。 當使用者選擇 `Order dinner` 或 `Reserve a table` 時，該項目就會啟動適當的對話方塊。 完成子對話方塊時，對話方塊不會在最後一個步驟中直接結束，讓使用者疑惑發生了什麼事，而是藉由再次啟動 `mainMenu` 對話方塊來建立 `mainMenu` 對話方塊的迴圈。 有了這個簡單的結構，Bot 一律會顯示功能表，使用者即可了解其選擇為何。
-
-`mainMenu` 對話方塊包含下列瀑布步驟：
-
-* 在瀑布圖的第一個步驟中，我們會初始化或清除對話方塊狀態、歡迎來賓，並要求來賓從可用選項中選擇：`Order dinner` 或 `Reserve a table`。
-* 在第二個步驟中，我們會擷取來賓的選取項目，並啟動與該選取項目相關聯的子對話方塊。 子對話方塊結束後，這個對話方塊會繼續進行下一個步驟。
-* 在最後一個步驟中，我們使用 _replace dialog_ 方法將此對話方塊取代為新的執行個體，可有效地將 [歡迎] 對話方塊變成迴圈功能表。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-在建構函式中，新增瀑布對話方塊。 然後定義瀑布步驟。 在這裡，我們已在巢狀類別中定義這些步驟。
-
-在 **HotelDialogs** 建構函式中。
-
-```csharp
-// Define the steps for and add the main welcome dialog.
-WaterfallStep[] welcomeDialogSteps = new WaterfallStep[]
-{
-    MainDialogSteps.PresentMenuAsync,
-    MainDialogSteps.ProcessInputAsync,
-    MainDialogSteps.RepeatMenuAsync,
-};
-
-Add(new WaterfallDialog(MainMenu, welcomeDialogSteps));
-```
-
-在 **HotelDialogs** 類別中，新增步驟定義。
-
-```csharp
-/// <summary>
-/// Contains the waterfall dialog steps for the order-dinner dialog.
-/// </summary>
-private static class MainDialogSteps
-{
-    public static async Task<DialogTurnResult> PresentMenuAsync(
-        WaterfallStepContext stepContext,
-        CancellationToken cancellationToken)
-    {
-        // Greet the guest and ask them to choose an option.
-        await stepContext.Context.SendActivityAsync(
-            "Welcome to Contoso Hotel and Resort.",
-            cancellationToken: cancellationToken);
-        return await stepContext.PromptAsync(
-            Inputs.Choice,
-            new PromptOptions
-            {
-                Prompt = MessageFactory.Text("How may we serve you today?"),
-                RetryPrompt = Lists.WelcomeReprompt,
-                Choices = Lists.WelcomeChoices,
-            },
-            cancellationToken);
-    }
-
-    public static async Task<DialogTurnResult> ProcessInputAsync(
-        WaterfallStepContext stepContext,
-        CancellationToken cancellationToken)
-    {
-        // Begin a child dialog associated with the chosen option.
-        var choice = (FoundChoice)stepContext.Result;
-        var dialogId = Lists.WelcomeOptions[choice.Index].DialogName;
-
-        return await stepContext.BeginDialogAsync(dialogId, null, cancellationToken);
-    }
-
-    public static async Task<DialogTurnResult> RepeatMenuAsync(
-        WaterfallStepContext stepContext,
-        CancellationToken cancellationToken)
-    {
-        // Start this dialog over again.
-        return await stepContext.ReplaceDialogAsync(MainMenu, null, cancellationToken);
-    }
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 Bot 建構函式中，新增 `mainMenu` 瀑布對話方塊。
-
-```javascript
-// Display a menu and ask user to choose a menu item. Direct user to the item selected otherwise, show
-// the menu again.
-this.dialogSet.add(new WaterfallDialog('mainMenu', [
-    async function (step) {
-        // Welcome the user and send a prompt.
-        await step.context.sendActivity("Welcome to Contoso Hotel and Resort.");
-        return await step.prompt('choicePrompt', "How may we serve you today?", ['Order Dinner', 'Reserve a table']);
-    },
-    async function (step) {
-        // Handle the user's response to the previous prompt and branch the dialog.
-        if (step.result.value.match(/order dinner/ig)) {
-            return await step.beginDialog('orderDinner');
-        } else if (step.result.value.match(/reserve a table/ig)) {
-            return await step.beginDialog('reserveTable');
-        }
-    },
-    async function (step) {
-        // Calling replaceDialog will loop the main menu
-        return await step.replaceDialog('mainMenu');
-    }
-]));
-```
-
----
-
-### <a name="create-the-order-dinner-dialog"></a>建立 [訂購晚餐] 對話方塊
-
-在 [訂購晚餐] 對話方塊中，我們會歡迎來賓使用「晚餐訂購服務」，並立即開始 [食物選取項目] 對話方塊，這會在下一節中討論。 重要的是，如果來賓要求此服務處理其訂單，[食物選取項目] 對話方塊會傳回訂單上的項目清單。 若要完成此程序，此對話方塊接著會詢問要送餐的房間號碼，然後再傳送確認訊息。 如果來賓取消訂單，則此對話方塊不會詢問房間號碼，並會立即結束。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-針對 **HotelDialog** 類別，新增可用於追蹤來賓晚餐訂單的資料結構。 由於這會保存在對話狀態中，因此類別需要預設建構函式來進行序列化。
-
-```csharp
-/// <summary>Contains the guest's dinner order.</summary>
-private class OrderCart : List<MenuChoice>
-{
-    public OrderCart() : base() { }
-
-    public OrderCart(OrderCart other) : base(other) { }
-}
-```
-
-在建構函式中，新增瀑布對話方塊。 然後定義瀑布步驟。 在這裡，我們已在巢狀類別中定義這些步驟。
-
-在 **HotelDialogs** 建構函式中。
-
-```csharp
-// Define the steps for and add the order-dinner dialog.
-WaterfallStep[] orderDinnerDialogSteps = new WaterfallStep[]
-{
-    OrderDinnerSteps.StartFoodSelectionAsync,
-    OrderDinnerSteps.GetRoomNumberAsync,
-    OrderDinnerSteps.ProcessOrderAsync,
-};
-
-Add(new WaterfallDialog(Dialogs.OrderDinner, orderDinnerDialogSteps));
-```
-
-在 **HotelDialogs** 類別中，新增步驟定義。
-
-* 在第一個步驟中，我們會傳送歡迎訊息，並啟動 [食物選取項目] 對話方塊。
-* 在第二個步驟中，我們會檢查 [食物選取項目] 對話是否傳回訂單購物車。
-  * 如果是，提示來賓輸入房號，並儲存購物車資訊。
-  * 如果否，假設來賓已取消訂單，則呼叫 _end dialog_ 方法結束此對話方塊。
-* 在最後一個步驟中，記錄房號，並在結束前傳送確認訊息。 在這個步驟中，Bot 會將訂單轉送至處理服務。
-
-```csharp
-/// <summary>
-/// Contains the waterfall dialog steps for the order-dinner dialog.
-/// </summary>
-private static class OrderDinnerSteps
-{
-    public static async Task<DialogTurnResult> StartFoodSelectionAsync(
-        WaterfallStepContext stepContext,
-        CancellationToken cancellationToken)
-    {
-        await stepContext.Context.SendActivityAsync(
-            "Welcome to our Dinner order service.",
-            cancellationToken: cancellationToken);
-
-        // Start the food selection dialog.
-        return await stepContext.BeginDialogAsync(Dialogs.OrderPrompt, null, cancellationToken);
-    }
-
-    public static async Task<DialogTurnResult> GetRoomNumberAsync(
-        WaterfallStepContext stepContext,
-        CancellationToken cancellationToken)
-    {
-        if (stepContext.Result != null && stepContext.Result is OrderCart cart)
-        {
-            // If there are items in the order, record the order and ask for a room number.
-            stepContext.Values[Outputs.OrderCart] = cart;
-            return await stepContext.PromptAsync(
-                Inputs.Number,
-                new PromptOptions
-                {
-                    Prompt = MessageFactory.Text("What is your room number?"),
-                    RetryPrompt = MessageFactory.Text("Please enter your room number."),
-                },
-                cancellationToken);
-        }
-        else
-        {
-            // Otherwise, assume the order was cancelled by the guest and exit.
-            return await stepContext.EndDialogAsync(null, cancellationToken);
-        }
-    }
-
-    public static async Task<DialogTurnResult> ProcessOrderAsync(
-        WaterfallStepContext stepContext,
-        CancellationToken cancellationToken)
-    {
-        // Get and save the guest's answer.
-        var roomNumber = (int)stepContext.Result;
-        stepContext.Values[Outputs.RoomNumber] = roomNumber;
-
-        // Process the dinner order using the collected order cart and room number.
-
-        await stepContext.Context.SendActivityAsync(
-            $"Thank you. Your order will be delivered to room {roomNumber} within 45 minutes.",
-            cancellationToken: cancellationToken);
-        return await stepContext.EndDialogAsync(null, cancellationToken);
-    }
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 Bot 建構函式中，新增 `orderDinner` 瀑布對話方塊。
-
-```javascript
-// Order dinner:
-// Help user order dinner from a menu
-this.dialogSet.add(new WaterfallDialog('orderDinner', [
-    async function (step) {
-        await step.context.sendActivity("Welcome to our dinner order service.");
-
-        return await step.beginDialog('orderPrompt', step.values.orderCart = {
-            orders: [],
-            total: 0
-        }); // Prompt for orders
-    },
-    async function (step) {
-        if (step.result == "Cancel") {
-            return await step.endDialog();
-        } else {
-            return await step.prompt('numberPrompt', "What is your room number?");
-        }
-    },
-    async function (step) {
-        await step.context.sendActivity(`Thank you. Your order will be delivered to room ${step.result} within 45 minutes.`);
-        return await step.endDialog();
-    }
-]));
-```
-
----
-
-### <a name="create-the-order-prompt-dialog"></a>建立 [訂單提示] 對話方塊
-
-在 [食物選取項目] 對話方塊中，我們會提供來賓選項清單，其中包含可訂購的晚餐項目以及兩個訂單處理要求。 這個對話方塊會重複執行，直到來賓選擇讓 Bot 進行處理，或取消訂單。
-
-* 來賓選取晚餐項目時，我們會將其加入_購物車_。
-* 如果來賓選擇處理訂單，我們會先檢查購物車是否是空的。
-  * 如果是空的，我們會傳送錯誤訊息，並繼續執行迴圈。
-  * 如果不是，則結束此對話方塊，將購物車資訊傳回至父對話方塊。
-* 如果來賓選擇取消訂單，則會結束對話方塊，但不傳回購物車資訊。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-在建構函式中，新增瀑布對話方塊。 然後定義瀑布步驟。 在這裡，我們已在巢狀類別中定義這些步驟。
-
-在 **HotelDialogs** 建構函式中。
-
-```csharp
-// Define the steps for and add the order-prompt dialog.
-WaterfallStep[] orderPromptDialogSteps = new WaterfallStep[]
-{
-    OrderPromptSteps.PromptForItemAsync,
-    OrderPromptSteps.ProcessInputAsync,
-};
-
-Add(new WaterfallDialog(Dialogs.OrderPrompt, orderPromptDialogSteps));
-```
-
-* 在第一個步驟中，我們會初始化對話方塊狀態。 如果對話方塊的輸入引數包含購物車資訊，我們會將其儲存到對話方塊狀態中；否則，建立空的購物車，然後將其加入。 然後，我們會提示來賓從晚餐菜單中進行選擇。
-* 在下一個步驟中，則看來賓挑選的選項：
-  * 如果是處理訂單的要求，則檢查購物車是否包含任何項目。
-    * 如果有，結束對話方塊，傳回購物車內容。
-    * 如果沒有，傳送錯誤訊息給來賓，然後從對話方塊開頭重新開始。
-  * 如果是要求取消訂單，則結束對話方塊，傳回空的字典。
-  * 如果是晚餐項目，將其加入購物車、傳送狀態訊息，並啟動對話方塊，然後傳入目前的訂單狀態。
-
-在 **HotelDialogs** 類別中，新增步驟定義。
-
-```csharp
-/// <summary>
-/// Contains the waterfall dialog steps for the order-prompt dialog.
-/// </summary>
-private static class OrderPromptSteps
-{
-    public static async Task<DialogTurnResult> PromptForItemAsync(
-        WaterfallStepContext stepContext,
-        CancellationToken cancellationToken)
-    {
-        // First time through, options will be null.
-        var cart = (stepContext.Options is OrderCart oldCart && oldCart != null)
-            ? new OrderCart(oldCart) : new OrderCart();
-
-        stepContext.Values[Outputs.OrderCart] = cart;
-        stepContext.Values[Outputs.OrderTotal] = cart.Sum(item => item.Price);
-
-        return await stepContext.PromptAsync(
-            Inputs.Choice,
-            new PromptOptions
-            {
-                Prompt = MessageFactory.Text("What would you like?"),
-                RetryPrompt = Lists.MenuReprompt,
-                Choices = Lists.MenuChoices,
-            },
-            cancellationToken);
-    }
-
-    public static async Task<DialogTurnResult> ProcessInputAsync(
-        WaterfallStepContext stepContext,
-        CancellationToken cancellationToken)
-    {
-        // Get the guest's choice.
-        var choice = (FoundChoice)stepContext.Result;
-        var menuOption = Lists.MenuOptions[choice.Index];
-
-        // Get the current order from dialog state.
-        var cart = (OrderCart)stepContext.Values[Outputs.OrderCart];
-
-        if (menuOption.Name is MenuChoice.Process)
-        {
-            if (cart.Count > 0)
-            {
-                // If there are any items in the order, then exit this dialog,
-                // and return the list of selected food items.
-                return await stepContext.EndDialogAsync(cart, cancellationToken);
-            }
-            else
-            {
-                // Otherwise, send an error message and restart from
-                // the beginning of this dialog.
-                await stepContext.Context.SendActivityAsync(
-                    "Your cart is empty. Please add at least one item to the cart.",
-                    cancellationToken: cancellationToken);
-                return await stepContext.ReplaceDialogAsync(Dialogs.OrderPrompt, null, cancellationToken);
-            }
-        }
-        else if (menuOption.Name is MenuChoice.Cancel)
-        {
-            await stepContext.Context.SendActivityAsync(
-                "Your order has been cancelled.",
-                cancellationToken: cancellationToken);
-
-            // Exit this dialog, returning null.
-            return await stepContext.EndDialogAsync(null, cancellationToken);
-        }
-        else
-        {
-            // Add the selected food item to the order and update the order total.
-            cart.Add(menuOption);
-            var total = (double)stepContext.Values[Outputs.OrderTotal] + menuOption.Price;
-            stepContext.Values[Outputs.OrderTotal] = total;
-
-            await stepContext.Context.SendActivityAsync(
-                $"Added {menuOption.Name} (${menuOption.Price:0.00}) to your order." +
-                    Environment.NewLine + Environment.NewLine +
-                    $"Your current total is ${total:0.00}.",
-                cancellationToken: cancellationToken);
-
-            // Present the order options again, passing in the current order state.
-            return await stepContext.ReplaceDialogAsync(Dialogs.OrderPrompt, cart);
-        }
-    }
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 Bot 建構函式中，新增 `orderPrompt` 瀑布對話方塊。
-
-```javascript
-// Helper dialog to repeatedly prompt user for orders
-this.dialogSet.add(new WaterfallDialog('orderPrompt', [
-    async function (step) {
-        // Define a new cart of one does not exists
-        step.values.orderCart = step.options;
-
-        return await step.prompt('choicePrompt', "What would you like?", dinnerMenu.choices);
-    },
-    async function (step) {
-        const choice = step.result;
-        if (choice.value.match(/process order/ig)) {
-            if (step.values.orderCart.orders.length > 0) {
-                // Process the order
-                await step.context.sendActivity("Processing your order.");
-                // ...
-                step.values.orderCart = undefined; // Reset cart
-                return await step.endDialog();
-            } else {
-                await step.context.sendActivity("Your cart was empty. Please add at least one item to the cart.");
-                // Ask again
-                return await step.replaceDialog('orderPrompt', step.values.orderCart);
-            }
-        } else if (choice.value.match(/cancel/ig)) {
-            await step.context.sendActivity("Your order has been canceled.");
-            return await step.endDialog(choice.value);
-        } else {
-            var item = dinnerMenu[choice.value];
-
-            // Only proceed if user chooses an item from the menu
-            if (!item) {
-                await step.context.sendActivity("Sorry, that is not a valid item. Please pick one from the menu.");
-
-                // Ask again
-                return await step.replaceDialog('orderPrompt', step.values.orderCart);
-            } else {
-                // Add the item to cart
-                step.values.orderCart.orders.push(item);
-                step.values.orderCart.total += item.Price;
-
-                await step.context.sendActivity(`Added to cart: ${choice.value}. <br/>Current total: $${step.values.orderCart.total}`);
-
-                // Ask again
-                return await step.replaceDialog('orderPrompt', step.values.orderCart);
-            }
-        }
-    }
-]));
-```
-
-上述範例程式碼會顯示主要的 `orderDinner` 對話使用名為 `orderPrompt` 的協助程式對話來處理使用者的選擇。 `orderPrompt` 對話方塊會顯示食物項目選單、要求使用者選擇項目、將項目新增至購物車，然後在迴圈中再次提示。 這可讓使用者將多個項目新增至他們的訂單。 對話會重複直到使用者選擇 `Process order` 或 `Cancel`。 到時候，執行權會交回給父對話方塊 (`orderDinner` 對話方塊)。 `orderDinner` 對話會進行一些最後關頭的整理，如果使用者想要處理訂單的話；否則它會結束，並將執行權傳回給其父對話 (例如 `mainMenu`)。 `mainMenu` 對話接著會繼續執行最後一個步驟，也就是單純重新顯示主功能表選項。
-
----
-
-### <a name="create-the-reserve-table-dialog"></a>建立 [預訂餐廳] 對話方塊
-
-<!-- TODO: Update the "Manage simple conversation flows" topic to use a reserveTable dialog, and then reference that from here. -->
-
-為了讓此範例短一點，在這裡只示範 `reserveTable` 對話方塊的最低實作。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-在建構函式中，新增瀑布對話方塊。 然後定義瀑布步驟。 在這裡，我們已在巢狀類別中定義這些步驟。
-
-在 **HotelDialogs** 建構函式中。
-
-```csharp
-// Define the steps for and add the reserve-table dialog.
-WaterfallStep[] reserveTableDialogSteps = new WaterfallStep[]
-{
-    ReserveTableSteps.StubAsync,
-};
-
-Add(new WaterfallDialog(Dialogs.ReserveTable, reserveTableDialogSteps));
-```
-
-在 **HotelDialogs** 類別中，新增步驟定義。
-
-```csharp
-/// <summary>
-/// Contains the waterfall dialog steps for the reserve-table dialog.
-/// </summary>
-private static class ReserveTableSteps
-{
-    public static async Task<DialogTurnResult> StubAsync(
-        WaterfallStepContext stepContext,
-        CancellationToken cancellationToken)
-    {
-        await stepContext.Context.SendActivityAsync(
-            "Your table has been reserved.",
-            cancellationToken: cancellationToken);
-
-        return await stepContext.EndDialogAsync(null, cancellationToken);
-    }
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 Bot 建構函式中，新增 `reserveTable` 瀑布對話方塊的預留位置。
-
-```javascript
-// Reserve a table:
-// Help the user to reserve a table
-this.dialogSet.add(new WaterfallDialog('reserveTable', [
-    // Replace this waterfall with your reservation steps.
-    async function(step){
-        await step.context.sendActivity("Your table has been reserved");
-        await step.endDialog();
-    }
-]));
-```
-
----
-
-### <a name="update-the-bot-code-to-call-the-dialogs"></a>更新 Bot 程式碼來呼叫對話方塊
-
-更新 Bot 回合處理常式程式碼以呼叫對話方塊。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-將 **EchoBotAccessors.cs** 重新命名為 **BotAccessors.cs**，並將類別名稱從 `EchoBotAccessors` 變更為 `BotAccessors`。 更新 using 陳述式和類別定義，以提供使用此 Bot 時需要的狀態屬性存取子。
-
-```csharp
-using System;
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Dialogs;
-```
-
-```csharp
-/// <summary>
-/// This class is created as a Singleton and passed into the IBot-derived constructor.
-///  - See <see cref="EchoWithCounterBot"/> constructor for how that is injected.
-///  - See the Startup.cs file for more details on creating the Singleton that gets
-///    injected into the constructor.
-/// </summary>
-public class BotAccessors
-{
-    /// <summary>
-    /// Initializes a new instance of the <see cref="BotAccessors"/> class.
-    /// Contains the <see cref="ConversationState"/> and associated <see cref="IStatePropertyAccessor{T}"/>.
-    /// </summary>
-    /// <param name="conversationState">The state object that stores the counter.</param>
-    public BotAccessors(ConversationState conversationState)
+    public ComplexDialogBotAccessors(ConversationState conversationState, UserState userState)
     {
         ConversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
+        UserState = userState ?? throw new ArgumentNullException(nameof(userState));
     }
 
-    /// <summary>
-    /// Gets the <see cref="IStatePropertyAccessor{T}"/> name used for the <see cref="DialogState"/> accessor.
-    /// </summary>
-    /// <remarks>Accessors require a unique name.</remarks>
-    /// <value>The accessor name for the dialog state accessor.</value>
-    public static string DialogStateAccessorName { get; } = $"{nameof(BotAccessors)}.DialogState";
-
-    /// <summary>
-    /// Gets or sets the DialogState property accessor.
-    /// </summary>
-    /// <value>
-    /// The DialogState property accessor.
-    /// </value>
     public IStatePropertyAccessor<DialogState> DialogStateAccessor { get; set; }
+    public IStatePropertyAccessor<UserProfile> UserProfileAccessor { get; set; }
 
-    /// <summary>
-    /// Gets the <see cref="ConversationState"/> object for the conversation.
-    /// </summary>
-    /// <value>The <see cref="ConversationState"/> object.</value>
     public ConversationState ConversationState { get; }
+    public UserState UserState { get; }
 }
 ```
 
-更新 **Startup.cs** 檔案以設定 `BotAccessors` singleton。
+我們會在 `Statup` 類別的 `ConfigureServices` 方法中，建立狀態管理物件並註冊存取子類別。
 
-1. 更新 using 陳述式。
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    // Register the bot.
 
-    ```csharp
-    using System;
-    using System.Linq;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Bot.Builder;
-    using Microsoft.Bot.Builder.Dialogs;
-    using Microsoft.Bot.Builder.Integration;
-    using Microsoft.Bot.Builder.Integration.AspNet.Core;
-    using Microsoft.Bot.Configuration;
-    using Microsoft.Bot.Connector.Authentication;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
-    ```
+    // Create conversation and user state management objects, using memory storage.
+    IStorage dataStore = new MemoryStorage();
+    var conversationState = new ConversationState(dataStore);
+    var userState = new UserState(dataStore);
 
-1. 更新 `ConfigureServices` 方法中註冊 Bot 狀態屬性存取子的部分。
-
-    ```csharp
-    // Create and register state accesssors.
-    // Acessors created here are passed into the IBot-derived class on every turn.
-    services.AddSingleton<BotAccessors>(sp =>
+    // Create and register state accessors.
+    // Accessors created here are passed into the IBot-derived class on every turn.
+    services.AddSingleton<ComplexDialogBotAccessors>(sp =>
     {
-        var options = sp.GetRequiredService<IOptions<BotFrameworkOptions>>().Value;
-        var conversationState = options.State.OfType<ConversationState>().FirstOrDefault();
-
         // Create the custom state accessor.
         // State accessors enable other components to read and write individual properties of state.
-        var accessors = new BotAccessors(conversationState)
+        var accessors = new ComplexDialogBotAccessors(conversationState, userState)
         {
-            DialogStateAccessor = conversationState.CreateProperty<DialogState>(BotAccessors.DialogStateAccessorName),
+            DialogStateAccessor = conversationState.CreateProperty<DialogState>("DialogState"),
+            UserProfileAccessor = userState.CreateProperty<UserProfile>("UserProfile"),
         };
 
         return accessors;
     });
-    ```
+}
+```
 
-將 EchoWithCounterBot.cs 檔案重新命名為 HotelBot.cs，並將類別名稱從 EchoWithCounterBot 變更為 HotelBot。
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-1. 更新 Bot 的初始化程式碼。
+在 **index.js** 檔案中，我們會定義狀態管理物件。
 
-    ```csharp
-    private readonly BotAccessors _accessors;
-    private readonly HotelDialogs _dialogs;
-    private readonly ILogger _logger;
+```javascript
+const { BotFrameworkAdapter, MemoryStorage, UserState, ConversationState } = require('botbuilder');
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="HotelBot"/> class.
-    /// </summary>
-    /// <param name="accessors">A class containing <see cref="IStatePropertyAccessor{T}"/> used to manage state.</param>
-    /// <param name="loggerFactory">A <see cref="ILoggerFactory"/> that is hooked to the Azure App Service provider.</param>
-    public HotelBot(BotAccessors accessors, ILoggerFactory loggerFactory)
+// ...
+
+// Define state store for your bot.
+const memoryStorage = new MemoryStorage();
+
+// Create user and conversation state with in-memory storage provider.
+const userState = new UserState(memoryStorage);
+const conversationState = new ConversationState(memoryStorage);
+
+// Create the bot.
+const myBot = new MyBot(conversationState, userState);
+```
+
+Bot 的建構函式會為 Bot 建立狀態屬性存取子。
+
+---
+
+## <a name="initialize-your-bot"></a>初始化您的 Bot
+
+建立 Bot 的「對話集」，我們會將此範例的所有對話加入其中。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+在 Bot 的建構函式內建立對話集，並在集合中新增提示和兩個瀑布式對話。
+
+在此，我們會將每個步驟定義為不同的方法。 我們將在下一節中實作這些方法。
+
+```csharp
+public class ComplexDialogBot : IBot
+{
+    // Define constants for the bot...
+
+    // Define properties for the bot's accessors and dialog set.
+    private readonly ComplexDialogBotAccessors _accessors;
+    private readonly DialogSet _dialogs;
+
+    // Initialize the bot and add dialogs and prompts to the dialog set.
+    public ComplexDialogBot(ComplexDialogBotAccessors accessors)
     {
-        _logger = loggerFactory.CreateLogger<HotelBot>();
-        _logger.LogTrace("EchoBot turn start.");
-        _accessors = accessors;
-        _dialogs = new HotelDialogs(_accessors.DialogStateAccessor);
+        _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
+
+        // Create a dialog set for the bot. It requires a DialogState accessor, with which
+        // to retrieve the dialog state from the turn context.
+        _dialogs = new DialogSet(accessors.DialogStateAccessor);
+
+        // Add the prompts we need to the dialog set.
+        _dialogs
+            .Add(new TextPrompt(NamePrompt))
+            .Add(new NumberPrompt<int>(AgePrompt))
+            .Add(new ChoicePrompt(SelectionPrompt));
+
+        // Add the dialogs we need to the dialog set.
+        _dialogs.Add(new WaterfallDialog(TopLevelDialog)
+            .AddStep(NameStepAsync)
+            .AddStep(AgeStepAsync)
+            .AddStep(StartSelectionStepAsync)
+            .AddStep(AcknowledgementStepAsync));
+
+        _dialogs.Add(new WaterfallDialog(ReviewSelectionDialog)
+            .AddStep(SelectionStepAsync)
+            .AddStep(LoopStepAsync));
     }
-    ```
 
-1. 更新 Bot 的回合處理常式，使其執行該對話方塊。
+    // Turn handler and other supporting methods...
+}
+```
 
-    ```csharp
-    public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+在 **bot.js** 檔案中，於 Bot 的建構函式中定義並建立對話集，並在集合中新增提示和瀑布式對話。
+
+在此，我們會將每個步驟定義為不同的方法。 我們將在下一節中實作這些方法。
+
+```javascript
+const { ActivityTypes } = require('botbuilder');
+const { DialogSet, WaterfallDialog, TextPrompt, NumberPrompt, ChoicePrompt, DialogTurnStatus } = require('botbuilder-dialogs');
+
+// Define constants for the bot...
+
+class MyBot {
+    constructor(conversationState, userState) {
+        // Create the state property accessors and save the state management objects.
+        this.dialogStateAccessor = conversationState.createProperty(DIALOG_STATE_PROPERTY);
+        this.userProfileAccessor = userState.createProperty(USER_PROFILE_PROPERTY);
+        this.conversationState = conversationState;
+        this.userState = userState;
+
+        // Create a dialog set for the bot. It requires a DialogState accessor, with which
+        // to retrieve the dialog state from the turn context.
+        this.dialogs = new DialogSet(this.dialogStateAccessor);
+
+        // Add the prompts we need to the dialog set.
+        this.dialogs
+            .add(new TextPrompt(NAME_PROMPT))
+            .add(new NumberPrompt(AGE_PROMPT))
+            .add(new ChoicePrompt(SELECTION_PROMPT));
+
+        // Add the dialogs we need to the dialog set.
+        this.dialogs.add(new WaterfallDialog(TOP_LEVEL_DIALOG)
+            .addStep(this.nameStep.bind(this))
+            .addStep(this.ageStep.bind(this))
+            .addStep(this.startSelectionStep.bind(this))
+            .addStep(this.acknowledgementStep.bind(this)));
+
+        this.dialogs.add(new WaterfallDialog(REVIEW_SELECTION_DIALOG)
+            .addStep(this.selectionStep.bind(this))
+            .addStep(this.loopStep.bind(this)));
+    }
+
+    // Turn handler and other supporting methods...
+}
+```
+
+---
+
+## <a name="implement-the-steps-for-the-waterfall-dialogs"></a>實作瀑布式對話的步驟
+
+現在，讓我們實作兩個對話的步驟。
+
+### <a name="the-top-level-dialog"></a>最上層的對話
+
+初始、最上層的對話有四個步驟：
+
+1. 詢問使用者的名稱。
+1. 詢問使用者的年齡。
+1. 根據使用者的年齡分支。
+1. 最後，感謝使用者的參與並傳回所收集的資訊。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```csharp
+// The first step of the top-level dialog.
+private static async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+{
+    // Create an object in which to collect the user's information within the dialog.
+    stepContext.Values[UserInfo] = new UserProfile();
+
+    // Ask the user to enter their name.
+    return await stepContext.PromptAsync(
+        NamePrompt,
+        new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") },
+        cancellationToken);
+}
+
+// The second step of the top-level dialog.
+private async Task<DialogTurnResult> AgeStepAsync(
+    WaterfallStepContext stepContext,
+    CancellationToken cancellationToken)
+{
+    // Set the user's name to what they entered in response to the name prompt.
+    ((UserProfile)stepContext.Values[UserInfo]).Name = (string)stepContext.Result;
+
+    // Ask the user to enter their age.
+    return await stepContext.PromptAsync(
+        AgePrompt,
+        new PromptOptions { Prompt = MessageFactory.Text("Please enter your age.") },
+        cancellationToken);
+}
+
+// The third step of the top-level dialog.
+private async Task<DialogTurnResult> StartSelectionStepAsync(
+    WaterfallStepContext stepContext,
+    CancellationToken cancellationToken)
+{
+    // Set the user's age to what they entered in response to the age prompt.
+    int age = (int)stepContext.Result;
+    ((UserProfile)stepContext.Values[UserInfo]).Age = age;
+
+    if (age < 25)
     {
-        var dc = await _dialogs.CreateContextAsync(turnContext, cancellationToken);
+        // If they are too young, skip the review-selection dialog, and pass an empty list to the next step.
+        await stepContext.Context.SendActivityAsync(
+            MessageFactory.Text("You must be 25 or older to participate."),
+            cancellationToken);
+        return await stepContext.NextAsync(new List<string>(), cancellationToken);
+    }
+    else
+    {
+        // Otherwise, start the review-selection dialog.
+        return await stepContext.BeginDialogAsync(ReviewSelectionDialog, null, cancellationToken);
+    }
+}
 
-        if (turnContext.Activity.Type == ActivityTypes.Message)
+// The final step of the top-level dialog.
+private async Task<DialogTurnResult> AcknowledgementStepAsync(
+    WaterfallStepContext stepContext,
+    CancellationToken cancellationToken)
+{
+    // Set the user's company selection to what they entered in the review-selection dialog.
+    List<string> list = stepContext.Result as List<string>;
+    ((UserProfile)stepContext.Values[UserInfo]).CompaniesToReview = list ?? new List<string>();
+
+    // Thank them for participating.
+    await stepContext.Context.SendActivityAsync(
+        MessageFactory.Text($"Thanks for participating, {((UserProfile)stepContext.Values[UserInfo]).Name}."),
+        cancellationToken);
+
+    // Exit the dialog, returning the collected user information.
+    return await stepContext.EndDialogAsync(stepContext.Values[UserInfo], cancellationToken);
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+```javascript
+async nameStep(stepContext) {
+    // Create an object in which to collect the user's information within the dialog.
+    stepContext.values[USER_INFO] = {};
+
+    // Ask the user to enter their name.
+    return await stepContext.prompt(NAME_PROMPT, 'Please enter your name.');
+}
+
+async ageStep(stepContext) {
+    // Set the user's name to what they entered in response to the name prompt.
+    stepContext.values[USER_INFO].name = stepContext.result;
+
+    // Ask the user to enter their age.
+    return await stepContext.prompt(AGE_PROMPT, 'Please enter your age.');
+}
+
+async startSelectionStep(stepContext) {
+    // Set the user's age to what they entered in response to the age prompt.
+    stepContext.values[USER_INFO].age = stepContext.result;
+
+    if (stepContext.result < 25) {
+        // If they are too young, skip the review-selection dialog, and pass an empty list to the next step.
+        await stepContext.context.sendActivity('You must be 25 or older to participate.');
+        return await stepContext.next([]);
+    } else {
+        // Otherwise, start the review-selection dialog.
+        return await stepContext.beginDialog(REVIEW_SELECTION_DIALOG);
+    }
+}
+
+async acknowledgementStep(stepContext) {
+    // Set the user's company selection to what they entered in the review-selection dialog.
+    const list = stepContext.result || [];
+    stepContext.values[USER_INFO].companiesToReview = list;
+
+    // Thank them for participating.
+    await stepContext.context.sendActivity(`Thanks for participating, ${stepContext.values[USER_INFO].name}.`);
+
+    // Exit the dialog, returning the collected user information.
+    return await stepContext.endDialog(stepContext.values[USER_INFO]);
+}
+```
+
+---
+
+### <a name="the-review-selection-dialog"></a>review-selection 對話
+
+review-selection 對話有兩個步驟：
+
+1. 要求使用者選擇要評論的公司，或選擇 `done` 表示完成。
+1. 視情況重複此對話或結束。
+
+在此設計中，最上層的對話一律優先於堆疊上的 review-selection 對話，而 review-selection 對話可以是最上層對話的子系。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```csharp
+// The first step of the review-selection dialog.
+private async Task<DialogTurnResult> SelectionStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+{
+    // Continue using the same selection list, if any, from the previous iteration of this dialog.
+    List<string> list = stepContext.Options as List<string> ?? new List<string>();
+    stepContext.Values[CompaniesSelected] = list;
+
+    // Create a prompt message.
+    string message;
+    if (list.Count is 0)
+    {
+        message = $"Please choose a company to review, or `{DoneOption}` to finish.";
+    }
+    else
+    {
+        message = $"You have selected **{list[0]}**. You can review an additional company, " +
+            $"or choose `{DoneOption}` to finish.";
+    }
+
+    // Create the list of options to choose from.
+    List<string> options = _companyOptions.ToList();
+    options.Add(DoneOption);
+    if (list.Count > 0)
+    {
+        options.Remove(list[0]);
+    }
+
+    // Prompt the user for a choice.
+    return await stepContext.PromptAsync(
+        SelectionPrompt,
+        new PromptOptions
         {
-            await dc.ContinueDialogAsync(cancellationToken);
-            if (!turnContext.Responded)
-            {
-                await dc.BeginDialogAsync(HotelDialogs.MainMenu, null, cancellationToken);
-            }
-        }
-        else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate)
+            Prompt = MessageFactory.Text(message),
+            RetryPrompt = MessageFactory.Text("Please choose an option from the list."),
+            Choices = ChoiceFactory.ToChoices(options),
+        },
+        cancellationToken);
+}
+
+// The final step of the review-selection dialog.
+private async Task<DialogTurnResult> LoopStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+{
+    // Retrieve their selection list, the choice they made, and whether they chose to finish.
+    List<string> list = stepContext.Values[CompaniesSelected] as List<string>;
+    FoundChoice choice = (FoundChoice)stepContext.Result;
+    bool done = choice.Value == DoneOption;
+
+    if (!done)
+    {
+        // If they chose a company, add it to the list.
+        list.Add(choice.Value);
+    }
+
+    if (done || list.Count is 2)
+    {
+        // If they're done, exit and return their list.
+        return await stepContext.EndDialogAsync(list, cancellationToken);
+    }
+    else
+    {
+        // Otherwise, repeat this dialog, passing in the list from this iteration.
+        return await stepContext.ReplaceDialogAsync(ReviewSelectionDialog, list, cancellationToken);
+    }
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+```javascript
+async selectionStep(stepContext) {
+    // Continue using the same selection list, if any, from the previous iteration of this dialog.
+    const list = Array.isArray(stepContext.options) ? stepContext.options : [];
+    stepContext.values[COMPANIES_SELECTED] = list;
+
+    // Create a prompt message.
+    let message;
+    if (list.length === 0) {
+        message = 'Please choose a company to review, or `' + DONE_OPTION + '` to finish.';
+    } else {
+        message = `You have selected **${list[0]}**. You can review an addition company, ` +
+            'or choose `' + DONE_OPTION + '` to finish.';
+    }
+
+    // Create the list of options to choose from.
+    const options = list.length > 0
+        ? COMPANY_OPTIONS.filter(function (item) { return item !== list[0] })
+        : COMPANY_OPTIONS.slice();
+    options.push(DONE_OPTION);
+
+    // Prompt the user for a choice.
+    return await stepContext.prompt(SELECTION_PROMPT, {
+        prompt: message,
+        retryPrompt: 'Please choose an option from the list.',
+        choices: options
+    });
+}
+
+async loopStep(stepContext) {
+    // Retrieve their selection list, the choice they made, and whether they chose to finish.
+    const list = stepContext.values[COMPANIES_SELECTED];
+    const choice = stepContext.result;
+    const done = choice.value === DONE_OPTION;
+
+    if (!done) {
+        // If they chose a company, add it to the list.
+        list.push(choice.value);
+    }
+
+    if (done || list.length > 1) {
+        // If they're done, exit and return their list.
+        return await stepContext.endDialog(list);
+    } else {
+        // Otherwise, repeat this dialog, passing in the list from this iteration.
+        return await stepContext.replaceDialog(REVIEW_SELECTION_DIALOG, list);
+    }
+}
+```
+
+---
+
+## <a name="update-the-bots-turn-handler"></a>更新 Bot 的回合處理常式
+
+Bot 的回合處理常式會重複這些對話所定義的一個交談流程。
+當我們收到來自使用者的訊息時：
+
+1. 繼續進行作用中的對話 (如果有的話)。
+   - 如果沒有作用中的對話，我們會清除使用者設定檔並開始最上層的對話。
+   - 如果作用中對話已完成，我們會收集和儲存所傳回的資訊並顯示狀態訊息。
+   - 否則，作用中對話仍為中間程序，而我們目前不需要採取任何其他動作。
+1. 儲存交談狀態，以便保存對話狀態的所有更新。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```csharp
+public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
+{
+    if (turnContext == null)
+    {
+        throw new ArgumentNullException(nameof(turnContext));
+    }
+
+    if (turnContext.Activity.Type == ActivityTypes.Message)
+    {
+        // Run the DialogSet - let the framework identify the current state of the dialog from
+        // the dialog stack and figure out what (if any) is the active dialog.
+        DialogContext dialogContext = await _dialogs.CreateContextAsync(turnContext, cancellationToken);
+        DialogTurnResult results = await dialogContext.ContinueDialogAsync(cancellationToken);
+        switch (results.Status)
         {
-            var activity = turnContext.Activity.AsConversationUpdateActivity();
-            if (activity.MembersAdded.Any(member => member.Id != activity.Recipient.Id))
-            {
-                await dc.BeginDialogAsync(HotelDialogs.MainMenu, null, cancellationToken);
-            }
+            case DialogTurnStatus.Cancelled:
+            case DialogTurnStatus.Empty:
+                // If there is no active dialog, we should clear the user info and start a new dialog.
+                await _accessors.UserProfileAccessor.SetAsync(turnContext, new UserProfile(), cancellationToken);
+                await _accessors.UserState.SaveChangesAsync(turnContext, false, cancellationToken);
+                await dialogContext.BeginDialogAsync(TopLevelDialog, null, cancellationToken);
+                break;
+
+            case DialogTurnStatus.Complete:
+                // If we just finished the dialog, capture and display the results.
+                UserProfile userInfo = results.Result as UserProfile;
+                string status = "You are signed up to review "
+                    + (userInfo.CompaniesToReview.Count is 0
+                        ? "no companies"
+                        : string.Join(" and ", userInfo.CompaniesToReview))
+                    + ".";
+                await turnContext.SendActivityAsync(status);
+                await _accessors.UserProfileAccessor.SetAsync(turnContext, userInfo, cancellationToken);
+                await _accessors.UserState.SaveChangesAsync(turnContext, false, cancellationToken);
+                break;
+
+            case DialogTurnStatus.Waiting:
+                // If there is an active dialog, we don't need to do anything here.
+                break;
         }
 
         await _accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
     }
-    ```
+
+    // Processes ConversationUpdate Activities to welcome the user.
+    else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate)
+    {
+        // Welcome new users...
+    }
+    else
+    {
+        // Give a default reply for all other activity types...
+    }
+}
+```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
 async onTurn(turnContext) {
-    let dc = await this.dialogSet.createContext(turnContext);
-
-    // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
     if (turnContext.activity.type === ActivityTypes.Message) {
-
-        await dc.continueDialog();
-
-        if (!turnContext.responded) {
-            await dc.beginDialog('mainMenu');
+        // Run the DialogSet - let the framework identify the current state of the dialog from
+        // the dialog stack and figure out what (if any) is the active dialog.
+        const dialogContext = await this.dialogs.createContext(turnContext);
+        const results = await dialogContext.continueDialog();
+        switch (results.status) {
+            case DialogTurnStatus.cancelled:
+            case DialogTurnStatus.empty:
+                // If there is no active dialog, we should clear the user info and start a new dialog.
+                await this.userProfileAccessor.set(turnContext, {});
+                await this.userState.saveChanges(turnContext);
+                await dialogContext.beginDialog(TOP_LEVEL_DIALOG);
+                break;
+            case DialogTurnStatus.complete:
+                // If we just finished the dialog, capture and display the results.
+                const userInfo = results.result;
+                const status = 'You are signed up to review '
+                    + (userInfo.companiesToReview.length === 0 ? 'no companies' : userInfo.companiesToReview.join(' and '))
+                    + '.';
+                await turnContext.sendActivity(status);
+                await this.userProfileAccessor.set(turnContext, userInfo);
+                await this.userState.saveChanges(turnContext);
+                break;
+            case DialogTurnStatus.waiting:
+                // If there is an active dialog, we don't need to do anything here.
+                break;
         }
+        await this.conversationState.saveChanges(turnContext);
     } else if (turnContext.activity.type === ActivityTypes.ConversationUpdate) {
-        // Do we have any new members added to the conversation?
-        if (turnContext.activity.membersAdded.length !== 0) {
-            // Iterate over all new members added to the conversation
-            for (var idx in turnContext.activity.membersAdded) {
-                // Greet anyone that was not the target (recipient) of this message.
-                // Since the bot is the recipient for events from the channel,
-                // context.activity.membersAdded === context.activity.recipient.Id indicates the
-                // bot was added to the conversation, and the opposite indicates this is a user.
-                if (turnContext.activity.membersAdded[idx].id !== turnContext.activity.recipient.id) {
-                    // Start the dialog.
-                    await dc.beginDialog('mainMenu');
-                }
-            }
-        }
+        // Welcome new users...
+    } else {
+        // Give a default reply for all other activity types...
     }
-
-    // Save state changes
-    await this.conversationState.saveChanges(turnContext);
 }
 ```
 
 ---
 
+## <a name="test-your-dialog"></a>測試對話方塊
+
+1. 在您的電腦本機執行範例。 如需相關指示，請參閱 [C#](https://aka.ms/cs-complex-dialog-sample) 或 [JS](https://aka.ms/js-complex-dialog-sample) 範例的讀我檔案。
+1. 使用模擬器來測試 Bot，如下所示。
+
+![測試複雜對話範例](~/media/emulator-v4/test-complex-dialog.png)
+
+## <a name="additional-resources"></a>其他資源
+
+如需實作對話方式的簡介，請參閱[實作循序交談流程](bot-builder-dialog-manage-conversation-flow.md)，該流程使用單一瀑布式對話和一些提示來建立簡單的互動，以詢問使用者一連串的問題。
+
+Dialogs 程式庫包含提示的基本驗證。 您也可以新增自訂憑證。 如需詳細資訊，請參閱[使用對話提示收集使用者輸入](bot-builder-prompts.md)。
+
+若要簡化對話程式碼並重複使用於多個 Bot，您可以將部分的對話集定義為個別的類別。
+如需詳細資訊，請參閱[重複使用對話](bot-builder-compositcontrol.md)。
+
 ## <a name="next-steps"></a>後續步驟
 
-您可以將其他選項 (如「詳細資訊」或「說明」) 提供到選單的選擇中，以增強這個 Bot。 如需實作這些中斷類型的詳細資訊，請參閱[處理使用者中斷](bot-builder-howto-handle-user-interrupt.md)。
-
-既然您已了解如何使用對話方塊、提示和瀑布來管理複雜的對話流程，讓我們看看如何將對話方塊 (例如 `orderDinner` 和 `reserveTable` 對話方塊) 分成個別物件，而不是將它們全部堆在一個大型對話集中。
+您可以增強 Bot 以回應其他輸入，例如 [說明] 或 [取消] 可以中斷交談的一般流程。
 
 > [!div class="nextstepaction"]
-> [使用複合控制項建立模組化 Bot 邏輯](bot-builder-compositcontrol.md)
+> [處理使用者中斷](bot-builder-howto-handle-user-interrupt.md)

@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 366a985e839c8a79fcd8794c139e2e8130a05335
-ms.sourcegitcommit: 6cb37f43947273a58b2b7624579852b72b0e13ea
+ms.openlocfilehash: 940dba389205ff339b80f741b8a8aec87ff54f1d
+ms.sourcegitcommit: bcde20bd4ab830d749cb835c2edb35659324d926
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "52288868"
+ms.lasthandoff: 11/27/2018
+ms.locfileid: "52338561"
 ---
 # <a name="managing-state"></a>管理狀態
 
@@ -33,7 +33,13 @@ Bot 內的狀態會遵循與新式 Web 應用程式相同的架構，而 Bot Fra
 
 從後端說起，這是狀態資訊的實際儲存位置，也就是我們的「儲存層」。 這可視為實體儲存體，例如記憶體內部、Azure 或第三方伺服器。
 
-Bot Framework SDK 提供儲存層的實作，例如記憶體內部儲存體 (可供在本機測試) 和 Azure 儲存體或 CosmosDB (可供測試和部署至雲端)。
+Bot Framework SDK 包含儲存層的一些實作：
+
+- **記憶體內部儲存體**可將記憶體內部儲存體運用於測試用途。 記憶體內部資料儲存體僅限用於本機測試，因為此儲存體是易變且暫存的。 每次 Bot 重新啟動時，就會清除資料。
+- **Azure Blob 儲存體**會連線到 Azure Blob 儲存體物件資料庫。
+- **Azure Cosmos DB 儲存體**會連線到 Cosmos DB NoSQL 資料庫。
+
+如需有關如何連線到其他儲存體選項的指示，請參閱[ 直接寫入儲存體](bot-builder-howto-v4-storage.md)。
 
 ## <a name="state-management"></a>狀態管理
 
@@ -45,7 +51,7 @@ Bot Framework SDK 提供儲存層的實作，例如記憶體內部儲存體 (可
 - 交談狀態
 - 私人交談狀態
 
-上述所有貯體都是「Bot 狀態」類別的子類別，可加以衍生來定義其他類型的貯體。
+上述所有貯體都是「Bot 狀態」類別的子類別，可加以衍生來定義具有不同範圍的其他貯體類型。
 
 視貯體而定，這些預先定義的貯體受限於特定可見性：
 
@@ -53,13 +59,40 @@ Bot Framework SDK 提供儲存層的實作，例如記憶體內部儲存體 (可
 - 不論使用者為何 (亦即群組交談)，交談狀態適用於特定交談中的任何回合
 - 私人交談狀態受限於特定交談和該特定使用者
 
+> [!TIP]
+> 使用者和交談狀態是由通道界定。
+> 使用不同通道來存取 Bot 的相同人員會顯示為不同的使用者，每個通道一個使用者，而各有不同的使用者狀態。
+
 每個預先定義的貯體所用的索引鍵為使用者和交談所特有。 設定狀態屬性的值時，系統會使用回合內容內含的資訊在內部為您定義索引鍵，以確保每個使用者或交談取均位於正確的貯體和屬性。 具體而言，索引鍵的定義如下所示：
 
 - 使用者狀態會使用「頻道識別碼」和和「傳送者識別碼」來建立索引鍵。 例如，_{Activity.ChannelId}/users/{Activity.From.Id}#YourPropertyName_
 - 交談狀態會使用「頻道識別碼」和「交談識別碼」來建立索引鍵。 例如，_{Activity.ChannelId}/conversations/{Activity.Conversation.Id}#YourPropertyName_
 - 私人交談狀態會使用「頻道識別碼」、「傳送者識別碼」和「交談識別碼」來建立索引鍵。 例如，_{Activity.ChannelId}/conversations/{Activity.Conversation.Id}/users/{Activity.From.Id}#YourPropertyName_
 
+### <a name="when-to-use-each-type-of-state"></a>何時使用每種類型的狀態
+
+交談狀態很適合追蹤交談內容，例如：
+
+- Bot 是否詢問使用者問題，且問題為何
+- 交談的目前主題為何，或最後一個主題是什麼
+
+使用者狀態適合用來追蹤使用者的相關資訊，例如：
+
+- 非重大使用者資訊，例如名稱和喜好設定、警示設定或警示喜好設定
+- 他們與 Bot 最後一次交談的相關資訊
+  - 例如，產品支援 Bot 可能會追蹤使用者所詢問的產品。
+
+私人交談狀態適合於支援群組交談的通道，但您想要在哪裡追蹤使用者和交談特定資訊。 例如，如果您有教室 Clicker Bot：
+
+- Bot 無法彙總並顯示學生對於指定問題的回應。
+- Bot 可以彙總每個學生的表現，並且在課程結束時，將該資訊私下轉達給他們。
+
 如需使用這些預先定義貯體的詳細資訊，請參閱[狀態操作說明文章](bot-builder-howto-v4-state.md)。
+
+### <a name="connecting-to-multiple-databases"></a>連線到多個資料庫
+
+如果 Bot 需要連線到多個資料庫，請為每個資料庫建立儲存層。
+針對每個儲存層，建立您需要支援狀態屬性的狀態管理物件。
 
 ## <a name="state-property-accessors"></a>狀態屬性存取子
 
@@ -78,15 +111,14 @@ Bot Framework SDK 提供儲存層的實作，例如記憶體內部儲存體 (可
 
 存取子方法是 Bot 與狀態互動的主要方式。 每個存取子方法的運作方式，以及基礎層的互動方式，如下所示：
 
-- 存取子的 *get*
-    - 存取子會要求狀態快取中的屬性
-    - 如果屬性位於快取中，請將其傳回。 否則，從狀態管理物件中取得。
-        - 如果屬相尚未存在於狀態中，請使用存取子的 *get* 呼叫中所提供的 Factory 方法。
-- 存取子的 *set*
-    - 使用新的屬性值更新狀態快取。
-- 狀態管理物件的 *save changes*
-    - 檢查狀態快取中的屬性變更。
-    - 將該屬性寫入至儲存體。
+- 存取子的 *get* 方法：
+  - 存取子會要求狀態快取中的屬性。
+  - 如果屬性位於快取中，請將其傳回。 否則，從狀態管理物件中取得。
+    (如果屬性尚未存在於狀態中，請使用存取子的 *get* 呼叫中所提供的 Factory 方法。) - 存取子的 *set* 方法：
+  - 使用新的屬性值更新狀態快取。
+- 狀態管理物件的 *save changes* 方法：
+  - 檢查狀態快取中的屬性變更。
+  - 將該屬性寫入至儲存體。
 
 ## <a name="saving-state"></a>儲存狀態
 

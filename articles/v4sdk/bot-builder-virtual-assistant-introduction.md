@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 13/12/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e93f7d24396b4e35fc81960d42148dd8942362d7
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3a3074ff9e8de36d7a7cf7b86fef62979bc53fa8
+ms.sourcegitcommit: 958a28bbab7dd29b384bb2e2d58d866e88f53316
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998957"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52500655"
 ---
 # <a name="virtual-assistant-solution-overview"></a>虛擬小幫手解決方案概觀
 
@@ -24,7 +24,7 @@ ms.locfileid: "49998957"
 
 虛擬小幫手功能的範圍很廣泛，通常會提供一系列功能給使用者。 為提升開發人員的生產力，並啟用可重複使用對話式體驗的活躍生態系統，我們會針對可重複使用的對話式技能，提供初始範例給開發人員。 這些技術可新增到對話式應用程式，以開啟特定對話體驗，例如尋找景點、與行事曆、工作、電子郵件互動等許多其他案例。 技術皆開放為完全自訂，且包含適用於多種語言、對話方塊和程式碼的語言模型。
 
-我們目前執行的是初始預覽版本，並在開放原始碼存放庫方面與初始客戶及合作夥伴密切合作，目標是先將最初的體驗帶入生活，然後在未來幾個月內讓其可以更廣泛地運用。
+我們目前在開放原始碼存放庫方面，與初始客戶及合作夥伴密切合作，目標是先將最初的體驗帶入生活。
 
 ![虛擬小幫手圖表](./media/enterprise-template/customassistantdiagram.jpg)
 
@@ -97,5 +97,5 @@ ToDo 技術 | 預覽 ToDo 技術，可提供常見工作相關活動的全方位
 
 ## <a name="getting-started"></a>開始使用
 
-我們目前執行的是初始預覽版本，並在開放原始碼存放庫方面與初始客戶及合作夥伴密切合作，目標是先將最初的體驗帶入生活，然後在未來幾個月內讓其可以更廣泛地運用。 如果您對此感興趣並想開始使用，請填妥[此表格](https://aka.ms/customassistantpreviewform)，我們將會與您連絡。
+在[此 GitHub 存放庫](https://github.com/Microsoft/AI/tree/master/solutions/Virtual-Assistant)中可取得虛擬助理解決方案，而虛擬助理小組會定期更新該解決方案。 在相同的存放庫中可取得更詳細的文件，而且可以透過 GitHub 意見反應機制直接提供問題/意見反應。 如果您有想要與我們討論的主要案例，請填寫[此表單](https://aka.ms/customassistantpreviewform)，我們將與您連絡。
 
