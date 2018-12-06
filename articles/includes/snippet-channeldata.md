@@ -345,7 +345,7 @@ Bot 可以透過正常方式回覆此訊息，也可以將其回應直接張貼�
 
 | 屬性 | 說明 |
 |----|----|
-| 上限 | Kik 訊息的陣列。 如需 Kik 訊息格式的詳細資訊，請參閱 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 訊息格式</a>。 |
+|  上限 | Kik 訊息的陣列。 如需 Kik 訊息格式的詳細資訊，請參閱 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 訊息格式</a>。 |
 
 此程式碼片段顯示原生 Kik 訊息的 `channelData` 屬性範例。
 
