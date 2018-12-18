@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/8/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dacf952e6554eb76e0a41418791fb954e82d4f38
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 1bfa180967c55aac6012e02887ac2893947263f9
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452060"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010583"
 ---
 # <a name="middleware"></a>中介軟體
 
@@ -78,7 +78,7 @@ Bot 中介軟體管道完成後，該回合即結束，且回合內容將超出�
 ## <a name="response-event-handlers"></a>回應事件處理常式
 除了應用程式和中介軟體邏輯，回應處理常式 (有時也指事件處理常式，或活動事件處理常式) 亦可新增至內容物件。 目前的內容物件發生相關聯回應時，系統在執行實際回應之前會先呼叫處理常式。 如果您已經知道想要針對其餘目前回應中，該類型的每個活動要執行哪些動作 (無論是在實際事件之前或之後執行)，這些處理常式非常實用。
 
-> [!WARNING] 
+> [!WARNING]
 > 請特別小心，不要在其本身的個別回應事件處理常式內，呼叫活動回應方法，例如：從傳送活動處理常式內呼叫傳送活動方法。 這樣可能會產生無限迴圈。
 
 請記住，每個新活動都取得要在其中執行的新執行緒。 建立執行緒處理活動時，該活動的處理常式清單會複製到該執行緒。 系統不會針對該特定活動事件，執行該時間點後新增的任何處理常式。
@@ -90,9 +90,11 @@ Bot 中介軟體管道完成後，該回合即結束，且回合內容將超出�
 
 ![狀態中介軟體問題](media/bot-builder-dialog-state-problem.png)
 
-此方法的問題是，若是在 Bot 的回合處理常式傳回之後，從某些自訂中介軟體更新任何狀態，則狀態不會儲存到永久性儲存體。 解決方法是將 AutoSaveChangesMiddleware 新增至中介軟體堆疊的開頭，或至少在任何可能更新狀態的中介軟體之前，以將對「儲存變更」方法的呼叫移到完成自訂中介軟體之後。 執行如下所示。
+此方法的問題是，若是在 Bot 的回合處理常式傳回之後，從某些自訂中介軟體更新任何狀態，則狀態不會儲存到永久性儲存體。 解決方法是將 _auto-save changes_ 中介軟體的執行個體新增至中介軟體堆疊的開頭，或至少在任何可能更新狀態的中介軟體之前，以將對「儲存變更」方法的呼叫移到完成自訂中介軟體之後。 執行如下所示。
 
 ![狀態中介軟體解決方案](media/bot-builder-dialog-state-solution.png)
+
+將需要更新的狀態管理物件新增至「Bot 狀態集」物件，然後在您建立自動儲存變更中介軟體時使用。
 
 ## <a name="additional-resources"></a>其他資源
 您可以看一下文稿記錄器中介軟體，其實作於 Bot Builder SDK 中 [[C#](https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Builder/TranscriptLoggerMiddleware.cs) | [JS](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-core/src/transcriptLogger.ts)]。

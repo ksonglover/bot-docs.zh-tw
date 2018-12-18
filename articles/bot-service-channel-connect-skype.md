@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/11/2018
-ms.openlocfilehash: 58c8145d359d292dd33972a3dd59af997e7b8393
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f52c8fd668299486eccda3920181df971f475a90
+ms.sourcegitcommit: 75f32b3325dd0fc4d8128dee6c22ebf91e5785b3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999504"
+ms.lasthandoff: 12/09/2018
+ms.locfileid: "53120655"
 ---
 # <a name="connect-a-bot-to-skype"></a>將 Bot 連線至 Skype
 
@@ -51,6 +51,9 @@ Skype 可讓您透過立即訊息、 電話和視訊通話連接使用者。 藉
 此區段會配置 Bot 的發佈設定。 所有標示「*」的欄位，皆為必填欄位。
 
 在**預覽**中的 Bot 限制為 100 名連絡人。 如果您需要 100 位以上的連絡人，請提交 Bot 進行審查。 按一下 [**提交以供審查**] 會在接受後自動讓您的 Bot 可在 Skype 中搜尋。 如果您的要求未通過核准，則會通知您需要變更才能通過核准的項目。
+
+> [!TIP]
+> 如果您想要提交 Bot 進行檢閱，請記住它必須先符合 [Skype 憑證檢查清單](https://github.com/Microsoft/skype-dev-bots/blob/master/certification/CHECKLIST.md)，才會獲得接受。
 
 完成設定之後，請按一下 [儲存] 並接受 [服務條款]。 Skype 通道現在已新增至您的 Bot。
 

@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9d8caf19a98fb595e4b1e27b0635d2a752b88390
-ms.sourcegitcommit: bbfb171f515c50a3c8bba5ca898daf25cf764378
+ms.openlocfilehash: a8a0976e6f553e52e13ae13bbb719dd7bdead8f6
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/23/2018
-ms.locfileid: "52293600"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010536"
 ---
 # <a name="gather-user-input-using-a-dialog-prompt"></a>使用對話方塊提示蒐集使用者輸入
 
@@ -168,7 +168,7 @@ public DialogPromptBot(DialogPromptBotAccessors accessors, ILoggerFactory logger
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-在建構函式中，建立狀態存取子屬性。 
+在建構函式中，建立狀態存取子屬性。
 
 ```javascript
 constructor(conversationState) {
@@ -192,6 +192,7 @@ constructor(conversationState) {
 ```
 
 然後定義瀑布式對話的步驟，並將其新增至集合。
+
 ```javascript
     // ...
     this.dialogSet.add(new WaterfallDialog(RESERVATION_DIALOG, [
@@ -207,7 +208,7 @@ constructor(conversationState) {
 
 ### <a name="implement-dialog-steps"></a>實作對話步驟
 
-在主要 Bot 檔案中，我們會實作瀑布式對話的每個步驟。 新增提示之後，請在瀑布式對話的一個步驟中呼叫該提示，並在下列對話步驟中取得提示結果。 若要在瀑布式步驟內呼叫提示，請呼叫「瀑布式步驟內容」物件的 _prompt_ 方法。 第一個參數是要使用的提示識別碼，而第二個參數包含提示的選項，例如用來要求使用者提供輸入的文字。     
+在主要 Bot 檔案中，我們會實作瀑布式對話的每個步驟。 新增提示之後，請在瀑布式對話的一個步驟中呼叫該提示，並在下列對話步驟中取得提示結果。 若要在瀑布式步驟內呼叫提示，請呼叫「瀑布式步驟內容」物件的 _prompt_ 方法。 第一個參數是要使用的提示識別碼，而第二個參數包含提示的選項，例如用來要求使用者提供輸入的文字。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -250,6 +251,7 @@ private async Task<DialogTurnResult> PromptForLocationAsync(WaterfallStepContext
         cancellationToken);
 }
 ```
+
 上述範例示範如何使用選擇提示，並提供三個屬性。 `PromptForLocationAsync` 方法可作為瀑布式對話中的步驟，而我們的對話集包含瀑布式對話，以及識別碼為 `locationPrompt` 的選擇提示。
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -291,8 +293,6 @@ _prompt_ 方法的第二個參數會採用「提示選項」物件，其具有�
 如果使用者的輸入因提示無法剖析其格式 (例如對數字提示輸入 "tomorrow")，或因輸入不符合驗證準則而驗證失敗，則指定 retry prompt 將有其效用。 在此情況下，如果未提供任何 retry prompt，則提示會使用初始提示活動，來重新提示使用者提供輸入。
 
 對於選擇提示，您應該一律提供可用的選擇清單。
-
-
 
 ## <a name="custom-validation"></a>自訂驗證
 
@@ -470,14 +470,13 @@ async dateValidator(promptContext) {
    1. 控制權會傳給作用中對話方塊的下一個步驟，這是提示的第二回合。
    1. 提示會驗證使用者的輸入。
 
-      
 **處理提示結果**
 
 您對提示結果所做的動作，取決於您為何向使用者要求此資訊。 選項包括：
 
-* 使用此資訊來控制對話流程，例如使用者何時回應確認或選擇提示。
-* 快取對話方塊狀態中的資訊，例如在瀑布式步驟內容的 _values_ 屬性中設定一個值，然後在對話結束時傳回所收集的資訊。
-* 將資訊儲存到 Bot 狀態。 這需要您設計對話方塊，以取得 Bot 的狀態屬性存取子存取權。 
+- 使用此資訊來控制對話流程，例如使用者何時回應確認或選擇提示。
+- 快取對話方塊狀態中的資訊，例如在瀑布式步驟內容的 _values_ 屬性中設定一個值，然後在對話結束時傳回所收集的資訊。
+- 將資訊儲存到 Bot 狀態。 這需要您設計對話方塊，以取得 Bot 的狀態屬性存取子存取權。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -600,17 +599,17 @@ async onTurn(turnContext) {
 
 ---
 
-
-
 您可以使用類似的技巧，來驗證任何提示類型的提示回應。
 
 ## <a name="test-your-bot"></a>測試 Bot
+
 1. 在您的電腦本機執行範例。 如需相關指示，請參閱 [C#](https://aka.ms/dialog-prompt-cs) 或 [JS](https://aka.ms/dialog-prompt-js) 的讀我檔案。
 2. 啟動模擬器，傳送如下所示的訊息來測試 Bot。
 
 ![測試對話提示範例](~/media/emulator-v4/test-dialog-prompt.png)
 
 ## <a name="additional-resources"></a>其他資源
+
 若要直接從回合處理常式呼叫提示，請參閱採用 [C#](https://aka.ms/cs-prompt-validation-sample) 或 [JS](https://aka.ms/js-prompt-validation-sample) 的 _prompt-validations_ 範例。
 
 此對話程式庫也包含可供取得 _OAuth 權杖_的 _OAuth 提示_，該權杖用於存取代表使用者的另一個應用程式。 如需驗證的詳細資訊，請參閱如何[新增驗證](bot-builder-authentication.md)至 Bot。

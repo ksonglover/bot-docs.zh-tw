@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 940dba389205ff339b80f741b8a8aec87ff54f1d
-ms.sourcegitcommit: bcde20bd4ab830d749cb835c2edb35659324d926
+ms.openlocfilehash: bf7d6a574cc4e63d22e3f34462a1ec00dbdac75e
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52338561"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010535"
 ---
 # <a name="managing-state"></a>管理狀態
 
@@ -27,7 +27,11 @@ Bot 內的狀態會遵循與新式 Web 應用程式相同的架構，而 Bot Fra
 
 維護狀態可讓 Bot 藉由記住有關使用者或交談的特定事項，以便進行更有意義的交談。 比方說，如果您之前已跟使用者談話，即可儲存其先前的相關資訊，您就不需要再次詢問。 狀態也可讓資料保存超過目前的回合，以便 Bot 保存多回合交談過程中的資訊。
 
-由於屬於 Bot，所以使用狀態有幾個層次，我們將在此討論：儲存層、狀態管理和狀態屬性存取子。
+由於屬於 Bot，所以使用狀態有幾個層次，我們將在此討論：儲存層、狀態管理 (包含在下圖的 Bot 狀態中) 和狀態屬性存取子。 此圖說明這些層次之間的互動順序部分，實心箭號表示方法呼叫，而虛線箭頭表示回應 (不論是否有傳回值)。
+
+![Bot 狀態](media/bot-builder-state.png)
+
+下列各節說明此圖的流程，包含各層次的詳細資訊。
 
 ## <a name="storage-layer"></a>儲存層
 

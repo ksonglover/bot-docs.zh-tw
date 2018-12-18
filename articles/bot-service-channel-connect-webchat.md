@@ -8,17 +8,17 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/10/2018
-ms.openlocfilehash: 1658a5cd8ba3fc4e9c34849e1550f64461ced292
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 12/04/2018
+ms.openlocfilehash: 6c3cc52514988172e5c2cc85168aef401fbc1f22
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000145"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010493"
 ---
 # <a name="connect-a-bot-to-web-chat"></a>將 Bot 連線至「網路聊天」
 
-[!INCLUDE pre-release-label]
+[!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
 
 當您使用 Bot Service [建立 Bot](bot-service-quickstart.md) 時，會自動為您設定網路聊天頻道。 網路聊天頻道包含網路聊天控制項，能夠讓您的使用者直接在網頁上與 Bot 進行互動。
 
@@ -61,7 +61,7 @@ Bot Framework 入口網站中的網路聊天頻道，包含您在網頁中內嵌
 
 ##### <a name="example-request"></a>範例要求
 
-```requestGET https://webchat.botframework.com/api/tokens Authorization: BotConnector YOUR_SECRET_HERE
+```requestGET https://webchat.botframework.com/api/tokens 授權：BotConnector YOUR_SECRET_HERE
 ```
 
 ##### Example response 

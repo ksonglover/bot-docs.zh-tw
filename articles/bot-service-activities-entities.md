@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 03/01/2018
-ms.openlocfilehash: d329fcbe5b4a34cb3e9c1fbf0160c5248020a508
-ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
+ms.openlocfilehash: 818017a81b497b13ee181dbb6b87c03a0182736d
+ms.sourcegitcommit: 75f32b3325dd0fc4d8128dee6c22ebf91e5785b3
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51332962"
+ms.lasthandoff: 12/09/2018
+ms.locfileid: "53120675"
 ---
 # <a name="entities-and-activity-types"></a>實體和活動類型
 
@@ -76,14 +76,14 @@ place 物件包含下列屬性：
 | 位址 | 說明或郵寄地址物件 (未來) |
 | 地理區域 | GeoCoordinates |
 | HasMap | 地圖的 URL 或地圖物件 (未來) |
-| 名稱 | 位置的名稱 |
+| Name | 位置的名稱 |
 
 geoCoordinates 物件包含下列屬性：
 
 | 屬性 | 說明 |
 |----|----|
 | 類型 | 實體的類型 ("GeoCoordinates") |
-| 名稱 | 位置的名稱 |
+| Name | 位置的名稱 |
 | 經度 | 位置的經度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |
 | 經度 | 位置的緯度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |
 | Elevation | 位置的提升 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |
@@ -173,6 +173,11 @@ if(context.activity.type === 'message'){
 | [invoke](#invoke) | IInvokeActivity (C#) <br> Activity (JS) | 代表傳送給 Bot 以要求它執行特定作業的通訊。 此活動類型由 Microsoft Bot Framework 保留供內部使用。 |
 | [messageReaction](#messagereaction) | IMessageReactionActivity (C#) <br> Activity (JS) | 表示使用者已對現有活動做出回應。 例如，使用者按了訊息上的「讚」按鈕。 |
 | [typing](#typing) | ITypingActivity (C#) <br> Activity (JS) | 表示使用者或在對話另一端的 Bot 正在編譯回應。 |
+| messageUpdate | IMessageUpdateActivity (C#) <br> Activity (JS) | 表示要更新交談中先前訊息活動的要求。 |
+| messageDelete | IMessageDeleteActivity (C#) <br> Activity (JS) | 表示要刪除交談中先前訊息活動的要求。 |
+| 建議 | ISuggestionActivity (C#) <br> Activity (JS) | 表示對於另一個特定活動相關收件者的私人建議。 |
+| trace | ITraceActivity (C#) <br> Activity (JS) | 一項活動，可供 Bot 將內部資訊記錄到已記錄的交談文字記錄中。 |
+| handoff | IHandoffActivity (C#) <br> Activity (JS) | 已移轉的交談控制權，或是要移轉交談控制權的要求。 |
 
 ## <a name="message"></a>Message
 

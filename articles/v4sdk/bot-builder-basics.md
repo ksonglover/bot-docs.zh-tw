@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 15cd6c998abf37b1c7b9a9e2659b7390370f7f10
-ms.sourcegitcommit: d92fd6233295856052305e0d9e3cba29c9ef496e
+ms.openlocfilehash: c4d4879f7ad127838de9d2563dee8f8d7320d61e
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2018
-ms.locfileid: "51715122"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010573"
 ---
 # <a name="how-bots-work"></a>Bot 的運作方式
 
@@ -424,9 +424,6 @@ exports.EchoBot = EchoBot;
 
 ## <a name="additional-resources"></a>其他資源
 
-若要了解 Bot 檔案在管理資源中所扮演的角色，請參閱 [Bot 檔案](bot-file-basics.md)。
-
-## <a name="next-steps"></a>後續步驟
-
-> [!div class="nextstepaction"]
-> [建立 Bot](~/bot-service-quickstart.md)
+- 若要了解 bot 中的狀態角色，請參閱[管理狀態](bot-builder-concept-state.md)。
+- 若要了解 .bot 檔案在管理資源中所扮演的角色，請參閱[使用 .bot 檔案管理資源](bot-file-basics.md)。
+- 若要建立您的第一個 Bot，請參閱其中一個快速入門：[使用 Azure Bot 服務](../bot-service-quickstart.md)、[使用 C# ](../dotnet/bot-builder-dotnet-sdk-quickstart.md) 或[使用 JavaScript](../javascript/bot-builder-javascript-quickstart.md)

@@ -1,28 +1,35 @@
 ---
-title: 將 C# Bot 部署至 Azure | Microsoft Docs
+title: 使用 Visual Studio 部署 C# Bot
 description: 將您的 Bot 部署至 Azure 雲端。
-keywords: deploy bot, azure deploy, bot channel registration, publish visual studio, 部署 Bot, azure 部署, Bot 頻道註冊, 發佈 visual studio
+keywords: 部署 bot, azure 部署, 發佈 bot, az 部署 bot, visual studio 部署 bot, msbot 發佈, msbot 複製
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 11/05/2018
-ms.openlocfilehash: f30a038c6bc5e435ade421e24b05d0b31a143538
-ms.sourcegitcommit: 9acac75f85d36c81b8bf4edec916dd0b52a4a5c7
+ms.date: 12/08/2018
+ms.openlocfilehash: ac4e5f2ea385cb8318ad59e04c8ca8787480f5c8
+ms.sourcegitcommit: 77664484e1b0780a15f686ef08bd23716b049b4a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/06/2018
-ms.locfileid: "51028735"
+ms.lasthandoff: 12/09/2018
+ms.locfileid: "53121784"
 ---
-# <a name="deploy-your-c-bot-to-azure"></a>將 C# bot 部署至 Azure
+# <a name="deploy-your-c-bot-using-visual-studio"></a>使用 Visual Studio 部署 C# Bot
 
 [!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
 
-建立 Bot 並在本機測試後，您可以發佈至 Azure，以便可以從任何地方進行存取。
+建立 Bot 並在本機測試後，您可以將其部署至 Azure，以便從任何地方進行存取。 將 Bot 部署至 Azure 時，需支付您所使用的服務。 [計費與成本管理](https://docs.microsoft.com/en-us/azure/billing/)一文協助您了解 Azure 計費方式、監視使用量和成本，以及管理帳戶和訂用帳戶。
 
-## <a name="publish-from-visual-studio"></a>從 Visual Studio 發佈
+在本文中，我們會示範如何使用 Visual Studio 和 Azure 入口網站來部署 C# Bot。 在依照步驟執行前閱讀本文很有用，您可完全了解部署 Bot 的相關事項。
+
+## <a name="prerequisites"></a>必要條件
+- 安裝 [Bot Framework 模擬器](https://aka.ms/Emulator-wiki-getting-started)。
+- 安裝及設定 [ngrok](https://github.com/Microsoft/BotFramework-Emulator/wiki/Tunneling-%28ngrok%29)。
+- [.bot](v4sdk/bot-file-basics.md) 檔案的知識。
+
+## <a name="deploy-your-bot-in-app-service"></a>在 App Service 中部署 Bot
 您會先在 App Service 中將 Bot 從 Visual Studio部署至 Azure。 然後，您將使用 Bot 通道註冊，透過 Azure Bot Service 設定您的 Bot。
 
 **注意：如果 Visual Studio 專案名稱包含空格，如下所述的部署步驟將無法運作。**
@@ -138,6 +145,22 @@ ms.locfileid: "51028735"
 ![在 Web 聊天中測試](media/azure-bot-quickstarts/getting-started-test-webchat.png)
 
 4. 輸入訊息 (例如 `Hi`)，然後按 Enter。 Bot 將回應 `Turn 1: You sent Hi`。
+
+---
+
+## <a name="additional-resources"></a>其他資源
+
+當您部署 Bot 時，這些資源通常會建立於 Azure 入口網站中：
+
+| 資源      | 說明 |
+|----------------|-------------|
+| Web 應用程式 Bot | 已部署至 Azure App Service 的 Azure Bot Service Bot。|
+| [App Service](https://docs.microsoft.com/en-us/azure/app-service/)| 可讓您建置及裝載 Web 應用程式。|
+| [App Service 計劃](https://docs.microsoft.com/en-us/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview)| 針對要執行的 Web 應用程式定義一組計算資源。|
+| [Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview)| 提供用來收集和分析遙測的工具。|
+| [儲存體帳戶](https://docs.microsoft.com/en-us/azure/storage/common/storage-introduction)| 提供高可用性、安全、耐用、可擴充和備援性雲端儲存體。|
+
+如果您不熟悉 Azure 資源群組，請參閱這個[術語](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#terminology)主題。
 
 ## <a name="next-steps"></a>後續步驟
 > [!div class="nextstepaction"]

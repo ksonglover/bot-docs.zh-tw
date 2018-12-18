@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/26/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8f979aed3bc1c4bb4c74629bcffb258e139ce77d
-ms.sourcegitcommit: bcde20bd4ab830d749cb835c2edb35659324d926
+ms.openlocfilehash: 8c3aad54a9e80e8a046a6e31a5109a1de8c61a8b
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52338551"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010503"
 ---
 # <a name="save-user-and-conversation-data"></a>儲存使用者和對話資料
 
@@ -386,7 +386,7 @@ async onTurn(turnContext) {
 
 **狀態管理：** 所有狀態管理呼叫都是非同步的，預設會使用「最後寫入為準」。 實務上，您應該在 Bot 中儘可能密集取得、設定及儲存狀態。
 
-**重要商務資料：** 使用 Bot 狀態來儲存喜好設定、使用者名稱或其所排序的最後一個項目，但不要儲存重要商務資料。 對於重要資料，請[建立自己的儲存體元件](bot-builder-custom-storage.md)，或直接寫入[儲存體](bot-builder-howto-v4-storage.md)。
+**重要商務資料：** 使用 Bot 狀態來儲存喜好設定、使用者名稱或其所排序的最後一個項目，但不要來儲存重要的商務資料。 對於重要資料，請[建立自己的儲存體元件](bot-builder-custom-storage.md)，或直接寫入[儲存體](bot-builder-howto-v4-storage.md)。
 
 **Recognizer-Text：** 此範例會使用 Microsoft/Recognizers-Text 程式庫來剖析及驗證使用者輸入。 如需詳細資訊，請參閱[概觀](https://github.com/Microsoft/Recognizers-Text#microsoft-recognizers-text-overview)頁面。
 

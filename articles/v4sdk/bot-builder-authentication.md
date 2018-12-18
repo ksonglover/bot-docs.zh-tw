@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 10/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 14a56749c68cfe89ed4a0da3c046a39a8e0783fe
-ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
+ms.openlocfilehash: 27e0b54b4e790e76c55deb858e50d8c81507443a
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916785"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010593"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
 
@@ -41,9 +41,8 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 | 範例 | BotBuilder 版本 | 說明 |
 |:---|:---:|:---|
-| [C# 驗證](http://aka.ms/v4csharpauth) | v4 | 展示 v4 C# SDK 中的 OAuthCard 支援 |
-| [C# 驗證圖表](http://aka.ms/v4csharpauthgraph) | v4 |  使用 AAD 和 Microsoft Graph API，展示 v4 C# SDK 中的 OAuthCard 支援 |
-| [節點驗證](http://aka.ms/v4cnodeauth) | v4 |  展示 v4 Node/JavaScript SDK 中的 OAuthCard 支援 |
+| **Bot 驗證** ([C#](https://aka.ms/v4cs-bot-auth-sample) / [JS](https://aka.ms/v4js-bot-auth-sample)) | v4 | 展示 OAuthCard 支援。 |
+| **Bot 驗證 MSGraph** ([C#](https://aka.ms/v4cs-auth-msgraph-sample) / [JS](https://aka.ms/v4js-auth-msgraph-sample)) | v4 |  使用 OAuth 2 展示 Microsoft Graph API 支援。 |
 
 > [!NOTE]
 > 驗證功能亦可搭配 BotBuilder v3 運作。 不過，本文內容僅涵蓋範例 v4 程式碼。
@@ -52,7 +51,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 ## <a name="overview"></a>概觀
 
-本教學課程使用 Azure AD v1 或 v2 權杖建立了一個連線至 Microsoft Graph 的範例 Bot。 而在此程序中，您將使用來自 GitHub 存放庫的程式碼；本教學課程將說明如何進行設定，包括 Bot 應用程式。
+本教學課程使用 Azure AD v1 或 v2 權杖建立了一個連線至 Microsoft Graph 的範例 Bot。 而在此程序中，您將使用來自 [Microsoft/BotBuilder-Samples](https://github.com/Microsoft/BotBuilder-Samples) GitHub 存放庫的程式碼；本教學課程將說明如何進行設定，包括 Bot 應用程式。
 
 - **建立 Bot 和驗證應用程式**
 - **準備 Bot 範例程式碼**
@@ -208,7 +207,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 1. 按一下 [服務提供者連線設定] 窗格頂端的 [測試連線]。
 1. 第一次將開啟新的瀏覽器索引標籤，其中列出應用程式要求的權限，並提示您接受要求。
 1. 按一下 [接受]。
-1. 此動作會將您重新導向 [測試對 `<your-connection-name>' 的連線已成功] 頁面。
+1. 此動作會將您重新導向 [測試對 <your-connection-name> 的連線已成功] 頁面。
 
 ## <a name="prepare-the-bot-sample-code"></a>準備 Bot 範例程式碼
 
@@ -228,7 +227,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
     > [!IMPORTANT]
     > 視密碼中的字元而定，您可能需要讓 XML 逸出該密碼。 例如，任何 & 符號都必須編碼為 `&amp;`。
 
-    ```xml
+    ```json
     {
         "name": "BotAuthentication",
         "secretKey": "",
