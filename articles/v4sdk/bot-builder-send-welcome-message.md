@@ -2,20 +2,20 @@
 title: 將歡迎訊息傳送給使用者 | Microsoft Docs
 description: 了解如何開發 Bot，以提供親切的使用者體驗。
 keywords: 概觀, 開發, 使用者體驗, 歡迎, 個人化體驗, C#, JS, 歡迎訊息, Bot, 問候, 問候語
-author: dashel
-ms.author: dashel
+author: DanDev33
+ms.author: v-dashel
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/15/2018
+ms.date: 12/20/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 02fb57d5d766ddd72c2dcface673c5c6355cf184
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 7e6ea963ce018833b362be3f413f15da4d4bf658
+ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452030"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53735938"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
@@ -25,7 +25,7 @@ ms.locfileid: "52452030"
 
 ## <a name="prerequisites"></a>必要條件
 - 了解 [bot 基本概念](bot-builder-basics.md)。 
-- 採用 [C#](https://aka.ms/proactive-sample-cs) 或 [JS](https://aka.ms/proactive-sample-js) 的一份**歡迎使用者範例**。 此範例中的程式碼用來說明如何傳送歡迎訊息。
+- 採用 [C#](https://aka.ms/bot-welcome-sample-cs) 或 [JS](https://aka.ms/bot-welcome-sample-js) 的一份**歡迎使用者範例**。 此範例中的程式碼用來說明如何傳送歡迎訊息。
 
 ## <a name="same-welcome-for-different-channels"></a>不同通道使用相同的歡迎
 每當使用者第一次與您的 Bot 互動時，應該就會產生歡迎訊息。 若要達成此目的，您可以監視 Bot 的 [活動] 類型並監看新的連線。 視通道而定，每個新連線都可以產生最多兩個對話更新活動。
@@ -421,7 +421,7 @@ switch (text)
 ```
 ---
 ## <a name="test-the-bot"></a>測試 Bot
-如需執行 Bot 的相關指示，請參閱[讀我](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/csharp_dotnetcore/03.welcome-user/readme.md)檔案。 
+如需執行 Bot 的相關指示，請參閱[讀我](https://aka.ms/bot-welcome-sample-cs)檔案。
 
 ## <a name="next-steps"></a>後續步驟
 > [!div class="nextstepaction"]
