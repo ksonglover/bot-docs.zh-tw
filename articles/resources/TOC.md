@@ -19,4 +19,6 @@
 # [Bot 服務合規性](../v4sdk/bot-service-compliance.md)
 # 疑難排解
 ## [針對一般問題進行疑難排解](../bot-service-troubleshoot-general-problems.md)
+## [針對 Bot 組態問題進行疑難排解](../bot-service-troubleshoot-bot-configuration.md)
+## [針對 HTTP 500 錯誤進行疑難排解](../bot-service-troubleshoot-500-errors.md)
 ## [針對驗證進行疑難排解](../bot-service-troubleshoot-authentication-problems.md)
