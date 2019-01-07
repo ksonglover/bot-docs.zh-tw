@@ -11,12 +11,12 @@ ms.subservice: sdk
 ms.date: 09/20/2018
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 74d4bb07274643d61da332d6ee1cdfb1a14372dc
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: af659dd1c2a75af03cfa45df54a815d2dd2306fc
+ms.sourcegitcommit: 561185b9c83f3e082e8b7aba1122b1706e431540
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998425"
+ms.lasthandoff: 12/26/2018
+ms.locfileid: "53785421"
 ---
 # <a name="handle-user-interruptions"></a>處理使用者中斷
 
@@ -463,7 +463,7 @@ async onTurn(turnContext) {
 
 針對範圍之外的中斷，您可以嘗試猜測使用者的想法。 您可以使用 AI 服務 (例如 QnA Maker、LUIS) 或您的自訂邏輯，然後針對 Bot 所判斷的使用者需求的提供建議，來達到這項目的。
 
-例如，在餐廳訂位流程當中，使用者說：「我想要訂購漢堡」。 Bot 不會知道要如何在這個對話流程中處理這個訊息。 因為目前的流程與訂購毫無相關，Bot 的其他對話命令是「訂購晚餐」，所以 Bot 不知道要怎麼處理這個輸入。 舉例來說，如果您套用 LUIS，您可以訓練模型來辨識使用者想要訂購餐點 (例如：LUIS 可以傳回 "orderFood" 意圖)。 因此，Bot 就可以回應：「您似乎想要訂購餐點。 您要切換到我們的訂購晚餐程序嗎？」 如需訓練 LUIS 並且偵測使用者意圖的詳細資訊，請參閱[使用 LUIS 理解語言](bot-builder-howto-v4-luis.md)。
+例如，在餐廳訂位流程當中，使用者說：「我想要訂購漢堡」。 Bot 不會知道要如何在這個對話流程中處理這個訊息。 因為目前的流程與訂購毫無相關，Bot 的其他對話命令是「訂購晚餐」，所以 Bot 不知道要怎麼處理這個輸入。 舉例來說，如果您套用 LUIS，就可以訓練模型來辨識使用者想要訂購餐點 (例如：LUIS 可以傳回 "orderFood" 意圖)。 因此，Bot 就可以回應：「您似乎想要訂購餐點。 您要切換到我們的訂購晚餐程序嗎？」 如需訓練 LUIS 並且偵測使用者意圖的詳細資訊，請參閱[使用 LUIS 理解語言](bot-builder-howto-v4-luis.md)。
 
 ### <a name="default-response"></a>預設回應
 
@@ -471,7 +471,7 @@ async onTurn(turnContext) {
 
 您可以檢查 Bot 邏輯結尾的內容**已回應**旗標，以查看 Bot 是否在使用者等待時將任何項目傳回給使用者。 如果 Bot 會處理使用者的輸入，但是不會回應，有可能是 Bot 不知道該如何處理輸入。 在此情況下，您可以攔截它，並且將預設訊息傳送給使用者。
 
-如果 Bot 的預設值是要對使用者顯示 `mainMenu` 對話方塊。 遇到 Bot 發生這種情形時，使用者會有何種體驗全操之在您。
+如果 Bot 的預設值是為使用者提供 `mainMenu` 對話，您則必須決定使用者在這種情形下會有何種 Bot 體驗。
 
 # <a name="ctabcsharptab"></a>[C#](#tab/csharptab)
 

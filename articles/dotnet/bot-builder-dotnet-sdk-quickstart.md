@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/13/2018
+ms.date: 11/19/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 20a7dad4398874febfbd71024cd68763107f7bd8
-ms.sourcegitcommit: 0b421ff71617f03faf55ea175fb91d1f9e348523
+ms.openlocfilehash: d40b203ccd044992c026a592d5f86b0881754a41
+ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53286624"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53735918"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-net"></a>使用適用於 .NET 的 Bot Builder SDK 建立 Bot
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -59,6 +59,10 @@ ms.locfileid: "53286624"
 
 > [!NOTE]
 > 如果您發現訊息無法傳送，則可能需要重新啟動電腦，因為 ngrok 尚未在您的系統上取得所需的權限 (只需要進行一次)。
+
+## <a name="additional-resources"></a>其他資源
+
+請參閱[通道 (ngrok)](https://github.com/Microsoft/BotFramework-Emulator/wiki/Tunneling-(ngrok))，了解如何連線到遠端裝載的 Bot。
 
 ## <a name="next-steps"></a>後續步驟
 

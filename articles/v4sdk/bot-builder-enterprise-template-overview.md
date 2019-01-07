@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 43bc3c7606a12084690d71f8b6ea2dc3b2e5984d
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 3abfb82f555f458bc9cdd5125fafa1cfa70921cb
+ms.sourcegitcommit: 66769e697d94f7bf5e0441dfacf2c0e3768845ea
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52451990"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53654959"
 ---
 # <a name="enterprise-bot-template"></a>企業 Bot 範本 
 
@@ -34,7 +34,7 @@ ms.locfileid: "52451990"
 不適內容或 PII (個人識別資訊) 偵測  |透過在中介軟體元件中使用[內容審查工具](https://azure.microsoft.com/en-us/services/cognitive-services/content-moderator/)，偵測傳入交談中的不當或 PII 資料。
 文字記錄  | Azure 儲存體中儲存的所有對話的文字記錄
 發送器 | 整合式[分派](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig)模型，用來識別指定的語句應該由 LUIS 與 Code 處理或傳遞至 QnA Maker。
-QnA Maker 整合  | 與 [QnA Maker](https://www.qnamaker.ai) 整合，可以運用現有的資料來源 (例如 PDF 手冊) 來回答知識庫中的一般問題。
+QnA Maker 整合  | 與 [QnA Maker](https://www.qnamaker.ai) 整合，可以運用現有的資料來源 (例如 PDF 手冊) 來回答知識庫中的一般問題。 此外，也包含 QnA Maker 閒聊模型，以提供常用查詢的標準解答 ([了解更多](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/chit-chat-knowledge-base))。
 對話式見解  | 與 [Application Insights](https://azure.microsoft.com/en-gb/services/application-insights/) 整合，可收集所有對話的遙測，而範例 PowerBI 儀表板可讓您開始深入了解您的對話式體驗。
 
 此外，會自動部署 Bot 所需的所有 Azure 資源：Bot 註冊、Azure App Service、LUIS、QnA Maker、內容審查工具、CosmosDB、Azure 儲存體和 Application Insights。 此外，會建立、定型及發行基底 LUIS、QnA Maker 和分派模型，以便立即測試基本意圖和路由。

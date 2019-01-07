@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/25/2018
+ms.date: 12/17/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fcbe28110ec71da7263d125e79ca59d15efa9d5f
-ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
+ms.openlocfilehash: fd908335c69aab7c8b68925b8ecdece79e89ab4b
+ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916775"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53735958"
 ---
 # <a name="add-media-to-messages"></a>將媒體新增至訊息
 
@@ -60,7 +60,9 @@ await turnContext.SendActivityAsync(reply, cancellationToken);
 
 ```javascript
 const { ActionTypes, ActivityTypes, CardFactory } = require('botbuilder');
+
 // Call function to get an attachment.
+const reply = { type: ActivityTypes.Message };
 reply.attachments = [this.getInternetAttachment()];
 reply.text = 'This is an internet attachment.';
 // Send the activity to the user.
@@ -130,30 +132,32 @@ const card = CardFactory.heroCard('', undefined,
 buttons, { text: 'You can upload an image or select one of the following choices.' });
 
 // add card to Activity.
+const reply = { type: ActivityTypes.Message };
 reply.attachments = [card];
 
 // Send hero card to the user.
 await turnContext.sendActivity(reply);
 ```
+
 ---
 
 ## <a name="process-events-within-rich-cards"></a>處理複合式資訊卡 (Rich Card) 內的事件
 
-若要處理複合式資訊卡 (Rich Card) 內的事件，請使用_卡片動作_物件，指定在使用者按一下按鈕或點選卡片的某區段時，所應發生的情況。
+若要處理複合式資訊卡 (Rich Card) 內的事件，請使用_卡片動作_物件，指定在使用者按一下按鈕或點選卡片的某區段時，所應發生的情況。 每個卡片動作都有「類型」和「值」。
 
-為達到正常運作，請為卡片上每個可點選的項目指派一個動作類型。 下表列出卡片動作物件的類型屬性適用的有效值，並說明每個類型值屬性應有的預期內容。
+為達到正常運作，請為卡片上每個可點選的項目指派一個動作類型。 下表列出和說明可用的動作類型，以及相關聯的值屬性應有內容。
 
-| 類型 | 值 |
-| :---- | :---- |
-| openUrl | 要在內建瀏覽器中開啟的 URL。 對於「點選」或「按一下」動作，會以開啟 URL 來回應。 |
-| imBack | 要傳送至 Bot 的訊息文字 (來自於按一下按鈕或點選卡片的使用者)。 此訊息 (從使用者到 Bot) 會透過裝載對話的用戶端應用程式顯示給所有對話參與者。 |
-| postBack | 要傳送至 Bot 的訊息文字 (來自於按一下按鈕或點選卡片的使用者)。 某些用戶端應用程式可能會在訊息摘要中顯示此文字，讓所有對話參與者都能看見。 |
-| call | 以下列格式撥打電話的目的地：`tel:123123123123`。對於「點選」或「按一下」動作，會以起始通話來回應。|
-| playAudio | 待播放音訊的 URL。 對於「點選」或「按一下」動作，會以播放音訊來回應。 |
-| playVideo | 待播放視訊的 URL。 對於「點選」或「按一下」動作，會以播放視訊來回應。 |
-| showImage | 待顯示影像的 URL。 對於「點選」或「按一下」動作，會以顯示影像來回應。 |
-| downloadFile | 待下載檔案的 URL。  對於「點選」或「按一下」動作，會以下載檔案來回應。 |
-| signin | 待起始 OAuth 流程的 URL。 對於「點選」或「按一下」動作，會以起始登入來回應。 |
+| 類型 | 說明 | 值 |
+| :---- | :---- | :---- |
+| openUrl | 在內建瀏覽器中開啟 URL。 | 要開啟的 URL。 |
+| imBack | 將訊息傳送到 Bot，並在聊天中張貼可見的回應。 | 要傳送之訊息的文字。 |
+| postBack | 將訊息傳送到 Bot，但無法在聊天中張貼可見的回應。 | 要傳送之訊息的文字。 |
+| call | 開始撥打電話。 | 以下列格式撥打電話的目的地：`tel:123123123123`。 |
+| playAudio | 播放音訊。 | 要播放的音訊 URL。 |
+| playVideo | 播放影片。 | 要播放的影片 URL。 |
+| showImage | 顯示影像。 | 要顯示的影像 URL。 |
+| downloadFile | 下載檔案。 | 要下載的檔案 URL。 |
+| signin | 起始 OAuth 登入程序。 | 要起始的 OAuth 流程 URL。 |
 
 ## <a name="hero-card-using-various-event-types"></a>使用各種不同事件類型的主圖卡
 
@@ -360,5 +364,5 @@ await context.sendActivity(messageWithCarouselOfCards);
 
 如需卡片結構描述的詳細資訊，請參閱 [Bot Framework 卡片結構描述](https://aka.ms/botSpecs-cardSchema)。
 
-這裡可以找到卡片的範例程式碼：[C#](https://aka.ms/bot-cards-sample-code)/[JS](https://aka.ms/bot-cards-js-sample-code) 調適型卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)，附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-sample-code-js)，以及建議的動作：[C#](https://aka.ms/SuggestedActionsCSharp)/[JS](https://aka.ms/SuggestedActionsJS)。
+您可以在此找到卡片的範例程式碼：[C#](https://aka.ms/bot-cards-sample-code)/[JS](https://aka.ms/bot-cards-js-sample-code)、調適型卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)、附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-sample-code-js)，以及建議的動作：[C#](https://aka.ms/SuggestedActionsCSharp)/[JS](https://aka.ms/SuggestedActionsJS)。
 如需其他範例，請參考 [GitHub](https://aka.ms/bot-samples-readme) 上的 Bot Builder 範例存放庫。

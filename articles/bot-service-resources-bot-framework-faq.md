@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 08/28/2018
-ms.openlocfilehash: 2a78ec6f8c453bfcfa3b6aba0d73257f35db76b8
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 660c10c400bb68e807f39eb1b7ccc38f500991e6
+ms.sourcegitcommit: 0f65857943d318da48df0a8654cde53e9a699116
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997215"
+ms.lasthandoff: 12/14/2018
+ms.locfileid: "53389311"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常見問題集
 
@@ -26,6 +26,38 @@ ms.locfileid: "49997215"
 ### <a name="what-is-the-v4-sdk"></a>什麼是 v4 SDK？
 Bot 建立器 v4 SDK 是根據意見反映而建置，並且參考了先前的 Bot 建立器 SDK。 它引入了正確層級的抽象概念，同時採用了豐富的 Bot 建置組塊元件化功能。 您可以從簡單的 Bot 開始，並且使用模組化和可延伸的架構，讓您的 Bot 更細緻。 您可以在 GitHub 上找到 SDK 的[常見問題集](https://github.com/Microsoft/botbuilder-dotnet/wiki/FAQ)。
 
+## <a name="bot-framework-sdk-version-3-lifetime-support"></a>Bot Framework SDK 第 3 版存留期支援 
+SDK V3 Bot 會繼續執行並受 Azure Bot Service 支援。  自 Bot Framework SDK V4 發行以來，如同其他架構，我們會以安全性、高優先順序錯誤修正及連接器 / 通訊協定層更新，繼續支援 SDK V3。  客戶可預期 2019 年繼續有 v3 支援。
+
+### <a name="what-is-microsoft-plan-for-supporting-existing-v3-bots-what-happens-to-my-v3-bots-will-my-v3-bots-stop-working"></a>Microsoft 對於支援現有 V3 Bot 的計畫為何？ 我的 V3 Bot 發生什麼事？ 我的 V3 Bot 會停止運作嗎？
+SDK V3 Bot 會繼續執行並受 Azure Bot Service 支援。  自 Bot Framework SDK V4 發行以來，如同其他架構，我們會以安全性、高優先順序錯誤修正及連接器 / 通訊協定層更新，繼續支援 SDK V3。  客戶可預期 2019 年繼續有 v3 支援。
+- Azure Bot Service 與 Bot Framework V3 兩者都是 GA 產品且受到完全支援。 基礎 Bot Framework 通訊協定和連接器程式庫維持不變，而且在 V3 與 V4 SDK 之間共用。  
+- 2019 年會繼續支援使用 Bot Framework (BotBuilder) V3 SDK 所建立的 Bot。 
+- 客戶可以繼續使用 Azure 入口網站或 Azure CLI 工具建立 V3 Bot。
+
+### <a name="what-happens-to-my-bot-written-to-rest--bot-framework-protocol-31"></a>寫入至 REST 和 Bot Framework 通訊協定 3.1 的 Bot 發生什麼事？
+- Azure Bot Service 與 Bot Framework V3 兩者都是 GA 產品且受到完全支援。
+- Bot Framework 通訊協定維持不變，而且在 V3 與 V4 SDK 之間共用。  
+
+### <a name="will-there-be-more-updates-additional-development-for-the-v3-sdk-or-just-bugfixes"></a>V3 SDK 會有更多更新、額外開發，或只有錯誤修正？  
+- 我們會以次要增強功能 (主要在連接器層)，以及安全性和高優先順序的錯誤修正來更新 V3。  
+- 我們會根據錯誤修正和/或必要的通訊協定變更，視需要每年發行 V3 更新兩次。 
+- 目前的計畫是將 V3 的次要和修補版本發佈至 NuGet 和 NPM，以供我們的 C# 和 JavaScript SDK 使用。
+
+### <a name="why-v4-is-not-backwards-compatible-with-v3"></a>為何 V4 與 V3 無法回溯相容？
+- 在通訊協定層級，交談式應用程式 (也就是您的 Bot) 與不同通道之間的通訊會使用 Bot Framework 活動通訊協定 (V3 與 V4 之間的通訊使用相同的通訊協定)。 相同的基礎 Azure Bot Service (AZURE BOT SERVICE) 基礎結構同時支援 V3 和 V4 Bot。
+- Bot Framework SDK V4 使用模組化且可擴充的 SDK 架構，提供以交談式為主的開發體驗，讓開發人員能建立強大且複雜的聊天應用程式。 V4 擴充式設計是以客戶意見反應為基礎，這意味著 SDK V3 對話模型和基本項目過於狹隘並限制擴充性。  
+
+### <a name="what-is-the-general-migration-strategy-i-have-a-v3-bot-how-can-i-migrate-it-to-v4-can-i-migrate-my-v3-bot-to-v4"></a>什麼是一般移轉策略？ 我有 V3 Bot，如何將其遷移至 V4/ 是否可以將 V3 Bot 遷移至 V4？
+- 在此階段，使用 SDK V3 至 SDK V4 建立的 Bot 移轉說明會以文件和範例形式呈現。 我們目前不打算在 SDK V4 中提供任何 SDK V3 相容性層，來允許 V3 建置要在 V4 Bot 內運作的 Bot。 
+- 如果您在生產環境中已經有 Bot Framework SDK V3 Bot，別擔心，其會繼續按現狀針對可預見的未來運作。 
+- Bot Framework SDK V4 是非常成功的 V3 SDK 進化版本。 V4 為主要版本發行，其中包含防止 V3 Bot 在較新 V4 SDK 上執行的重大變更。 
+
+### <a name="should-i-build-new-a-bot-using-v3-or-v4"></a>我應該使用 V3 或 V4 建置新的 Bot？
+- 在新的交談式體驗中，我們建議您使用 Bot Framework SDK V4 啟動新的 Bot。
+- 如果您已熟悉 Bot Framework SDK V3，您應該花點時間了解新的 [Bot Framework SDK V4](http://aka.ms/botframeowrkoverview) 所提供的新版本和功能。
+- 如果您在生產環境中已經有 Bot Framework SDK V3 Bot，別擔心，其會繼續按現狀針對可預見的未來運作。
+- 您可以透過 Azure 入口網站和 Azure 命令列，建立 Bot Framework SDK V4 及舊版 V3 Bot。 
 
 ## <a name="channels"></a>聲道
 ### <a name="when-will-you-add-more-conversation-experiences-to-the-bot-framework"></a>何時會將更多的對話體驗新增至 Bot Framework？
@@ -68,7 +100,7 @@ Bot Framework 的設計訴求，是為 Skype 和其他許多通道建置、連�
 - *.botframework.com (通道)
 
 ### <a name="can-i-block-all-traffic-to-my-bot-except-traffic-from-the-bot-connector-service"></a>我可以封鎖所有對 Bot 的流量 (來自 Bot 連接器服務的流量除外) 嗎？
-否。 這種將 IP 位址或 DNS 列入白名單的做法並不切實際。 Bot Framework Connector Service 裝載於全球的 Azure 資料中心，而 Azure IP 清單會不斷地變更。 將某些 IP 位址列入白名單可能會運作一天，並隨著 Azure IP 位址變更而造成隔天中斷。
+沒有。 這種將 IP 位址或 DNS 列入白名單的做法並不切實際。 Bot Framework Connector Service 裝載於全球的 Azure 資料中心，而 Azure IP 清單會不斷地變更。 將某些 IP 位址列入白名單可能會運作一天，並隨著 Azure IP 位址變更而造成隔天中斷。
  
 ### <a name="what-keeps-my-bot-secure-from-clients-impersonating-the-bot-framework-connector-service"></a>何者可讓我的 Bot 保持安全，以便用戶端模擬 Bot Framework Connector Service？
 1. 每個 Bot 要求隨附的安全性權杖內都有 ServiceUrl 編碼，這表示即使攻擊者可以存取權杖，也無法將對話重新導向新的 ServiceUrl。 這是由 SDK 的所有實作強制執行，並記載於我們的驗證[參考](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-connector-authentication?view=azure-bot-service-3.0#bot-to-connector)資料中。

@@ -4,10 +4,11 @@
 
 | 引數    | 說明 |
 |--------------|-------------|
-| `folder`     | `bot.receipe` 檔案的位置。 依預設，receipe 檔案在 `DeploymentsScript/MSBotClone` 中建立。 請勿修改這個檔案。|
+| `folder`     | `bot.recipe` 檔案的位置。 依預設，recipe 檔案在 `DeploymentsScript/MSBotClone` 中建立。 請勿修改這個檔案。|
 | `location`   | 用來建立 Bot 服務資源的地理位置。 例如，eastus、westus、westus2 等等。|
 | `proj-file`  | 若為 C# Bot，這是 .csproj 檔案。 若為 JS Bot，這是您本機 Bot 的啟動專案檔案名稱 (例如 index.js)。|
-| `name`       | 在 Azure 中用於部署 Bot 的唯一名稱。 這可能與您的本機 Bot 同名。 請勿在名稱中包含空格。|
+| `name`       | 在 Azure 中用於部署 Bot 的唯一名稱。 這可能與您的本機 Bot 同名。 請勿在名稱中包含空格或底線。|
+| `luisAuthoringKey` | 您的撰寫金鑰，適用於 LUIS 資源的適當 LUIS 撰寫區域。 |
 
 建立 Azure 資源之前，系統會提示您完成驗證。 依照畫面上顯示的指示完成這個步驟。
 

@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a8a0976e6f553e52e13ae13bbb719dd7bdead8f6
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: 4acb12a5e06032db898a651c6c8bf1dae06765ef
+ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010536"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53735968"
 ---
 # <a name="gather-user-input-using-a-dialog-prompt"></a>使用對話方塊提示蒐集使用者輸入
 
@@ -313,6 +313,32 @@ _prompt_ 方法的第二個參數會採用「提示選項」物件，其具有�
 | _值_ | 來自辨識器的傳回值。 如有必要，驗證碼可以修改此值。 |
 
 ### <a name="implement-validation-code"></a>實作驗證碼
+
+您可在初始化階段，於 Bot 的建構函式中，建立自訂驗證與提示的關聯。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```csharp
+// ...
+_dialogSet = new DialogSet(_accessors.DialogStateAccessor);
+_dialogSet.Add(new NumberPrompt<int>(PartySizePrompt, PartySizeValidatorAsync));
+_dialogSet.Add(new ChoicePrompt(LocationPrompt));
+_dialogSet.Add(new DateTimePrompt(ReservationDatePrompt, DateValidatorAsync));
+// ...
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+```javascript
+// ...
+this.dialogSet = new DialogSet(this.dialogStateAccessor);
+this.dialogSet.add(new NumberPrompt(PARTY_SIZE_PROMPT, this.partySizeValidator));
+this.dialogSet.add(new ChoicePrompt (LOCATION_PROMPT));
+this.dialogSet.add(new DateTimePrompt(RESERVATION_DATE_PROMPT, this.dateValidator));
+// ...
+```
+
+---
 
 **派對規模驗證程式**
 
