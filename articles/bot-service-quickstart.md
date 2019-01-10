@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 11/15/2018
-ms.openlocfilehash: 3c5b12bb804477ae41cf70d2ce955066801f5916
-ms.sourcegitcommit: d92fd6233295856052305e0d9e3cba29c9ef496e
+ms.date: 01/08/2019
+ms.openlocfilehash: fd852a75b911f57743b40d252b24c6ef33b0420d
+ms.sourcegitcommit: ddc8c116887ada67642d49ee5166e7f1ae287263
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2018
-ms.locfileid: "51715132"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114892"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -81,6 +81,7 @@ Bot 服務會提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot B
 ::: moniker range="azure-bot-service-4.0"
 
 # <a name="create-a-bot-with-azure-bot-service"></a>建立具有 Azure Bot Service 的 Bot
+
 [!INCLUDE [pre-release-label](includes/pre-release-label.md)]
 
 Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連接 Bot 與通道的 Bot 服務。 在此主題中，您可以使用 Bot Builder SDK v4，選擇 .NET 或 Node.js 範本來建立 Bot。
@@ -126,6 +127,15 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 ![Azure 網路聊天測試](./media/azure-bot-quickstarts/azure-webchat-test.png)
 
 輸入訊息，您的 Bot 應會回應。
+
+## <a name="download-code"></a>下載程式碼
+您可以下載程式碼，以在本機上處理。 
+1. 在 [Bot 管理] 區段中，按一下 [組建]。 
+1. 在右窗格中按一下**下載 Bot 原始程式碼**連結。 
+1. 遵循提示以下載程式碼，然後將資料夾解壓縮。
+
+您下載的程式碼會使用加密 [.bot 檔案](./v4sdk/bot-file-basics.md)。 您將需要更新 appsettings.json 或.env 檔案中 `botFilePath` 和 `botFileSecret` 的項目。 
+若要這麼做，請移至 Azure 入口網站。 在入口網站中選取您的 Bot，接著在 [App Service 設定] 區段下，按一下 [應用程式設定]。 在 [應用程式設定] 窗格中，您將會看到 `botFilePath` 和 `botFileSecret` 值。 複製這些值，並更新.env 或 appsettings.json 檔案。 
 
 ## <a name="next-steps"></a>後續步驟
 

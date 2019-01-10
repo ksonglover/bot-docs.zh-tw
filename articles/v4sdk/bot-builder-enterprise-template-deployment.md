@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c7977400a53af916217e595dda8e9c9a0ff85496
-ms.sourcegitcommit: 958a28bbab7dd29b384bb2e2d58d866e88f53316
+ms.openlocfilehash: 622d5b4924a4739900659d6be8eebd1888191eab
+ms.sourcegitcommit: ddc8c116887ada67642d49ee5166e7f1ae287263
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52500659"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114882"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企業 Bot 範本 - 部署您的 Bot
 
@@ -34,10 +34,7 @@ npm install -g ludown luis-apis qnamaker botdispatch msbot chatdown
 
 - 從[這裡](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)安裝 Azure 命令列工具 (CLI)。 如果您已安裝 Azure Bot Service 命令列 (CLI) 工具，請務必先將目前版本解除安裝，再安裝新版本，以更新為最新版本。
 
-- 安裝適用於 Bot 服務的 AZ 擴充功能
-```shell
-az extension add -n botservice
-```
+> 使用 msbot 4.3.2 和更新版本中，唯一的 AZ CLI 先決條件需要 AZ CLI 版本 > = 2.0.53。 如果您也安裝了 botservice 擴充功能，請透過 "az extension remove --name botservice" 移除。
 
 - 安裝 LUISGen 工具
 
@@ -72,7 +69,7 @@ az account set --subscription "YOUR_SUBSCRIPTION_NAME"
 - Azure 認知服務 - QnA Maker (包括 Azure 搜尋服務、Azure Web 應用程式)
 - Azure 認知服務 - 內容審查工具 (選用手動步驟)
 
-新的 Bot 專案具有一個部署配方，可讓 `msbot clone services` 命令自動將上述所有服務部署到您的 Azure 訂用帳戶，並確保以所有的服務 (包括能夠讓 Bot 順暢運作的金鑰) 更新您專案中的 .bot 檔案。 此外，也有適用於下列語言的多個設定選項：中文、英文、法文、德文、義大利文和西班牙文。
+新的 Bot 專案具有一個部署配方，可讓 `msbot clone services` 命令自動將上述所有服務部署到您的 Azure 訂用帳戶，並確保以所有的服務 (包括能夠讓 Bot 順暢運作的金鑰) 更新您專案中的 .bot 檔案。 會有下列語言的多個設定選項：中文、 英文、 法文、 德文、 義大利文和西班牙文。
 
 > 部署後，請檢閱所建立服務的定價層，並調整為符合您的案例。
 

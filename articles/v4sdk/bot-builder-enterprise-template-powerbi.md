@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 73e19047ea64839f52bb20ea1eceee93803210bc
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: 88208a2f5b0eb88d3b2964e63a21585484166d73
+ms.sourcegitcommit: 2d84d5d290359ac3cfb8c8f977164f799666f1ab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645480"
+ms.lasthandoff: 01/09/2019
+ms.locfileid: "54152171"
 ---
 # <a name="enterprise-bot-template---conversational-analytics-using-powerbi-dashboard-and-application-insights"></a>企業 Bot 範本 - 使用 PowerBI 儀表板和 Application Insights 的對話式分析
 
@@ -24,19 +24,10 @@ ms.locfileid: "51645480"
 
 在 Azure 入口網站的 [Application Insights] 刀鋒視窗中以及使用 Log Analytics，都可以檢視此遙測。 此外，PowerBI 可以使用相同的遙測來提供更多關於 Bot 使用量的一般商務見解。
 
-在已建立專案的 PowerBI 資料夾內會提供一個範例 PowerBI 儀表板。 這是針對範例用途所提供的，可示範如何開始建立自己的見解。 經過一段時間，我們會強化這些視覺效果。 
+在[交談 AI 遙測](https://aka.ms/botPowerBiTemplate)中提供範例 PowerBI 儀表板。 
 
-## <a name="getting-started"></a>開始使用
+這是針對範例用途所提供的，可示範如何開始建立自己的見解。 經過一段時間，我們會強化這些視覺效果。 
 
-- 從[這裡](https://powerbi.microsoft.com/en-us/desktop/)下載 PowerBI Desktop
- 
-- 擷取 Bot 所用 Application Insights 資源的 ```Application Id```。 瀏覽至 Azure Application Insights 刀鋒視窗的 [設定] 區段下的 [API 存取] 頁面，即可取得此識別碼。
-
-按兩下所提供的 PowerBI 範本檔案，其位於您的解決方案的 PowerBI 資料夾內。 系統會提示您輸入在上一個步驟中擷取的 ```Application Id```。 如果系統提示您使用 Azure 訂用帳戶認證來完成驗證，您可能需要按一下 [組織帳戶] 設定進行登入。
-
-所產生的儀表板現在會連結到您的 Application Insights 執行個體，如果已傳送及接收訊息，您應會在儀表板內看到初始見解。
-
->請注意，情感視覺效果不會顯示資料，因為部署指令碼目前並未在發佈 LUIS 模型時啟用情感功能。 如果您[重新發行](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-how-to-publish-app) LUIS 模型並啟用情感功能，就能運作。
 
 ## <a name="middleware-processing"></a>中介軟體處理
 
@@ -55,11 +46,13 @@ ms.locfileid: "51645480"
     - ActivityId
     - Channel
     - FromId
-    - Conversationid
+    - FromName
+    - ConversationId
     - ConversationName
     - Locale
-    - UserName
     - Text
+    - RecipientId
+    - RecipientName
 ```
   
 ```
@@ -67,10 +60,12 @@ ms.locfileid: "51645480"
     - ActivityId,
     - Channel
     - RecipientId
-    - Conversationid
+    - ConversationId
     - ConversationName
     - Locale
-    - ReceipientName
+    - RecipientId
+    - RecipientName
+    - ReplyToId
     - Text
 ```
 
@@ -83,6 +78,7 @@ ms.locfileid: "51645480"
     - SentimentScore
     - ConversationId
     - Question
+    - DialogId
 ```
 
 ```
@@ -90,8 +86,8 @@ ms.locfileid: "51645480"
     - ActivityId
     - ConversationId
     - OriginalQuestion
-    - UserName
-    - QnAItemFound
+    - FromName
+    - ArticleFound
     - Question
     - Answer
     - Score
