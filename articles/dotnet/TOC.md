@@ -1,4 +1,4 @@
-# [適用於 .NET 的 Bot 建立器 SDK](bot-builder-dotnet-overview.md)
+# [適用於 .NET 的 Bot Framework SDK ](bot-builder-dotnet-overview.md)
 # [重要概念](bot-builder-dotnet-concepts.md)
 # 訊息和活動
 ## [活動概觀](bot-builder-dotnet-activities.md)
@@ -25,7 +25,7 @@
 ## [當地語系化](bot-builder-dotnet-formflow-localize.md)
 ## [JSON 結構描述](bot-builder-dotnet-formflow-json-schema.md)
 # 聲道
-## [實作通道特定的功能](bot-builder-dotnet-channeldata.md)
+## [實作通道特有功能](bot-builder-dotnet-channeldata.md)
 ## [建置 Cortana 技能](bot-builder-dotnet-cortana-skill.md)
 ## [使用 Skype 執行音訊通話](bot-builder-dotnet-audio-calls.md)
 ## 使用 Skype 執行即時媒體通話
