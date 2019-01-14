@@ -9,12 +9,12 @@ layout: LandingPage
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/27/2018
-ms.openlocfilehash: ec7a21e790c945b261e7381ec76298460fa079ee
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 905b8592ebbc3fb4344af60b6bcbb219d0a2ee70
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000255"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224313"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -24,7 +24,7 @@ ms.locfileid: "50000255"
 <div class="content">
     <h1>Azure Bot 服務文件</h1>
     <div class="intro" style="min-width: 200px">
-        <p>Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot Builder SDK 以及對 .NET 和 Node.js 的支援。 了解如何透過我們的快速入門和範例使用 Bot 服務。</p>
+        <p>Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot Framework SDK，並支援 .NET 和 Node.js。 了解如何透過我們的快速入門和範例使用 Bot 服務。</p>
     </div>
 <h2 style="margin-top: 18px; margin-bottom: 0px;">5 分鐘快速入門</h2>
 <div class="ico48Case">
@@ -73,7 +73,7 @@ ms.locfileid: "50000255"
 <div class="content">
     <h1>Azure Bot 服務文件</h1>
     <div class="intro" style="min-width: 200px">
-        <p>Azure Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot Builder SDK，並支援 C# 和 JavaScript。 了解如何透過我們的快速入門、教學課程和範例使用 Bot 服務。
+        <p>Azure Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot Framework SDK，並支援 C# 和 JavaScript。 了解如何透過我們的快速入門、教學課程和範例使用 Bot 服務。
 </p>
 </div>
 
