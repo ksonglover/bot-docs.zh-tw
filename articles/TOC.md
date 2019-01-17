@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 73149f8137144ee34c1ab1e8fc6a645d1405b694
+ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "54360758"
+---
 # [Azure Bot 服務文件](index.md)
 # 概觀
 ## [關於 Azure Bot Service](bot-service-overview-introduction.md)
@@ -7,11 +15,12 @@
 ### [.NET](dotnet/bot-builder-dotnet-sdk-quickstart.md)
 ### [JavaScript](javascript/bot-builder-javascript-quickstart.md)
 # 教學課程
-## [使用多個 LUIS 和 QnA 模型](v4sdk/bot-builder-tutorial-dispatch.md)
+## [建立及部署基本 Bot](v4sdk/bot-builder-tutorial-basic-deploy.md)
+## [新增 QnA Maker，並重新部署 Bot](v4sdk/bot-builder-tutorial-add-qna.md)
 ## [在您的 Bot 中新增驗證](bot-builder-tutorial-authentication.md)
 # 範例
 ## [在 GitHub 上的 botbuilder-samples 存放庫](https://github.com/Microsoft/BotBuilder-Samples/blob/master/README.md)
-## [從 bot botbuilder-samples 存放庫部署 bot](bot-builder-deploy-samples.md)
+## [從 botbuilder-samples 存放庫部署 Bot](bot-builder-deploy-samples.md)
 # 概念
 ## [Bot 的運作方式](v4sdk/bot-builder-basics.md)
 ## [管理狀態](v4sdk/bot-builder-concept-state.md)
@@ -41,6 +50,7 @@
 ### [從 Bot 取得通知](v4sdk/bot-builder-howto-proactive-message.md)
 ### [將自然語言理解新增至您的 Bot](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答使用者的問題](v4sdk/bot-builder-howto-qna.md)
+### [使用多個 LUIS 和 QnA 模型](v4sdk/bot-builder-tutorial-dispatch.md)
 ### 使用對話方塊程式庫管理對話 
 #### [實作循序對話流程](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
 #### [使用對話方塊提示收集使用者輸入](v4sdk/bot-builder-prompts.md)
