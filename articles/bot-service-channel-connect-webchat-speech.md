@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f98391f05e962bfc8846818d8a236d16846c8c5c
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: cdb512b0efe111870b34c440f978105786b6f36a
+ms.sourcegitcommit: 8161753641368567f239e24a35ad61768acccd8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997056"
+ms.lasthandoff: 01/10/2019
+ms.locfileid: "54202574"
 ---
 # <a name="enable-speech-in-web-chat"></a>啟用網路聊天中的語音
 您可以啟用 Web 聊天控制項中的語音介面。 使用者可透過使用 Web 聊天控制項中的麥克風，與語音介面進行互動。
@@ -66,7 +66,7 @@ ms.locfileid: "49997056"
 自訂可讓您以下列任何方式新增語音功能：
 
 * **瀏覽器提供的語音** - 使用網頁瀏覽器內建的語音功能。 目前，此功能僅提供 Chrome 瀏覽器使用。
-* **使用 Bing 語音服務** - 您可以使用 Bing 語音服務提供語音辨識與合成。 這種存取語音功能的方式受到各種瀏覽器的支援。 在此案例中，處理是在伺服器上完成，而不是在瀏覽器上。
+<!--* **Use Bing Speech service** - You can use the Bing Speech service to provide speech recognition and synthesis. This way of access speech functionality is supported by a variety of browsers. In this case, the processing is done on a server instead of on the browser.-->
 * **建立自訂語音服務** - 您可以建立自己的自訂語音識別和語音合成元件。
 
 ### <a name="browser-provided-speech"></a>瀏覽器提供的語音
@@ -80,23 +80,23 @@ ms.locfileid: "49997056"
 
 [!code-js[Specify speech options to use in-browser speech (JavaScript)](./includes/code/bot-service-channel-connect-webchat-speech.js#BrowserSpeech)]
 
-### <a name="bing-speech-service"></a>Bing 語音服務
+<!--### Bing Speech service
 
-下列程式碼具現化使用 Bing 語音服務的語音辨識器和語音合成元件。 語音的識別和產生是在伺服器上執行。 多個瀏覽器都支援此機制。 
+The following code instantiates speech recognizer and speech synthesis components that use the Bing Speech service. The recognition and generation of speech is performed on the server. This mechanism is supported in multiple browsers. 
 
 > [!TIP]
-> 如果您使用 Bing 語音服務，您可以使用語音識別啟動來提高 Bot 的語音辨識準確度。 如需詳細資訊，請查看部落格文章 [Bot Framework 中的語音支援](https://blog.botframework.com/2017/06/26/Speech-To-Text) \(英文\)。
+> You can use speech recognition priming to improve your bot's speech recognition accuracy if you use the Bing Speech service. For more information, check out the [Speech Support in Bot Framework](https://blog.botframework.com/2017/06/26/Speech-To-Text) blog post.
 
 [!code-js[Specify speech options to use the Bing Speech API (JavaScript)](./includes/code/bot-service-channel-connect-webchat-speech.js#BingSpeech)]
 
-#### <a name="use-the-bing-speech-service-with-a-token"></a>利用權杖使用 Bing 語音服務
+#### Use the Bing Speech service with a token
 
-您也可以選擇使用權杖啟用「認知服務」語音辨識。 權杖使用您的 API 金鑰在安全的後端產生。
+You also have the option to enable Cognitive Services speech recognition using a token. The token is generated in a secure back end using your API key.
 
-下列範例程式碼示範如何從安全的後端完成權杖提取，以避免公開 API 金鑰。
+The following example code shows how the token fetch is done from a secure back end to avoid exposing the API key.
 
 [!code-js[Fetch a token to use with the Bing Speech API (JavaScript)](./includes/code/bot-service-channel-connect-webchat-speech.js#FetchToken)]
-
+-->
 ### <a name="custom-speech-service"></a>自訂語音服務
 
 您也可以提供您自己的自訂語音辨識 (實作 ISpeechRecognizer) 或語音合成 (實作 ISpeechSynthesis)。 

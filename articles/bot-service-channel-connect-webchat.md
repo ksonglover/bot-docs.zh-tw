@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/04/2018
-ms.openlocfilehash: 6c3cc52514988172e5c2cc85168aef401fbc1f22
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: 20ee5a5a0849cef91e59aece7a87f8e9ac4e86ec
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010493"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317628"
 ---
 # <a name="connect-a-bot-to-web-chat"></a>將 Bot 連線至「網路聊天」
 
@@ -61,10 +61,12 @@ Bot Framework 入口網站中的網路聊天頻道，包含您在網頁中內嵌
 
 ##### <a name="example-request"></a>範例要求
 
-```requestGET https://webchat.botframework.com/api/tokens 授權：BotConnector YOUR_SECRET_HERE
+```
+requestGET https://webchat.botframework.com/api/tokens
+Authorization: BotConnector YOUR_SECRET_HERE
 ```
 
-##### Example response 
+##### <a name="example-response"></a>範例回應 
 
 ```response
 "IIbSpLnn8sA.dBB.MQBhAFMAZwBXAHoANgBQAGcAZABKAEcAMwB2ADQASABjAFMAegBuAHYANwA.bbguxyOv0gE.cccJjH-TFDs.ruXQyivVZIcgvosGaFs_4jRj1AyPnDt1wk1HMBb5Fuw"
