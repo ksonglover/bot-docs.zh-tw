@@ -1,6 +1,6 @@
 ---
 title: 直接寫入儲存體 | Microsoft Docs
-description: 了解如何使用適用於 .NET 的 Bot Builder SDK 直接寫入儲存體。
+description: 了解如何使用適用於 .NET 的 Bot Framework SDK 直接寫入儲存體。
 keywords: 儲存體, 讀取及寫入, 記憶體儲存體, eTag
 author: DeniseMak
 ms.author: v-demak
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/13/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 803574e5d224b0556162fd677145d29cafa2cab1
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: cd1f8270acf426c84d64efef796b7a007c49c2c1
+ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645678"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "54360788"
 ---
 # <a name="write-directly-to-storage"></a>直接寫入儲存體
 
@@ -217,12 +217,12 @@ async function logMessageText(storage, context) {
 建立帳戶需要幾分鐘的時間。 等候入口網站顯示 恭喜! 已建立您的 Azure Cosmos DB 帳戶 頁面。
 
 ##### <a name="add-a-collection"></a>新增集合
-1. 按一下 [設定] > [新增集合]。 [新增集合] 區域會顯示在最右邊，您可能需要向右捲動才能看到它。
+1. 按一下 [設定] > [新增集合]。 [新增集合] 區域會顯示在最右邊，您可能需要向右捲動才能看到它。 由於 Cosmos DB 的近期更新，請務必新增單一分割區索引鍵：_/id_。此索引鍵可避免跨分割區查詢錯誤。
 
 ![新增 Cosmos DB 集合](./media/add_database_collection.png)
 
 2. 新資料庫集合 "bot-cosmos-sql-db" 的集合識別碼為 "bot-storage"。 我們會在下面的編碼範例中使用這些值。
-
+ -
 ![Cosmos DB](./media/cosmos-db-sql-database.png)
 
 3. 您資料庫設定的 [金鑰] 索引標籤中會提供端點 URI 和金鑰。 本文稍後設定您的程式碼時，需要使用這些值。 
@@ -597,7 +597,7 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
            var count = 0;
            do
            {
-               var pagedTranscript = await _transcriptStore.GetTranscriptActivitiesAsync(activity.ChannelId, activity.Conversation.Id);
+               var pagedTranscript = await _transcriptStore.GetTranscriptActivitiesAsync(activity.ChannelId, activity.Conversation.Id, continuationToken);
                var activities = pagedTranscript.Items
                   .Where(a => a.Type == ActivityTypes.Message)
                   .Select(ia => (Activity)ia)

@@ -1,6 +1,6 @@
 ---
 title: 使用 LUIS 辨識意圖和實體 | Microsoft Docs
-description: 將 Bot 與 LUIS 整合來偵測使用者的意圖，並使用適用於 Node.js 的 Bot Builder SDK 來觸發對話，藉以適當地回應。
+description: 將 Bot 與 LUIS 整合來偵測使用者的意圖，並使用適用於 Node.js 的 Bot Framework SDK 來觸發對話，藉以適當地回應。
 author: DeniseMak
 ms.author: v-demak
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 03/28/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5df1352241485bf95a46fa981b9b16c3cb7e3925
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: acdc6053f7d666c2f086dca554efafc93c8af769
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998695"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225283"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 辨識意圖和實體 
 

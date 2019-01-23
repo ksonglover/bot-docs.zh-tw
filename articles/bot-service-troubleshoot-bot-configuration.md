@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/20/2018
-ms.openlocfilehash: 18350c7ea6fb7390796567b1754cd88be6b9be61
-ms.sourcegitcommit: 561185b9c83f3e082e8b7aba1122b1706e431540
+ms.openlocfilehash: 8a3ff4a30e3041937ba831efc237343c9aa27e62
+ms.sourcegitcommit: 8161753641368567f239e24a35ad61768acccd8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/26/2018
-ms.locfileid: "53785411"
+ms.lasthandoff: 01/10/2019
+ms.locfileid: "54202544"
 ---
 # <a name="troubleshoot-bot-configuration-issues"></a>針對 Bot 設定問題進行疑難排解
 
@@ -28,7 +28,7 @@ ms.locfileid: "53785411"
 
 ![在網路聊天中測試](./media/test-in-webchat.png)
 
-如果 Bot 以預期的輸出回應，請移至 [Bot 不適用於網路聊天](#bot-does-not-work-in-web-chat)。 否則，移至 [Bot 適用於網路聊天，但不適用於其他通道](#bot-works-in-web-chat-but-not-in-other-channels)。
+如果 Bot 並未以預期的輸出回應，請移至 [Bot 不適用於網路聊天](#bot-does-not-work-in-web-chat)。 否則，移至 [Bot 適用於網路聊天，但不適用於其他通道](#bot-works-in-web-chat-but-not-in-other-channels)。
 
 ## <a name="bot-does-not-work-in-web-chat"></a>Bot 不適用於網路聊天
 

@@ -1,6 +1,6 @@
 ---
-title: 傳送主動式訊息 | Microsoft Docs
-description: 了解如何使用適用於 .NET 的 Bot Builder SDK 來傳送主動式訊息。
+title: 傳送主動訊息 | Microsoft Docs
+description: 了解如何使用適用於 .NET 的 Bot Framework SDK 來傳送主動式訊息。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 201f1aa1aca0d75190335fa114ef8a26caed2a03
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d86ee290ebf33dbfd13017c3fe882ecfdd9102e4
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998337"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225723"
 ---
 # <a name="send-proactive-messages"></a>傳送主動訊息
 
@@ -30,9 +30,9 @@ ms.locfileid: "49998337"
 
 [!INCLUDE [Introduction to proactive messages - part 2](../includes/snippet-proactive-messages-intro-2.md)]
 
-## <a name="send-an-ad-hoc-proactive-message"></a>傳送臨機操作的主動式訊息
+## <a name="send-an-ad-hoc-proactive-message"></a>傳送臨機操作的主動訊息
 
-下列程式碼範例示範如何使用適用於 .NET 的 Bot Builder SDK 傳送臨機操作的主動式訊息。
+下列程式碼範例示範如何使用適用於 .NET 的 Bot Framework SDK 傳送臨機操作的主動式訊息。
 
 為了能夠將臨機操作的訊息傳送給使用者，Bot 必須先收集並儲存一些來自目前對話的使用者相關資訊。 
 
@@ -95,9 +95,9 @@ await connector.Conversations.SendToConversationAsync((Activity)message);
 > [!NOTE]
 > 如果 Bot 指定先前儲存的對話識別碼，很可能會將訊息傳遞給用戶端上現有對話視窗中的使用者。 如果 Bot 產生新的對話識別碼，即會將訊息傳遞給用戶端上新對話視窗中的使用者，但前提是用戶端支援多個對話視窗。 
 
-## <a name="send-a-dialog-based-proactive-message"></a>傳送對話型的主動式訊息
+## <a name="send-a-dialog-based-proactive-message"></a>傳送對話方塊式的主動訊息
 
-下列程式碼範例示範如何使用適用於 .NET 的 Bot Builder SDK 來傳送對話型的主動式訊息。
+下列程式碼範例示範如何使用適用於 .NET 的 Bot Framework SDK 傳送對話式主動訊息。
 
 為了能夠將對話型的主動式訊息傳送給使用者，Bot 必須先收集並儲存來自目前對話的相關資訊。 
 
@@ -177,11 +177,11 @@ public class SurveyDialog : IDialog<object>
 
 ## <a name="sample-code"></a>範例程式碼
 
-如需示範如何使用適用於 .NET 的 Bot Builder SDK 傳送主動式訊息的完整範例，請參閱 GitHub 中的<a href="https://aka.ms/proactive-messaging-cs-v3 " target="_blank">主動式訊息範例</a>。 在主動訊息範例中，<a href="https://aka.ms/proactive-sendmessage-cs-v3 " target="_blank">simpleSendMessage</a> 示範如何傳送臨機操作的主動訊息，而 <a href="https://aka.ms/proactive-newdialog-cs-v3 " target="_blank">startNewDialog</a> 示範如何傳送對話方塊式的主動訊息。 
+如需示範如何使用適用於 .NET 的 Bot Framework SDK 傳送主動訊息的完整範例，請參閱 GitHub 中的<a href="https://aka.ms/proactive-messaging-cs-v3 " target="_blank">主動訊息範例</a>。 在主動訊息範例中，<a href="https://aka.ms/proactive-sendmessage-cs-v3 " target="_blank">simpleSendMessage</a> 示範如何傳送臨機操作的主動訊息，而 <a href="https://aka.ms/proactive-newdialog-cs-v3 " target="_blank">startNewDialog</a> 示範如何傳送對話方塊式的主動訊息。 
 
 ## <a name="additional-resources"></a>其他資源
 
 - [設計和控制交談流程](../bot-service-design-conversation-flow.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Builder SDK 參考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Framework SDK 參考</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-proactiveMessages" target="_blank">主動式訊息範例 (GitHub)</a>
 

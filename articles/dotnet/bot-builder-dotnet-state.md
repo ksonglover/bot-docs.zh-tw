@@ -1,6 +1,6 @@
 ---
-title: 管理狀態資料 |Microsoft Docs
-description: 了解如何藉由 Bot Builder SDK for .NET 儲存及擷取資料。
+title: 管理狀態資料 | Microsoft Docs
+description: 了解如何透過適用於 .NET 的 Bot Framework SDK 儲存及擷取資料。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: deb8361a5cca2f37840abb1180c2de571ee08143
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3ee3af72d1c03faf485a64adb8d9fa2548f5d99d
+ms.sourcegitcommit: 3cc768a8e676246d774a2b62fb9c688bbd677700
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999755"
+ms.lasthandoff: 01/16/2019
+ms.locfileid: "54323664"
 ---
 # <a name="manage-state-data"></a>管理狀態資料
 
@@ -103,53 +103,6 @@ GlobalConfiguration.Configure(WebApiConfig.Register);
 > [!NOTE]
 > 即便您選擇將狀態資料儲存在自己的資料庫，而非選擇使用 Bot Framework 狀態資料存放區，您也可以使用這些屬性值做為索引鍵。
 
-## <a id="state-client"></a> 建立狀態用戶端
-
-`StateClient` 物件可讓您使用 Bot Builder SDK for .NET 來管理狀態資料。 如果在您想要管理狀態資料的相同內容中，有您能夠存取的訊息，您就能在 `Activity` 物件呼叫 `GetStateClient` 方法來建立狀態用戶端。
-
-[!code-csharp[Get State client](../includes/code/dotnet-state.cs#getStateClient1)]
-
-如果在您想要管理狀態資料的相同內容中，沒有您能夠存取的訊息，您只要建立 `StateClient` 類別新的執行個體，就能建立狀態用戶端。 在此範例中，`microsoftAppId` 和 `microsoftAppPassword` 是您在 [Bot 建立](../bot-service-quickstart.md)程序中取得的 Bot Framework 驗證認證。
-
-> [!NOTE]
-> 若要尋找 Bot 的 **AppID** 和 **AppPassword**，請參閱 [MicrosoftAppID 和 MicrosoftAppPassword](~/bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
-
-[!code-csharp[Get State client](../includes/code/dotnet-state.cs#getStateClient2)]
-
-> [!NOTE]
-> 預設狀態用戶端會儲存在集中服務中。 在某些通道，您可能需要使用裝載在通道本身內的狀態 API，以便讓狀態資料儲存在通道提供的相容儲存體中。
-
-## <a name="get-state-data"></a>取得狀態資料
-
-每個 "**Get...Data**" 方法都會傳回 `BotData` 物件，當中含有指定使用者和/或交談的狀態資料。 若要從 `BotData` 物件取得特定的屬性值，請呼叫 `GetProperty` 方法。 
-
-以下程式碼範例示範如何從使用者資料中取得經過歸類的屬性。 
-
-[!code-csharp[Get state property](../includes/code/dotnet-state.cs#getProperty1)]
-
-以下程式碼範例示範如何從使用者資料中的複雜類型取得屬性。
-
-[!code-csharp[Get state property](../includes/code/dotnet-state.cs#getProperty2)]
-
-如果針對 "**Get...Data**" 方法呼叫而指定的使用者和/或交談中不存在狀態資料，則傳回的 `BotData` 物件會包含以下屬性值： 
-- `BotData.Data` = null
-- `BotData.ETag` = "*"
-
-## <a name="save-state-data"></a>儲存狀態資料
-
-若要儲存狀態資料，請先呼叫適當的 "**Get...Data**" 方法以取得 `BotData` 物件，再為每個想要更新的屬性呼叫 `SetProperty` 方法加以更新，然後呼叫適當的 "**Set...Data**"方法以儲存資料。 
-
-> [!NOTE]
-> 針對通道的每個使用者、通道的每個交談，以及通道的交談內容中的每個使用者儲存，您最多可以 32 KB 的資料。 
-
-以下程式碼範例顯示如何儲存使用者資料中經過歸類的屬性。
-
-[!code-csharp[Set state property](../includes/code/dotnet-state.cs#setProperty1)]
-
-以下程式碼範例顯示如何儲存使用者資料中複雜類型的屬性。 
-
-[!code-csharp[Set state property](../includes/code/dotnet-state.cs#setProperty2)]
-
 ## <a name="handle-concurrency-issues"></a>處理並行問題
 
 如果 Bot 的其他執行個體變更了資料，當 Bot 嘗試儲存狀態資料時，可能會收到以下的 HTTP 狀態碼錯誤回應：**412 前置條件失敗**。 您可以設計自己的 Bot 來說明這類情形，如下列程式碼範例所示。
@@ -159,6 +112,6 @@ GlobalConfiguration.Configure(WebApiConfig.Register);
 ## <a name="additional-resources"></a>其他資源
 
 - [Bot Framework 疑難排解指南](../bot-service-troubleshoot-general-problems.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 參考資料</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Framework SDK 參考</a>
 
 [Activity]: https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html

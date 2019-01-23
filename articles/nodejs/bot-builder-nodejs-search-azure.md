@@ -1,6 +1,6 @@
 ---
 title: 使用 Azure 搜尋服務建立資料驅動體驗 | Microsoft Docs
-description: 了解如何使用 Azure 搜尋服務建立資料驅動體驗，並協助使用者在採用適用於 Node.js 的 Bot 建立器 SDK 和 Azure 搜尋服務的 Bot 中巡覽大量內容。
+description: 了解如何使用 Azure 搜尋服務建立資料驅動體驗，並協助使用者在採用適用於 Node.js 的 Bot Framework SDK 和 Azure 搜尋服務的 Bot 中巡覽大量內容。
 author: matthewshim-ms
 ms.author: v-shimma
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 204fb5d8f4838c78d771bfad5c0ed6511b27932b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: ac4597e93f8cdaa4c9b015a4136ab09e9b7adc95
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999995"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224713"
 ---
 # <a name="create-data-driven-experiences-with-azure-search"></a>使用 Azure 搜尋服務建立資料驅動體驗 
 
@@ -85,7 +85,7 @@ bot.library(SearchLibrary.create({
 
 ## <a name="create-a-search-dialog"></a>建立搜尋對話
 
-您可以在需要時選擇建構對話。 設定 Azure 搜尋服務對話的唯一需求是透過 `SearchLibrary` 物件叫用 `.begin` 方法，以傳入 Bot 建立器 SDK 所產生的 `session` 物件。 
+您可以在需要時選擇建構對話。 設定 Azure 搜尋服務對話的唯一需求是透過 `SearchLibrary` 物件叫用 `.begin` 方法，以傳入 Bot Framework SDK 所產生的 `session` 物件。 
 
 ```javascript
 function (session) {
@@ -151,7 +151,7 @@ function searchHitAsCard(showSave, searchHit) {
 
 ## <a name="sample-code"></a>範例程式碼
 
-如需兩個示範如何使用適用於 Node.js 的 Bot 建立器 SDK 支援 Azure 搜尋服務的完整範例，請參閱 GitHub 中的[不動產 Bot 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-Search/RealEstateBot)或[作業清單 Bot 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-Search/JobListingBot)。 
+如需兩個示範如何使用適用於 Node.js 的 Bot Framework SDK 支援 Azure 搜尋服務的完整範例，請參閱 GitHub 中的[不動產 Bot 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-Search/RealEstateBot)或[作業清單 Bot 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-Search/JobListingBot)。 
 
 ## <a name="additional-resources"></a>其他資源
 

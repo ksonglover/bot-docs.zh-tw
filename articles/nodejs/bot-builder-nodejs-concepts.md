@@ -1,6 +1,6 @@
 ---
-title: 適用於 Node.js 的 Bot 建立器 SDK 中的重要概念 | Microsoft Docs
-description: 了解建置和部署可在適用於 Node.js 的 Bot 建立器 SDK 中，使用交談 Bot 所需的重要概念和工具。
+title: 適用於 Node.js 的 Bot Framework SDK 重要概念 | Microsoft Docs
+description: 了解建置和部署適用於 Node.js 的 Bot Framework SDK 中可用交談式 Bot 所需的重要概念和工具。
 author: DeniseMak
 ms.author: v-demak
 manager: kamrani
@@ -9,14 +9,14 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 43b6f669cdbc91b78094d3d0d9e7a54f97f9884f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: efd47cb1ae48c34d58d673eaea04feeb1869b640
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998025"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225443"
 ---
-# <a name="key-concepts-in-the-bot-builder-sdk-for-nodejs"></a>適用於 Node.js 的 Bot 建立器 SDK 中的重要概念
+# <a name="key-concepts-in-the-bot-framework-sdk-for-nodejs"></a>適用於 Node.js 的 Bot Framework SDK 重要概念
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
@@ -24,14 +24,14 @@ ms.locfileid: "49998025"
 > - [.NET](../dotnet/bot-builder-dotnet-concepts.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-concepts.md)
 
-本文介紹適用於 Node.js 的 Bot 建立器 SDK 中的重要概念。 如需 Bot Framework 的簡介，請參閱 [Bot Framework 概觀](../overview-introduction-bot-framework.md)。
+本文介紹適用於 Node.js 的 Bot Framework SDK 重要概念。 如需 Bot Framework 的簡介，請參閱 [Bot Framework 概觀](../overview-introduction-bot-framework.md)。
 
 ## <a name="connector"></a>連接器
 
 Bot Framework Connector 是一項可將 Bot 連線至多個*通道* (即 Skype、Facebook、Slack 和 SMS 等用戶端) 的服務。 此連接器可藉由從 Bot 至通道和從通道至 Bot 的訊息轉送，讓 Bot 和使用者之間的通訊更為順暢。 Bot 的邏輯裝載為 Web 服務，並透過連接器服務接收使用者的訊息，而 Bot 的回覆會使用 HTTPS POST 傳送至連接器。 
 
-適用於 Node.js 的 Bot 建立器 SDK 所提供的 [UniversalBot][UniversalBot] 和 [ChatConnector][ChatConnector] 類別可用來設定 Bot，使其透過 Bot Framework Connector 來傳送和接收訊息。 `UniversalBot` 類別會形成 Bot 的思考核心。 它負責管理 Bot 與使用者之間的所有對話。 `ChatConnector` 類別會將您的 Bot 連線至 Bot Framework Connector 服務。
-如需使用這些類別進行示範的範例，請參閱[使用適用於 Node.js 的 Bot 建立器 SDK 建立 Bot](bot-builder-nodejs-quickstart.md)。
+適用於 Node.js 的 Bot Framework SDK 所提供的 [UniversalBot][UniversalBot] 和 [ChatConnector][ChatConnector] 類別可用來設定 Bot，使其透過 Bot Framework Connector 來傳送和接收訊息。 `UniversalBot` 類別會形成 Bot 的思考核心。 它負責管理 Bot 與使用者之間的所有對話。 `ChatConnector` 類別會將您的 Bot 連線至 Bot Framework Connector 服務。
+如需使用這些類別進行示範的範例，請參閱[使用適用於 Node.js 的 Bot Framework SDK 建立 Bot](bot-builder-nodejs-quickstart.md)。
 
 連接器也會將 Bot 傳送至通道的訊息正規化，讓您能夠以跨平台的方式開發 Bot。 要將訊息正規化，必須將訊息從 Bot Framework 的結構描述轉換為通道的結構描述。 如果通道不支援架構結構描述的所有層面，則連接器會嘗試將訊息轉換為通道支援的格式。 例如，如果 Bot 將訊息傳送至 SMS 通道，而訊息中包含具有動作按鈕的卡片，則連接器可能會將卡片轉譯為影像，並將動作包含為訊息文字中的連結。 [通道偵測器][ChannelInspector]是一項 Web 工具，會說明連接器在各種通道上轉譯訊息的方式。
 
@@ -47,19 +47,19 @@ Bot Framework Connector 是一項可將 Bot 連線至多個*通道* (即 Skype�
 對話方塊可協助您組織 Bot 中的對話邏輯，而且可作為[設計對話流程](../bot-service-design-conversation-flow.md)的基礎。 如需對話的簡介，請參閱[使用對話方塊來管理對話](bot-builder-nodejs-dialog-manage-conversation.md)。
 
 ## <a name="actions"></a>動作
-您必須將 Bot 設計成具有中斷處理能力，例如，處理對話流程中隨時提出的取消或協助要求。 適用於 Node.js 的 Bot 建立器 SDK 提供全域訊息處理常式，可觸發如取消或叫用其他對話之類的動作。 如需如何使用 [triggerAction][triggerAction] 處理常式的範例，請參閱[處理使用者動作](bot-builder-nodejs-dialog-actions.md)。
+您必須將 Bot 設計成具有中斷處理能力，例如，處理對話流程中隨時提出的取消或協助要求。 適用於 Node.js 的 Bot Framework SDK 提供全域訊息處理常式，可觸發如取消或叫用其他對話之類的動作。 如需如何使用 [triggerAction][triggerAction] 處理常式的範例，請參閱[處理使用者動作](bot-builder-nodejs-dialog-actions.md)。
 <!--[Handling cancel](bot-builder-nodejs-manage-conversation-flow.md#handling-cancel), [Confirming interruptions](bot-builder-nodejs-manage-conversation-flow.md#confirming-interruptions) and-->
 
 
 ## <a name="recognizers"></a>辨識器
 當使用者對您的 Bot 提出某項要求時 (例如「協助」或「尋找新聞」)，Bot 必須了解使用者的要求，並採取適當動作。 您可以將 Bot 設計成根據使用者的輸入辨識意圖，並將該意圖與動作產生關聯。 
 
-您可以使用 Bot 建立器 SDK 所提供的內建規則運算式辨識器、呼叫的外部服務 (例如 LUIS API)，或實作自訂辨識器，以判斷使用者的意圖。 如需示範如何將辨識器新增至 Bot 並用它來觸發動作的範例，請參閱[辨識使用者意圖](bot-builder-nodejs-recognize-intent-messages.md)。
+您可以使用 Bot Framework SDK 所提供的內建規則運算式辨識器、呼叫的外部服務 (例如 LUIS API)，或實作自訂辨識器，以判斷使用者的意圖。 如需示範如何將辨識器新增至 Bot 並用它來觸發動作的範例，請參閱[辨識使用者意圖](bot-builder-nodejs-recognize-intent-messages.md)。
 
 
 ## <a name="saving-state"></a>儲存狀態
 
-Bot 的設計是否精良，要件之一是能夠追蹤對話的上下文，讓 Bot 記住使用者最後提問這類的事項。 使用 Bot 建立器 SDK 建置的 Bot 會設計為無狀態，以便輕易調整為跨多個計算節點執行。 Bot Framework 提供可儲存 Bot 資料的儲存體系統，讓 Bot Web 服務可進行調整。 因此，您在一般情況下應避免使用全域變數或函式閉包來儲存狀態。 如果這麼做，當您想要相應放大 Bot 時將會出現問題。 您應使用 Bot [工作階段][Session]物件的下列屬性，來儲存相對於使用者或對話的資料：
+Bot 的設計是否精良，要件之一是能夠追蹤對話的上下文，讓 Bot 記住使用者最後提問這類的事項。 使用 Bot Framework SDK 建置的 Bot 會設計為無狀態，以便輕易調整為跨多個計算節點執行。 Bot Framework 提供可儲存 Bot 資料的儲存體系統，讓 Bot Web 服務可進行調整。 因此，您在一般情況下應避免使用全域變數或函式閉包來儲存狀態。 如果這麼做，當您想要相應放大 Bot 時將會出現問題。 您應使用 Bot [工作階段][Session]物件的下列屬性，來儲存相對於使用者或對話的資料：
 
 * **userData** 會全域儲存使用者在所有對話中的資訊。
 * **conversationData** 會全域儲存單一對話的資訊。 這項資料會顯示給對話中的所有人，因此在將資料儲存至此屬性時應謹慎操作。 依預設會啟用此屬性，但您可以使用 Bot 的 [persistConversationData][PersistConversationData] 設定將其停用。

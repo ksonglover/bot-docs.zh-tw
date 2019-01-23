@@ -1,6 +1,6 @@
 ---
 title: 要求付款 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for .NET 傳送付款要求。
+description: 了解如何使用適用於 .NET 的 Bot Framework SDK 傳送付款要求。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b3d1a1cea450d1fe821a90951a7a319ca863dfed
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f9e693d8bd5aad03930259422939f5572a22ff0a
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997685"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225453"
 ---
 # <a name="request-payment"></a>要求付款
 
@@ -24,11 +24,11 @@ ms.locfileid: "49997685"
 > - [.NET](../dotnet/bot-builder-dotnet-request-payment.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-request-payment.md)
 
-如果 Bot 要讓使用者能購買商品，則可在[複合式資訊卡 (Rich Card)](bot-builder-dotnet-add-rich-card-attachments.md) 中包含一個特別的按鈕，藉此要求付款。 本文說明如何使用 Bot Builder SDK for .NET 傳送付款要求。
+如果 Bot 要讓使用者能購買商品，則可在[複合式資訊卡 (Rich Card)](bot-builder-dotnet-add-rich-card-attachments.md) 中包含一個特別的按鈕，藉此要求付款。 本文說明如何使用適用於 .NET 的 Bot Framework SDK 傳送付款要求。
 
 ## <a name="prerequisites"></a>必要條件
 
-您必須先完成這些必要工作，才可以使用 Bot Builder SDK for .NET 傳送付款要求。
+您必須先完成這些必要工作，才可以使用適用於 .NET 的 Bot Framework SDK 傳送付款要求。
 
 ### <a name="update-webconfig"></a>更新 Web.config
 
@@ -127,4 +127,4 @@ HTTP 回呼將傳送至 Bot，指出其應執行特定作業。 每個回呼都�
 - [活動概觀](bot-builder-dotnet-activities.md)
 - [將豐富資訊卡新增至訊息](bot-builder-dotnet-add-rich-card-attachments.md)
 - <a href="http://www.w3.org/Payments/" target="_blank">在 W3C 進行網路付款</a> 
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 參考資料</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Framework SDK 參考</a>

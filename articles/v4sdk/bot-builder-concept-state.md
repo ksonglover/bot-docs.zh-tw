@@ -1,6 +1,6 @@
 ---
 title: 管理狀態 | Microsoft Docs
-description: 說明 Bot Builder SDK 內的狀態運作方式。
+description: 說明 Bot Framework SDK 內的狀態運作方式。
 keywords: 狀態, bot 狀態, 對話狀態, 使用者狀態
 author: ivorb
 ms.author: v-ivorb
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bf7d6a574cc4e63d22e3f34462a1ec00dbdac75e
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: dfbc9f4ed0f08c7349d758147460b8268c49e372
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010535"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225863"
 ---
 # <a name="managing-state"></a>管理狀態
 

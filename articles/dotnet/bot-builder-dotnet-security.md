@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: deb184483bf7e0963f827b20377291ab971c1516
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 455ee87f31e70470d8d118f010c77327347c032d
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997335"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224883"
 ---
 # <a name="secure-your-bot"></a>保護 Bot
 
@@ -40,7 +40,7 @@ ms.locfileid: "49997335"
 </appSettings>
 ```
 
-然後，在使用適用於 .NET 的 Bot 建立器 SDK 來建立 Bot 時，使用 `[BotAuthentication]` 屬性來指定驗證認證。 
+然後，在使用適用於 .NET 的 Bot Framework SDK 來建立 Bot 時，使用 `[BotAuthentication]` 屬性來指定驗證認證。 
 
 若要使用儲存在 web.config 檔案中的驗證認證，請指定 `[BotAuthentication]` (不含任何參數)。
 
@@ -52,6 +52,6 @@ ms.locfileid: "49997335"
 
 ## <a name="additional-resources"></a>其他資源
 
-- [適用於 .NET 的 Bot 建立器 SDK](bot-builder-dotnet-overview.md)
+- [適用於 .NET 的 Bot Framework SDK ](bot-builder-dotnet-overview.md)
 - [適用於 .NET 的 Bot 建立器 SDK 重要概念](bot-builder-dotnet-concepts.md)
 - [使用 Bot Framework 註冊 Bot](~/bot-service-quickstart-registration.md)

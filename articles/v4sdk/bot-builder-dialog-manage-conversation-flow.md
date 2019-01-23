@@ -1,6 +1,6 @@
 ---
 title: 實作循序對話流程 | Microsoft Docs
-description: 了解如何在適用於 Node.js 的 Bot 建立器 SDK 中，使用對話方塊來管理簡單對話流程。
+description: 了解如何在適用於 Node.js 的 Bot Framework SDK 中，利用對話管理簡單的交談流程。
 keywords: 簡單對話流程, 循序對話流程, 對話, 提示, 瀑布, 對話方塊集
 author: JonathanFingold
 ms.author: v-jofing
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2264b6927ccb863f153f2feb829cc0fb99c711f7
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 554d040dd4c9d126fa70c24f1af5a1ac97a39204
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452080"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317611"
 ---
 # <a name="implement-sequential-conversation-flow"></a>實作循序對話流程
 
@@ -58,7 +58,7 @@ public class MultiTurnPromptsBotAccessors
 }
 ```
 
-我們會在 `Statup` 類別的 `ConfigureServices` 方法中註冊存取子類別。
+我們會在 `Startup` 類別的 `ConfigureServices` 方法中註冊存取子類別。
 同樣地，我們只會呼叫部分的程式碼。
 
 ```csharp

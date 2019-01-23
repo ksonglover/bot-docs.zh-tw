@@ -1,5 +1,5 @@
 ---
-title: Bot 建立器 REST API | Microsoft Docs
+title: Bot Framework REST API | Microsoft Docs
 description: 開始使用 Bot Framework REST API，此 REST API 可用來建置 Bot 和連線到 Bot 的用戶端。
 author: RobStand
 ms.author: kamrani
@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 632d0b1e603445954eb4894fcfc256d5ac738539
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: eace4852feaadcc180f7329261990fc8eaf7f522
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998435"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224263"
 ---
 # <a name="bot-framework-rest-apis"></a>Bot Framework REST API
 > [!div class="op_single_selector"]
@@ -28,7 +28,7 @@ Bot Framework REST API 可讓您建置 Bot，以便與 <a href="https://dev.botf
 您可以使用 Bot 連接器服務與 Bot Framework 入口網站中設定的通道交換訊息，藉以使用任何程式設計語言建立 Bot。 
 
 > [!TIP]
-> Bot Framework 提供可用於在 C# 或 Node.js 中建置 Bot 的用戶端程式庫。 若要使用 C# 建置 Bot，請使用[適用於 C# 的 Bot 建立器 SDK](../dotnet/bot-builder-dotnet-overview.md)。 若要使用 Node.js 建置 Bot，請使用[適用於 Node.js 的 Bot 建立器 SDK](../nodejs/index.md)。 
+> Bot Framework 提供可用於在 C# 或 Node.js 中建置 Bot 的用戶端程式庫。 若要使用 C# 建置 Bot，請使用[適用於 C# 的 Bot Framework SDK](../dotnet/bot-builder-dotnet-overview.md)。 若要使用 Node.js 建置 Bot，請使用[適用於 Node.js 的 Bot Framework SDK](../nodejs/index.md)。 
 
 若要深入了解如何使用 Bot 連接器服務建置 Bot，請參閱[重要概念](bot-framework-rest-connector-concepts.md)。
 

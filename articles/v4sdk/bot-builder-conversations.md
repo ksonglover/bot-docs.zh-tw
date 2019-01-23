@@ -1,6 +1,6 @@
 ---
-title: 在 Bot Builder SDK 內的交談| Microsoft Docs
-description: 說明 Bot Builder SDK 中的交談。
+title: 在 Bot Framework SDK 內的交談| Microsoft Docs
+description: 說明 Bot Framework SDK 中的交談。
 keywords: 對話流程、辨識意圖、單一回合、多回合、Bot 對話
 author: jonathanfingold
 ms.author: jonathanfingold
@@ -10,19 +10,19 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/01/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 19f0b67454a8c0a4bf171579f8e481e630db83ac
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: b94150e168942370a38d39742157e57d0118f0eb
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998915"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225077"
 ---
 # <a name="conversation-flow"></a>交談流程
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 在設計 Bot 交談流程時，您要決定使用者向 Bot 發出訊息後，Bot 應該如何回應。 Bot 會先根據使用者的訊息辨識工作或交談主題。 Bot 會尋找使用者訊息中的字詞或模式，或利用 [Language Understanding](bot-builder-concept-luis.md) 和 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 這類服務，以判斷與使用者訊息相關的工作或主題 (稱為「意圖」)。
 
-Bot 辨識出使用者意圖後，Bot 將視情況在單次回覆內滿足使用者的要求，或在單次回合結束交談，否則可能就需要多回合。 如為多回合的交談流程，Bot Builder SDK 可提供用於追蹤交談的[狀態管理](./bot-builder-howto-v4-state.md)作業、用於詢問更多資訊的[提示](bot-builder-prompts.md)，以及模擬交談流程的[交談方塊](bot-builder-dialog-manage-conversation-flow.md)。
+Bot 辨識出使用者意圖後，Bot 將視情況在單次回覆內滿足使用者的要求，或在單次回合結束交談，否則可能就需要多回合。 如為多回合的交談流程，Bot Framework SDK 可提供用於追蹤交談的[狀態管理](./bot-builder-howto-v4-state.md)作業、用於詢問更多資訊的[提示](bot-builder-prompts.md)，以及模擬交談流程的[交談方塊](bot-builder-dialog-manage-conversation-flow.md)。
 
 在複雜的 Bot 和多重子系統中，您可使用多項服務辨識意圖 (Bot 的每個子元件使用一項)。 將對話式子系統合併至一個 Bot 後，[分派工具](bot-builder-tutorial-dispatch.md)即可從集中位置取得多項服務的結果。
 
@@ -73,7 +73,7 @@ A bot communicates with a user on a channel by receiving activities from, and se
 
 ### <a name="recognize-intent"></a>辨識意圖
 
-Bot Builder SDK 提供的_辨識器_可處理訊息，如此您的 Bot 即可起始適當的對話流程。 呼叫辨識器的 _recognize_ 非同步方法，可從使用者的訊息內容判斷其意圖。 您可以接著對結果呼叫 _get top scoring intent_ 方法，以取得辨識器的優先預測。
+Bot Framework SDK 提供的_辨識器_可處理訊息，如此您的 Bot 即可起始適當的交談流程。 呼叫辨識器的 _recognize_ 非同步方法，可從使用者的訊息內容判斷其意圖。 您可以接著對結果呼叫 _get top scoring intent_ 方法，以取得辨識器的優先預測。
 
 辨識器可以使用規則運算式、語言理解或您開發的其他邏輯。 以下是可能的辨識器範例：
 
@@ -111,7 +111,7 @@ Bot 會收到_結束交談_活動，表示使用者已結束交談。 Bot 會傳
 <!--  Types of conversations -->
 
 您的 Bot 可支援多回合互動，且會在有多個資訊片段時提示使用者。 Bot 可以專注於非常特定的工作，或支援多種類型的工作。
-Bot Builder SDK 有一些內建的 language understanding (LUIS) 和 QnA Maker 支援，可將自然語言的「問題和解答」功能新增至您的 Bot。
+Bot Framework SDK 有一些內建的 language understanding (LUIS) 和 QnA Maker 支援，可將自然語言的「問題和解答」功能新增至您的 Bot。
 
 ## <a name="conversations-channels-and-users"></a>交談, 通道, 使用者
 

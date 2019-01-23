@@ -1,6 +1,6 @@
 ---
 title: 傳送主動訊息 | Microsoft Docs
-description: 了解如何以使用適用於 Node.js 的 Bot Builder SDK 主動訊息中斷目前的交談流程
+description: 了解如何以使用適用於 Node.js 的 Bot Framework SDK 主動訊息中斷目前的交談流程
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 4ca33d59c967bc4eebc2f88fa4ddd67a9a6af6d7
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 8ca8043c5680a993fa27e2febb9740206691884c
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997151"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225573"
 ---
 # <a name="send-proactive-messages"></a>傳送主動訊息
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
@@ -31,7 +31,7 @@ ms.locfileid: "49997151"
 
 ## <a name="send-an-ad-hoc-proactive-message"></a>傳送臨機操作的主動訊息
 
-下列程式碼範例示範如何使用適用於 Node.js 的 Bot Builder SDK 傳送臨機操作的主動訊息。
+下列程式碼範例示範如何使用適用於 Node.js 的 Bot Framework SDK 傳送臨機操作的主動訊息。
 
 為能將臨機操作的訊息傳送給使用者，Bot 必須先收集並儲存來自目前交談的使用者相關資訊。 訊息的 **address** 屬性包含 Bot 稍後需要傳送給使用者之臨機操作訊息的所有資訊。 
 
@@ -71,7 +71,7 @@ function sendProactiveMessage(address) {
 
 ## <a name="send-a-dialog-based-proactive-message"></a>傳送對話方塊式的主動訊息
 
-下列程式碼範例示範如何使用適用於 Node.js 的 Bot Builder SDK 傳送對話方塊式的主動訊息。 您可在 [Microsoft/BotBuilder-Samples/Node/core-proactiveMessages/startNewDialog](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages/startNewDialog) 資料夾中找到完整的運作範例。
+下列程式碼範例示範如何使用適用於 Node.js 的 Bot Framework SDK 傳送對話式主動訊息。 您可在 [Microsoft/BotBuilder-Samples/Node/core-proactiveMessages/startNewDialog](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages/startNewDialog) 資料夾中找到完整的運作範例。
 
 為能將交談方式式的訊息傳送給使用者，Bot 必須先收集 (並儲存) 來自目前交談的相關資訊。 `session.message.address` 物件包含 Bot 需要傳送給使用者之對話方塊式主動訊息的所有資訊。 
 
@@ -122,7 +122,7 @@ bot.dialog('survey', function (session, args, next) {
 
 ## <a name="sample-code"></a>範例程式碼
 
-如需示範如何使用適用於 Node.js 的 Bot Builder SDK 傳送主動訊息的完整範例，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages" target="_blank">主動訊息範例</a>。 在主動訊息範例中，<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages/simpleSendMessage" target="_blank">simpleSendMessage</a> 示範如何傳送臨機操作的主動訊息，而 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages/startNewDialog" target="_blank">startNewDialog</a> 示範如何傳送對話方塊式的主動訊息。
+如需示範如何使用適用於 Node.js 的 Bot Framework SDK 傳送主動訊息的完整範例，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages" target="_blank">主動訊息範例</a>。 在主動訊息範例中，<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages/simpleSendMessage" target="_blank">simpleSendMessage</a> 示範如何傳送臨機操作的主動訊息，而 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages/startNewDialog" target="_blank">startNewDialog</a> 示範如何傳送對話方塊式的主動訊息。
 
 ## <a name="additional-resources"></a>其他資源
 

@@ -1,6 +1,6 @@
 ---
 title: 使用 Node.js 建置 Cortana 技能 | Microsoft Docs
-description: 了解在適用於 Node.js 的 Bot 建立器 SDK 中建置 Cortana 技能的核心概念。
+description: 了解在適用於 Node.js 的 Bot Framework SDK 中建置 Cortana 技能的核心概念。
 keywords: Bot Framework, Cortana 技能, 語音, Node.js, Bot 建立器, SDK, 重要概念, 核心概念
 author: DeniseMak
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 99254c5f2de8b524212d8f6a268dbc37c128ab5e
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 909294243abe00ac95e8f5d89d6babc2edc4f994
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996470"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225679"
 ---
 # <a name="key-concepts-for-building-a-bot-for-cortana-skills-using-nodejs"></a>使用 Node.js 針對 Cortana 技能建置 Bot 的重要概念
  
@@ -23,7 +23,7 @@ ms.locfileid: "49996470"
 > [!NOTE]
 > 本文是初步內容，將會進行更新。
 
-本文介紹在適用於 Node.js 的 Bot 建立器 SDK 中建置 Cortana 技能的重要概念。 
+本文介紹在適用於 Node.js 的 Bot Framework SDK 中建置 Cortana 技能的重要概念。 
 
 ## <a name="what-is-a-cortana-skill"></a>什麼是 Cortana 技能？
 Cortana 技能是您可以使用 Cortana 用戶端叫用的 Bot，就像內建於 Windows 10 的 Bot。 使用者透過說出一些與 Bot 建立關聯的關鍵字或片語來啟動 Bot。 您可以使用 Bot Framework 入口網站，設定哪些關鍵字可用來啟動 Bot。 
@@ -74,7 +74,7 @@ Agent: **Okay**, what's next?
 
 #### <a name="grounding-by-demonstration"></a>示範所顯示的承接
 使用者：...我需要在 5 月旅行。
-代理人員：那麼，您想要在 5 月的**哪一天**旅行？
+代理人員：**那麼**，您想要在 5 月的哪一天旅行？
 使用者：好的，我必須 12 日到 15 日在那裡？
 代理人員：**那麼**，您要飛往哪個城市？
 
@@ -83,7 +83,7 @@ Agent: **Okay**, what's next?
 
 執行動作的 Bot 應呈現成功執作的辨識項。
 表示失敗或了解也很重要。 
-* 非語音終止：如果您按下電梯按鈕，它的指示燈會亮起。
+* 非語音終止：如果您按下電梯按鈕，該指示燈會亮起。
 兩個步驟的處理序：
 * 展示 
 * 接受

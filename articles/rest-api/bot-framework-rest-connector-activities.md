@@ -8,16 +8,16 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: b246e9e07243e4064f92e72ee3909541f642714e
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: db09888c5f782b065ff6bd108ce93379cd42527a
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999925"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317668"
 ---
 # <a name="activities-overview"></a>活動概觀
 
-Bot 連接器服務在 Bot 和通道 (使用者) 之間藉由傳遞[活動][Activity]物件來交換資訊。 活動的最常見的類型是**訊息**，但是還有其他活動類型可用來將各種類型的資訊傳達給 Bot 或通道。 
+Bot 連接器服務透過傳遞 [Activity][Activity] 物件以在 Bot 與通道 (使用者) 之間交換資訊。 最常見的活動類型是**訊息**，但是還有其他活動類型可用來將各種類型的資訊傳達給 Bot 或通道。 
 
 ## <a name="activity-types-in-the-bot-connector-service"></a>Bot 連接器服務中的活動類型
 

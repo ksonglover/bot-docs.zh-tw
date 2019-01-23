@@ -1,6 +1,6 @@
 ---
 title: 將語音新增至訊息 | Microsoft Docs
-description: 了解如何使用適用於 Node.js 的 Bot 建立器 SDK 將語音新增至訊息。
+description: 了解如何使用適用於 Node.js 的 Bot Framework SDK 將語音新增至訊息。
 author: v-ducvo
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3c17097197ba4b6ed0523d84a81974d9cc9fe3b5
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f7e68b9ab6ef1fca189108ed4117c0ab17f4d9f2
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999127"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224293"
 ---
 # <a name="add-speech-to-messages"></a>將語音新增至訊息
 
@@ -29,7 +29,7 @@ ms.locfileid: "49999127"
 
 ## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定要由 Bot 讀出的文字
 
-使用適用於 Node.js 的 Bot 建立器 SDK 時，有多種方式可用來指定要由 Bot 在具備語音功能的通道上讀出的文字。 您可以設定 `IMessage.speak` 屬性，並使用 `session.send()` 方法傳送訊息、使用 `session.say()` 方法 (傳入指定顯示文字、語音文字和選項的參數) 傳送訊息，或使用內建的提示 (指定選項 `speak` 和 `retrySpeak`) 傳送訊息。
+使用適用於 Node.js 的 Bot Framework SDK 時，有多種方式可用來指定要由 Bot 在具備語音功能的通道上讀出的文字。 您可以設定 `IMessage.speak` 屬性，並使用 `session.send()` 方法傳送訊息、使用 `session.say()` 方法 (傳入指定顯示文字、語音文字和選項的參數) 傳送訊息，或使用內建的提示 (指定選項 `speak` 和 `retrySpeak`) 傳送訊息。
 
 ### <a id="message-speak"></a> IMessage.speak 
 
@@ -72,13 +72,13 @@ ms.locfileid: "49999127"
 
 ## <a name="sample-code"></a>範例程式碼 
 
-如需完整範例以了解如何使用適用於 .NET 的 Bot 建立器 SDK ，來建立具備語音功能的 Bot，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">骰子機範例</a>。
+如需完整範例以了解如何使用適用於 .NET 的 Bot Framework SDK ，來建立具備語音功能的 Bot，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">骰子機範例</a>。
 
 ## <a name="additional-resources"></a>其他資源
 
 - <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a> \(英文\)
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">骰子機範例 (GitHub)</a>
-- [適用於 Node.js 的 Bot 建立器 SDK 參考資料][SDKReference]
+- [適用於 Node.js 的 Bot Framework SDK 參考][SDKReference]
 
 [SDKReference]: https://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_.html
 

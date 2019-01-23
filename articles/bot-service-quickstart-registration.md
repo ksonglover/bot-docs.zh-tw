@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: dfc90f4c4c6e3ad00899569f667b5d3d88dcf042
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: a5cb6431988e65a4fa4a889f3095404622d51626
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999955"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224443"
 ---
 # <a name="register-a-bot-with-bot-service"></a>使用 Bot 服務建立 Bot
 
@@ -74,12 +74,12 @@ ms.locfileid: "49999955"
 
 ## <a name="update-the-bot"></a>更新 Bot
 
-如果您使用適用於 Node.js 的 Bot Builder SDK，請設定下列環境變數：
+如果您使用適用於 Node.js 的 Bot Framework SDK，請設定下列環境變數：
 
 * MICROSOFT_APP_ID
 * MICROSOFT_APP_PASSWORD
 
-如果您使用適用於 .NET 的 Bot Builder SDK，請在 web.config 檔案中設定下列索引鍵值：
+如果您使用適用於 .NET 的 Bot Framework SDK，請在 web.config 檔案中設定下列索引鍵值：
 
 * MicrosoftAppId
 * MicrosoftAppPassword

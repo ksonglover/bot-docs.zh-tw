@@ -1,6 +1,6 @@
 ---
 title: 支援當地語系化 | Microsoft Docs
-description: 了解如何判斷使用者所在位置，並使用適用於 Node.js 的 Bot Builder SDK 啟用當地語系化功能。
+description: 了解如何判斷使用者所在位置，並使用適用於 Node.js 的 Bot Framework SDK 啟用當地語系化功能。
 author: DeniseMak
 ms.author: v-demak
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5ac9fabcb0c6626e1b0133b7718b135a88d4c846
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d592aa8b37e1d73e3cf9003209b985b8ca0f03f8
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998059"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224393"
 ---
 # <a name="support-localization"></a>支援當地語系化
 
@@ -111,7 +111,7 @@ var bot = new builder.UniversalBot(connector, {
 ```
 
 ## <a name="localize-prompts"></a>當地語系化提示
-Bot Builder SDK 的預設當地語系化系統是以檔案為基礎，允許 Bot 使用儲存在磁碟上的 JSON 檔案支援多種語言。 根據預設，當地語系化系統會在 **./locale/<IETF TAG>/index.json** 檔案中搜尋 Bot 的提示，<IETF TAG> 是有效的 [IETF 語言標記][IEFT]，代表用來尋找提示的慣用地區設定。 
+Bot Framework SDK 的預設當地語系化系統是以檔案為基礎，允許 Bot 使用儲存在磁碟上的 JSON 檔案支援多種語言。 根據預設，當地語系化系統會在 **./locale/<IETF TAG>/index.json** 檔案中搜尋 Bot 的提示，<IETF TAG> 是有效的 [IETF 語言標記][IEFT]，代表用來尋找提示的慣用地區設定。 
 
 下列螢幕擷取畫面顯示支援三種語言的 Bot 目錄結構：英文、義大利文和西班牙文。
 

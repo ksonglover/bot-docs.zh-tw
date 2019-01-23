@@ -1,6 +1,6 @@
 ---
 title: 將語音新增至訊息 | Microsoft Docs
-description: 了解如何使用適用於 .NET 的 Bot Builder SDK，將語音新增至訊息。
+description: 了解如何使用適用於 .NET 的 Bot Framework SDK 將語音新增至訊息。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: dc542c7e85b3a79e1071edebea65d93c99742beb
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3eef1ec583764449554a223ec9dc339ff505ace6
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000356"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225593"
 ---
 # <a name="add-speech-to-messages"></a>將語音新增至訊息
 
@@ -27,9 +27,9 @@ ms.locfileid: "50000356"
 
 如果您要為具備語音功能的通道 (例如 Cortana) 建置 Bot，您可以建構訊息，其中指定要由 Bot 讀出的文字。 您也可以指定[輸入提示](bot-builder-dotnet-add-input-hints.md)，藉由指出您的 Bot 要接受、需要或忽略使用者輸入，來嘗試影響用戶端的麥克風狀態。
 
-## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定要由您的 Bot 讀出的文字
+## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定要由 Bot 讀出的文字
 
-使用適用於 .NET 的 Bot Builder SDK 時，有多種方式可用來指定要由您的 Bot 在啟用語音功能的通道上讀出的文字。 您可以設定[訊息][IMessageActivity]的 `Speak` 屬性、呼叫 `IDialogContext.SayAsync()` 方法，或在使用內建提示傳送訊息時指定提示選項 `speak` 和 `retrySpeak`。
+使用適用於 .NET 的 Bot Framework SDK 時，有多種方式可用來指定要由 Bot 在具備語音功能的通道上讀出的文字。 您可以設定[訊息][IMessageActivity]的 `Speak` 屬性、呼叫 `IDialogContext.SayAsync()` 方法，或在使用內建提示傳送訊息時指定提示選項 `speak` 和 `retrySpeak`。
 
 ### <a id="message-speak"></a> IMessageActivity.Speak
 
@@ -59,7 +59,7 @@ ms.locfileid: "50000356"
 
 ## <a name="sample-code"></a>範例程式碼 
 
-如需示範如何使用適用於 .NET 的 Bot Builder SDK 來建立啟用語音功能之 Bot 的完整範例，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp" target="_blank">骰子機技能範例</a> \(英文\)。
+如需完整範例以了解如何使用適用於 .NET 的 Bot Framework SDK 建立具備語音功能的 Bot，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp" target="_blank">骰子機技能範例</a>。
 
 ## <a name="additional-resources"></a>其他資源
 

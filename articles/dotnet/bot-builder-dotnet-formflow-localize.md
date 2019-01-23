@@ -1,6 +1,6 @@
 ---
 title: 將表單內容當地語系化 | Microsoft Docs
-description: 了解如何使用 FormFlow 和適用於 .NET 的 Bot 建立器 SDK，將表單內容當地語系化。
+description: 了解如何使用 FormFlow 和適用於 .NET 的 Bot Framework SDK，將表單內容當地語系化。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/02/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 914c33033be3fe35db7cae6d54b5835cb032a5fd
-ms.sourcegitcommit: 984705927561cc8d6a84f811ff24c8c71b71c76b
+ms.openlocfilehash: 3ec3d12a7d35f65adca901395edff2db3ab71c66
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50965686"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225583"
 ---
 # <a name="localize-form-content"></a>將表單內容當地語系化
 
@@ -167,7 +167,7 @@ Par pain "neuf" vouliez-vous dire (1. Neuf grains miel avoine, ou 2. Neuf grains
 - [使用 FormBuilder 來自訂表單](bot-builder-dotnet-formflow-formbuilder.md)
 - [使用 JSON 結構描述來定義表單](bot-builder-dotnet-formflow-json-schema.md)
 - [使用模式語言來自訂使用者體驗](bot-builder-dotnet-formflow-pattern-language.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot 建立器 SDK 參考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Framework SDK 參考</a>
 
 [build]: /dotnet/api/microsoft.bot.builder.formflow.formbuilder-1.build 
 

@@ -1,6 +1,6 @@
 ---
-title: 適用於 Bot Builder SDK 的 Bot 範例 | Microsoft Docs
-description: 探索大量的範例 Bot 選項，以協助您以 Bot Builder SDK 開始開發 Bot。
+title: Bot Framework SDK 的 Bot 範例 | Microsoft Docs
+description: 探索大量的範例 Bot 選項，以協助您以 Bot Framework SDK 開始開發 Bot。
 author: jonathanfingold
 ms.author: jonathanfingold
 manager: kamrani
@@ -9,14 +9,14 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/19/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4b38d0a66041403cc171d83216b3a57695170df3
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 576b32cfaf8c98a0c1b6bd14cd97207cdf20af3a
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996835"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224683"
 ---
-# <a name="bot-builder-sdk-samples-repo"></a>Bot Builder SDK 範例存放庫
+# <a name="bot-framework-sdk-samples-repo"></a>Bot Framework SDK 範例存放庫
 [!INCLUDE [pre-release-label](includes/pre-release-label.md)]
 
 Bot Builder 範例存放庫中有許多範例，這些範例會示範以工作為主的 Bot 如何利用 SDK 功能。 您可使用這些範例，協助您快速開始建置具備豐富功能的絕佳 Bot。

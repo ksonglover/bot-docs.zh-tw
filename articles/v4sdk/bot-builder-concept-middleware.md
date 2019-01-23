@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/8/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1bfa180967c55aac6012e02887ac2893947263f9
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: 231ed330faf9ce777a5acc5f4e6272b747a6f7fc
+ms.sourcegitcommit: d385ec5fe61c469ab17e6f21b4a0d50e5110d0fd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010583"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54298275"
 ---
 # <a name="middleware"></a>中介軟體
 
@@ -96,5 +96,6 @@ Bot 中介軟體管道完成後，該回合即結束，且回合內容將超出�
 
 將需要更新的狀態管理物件新增至「Bot 狀態集」物件，然後在您建立自動儲存變更中介軟體時使用。
 
+
 ## <a name="additional-resources"></a>其他資源
-您可以看一下文稿記錄器中介軟體，其實作於 Bot Builder SDK 中 [[C#](https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Builder/TranscriptLoggerMiddleware.cs) | [JS](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-core/src/transcriptLogger.ts)]。
+您可以看一下文稿記錄器中介軟體，其實作於 Bot Framework SDK 中 [[C#](https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Builder/TranscriptLoggerMiddleware.cs) | [JS](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-core/src/transcriptLogger.ts)]。

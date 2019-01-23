@@ -1,6 +1,6 @@
 ---
 title: 將輸入提示新增至訊息 | Microsoft Docs
-description: 了解如何使用適用於 .NET 的 Bot 建立器 SDK，將輸入提示新增至訊息。
+description: 了解如何使用適用於 .NET 的 Bot Framework SDK，將輸入提示新增至訊息。
 author: v-ducvo
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8c09ab3c0f863171697bc8026155003274bfc382
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: fa5e2a151bc0b41f160d0b71cb97e24fe1efacaa
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999095"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225793"
 ---
 # <a name="add-input-hints-to-messages"></a>將輸入提示新增至訊息
 
@@ -47,7 +47,7 @@ ms.locfileid: "49999095"
 
 ## <a name="default-values-for-input-hint"></a>輸入提示的預設值
 
-如果您未設定訊息的輸入提示，Bot 建立器 SDK 會使用下列邏輯自動為您設定： 
+如果您未設定訊息的輸入提示，Bot Framework SDK 會使用下列邏輯自動為您設定： 
 
 - 如果 Bot 傳送提示，訊息的輸入提示將指定 Bot **需要輸入**。</li>
 - 如果 Bot 傳送單一訊息，訊息的輸入提示將指定 Bot 會**接受輸入**。</li>
@@ -56,7 +56,7 @@ ms.locfileid: "49999095"
 ## <a name="additional-resources"></a>其他資源
 
 - [將語音新增至訊息](bot-builder-nodejs-text-to-speech.md)
-- [適用於 Node.js 的 Bot 建立器 SDK 參考資料][SDKReference]
+- [適用於 Node.js 的 Bot Framework SDK 參考][SDKReference]
 
 [SDKReference]: https://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_.html
 

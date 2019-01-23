@@ -1,6 +1,6 @@
 ---
 title: 建立訊息 | Microsoft Docs
-description: 了解如何使用適用於 Node.js 的 Bot 建立器 SDK 來建立訊息。
+description: 了解如何使用適用於 Node.js 的 Bot Framework SDK 來建立訊息。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/7/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8011611aa11e81cf322ba841f616fa2797038e84
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3a4f9e1dc3c5598c3aa79996b01f11e8b1339fe2
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998165"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225213"
 ---
 # <a name="create-messages"></a>建立訊息
 
@@ -26,7 +26,7 @@ Bot 和使用者會透過訊息來通訊。 Bot 會傳送訊息活動以傳達�
 
 ## <a name="default-message-handler"></a>預設訊息處理常式
 
-適用於 Node.js 的 Bot 建立器 SDK 隨附內建於 [`session`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html) 物件的預設訊息處理常式。 此訊息處理常式可讓您在 Bot 和使用者之間傳送和接收文字訊息。
+適用於 Node.js 的 Bot Framework SDK 隨附內建於 [`session`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html) 物件的預設訊息處理常式。 此訊息處理常式可讓您在 Bot 和使用者之間傳送和接收文字訊息。
 
 ### <a name="send-a-text-message"></a>傳送文字訊息
 
@@ -93,7 +93,7 @@ session.send(customMessage);
 | [`sourceEvent(map:ISourceEventMap)`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#sourceevent) | 因為外寄訊息可以用來傳遞來源特定的事件資料，例如自訂附件。 |
 | [`speak(ssml:TextType, ...args:any[])`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#speak) | 將訊息的發音領域設定為「語音合成標記語言 (SSML)」。 會在受支援裝置上向使用者說出此內容。 |
 | [`suggestedActions(suggestions:ISuggestedActions `&#124;` IIsSuggestedActions)`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#suggestedactions) | 要傳送給使用者的選擇性建議動作。 只會在支援建議動作的通道上顯示建議動作。 |
-| [`summary(text:TextType, ...argus:any[])`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#summary) | 要在其中顯示為後援以及顯示為訊息內容簡短描述的文字 (例如：近期對話清單)。 |
+| [`summary(text:TextType, ...argus:any[])`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#summary) | 要在其中顯示為後援以及顯示為訊息內容簡短描述的文字 (例如：近期交談清單)。 |
 | [`text(text:TextType, ...args:any[])`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#text) | 設定訊息文字。 |
 | [`textFormat(style:string)`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#textformat) | 設定文字格式。 預設格式為 **markdown**。 |
 | [`textLocale(locale:string)`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#textlocale) | 設定訊息的目標語言。 |

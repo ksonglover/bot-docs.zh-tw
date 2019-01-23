@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 09/26/2018
-ms.openlocfilehash: 3d9c41d0c0c51d00dc5ce86dfb774228e53ff3a3
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 34a23910c76a22fe39d1ce5457bb74dd285ca939
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999065"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225515"
 ---
 # <a name="troubleshooting-general-problems"></a>對一般問題進行疑難排解
 這些常見問答集可協助您對常見的 Bot 開發或作業問題進行疑難排解。
@@ -30,7 +30,7 @@ ms.locfileid: "49999065"
 
 如需有關對 Bot 驗證問題進行疑難排解的詳細資料，請參閱[針對 Bot Framework 驗證進行疑難排解][TroubleshootingAuth]。
 
-## <a name="im-using-the-bot-builder-sdk-for-net-how-can-i-troubleshoot-issues-with-my-bot"></a>我是使用適用於 .NET 的 Bot 建立器 SDK。 如何對 Bot 的問題進行疑難排解？
+## <a name="im-using-the-bot-framework-sdk-for-net-how-can-i-troubleshoot-issues-with-my-bot"></a>我使用適用於 .NET 的 Bot Framework SDK。 如何對 Bot 的問題進行疑難排解？
 
 **尋找例外狀況。**  
 在 Visual Studio 2017 中，移至 [偵錯] > [Windows] > [例外狀況設定]。 在 [例外狀況設定] 視窗中，選取位於 [Common Language Runtime 例外狀況] 旁邊的 [當擲回時中斷] 核取方塊。 當有擲回或未處理的例外狀況時，您也可以查看 [輸出] 視窗中的診斷輸出。
@@ -81,7 +81,7 @@ Bot Framework 將會盡可能地保留訊息排序。 例如，如果您先傳�
 
 ## <a name="how-can-i-intercept-all-messages-between-the-user-and-my-bot"></a>如何攔截使用者與我的 Bot 之間的所有訊息？
 
-使用適用於 .NET 的 Bot 建立器 SDK 時，您可以對 `Autofac` 相依性插入容器提供 `IPostToBot` 和 `IBotToUser` 介面的實作。 使用適用於任何語言的 Bot Builder SDK 時，您可以針對大致相同的目的使用中介軟體。 [BotBuilder-Azure](https://github.com/Microsoft/BotBuilder-Azure) \(英文\) 存放庫包含 C# 和 Node.js 程式庫，並能將此資料記錄至 Azure 資料表。
+使用適用於 .NET 的 Bot Framework SDK 時，您可以對 `Autofac` 相依性插入容器提供 `IPostToBot` 和 `IBotToUser` 介面的實作。 使用適用於任何語言的 Bot Framework SDK 時，您可以針對大致相同的目的使用中介軟體。 [BotBuilder-Azure](https://github.com/Microsoft/BotBuilder-Azure) \(英文\) 存放庫包含 C# 和 Node.js 程式庫，並能將此資料記錄至 Azure 資料表。
 
 ## <a name="why-are-parts-of-my-message-text-being-dropped"></a>我的訊息文字為何有一部分被卸除？
 
@@ -133,7 +133,7 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 
 ::: moniker range="azure-bot-service-3.0"
 
-## <a name="what-is-the-idialogstackforward-method-in-the-bot-builder-sdk-for-net"></a>適用於 .NET 的 Bot 建立器 SDK 中的 IDialogStack.Forward 方法是什麼？
+## <a name="what-is-the-idialogstackforward-method-in-the-bot-framework-sdk-for-net"></a>適用於 .NET 的 Bot Framework SDK 中的 IDialogStack.Forward 方法是什麼？
 
 `IDialogStack.Forward` 的主要目的是重複使用經常為「被動」的現有子對話；在此情況下，(`IDialog.StartAsync` 中的) 子對話會針對某些 `ResumeAfter` 處理常式等候物件 `T`。 特別是在具有會等候 `IMessageActivity` `T` 之子對話的情況下，您可以使用 `IDialogStack.Forward` 方法來轉送傳入的 `IMessageActivity` (已由某些父對話接收)。 例如，若要將傳入的 `IMessageActivity` 轉送至 `LuisDialog`，請呼叫 `IDialogStack.Forward` 以將 `LuisDialog` 推送至對話堆疊上，在 `LuisDialog.StartAsync` 中執行程式碼直到其針對下則訊息做出等候的排程為止，然後立即透過轉送的 `IMessageActivity` 來滿足該等候。
 
@@ -166,7 +166,7 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 
 使用者、交談及私人交談屬性包中的資料，會使用連接器的 `IBotState` 介面進行儲存。 每個屬性包都會依 Bot 的識別碼設定範圍。 使用者屬性包是依使用者識別碼進行索引、交談屬性包是由交談識別碼進行索引，而私人交談屬性包則是由使用者識別碼和交談識別碼進行索引。 
 
-如果您是使用適用於 .NET 的 Bot 建立器 SDK 或適用於 Node.js 的 Bot 建立器 SDK 來建置 Bot，對話堆疊和對話資料都將會自動儲存為私人交談屬性包中的項目。 C# 實作會使用二進位序列化，而 Node.js 實作則會使用 JSON 序列化。
+如果您是使用適用於 .NET 的 Bot Framework SDK 或適用於 Node.js 的 Bot Framework SDK 來建置 Bot，對話堆疊和對話資料都將會自動儲存為私人交談屬性包中的項目。 C# 實作會使用二進位序列化，而 Node.js 實作則會使用 JSON 序列化。
 
 `IBotState` REST 介面是由兩個服務所實作。
 
@@ -193,8 +193,8 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 
 連接器的 `IBotState` 服務是用來儲存 Bot 資料包 (也就是使用者、交談及私人 Bot 資料包，其中私人 Bot 資料包會包含「控制流程」狀態)。 `IBotState` 服務中的並行控制是透過 ETag 由開放式並行存取進行管理。 如果在「讀取-修改-寫入」序列期間發生更新衝突 (基於針對單一 Bot 資料包的並行更新)，則：
 
-* 如果有保留 ETag，`IBotState` 服務會擲回具有 HTTP 狀態碼 412「前置條件失敗」的錯誤。 這是適用於 .NET 的 Bot 建立器 SDK 中的預設行為。
-* 如果未保留 ETag (也就是已將 ETag 設定為 `\*`)，則「最後寫入者優先」的原則將會生效，並會在具有資料遺失風險的情況下防止發生「前置條件失敗」錯誤。 這是適用於 Node.js 的 Bot 建立器 SDK 中的預設行為。
+* 如果有保留 ETag，`IBotState` 服務會擲回具有 HTTP 狀態碼 412「前置條件失敗」的錯誤。 這是適用於 .NET 的 Bot Framework SDK 中的預設行為。
+* 如果未保留 ETag (也就是已將 ETag 設定為 `\*`)，則「最後寫入者優先」的原則將會生效，並會在具有資料遺失風險的情況下防止發生「前置條件失敗」錯誤。 這是適用於 Node.js 的 Bot Framework SDK 中的預設行為。
 
 ## <a name="how-can-i-fix-precondition-failed-412-or-conflict-409-errors"></a>如何修正「前置條件失敗」(412) 或「衝突」(409) 錯誤？
 
@@ -202,7 +202,7 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 
 ::: moniker range="azure-bot-service-3.0"
 
-適用於 .NET 的 Bot 建立器 SDK 會提供機制 (會實作 `IScope` 的類別 `LocalMutualExclusion`) 以搭配記憶體內部旗號，來以保守模式序列化單一交談的處理。 您可以延伸此實作，以使用由交談位址設定範圍的 Redis 租用。
+適用於 .NET 的 Bot Framework SDK 會提供機制 (會實作 `IScope` 的類別 `LocalMutualExclusion`) 以搭配記憶體內部旗號，來以保守模式序列化單一交談的處理。 您可以延伸此實作，以使用由交談位址設定範圍的 Redis 租用。
 
 如果您的 Bot 未連線至外部服務，或服務可接受以平行方式處理來自相同交談的訊息，您便可以加入此程式碼以忽略發生在 Bot 狀態 API 中的任何衝突。 這將會允許最後的回覆設定交談狀態。
 
@@ -231,7 +231,7 @@ builder.Update(Conversation.Container);
 狀態服務可讓您保存交談中的對話進度，讓使用者於稍後繼續與 Bot 交談時不會失去原先的位置。 若要保留此進度，透過狀態 API 所儲存的 Bot 資料屬性包將不會於您修改 Bot 的程式碼時自動清除。 您應該根據已修改的程式碼是否能與舊版資料相容，來決定是否要清除 Bot 資料。 
 
 * 如果您想要在開發 Bot 的期間手動重設交談的對話堆疊及狀態，則可以使用 ` /deleteprofile` 命令來刪除狀態資料。 請務必包含此命令的前置空格，以防止通道解譯它。
-* 在您的 Bot 已部署至生產環境之後，您便可以對 Bot 資料進行版本設定，使系統會在您提升版本時清除相關聯的資料。 使用適用於 Node.js 的 Bot 建立器 SDK 時，可以使用中介軟體來達成此目的；使用適用於 .NET 的 Bot 建立器 SDK 時，則可以使用 `IPostToBot` 實作來達成此目的。
+* 在您的 Bot 已部署至生產環境之後，您便可以對 Bot 資料進行版本設定，使系統會在您提升版本時清除相關聯的資料。 透過適用於 Node.js 的 Bot Framework SDK，可以使用中介軟體來達成此目的；透過適用於 .NET 的 Bot Framework SDK，則可以使用 `IPostToBot` 實作來達成此目的。
 
 > [!NOTE]
 > 如果對話堆疊因序列化格式變更或程式碼大幅變更而無法正確還原序列化，交談狀態將會重設。
@@ -248,11 +248,11 @@ builder.Update(Conversation.Container);
 
 ## <a name="how-can-i-use-more-than-one-luis-model"></a>如何使用多個 LUIS 模型？
 
-適用於 Node.js 的 Bot 建立器 SDK 和適用於 .NET 的 Bot 建立器 SDK 皆支援從單一 LUIS 意圖對話呼叫多個 LUIS 模型。 請記住下列注意事項：
+適用於 Node.js 的 Bot Framework SDK 和適用於 .NET 的 Bot Framework SDK 皆支援從單一 LUIS 意圖對話呼叫多個 LUIS 模型。 請記住下列注意事項：
 
 * 使用多個 LUIS 模型時，系統會假設 LUIS 模型具有未重疊的意圖集合。
 * 使用多個 LUIS 模型時，系統會假設不同模型的分數是可以互相比較的，以從多個模型中選出「最相符的意圖」。
-* 使用多個 LUIS 模型代表當某個意圖符合其中一個模型時，它也會強烈符合其他模型的「無」意圖。 在此情況下，您可以避免選取「無」意圖；適用於 Node.js 的 Bot 建立器 SDK 將會自動相應減少「無」意圖的分數以避免此問題。
+* 使用多個 LUIS 模型代表當某個意圖符合其中一個模型時，它也會強烈符合其他模型的「無」意圖。 在此情況下，您可以避免選取「無」意圖；適用於 Node.js 的 Bot Framework SDK 將會自動相應減少「無」意圖的分數以避免此問題。
 
 ## <a name="where-can-i-get-more-help-on-luis"></a>我可以在哪裡取得更多有關 LUIS 的協助？
 
@@ -305,8 +305,8 @@ builder.Update(Conversation.Container);
 
 ## <a name="where-can-i-get-more-help"></a>我可以在哪裡取得更多協助？
 
-* 在 [Stack Overflow](https://stackoverflow.com/questions/tagged/botframework) \(英文\) 上利用先前已解答之問題中的資訊，或使用 `botframework` 標記來張貼您自己的問題。 請注意，Stack Overflow 有一些使用上的指導方針，例如要求必須使用描述性的標題、完整且簡潔的問題陳述，以及能夠重現問題的足夠詳細資料。 功能要求或過於廣泛的問題都會被視為偏離主題。新的使用者應瀏覽 [Stack Overflow 說明中心](https://stackoverflow.com/help/how-to-ask) \(英文\) 以取得詳細資料。
-* 請參閱 GitHub 中的 [BotBuilder 問題](https://github.com/Microsoft/BotBuilder/issues) \(英文\) 以取得 Bot 建立器 SDK 的相關已知問題，或回報新的問題。
+* 在 [Stack Overflow](https://stackoverflow.com/questions/tagged/botframework) \(英文\) 上利用先前已解答之問題中的資訊，或使用 `botframework` 標記來張貼您自己的問題。 請注意，Stack Overflow 有一些使用上的指導方針，例如要求必須使用描述性的標題、完整且簡潔的問題陳述，以及能夠重現問題的足夠詳細資料。 功能要求或過於廣泛的問題都是偏離主題的；如需詳細資訊，新的使用者應瀏覽[Stack Overflow 說明中心](https://stackoverflow.com/help/how-to-ask)。
+* 請參閱 GitHub 中的 [BotBuilder 問題](https://github.com/Microsoft/BotBuilder/issues) \(英文\) 以取得 Bot Framework SDK 的相關已知問題，或回報新的問題。
 * 利用 BotBuilder 社群在 [Gitter](https://gitter.im/Microsoft/BotBuilder) \(英文\) 上的討論內容中的資訊。
 
 

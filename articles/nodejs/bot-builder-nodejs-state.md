@@ -1,6 +1,6 @@
 ---
 title: 管理狀態資料 | Microsoft Docs
-description: 了解如何使用適用於 Node.js 的 Bot Builder SDK 來儲存及擷取狀態資料。
+description: 了解如何透過適用於 Node.js 的 Bot Framework SDK 儲存及擷取資料。
 author: DucVo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 519f188a29db2b9b37061ee0eff5361a63d2acac
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 6d653e47d2e906c6306134804c7731b374d830ba
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999985"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225003"
 ---
 # <a name="manage-state-data"></a>管理狀態資料
 
@@ -56,7 +56,7 @@ var bot = new builder.UniversalBot(connector, [..waterfall steps..])
 
 ## <a name="storage-containers"></a>儲存體容器
 
-在適用於 Node.js 的 Bot Builder SDK中，`session` 物件會公開下列用來儲存狀態資料的屬性。
+在適用於 Node.js 的 Bot Framework SDK中，`session` 物件會公開下列用來儲存狀態資料的屬性。
 
 | 屬性 | 目標範圍 | 說明 |
 | ---- | ---- | ---- |
@@ -129,7 +129,7 @@ session.userdata.start = startDate.toISOString();
 
 ### <a name="saving-data"></a>儲存資料
 
-在每個儲存體容器中建立的資料將保留於記憶體中，直到容器儲存為止。 適用於 Node.js 的 Bot Builder SDK 會分批將資料傳送至 `ChatConnector` 服務，以便在有要傳送的訊息時加以儲存。 若要儲存已存在於儲存體容器中的資料，而不傳送任何訊息，您可以手動呼叫 [`save`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#save) 方法。 如果您未呼叫 `save` 方法，存在於儲存體容器中的資料將會保存以作為批次處理的一部分。
+在每個儲存體容器中建立的資料將保留於記憶體中，直到容器儲存為止。 適用於 Node.js 的 Bot Framework SDK 會分批將資料傳送至 `ChatConnector` 服務，以便在有要傳送的訊息時加以儲存。 若要儲存已存在於儲存體容器中的資料，而不傳送任何訊息，您可以手動呼叫 [`save`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#save) 方法。 如果您未呼叫 `save` 方法，存在於儲存體容器中的資料將會保存以作為批次處理的一部分。
 
 ```javascript
 session.userData.favoriteColor = "Red";

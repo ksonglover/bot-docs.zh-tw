@@ -8,13 +8,14 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 12/17/2018
-ms.openlocfilehash: 831268b1ddc711963c20ca9c99b333f070a6100c
-ms.sourcegitcommit: 8c10aa7372754596a3aa7303a3a893dd4939f7e9
+ms.date: 01/15/2019
+monikerRange: azure-bot-service-4.0
+ms.openlocfilehash: 78e960357d6c4dc1c9751a9921a2338f552738b0
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53654323"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317610"
 ---
 # <a name="deploy-bots-from-botbuilder-samples-repo"></a>部署 Bot botbuilder-samples 存放庫
 
@@ -35,14 +36,18 @@ ms.locfileid: "53654323"
 - 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/) 。
 - 安裝 [.NET Core SDK](https://dotnet.microsoft.com/download) >= v2.2。 使用 `dotnet --version` 來查看您擁有的版本。
 - 安裝最新版的 [Azure CLI 工具](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)。 使用 `az --version` 來查看您擁有的版本。
-- 安裝 `az` 工具的最新版 `botservice` 擴充程式。
-  - 首先，使用 `az extension remove -n botservice` 命令移除舊版。 接著，使用 `az extension add -n botservice` 命令來安裝最新版本。
 - 安裝最新版的 [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/MSBot) 工具。
   - 如果複製作業包含 LUIS 或分派資源，則需要 [LUIS CLI](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUIS#installation)。
   - 如果複製作業包含 QnA Maker 資源，則需要 [LUIS CLI](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/QnAMaker#as-a-cli)。
 - 安裝 [Bot Framework 模擬器](https://aka.ms/Emulator-wiki-getting-started)。
 - 安裝及設定 [ngrok](https://github.com/Microsoft/BotFramework-Emulator/wiki/Tunneling-%28ngrok%29)。
 - [.bot](v4sdk/bot-file-basics.md) 檔案的知識。
+
+使用 msbot 4.3.2 和更新版本，您需要 Azure CLI 2.0.54 版或更新版本。 如果您安裝了 botservice 擴充功能，則使用此命令加以移除。
+
+```cmd
+az extension remove --name botservice
+```
 
 ### <a name="c"></a>C\#
 
@@ -152,13 +157,13 @@ Copy this secret and use it to open the <file.bot> the first time.`
 請勿使用 `msbot clone services` 命令在 Azure 中更新 Bot 程式碼。 您必須使用 `az bot publish` 命令，如下所示：
 
 ```cmd
-az bot publish --name "<your-azure-bot-name>" --proj-file "<your-proj-file>" --resource-group "<azure-resource-group>" --code-dir "<folder>" --verbose --version v4
+az bot publish --name "<your-azure-bot-name>" --proj-name "<your-proj-name>" --resource-group "<azure-resource-group>" --code-dir "<folder>" --verbose --version v4
 ```
 
 | 引數        | 說明 |
 |----------------  |-------------|
 | `name`      | Bot 第一次部署至 Azure 時所使用的名稱。|
-| `proj-file` | 若為 C# Bot，這是 .csproj 檔案。 若為 JS/TS Bot，這是您本機 Bot 的啟動專案檔案名稱 (例如 index.js 或 index.ts)。|
+| `proj-name` | 對於 C#，使用需要發佈的啟動專案檔名 (不含 .csproj)。 例如： `EnterpriseBot` 。 對於 Node.js，使用 Bot 的主要進入點。 例如： `index.js`。 |
 | `resource-group` | `msbot clone services` 命令使用的 Azure 資源群組。|
 | `code-dir`  | 指向本機 Bot 資料夾。|
 

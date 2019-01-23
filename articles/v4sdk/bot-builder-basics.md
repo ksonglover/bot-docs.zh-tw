@@ -1,6 +1,6 @@
 ---
 title: Bot 的運作方式 | Microsoft Docs
-description: 說明 Bot Builder SDK 內的活動和 http 運作方式。
+description: 說明 Bot Framework SDK 內的活動和 http 運作方式。
 keywords: 對話流程, 回合, bot 對話, 對話方塊, 提示, 瀑布, 對話方塊集
 author: johnataylor
 ms.author: johtaylo
@@ -8,20 +8,20 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/15/2018
+ms.date: 1/10/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c4d4879f7ad127838de9d2563dee8f8d7320d61e
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: a1b155db3ec717a1084ae0e098e8f22997a80b0e
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010573"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225933"
 ---
 # <a name="how-bots-work"></a>Bot 的運作方式
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-Bot 是使用者可運用文字、圖形 (例如卡片或影像) 或語音等對話方式進行互動的應用程式。 使用者與 Bot 之間的每次互動都會產生「活動」。 Bot Service 會在使用者的 Bot 連線應用程式 (例如 Facebook、Skype、Slack 等，我們稱之為「通道」) 與 Bot 之間傳送資訊。 每個通道都可以在其傳送的活動中包含其他資訊。 建立 Bot 之前，請務必了解 Bot 如何使用活動物件來與其使用者通訊。 讓我們先看看當我們執行簡單回應 Bot 時所交換的活動。
+Bot 是使用者可運用文字、圖形 (例如卡片或影像) 或語音等對話方式進行互動的應用程式。 使用者與 Bot 之間的每次互動都會產生「活動」。 Bot Framework Service 是 Azure Bot Service 的元件，會在使用者的 Bot 連線應用程式 (例如 Facebook、Skype、Slack 等，我們稱之為「通道」) 與 Bot 之間傳送資訊。 每個通道都可以在其傳送的活動中包含其他資訊。 建立 Bot 之前，請務必了解 Bot 如何使用活動物件來與其使用者通訊。 讓我們先看看當我們執行簡單回應 Bot 時所交換的活動。 
 
 ![活動圖表](media/bot-builder-activity.png)
 
@@ -41,7 +41,7 @@ Bot 是使用者可運用文字、圖形 (例如卡片或影像) 或語音等對
 
 ### <a name="defining-a-turn"></a>定義一個回合
 
-在對話中，人們通常一次一個人發言，輪流發言。 Bot 通常會回應使用者輸入。 在 Bot Builder SDK 內，一個「回合」是由使用者對 Bot 的傳入活動，以及 Bot 傳回給使用者作為立即回應的任何活動所組成。 您可以將回合視為與特定活動送達相關聯的處理。
+在對話中，人們通常一次一個人發言，輪流發言。 Bot 通常會回應使用者輸入。 在 Bot Framework SDK 內，一個「回合」是由使用者對 Bot 的傳入活動，以及 Bot 傳回給使用者作為立即回應的任何活動所組成。 您可以將回合視為與特定活動送達相關聯的處理。
 
 「回合內容」物件會提供活動相關資訊，例如傳送者和接收者、通道、以及處理活動所需的其他資料。 也允許在遍及 Bot 各種階層的回合期間新增資訊。
 
@@ -219,7 +219,7 @@ public class EchoBotAccessors
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-Yeoman 產生器會建立 [Restify](http://restify.com/) Web 應用程式。 如果您查看其文件中的 Restify 快速入門，您會看到類似於所產生 **index.js** 檔案的應用程式。 本節主要說明 **package.json****.env** 、**index.js**、**bot.js** 和 **echobot-with-counter.bot** 檔案。 有些檔案中的程式碼不會複製於此，但是您會在執行 Bot 時看到，還可參考 [Node.js echobot-with-counter](https://aka.ms/js-echobot-with-counter) 範例。
+Yeoman 產生器會建立 [Restify](http://restify.com/) Web 應用程式。 如果您查看其文件中的 Restify 快速入門，您會看到類似於所產生 **index.js** 檔案的應用程式。 本節主要說明 **package.json** **.env** 、**index.js**、**bot.js** 和 **echobot-with-counter.bot** 檔案。 有些檔案中的程式碼不會複製於此，但是您會在執行 Bot 時看到，還可參考 [Node.js echobot-with-counter](https://aka.ms/js-echobot-with-counter) 範例。
 
 ### <a name="packagejson"></a>package.json
 

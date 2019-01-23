@@ -1,6 +1,6 @@
 ---
 title: 提示使用者輸入 | Microsoft Docs
-description: 瞭解如何使用提示來收集適用於 Node.js 的 Bot Builder SDK 使用者輸入。
+description: 瞭解如何使用提示來收集適用於 Node.js 的 Bot Framework SDK 使用者輸入。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,18 +9,18 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 0926c15d2c62bfa74ddb465d8c816dee7c8fb576
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 0ee70c1e775780bf884c4237e47cff4edb8934a9
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52451970"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224783"
 ---
 # <a name="prompt-for-user-input"></a>提示使用者輸入
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-適用於 Node.js 的 Bot Builder SDK 提供一組內建的提示以簡化收集使用者的輸入。 
+適用於 Node.js 的 Bot Framework SDK 提供一組內建的提示以簡化收集使用者的輸入。 
 
 A *提示* 每當 Bot 需要使用者輸入會使用。 您可以透過像是瀑布般連接的提示來使用提示要求使用者輸入一個系列。 您可以搭配提示使用[瀑布](bot-builder-nodejs-dialog-waterfall.md)來協助您在在 Bot [管理對話工作流程](bot-builder-nodejs-manage-conversation-flow.md)。 
 
@@ -74,7 +74,7 @@ bot.dialog('askName', [
 ```
 
 ## <a name="prompt-types"></a>提示類型
-適用於 Node.js 的 Bot Builder SDK 包含了許多不同類型的內建提示。 
+適用於 Node.js 的 Bot Framework SDK 包含了許多不同類型的內建提示。 
 
 |**提示類型**     | **說明** |     
 | ------------------ | --------------- |
@@ -162,7 +162,7 @@ bot.dialog('createAlarm', [
 
 `ListStyle`列舉值如下所示：
 
-| 索引 | 名稱 | 說明 |
+| 索引 | Name | 說明 |
 | ---- | ---- | ---- |
 | 0 | None | 轉譯任何清單。 當列表作為提示的一部分時使用。 |
 | 1 | 內嵌 | 選項呈現為「1 的內嵌清單。 紅色，2。 綠色或 3。 藍色」。 |

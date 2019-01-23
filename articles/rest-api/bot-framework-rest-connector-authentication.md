@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 41cc36b7e4abc12bf57df7bf4272dd35031cf251
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 1cb9143e5ab2d5eb7e92e263b838cdd9217492ef
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997995"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225353"
 ---
 # <a name="authentication"></a>驗證
 
@@ -22,7 +22,7 @@ ms.locfileid: "49997995"
 > [!IMPORTANT]
 > 若您準備自行撰寫驗證程式碼，請務必正確實作所有安全性程序。 透過實作本文中的所有步驟，您將能降低攻擊者讀取傳送至 Bot 的訊息、模擬 Bot 傳送訊息，以及竊取祕密金鑰的風險。 
 
-若您準備使用[適用於 .NET 的 Bot Builder SDK](../dotnet/bot-builder-dotnet-overview.md) 或[適用於 Node.js 的 Bot Builder SDK](../nodejs/index.md)，便不需要實作本文所述的安全性程序，因為 SDK 會自動實作那些程序。 您只需以在[註冊](../bot-service-quickstart-registration.md)期間為 Bot 取得的應用程式識別碼和密碼設定專案，SDK 便會處理剩餘的部分。
+若您準備使用[適用於 .NET 的 Bot Framework SDK](../dotnet/bot-builder-dotnet-overview.md) 或[適用於 Node.js 的 Bot Framework SDK](../nodejs/index.md)，便不需要實作本文所述的安全性程序，因為 SDK 會自動實作那些程序。 您只需以在[註冊](../bot-service-quickstart-registration.md)期間為 Bot 取得的應用程式識別碼和密碼設定專案，SDK 便會處理剩餘的部分。
 
 > [!WARNING]
 > 在 2016 年 12 月，Bot Framework 安全性通訊協定 v3.1 已針對數個用於權杖產生及驗證的值導入變更。 在 2017 年秋末，已推出了 Bot Framework 安全性通訊協定 v3.2，其針對用於權杖產生及驗證的值納入變更。
@@ -179,7 +179,7 @@ GET https://login.botframework.com/v1/.well-known/openidconfiguration
 GET https://login.botframework.com/v1/.well-known/keys
 ```
 
-回應主體會以 [JWK 格式](https://tools.ietf.org/html/rfc7517) \(英文\) 指定文件，但也會針對每個金鑰包含額外屬性：`endorsements`。 金鑰清單本身相對穩定，並可以長時間進行快取 (在 Bot 建立器 SDK 中的預設值為 5 天)。
+回應主體會以 [JWK 格式](https://tools.ietf.org/html/rfc7517) \(英文\) 指定文件，但也會針對每個金鑰包含額外屬性：`endorsements`。 金鑰清單本身相對穩定，並可以長時間進行快取 (在 Bot Framework SDK 中的預設值為 5 天)。
 
 每個金鑰內的 `endorsements` 屬性都包含一或多個簽署字串，您可以使用它們來驗證連入要求之 [Activity][Activity] 物件內的 `channelId` 屬性所指定之通道識別碼的真確性。 需要進行簽署之通道識別碼的清單，可在每個 Bot 內設定。 根據預設，它將會是所有已發佈之通道識別碼的清單，雖然 Bot 開發人員可能會覆寫特定通道識別碼的值。 若通道識別碼需要進行簽署：
 
@@ -323,7 +323,7 @@ payload:
 ## <a name="security-protocol-changes"></a>安全性通訊協定變更
 
 > [!WARNING]
-> 針對安全性通訊協定 v3.0 的支援，已在 **2017 年 7 月 31 日**中止。 若您有自行撰寫驗證程式碼 (也就是沒有使用 Bot Builder SDK 來建立 Bot)，您必須更新應用程式以使用下列的 v3.1 值，來升級至安全性通訊協定 v3.1。 
+> 針對安全性通訊協定 v3.0 的支援，已在 **2017 年 7 月 31 日**中止。 若您有自行撰寫驗證程式碼 (也就是沒有使用 Bot Framework SDK 來建立 Bot)，您必須更新應用程式以使用下列的 v3.1 值，來升級至安全性通訊協定 v3.1。 
 
 ### <a name="bot-to-connector-authenticationbot-to-connector"></a>[Bot 至連接器驗證](#bot-to-connector)
 

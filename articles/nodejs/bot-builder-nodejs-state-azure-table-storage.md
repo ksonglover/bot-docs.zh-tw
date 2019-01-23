@@ -1,6 +1,6 @@
 ---
-title: 使用 Azure 資料表儲存體管理自訂狀態資料 | Microsoft Docs
-description: 了解如何使用 Azure 資料表儲存體搭配適用於 Node.js 的 Bot 建立器 SDK，來儲存和擷取狀態資料。
+title: 使用 Azure 表格儲存體來管理自訂狀態資料 | Microsoft Docs
+description: 了解如何使用 Azure 資料表儲存體搭配適用於 Node.js 的 Bot Framework SDK，來儲存和擷取狀態資料。
 author: DucVo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5bf308c440e08cb3c9d4730212fbba3053de459d
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 5c2b8832401ccc9260c9aa872c0848b3a3e8445b
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998329"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225713"
 ---
 # <a name="manage-custom-state-data-with-azure-table-storage-for-nodejs"></a>使用適用於 Node.js 的 Azure 資料表儲存體管理自訂狀態資料
 

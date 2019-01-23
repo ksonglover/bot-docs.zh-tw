@@ -1,6 +1,6 @@
 ---
 title: 為您的 Bot 實作自訂儲存體 | Microsoft Docs
-description: 如何在 Bot Builder SDK v4.0 中建置自訂儲存體
+description: 如何在 Bot Framework SDK v4.0 中建置自訂儲存體
 keywords: 自訂, 儲存體, 狀態, 對話方塊
 author: johnataylor
 ms.author: johtaylo
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/31/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b005b9f024c5813ba22cd8663c196a8c3a5bb716
-ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
+ms.openlocfilehash: 4503e2953543d2ec9c06e8cd60484a5c87d95987
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50918980"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224003"
 ---
 # <a name="implement-custom-storage-for-your-bot"></a>為您的 Bot 實作自訂儲存體
 
@@ -25,7 +25,7 @@ Bot 的互動可分成三個方面：首先，交換活動與 Azure Bot Service�
 
 在本文中，我們將探索 Bot 與 Azure Bot Service 和 Store 的互動相關語意。
 
-Bot Builder 架構包含預設實作。此實作最可能符合許多應用程式的需求，只需將這幾項與幾行初始化程式碼連在一起，即可利用該實作。 有許多範例可說明該實作。
+Bot Framework 架構包含預設實作。此實作最可能符合許多應用程式的需求，只需將這幾項與幾行初始化程式碼連在一起，即可利用該實作。 有許多範例可說明該實作。
 
 不過，本文目標是要描述當預設實作的語意作用不如在您的應用程式中時，您可以怎麼做。 基本要點為這是一種架構，而不是具有固定行為的預製應用程式，換言之，此架構中許多機制的實作只是預設實作，並不是唯一的實作。
 

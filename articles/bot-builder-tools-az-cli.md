@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: tools
 ms.date: 10/31/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8a59c0a8b7ee664cdb38ab9d0cb186114938d73f
-ms.sourcegitcommit: 782b3a2e788c25effd7d150a070bd2819ea92dad
+ms.openlocfilehash: 4b09ca152f99faa66d2da55ebeb93fb9cce090db
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2018
-ms.locfileid: "50743662"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317688"
 ---
 # <a name="create-bots-with-azure-cli"></a>使用 Azure CLI 建立 Bot
 
@@ -35,7 +35,7 @@ ms.locfileid: "50743662"
 
 ## <a name="1-install-tools"></a>1.安裝工具
 1. [安裝](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)最新版的 Azure CLI。
-2. [安裝](https://aka.ms/botbuilder-tools-readme) Bot Builder 工具。
+2. [安裝](https://aka.ms/botbuilder-tools-readme) Bot Framework 工具。
 
 您現在已可使用 Azure CLI 來管理 Bot，就像任何其他 Azure 資源一樣。
 
@@ -64,12 +64,12 @@ az bot [command]
 ```
 |命令|  |
 |----|----|
-| create      |新增資源|
-| delete     |複製資源|
-| 下載   | 下載 Bot 原始程式碼|
-| publish   |發佈至現有的 Bot Service|
-| 顯示 |顯示現有的 Bot 資源。|
-| update| 更新現有的 Bot Service|
+| create      |建立新的 Bot|
+| delete     |刪除現有 Bot|
+| 下載   |下載現有 Bot|
+| publish   |發佈至 Bot 的相關聯應用程式服務|
+| 顯示 |取得現有 Bot|
+| update|更新現有 Bot|
 
 若要從 CLI 建立新的 Bot，您必須選取現有的[資源群組](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)，或新的資源群組。 
 
@@ -160,10 +160,10 @@ az bot show -n my-bot-name -g my-resource-group --msbot | msbot connect azure --
 
 ## <a name="5-manage-update-or-create-luis-and-qna-services-with--new-botbuilder-tools"></a>5.使用新的 Botbuilder 工具來管理、更新或建立 LUIS 和 QnA 服務
 
-[Bot 建立器工具](https://aka.ms/botbuilder-tools)是新的工具組，可讓您直接從命令列管理 Bot 資源並與其進行互動。
+[Bot Framework 工具](https://aka.ms/botbuilder-tools)是新的工具組，可讓您直接從命令列管理 Bot 資源並與其進行互動。
 
 >[!TIP]
-> 每個 Bot 建立器工具都包含全域的 help 命令，可輸入 **-h** 或 **--help**，從命令列中加以存取。 您可隨時從任何動作中使用此命令，這會為您提供可用選項及其描述的實用顯示。
+> 每個 Bot Framework 工具都包含全域的 help 命令，可輸入 **-h** 或 **--help**，從命令列中加以存取。 您可隨時從任何動作中使用此命令，這會為您提供可用選項及其描述的實用顯示。
 
 ### <a name="ludown"></a>LUDown
 
@@ -333,5 +333,5 @@ az bot publish --name "my-bot-name" --resource-group "my-resource-group"
 ```
 
 ## <a name="references"></a>參考
-- [Bot Builder 工具](https://aka.ms/botbuilder-tools-readme)
+- [Bot Framework 工具](https://aka.ms/botbuilder-tools-readme)
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)

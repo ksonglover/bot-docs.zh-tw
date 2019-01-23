@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/19/2018
-ms.openlocfilehash: 79c37a48f9312d60b61124e15780fe46236aa0c7
-ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
+ms.openlocfilehash: ae019f7da32969821db0c59a4710e32b57623b14
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2018
-ms.locfileid: "53735978"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224484"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -36,7 +36,7 @@ ms.locfileid: "53735978"
 
 [!INCLUDE [Dialog flow example](./includes/snippet-dotnet-manage-conversation-flow-intro.md)]
 
-如需使用對話方塊和 Bot 建立器 SDK 來管理對話流程的詳細逐步解說，請參閱：
+如需使用對話和 Bot Framework SDK 來管理交談流程的詳細逐步解說，請參閱：
 
 - [使用對話方塊來管理對話流程 (.NET)](./dotnet/bot-builder-dotnet-manage-conversation-flow.md)
 - [使用對話方塊來管理對話流程 (Node.js)](./nodejs/bot-builder-nodejs-manage-conversation-flow.md)
@@ -99,7 +99,7 @@ ms.locfileid: "53735978"
 
 在程序對話流程中，您要定義問題的順序，且 Bot 會以您定義的順序來詢問問題。 您可以將問題組織成邏輯「模組」以保持程式碼集中，同時聚焦於引導對話。 例如，您可能會設計一個包含可協助使用者瀏覽產品邏輯的模組，以及一個包含可協助使用者建立新訂單邏輯的不同模組。
 
-您可用任何偏好的方式來建構這些模組，從自由格式到循序方式皆可。 Bot 建立器 SDK 提供多個程式庫，可讓您建構 Bot 所需的任何對話式流程。 例如，`prompts` 程式庫可讓您要求使用者輸入，`waterfall` 程式庫可讓您定義問題/答案組的序列，`dialog control` 程式庫可讓您將對話流程邏輯模組化等等。這些程式庫全都會透過 `dialogs` 物件繫結在一起。 讓我們進一步看看模組會如何實作為 `dialogs` 來設計和管理對話流程，並查看該流程與傳統應用程式流程有何相似之處。
+您可用任何偏好的方式來建構這些模組，從自由格式到循序方式皆可。 Bot Framework SDK 提供多個程式庫，可讓您建構 Bot 所需的任何交談式流程。 例如，`prompts` 程式庫可讓您要求使用者輸入，`waterfall` 程式庫可讓您定義問題/答案組的序列，`dialog control` 程式庫可讓您將對話流程邏輯模組化等等。這些程式庫全都會透過 `dialogs` 物件繫結在一起。 讓我們進一步看看模組會如何實作為 `dialogs` 來設計和管理對話流程，並查看該流程與傳統應用程式流程有何相似之處。
 
 ![Bot](./media/designing-bots/core/dialogs-screens.png)
 

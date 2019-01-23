@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 12/13/2017
-ms.openlocfilehash: e228209b4d239a05f9c76203e9fd2fb342c14d36
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 6820815f251c38c59391f1e0e7719e52a375ed48
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999285"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224903"
 ---
 # <a name="design-knowledge-bots"></a>設計知識型 Bot
 
@@ -130,16 +130,16 @@ Bot 可正確回答直接對應至知識庫中已經配置的問題。 不過，
 2. 先呼叫 LUIS，如果沒有任何意圖符合特定閾值分數 (即觸發「無」意圖)，則呼叫 QnA Maker。 或者，針對 QnA Maker 建立 LUIS 意圖，並使用對應至「QnAIntent」的範例 QnA 問題饋送至 LUIS 模型。 
 3. 先呼叫 QnA Maker，如果沒有任何答案符合特定閾值分數，則呼叫 LUIS。 
 
-Bot Builder SDK 具備 LUIS 和 QnA Maker 內建支援。 此可讓您觸發對話方塊，或使用 LUIS 和/或 QnA Maker 自動回答問題，而無須實作這兩項工具的自訂呼叫。 如需詳細資訊，請參閱 [Bot Builder 分派工具教學課程](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0)。
+Bot Framework SDK 具備 LUIS 和 QnA Maker 內建支援。 此可讓您觸發對話方塊，或使用 LUIS 和/或 QnA Maker 自動回答問題，而無須實作這兩項工具的自訂呼叫。 如需詳細資訊，請參閱[分派工具教學課程](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0)。
 
 > [!TIP]
 > 實作 LUIS、QnA Maker 和/或 Azure 搜尋服務組合時，使用每項工具測試輸入，以判斷每個模型的閾值分數。 LUIS、QnA Maker 和 Azure 搜尋服務會各自使用不同的評分條件來產生分數，因此這些工具產生的分數不一定相容。 此外，LUIS 和 QnA Maker 會標準化分數。 在 LUIS 模型中視為「良好」的分數，在其他模型不一定分類到「良好」。 
 
 ## <a name="sample-code"></a>範例程式碼
 
-- 如需相關範例以了解如何使用 Bot Builder SDK for .NET 建立基本知識型 Bot，請參閱 GitHub 中的<a href="https://aka.ms/qna-with-appinsights" target="_blank">知識型 Bot 範例</a>。 
+- 如需相關範例以了解如何使用適用於 .NET 的 Bot Framework SDK 建立基本知識型 Bot，請參閱 GitHub 中的<a href="https://aka.ms/qna-with-appinsights" target="_blank">知識型 Bot 範例</a>。 
 <!-- TODO: Do not have a current bot sample to work with this
-- For a sample that shows how to create more complex knowledge bots using the Bot Builder SDK for .NET, see the <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-Search" target="_blank">Search-powered Bots sample</a> in GitHub.
+- For a sample that shows how to create more complex knowledge bots using the Bot Framework SDK for .NET, see the <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-Search" target="_blank">Search-powered Bots sample</a> in GitHub.
 -->
 
 [qnamakerTemplate]: https://docs.botframework.com/en-us/azure-bot-service/templates/qnamaker/#navtitle

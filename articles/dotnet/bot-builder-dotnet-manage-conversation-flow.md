@@ -1,6 +1,6 @@
 ---
 title: 使用對話方塊管理交談流程 | Microsoft Docs
-description: 了解如何使用對話方塊和適用於 .NET 的 Bot 建立器 SDK 建立交談模型和管理交談流程。
+description: 了解如何使用對話和適用於 .NET 的 Bot Framework SDK 來建立交談模型及管理交談流程。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 94690f58526e8ee322a73c68136d2b52667e1c89
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d8e482d8f4003ad7bcd807e8fd12e3c68c4ce8c8
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999945"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225893"
 ---
 # <a name="manage-conversation-flow-with-dialogs"></a>使用對話方塊管理交談流程
 
@@ -26,7 +26,7 @@ ms.locfileid: "49999945"
 
 [!INCLUDE [Dialog flow example](../includes/snippet-dotnet-manage-conversation-flow-intro.md)]
 
-本文說明如何使用[對話方塊](bot-builder-dotnet-dialogs.md)和適用於 .NET 的 Bot 建立器 SDK 建立此交談流程的模型。 
+本文說明如何使用[對話](bot-builder-dotnet-dialogs.md)和適用於 .NET 的 Bot Framework SDK 建立此交談流程的模型。 
 
 ## <a name="invoke-the-root-dialog"></a>叫用根對話方塊
 
@@ -129,11 +129,11 @@ private async Task NameDialogResumeAfter(IDialogContext context, IAwaitable<stri
 
 ## <a name="sample-code"></a>範例程式碼 
 
-如需示範如何透過在適用於 .NET 之 Bot 建立器 SDK 中使用對話方塊來管理交談的完整範例，請參閱 GitHub 中的 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-BasicMultiDialog" target="_blank">Basic Multi-Dialog sample</a> (基本多對話方塊範例)。
+如需示範如何透過在適用於 .NET 的 Bot Framework SDK 中使用對話來管理交談的完整範例，請參閱 GitHub 中的 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-BasicMultiDialog" target="_blank">Basic Multi-Dialog sample</a> (基本多對話範例)。
 
 ## <a name="additional-resources"></a>其他資源
 
 - [對話方塊](bot-builder-dotnet-dialogs.md)
 - [設計和控制交談流程](../bot-service-design-conversation-flow.md)
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-BasicMultiDialog" target="_blank">Basic Multi-Dialog sample (GitHub)</a> (基本多對話方塊範例 (GitHub))
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot 建立器 SDK 參考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Framework SDK 參考</a>

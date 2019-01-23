@@ -1,6 +1,6 @@
 ---
 title: 活動概觀 | Microsoft Docs
-description: 了解適用於 .NET 的 Bot 建立器 SDK 內可以使用的不同活動類型。
+description: 了解適用於 .NET 的 Bot Framework SDK 內可以使用的不同活動類型。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d5e1fd0b22883dbe4280bd2d375d389cbcabe6e7
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 076e460f393c5db524cfade81e5c007484fe2cca
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997595"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225663"
 ---
 # <a name="activities-overview"></a>活動概觀
 
@@ -22,9 +22,9 @@ ms.locfileid: "49997595"
 
 [!INCLUDE [Activity concept overview](../includes/snippet-dotnet-concept-activity.md)]
 
-## <a name="activity-types-in-the-bot-builder-sdk-for-net"></a>適用於 .NET 的 Bot 建立器 SDK 中的活動類型
+## <a name="activity-types-in-the-bot-framework-sdk-for-net"></a>適用於 .NET 的 Bot Framework SDK 中的活動類型
 
-適用於 .NET 的 Bot 建立器 SDK 支援下列活動類型。
+適用於 .NET 的 Bot Framework SDK 支援下列活動類型。
 
 | Activity.Type | 介面 | 說明 |
 |------|------|------|

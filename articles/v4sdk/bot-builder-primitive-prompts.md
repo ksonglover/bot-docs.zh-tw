@@ -1,6 +1,6 @@
 ---
 title: 建立您自己的提示，以收集使用者輸入 | Microsoft Docs
-description: 了解如何在 Bot 建立器 SDK 中，使用基本提示來管理對話流程。
+description: 了解如何在 Bot Framework SDK 中，使用基本提示來管理交談流程。
 keywords: 交談流程, 提示, 交談狀態, 使用者狀態, 自訂提示
 author: JonathanFingold
 ms.author: v-jofing
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/20/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e308457e9fb228dd141ec081ac3c5daa5fd54cac
-ms.sourcegitcommit: 6cb37f43947273a58b2b7624579852b72b0e13ea
+ms.openlocfilehash: 2e591f19f7df8fa6281573c0ac7f1330d95f4c53
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "52288817"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225433"
 ---
 # <a name="create-your-own-prompts-to-gather-user-input"></a>建立您自己的提示，以收集使用者輸入
 

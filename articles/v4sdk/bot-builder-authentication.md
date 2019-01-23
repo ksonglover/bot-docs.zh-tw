@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 10/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 27e0b54b4e790e76c55deb858e50d8c81507443a
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: 3bfbcb27aa6e38792f96e0d3fe042f02f6e11083
+ms.sourcegitcommit: d385ec5fe61c469ab17e6f21b4a0d50e5110d0fd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010593"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54298315"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
 
@@ -34,7 +34,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 - 改善通道以支援全新驗證功能 (例如新的 WebChat 和 DirectLineJS 程式庫)，無須再使用 6 位數神奇代碼驗證方式。
 - 改善 Azure 入口網站，以針對不同的 OAuth 身分識別提供者新增、刪除和配置連線設定。
 - 支援各種現成的身分識別提供者服務，例如：Azure AD (包括 v1 和 v2 端點)、GitHub 等等。
-- 更新 C# 和 Node.js Bot Builder SDK，以支援擷取權杖、建立 OAuthCard 及處理 TokenResponse 事件。
+- 更新 C# 和 Node.js Bot Framework SDK，以支援擷取權杖、建立 OAuthCard 及處理 TokenResponse 事件。
 - 如何建立能對 Azure AD 進行驗證的 Bot 範例。
 
 您可從本文中的步驟推測如何將這類功能新增至現有的 Bot。 以下是展示全新驗證功能的範例 Bot
@@ -256,7 +256,8 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 1. 啟動 Bot (無論是否啟用偵錯)。
 1. 請記下該頁面的 localhost 連接埠號碼。 稍後與 Bot 互動時，您會需要使用此資訊。
 1. 啟動模擬器。
-1. 連線至 Bot。
+1. 連線至 Bot。 請確定 Bot 組態會在使用驗證時使用 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**
+1. 在模擬器設定中，確定已核取 [使用 OAuthCard 的登入驗證程式碼] 並已啟用 **ngrok**，所以 Azure Bot Service 可以將可用的權杖傳回模擬器。
 
    如果您尚未設定連線，請提供位址及 Bot 的 Microsoft 應用程式識別碼和密碼。 將 `/api/messages` 新增至 Bot 的 URL。 URL 外觀應該會類似於 `http://localhost:portNumber/api/messages`。
 
@@ -486,4 +487,4 @@ private isTeamsVerificationInvoke(context: TurnContext): boolean {
 在對 Bot 的後續呼叫中，請注意此範例 Bot 永遠不會快取權杖。 這是因為 Bot 可一律向 Azure Bot 服務要求權杖。 當 Azure Bot 服務為您執行一切工作時，如此可避免 Bot 必須管理權杖生命週期、更新權杖等繁瑣作業。
 
 ## <a name="additional-resources"></a>其他資源
-[Bot Builder SDK](https://github.com/microsoft/botbuilder)
+[Bot Framework SDK](https://github.com/microsoft/botbuilder)

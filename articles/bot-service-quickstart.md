@@ -9,21 +9,20 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 01/08/2019
-ms.openlocfilehash: fd852a75b911f57743b40d252b24c6ef33b0420d
-ms.sourcegitcommit: ddc8c116887ada67642d49ee5166e7f1ae287263
+ms.openlocfilehash: da809023338847374715f7576481fc8d17a21ded
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114892"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225393"
 ---
 ::: moniker range="azure-bot-service-3.0"
-
 
 # <a name="create-a-bot-with-azure-bot-service"></a>建立具有 Azure Bot Service 的 Bot
 
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
-Bot 服務會提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連線 Bot 與通道的 Bot Framework。 建立支援 .NET 和 Node.js 的 Bot 時，Bot 服務提供五種範本供您選擇。 在本主題中，您將了解如何使用 Bot 服務來建立使用 Bot Builder SDK 的新 Bot。
+Bot 服務會提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Framework SDK 和將 Bot 連線至通道的 Bot Framework。 建立支援 .NET 和 Node.js 的 Bot 時，Bot 服務提供五種範本供您選擇。 在本主題中，您將了解如何使用 Bot 服務來建立使用 Bot Framework SDK 的新 Bot。
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 登入 [Azure 入口網站](http://portal.azure.com)。
@@ -84,7 +83,7 @@ Bot 服務會提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot B
 
 [!INCLUDE [pre-release-label](includes/pre-release-label.md)]
 
-Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Builder SDK 和連接 Bot 與通道的 Bot 服務。 在此主題中，您可以使用 Bot Builder SDK v4，選擇 .NET 或 Node.js 範本來建立 Bot。
+Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Framework SDK 和連接 Bot 與通道的 Bot 服務。 在此主題中，您可以使用 Bot Framework SDK v4，選擇 .NET 或 Node.js 範本來建立 Bot。
 
 ## <a name="prerequisites"></a>必要條件
 - [Azure](http://portal.azure.com) 帳戶

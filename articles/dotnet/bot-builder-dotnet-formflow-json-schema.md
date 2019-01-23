@@ -1,6 +1,6 @@
 ---
 title: 使用 JSON 結構描述和 FormFlow 來定義表單 | Microsoft Docs
-description: 了解如何使用 JSON 結構描述和 FormFlow 搭配適用於 .NET 的 Bot 建立器 SDK 來定義表單。
+description: 了解如何使用 JSON 結構描述和 FormFlow 搭配適用於 .NET 的 Bot Framework SDK 來定義表單。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8bcc957dbe2d69790cdfa7c2d7c377ed28b5fa12
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d84252281baa57a15b093cfd0ba92fe5fe422027
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000325"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225853"
 ---
 # <a name="define-a-form-using-json-schema"></a>使用 JSON 結構描述來定義表單
 
@@ -317,7 +317,7 @@ FormFlow 可延伸標準 <a href="http://json-schema.org/documentation.html" tar
 - [使用 FormBuilder 自訂表單](bot-builder-dotnet-formflow-formbuilder.md)
 - [將表單內容當地語系化](bot-builder-dotnet-formflow-localize.md)
 - [使用模式語言來自訂使用者體驗](bot-builder-dotnet-formflow-pattern-language.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot 建立器 SDK 參考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Framework SDK 參考</a>
 
 [numericAttribute]: /dotnet/api/microsoft.bot.builder.formflow.numericattribute
 

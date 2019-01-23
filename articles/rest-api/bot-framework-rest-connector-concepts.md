@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 20ae641a23399f5ee10aed9b31c4521f355903cf
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: a3d6bd957b835a0b8d86e47595ce28506c32d636
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998949"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224553"
 ---
 # <a name="key-concepts"></a>重要概念
 
@@ -44,10 +44,10 @@ Bot 連接器服務和 Bot 狀態服務支援使用 JWT Bearer 權杖進行驗�
 
 Bot Framework 提供可用於在 C# 或 Node.js 中建置 Bot 的用戶端程式庫。 
 
-- 若要使用 C# 建置 Bot，請使用[適用於 C# 的 Bot 建立器 SDK](../dotnet/bot-builder-dotnet-overview.md)。 
-- 若要使用 Node.js 建置 Bot，請使用[適用於 Node.js 的 Bot 建立器 SDK](../nodejs/index.md)。 
+- 若要使用 C# 建置 Bot，請使用[適用於 C# 的 Bot Framework SDK](../dotnet/bot-builder-dotnet-overview.md)。 
+- 若要使用 Node.js 建置 Bot，請使用[適用於 Node.js 的 Bot Framework SDK](../nodejs/index.md)。 
 
-除了建構 Bot 連接器服務和 Bot 狀態服務模型，每個 Bot 建立器 SDK 也都提供強大的功能，可建置封裝對話邏輯的對話、簡單項目的內建提示 (如是/否)、字串、數字和列舉、功能強大之 AI 架構 (如 <a href="https://www.luis.ai/" target="_blank">LUIS</a>) 的支援等等。 
+除了建構 Bot 連接器服務和 Bot 狀態服務模型，每個 Bot Framework SDK 也都提供強大的功能，可建置封裝交談邏輯的對話、簡單項目的內建提示 (如是/否)、字串、數字和列舉、功能強大之 AI 架構 (如 <a href="https://www.luis.ai/" target="_blank">LUIS</a>) 的支援等等。 
 
 > [!NOTE]
 > 除了使用 C# SDK 或 Node.js SDK，您也可以改為使用 <a href="https://raw.githubusercontent.com/Microsoft/BotBuilder/master/CSharp/Library/Microsoft.Bot.Connector.Shared/Swagger/ConnectorAPI.json" target="_blank">Bot 連接器 Swagger 檔案</a>和 <a href="https://raw.githubusercontent.com/Microsoft/BotBuilder/master/CSharp/Library/Microsoft.Bot.Connector.Shared/Swagger/StateAPI.json" target="_blank">Bot 狀態 Swagger 檔案</a>以您所選的程式設計語言產生自己用戶端程式庫。

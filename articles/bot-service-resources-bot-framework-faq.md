@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 08/28/2018
-ms.openlocfilehash: 660c10c400bb68e807f39eb1b7ccc38f500991e6
-ms.sourcegitcommit: 0f65857943d318da48df0a8654cde53e9a699116
+ms.openlocfilehash: 9b77f05b77017b17ba63e83fa2a8b58e483f9bf8
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53389311"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225803"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常見問題集
 
@@ -24,7 +24,7 @@ ms.locfileid: "53389311"
 在我們使用對話使用者介面 (CUI) 時，目前只有少數開發人員具備必要的專業知識和工具，可以建立新的對話體驗；或是讓現有的應用程式和服務，具備使用者可以享受的對話介面。 我們建立了 Bot Framework，讓開發人員更容易建置良好的 Bot 並且與使用者連線，無論是在哪裡進行對話 (包括 Microsoft 的主要通道)。
 
 ### <a name="what-is-the-v4-sdk"></a>什麼是 v4 SDK？
-Bot 建立器 v4 SDK 是根據意見反映而建置，並且參考了先前的 Bot 建立器 SDK。 它引入了正確層級的抽象概念，同時採用了豐富的 Bot 建置組塊元件化功能。 您可以從簡單的 Bot 開始，並且使用模組化和可延伸的架構，讓您的 Bot 更細緻。 您可以在 GitHub 上找到 SDK 的[常見問題集](https://github.com/Microsoft/botbuilder-dotnet/wiki/FAQ)。
+Bot Framework v4 SDK 是根據意見反映而建置，並且參考了先前的 Bot Framework SDK。 它引入了正確層級的抽象概念，同時採用了豐富的 Bot 建置組塊元件化功能。 您可以從簡單的 Bot 開始，並且使用模組化和可延伸的架構，讓您的 Bot 更細緻。 您可以在 GitHub 上找到 SDK 的[常見問題集](https://github.com/Microsoft/botbuilder-dotnet/wiki/FAQ)。
 
 ## <a name="bot-framework-sdk-version-3-lifetime-support"></a>Bot Framework SDK 第 3 版存留期支援 
 SDK V3 Bot 會繼續執行並受 Azure Bot Service 支援。  自 Bot Framework SDK V4 發行以來，如同其他架構，我們會以安全性、高優先順序錯誤修正及連接器 / 通訊協定層更新，繼續支援 SDK V3。  客戶可預期 2019 年繼續有 v3 支援。
@@ -73,7 +73,7 @@ SDK V3 Bot 會繼續執行並受 Azure Bot Service 支援。  自 Bot Framework 
 
 Bot Framework 的設計訴求，是為 Skype 和其他許多通道建置、連線及部署高品質、回應靈敏、高效能和可調整的 Bot。 SDK 可以用來建立文字/簡訊、影像、按鈕和支援卡片的 Bot (涵蓋了現今對話體驗的大多數 Bot 互動)，以及 Skype 特定的 Bot 互動，例如豐富的音訊和視訊體驗。
 
-如果您已經有絕佳的 Bot，並且想要觸及 Skype 對象，您的 Bot 可以透過適用於 REST API 的 Bot 建立器 (前提是具有可存取網際網路的 REST 端點)，輕易地連線到 Skype (或任何受支援的通道)。
+如果您已經有絕佳的 Bot，並且想要觸及 Skype 對象，您的 Bot 可以透過適用於 REST API 的 Bot Framework (前提是具有可存取網際網路的 REST 端點)，輕易地連線到 Skype (或任何受支援的通道)。
 
 ## <a name="security-and-privacy"></a>安全性和隱私權
 ### <a name="do-the-bots-registered-with-the-bot-framework-collect-personal-information-if-yes-how-can-i-be-sure-the-data-is-safe-and-secure-what-about-privacy"></a>向 Bot Framework 註冊的 Bot 是否會收集個人資訊？ 如果是的話，我要如何確定資料是安全的？ 隱私權呢？

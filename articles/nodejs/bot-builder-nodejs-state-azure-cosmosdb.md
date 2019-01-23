@@ -1,6 +1,6 @@
 ---
 title: 藉由 Azure Cosmos DB 管理自訂狀態資料 | Microsoft Docs
-description: 了解如何使用 Azure Cosmos DB 搭配 Bot Builder SDK for Node.js 來儲存和擷取狀態資料。
+description: 了解如何使用 Azure Cosmos DB 搭配適用於 Node.js 的 Bot Framework SDK 來儲存和擷取狀態資料。
 author: DucVo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 0c0d91a7ec9fd1d72c7c51c042b0f52e28798778
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 92672e9d9ca9949da1ce4741bdc71bc809d982f7
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998115"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224513"
 ---
 # <a name="manage-custom-state-data-with-azure-cosmos-db-for-nodejs"></a>使用適用於 Node.js 的 Azure Cosmos DB 管理自訂狀態資料
 

@@ -1,6 +1,6 @@
 ---
 title: 使用 Azure 搜尋服務建立資料驅動體驗 | Microsoft Docs
-description: 了解如何使用 Azure 搜尋服務建立資料驅動體驗，並協助使用者在採用適用於 .NET 的 Bot 建立器 SDK 和 Azure 搜尋服務的 Bot 中瀏覽大量內容。
+description: 了解如何使用 Azure 搜尋服務建立資料驅動體驗，並協助使用者在採用適用於 .NET 的 Bot Framework SDK 和 Azure 搜尋服務的 Bot 中瀏覽大量內容。
 author: matthewshim-ms
 ms.author: v-shimma
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8205f40053b2b3d0e62d9b9ce622f59432e059a4
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: ef2cb33e8d2ab7d8db291e3c6e051630d6af0394
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999005"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224543"
 ---
 # <a name="create-data-driven-experiences-with-azure-search"></a>使用 Azure 搜尋服務建立資料驅動體驗 
 
@@ -173,7 +173,7 @@ public class SearchHitStyler : PromptStyler
 
 ## <a name="samples"></a>範例
 
-如需兩個示範如何使用適用於 .NET 的 Bot 建立器 SDK 支援 Azure 搜尋服務的完整 Bot 範例，請參閱 GitHub 中的[不動產 Bot 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-Search/RealEstateBot)或[作業清單 Bot 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-Search/JobListingBot)。 
+如需兩個示範如何使用適用於 .NET 的 Bot Framework SDK 支援 Azure 搜尋服務的完整 Bot 範例，請參閱 GitHub 中的[不動產 Bot 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-Search/RealEstateBot)或[作業清單 Bot 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-Search/JobListingBot)。 
 
 ## <a name="additional-resources"></a>其他資源
 * [Azure 搜尋服務][search]

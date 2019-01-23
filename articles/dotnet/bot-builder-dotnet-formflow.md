@@ -1,6 +1,6 @@
 ---
 title: FormFlow 的基本功能 | Microsoft Docs
-description: 了解如額使用 Bot Builder SDK for .NET 內的 FormFlow 引導交談流程。
+description: 了解如何使用適用於 .NET 的 Bot Framework SDK 中的 FormFlow 引導交談流程。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,18 +9,18 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f5b36e1f916539b78f9bdcdd0970317db723f408
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 710a8ce315faa02a72eaeb753c44b9b212524ec3
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000372"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224673"
 ---
 # <a name="basic-features-of-formflow"></a>FormFlow 的基本功能
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-[交談方塊](bot-builder-dotnet-dialogs.md)功能強大且彈性，處理訂購三明治等引導式交談時可能會很費工。 在交談中的每個時間點，接下來有可能會發生許多不同的情況。 例如，您可能需要釐清問題、提供協助、返回或顯示進度。 使用 Bot Builder SDK for .NET 中的 **FormFlow**，即可大幅簡化管理這類引導式交談的程序。 
+[交談方塊](bot-builder-dotnet-dialogs.md)功能強大且彈性，處理訂購三明治等引導式交談時可能會很費工。 在交談中的每個時間點，接下來有可能會發生許多不同的情況。 例如，您可能需要釐清問題、提供協助、返回或顯示進度。 使用適用於 .NET 的 Bot Framework SDK 中的 **FormFlow**，即可大幅簡化管理這類引導式交談的程序。 
 
 FormFlow 可根據您指定的指導方針，自動產生管理引導式交談時必須使用的交談方塊。 雖然使用 FormFlow 會讓您無法建立並管理專屬交談方塊，因而犧牲部分彈性；但使用 FormFlow 設計引導式交談可大幅減少您自己開發 Bot 的時間。 此外，您也可使用 FormFlow 產生的對話方塊及其他類型對話方塊組合，建構自己的 Bot。 例如，FormFlow 對話方塊可引導使用者完成表單填寫的整個程序，而 [LuisDialog][LuisDialog] 可評估使用者輸入內容以判斷其意圖。
 
@@ -323,7 +323,7 @@ FormFlow 簡化對話方塊的開發作業。 FormFlow 的進階功能可讓您�
 - [將表單內容當地語系化](bot-builder-dotnet-formflow-localize.md)
 - [使用 JSON 結構描述來定義表單](bot-builder-dotnet-formflow-json-schema.md)
 - [使用模式語言來自訂使用者體驗](bot-builder-dotnet-formflow-pattern-language.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot 建立器 SDK 參考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Framework SDK 參考</a>
 
 [LuisDialog]: /dotnet/api/microsoft.bot.builder.dialogs.luisdialog-1
 

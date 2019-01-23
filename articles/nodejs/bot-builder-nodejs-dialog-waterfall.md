@@ -1,6 +1,6 @@
 ---
 title: 使用瀑布定義交談步驟 |Microsoft Docs
-description: 了解如何以適用於 Node.js 的 Bot 建立器 SDK 來使用瀑布以定義交談的步驟。
+description: 了解如何以適用於 Node.js 的 Bot Framework SDK 來使用瀑布以定義交談的步驟。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 2fa857e57d5be4751476874b8c193c7053a1bf39
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 526091d61f10ac0c241b994aa3ea99c1d2a70074
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000275"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225323"
 ---
 # <a name="define-conversation-steps-with-waterfalls"></a>使用瀑布定義交談步驟
 
@@ -45,7 +45,7 @@ bot.dialog('greetings', [
 ]);
 ```
 
-實現此目的的方式是使用提示。 適用於 Node.js 的 Bot 建立器 SDK 提供許多不同類型的內建[提示](bot-builder-nodejs-dialog-prompt.md)，您可以使用這些提示來要求使用者提供各種類型的資訊。
+實現此目的的方式是使用提示。 適用於 Node.js 的 Bot Framework SDK 提供許多不同類型的內建[提示](bot-builder-nodejs-dialog-prompt.md)，您可以使用這些提示來要求使用者提供各種類型的資訊。
 
 下列範例程式碼顯示一則對話，此對話會使用提示在含有 4 個步驟的瀑布中向使用者收集各項資訊。
 

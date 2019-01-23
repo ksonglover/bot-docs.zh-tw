@@ -1,6 +1,6 @@
 ---
 title: 使用 LUIS 辨識意圖和實體 | Microsoft Docs
-description: 了解如何在適用於 .NET 的 Bot Builder SDK 中使用 LUIS 對話，讓您的 Bot 了解自然語言。
+description: 了解如何在適用於 .NET 的 Bot Framework SDK 中使用 LUIS 對話，讓您的 Bot 了解自然語言。
 author: DeniseMak
 ms.author: v-demak
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: ec3c93bfca1ec8554655934d9165e436d88b9466
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 26b23c9beda872b71defd779563531328b63a0c8
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997725"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225373"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 辨識意圖和實體 
 
@@ -388,7 +388,7 @@ Bot 可以使用 `Note.ReadAloud` 意圖來顯示筆記的內容，如果未偵�
 - [對話方塊](bot-builder-dotnet-dialogs.md)
 - [使用對話 (dialogue) 管理對話 (conversation) 流程](bot-builder-dotnet-manage-conversation-flow.md)
 - <a href="https://www.luis.ai" target="_blank">LUIS</a>
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot 建立器 SDK 參考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Framework SDK 參考</a>
 
 [LUIS]: https://www.luis.ai/
 [NotesSample]: https://github.com/Microsoft/BotFramework-Samples/tree/master/docs-samples/CSharp/Simple-LUIS-Notes-Sample

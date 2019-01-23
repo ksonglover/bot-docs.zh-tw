@@ -1,6 +1,6 @@
 ---
 title: 要求付款 | Microsoft Docs
-description: 了解如何使用適用於 Node.js 的 Bot 建立器 SDK 傳送付款要求。
+description: 了解如何使用適用於 Node.js 的 Bot Framework SDK 傳送付款要求。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5bdb699e242784883f7c1a5dda895a31ff80efb1
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 296004c654cfd59de6c245bf9702a80024526140
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999157"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225743"
 ---
 # <a name="request-payment"></a>要求付款
 
@@ -24,11 +24,11 @@ ms.locfileid: "49999157"
 > - [.NET](../dotnet/bot-builder-dotnet-request-payment.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-request-payment.md)
 
-如果 Bot 要讓使用者能購買商品，則可在[複合式資訊卡 (Rich Card)](bot-builder-nodejs-send-rich-cards.md) 中包含一個特別的按鈕，藉此要求付款。 本文說明如何使用適用於 Node.js 的 Bot 建立器 SDK 傳送付款要求。
+如果 Bot 要讓使用者能購買商品，則可在[複合式資訊卡 (Rich Card)](bot-builder-nodejs-send-rich-cards.md) 中包含一個特別的按鈕，藉此要求付款。 本文說明如何使用適用於 Node.js 的 Bot Framework SDK 傳送付款要求。
 
 ## <a name="prerequisites"></a>必要條件
 
-您必須先完成這些必要工作，才可以使用適用於 Node.js 的 Bot 建立器 SDK 傳送付款要求。
+您必須先完成這些必要工作，才可以使用適用於 Node.js 的 Bot Framework SDK 傳送付款要求。
 
 ### <a name="register-and-configure-your-bot"></a>註冊並設定 Bot
 

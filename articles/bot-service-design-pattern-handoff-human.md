@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 6b50df60c3a8165198e8f9a55964f2f596d62406
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f18b375a1e4ebcf06d00d045e383db8b05fb5111
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998725"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225733"
 ---
 # <a name="transition-conversations-from-bot-to-human"></a>將交談從 Bot 切換為人類
 
@@ -74,7 +74,7 @@ Bot 正在等待人類時，它可能會以預設回應 (例如「在佇例中�
 
 ## <a name="sample-code"></a>範例程式碼
 
-如需示範如何使用適用於 Node.js 的 Bot 建立器 SDK 將交談從 Bot 遞交給人的完整範例，請參閱 GitHub 中的 <a href="https://github.com/palindromed/Bot-HandOff" target="_blank">Bot 遞交範例</a>。
+如需示範如何使用適用於 Node.js 的 Bot Framework SDK 將交談從 Bot 遞交給人的完整範例，請參閱 GitHub 中的 <a href="https://github.com/palindromed/Bot-HandOff" target="_blank">Bot 遞交範例</a>。
 
 ## <a name="additional-resources"></a>其他資源
 

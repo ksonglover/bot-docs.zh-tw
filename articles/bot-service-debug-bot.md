@@ -3,18 +3,18 @@ title: 對 Bot 進行偵錯 | Microsoft Docs
 description: 了解如何對使用 Bot Service 建置的 Bot 進行偵錯。
 author: v-ducvo
 ms.author: v-ducvo
-keywords: Bot Builder SDK, 對 bot 進行偵錯, 測試 bot, bot 模擬器, 模擬器
+keywords: Bot Framework SDK, 對 bot 進行偵錯, 測試 bot, bot 模擬器, 模擬器
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/13/2018
-ms.openlocfilehash: fcda5c57a96b6f93aad965e868c824577616f630
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: b445ce7796c3f7f3180b15fd6dfac1ef82b808ae
+ms.sourcegitcommit: d385ec5fe61c469ab17e6f21b4a0d50e5110d0fd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452040"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54298295"
 ---
 # <a name="debug-a-bot"></a>對 Bot 進行偵錯
 
@@ -32,6 +32,7 @@ ms.locfileid: "52452040"
 1. 啟動模擬器，然後連線到 Bot 的端點 (例如：**http://localhost:3978/api/messages**)。 如果這是您第一次執行 Bot，請按一下 [檔案] > [新的 Bot]，並遵循畫面上的指示。 否則，請按一下 [檔案] > [開啟 Bot] 以開啟現有的 Bot。 由於這個 Bot 在本機電腦上執行，您可以將 **MSA 應用程式識別碼**和 **MSA 應用程式密碼**欄位留白。 如需詳細資訊，請參閱[使用模擬器進行偵錯](bot-service-debug-emulator.md)。
 1. 在模擬器中，向 Bot 傳送訊息 (例如：傳送「嗨」訊息)。 
 1. 使用模擬器視窗右側的 [偵測器] 和 [記錄] 面板來對您的 Bot 進行偵錯。 比方說，按一下任何一個訊息泡泡 (例如：在下方螢幕擷取畫面中的「嗨」訊息泡泡)，在 [偵測器] 面板中會向您顯示該訊息的詳細資料。 您可以用它來檢視要求和回應，因訊息會在模擬器和 Bot 之間交換。 或者，您也可以按一下 [記錄] 面板中任何連結的文字，以在 [偵測器] 面板中檢視詳細資料。
+
 
    ![模擬器上的 [偵測器] 面板](~/media/bot-service-debug-bot/emulator_inspector.png)
 

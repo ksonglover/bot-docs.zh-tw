@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/26/2018
+ms.date: 01/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 62cf3663a6e1c9b9321d7b74393b95e4a2ed3a69
-ms.sourcegitcommit: fd7781a06303fee5f39a253da5b3a3818d54b2ba
+ms.openlocfilehash: c798c26f108458e1caeb16aa22c02c6e7c70fb61
+ms.sourcegitcommit: 3cc768a8e676246d774a2b62fb9c688bbd677700
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/28/2018
-ms.locfileid: "53806769"
+ms.lasthandoff: 01/16/2019
+ms.locfileid: "54323654"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多個 LUIS 和 QnA 模型
 
@@ -41,7 +41,7 @@ ms.locfileid: "53806769"
 
  ### <a name="create-your-bot-using-service-ui"></a>使用服務 UI 建立 Bot
  
-若要開始手動建立 Bot，請將下列 4 個檔案 (位於 GitHub [BotFramework-Samples](https://github.com/Microsoft/BotFramework-Samples) 存放庫) 下載到本機資料夾：[home-automation.json](https://aka.ms/dispatch-home-automation-json)、[weather.json](https://aka.ms/dispatch-weather-json)、[nlp-with-dispatchDispatch.json](https://aka.ms/dispatch-dispatch-json)、[QnAMaker.tsv](https://aka.ms/dispatch-qnamaker-tsv)
+若要開始手動建立 Bot，請將下列 4 個檔案 (位於 GitHub [BotFramework-Samples](https://aka.ms/botdispatchgitsamples) 存放庫) 下載到本機資料夾：[home-automation.json](https://aka.ms/dispatch-home-automation-json)、[weather.json](https://aka.ms/dispatch-weather-json)、[nlp-with-dispatchDispatch.json](https://aka.ms/dispatch-dispatch-json)、[QnAMaker.tsv](https://aka.ms/dispatch-qnamaker-tsv) 達成此目的的其中一種方法是開啟上面的 GitHub 存放庫連結，按一下 **BotFramework-Samples**，然後將存放庫「複製或下載」到本機電腦。 請注意，這些檔案位於與必要條件中所提範例不同的存放庫。
 
 ### <a name="manually-create-luis-apps"></a>手動建立 LUIS 應用程式
 
@@ -494,7 +494,10 @@ async onTurn(turnContext) {
 
 上述兩個動作都會減少 Bot 以「找不到答案」訊息回應使用者的次數。 
 
-## <a name="additional-resources"></a>其他資源 
+## <a name="additional-resources"></a>其他資源
+
+**更新或建立新的 LUIS 模型：** 此範例是以預先設定的 LUIS 模型為基礎。 在[這裡](https://aka.ms/create-luis-model#updating-your-cognitive-models
+)可以找到其他資訊，協助您更新此模型，或建立新的 LUIS 模型。
 
 **刪除資源：** 此範例會建立一些應用程式和資源，您可以使用下面所列的步驟將其刪除，但不得刪除「任何其他應用程式或服務」所依賴的資源。 
 

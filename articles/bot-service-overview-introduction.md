@@ -7,13 +7,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 10/31/2018
-ms.openlocfilehash: 616c3bfd5fcb36c06f4e2acf032ba3cf5fc125d3
-ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
+ms.date: 1/10/2019
+ms.openlocfilehash: 4e11ecfa2d42b93b85d186a5078b612ef64e7cdd
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/01/2018
-ms.locfileid: "50736696"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317648"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -88,12 +88,15 @@ Bot 很類似現代化 Web 應用程式，在網際網路上運作，並使用 A
 
 Bot 可執行其他類型的軟體可以執行的作業：讀取和寫入檔案、使用資料庫和 API，以及進行一般計算工作。 Bot 的特點就是其使用通常保留給人與人通訊的機制。 
 
-Bot 通常是由下列元件組成：
+Azure Bot Service 提供：
+- 可供開發 Bot 的 Bot Framework SDK
+- Bot Framework 工具，可涵蓋端對端 Bot 開發工作流程
+- Bot Framework Service (BFS)，可在 Bot 與通道之間傳送及接收訊息和事件
+- Azure 中的 Bot 部署和通道組態
 
-- 在大部分情況下可在公用網際網路上使用的網路伺服器
-- 可提供介面以供開發 Bot 的 Bot Builder SDK 和 Bot Builder Tools
-- Azure 認知服務
-- Azure 儲存體
+此外，Bot 可使用其他 Azure 服務，例如：
+- 用以建置智慧型應用程式的 Azure 認知服務 
+- 適用於雲端儲存體解決方案的 Azure 儲存體
 
 ## <a name="building-a-bot"></a>建立 Bot 
 
@@ -105,7 +108,7 @@ Azure Bot Service 提供一組整合式工具與服務，可加快此程序。 �
 如同任何類型的軟體，務必徹底了解目標、程序及使用者需求，才能建立成功的 Bot。 撰寫程式碼之前，請先參閱 Bot [設計指南](bot-service-design-principles.md) 了解最佳作法，並找出您的 Bot 需求。 您可以建立簡單的 Bot 或納入更複雜的功能，例如語音、自然語言理解或問題解答。
 
 ### <a name="build"></a>建置
-Bot 是一項 Web 服務，可實作對話式介面並透過 Bot Framework Service 進行通訊，以傳送和接收訊息和事件。 您可以使用任意多個環境和語言建立 Bot。 您可以在 [Azure 入口網站](bot-service-quickstart.md)中開始進行 Bot 開發，或使用 [[C#](dotnet/bot-builder-dotnet-sdk-quickstart.md) | [JavaScript](javascript/bot-builder-javascript-quickstart.md)] 範本進行本機開發。
+Bot 是一項 Web 服務，可實作對話式介面並透過 Bot Framework Service 進行通訊，以傳送和接收訊息和事件。 Bot Framework Service 是 Azure Bot Service 的其中一個元件。 您可以使用任意多個環境和語言建立 Bot。 您可以在 [Azure 入口網站](bot-service-quickstart.md)中開始進行 Bot 開發，或使用 [[C#](dotnet/bot-builder-dotnet-sdk-quickstart.md) | [JavaScript](javascript/bot-builder-javascript-quickstart.md)] 範本進行本機開發。
 
 我們在 Azure Bot Service 中提供可用來增強 Bot 功能的其他元件
 

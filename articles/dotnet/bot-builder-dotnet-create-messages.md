@@ -1,6 +1,6 @@
 ---
-title: 使用適用於 .NET 的 Bot 建立器 SDK 建立訊息 | Microsoft Docs
-description: 了解適用於 .NET 的 Bot 建立器 SDK 內的常用訊息屬性。
+title: 使用適用於 .NET 的 Bot Framework SDK 建立訊息 | Microsoft Docs
+description: 了解適用於 .NET 的 Bot Framework SDK 內的常用訊息屬性。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f3f40e41605bfd309d480465a05b91acf5a52d5c
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 96a0c63575b1e77418262a22050013413f39141f
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000385"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225913"
 ---
 # <a name="create-messages"></a>建立訊息
 
@@ -71,14 +71,14 @@ ms.locfileid: "50000385"
 | 位址 | 說明或 `PostalAddress` 物件 (未來) | 
 | 地理區域 | GeoCoordinates | 
 | HasMap | 地圖或 `Map` 物件的 URL (未來) |
-| 名稱 | 位置的名稱 |
+| Name | 位置的名稱 |
 
 `GeoCoordinates` 物件包含下列屬性：
 
 | 屬性 | 說明 | 
 |----|----|
 | 類型 | 實體的類型 ("GeoCoordinates") |
-| 名稱 | 位置的名稱 |
+| Name | 位置的名稱 |
 | 經度 | 位置的經度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 
 | 緯度 | 位置的緯度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 
 | Elevation | 位置的提升 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 

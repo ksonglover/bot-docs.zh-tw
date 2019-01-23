@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/17
-ms.openlocfilehash: 0fdd196716c0fffb36583c0df894481b032dd83e
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 2335ac34292e224f44a09820574f3bd9de00eda4
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999405"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224653"
 ---
 # <a name="troubleshooting-bot-framework-authentication"></a>針對 Bot Framework 驗證進行疑難排解
 
@@ -43,7 +43,7 @@ Bot 安全性由您在使用 Bot Framework 註冊 Bot 時取得的**Microsoft �
 
 ::: moniker range="azure-bot-service-3.0"
 
-如果您使用 Bot Builder SDK for .NET，請在 Web.config 檔案中編輯這些設定： 
+如果您使用適用於 .NET 的 Bot Framework SDK，請在 Web.config 檔案中編輯這些設定： 
 
 ```xml
 <appSettings>
@@ -52,7 +52,7 @@ Bot 安全性由您在使用 Bot Framework 註冊 Bot 時取得的**Microsoft �
 </appSettings>
 ```
 
-如果您使用 Bot Builder SDK for Node.js，請編輯這些值 (或更新對應的環境變數)：
+如果您使用適用於 Node.js 的 Bot Framework SDK，請編輯這些值 (或更新對應的環境變數)：
 
 ```javascript
 var connector = new builder.ChatConnector({
@@ -65,16 +65,18 @@ var connector = new builder.ChatConnector({
 
 ::: moniker range="azure-bot-service-4.0"
 
-如果您使用 Bot Builder SDK for .NET，請在 `appsettings.config` 檔案中編輯這些設定：
+如果您使用適用於 .NET 的 Bot Framework SDK，請在 `.bot` 檔案中編輯這些設定：
 
-```xml
-<appSettings>
-  <add key="MicrosoftAppId" value="" />
-  <add key="MicrosoftAppPassword" value="" />
-</appSettings>
+```json
+"services": [
+  {
+    "appId": "<your app ID>",
+    "appPassword": "<your app password>",
+  }
+]
 ```
 
-如果您使用 Bot Builder SDK for Node.js，請編輯這些值 (或更新對應的環境變數)：
+如果您使用適用於 Node.js 的 Bot Framework SDK，請編輯這些值 (或更新對應的環境變數)：
 
 ```javascript
 const adapter = new BotFrameworkAdapter({
@@ -108,7 +110,7 @@ const adapter = new BotFrameworkAdapter({
 * 模擬器設定指定 **Microsoft 應用程式識別碼**欄位和/或 **Microsoft 應用程式密碼**欄位的值。 這兩個欄位應為空白。
 * Bot 的安全性尚未停用。 [驗證](#disable-security-localhost) Bot 未指定應用程式識別碼或密碼的值。
 
-## <a id="step-2"></a> 步驟 2︰驗證 Bot 的應用程式識別碼和密碼
+## <a id="step-2"></a> 步驟 2：驗證 Bot 的應用程式識別碼和密碼
 
 在此步驟中，您將驗證 Bot 將用於驗證的應用程式識別碼和密碼是否有效 (如果您不知道這些值，[現在就取得](#PW))。 
 
@@ -120,6 +122,9 @@ const adapter = new BotFrameworkAdapter({
 這些指示會說明如何使用 [cURL](https://curl.haxx.se/download.html) 向 Microsoft 登入服務發出 HTTP 要求。 您可以使用替代工具 (例如 Postman)，只需確定要求符合 Bot Framework [驗證通訊協定](~/rest-api/bot-framework-rest-connector-authentication.md)。
 
 若要驗證 Bot 的應用程式識別碼和密碼是否有效，請使用 **cURL** 發出下列要求，將 `APP_ID` 和 `APP_PASSWORD` 取代為 Bot 的應用程式識別碼和密碼。
+
+> [!TIP]
+> 您的密碼包含特殊字元，以致下列呼叫無效。 若是如此，請嘗試將您的密碼轉換成 URL 編碼。
 
 ```cmd
 curl -k -X POST https://login.microsoftonline.com/botframework.com/oauth2/v2.0/token -d "grant_type=client_credentials&client_id=APP_ID&client_secret=APP_PASSWORD&scope=https%3A%2F%2Fapi.botframework.com%2F.default"
@@ -141,9 +146,9 @@ curl -k -X POST https://login.microsoftonline.com/botframework.com/oauth2/v2.0/t
 
 ### <a id="enable-security-localhost"></a> 啟用安全性
 
-您的 Bot 的安全性依賴 Microsoft 服務，即使您的 Bot 只在 localhost 上執行。 若要啟用 Bot 的安全性，請編輯其組態設定，以使用您在[步驟 2](#step-2) 中驗證的值填入應用程式識別碼和密碼。
+您的 Bot 的安全性依賴 Microsoft 服務，即使您的 Bot 只在 localhost 上執行。 若要啟用 Bot 的安全性，請編輯其組態設定，以使用您在[步驟 2](#step-2) 中驗證的值填入應用程式識別碼和密碼。  此外，確定您的套件是最新狀態，特別是 `System.IdentityModel.Tokens.Jwt` 和 `Microsoft.IdentityModel.Tokens`。
 
-如果您使用 Bot Builder SDK for .NET，請在 `.bot` 或 `appsettings.config` 檔案中填入這些設定：
+如果您使用適用於 .NET 的 Bot Framework SDK，請在 `appsettings.config` 中填入這些設定，或在 `.bot` 檔案中填入對應的值：
 
 ```xml
 <appSettings>
@@ -152,7 +157,7 @@ curl -k -X POST https://login.microsoftonline.com/botframework.com/oauth2/v2.0/t
 </appSettings>
 ```
 
-如果您使用 Bot Builder SDK for Node.js，請填入這些設定 (或更新對應的環境變數)：
+如果您使用適用於 Node.js 的 Bot Framework SDK，請填入這些設定 (或更新對應的環境變數)：
 
 ```javascript
 var connector = new builder.ChatConnector({
@@ -162,7 +167,7 @@ var connector = new builder.ChatConnector({
 ```
 
 > [!NOTE]
-> 若要尋找您 Bot 的 **AppID** 和 **AppPassword**，請參閱 [MicrosoftAppID 和 MicrosoftAppPassword](bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
+> 若要尋找 Bot 的 **AppID** 和 **AppPassword**，請參閱 [MicrosoftAppID 和 MicrosoftAppPassword](bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
 
 ### <a name="test-your-bot-on-localhost"></a>在 localhost 上測試您的 Bot 
 

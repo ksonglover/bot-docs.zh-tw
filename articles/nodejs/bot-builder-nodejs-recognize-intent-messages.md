@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 82541c4ac0848c3e995ab3ad1ed874436072fe63
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 211800211b422bb9c90c00705585be89737c77a9
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998078"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225553"
 ---
 # <a name="recognize-user-intent-from-message-content"></a>從訊息內容辨識使用者意圖
 
@@ -57,11 +57,11 @@ ms.locfileid: "49998078"
 
 ## <a name="disambiguate-between-multiple-intents"></a>釐清多個意圖
 
-Bot 可以註冊一個以上的辨識器。 請注意，自訂辨識器範例涉及將數值分數指派給每個意圖。 這是因為 Bot 可能有一個以上的辨識器，而且 Bot 建立器 SDK 會提供內建邏輯來釐清由多個辨識器所傳回的意圖。 指派給意圖的分數通常介於 0.0 到 1.0，但自訂辨識器可能會定義大於 1.1 的意圖，以確保 Bot 建立器 SDK 的去除混淆邏輯一律會選擇該意圖。 
+Bot 可以註冊一個以上的辨識器。 請注意，自訂辨識器範例涉及將數值分數指派給每個意圖。 這是因為 Bot 可能有一個以上的辨識器，而且 Bot Framework SDK 會提供內建邏輯來釐清由多個辨識器所傳回的意圖。 指派給意圖的分數通常介於 0.0 到 1.0，但自訂辨識器可能會定義大於 1.1 的意圖，以確保 Bot Framework SDK 的去除混淆邏輯一律會選擇該意圖。 
 
 根據預設，辨識器則會以平行方式執行，但您可以在 [IIntentRecognizerSetOptions][IntentRecognizerSetOptions] 中設定 recognizeOrder，所以只要 Bot 找到可提供分數 1.0 的辨識器時，程序就會立即結束。
 
-Bot 建立器 SDK 包含一個[範例][DisambiguationSample]，該範例示範如何藉由實作 [IDisambiguateRouteHandler][IDisambiguateRouteHandler] 來提供自訂去除混淆邏輯。
+Bot Framework SDK 包含一個[範例][DisambiguationSample]，該範例示範如何藉由實作 [IDisambiguateRouteHandler][IDisambiguateRouteHandler] 來提供自訂去除混淆邏輯。
 
 ## <a name="next-steps"></a>後續步驟
 使用規則運算式和檢查訊息內容的邏輯可能會變複雜，尤其是在 Bot 的對話流程為開放式時。 為了協助 Bot 處理來自使用者的各種文字和語音輸入，您可以使用 [LUIS][LUIS] 等意圖辨識服務，將自然語言理解新增到 Bot。

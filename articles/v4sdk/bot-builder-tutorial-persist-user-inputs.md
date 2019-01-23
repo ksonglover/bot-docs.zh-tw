@@ -1,6 +1,6 @@
 ---
 title: 保存使用者資料 | Microsoft Docs
-description: 了解如何將使用者狀態資料儲存在 Bot 建立器 SDK 中的儲存體。
+description: 了解如何將使用者狀態資料儲存在 Bot Framework SDK 中的儲存體。
 keywords: 保存使用者資料, 儲存體, 交談資料
 author: v-ducvo
 ms.author: v-ducvo
@@ -10,18 +10,18 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/19/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 36e8efefb276e5b9fb45ba6243b1b472476d5046
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 97a89744282ca1e31a99aa0e45345656e43f5cd0
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997944"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225313"
 ---
 # <a name="persist-user-data"></a>保存使用者資料
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-當 Bot 要求使用者輸入時，您可能會想要以某些形式的儲存體保存某些資訊。 Bot Builder SDK 可讓您使用「記憶體內部儲存體」或資料庫儲存體 (例如 CosmosDB) 來儲存使用者輸入。 針對 Bot 進行測試或建立原型期間，主要會使用本機儲存體類型。 不過，生產 Bot 最適合使用永續性儲存體類型 (例如資料庫儲存體)。
+當 Bot 要求使用者輸入時，您可能會想要以某些形式的儲存體保存某些資訊。 Bot Framework SDK 可讓您使用「記憶體內部儲存體」或資料庫儲存體 (例如 CosmosDB) 來儲存使用者輸入。 針對 Bot 進行測試或建立原型期間，主要會使用本機儲存體類型。 不過，生產 Bot 最適合使用永續性儲存體類型 (例如資料庫儲存體)。
 
 本主題說明如何定義儲存體物件，以及如何將使用者輸入儲存到該儲存體物件，以便保存。 我們會使用對話方塊向使用者詢問其名稱 (如果我們還不知道的話)。 不論您選擇使用的儲存體類型為何，用於連結和保存資料的程序都相同。 本主題中的程式碼使用 `CosmosDB` 作為用來保存資料的儲存體。
 

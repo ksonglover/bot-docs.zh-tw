@@ -1,6 +1,6 @@
 ---
 title: 將複合式資訊卡 (Rich Card) 附件新增至訊息 | Microsoft Docs
-description: 了解如何使用適用於 .NET 的 Bot 建立器 SDK 將複合式資訊卡 (Rich Card) 新增至訊息。
+description: 了解如何使用適用於 .NET 的 Bot Framework SDK 將複合式資訊卡 (Rich Card) 新增至訊息。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f5687cc7faf4201485ced9535f2e98b0b4c2225a
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 5a6fc63005797a1c645de7506a8f15df2dcd0557
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998175"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317673"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>將複合式資訊卡 (Rich Card) 附件新增至訊息
 
@@ -112,7 +112,7 @@ Bot Framework 目前支援八種類型的複合式資訊卡 (Rich Card)：
 
 調適型卡片可包含文字、語音、影像、按鈕和輸入欄位的任意組合。 調適型卡片會使用<a href="http://adaptivecards.io" target="_blank">調適型卡片</a>中指定的 JSON 格式來建立，讓您能夠完整控制卡片的內容和格式。 
 
-若要使用 .NET 建立調適型卡片，請安裝 `Microsoft.AdaptiveCards` NuGet 套件。 然後，請利用<a href="http://adaptivecards.io" target="_blank">調適型卡片</a>網站中的資訊了解調適型卡片的結構描述、探索調適型卡片的元素，並查看 JSON 範例，用以建立具有不同組合和複雜度的卡片。 此外，您可以使用互動式視覺化檢視，以設計調適型卡片承載，以及預覽卡片輸出。
+若要使用 .NET 建立調適型卡片，請安裝 `AdaptiveCards` NuGet 套件。 然後，請利用<a href="http://adaptivecards.io" target="_blank">調適型卡片</a>網站中的資訊了解調適型卡片的結構描述、探索調適型卡片的元素，並查看 JSON 範例，用以建立具有不同組合和複雜度的卡片。 此外，您可以使用互動式視覺化檢視，以設計調適型卡片承載，以及預覽卡片輸出。
 
 下列程式碼範例示範如何建立包含調適型卡片作為行事曆提醒的訊息： 
 

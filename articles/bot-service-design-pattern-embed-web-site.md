@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: e11b99aeb8475ff27304c57c515e02a5c031e4ea
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 03c7e1316e463caf84b8dfd503e1502bb66469e6
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998376"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224843"
 ---
 # <a name="embed-a-bot-in-a-website"></a>將 Bot 嵌入網站
 
@@ -47,7 +47,7 @@ Skype web 控制項本質上是已啟用 web 控制項中的 Skype 用戶端。 
 
 ## <a name="sample-code"></a>範例程式碼
 
-<a href="https://aka.ms/BotFramework-WebChat" target="_blank">開放原始碼網路聊天控制項</a>可透過 GitHub 取得。 如要深入了解如何使用開放原始碼網路聊天控制項實作 backchannel 機制和適用於 Node.js 的 Bot Builder SDK，請參閱[使用 backchannel 機制](~/nodejs/bot-builder-nodejs-backchannel.md)。
+<a href="https://aka.ms/BotFramework-WebChat" target="_blank">開放原始碼網路聊天控制項</a>可透過 GitHub 取得。 如要深入了解如何使用開放原始碼網路聊天控制項實作 backchannel 機制和適用於 Node.js 的 Bot Framework SDK，請參閱[使用 backchannel 機制](~/nodejs/bot-builder-nodejs-backchannel.md)。
 
 ## <a name="additional-resources"></a>其他資源
 

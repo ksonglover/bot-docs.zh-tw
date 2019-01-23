@@ -1,16 +1,16 @@
 ---
 redirect_url: /bot-framework/bot-builder-prompts
-ms.openlocfilehash: e7cfbad19290b3ef61d40dc90493db8f530a9a4e
-ms.sourcegitcommit: 4661b9bb31d74731dbbb16e625be088b44ba5899
+ms.openlocfilehash: d45ec888a0082ee17718c93fc34a3df99431a254
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2018
-ms.locfileid: "51826935"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225413"
 ---
 <a name="--"></a><!--
 ---
-標題：詢問使用者問題 | Microsoft Docs 描述：了解如何使用瀑布模型在 Bot Builder SDK 要求使用者輸入多項資料。
-關鍵字：瀑布, 對話, 詢問問題, 提示 author: v-ducvo ms.author: v-ducvo manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date: 5/10/2018 monikerRange: 'azure-bot-service-4.0'
+標題：向使用者提出問題 | Microsoft Docs 描述：了解如何使用瀑布模型在 Bot Framework SDK 向使用者要求多個輸入。
+關鍵字：瀑布, 對話, 詢問問題, 提示 author: v-ducvo ms.author: v-ducvo manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date:5/10/2018 monikerRange: 'azure-bot-service-4.0'
 ---
 
 # <a name="ask-the-user-questions"></a>向使用者提出問題

@@ -1,6 +1,6 @@
 ---
 title: 攔截訊息 | Microsoft Docs
-description: 了解如何藉由使用適用於 Node.js 的 Bot 建立器 SDK 來攔截和處理資訊交換，來建立記錄檔或其他記錄。
+description: 了解如何藉由使用適用於 Node.js 的 Bot Framework SDK 來攔截和處理資訊交換，來建立記錄檔或其他記錄。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/02/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 31380961f117a2b4a3ffaae3c82d682a63001c0c
-ms.sourcegitcommit: 984705927561cc8d6a84f811ff24c8c71b71c76b
+ms.openlocfilehash: b262e936cd48bb73d7b5aa3fa4f7b6318ea7c2a0
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50965676"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225623"
 ---
 # <a name="intercept-messages"></a>攔截訊息
 
@@ -28,7 +28,7 @@ ms.locfileid: "50965676"
 
 ## <a name="example"></a>範例
 
-下列程式碼範例會示範如何使用適用於 Node.js 的 Bot 建立器 SDK 中的**中介軟體**概念，來攔截使用者與 Bot 之間交換的訊息。 
+下列程式碼範例會示範如何使用適用於 Node.js 的 Bot Framework SDK 中的**中介軟體**概念，來攔截使用者與 Bot 之間交換的訊息。 
 
 首先，設定適用於傳入訊息 (`botbuilder`) 和傳出訊息 (`send`) 的處理常式。
 
@@ -65,4 +65,4 @@ module.exports = {
 
 ## <a name="sample-code"></a>範例程式碼
 
-如需示範如何使用適用於 Node.js 的 Bot 建立器 SDK 來攔截和記錄訊息的完整範例，請參閱 GitHub 中的<a href="https://aka.ms/v3-js-capability-middlewareLogging" target="_blank">中介軟體和記錄範例</a> \(英文\)。
+如需示範如何使用適用於 Node.js 的 Bot Framework SDK 來攔截和記錄訊息的完整範例，請參閱 GitHub 中的<a href="https://aka.ms/v3-js-capability-middlewareLogging" target="_blank">中介軟體和記錄範例</a> \(英文\)。

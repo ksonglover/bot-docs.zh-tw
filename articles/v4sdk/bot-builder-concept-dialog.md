@@ -1,6 +1,6 @@
 ---
-title: Bot Builder SDK 內的對話方塊 | Microsoft Docs
-description: 說明什麼是對話方塊，以及對話方塊在 Bot Builder SDK 中的運作方是。
+title: 在 Bot Framework SDK 內的對話| Microsoft Docs
+description: 說明什麼是對話，以及其在 Bot Builder SDK 內的運作方式。
 keywords: 交談流程, 提示, 對話狀態, 辨識意圖, 單一回合, 多個回合, Bot 交談, 對話, 提示, 瀑布, 對話集
 author: johnataylor
 ms.author: johtaylo
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/28/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a1187efd3280d9ec2d74af29d1c013e916b79e5b
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: fc44701d7739ecfca662d27cad4f521caa7f4d6d
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010603"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225483"
 ---
 # <a name="dialogs-library"></a>對話方塊程式庫
 

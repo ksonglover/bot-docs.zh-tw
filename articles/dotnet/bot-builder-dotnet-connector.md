@@ -1,6 +1,6 @@
 ---
 title: 傳送及接收活動 | Microsoft Docs
-description: 了解如何透過適用於 .NET 的 Bot Builder SDK 使用 Connector 服務，跨各種通道來與使用者交換資訊。
+description: 了解如何透過適用於 .NET 的 Bot Framework SDK 使用 Connector 服務，跨各種通道來與使用者交換資訊。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 393490fd97ce0d09b4087ad7598ee30b0fdc8c0e
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 0407ec0d90c58e10aa14616e2aa9205bb8840d55
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997785"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225223"
 ---
 # <a name="send-and-receive-activities"></a>傳送及接收活動
 
@@ -22,10 +22,10 @@ ms.locfileid: "49997785"
 
 Bot Framework Connector 提供單一 REST API，讓 Bot 能夠跨多個通道 (例如 Skype、電子郵件、Slack 等) 進行通訊。 它可藉由將訊息從 Bot 轉送至通道以及從通道轉送至 Bot，讓 Bot 和使用者之間的通訊更為順暢。 
 
-本文說明如何透過適用於 .NET 的 Bot Builder SDK 使用 Connector，在通道上的 Bot 和使用者之間交換資訊。 
+本文說明如何透過適用於 .NET 的 Bot Framework SDK 使用 Connector，在通道上的 Bot 和使用者之間交換資訊。 
 
 > [!NOTE]
-> 雖然您可以獨佔方式使用本文所述的技術來建構 Bot，但 Bot Builder SDK 會提供額外功能 (例如[對話](bot-builder-dotnet-dialogs.md)和 [FormFlow](bot-builder-dotnet-formflow.md))，可以簡化管理對話流程和狀態的程序，並且能夠以更簡單的方式來合併 Language Understanding 之類的認知服務。
+> 雖然您可以獨佔方式使用本文所述的技術來建構 Bot，但 Bot Framework SDK 會提供額外功能 (例如[對話](bot-builder-dotnet-dialogs.md)和 [FormFlow](bot-builder-dotnet-formflow.md))，可以簡化管理交談流程和狀態的程序，並且能夠以更簡單的方式來合併 Language Understanding 之類的認知服務。
 
 ## <a name="create-a-connector-client"></a>建立連接器用戶端
 
@@ -44,7 +44,7 @@ Connector 會使用 [Activity](bot-builder-dotnet-activities.md) 物件，在 Bo
 
 當您的 Bot 接收來自 Connector 的活動時，傳入活動的 `Recipient` 屬性會在該對話中指定 Bot 的身分識別。 由於某些通道 (例如 Slack) 會在將 Bot 新增至對話時為其指派新的身分識別，因此，該 Bot 應一律使用傳入活動的 `Recipient` 屬性值作為其回應中 `From` 屬性的值。
 
-雖然您可以自行從頭開始建立並初始化傳出的 `Activity` 物件，但 Bot Builder SDK 還是會提供更簡單的方法來建立回覆。 藉由使用傳入活動的 `CreateReply` 方法，您只需指定回應的訊息文字，而傳出的活動會使用自動填入的 `Recipient`、`From` 和 `Conversation` 屬性來建立。
+雖然您可以自行從頭開始建立並初始化傳出的 `Activity` 物件，但 Bot Framework SDK 還是會提供更簡單的方法來建立回覆。 藉由使用傳入活動的 `CreateReply` 方法，您只需指定回應的訊息文字，而傳出的活動會使用自動填入的 `Recipient`、`From` 和 `Conversation` 屬性來建立。
 
 [!code-csharp[Create reply](../includes/code/dotnet-send-and-receive.cs#createReply)]
 
@@ -87,7 +87,7 @@ Connector 會使用 [Activity](bot-builder-dotnet-activities.md) 物件，在 Bo
 
 - [活動概觀](bot-builder-dotnet-activities.md)
 - [建立訊息](bot-builder-dotnet-create-messages.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Builder SDK 參考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Framework SDK 參考</a>
 - <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a> \(英文\)
 - <a href="/dotnet/api/microsoft.bot.connector.connectorclient" target="_blank">ConnectorClient 類別</a>
 

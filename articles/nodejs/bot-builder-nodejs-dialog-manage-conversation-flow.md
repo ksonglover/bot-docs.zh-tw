@@ -1,6 +1,6 @@
 ---
 title: 使用對話 (dialog) 管理對話 (conversation) 流程 | Microsoft Docs
-description: 了解如何使用適用於 Node.js 的 Bot 建立器 SDK 中的對話 (dialog)，來管理 Bot 與使用者之間的對話 (conversation)。
+description: 了解如何透過適用於 Node.js 的 Bot Framework SDK 中的對話，管理 Bot 與使用者之間的交談。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 133f085a857d1bb8bf7622e7adab19374902327d
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 96c28101c3ea72c70c6ad53b06306f4ea00b2929
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997765"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225603"
 ---
 # <a name="manage-conversation-flow-with-dialogs"></a>使用對話方塊管理交談流程
 
@@ -24,9 +24,9 @@ ms.locfileid: "49997765"
 > - [.NET](../dotnet/bot-builder-dotnet-manage-conversation-flow.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-dialog-manage-conversation-flow.md)
 
-管理對話流程是建置 Bot 的必要工作。 Bot 必須能夠從容地執行核心工作，並在被中斷的情況下做出適當的因應措施。 在使用適用於 Node.js 的 Bot 建立器 SDK 時，您可以使用對話 (dialog) 來管理對話 (conversation) 流程。
+管理對話流程是建置 Bot 的必要工作。 Bot 必須能夠從容地執行核心工作，並在被中斷的情況下做出適當的因應措施。 透過適用於 Node.js 的 Bot Framework SDK，您可以使用對話來管理交談流程。
 
-對話類似於程式中的函式。 它通常是設計來執行特定作業，並可視需要隨時叫用。 您可以將多個對話 (dialog) 鏈結在一起，以處理幾乎任何您想要讓 Bot 處理的對話 (conversation) 流程。 適用於 Node.js 的 Bot 建立器 SDK 包含[提示](bot-builder-nodejs-dialog-prompt.md)和[瀑布圖](bot-builder-nodejs-dialog-waterfall.md)等內建功能，可協助您管理對話流程。
+對話類似於程式中的函式。 它通常是設計來執行特定作業，並可視需要隨時叫用。 您可以將多個對話 (dialog) 鏈結在一起，以處理幾乎任何您想要讓 Bot 處理的對話 (conversation) 流程。 適用於 Node.js 的 Bot Framework SDK 包含[提示](bot-builder-nodejs-dialog-prompt.md)和[瀑布圖](bot-builder-nodejs-dialog-waterfall.md)等內建功能，可協助您管理交談流程。
 
 本文會提供一系列的範例來說明管理簡單和複雜對話 (conversation) 流程的方式，其中您的 Bot 可使用對話 (dialog) 來處理被中斷的情況，並從容地繼續該流程。 範例均以下列案例為基礎： 
 
@@ -95,7 +95,7 @@ var bot = new builder.UniversalBot(connector, [..waterfall steps..]).set('storag
 
 此範例的每個步驟都會使用提示來要求使用者輸入。 提示是一種特殊類型的對話，會要求使用者輸入，等候回應，並將該回應傳回至瀑布圖中的下一個步驟。 如需可在 Bot 中使用之各種不同類型提示的相關資訊，請參閱[提示使用者輸入](bot-builder-nodejs-dialog-prompt.md)。
 
-在此範例中，Bot 會使用 `Prompts.text()` 來要求使用者以文字格式提供自由格式的回應。 使用者可以使用任何文字來回應，而 Bot 必須決定要如何處理回應。 `Prompts.time()` 會使用 [Chrono](https://github.com/wanasit/chrono) \(英文\) 程式庫，從字串中剖析日期和時間資訊。 這可讓您的 Bot 了解更多適用於指定日期與時間的自然語言。 例如："June 6th, 2017 at 9pm" (2017 年 6 月 6 日下午 9 點)、"Today at 7:30pm" (今天下午 7:30)、"next monday at 6pm" (下週一下午 6 點) 等等。
+在此範例中，Bot 會使用 `Prompts.text()` 來要求使用者以文字格式提供自由格式的回應。 使用者可以使用任何文字來回應，而 Bot 必須決定要如何處理回應。 `Prompts.time()` 會使用 [Chrono](https://github.com/wanasit/chrono) \(英文\) 程式庫，從字串中剖析日期和時間資訊。 這可讓您的 Bot 了解更多適用於指定日期與時間的自然語言。 例如︰"June 6th, 2017 at 9pm" (2017 年 6 月 6 日下午 9 點)、"Today at 7:30pm" (今天下午 7:30)、"next monday at 6pm" (下週一下午 6 點) 等等。
 
 > [!TIP] 
 > 使用者輸入的時間會根據裝載該 Bot 之伺服器的時區轉換成 UTC 時間。 由於伺服器可能位於與使用者不同的時區，因此，請務必將時區納入考量。 若要將日期和時間轉換成使用者的當地時間，請考慮詢問使用者位於哪個時區。
@@ -174,7 +174,7 @@ bot.dialog('askForReserverName', [
 
 在引導使用者完成一系列工作的過程中，如果使用者有問題，或者想要在回答之前要求其他資訊，您該如何處理那些要求？ 例如，不論使用者處於對話的哪個位置，當使用者輸入 "Help" (說明)、"Support" (支援) 或 "Cancel" (取消) 時，Bot 該如何回應？ 如果使用者想要取得關於某個步驟的其他資訊，該怎麼辦？ 如果使用者改變心意，並想要放棄目前的工作以開始全然不同的工作，會發生什麼事？
 
-適用於 Node.js 的 Bot 建立器 SDK 可讓 Bot 接聽全域內容之內，或是位於目前對話範圍中的區域內容之內的特定輸入。 這些輸入稱為[動作](bot-builder-nodejs-dialog-actions.md)，其可讓 Bot 根據 `matches` 子句來接聽使用者輸入。 Bot 必須決定該如何回應特定的使用者輸入。
+適用於 Node.js 的 Bot Framework SDK 可讓 Bot 接聽全域內容之內，或是位於目前對話範圍中的區域內容之內的特定輸入。 這些輸入稱為[動作](bot-builder-nodejs-dialog-actions.md)，其可讓 Bot 根據 `matches` 子句來接聽使用者輸入。 Bot 必須決定該如何回應特定的使用者輸入。
 
 ### <a name="handle-global-action"></a>處理全域動作
 

@@ -6,14 +6,15 @@ ms.author: JonathanFingold
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
+ROBOTS: NOINDEX
 ms.date: 10/04/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 9b9a3594e3a1f6a93ce3d9b3314880c78b88a9c5
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 33c6f22696038ed5e9d2ae09ad2ec99d401f6a60
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998905"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317708"
 ---
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
@@ -32,7 +33,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 - 改善通道以支援全新驗證功能 (例如新的 WebChat 和 DirectLineJS 程式庫)，無須再使用 6 位數神奇代碼驗證方式。
 - 改善 Azure 入口網站，以針對不同的 OAuth 身分識別提供者新增、刪除和配置連線設定。
 - 支援各種現成的身分識別提供者服務，例如：Azure AD (包括 v1 和 v2 端點)、GitHub 等等。
-- 更新 C# 和 Node.js Bot Builder SDK，以支援擷取權杖、建立 OAuthCard 及處理 TokenResponse 事件。
+- 更新 C# 和 Node.js Bot Framework SDK，以支援擷取權杖、建立 OAuthCard 及處理 TokenResponse 事件。
 - 如何建立能針對 Azure AD (包括 v1 和 v2 端點) 和 GitHub 進行驗證之 Bot 的範例。
 
 您可從本文中的步驟推測如何將這類功能新增至現有的 Bot。 以下是展示全新驗證功能的範例 Bot
@@ -317,7 +318,7 @@ private async Task SendOAuthCardAsync(IDialogContext context, Activity activity)
 
 ### <a name="wait-for-a-tokenresponseevent"></a>等候 TokenResponseEvent
 
-在此程式碼中，Bot 的對話方塊類別正在等候 `TokenResponseEvent` (下文將詳述其如何路由至對話方塊堆疊)。 `WaitForToken` 方法會先判斷此事件是否已傳送。 如果其已傳送，則可供 Bot 使用。 如果未傳送，則 `WaitForToken` 方法將擷取任何傳送給 Bot 的文字，再將其傳遞至 `GetUserTokenAsync`。 此作法的原因是部分用戶端 (例如：WebChat) 不需要進行神奇代碼驗證碼，而可直接在 `TokenResponseEvent` 中傳送權杖。 其他用戶端 (例如：Facebook 或 Slack) 仍須使用神奇代碼。 Azure Bot 服務會向用戶端顯示一組六位數的神奇代碼，並要求使用者在聊天視窗中輸入該代碼。 此方式並非最理想的「回復」行為，因此，假如 `WaitForToke` 收到代碼，則 Bot 可將代碼傳送至 Azure Bot 服務並獲取權杖。 若此呼叫也失敗，則您可決定是否要回報錯誤或採取其他行動。 不過大部分情況下，Bot 現在都會有使用者權杖。
+在此程式碼中，Bot 的對話方塊類別正在等候 `TokenResponseEvent` (下文將詳述其如何路由至對話方塊堆疊)。 `WaitForToken` 方法會先判斷此事件是否已傳送。 如果其已傳送，則可供 Bot 使用。 如果未傳送，則 `WaitForToken` 方法將擷取任何傳送給 Bot 的文字，再將其傳遞至 `GetUserTokenAsync`。 此作法的原因是部分用戶端 (例如：WebChat) 不需要進行神奇代碼驗證碼，而可直接在 `TokenResponseEvent` 中傳送權杖。 其他用戶端 (例如：Facebook 或 Slack) 仍須使用神奇代碼。 Azure Bot 服務會向用戶端顯示一組六位數的神奇代碼，並要求使用者在聊天視窗中輸入該代碼。 此方式並非最理想的「回復」行為，因此，假如 `WaitForToken` 收到代碼，則 Bot 可將代碼傳送至 Azure Bot Service 並獲取權杖。 若此呼叫也失敗，則您可決定是否要回報錯誤或採取其他行動。 不過大部分情況下，Bot 現在都會有使用者權杖。
 
 若您檢視 **MessageController.cs** 檔案，即可發現此類型的 `Event` 活動也會路由至對話方塊堆疊。
 
@@ -363,4 +364,4 @@ else if(message.Type == ActivityTypes.Event)
 }
 ```
 ## <a name="additional-resources"></a>其他資源
-[Bot Builder SDK](https://github.com/microsoft/botbuilder)
+[Bot Framework SDK](https://github.com/microsoft/botbuilder)

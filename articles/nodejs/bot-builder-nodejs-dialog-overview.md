@@ -1,6 +1,6 @@
 ---
 title: 對話概觀 | Microsoft Docs
-description: 了解如何在適用於 Node.js 的 Bot 建立器 SDK 中使用對話 (dialog)，以建立對話 (conversation) 模型並管理對話 (conversation) 流程。
+description: 了解如何在適用於 Node.js 的 Bot Framework SDK 中使用對話，以建立交談模型並管理交談流程。
 author: DucVo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,14 +9,14 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 78f1660aaa91888655515d3402c8ad7702a5b6f6
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: dfa52914b3f0a2e81f4ff3a2f90c7404bfe53d4a
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997125"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225993"
 ---
-# <a name="dialogs-in-the-bot-builder-sdk-for-nodejs"></a>適用於 Node.js 的 Bot 建立器 SDK 中的對話
+# <a name="dialogs-in-the-bot-framework-sdk-for-nodejs"></a>適用於 Node.js 的 Bot Framework SDK 中的對話
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
@@ -24,13 +24,13 @@ ms.locfileid: "49997125"
 > - [.NET](../dotnet/bot-builder-dotnet-dialogs.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-dialog-overview.md)
 
-適用於 Node.js 的 Bot 建立器 SDK 中的對話 (dialog) 可讓您建立對話 (conversation) 模型並管理對話 (conversation) 流程。 Bot 會透過對話與使用者通訊。 對話 (conversation) 會被組織為對話 (dialog)。 對話可以包含瀑布圖步驟和提示。 當使用者與 Bot 互動時，Bot 將會開始和停止對話，以及在對話之間切換，以回應使用者訊息。 了解對話的運作方式是成功設計和建立絕佳 Bot 的關鍵。 
+適用於 Node.js 的 Bot Framework SDK 中的對話，可讓您建立交談模型及管理交談流程。 Bot 會透過對話與使用者通訊。 對話 (conversation) 會被組織為對話 (dialog)。 對話可以包含瀑布圖步驟和提示。 當使用者與 Bot 互動時，Bot 將會開始和停止對話，以及在對話之間切換，以回應使用者訊息。 了解對話的運作方式是成功設計和建立絕佳 Bot 的關鍵。 
 
 本文將會介紹對話的概念。 在您讀完本文之後，請接著依照[後續步驟](#next-steps)一節中的連結深入探索這些概念。
 
 ## <a name="conversations-through-dialogs"></a>透過對話 (dialog) 進行對話 (conversation)
 
-適用於 Node.js 的 Bot 建立器 SDK 將對話 (conversation) 定義為 Bot 與使用者之間透過一或多個對話 (dialog) 所進行的通訊。 對話就最基本層級而言是一個可重複使用的模組，可以執行作業或收集使用者的資訊。 您可以將 Bot 的複雜邏輯封裝於可重複使用的對話程式碼中。
+適用於 Node.js 的 Bot Framework SDK 將交談定義為 Bot 與使用者之間透過一或多個對話所進行的通訊。 對話就最基本層級而言是一個可重複使用的模組，可以執行作業或收集使用者的資訊。 您可以將 Bot 的複雜邏輯封裝於可重複使用的對話程式碼中。
 
 對話可以數種方式進行結構化及變更：
 

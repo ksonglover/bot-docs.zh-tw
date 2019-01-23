@@ -1,6 +1,6 @@
 ---
 title: 將輸入提示新增至訊息 | Microsoft Docs
-description: 了解如何使用 Bot 建立器 SDK 將輸入提示新增至訊息。
+description: 了解如何使用 Bot Framework SDK 將輸入提示新增至訊息。
 keywords: Inputhints, 接受輸入, 必須有輸入, 忽略輸入, 語音
 author: ivorb
 ms.author: v-ivorb
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 08/24/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d55accd5ad9ad7db12d0b0e6865e04dcf7718110
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 751d5067d2e4b6b6ad21e1a4fd0ccb3818385d06
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996736"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224873"
 ---
 # <a name="add-input-hints-to-messages"></a>將輸入提示新增至訊息
 
@@ -118,9 +118,9 @@ await context.sendActivity(basicMessage);
 
 ## <a name="default-values-for-input-hint"></a>輸入提示的預設值
 
-如果您未設定訊息的輸入提示，Bot 建立器 SDK 會使用下列邏輯自動為您設定：
+如果您未設定訊息的輸入提示，Bot Framework SDK 會使用下列邏輯自動為您設定：
 
-- 如果 Bot 傳送提示，訊息的輸入提示會指定 Bot **必須有輸入**。</li>
+- 如果 Bot 傳送提示，訊息的輸入提示將指定 Bot **需要輸入**。</li>
 - 如果 Bot 傳送單一訊息，訊息的輸入提示會指定 Bot **接受輸入**。</li>
 - 如果 Bot 傳送一系列的連續訊息，所有訊息 (系列中的最後一則訊息除外) 的輸入提示會指定 Bot 會**忽略輸入**，而且系列中最後一則訊息的輸入提示會指定 Bot 會**接受輸入**。
 

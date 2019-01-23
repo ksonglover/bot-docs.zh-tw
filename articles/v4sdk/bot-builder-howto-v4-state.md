@@ -1,6 +1,6 @@
 ---
 title: 儲存使用者和對話資料 | Microsoft Docs
-description: 了解如何藉由 Bot Builder SDK 儲存及擷取資料。
+description: 了解如何透過 Bot Framework SDK 儲存及擷取資料。
 keywords: 交談狀態, 使用者狀態, 交談, 儲存狀態, 管理 Bot 狀態
 author: ivorb
 ms.author: v-ivorb
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/26/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8c3aad54a9e80e8a046a6e31a5109a1de8c61a8b
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: 8c3696d0642e1b1ce9c3d3e23118a7bd9ab0023b
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010503"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224583"
 ---
 # <a name="save-user-and-conversation-data"></a>儲存使用者和對話資料
 

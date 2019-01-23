@@ -1,7 +1,7 @@
 ---
 title: 使用 .NET 建置 Cortana 技能 | Microsoft Docs
-description: 了解在適用於 .NET 的 Bot 建立器 SDK 中建置 Cortana 技能的核心概念。
-keywords: Bot Framework, Cortana 技能, 語音, .NET, Bot 建立器, SDK, 重要概念, 核心概念
+description: 了解在適用於 .NET 的 Bot Framework SDK 中建置 Cortana 技能的核心概念。
+keywords: Bot Framework, Cortana 技能, 語音, .NET, SDK, 重要概念, 核心概念
 author: DeniseMak
 manager: kamrani
 ms.topic: article
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 030d17fa25a436ee8e8a1d093924e61f12e14e18
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 98fc10a806a4c8d1a4d6563934d92b0e0cdbb771
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998301"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224773"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能建置啟用語音的 Bot
 
@@ -25,7 +25,7 @@ ms.locfileid: "49998301"
 > - [Node.js](../nodejs/bot-builder-nodejs-cortana-skill.md)
 
 
-適用於 .NET 的 Bot 建立器 SDK 可藉由將 Bot 連線到 Cortana 通道作為 Cortana 技能，讓您建置啟用語音的 Bot。 
+適用於 .NET 的 Bot Framework SDK 可藉由將 Bot 連線到 Cortana 通道作為 Cortana 技能，讓您建置啟用語音的 Bot。 
 
 
 > [!TIP]
@@ -38,7 +38,7 @@ ms.locfileid: "49998301"
 
 ## <a name="adding-speech-to-your-bot"></a>將語音新增至您的 Bot
 
-Bot 的語音訊息會表示為語音合成標記語言 (SSML)。 Bot 建立器 SDK 可讓您將 SSML 包含在 Bot 的回應中，以在 Bot 顯示的內容之外控制 Bot 所說內容。  您也可以指定 Bot 是否接受、預期還是略過使用者輸入，來控制 Cortana 的麥克風狀態。
+Bot 的語音訊息會表示為語音合成標記語言 (SSML)。 Bot Framework SDK 可讓您將 SSML 包含在 Bot 的回應中，以在 Bot 顯示的內容之外控制 Bot 所說內容。  您也可以指定 Bot 是否接受、預期還是略過使用者輸入，來控制 Cortana 的麥克風狀態。
 
 設定 `IMessageActivity` 物件的 `Speak` 屬性，可指定 Cortana 說出的訊息。 如果您指定純文字，Cortana 會決定單字發音的方式。 
 
@@ -335,7 +335,7 @@ The following code demonstrates how to add the `Speak` and `InputHint` propertie
 * [Cortana 的卡片設計最佳做法][CardDesign]
 * [Cortana 開發人員中心][CortanaDevCenter]
 * [Cortana 的測試和偵錯最佳做法][Cortana-TestBestPractice]
-* <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot 建立器 SDK 參考</a>
+* <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Framework SDK 參考</a>
 
 [CortanaGetStarted]: /cortana/getstarted
 [BFPortal]: https://dev.botframework.com/

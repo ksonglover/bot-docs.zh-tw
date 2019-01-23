@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 8eb125b2d0f0c9981cafb763ba809c7d042d8f77
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225983"
+---
 Bot 服務會針對 Bot 提供兩種的不同主控方案。 將 Bot 原始程式碼從一個方案轉換為另一個方案，必須以手動方式進行。   
 
 ## <a name="app-service-plan"></a>App Service 方案
@@ -7,7 +15,7 @@ Bot 服務會針對 Bot 提供兩種的不同主控方案。 將 Bot 原始程�
 * 使用進階的瀏覽器內程式碼編輯器，在線上編輯 Bot 原始程式碼。
 * 使用 Visual Studio 來對您的 C# Bot 進行下載、偵錯及重新發佈。
 * 輕鬆設定適用於 Visual Studio Online 和 Github 的持續部署。
-* 使用針對 Bot 建立器 SDK 準備的範例程式碼。
+* 使用針對 Bot Framework SDK 準備的範例程式碼。
 
 ## <a name="consumption-plan"></a>取用方案
 

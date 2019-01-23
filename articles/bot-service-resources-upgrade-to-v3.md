@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 3e99828e7c26b10c39bef4c8db79f92ff5f2b30c
-ms.sourcegitcommit: 49a76dd34d4c93c683cce6c2b8b156ce3f53280e
+ms.openlocfilehash: 8d9b2ea2e2133c86428b537427433f9dd15216ee
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/26/2018
-ms.locfileid: "50134708"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225943"
 ---
 # <a name="upgrade-your-bot-to-bot-framework-api-v3"></a>將 Bot 升級為 Bot Framework API 第 3 版
 
@@ -84,7 +84,7 @@ V1 Bot 不再相容。 若要更新 Bot，您必須改為建立 V3 以下的新 
 <!-- TODO: Remove outdated code 
 To update your bot code to version 3.0, complete these steps:
 
-1. Update to the latest version of the [Bot Builder SDK](https://github.com/Microsoft/BotBuilder) for your bot's language.
+1. Update to the latest version of the [Bot Framework SDK](https://github.com/Microsoft/BotBuilder) for your bot's language.
 2. Update your code to apply the necessary changes, according the guidance below.
 3. Use the [Bot Framework Emulator](~/bot-service-debug-emulator.md) to test your bot locally and then in the cloud.
 
@@ -93,10 +93,10 @@ The following sections describe the key differences between API v1 and API v3. A
 
 ### <a name="botbuilder-and-connector-are-now-one-sdk"></a>Bot 建立器和連接器現在是一個 SDK
 
-您現在可以在單一 Bot 建立器 SDK 中取得這兩個程式庫，而不需要使用多個 NuGet 套件 (或 NPM 模組) 為建立器和連接器安裝個別的 SDK：
+您現在可以在單一 Bot Framework SDK 中取得這兩個程式庫，而不需要使用多個 NuGet 套件 (或 NPM 模組) 為建立器和連接器安裝個別的 SDK：
 
-- 適用於 .NET 的 Bot 建立器 SDK：`Microsoft.Bot.Builder` NuGet 套件
-- 適用於 Node.js 的 Bot 建立器 SDK：`botbuilder` NPM 模組
+- 適用於 .NET 的 Bot Framework SDK：`Microsoft.Bot.Builder` NuGet 套件
+- 適用於 Node.js 的 Bot Framework SDK：`botbuilder` NPM 模組
 
 獨立的 `Microsoft.Bot.Connector` SDK 現在已淘汰，不再進行維護。
 

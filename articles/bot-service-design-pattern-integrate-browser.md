@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: e3833595003edda46a6ffd1d508237262aad94e1
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 20ca2864b6498b0d80bea13ce97ffffc4cf1f22d
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999225"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225923"
 ---
 # <a name="integrate-your-bot-with-a-web-browser"></a>整合 Bot 和網頁瀏覽器
 
@@ -73,7 +73,7 @@ ms.locfileid: "49999225"
 
 ### <a id="website-signal-to-bot"></a> 網站如何向 Bot 傳送「訊號」？
 
-Bot [產生使用者按下後會開始網站流程的超連結](#generate-hyperlink)後， 超連結會加入透過目標 URL 中的查詢字串參數取得之目前交談環境的相關資訊 (例如交談識別碼、通道識別碼和通道中的使用者識別碼)。 網站隨後會針對該使用 Bot Builder SDK 或 REST API 的使用者或交談，使用這類資訊來讀取並寫入狀態變數。 請參閱上述[步驟 6](#signal-to-bot)，了解網站如何向已完成網站流程的 Bot 傳送「訊號」。
+Bot [產生使用者按下後會開始網站流程的超連結](#generate-hyperlink)後， 超連結會加入透過目標 URL 中的查詢字串參數取得之目前交談環境的相關資訊 (例如交談識別碼、通道識別碼和通道中的使用者識別碼)。 網站隨後會針對該使用 Bot Framework SDK 或 REST API 的使用者或交談，使用這類資訊來讀取並寫入狀態變數。 請參閱上述[步驟 6](#signal-to-bot)，了解網站如何向已完成網站流程的 Bot 傳送「訊號」。
 
 ## <a name="sample-code"></a>範例程式碼
 

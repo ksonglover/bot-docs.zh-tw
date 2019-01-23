@@ -2,19 +2,19 @@
 title: 將 Bot 連線至 Slack | Microsoft Docs
 description: 深入了解如何設定 Bot 與 Slack 的連線。
 keywords: 連線 Bot, Bot 通道, Slack Bot, Slack 傳訊應用程式
-author: RobStand
-ms.author: kamrani
+author: JonathanFingold
+ms.author: v-jofing
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: f69cfa4c67a1f628d835f0d96903065b8b033d32
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 01/09/2019
+ms.openlocfilehash: 3573103e1d1c55e3ad648ad68d84674a98b397f7
+ms.sourcegitcommit: 8161753641368567f239e24a35ad61768acccd8e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000125"
+ms.lasthandoff: 01/10/2019
+ms.locfileid: "54202556"
 ---
 # <a name="connect-a-bot-to-slack"></a>將 Bot 連線至 Slack
 
@@ -68,9 +68,11 @@ ms.locfileid: "50000125"
 
 1. 選取 [事件訂用帳戶] 索引標籤。
 2. 將 [啟用事件] 設定為 [開啟]。
-3. 在 [要求 URL] 中輸入此 URL，但以您的 Bot 控制代碼取代 `{YourBotHandle}`。 本教學課程中使用的 Bot 控制代碼為 testChannels。
-        `https://slack.botframework.com/api/Events/{YourBotHandle}`
-4. 在 [訂閱工作區事件] 中，按一下 [新增工作區事件]。
+3. 在 [要求 URL] 中輸入 `https://slack.botframework.com/api/Events/{YourBotHandle}`，其中 `{YourBotHandle}` 是您的 Bot 控制代碼 (不含大括號)。 本範例中使用的 Bot 控制代碼為 **ContosoBot**。
+
+   ![訂閱事件：頂端](~/media/channels/slack-SubscribeEvents-a.png)
+
+4. 在 [訂閱 Bot 事件] 中，按一下 [新增 Bot 使用者事件]。
 5. 在事件清單中，選取以下六個事件類型：
     * `member_joined_channel`
     * `member_left_channel`
@@ -79,8 +81,11 @@ ms.locfileid: "50000125"
     * `message.im`
     * `message.mpim`
 
-![訂閱事件](~/media/channels/slack-SubscribeEvents.png)
+   ![訂閱事件：中間](~/media/channels/slack-SubscribeEvents-b.png)
+
 6. 按一下 [儲存變更] 。
+
+   ![訂閱事件：底部](~/media/channels/slack-SubscribeEvents-c.png)
 
 ## <a name="add-and-configure-interactive-messages-optional"></a>新增和設定互動式訊息 (選擇性)
 

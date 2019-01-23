@@ -1,6 +1,6 @@
 ---
 title: 對話概觀 | Microsoft Docs
-description: 了解如何在適用於 .NET 的 Bot 建立器 SDK 中使用對話，以建立交談模型並管理交談流程。
+description: 了解如何在適用於 .NET 的 Bot Framework SDK 中使用對話，建立交談模型及管理交談流程。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,14 +9,14 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 943b206e4991c52f22928d2113977249ff9d9e04
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3089e7a073f6a6d9af3a3720954af3a915106888
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997575"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224993"
 ---
-# <a name="dialogs-in-the-bot-builder-sdk-for-net"></a>適用於 .NET 的 Bot 建立器 SDK 中的對話
+# <a name="dialogs-in-the-bot-framework-sdk-for-net"></a>適用於 .NET 的 Bot Framework SDK 中的對話
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
@@ -24,9 +24,9 @@ ms.locfileid: "49997575"
 > - [.NET](../dotnet/bot-builder-dotnet-dialogs.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-dialog-overview.md)
 
-當您使用適用於 .NET 的 Bot 建立器 SDK 建立 Bot 時，您可以使用對話來建立交談模型，並管理[交談流程](../bot-service-design-conversation-flow.md)。 每個對話都是抽象概念，可在實作 `IDialog` 的 C# 類別中封裝本身的狀態。 對話可使用其他對話組成以便充分地重複使用，而且對話內容會維護[對話的堆疊](../bot-service-design-conversation-flow.md#dialog-stack)，這些對話在交談的任何時間點均處於作用中狀態。 
+當您使用適用於 .NET 的 Bot Framework SDK 建立 Bot 時，您可以使用對話來建立交談模型及管理[交談流程](../bot-service-design-conversation-flow.md)。 每個對話都是抽象概念，可在實作 `IDialog` 的 C# 類別中封裝本身的狀態。 對話可使用其他對話組成以便充分地重複使用，而且對話內容會維護[對話的堆疊](../bot-service-design-conversation-flow.md#dialog-stack)，這些對話在交談的任何時間點均處於作用中狀態。 
 
-由對話組成的交談可移植到不同電腦，這使得您的 Bot 實作能夠加以調整。 當您在適用於 .NET 的 Bot 建立器 SDK 中使用對話時，交談狀態 (對話堆疊和堆疊中每個對話的狀態) 會自動儲存到您選擇的[狀態資料](bot-builder-dotnet-state.md)儲存體。 這可讓 Bot 的服務程式碼成為無狀態，如同 Web 應用程式不需要在 Web 伺服器記憶體中儲存工作階段狀態一樣。 
+由對話 \(dialog\) 組成的對話 \(conversation\) 可移植到不同電腦，這使得您的 Bot 實作能夠加以調整。 當您在適用於 .NET 的 Bot Framework SDK 中使用對話時，交談狀態 (對話堆疊和堆疊中每個對話的狀態) 會自動儲存到您選擇的[狀態資料](bot-builder-dotnet-state.md)儲存體。 這可讓 Bot 的服務程式碼成為無狀態，如同 Web 應用程式不需要在 Web 伺服器記憶體中儲存工作階段狀態一樣。 
 
 ## <a name="echo-bot-example"></a>回應 Bot 範例
 
@@ -37,7 +37,7 @@ ms.locfileid: "49997575"
 
 ### <a name="messagescontrollercs"></a>MessagesController.cs 
 
-在適用於 .NET 的 Bot 建立器 SDK 中，[Builder][builderLibrary] 程式庫可讓您實作對話。 若要存取相關類別，請匯入 `Dialogs` 命名空間。
+在適用於 .NET 的 Bot Framework SDK 中，[Builder][builderLibrary] 程式庫可讓您實作對話。 若要存取相關類別，請匯入 `Dialogs` 命名空間。
 
 [!code-csharp[Using statement](../includes/code/dotnet-dialogs.cs#usingStatement)]
 
@@ -53,7 +53,7 @@ ms.locfileid: "49997575"
 
 `Post` 方法已標記為 `async`，因為 Bot 建立器使用 C# 功能來處理非同步通訊。 它會傳回 `Task` 物件，代表負責傳送傳入訊息回覆的工作。 如果發生例外狀況，方法所傳回的 `Task` 將會包含例外狀況資訊。 
 
-`Conversation.SendAsync` 方法是使用適用於 .NET 的 Bot 建立器 SDK 實作對話的關鍵。 它會遵循<a href="https://en.wikipedia.org/wiki/Dependency_inversion_principle" target="_blank">相依性反轉準則</a>，並執行下列步驟：
+`Conversation.SendAsync` 方法是使用適用於 .NET 的 Bot Framework SDK 實作對話的關鍵。 它會遵循<a href="https://en.wikipedia.org/wiki/Dependency_inversion_principle" target="_blank">相依性反轉準則</a>，並執行下列步驟：
 
 1. 具現化必要元件  
 2. 從 `IBotDataStore` 將交談狀態 (對話堆疊和堆疊中每個對話的狀態) 還原序列化
@@ -81,7 +81,7 @@ ms.locfileid: "49997575"
 
 ## <a name="dialog-context"></a>對話內容
 
-傳入每個對話方法的 `IDialogContext` 介面可存取對話所需的服務，用來儲存狀態並與通道進行通訊。 `IDialogContext`　介面包含三個介面：[Internals.IBotData][iBotData]、[Internals.IBotToUser][iBotToUser] 和 [Internals.IDialogStack][iDialogStack]。 
+傳入每個對話方法的 `IDialogContext` 介面可存取對話所需的服務，用來儲存狀態並與通道進行通訊。 `IDialogContext` 介面包含三個介面：[Internals.IBotData][iBotData]、[Internals.IBotToUser][iBotToUser] 和 [Internals.IDialogStack][iDialogStack]。 
 
 ### <a name="internalsibotdata"></a>Internals.IBotData
 

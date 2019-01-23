@@ -1,6 +1,6 @@
 ---
 title: 重複使用對話方塊 | Microsoft Docs
-description: 了解如何在適用於 Node.js 的 Bot 建立器 SDK 和 C# 中，使用對話方塊容器將 Bot 邏輯模組化。
+description: 了解如何在適用於 Node.js 的 Bot Framework SDK 和 C# 中，使用對話容器將 Bot 邏輯模組化。
 keywords: 複合控制項, 模組化 Bot 邏輯
 author: v-ducvo
 ms.author: v-ducvo
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5e1ddbef6181e265213ffa1fdcb65909e524be51
-ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
+ms.openlocfilehash: 3f4b2dd49b738132affd19fea8fd5dbfbd6ff99e
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51332992"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224563"
 ---
 # <a name="reuse-dialogs"></a>重複使用對話方塊
 

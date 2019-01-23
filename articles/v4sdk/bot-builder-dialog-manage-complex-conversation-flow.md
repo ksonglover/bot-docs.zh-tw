@@ -1,6 +1,6 @@
 ---
 title: 使用分支和迴圈建立進階交談流程 | Microsoft Docs
-description: 了解如何在 Bot Builder SDK 中使用對話來管理複雜的交談流程。
+description: 了解如何在 Bot Framework SDK 中透過對話來管理複雜的交談流程。
 keywords: 複雜對話流程, 重複, 迴圈, 選單, 對話方塊, 提示, 瀑布, 對話方塊集
 author: JonathanFingold
 ms.author: v-jofing
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/28/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: da891fad019fc1725242404905565bb1072f8540
-ms.sourcegitcommit: 4db09039effc5259feba163128f4e9a3ccdd3d0d
+ms.openlocfilehash: 27bcd53e9f3d582a1206c5ed74cc844acab795b4
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/29/2018
-ms.locfileid: "52585889"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225883"
 ---
 # <a name="create-advanced-conversation-flow-using-branches-and-loops"></a>使用分支和迴圈建立進階的交談流程
 

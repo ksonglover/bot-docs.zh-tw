@@ -1,6 +1,6 @@
 ---
 title: 對話方塊 | Microsoft Docs
-description: 深入了解如何使用適用於 Node.js 的 Bot 建立器 SDK，取代重新提示輸入的對話方塊，並且管理對話流程。
+description: 深入了解如何使用適用於 Node.js 的 Bot Framework SDK，取代重新提示輸入的對話及管理交談流程。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,22 +9,22 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 30ac28f5ce700829b8c382c49905883ffa45da29
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 58d2c3fc4a1fb266b74402541fc937f0b52fa189
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000055"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224983"
 ---
 # <a name="replace-dialogs"></a>取代對話方塊
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-當您需要在對話過程中驗證使用者輸入或者重複動作時，取代對話方塊的能力很有用。 有了適用於 Node.js 的 Bot 建立器 SDK，您就可以藉由使用 [`session.replaceDialog`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#replacedialog) 方法來取代對話方塊。 這個方法可讓您結束目前的對話，不用傳回給來電者就可以新的對話加以取代。 
+當您需要在對話過程中驗證使用者輸入或者重複動作時，取代對話方塊的能力很有用。 透過適用於 Node.js 的 Bot Framework SDK，您可藉由使用 [`session.replaceDialog`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#replacedialog) 方法來取代對話。 這個方法可讓您結束目前的對話，不用傳回給來電者就可以新的對話加以取代。 
 
 ## <a name="create-custom-prompts-to-validate-input"></a>建立自訂提示來驗證輸入
 
-適用於 Node.js 的 Bot 建立器 SDK 包括某些類型[提示](bot-builder-nodejs-dialog-prompt.md) (例如 `Prompts.time` 和 `Prompts.choice`) 的輸入驗證。 若要驗證您為了回應 `Prompts.text` 所收到的文字輸入，您必須建立自己的驗證邏輯和自訂提示。 
+適用於 Node.js 的 Bot Framework SDK 包括某些類型[提示](bot-builder-nodejs-dialog-prompt.md) (例如 `Prompts.time` 和 `Prompts.choice`) 的輸入驗證。 若要驗證您為了回應 `Prompts.text` 所收到的文字輸入，您必須建立自己的驗證邏輯和自訂提示。 
 
 如果驗證必須符合您定義的特定值、模式、範圍或準則，建議您驗證輸入。 如果輸入驗證失敗，Bot 可以藉由使用 `session.replaceDialog` 方法，再次提示使用者該資訊。
 
