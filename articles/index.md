@@ -9,20 +9,21 @@ layout: LandingPage
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 01/16/2019
-ms.openlocfilehash: 5c7851bdc05180605d20698f3e94e07c9bcace2b
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
+ms.openlocfilehash: 37eaee297c8b0e9483f9baa8a24cf639043d3a25
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360768"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453842"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
-> [!NOTE]
-> 本主題適用於**舊版的 SDK (v3)**。 您可以在[這裡](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)找到目前版本的 SDK (v4) 文件。
-
 <div class="content">
     <h1>Azure Bot 服務文件</h1>
+    <div class="alert is-info">
+        <p class="alert-title"><span class="docon docon-status-error-outline"></span> 附註</p>
+        <p>本主題適用於<strong>舊版的 SDK (v3)</strong>。 您可以在<a href="https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0" data-linktype="external">這裡</a>找到目前版本的 SDK (v4) 文件。</p>
+    </div>
     <div class="intro" style="min-width: 200px">
         <p>Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot Framework SDK，並支援 .NET 和 Node.js。 了解如何透過我們的快速入門和範例使用 Bot 服務。</p>
     </div>
@@ -67,11 +68,12 @@ ms.locfileid: "54360768"
 
 ::: moniker range="azure-bot-service-4.0"
 
-> [!NOTE] 
-> 本主題適用於目前版本的 SDK (v4)。 您可以在[這裡](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-3.0)找到舊版的 SDK (v3) 文件。
-
 <div class="content">
     <h1>Azure Bot 服務文件</h1>
+    <div class="alert is-info">
+        <p class="alert-title"><span class="docon docon-status-error-outline"></span> 附註</p>
+        <p>本主題適用於目前版本的 SDK (v4)。 您可以在<a href="https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-3.0" data-linktype="external">這裡</a>找到舊版的 SDK (v3) 文件。</p>
+    </div>
     <div class="intro" style="min-width: 200px">
         <p>Azure Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot Framework SDK，並支援 C# 和 JavaScript。 了解如何透過我們的快速入門、教學課程和範例使用 Bot 服務。
 </p>
