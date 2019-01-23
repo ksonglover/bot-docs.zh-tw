@@ -1,6 +1,6 @@
 ---
 title: 使用 CLI 工具管理 Bot
-description: Bot Builder 工具可讓您直接從命令列管理 Bot 資源
+description: Bot Framework 工具可讓您直接從命令列管理 Bot 資源
 keywords: botbuilder 範本, ludown, qna, luis, msbot, 管理, cli, .bot, bot
 author: ivorb
 ms.author: v-ivorb
@@ -10,16 +10,16 @@ ms.service: bot-service
 ms.subservice: tools
 ms.date: 11/13/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5ffaf9a946e1a540b82819b7f745200f47384819
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: f9eafa708be2ce597ec2679fb6975d7da71951ea
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645658"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225873"
 ---
 # <a name="manage-bots-using-cli-tools"></a>使用 CLI 工具管理 Bot
 
-Bot Builder 工具涵蓋端對端 Bot 開發工作流程，其中包括規劃、建置、測試、發佈、連線及評估階段。 我們來看看這些工具如何協助您進行開發週期中的每個階段。
+Bot Framework 工具涵蓋端對端 Bot 開發工作流程，其中包括規劃、建置、測試、發佈、連線及評估階段。 我們來看看這些工具如何協助您進行開發週期中的每個階段。
 
 ## <a name="plan"></a>規劃
 
@@ -60,7 +60,6 @@ user: thanks
 bot:
 Here's a form for you
 [Attachment=card.json adaptivecard]
-
 ```
 
 ### <a name="create-a-transcript-file-from-chat-file"></a>從 .chat 檔案建立文字記錄檔
@@ -98,30 +97,33 @@ LUDown 工具可用來建立適用於 LUIS 和 QnA 的新 .json 模型。
 
 .lu 檔案格式也會使用下列標記法支援 QnA 組合： 
 
-```LUDown
+~~~LUDown
 > comment
 ### ? question ?
   ```markdown
     answer
   ```
+~~~
 
 LUDown 工具會自動將問題和解答分開到 qnamaker JSON 檔案，以便您可用來建立您的新 [QnaMaker.ai](http://qnamaker.ai) (英文) 知識庫。
 
-```LUDown
+~~~LUDown
 ### ? How do I change the default message for QnA Maker?
   ```markdown
   You can change the default message if you use the QnAMakerDialog. 
-  See [this link](https://docs.botframework.com/en-us/azure-bot-service/templates/qnamaker/#navtitle) for details. 
+  See [this link](https://docs.botframework.com/en-us/azure-bot-service/templates/qnamaker/#navtitle) for details.
   ```
+~~~
 
 您也可以將多個問題新增到相同的答案，只需針對單一解答新增問題變化的新行即可。
 
-```LUDown
+~~~LUDown
 ### ? What is your name?
 - What should I call you?
   ```markdown
     I'm the echoBot! Nice to meet you.
   ```
+~~~
 
 ### <a name="generate-json-models-with-ludown"></a>使用 LUDown 產生 .json 模型
 
@@ -232,21 +234,37 @@ dispatch create -b <YOUR-BOT-FILE> | msbot connect dispatch --stdin
 
 ## <a name="publish"></a>發佈
 
-您可以使用 Azure CLI 來建立和下載 Bot，並將其發佈至 Azure Bot Service。 透過下列命令安裝 Bot 擴充功能： 
+您可以使用 Azure CLI 來建立和下載 Bot，並將其發佈至 Azure Bot Service。
+
+使用 msbot 4.3.2 和更新版本，您需要 Azure CLI 2.0.53 版或更新版本。 如果您安裝了 botservice 擴充功能，則使用此命令加以移除。
+
 ```shell
-az extension add -n botservice
+az extension remove --name botservice
 ```
 
 ### <a name="create-azure-bot-service-bot"></a>建立 Azure Bot Service Bot
 
-附註：您必須使用最新版的 `az cli`。 請升級，以便 az cli 搭配 MSBot 工具運作。 
+注意：您必須使用最新版的 `az cli`。 請升級，以便 az cli 搭配 MSBot 工具運作。
 
-透過下列命令登入您的 Azure 帳戶 
+透過下列命令登入您的 Azure 帳戶
+
 ```shell
 az login
 ```
 
-登入後，您可以使用下列命令來建立新的 Azure Bot Service Bot： 
+如果您還沒有可供發佈 Bot 的資源群組，請建立一個：
+
+```shell
+az group create --name <resource-group-name> --location <geographic-location> --verbose
+```
+
+| 選項 | 說明 |
+|:---|:---|
+| --name | 資源群組的唯一名稱。 請勿在名稱中包含空格或底線。 |
+| --location | 用來建立資源群組的地理位置。 例如，`eastus`、`westus` 及 `westus2` 等等。 使用 `az account list-locations` 來取得位置清單。 |
+
+然後，建立您將在其中發佈 Bot 的 Bot 資源。
+
 ```shell
 az bot create [options]
 ```
@@ -303,7 +321,7 @@ Group
 ```
 
 ## <a name="additional-information"></a>其他資訊
-- [GitHub 上的 Bot Builder 工具][cliTools]
+- [GitHub 上的 Bot Framework 工具][cliTools]
 
 <!-- Footnote links -->
 

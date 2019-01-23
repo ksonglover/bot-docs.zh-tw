@@ -1,6 +1,6 @@
 ---
 title: 處理使用者動作 | Microsoft Docs
-description: 了解如何使用適用於 Node.js 的 Bot 建立器 SDK，藉由讓 Bot 聽取和處理包含某些關鍵字的使用者輸入，來處理使用者動作。
+description: 了解如何使用適用於 Node.js 的 Bot Framework SDK，藉由讓 Bot 聽取和處理包含某些關鍵字的使用者輸入，來處理使用者動作。
 author: DucVo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 26f6e9520fe5d2ebb83ceb4e6a497a35e9d2611f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 7ca595b1c24769addfbdf7975c48d3a052c4a2de
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999255"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54226003"
 ---
 # <a name="handle-user-actions"></a>處理使用者動作
 
@@ -236,7 +236,7 @@ bot.dialog('orderDinner', [
 
 ### <a name="bind-an-endconversationaction"></a>繫結 endConversationAction
 
-繫結 `endConversationAction` 會將其註冊至對話方塊中。 一經觸發，這個動作就會結束與使用者的對話。 觸發此動作類似於呼叫 [endConversation](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#endconversation) 方法。 對話結束後，適用於 Node.js 的 Bot 建立器 SDK 會清除對話方塊堆疊和保存的狀態資料。 如需所保存狀態資料的詳細資訊，請參閱[管理狀態資料](bot-builder-nodejs-state.md)。
+繫結 `endConversationAction` 會將其註冊至對話方塊中。 一經觸發，這個動作就會結束與使用者的對話。 觸發此動作類似於呼叫 [endConversation](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#endconversation) 方法。 交談結束後，適用於 Node.js 的 Bot Framework SDK 會清除對話堆疊和保存的狀態資料。 如需所保存狀態資料的詳細資訊，請參閱[管理狀態資料](bot-builder-nodejs-state.md)。
 
 下列程式碼片段說明如何將 [endConversationAction][endConversationAction] 繫結至對話方塊。
 
