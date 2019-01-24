@@ -8,20 +8,22 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/30/2018
+ms.date: 01/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3293fa18be514fefb04240899d2318fa6f64bade
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
+ms.openlocfilehash: 7b7f8012176de5248e1962b6f29128284441a798
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360778"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453912"
 ---
 # <a name="create-a-bot-with-the-bot-framework-sdk-for-javascript"></a>使用適用於 JavaScript 的 Bot Framework SDK 建立 Bot
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 本快速入門會逐步引導您使用 Yeoman Bot Builder 產生器和適用於 JavaScript 的 Bot Framework SDK 建置單一 Bot，然後使用 Bot Framework 模擬器進行測試。
+
+[!INCLUDE [Azure vs local development](~/includes/snippet-quickstart-paths.md)]
 
 [!INCLUDE [javascript quickstart](~/includes/quickstart-javascript.md)]
 

@@ -7,13 +7,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: a3d6bd957b835a0b8d86e47595ce28506c32d636
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 01/16/2019
+ms.openlocfilehash: 7464e6f19ac1cd1a5744af845bd62c3a48cd2eb8
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224553"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453822"
 ---
 # <a name="key-concepts"></a>重要概念
 
@@ -50,7 +50,7 @@ Bot Framework 提供可用於在 C# 或 Node.js 中建置 Bot 的用戶端程式
 除了建構 Bot 連接器服務和 Bot 狀態服務模型，每個 Bot Framework SDK 也都提供強大的功能，可建置封裝交談邏輯的對話、簡單項目的內建提示 (如是/否)、字串、數字和列舉、功能強大之 AI 架構 (如 <a href="https://www.luis.ai/" target="_blank">LUIS</a>) 的支援等等。 
 
 > [!NOTE]
-> 除了使用 C# SDK 或 Node.js SDK，您也可以改為使用 <a href="https://raw.githubusercontent.com/Microsoft/BotBuilder/master/CSharp/Library/Microsoft.Bot.Connector.Shared/Swagger/ConnectorAPI.json" target="_blank">Bot 連接器 Swagger 檔案</a>和 <a href="https://raw.githubusercontent.com/Microsoft/BotBuilder/master/CSharp/Library/Microsoft.Bot.Connector.Shared/Swagger/StateAPI.json" target="_blank">Bot 狀態 Swagger 檔案</a>以您所選的程式設計語言產生自己用戶端程式庫。
+> 除了使用 C# SDK 或 Node.js SDK，您也可以改為使用 <a href="https://aka.ms/connector-swagger-file" target="_blank">Bot 連接器 Swagger 檔案</a>和 <a href="https://aka.ms/state-swagger-file" target="_blank">Bot 狀態 Swagger 檔案</a>以您所選的程式設計語言產生自己用戶端程式庫。
 
 ## <a name="additional-resources"></a>其他資源
 
