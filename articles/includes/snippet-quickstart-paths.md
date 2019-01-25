@@ -1,0 +1,1 @@
+使用 Azure Bot Service 建立 Bot 與在本機建立 Bot 是建立 Bot 的獨立、平行方式。

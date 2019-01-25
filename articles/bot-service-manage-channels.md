@@ -9,19 +9,18 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/22/2018
-ms.openlocfilehash: a00e1d0d70e48b1af9cf10fd4e47ea86ae4908e9
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 0430562fd615aef67b4ba95538d390cf2223fb45
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224253"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453902"
 ---
 # <a name="connect-a-bot-to-channels"></a>將 Bot 連線至通道
 
 通道可連接 Bot 與通訊應用程式。 您可以將 Bot 設定為連線到您想要提供此 Bot 的通道。 透過 Azure 入口網站設定的 Bot Framework Service，可將您的 Bot 連接至這些通道，以利 Bot 和使用者之間的通訊。 您可以連線至許多熱門服務，例如 [Cortana](bot-service-channel-connect-cortana.md)、[Facebook Messenger](bot-service-channel-connect-facebook.md)、[Kik](bot-service-channel-connect-kik.md) 和 [Slack](bot-service-channel-connect-slack.md)，以及數個其他服務。 已為您預先設定 [Skype](https://dev.skype.com/bots) 和網路聊天。 除了 Bot Connector Service 所提供的標準通道，您也可以使用 Direct Line 作為通道，將 Bot 連接到您自己的用戶端應用程式。
 
-藉由將 Bot 傳送給通道的訊息正規化，Bot Framework Service 可讓您以不限通道的方式開發 Bot。 這牽涉到從 Bot 架構結構描述轉換成通道的結構描述。 不過，如果通道不支援 Bot 架構結構描述的所有層面，則服務會嘗試將訊息轉換成通道支援的格式。 比方說，如果 Bot 將訊息傳送至 SMS 通道，而訊息中包含具有動作按鈕的卡片，則連接器可能會將卡片傳送為映像，並在訊息文字中將動作包含為連結。
-
+藉由將 Bot 傳送給通道的訊息正規化，Bot Framework Service 可讓您以不限通道的方式開發 Bot。 這牽涉到從 Bot 架構結構描述轉換成通道的結構描述。 不過，如果通道不支援 Bot 架構結構描述的所有層面，則服務會嘗試將訊息轉換成通道支援的格式。 比方說，如果 Bot 將訊息傳送至電子郵件通道，而訊息中包含具有動作按鈕的卡片，則連接器可能會將卡片傳送為映像，並在訊息文字中將動作包含為連結。
 
 
 針對大部分的通道，您必須提供通道設定資訊，才能在通道上執行 Bot。 大部分的通道會要求 Bot 要有通道帳戶，Facebook Messenger 等其他通道則會要求 Bot 也要有已向通道註冊的應用程式。

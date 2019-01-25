@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/08/2018
+ms.date: 01/16/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3f4b2dd49b738132affd19fea8fd5dbfbd6ff99e
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 0a931ad73ed4d7a71978555df0e77d6b2bd2dbbc
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224563"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453922"
 ---
 # <a name="reuse-dialogs"></a>重複使用對話方塊
 
@@ -230,6 +230,14 @@ const myBot = new MyBot(conversationState, userState);
 ```
 
 ---
+
+## <a name="about-component-dialogs"></a>關於元件對話
+
+透過元件對話，您可以建立獨立的對話來處理特定案例，並將大型對話集分割成更多可管理的片段。 這些片段都有自己的對話集，而且會避免與所屬對話集發生任何名稱衝突。
+
+使用 add dialog 方法將對話和提示新增至元件對話。
+您使用此方法新增的第一個項目會設定為初始對話，但您可以在元件對話的建構函式中明確地設定「初始對話」屬性加以變更。
+當您啟動元件對話時，就會啟動其「初始對話」。
 
 ## <a name="define-the-check-in-component-dialog"></a>定義入住元件對話方塊
 
@@ -604,9 +612,9 @@ class SetAlarmDialog extends ComponentDialog {
         this.initialDialogId = dialogId;
 
         // Define the prompts used in this conversation flow.
-        this.dialogs.add(new DateTimePrompt('datePrompt'));
+        this.addDialog(new DateTimePrompt('datePrompt'));
 
-        this.dialogs.add(new WaterfallDialog(dialogId, [
+        this.addDialog(new WaterfallDialog(dialogId, [
             async function (step) {
                 step.values.wakeUp = {};
                 if (step.options && step.options.roomNumber) {

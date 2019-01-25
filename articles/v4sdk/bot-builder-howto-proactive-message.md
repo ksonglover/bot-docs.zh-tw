@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 82811d202e0e20169ae2ebb348949366009d2421
-ms.sourcegitcommit: 4661b9bb31d74731dbbb16e625be088b44ba5899
+ms.openlocfilehash: 7a9a2e4f30d1e9b293e51a921afce57d243376d7
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/16/2018
-ms.locfileid: "51826925"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453962"
 ---
 # <a name="get-notification-from-bots"></a>從 Bot 取得通知
 
@@ -38,7 +38,8 @@ ms.locfileid: "51826925"
 若要更順利地處理通知，請考慮使用其他方式將通知整合到對話流程中，例如在對話狀態中設定旗標，或將通知新增至佇列。
 
 ## <a name="prerequisites"></a>必要條件
-- 了解 [bot 基本概念](bot-builder-basics.md)。 
+
+- 了解 [Bot 基本概念](bot-builder-basics.md)和關於[管理狀態](bot-builder-concept-state.md)。
 - 採用 [C#](https://aka.ms/proactive-sample-cs) 或 [JS](https://aka.ms/proactive-sample-js) 的一份**主動式訊息範例**。 這個範例用來說明本文中的主動式傳訊。 
 
 ## <a name="about-the-sample-code"></a>關於範例程式碼
@@ -48,9 +49,12 @@ ms.locfileid: "51826925"
 ## <a name="define-job-data-and-state"></a>定義作業資料和狀態
 
 在此案例中，我們會追蹤可由各種使用者在不同的對話中建立的任意作業。 我們需要儲存每項工作的相關資訊，包括對話參考和作業識別碼。 我們需要：
+
 - 對話參考，才能將主動式訊息傳送至適當的對話。
 - 可識別作業的方法。 在此範例中，我們使用簡單的時間戳記。
 - 將作業狀態與對話或使用者狀態分開儲存。
+
+我們會擴充「Bot 狀態」以定義自己的全 Bot 狀態管理物件。 Bot Framework 會使用「儲存體金鑰」和回合內容來保存和擷取狀態。 如需詳細資訊，請參閱[管理狀態](bot-builder-concept-state.md)。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -77,9 +81,9 @@ public class JobLog : Dictionary<long, JobLog.JobData>
 }
 ```
 
-### <a name="define-a-state-middleware-class"></a>定義狀態中介軟體類別
+### <a name="define-a-state-management-class"></a>定義狀態管理類別
 
-`JobState` 類別可將作業狀態與交談或使用者狀態分開管理。
+`JobState` 類別會將作業狀態與交談或使用者狀態分開管理。
 
 ```csharp
 using Microsoft.Bot.Builder;
@@ -129,11 +133,10 @@ public void ConfigureServices(IServiceCollection services)
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-Bot 需要狀態儲存系統，才能保存訊息之間的對話和使用者狀態，其在此情況下會使用記憶體內的儲存體提供者來定義。 
+Bot 需要狀態儲存系統，才能保存訊息之間的對話和使用者狀態，其在此情況下會使用記憶體內的儲存體提供者來定義。
 
 ```javascript
-// index.js 
-
+// index.js
 
 const memoryStorage = new MemoryStorage();
 const botState = new BotState(memoryStorage, () => 'proactiveBot.botState');
@@ -173,8 +176,6 @@ Bot 有幾個層面：
 - 用於建立和完成工作的方法
 
 ### <a name="declare-the-class"></a>宣告類別
-
-來自使用者的每次互動都會建立 `ProactiveBot` 類別的執行個體。 每次有需要時就建立服務的程序，稱為暫時性存留期服務。 應該仔細管理建構成本昂貴，或存留期超過單一回合的物件。
 
 來自使用者的每次互動都會建立 `ProactiveBot` 類別的執行個體。 每次有需要時就建立服務的程序，稱為暫時性存留期服務。 應該仔細管理建構成本昂貴或存留期超過單一回合的物件。
 
