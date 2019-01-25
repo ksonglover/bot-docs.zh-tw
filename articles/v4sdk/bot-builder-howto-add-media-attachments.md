@@ -8,20 +8,20 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/17/2018
+ms.date: 01/16/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1ea9daeb35033e49232d64bfe98a223807dabf75
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: 4805e1a3c86ce28833054ce374a57c5c40b717e1
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317598"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453862"
 ---
 # <a name="add-media-to-messages"></a>將媒體新增至訊息
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-使用者與 Bot 之間交換的訊息可以包含媒體附件，例如影像、視訊、音訊和檔案等。 Bot Framework SDK 支援將豐富訊息傳送給使用者的工作。 若要判斷通道 (Facebook、Skype、Slack 等等) 支援的豐富訊息類型，請參閱通道文件中的限制相關資訊。 請參閱[設計使用者體驗](../bot-service-design-user-experience.md)，以取得一份可用的卡片。 
+使用者與 Bot 之間交換的訊息可以包含媒體附件，例如影像、視訊、音訊和檔案等。 Bot Framework SDK 支援將豐富訊息傳送給使用者的工作。 若要判斷通道 (Facebook、Skype、Slack 等等) 支援的豐富訊息類型，請參閱通道文件中的限制相關資訊。 請參閱[設計使用者體驗](../bot-service-design-user-experience.md)，以取得一份可用的卡片。
 
 ## <a name="send-attachments"></a>傳送附件
 
@@ -84,11 +84,11 @@ getInternetAttachment() {
 
 ## <a name="send-a-hero-card"></a>傳送主圖卡
 
-除了簡單的影像或影片附件以外，您也可以附加**主圖卡**，這可讓您將影像和按鈕結合在單一物件中，並將其傳送給使用者。
+除了簡單的影像或影片附件以外，您也可以附加**主圖卡**，這可讓您將影像和按鈕結合在單一物件中，並將其傳送給使用者。 大部分文字欄位都支援 Markdown，但是支援可能因通道而有所不同。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-若要撰寫含有主圖卡和按鈕的訊息，您可以將 `HeroCard` 附加至訊息。 這裡顯示的原始程式碼是以[處理附件](https://aka.ms/bot-attachments-sample-code)範例為基礎。 
+若要撰寫含有主圖卡和按鈕的訊息，您可以將 `HeroCard` 附加至訊息。 這裡顯示的原始程式碼是以[處理附件](https://aka.ms/bot-attachments-sample-code)範例為基礎。
 
 ```csharp
 using Microsoft.Bot.Builder;
@@ -363,7 +363,7 @@ await context.sendActivity(messageWithCarouselOfCards);
 
 ## <a name="additional-resources"></a>其他資源
 
-如需卡片結構描述的詳細資訊，請參閱 [Bot Framework 卡片結構描述](https://aka.ms/botSpecs-cardSchema)。
+如需結構描述的詳細資訊，請參閱 Bot Framework 活動結構描述的 [Bot Framework 卡片結構描述](https://aka.ms/botSpecs-cardSchema)和[訊息活動區段](https://aka.ms/botSpecs-activitySchema#message-activity)。
 
 您可以在此找到卡片的範例程式碼：[C#](https://aka.ms/bot-cards-sample-code)/[JS](https://aka.ms/bot-cards-js-sample-code)、調適型卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)、附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-sample-code-js)，以及建議的動作：[C#](https://aka.ms/SuggestedActionsCSharp)/[JS](https://aka.ms/SuggestedActionsJS)。
 如需其他範例，請參考 [GitHub](https://aka.ms/bot-samples-readme) 上的 Bot Builder 範例存放庫。

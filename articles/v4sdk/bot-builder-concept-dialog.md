@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/28/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fc44701d7739ecfca662d27cad4f521caa7f4d6d
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 31a0497f1422cee8c4966e59d94a89ae359a5cb7
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225483"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453932"
 ---
 # <a name="dialogs-library"></a>對話方塊程式庫
 
@@ -131,11 +131,22 @@ Dialogs 程式庫中的提示，可讓您輕鬆地向使用者詢問資訊並評
 
 ### <a name="to-start-a-dialog"></a>開始對話方塊
 
-若要開始對話，請將您要開始的「對話識別碼」傳遞到對話內容的 begin dialog、prompt或 replace dialog 方法。 begin dialog 方法會將對話推送至堆疊頂端，而 replace dialog 方法會將目前對話從堆疊中取出，並將取代的對話推送至堆疊上。
+若要開始對話，請將您要開始的「對話識別碼」傳遞到對話內容的 begin dialog、prompt或 replace dialog 方法。
+
+* begin dialog 方法會將對話推送至堆疊的頂端。
+* replace dialog 方法會將目前的對話從堆疊取出，並將取代對話推送至堆疊。 被取代的對話已被取消，而該執行個體包含的資訊已處置。
+
+使用 options 參數，將資訊傳遞至對話的新執行個體。
+傳遞至新對話方塊的選項，可透過步驟內容在任何對話方塊步驟中的「選項」屬性來存取。
+如需範例程式碼，請參閱[使用分支和迴圈建立進階交談流程](bot-builder-dialog-manage-complex-conversation-flow.md)操作說明。
 
 ### <a name="to-continue-a-dialog"></a>繼續對話
 
 若要繼續對話，請呼叫 continue dialog 方法。 如果有作用中對話，continue 方法一律會繼續進行堆疊最上層的對話 (作用中對話)。 如果持續的對話結束，則控制權會傳給在相同回合中繼續的父代內容。
+
+使用步驟內容的 values 屬性，以保存回合之間的狀態。
+在後續回合中可使用在先前回合中新增至這個集合的值。
+如需範例程式碼，請參閱[使用分支和迴圈建立進階交談流程](bot-builder-dialog-manage-complex-conversation-flow.md)操作說明。
 
 ### <a name="to-end-a-dialog"></a>結束對話方塊
 
@@ -152,10 +163,11 @@ end dialog 方法可將對話從堆疊中取出，並將選擇性結果傳回給
 
 ### <a name="repeating-a-dialog"></a>重複對話方塊
 
-若要重複對話方塊，請使用「取代對話方塊」方法。 對話內容的 replace dialog 方法會將目前作用中對話從堆疊中取出 (不需以正常方式來結束)，並將取代的對話推送至堆疊上，並開始進行該對話。 這很適合用來處理[複雜的反覆運作](~/v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)，也是管理功能表的好方法。 藉由以對話方塊本身來取代對話，您可以使用這個方法來建立迴圈。
+您可使用對話來取代對話本身，並建立迴圈。
+這很適合用來處理[複雜的反覆運作](~/v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)，也是管理功能表的好方法。
 
 > [!NOTE]
-> 如果您需要保存目前對話的內部狀態，則必須將資訊傳遞給 replace dialog 方法呼叫中的新對話執行個體，然後適當地將對話初始化。 傳遞至新對話方塊的選項，可透過步驟內容在任何對話方塊步驟中的「選項」屬性來存取。
+> 如果您需要保存目前對話的內部狀態，則必須將資訊傳遞給 replace dialog 方法呼叫中的新對話執行個體，然後適當地將對話初始化。
 
 ### <a name="branch-a-conversation"></a>產生對話分支
 

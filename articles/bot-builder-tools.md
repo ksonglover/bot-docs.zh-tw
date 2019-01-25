@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: tools
 ms.date: 11/13/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f9eafa708be2ce597ec2679fb6975d7da71951ea
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 07df43111f3b2e57dcf0140f291a771e749de563
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225873"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453852"
 ---
 # <a name="manage-bots-using-cli-tools"></a>使用 CLI 工具管理 Bot
 
@@ -63,6 +63,7 @@ Here's a form for you
 ```
 
 ### <a name="create-a-transcript-file-from-chat-file"></a>從 .chat 檔案建立文字記錄檔
+
 Chatdown 命令看起來如下所示︰
 
 ```bash
@@ -72,13 +73,15 @@ chatdown sample.chat > sample.transcript
 這會使用 `sample.chat` 並輸出 `sample.transcript`。 請參閱 [Chatdown CLI][chatdown] 以取得詳細資訊。
 
 ## <a name="build"></a>建置
+
 ### <a name="create-a-luis-application-with-ludown"></a>使用 LUDown 建立 LUIS 應用程式
+
 LUDown 工具可用來建立適用於 LUIS 和 QnA 的新 .json 模型。  
 您可以定義 LUIS 應用程式的[意圖](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-intents)和[實體](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-entities)，就如同從 LUIS 入口網站進行。
 
 '#\<intent-name\>' 可描述新的意圖定義區段。 之後的每一行都會列出描述該意圖的[語句](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-example-utterances)。
 
-例如，您可以在單一 .lu 檔案中建立多個 LUIS 意圖，如下所示： 
+例如，您可以在單一 .lu 檔案中建立多個 LUIS 意圖，如下所示：
 
 ```LUDown
 # Greeting
@@ -95,12 +98,12 @@ LUDown 工具可用來建立適用於 LUIS 和 QnA 的新 .json 模型。
 
 ### <a name="create-qna-pairs-with-ludown"></a>使用 LUDown 建立 QnA 組合
 
-.lu 檔案格式也會使用下列標記法支援 QnA 組合： 
+.lu 檔案格式也會使用下列標記法支援 QnA 組合：
 
 ~~~LUDown
 > comment
 ### ? question ?
-  ```markdown
+  ```
     answer
   ```
 ~~~
@@ -109,7 +112,7 @@ LUDown 工具會自動將問題和解答分開到 qnamaker JSON 檔案，以便�
 
 ~~~LUDown
 ### ? How do I change the default message for QnA Maker?
-  ```markdown
+  ```
   You can change the default message if you use the QnAMakerDialog. 
   See [this link](https://docs.botframework.com/en-us/azure-bot-service/templates/qnamaker/#navtitle) for details.
   ```
@@ -120,14 +123,14 @@ LUDown 工具會自動將問題和解答分開到 qnamaker JSON 檔案，以便�
 ~~~LUDown
 ### ? What is your name?
 - What should I call you?
-  ```markdown
+  ```
     I'm the echoBot! Nice to meet you.
   ```
 ~~~
 
 ### <a name="generate-json-models-with-ludown"></a>使用 LUDown 產生 .json 模型
 
-您以 .lu 格式定義 LUIS 或 QnA 語言元件之後，可以發佈至 LUIS.json、QnA.json 或 QnA.tsv 檔案。 當執行時，LUDown 工具會在要剖析的相同工作目錄內尋找任何 .lu 檔案。 因為 LUDown 工具可以使用 .lu 檔案將目標鎖定為 LUIS 或 QnA，所以我們只需使用 **<luFile> 中的一般命令 ludown parse <Service> --**，指定所要產生的語言服務即可。 
+您以 .lu 格式定義 LUIS 或 QnA 語言元件之後，可以發佈至 LUIS.json、QnA.json 或 QnA.tsv 檔案。 執行時，LUDown 工具會在要剖析的相同工作目錄內尋找任何 .lu 檔案。 因為 LUDown 工具可以使用 .lu 檔案將目標鎖定為 LUIS 或 QnA，所以我們只需使用一般命令 **ludown parse \<to-service-type> -- in \<lu-file-path>**，指定所要產生的語言服務。
 
 在我們的範例工作目錄中，有兩個要剖析的 .lu 檔案，用來建立 LUIS 模型的 '1.lu'，以及用來建立 QnA 知識庫的 'qna1.lu'。
 
@@ -144,7 +147,7 @@ ludown parse ToLuis --in <luFile>
 同樣地，若要建立 QnA 知識庫，只需變更剖析目標即可。
 
 ```shell
-ludown parse ToQna --in <luFile> 
+ludown parse ToQna --in <luFile>
 ```
 
 LUIS 和 QnA 可透過其個別的入口網站，或透過新的 CLI 工具來取用所產生的 JSON 檔案。 若要深入了解，請參閱 [LUdown CLI][ludown] GitHub 存放庫。
@@ -290,10 +293,10 @@ az bot show [options] --msbot | msbot connect bot --stdin
 | --resource-group -g               | 資源群組的名稱。 您可以使用 `az configure --defaults group=<name>` 來設定預設群組。  預設：build2018。 |
 | --tags                            | 要新增至 Bot 的標籤組。 |
 
-
 ### <a name="configure-channels"></a>設定通道
 
-您可以使用 Azure CLI 來管理您的 Bot 通道。 
+您可以使用 Azure CLI 來管理您的 Bot 通道。
+
 ```shell
 >az bot -h
 Group
@@ -321,7 +324,9 @@ Group
 ```
 
 ## <a name="additional-information"></a>其他資訊
+
 - [GitHub 上的 Bot Framework 工具][cliTools]
+- [.lu 檔案表單](https://aka.ms/ludown-file-format)
 
 <!-- Footnote links -->
 
