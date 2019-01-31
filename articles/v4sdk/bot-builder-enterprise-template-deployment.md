@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dd52376e049f1f0e09216e0065ced7443b6eb02a
-ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
+ms.openlocfilehash: c9a462c1ff9a1de8bc7929cb11368191aafd031a
+ms.sourcegitcommit: 1ed179ae48bd2e28920a3f1e270e59d15d86fbf7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54453882"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54892981"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企業 Bot 範本 - 部署您的 Bot
 
@@ -87,7 +87,10 @@ az account set --subscription "YOUR_SUBSCRIPTION_NAME"
 msbot clone services --name "YOUR-BOT-NAME" --luisAuthoringKey "YOUR_AUTHORING_KEY" --folder "DeploymentScripts\LOCALE_FOLDER" --location "REGION"
 ```
 
-> 一些使用者有已知的問題，因此在執行部署時可能會遇到下列錯誤：`ERROR: Unable to provision MSA id automatically. Please pass them in as parameters and try again`。 在此情況下，請瀏覽至 https://apps.dev.microsoft.com 並手動建立新的應用程式，以便擷取 ApplicationID 和密碼/祕密。 執行上述 msbot 複製服務命令，但提供兩個新引數 `appId` 和 `appSecret` 並傳遞您剛才擷取的值。 確保您以引號括住祕密，以免發生剖析問題，例如：`-appSecret "YOUR_SECRET"`
+> 一些使用者有已知的問題，因此在執行部署時可能會遇到下列錯誤：`ERROR: Unable to provision MSA id automatically. Please pass them in as parameters and try again`。 在此情況下，請瀏覽至 https://apps.dev.microsoft.com 並手動建立新的應用程式，以便擷取 ApplicationID 和密碼/祕密。 執行上述 msbot 複製服務命令，但提供兩個新引數 `appId` 和 `appSecret` 並傳遞您剛才擷取的值。 您需要將密碼中任何特殊字元逸出，因為這些特殊字元可能會被殼層解譯為命令：
+>   - 針對 *Windows 命令提示字元*，使用雙引號括住 appSecret。 例如 msbt clone services --name xxxx --luisAuthoringKey xxxx --location xxxx --folder bot.recipt ***--appSecret "!|%gr%"***
+>   - 針對 * Windows PowerShell，嘗試在 --% 引數之後傳入 appSecret。 例如 msbot clone services --name xxxx --luisAuthoringKey xxxx --location xxxx --folder bot.recipt ***--% --appSecret "!|%gr%"***
+>   - 針對 *MacOS 或 Linux*，使用單引號括住 appSecret。 例如 msbot clone services --name xxxx --luisAuthoringKey xxxx --location xxxx --folder bot.recipt ***--appSecret '!|%gr%'***
 
 msbot 工具會概述部署計畫，包括位置和 SKU。 確保在繼續前進行檢閱。
 
