@@ -7,13 +7,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/28/2018
-ms.openlocfilehash: 8c63893704f513a420220a47528bada5c4f845d3
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 01/06/2019
+ms.openlocfilehash: 94ef9cc221e67f4f3762eb7a1a006a915e3c5307
+ms.sourcegitcommit: fd60ad0ff51b92fa6495b016e136eaf333413512
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999705"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55764096"
 ---
 # <a name="key-concepts-in-direct-line-api-30"></a>Direct Line API 3.0 中的重要概念
 
@@ -44,8 +44,6 @@ Bot Framework 提供用戶端程式庫，可輔助透過 C# 和 Node.js 存取 D
 - 若要在 Visual Studio 專案中使用 .NET 用戶端程式庫，請安裝 `Microsoft.Bot.Connector.DirectLine` <a href="https://www.nuget.org/packages/Microsoft.Bot.Connector.DirectLine" target="_blank">NuGet 套件</a>。 
 
 - 若要使用 Node.js 用戶端程式庫，請使用 <a href="https://www.npmjs.com/package/botframework-directlinejs" target="_blank">NPM</a> (或<a href="https://github.com/Microsoft/BotFramework-DirectLineJS" target="_blank">下載</a>來源) 安裝 `botframework-directlinejs` 程式庫。
-
-除了使用 C# 或 Node.js 用戶端程式庫之外，您也可以使用 <a href="https://docs.botframework.com/en-us/restapi/directline3/swagger.json" target="_blank">Direct Line API 3.0 Swagger 檔案</a>以所選語言產生自己的用戶端程式庫。
 
 ::: moniker range="azure-bot-service-3.0"
 

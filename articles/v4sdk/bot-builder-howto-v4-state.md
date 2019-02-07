@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/26/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8c3696d0642e1b1ce9c3d3e23118a7bd9ab0023b
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 4cafa3516395fb8e44d2755d0fa09e7a5bd6203c
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224583"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55711942"
 ---
 # <a name="save-user-and-conversation-data"></a>儲存使用者和對話資料
 
@@ -215,18 +215,18 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-在 Bot 的建構函式中，ASP.NET 會在建立 Bot 時提供 `CustomPromptBotAccessors` 物件。
+在 Bot 的建構函式中，ASP.NET 會在建立 Bot 時提供 `StateBotAccessors` 物件。
 
 ```csharp
 // Defines a bot for filling a user profile.
-public class CustomPromptBot : IBot
+public class StateBot : IBot
 {
     private readonly StateBotAccessors _accessors;
 
     public StateBot(StateBotAccessors accessors, ILoggerFactory loggerFactory)
     {
         // ...
-        accessors = accessors ?? throw new System.ArgumentNullException(nameof(accessors));
+        _accessors = accessors ?? throw new System.ArgumentNullException(nameof(accessors));
     }
 
     // The bot's turn handler and other supporting code...

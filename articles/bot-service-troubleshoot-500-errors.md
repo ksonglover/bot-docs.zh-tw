@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/20/2018
-ms.openlocfilehash: 8ab1cd34f2cc239602db423bccd131d9df39222a
-ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
+ms.openlocfilehash: f86cacce5b25f60010f646cf5989123e3abf3bf2
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2018
-ms.locfileid: "53735996"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55711972"
 ---
 # <a name="troubleshoot-http-500-errors"></a>針對 HTTP 500 錯誤進行疑難排解
 
@@ -28,7 +28,7 @@ luis-with-appinsights ([C#](https://aka.ms/cs-luis-with-appinsights-sample) / [J
 
 ## <a name="enable-application-insights-on-nodejs"></a>在 Node.js 上啟用 Application Insights
 
-如需基本 Application Insights 支援，請參閱如何[使用 Application Insights 監視 Node.js 服務和應用程式](https://docs.microsoft.com/azure/application-insights/app-insights-nodejs)。 Bot Framework (從 4.2 版開始) 會提供一層額外的 Application Insights 遙測，但並非診斷 HTTP 500 錯誤的必要項目。
+如需基本 Application Insights 支援，請參閱如何[使用 Application Insights 監視 Node.js 服務和應用程式](https://docs.microsoft.com/azure/azure-monitor/learn/nodejs-quick-start)。 Bot Framework (從 4.2 版開始) 會提供一層額外的 Application Insights 遙測，但並非診斷 HTTP 500 錯誤的必要項目。
 
 ## <a name="query-for-exceptions"></a>查詢例外狀況
 
