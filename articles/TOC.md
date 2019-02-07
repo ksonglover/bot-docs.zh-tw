@@ -53,6 +53,7 @@
 ### [直接寫入儲存體](v4sdk/bot-builder-howto-v4-storage.md)
 ### [在您的 Bot 中新增驗證](v4sdk/bot-builder-authentication.md)
 ### [為您的 Bot 實作自訂儲存空間](v4sdk/bot-builder-custom-storage.md)
+### [將遙測資料新增至 Bot](v4sdk/bot-builder-telemetry.md)
 ### [使用 CLI 工具管理 Bot](bot-builder-tools.md)
 ### [.NET](dotnet/TOC.md)
 ### [Node.js](nodejs/TOC.md)
@@ -63,6 +64,7 @@
 <!-- ### [Download and redeploy bot code](bot-service-build-download-source-code.md) -->
 ### [設定持續部署](bot-service-build-continuous-deployment.md)
 ## [管理](manage/TOC.md)
+## [移轉](v4sdk/migration/TOC.md)
 # 參考
 ## [.NET SDK v4](https://aka.ms/dotnetsdk4)
 ## [JavaScript SDK v4](https://aka.ms/jssdk4)
