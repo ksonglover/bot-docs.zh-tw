@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/20/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7e6ea963ce018833b362be3f413f15da4d4bf658
-ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
+ms.openlocfilehash: 8198e5d23975780b313dc49bb78d44374a1fd106
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/21/2018
-ms.locfileid: "53735938"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55711962"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
@@ -49,7 +49,7 @@ ms.locfileid: "53735938"
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-我們必須為交談中指定的使用者建立狀態物件及其存取子。
+在 C# 範例程式碼內，Startup.cs 已定義 'WelcomeUserStateAccessors' 作為服務/單例，並將 'UserState' 新增至應用程式狀態。 我們現在會使用這些資訊，為交談中的指定使用者及其存取子建立狀態物件。
 
 ```csharp
 /// The state object is used to keep track of various state related to a user in a conversation.

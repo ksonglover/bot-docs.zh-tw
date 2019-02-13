@@ -1,21 +1,18 @@
 ---
-title: 使用 .NET Core 驗證活動 | Microsoft Docs
-description: 了解如何使用 .NET Core 驗證 Bot 活動。
-author: v-ducvo
-ms.author: v-ducvo
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 12/13/17
-monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f3aa350cbada77bd9e423a1910f93440a7a1682d
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+redirect_url: /bot-framework/bot-builder-tutorial-authentication
+ms.openlocfilehash: 6dd1013e870fb749919f272e82b60ee633cddadb
+ms.sourcegitcommit: c7d2e939ec71f46f48383c750fddaf6627b6489d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996985"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "55783367"
 ---
+<a name="--"></a><!--
+---
+標題：使用 .NET Core 驗證活動 | Microsoft Docs description:了解如何使用 .NET Core 驗證 Bot 活動。
+author: v-ducvo ms.author: v-ducvo manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date:12/13/17 monikerRange: 'azure-bot-service-3.0'
+---
+
 # <a name="authenticating-activities-using-net-core"></a>使用 .NET Core 驗證活動
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
@@ -40,7 +37,7 @@ Bot Framework Connector.AspNetCore 支援下列版本的 ASP.NET：
 
 1. 開啟 Visual Studio 2017，然後按一下 [檔案] > [新增] > [專案...]。
 2. 展開 [Visual C#] 節點，然後按一下 [.NET Core]。
-3. 選擇 [ASP.NET Core Web 應用程式] 專案，鍵入及填入專案資訊 (例如：[名稱]、[位置] 和 [解決方案] 名稱欄位)。
+3. 選擇 [ASP.NET Core Web 應用程式] 專案，鍵入及填入專案資訊 (例如：[名稱]、[位置] 和 [解決方案名稱] 欄位)。
 4. 按一下 [確定]。
 5. 請確定專案的目標設為您想要的 .NET Core 和 ASP.NET Core 版本。 例如，以下的螢幕擷取畫面顯示專案目標設為 **.NET Core** 和 **ASP.NET Core 2.0**：
 
@@ -246,3 +243,4 @@ public async Task<OkResult> Post([FromBody] Activity activity)
     return Ok();
 }
 ```
+-->

@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 01/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 78e960357d6c4dc1c9751a9921a2338f552738b0
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: 3ca8ac4bfe14ed20f11a0ab26d8102ac21e60e2b
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317610"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55711952"
 ---
 # <a name="deploy-bots-from-botbuilder-samples-repo"></a>部署 Bot botbuilder-samples 存放庫
 
@@ -101,6 +101,7 @@ cd <local-bot-folder>
 如果您使用 [MSA](https://en.wikipedia.org/wiki/Microsoft_account) 電子郵件帳戶，您必須建立 appId 和 appSecret 以搭配 `msbot clone services` 命令使用。
 
 - 移至[應用程式註冊入口網站](https://apps.dev.microsoft.com/)。 按一下 [新增應用程式] 以註冊您的應用程式、建立 **Application-id**，以及**產生新密碼**。
+> 注意 - 如果產生的密碼包含 "|" 字元，Azure 將會拒絕此密碼。 若要解決這個問題，請產生另一個新密碼。
 - 儲存應用程式識別碼和您剛產生的新密碼，讓您能用來搭配 `msbot clone services` 命令。
 - 若要部署，請使用您 Bot 適用的命令。
 

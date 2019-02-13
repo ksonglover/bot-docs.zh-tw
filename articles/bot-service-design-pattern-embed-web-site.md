@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 03c7e1316e463caf84b8dfd503e1502bb66469e6
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: f9fa2bee156752f1545d201768040b6106558e01
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224843"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55711832"
 ---
 # <a name="embed-a-bot-in-a-website"></a>將 Bot 嵌入網站
 
@@ -25,7 +25,7 @@ Microsoft 提供兩種不同的 Bot 與網站整合方式：Skype web 控制項�
 
 ## <a name="skype-web-control"></a>Skype web 控制項
 
-Skype web 控制項本質上是已啟用 web 控制項中的 Skype 用戶端。 內建的 Skype 驗證可讓 Bot 驗證和辨識使用者，而不需要開發人員撰寫任何自訂程式碼。 Skype 會自動辨識其網頁用戶端中使用的 Microsoft 帳戶。 
+[Skype web 控制項](https://aka.ms/bot-skype-web-control)本質上是已啟用 web 控制項中的 Skype 用戶端。 內建的 Skype 驗證可讓 Bot 驗證和辨識使用者，而不需要開發人員撰寫任何自訂程式碼。 Skype 會自動辨識其網頁用戶端中使用的 Microsoft 帳戶。 
 
 由於 Skype web 控制項僅做為 Skype 前端，使用者的 Skype 用戶端會自動存取任何 web 控制項促成的完整對話內容。 即使在網頁瀏覽器關閉之後，使用者也可以繼續與 Skype 用戶端的 Bot 進行互動。 
 

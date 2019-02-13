@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 2096aa342fe954b9f9f1d128bc080c0e0e6efdce
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360798"
----
 ## <a name="prerequisites"></a>必要條件
 - Visual Studio [2017](https://www.visualstudio.com/downloads)
 - 適用於 [C#](https://aka.ms/bot-vsix) 的 Bot Framework SDK v4 範本
@@ -15,7 +7,7 @@ ms.locfileid: "54360798"
 ## <a name="create-a-bot"></a>建立 Bot
 安裝您在必要條件區段下載的 BotBuilderVSIX.vsix 範本。
 
-在 Visual Studio 中，使用 Bot Framework Echo Bot V4 範本建立新的 Bot 專案。
+在 Visual Studio 中，使用 **Bot Framework Echo Bot** V4 範本建立新的 Bot 專案。
 
 ![Visual Studio 專案](~/media/azure-bot-quickstarts/bot-builder-dotnet-project.png)
 
@@ -28,7 +20,7 @@ ms.locfileid: "54360798"
 
 當您按一下執行按鈕時，Visual Studio 將會建置應用程式、將其部署到 localhost，並啟動 Web 瀏覽器來顯示應用程式的 `default.htm` 頁面。 此時，Bot 正在本機執行。
 
-## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並且連線至您的 Bot
+## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並連線至您的 Bot
 
 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 

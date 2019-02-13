@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 04b015963b8ea991b87f085dd5d6aa0110c50a18
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
-ms.translationtype: HT
-ms.contentlocale: zh-TW
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360808"
----
 ## <a name="prerequisites"></a>必要條件
 
 - [Visual Studio Code](https://www.visualstudio.com/downloads)
@@ -16,8 +8,9 @@ ms.locfileid: "54360808"
 - 了解 [restify](http://restify.com/) 和 JavaScript 中的非同步程式設計
 
 > [!NOTE]
-> 在某些安裝中，restify 的安裝步驟會產生與 node-gyp 相關的錯誤。
-> 如果情況如此，請嘗試以提升的權限執行此命令：
+> 只有在您使用 Windows 作為開發作業系統時，才需要安裝以下所列的 Windows 建置工具。 在某些安裝中，restify 的安裝步驟會產生與 node-gyp 相關的錯誤。
+> 如果情況如此，您可嘗試以提升的權限執行此命令。
+> 如果您的系統上已安裝 python，此呼叫可能也會停止回應，但不會結束：
 > ```bash
 > npm install -g windows-build-tools
 > ```

@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 01/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c798c26f108458e1caeb16aa22c02c6e7c70fb61
-ms.sourcegitcommit: 3cc768a8e676246d774a2b62fb9c688bbd677700
+ms.openlocfilehash: bec6f44db929eab43cfcbbd6b2920b79924b7576
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/16/2019
-ms.locfileid: "54323654"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55712002"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多個 LUIS 和 QnA 模型
 
@@ -41,7 +41,7 @@ ms.locfileid: "54323654"
 
  ### <a name="create-your-bot-using-service-ui"></a>使用服務 UI 建立 Bot
  
-若要開始手動建立 Bot，請將下列 4 個檔案 (位於 GitHub [BotFramework-Samples](https://aka.ms/botdispatchgitsamples) 存放庫) 下載到本機資料夾：[home-automation.json](https://aka.ms/dispatch-home-automation-json)、[weather.json](https://aka.ms/dispatch-weather-json)、[nlp-with-dispatchDispatch.json](https://aka.ms/dispatch-dispatch-json)、[QnAMaker.tsv](https://aka.ms/dispatch-qnamaker-tsv) 達成此目的的其中一種方法是開啟上面的 GitHub 存放庫連結，按一下 **BotFramework-Samples**，然後將存放庫「複製或下載」到本機電腦。 請注意，這些檔案位於與必要條件中所提範例不同的存放庫。
+若要開始手動建立 Bot，請將下列 4 個檔案 (位於 GitHub [BotFramework-Samples](https://aka.ms/botdispatchgitsamples) 存放庫) 下載到本機資料夾：[home-automation.json](https://aka.ms/dispatch-home-automation-json)、[weather.json](https://aka.ms/dispatch-weather-json)、[nlp-with-dispatchDispatch.json](https://aka.ms/dispatch-dispatch-json)、[QnAMaker.tsv](https://aka.ms/dispatch-qnamaker-tsv) 達成此目的其中一種方法是開啟上面的 GitHub 存放庫連結，按一下 **BotFramework-Samples**，然後將存放庫「複製或下載」到本機電腦。 請注意，這些檔案位於與必要條件中所提範例不同的存放庫。
 
 ### <a name="manually-create-luis-apps"></a>手動建立 LUIS 應用程式
 
@@ -183,7 +183,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 
 ```
-下列程式碼會初始化 Bot 的外部服務參考。 例如，LUIS 和 QnaMaker 服務會在此建立。 這些外部服務會根據您的 ".bot" 檔案內容，使用 `BotConfiguration` 類別 來設定。
+下列程式碼會初始化 Bot 的外部服務參考。 例如，LUIS 和 QnaMaker 服務會在此建立。 這些外部服務會根據您的 `.bot` 檔案內容，使用 `BotConfiguration` 類別 來設定。
 
 ```csharp
 private static BotServices InitBotServices(BotConfiguration config)
@@ -237,7 +237,8 @@ private static BotServices InitBotServices(BotConfiguration config)
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-範例程式碼會使用預先定義的命名常數來識別 .bot 檔案的各種區段。 如果您已在 _nlp-with-dispatch.bot_ 檔案中從原始範例命名修改任何區段名稱，請務必在 **bot.js**、**homeAutomation.js**、**qna.js** 或 **weather.js** 檔案中找出相關聯的常數宣告，並將該項目變更為修改過的名稱。  
+範例程式碼會使用預先定義的命名常數來識別 `.bot` 檔案的各種區段。 如果您已在 _nlp-with-dispatch.bot_ 檔案中從原始範例命名修改任何區段名稱，請務必在 **bot.js**、**homeAutomation.js**、**qna.js** 或 **weather.js** 檔案中找出相關聯的常數宣告，並將該項目變更為修改過的名稱。  
+
 ```javascript
 // In file bot.js
 // this is the LUIS service type entry in the .bot file.
@@ -432,8 +433,11 @@ switch (dispatchTopIntent) {
        await turnContext.sendActivity(`I do not understand that.`);
        await turnContext.sendActivity(`I can help with weather forecast, turning devices on and off and answer general questions like 'hi', 'who are you' etc.`);
  }
+ ```
+
+ 在 `homeAutomation.js` 中
  
- // In homeAutomation.js
+ ```javascript
  async onTurn(turnContext) {
     // make call to LUIS recognizer to get home automation intent + entities
     const homeAutoResults = await this.luisRecognizer.recognize(turnContext);
@@ -448,8 +452,11 @@ switch (dispatchTopIntent) {
          await turnContext.sendActivity(`HomeAutomation dialog cannot fulfill this request.`);
     }
 }
-    
-// In weather.js
+```
+
+在 `weather.js` 中
+
+```javascript
 async onTurn(turnContext) {
    // Call weather LUIS model.
    const weatherResults = await this.luisRecognizer.recognize(turnContext);
@@ -470,8 +477,11 @@ async onTurn(turnContext) {
          wait turnContext.sendActivity(`Weather dialog cannot fulfill this request.`);
    }
 }
-    
-// In qna.js
+```
+
+在 `qna.js` 中
+
+```javascript
 async onTurn(turnContext) {
    // Call QnA Maker and get results.
    const qnaResult = await this.qnaRecognizer.generateAnswer(turnContext.activity.text, QNA_TOP_N, QNA_CONFIDENCE_THRESHOLD);

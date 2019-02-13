@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 01/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4a221f6e94324c56f88dd1d4d6851d5cc4d38e6c
-ms.sourcegitcommit: 3cc768a8e676246d774a2b62fb9c688bbd677700
+ms.openlocfilehash: f1e3e3fa05a297aa50a2368a103a7aa00be49009
+ms.sourcegitcommit: fd60ad0ff51b92fa6495b016e136eaf333413512
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/16/2019
-ms.locfileid: "54323674"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55764136"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答問題
 
@@ -27,24 +27,28 @@ ms.locfileid: "54323674"
 
 ## <a name="prerequisites"></a>必要條件
 - [QnA Maker](https://www.qnamaker.ai/) 帳戶
-- 本文中的程式碼是以 **QnA Maker** 範例為基礎。 您需要採用 [C#](https://aka.ms/cs-qna) 或 [JS](https://aka.ms/js-qna-sample) 的一份範例。
+- 本文中的程式碼是以 **QnA Maker** 範例為基礎。 您需要一份 [C# 範例](https://aka.ms/cs-qna)或 [Javascript 範例](https://aka.ms/js-qna-sample)。
 - [Bot Framework 模擬器](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download) (英文)
 - [Bot 基本概念](bot-builder-basics.md)、[QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 及 [.bot](bot-file-basics.md) 檔案的知識。
 
 ## <a name="create-a-qna-maker-service-and-publish-a-knowledge-base"></a>建立 QnA Maker 服務及發佈知識庫
 1. 首先，您需要建立 [QnA Maker 服務](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure)。
 1. 接下來，您將使用 `smartLightFAQ.tsv` 檔案 (位於專案的 CognitiveModels 資料夾中) 來建立知識庫。 用於建立、定型及發佈 QnA Maker[知識庫](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/create-publish-knowledge-base)的步驟會列於 QnA Maker 文件中。 當您遵循這些步驟時，請將您的 KB 命名為 `qna`，並使用 `smartLightFAQ.tsv` 檔案來填入 KB。
+> 注意： 本文也可用來存取您自己使用者所開發的 QnA Maker 知識庫。
 
-## <a name="obtain-values-to-connect-to-your-connect-your-bot-to-the-knowledge-base"></a>取得值，以將您的 Bot 連線到知識庫
+## <a name="obtain-values-to-connect-your-bot-to-the-knowledge-base"></a>取得值，將您的 Bot 連線到知識庫
 1. 在 [QnA Maker](https://www.qnamaker.ai/) 網站上，選取您的知識庫。
-1. 開啟您的知識庫，然後選取 [設定]。 將針對「服務名稱」顯示的值記錄為 <your_kb_name>
+1. 開啟您的知識庫，然後選取 [設定]。 記錄針對「服務名稱」顯示的值。 使用 QnA Maker 入口網站介面時，此值很適合用於尋找您感興趣的知識庫。 但不會用於將 Bot 應用程式連線到此知識庫。 
 1. 向下捲動以尋找 [部署詳細資料] 及記錄下列值：
-   - POST /knowledgebases/<your_knowledge_base_id>/generateAnswer
-   - 主機：<your_hostname>/qnamaker
-   - 授權：EndpointKey <your_endpoint_key>
+   - POST /knowledgebases/<Your_Knowledge_Base_Id>/getAnswers
+   - 主機：<Your_Hostname>/qnamaker
+   - 授權：EndpointKey <Your_Endpoint_Key>
+   
+這三個值會為您的應用程式提供透過 Azure QnA 服務連線到 QnA Maker 知識庫所需的資訊。  
 
 ## <a name="update-the-bot-file"></a>更新 .bot 檔案
-首先，將存取您的知識庫所需的資訊 (包括主機名稱、端點金鑰和知識庫識別碼 (KbId)) 新增至 `qnamaker.bot`。 這些是您在 QnA Maker 中從您知識庫的 [設定] 儲存的值。
+首先，將存取您的知識庫所需的資訊 (包括主機名稱、端點金鑰和知識庫識別碼 (KbId)) 新增至 `qnamaker.bot`。 這些是您在 QnA Maker 中從您知識庫的 [設定] 儲存的值。 
+> 注意： 如果您要將 QnA Maker 知識庫的存取權新增到現有 Bot 應用程式中，請務必將 "type": "qna" 區段 (如下所示) 新增到 .bot 檔案中。 此區段內的 "name" 值會提供從您的應用程式存取此資訊所需的金鑰。
 
 ```json
 {
@@ -55,17 +59,16 @@ ms.locfileid: "54323674"
       "name": "development",
       "endpoint": "http://localhost:3978/api/messages",
       "appId": "",
-      "appPassword": ""
-      "id": "25",
-    
+      "appPassword": "",
+      "id": "25"    
     },
     {
       "type": "qna",
       "name": "QnABot",
-      "KbId": "<YOUR_KNOWLEDGE_BASE_ID>",
-      "subscriptionKey": "<Your_Azure_Subscription_Key>", // Used when creating your QnA service.
-      "endpointKey": "<Your_Recorded_Endpoint_Key>",
-      "hostname": "<Your_Recorded_Hostname>",
+      "KbId": "<Your_Knowledge_Base_Id>",
+      "subscriptionKey": "",
+      "endpointKey": "<Your_Endpoint_Key>",
+      "hostname": "<Your_Hostname>",
       "id": "117"
     }
   ],
@@ -75,7 +78,7 @@ ms.locfileid: "54323674"
 ```
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
-接下來，我們會在 BotServices.cs 中初始化 BotService 類別的新執行個體，這會從 .bot 檔案擷取上述資訊。 外部服務是使用 BotConfiguration 類別來設定。
+接下來，我們會在 **BotServices.cs** 中初始化 BotService 類別的新執行個體，這會從 .bot 檔案擷取上述資訊。 外部服務是使用 BotConfiguration 類別來設定。
 
 ```csharp
 private static BotServices InitBotServices(BotConfiguration config)
@@ -128,7 +131,7 @@ private static BotServices InitBotServices(BotConfiguration config)
 }
 ```
 
-然後在 QnABot.cs 中，我們將這個 QnAMaker 執行個體提供給 Bot。 如果您要存取自己的知識庫，請變更以下所示的「歡迎」訊息，為您的使用者提供實用的初始指示。
+然後在 **QnABot.cs** 中，我們將這個 QnAMaker 執行個體提供給 Bot。 如果您要存取自己的知識庫，請變更以下所示的「歡迎」訊息，為您的使用者提供實用的初始指示。 這個類別也是靜態變數 _QnAMakerKey_ 的定義所在。 這會指向 .bot 檔案內包含存取 QnA Maker 知識庫所需連線資訊的區段。
 
 ```csharp
 public class QnABot : IBot
@@ -155,11 +158,11 @@ public class QnABot : IBot
 
 在 **index.js** 檔案中，我們會讀入組態資訊以產生 QnA Maker 服務及初始化 Bot。
 
-將 `QNA_CONFIGURATION` 的值更新為您的知識庫名稱，因為其會出現在您的組態檔中。
+將 `QNA_CONFIGURATION` 的值更新為 .bot 檔案中的 "name": 值。 這是進入 .bot 檔案 "type": "qna" 區段的關鍵，其中包含用來存取 QnA Maker 知識庫的連線參數。
 
 ```js
-// QnA Maker knowledge base name as specified in .bot file.
-const QNA_CONFIGURATION = '<YOUR_KB_NAME>';
+// Name of the QnA Maker service in the .bot file. 
+const QNA_CONFIGURATION = '<BOT_FILE_NAME>';
 
 // Get endpoint and QnA Maker configurations by service name.
 const endpointConfig = botConfig.findServiceByNameOrId(BOT_CONFIGURATION);
@@ -230,7 +233,7 @@ else
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-在 **bot.js** 檔案中，我們會將使用者的輸入傳遞至 QnA Maker 服務的 `generateAnswer` 方法，以從知識庫中取得解答。 如果您要存取自己的知識庫，請變更以下的「沒有解答」和「歡迎」訊息，為您的使用者提供實用的指示。
+在 **bot.js** 檔案中，我們會將使用者的輸入傳遞至 QnA Maker 服務的 `getAnswers` 方法，以從知識庫中取得解答。 如果您要存取自己的知識庫，請變更以下的「沒有解答」和「歡迎」訊息，為您的使用者提供實用的指示。
 
 ```javascript
 const { ActivityTypes, TurnContext } = require('botbuilder');
@@ -258,7 +261,7 @@ class QnAMakerBot {
         // By checking the incoming Activity type, the bot only calls QnA Maker in appropriate cases.
         if (turnContext.activity.type === ActivityTypes.Message) {
             // Perform a call to the QnA Maker service to retrieve matching Question and Answer pairs.
-            const qnaResults = await this.qnaMaker.generateAnswer(turnContext.activity.text);
+            const qnaResults = await this.qnaMaker.getAnswers(turnContext.activity.text);
 
             // If an answer was received from QnA Maker, send the answer back to the user.
             if (qnaResults[0]) {

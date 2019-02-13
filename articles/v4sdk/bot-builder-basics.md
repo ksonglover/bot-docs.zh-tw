@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 1/10/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a1b155db3ec717a1084ae0e098e8f22997a80b0e
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 70f333cdce15f1d1e908b73d21e706f1af33454b
+ms.sourcegitcommit: c7d2e939ec71f46f48383c750fddaf6627b6489d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225933"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "55783377"
 ---
 # <a name="how-bots-work"></a>Bot 的運作方式
 
@@ -67,7 +67,7 @@ Bot 是使用者可運用文字、圖形 (例如卡片或影像) 或語音等對
 在下列各節中，我們會檢查 Bot 的重要部分。
 
 ### <a name="prerequisites"></a>必要條件
-- 採用 [C#](https://aka.ms/EchoBotWithStateCSharp) 或 [JS](https://aka.ms/EchoBotWithStateJS) 的一份 **EchoBotWithCounter** 範例。 這裡只會顯示相關的程式碼，但您可以參考範例中的完整原始程式碼。
+- 採用 **[C#](https://aka.ms/EchoBotWithStateCSharp) 或 [JS](https://aka.ms/EchoBotWithStateJS)** 的一份 **EchoBotWithCounter** 範例。 這裡只會顯示相關的程式碼，但您可以參考範例中的完整原始程式碼。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
@@ -219,7 +219,7 @@ public class EchoBotAccessors
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-Yeoman 產生器會建立 [Restify](http://restify.com/) Web 應用程式。 如果您查看其文件中的 Restify 快速入門，您會看到類似於所產生 **index.js** 檔案的應用程式。 本節主要說明 **package.json** **.env** 、**index.js**、**bot.js** 和 **echobot-with-counter.bot** 檔案。 有些檔案中的程式碼不會複製於此，但是您會在執行 Bot 時看到，還可參考 [Node.js echobot-with-counter](https://aka.ms/js-echobot-with-counter) 範例。
+Yeoman 產生器會建立 [Restify](http://restify.com/) Web 應用程式。 如果您查看其文件中的 Restify 快速入門，您會看到類似於所產生 **index.js** 檔案的應用程式。 本節主要說明 **package.json****.env** 、**index.js**、**bot.js** 和 **echobot-with-counter.bot** 檔案。 有些檔案中的程式碼不會複製於此，但是您會在執行 Bot 時看到，還可參考 [Node.js echobot-with-counter](https://aka.ms/js-echobot-with-counter) 範例。
 
 ### <a name="packagejson"></a>package.json
 
