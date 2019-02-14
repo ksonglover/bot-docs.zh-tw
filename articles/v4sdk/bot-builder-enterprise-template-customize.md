@@ -6,14 +6,14 @@ ms.author: darrenj
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 09/18/2018
+ms.date: 02/7/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 319700f8b7b236ce74058bac5fabb84f21e04d69
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: d472cbe7c0235862f8dcff1bcc2d53d977bb7657
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452010"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971488"
 ---
 # <a name="enterprise-bot-template---customize-your-bot"></a>企業 Bot 範本 - 自訂您的 Bot
 
@@ -107,11 +107,11 @@ Bot 的資料夾結構如下所示，且代表我們建議的最佳做法，可�
 ```
 3. 透過下列命令將這個新的 LUIS 模型新增至您的發送器
 ```shell
-    dispatch add -t luis -id LUIS_APP_ID -bot "YOUR_BOT.bot" -secret YOURSECRET
+    dispatch add -t luis -id LUIS_APP_ID -bot "YOUR_BOT.bot" --secret YOURSECRET
 ```
 4. 重新整理分派模型，以透過下列命令反映 LUIS 模型變更
 ```shell
-    dispatch refresh -bot "YOUR_BOT.bot" -secret YOUR_SECRET
+    dispatch refresh -bot "YOUR_BOT.bot" --secret YOUR_SECRET
 ```
 
 ### <a name="adding-an-additional-qna-maker-knowledge-base"></a>新增額外的 QnA Maker 知識庫
