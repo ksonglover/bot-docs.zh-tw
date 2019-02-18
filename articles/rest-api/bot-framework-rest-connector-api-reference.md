@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/25/2018
-ms.openlocfilehash: 81192c9b5806d467c2a1fd292ee3d5db539e9ead
-ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
+ms.openlocfilehash: fd98b1bc8c3aa3b2c9fd716289dfd3ce75bec75b
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916865"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971538"
 ---
 # <a name="api-reference"></a>API 參考資料
 
@@ -406,7 +406,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | 屬性 | 類型 | 說明 |
 |----|----|----|
 | **action** | 字串 | 要套用的動作或是已套用的動作。 使用**類型**屬性判斷動作的內容。 例如，在**類型**是 **contactRelationUpdate** 的情況下，若使用者將 Bot 新增至其連絡人清單，則 **action** 屬性的值會是 **add**；而若使用者將 Bot 從連絡人清單中移除，其值則為 **remove**。 |
-| **attachments** | [Attachment](#attachment-object)[] | **Attachment** 物件陣列，用於定義要加入訊息的其他資訊。 每個附件可能是媒體檔案 (例如：音訊、影片、影像、檔案) 或豐富資訊卡。 |
+| **attachments** | [Attachment](#attachment-object)[] |  **Attachment** 物件陣列，用於定義要加入訊息的其他資訊。 每個附件可能是媒體檔案 (例如：音訊、影片、影像、檔案) 或豐富資訊卡。 |
 | **attachmentLayout** | 字串 | 包含在訊息中的豐富資訊卡**附件**的版面配置。 下列任一值：**carousel**、**list**。 如需有關豐富資訊卡附件的詳細資訊，請參閱[將豐富資訊卡附件新增至訊息](bot-framework-rest-connector-add-rich-cards.md)。 |
 | **channelData** | 物件 | 包含通道專用內容的物件。 某些通道提供的功能，需要使用無法以附件結構描述來呈現的其他資訊。 在該等情況下，請將此屬性設定為通道文件中所定義的通道專用內容。 如需詳細資訊，請參閱[實作通道專屬功能](bot-framework-rest-connector-channeldata.md)。 |
 | **channelId** | 字串 | 可唯一識別通道的識別碼。 由通道設定。 | 
@@ -433,7 +433,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **textFormat** | 字串 | 訊息**文字**的格式。 下列任一值：**markdown**、**plain**、**xml**。 如需有關文字格式的詳細資料，請參閱[建立訊息](bot-framework-rest-connector-create-messages.md)。 |
 | **timestamp** | 字串 | 訊息傳送時的 UTC 時區日期及時間，以 <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO-8601</a> 格式表示。 |
 | **topicName** | 字串 | 活動所屬交談的主題。 |
-| **type** | 字串 | 活動的類型。 下列任一值：**contactRelationUpdate**、**conversationUpdate**、**deleteUserData**、**message**、**typing**、**endOfConversation**。 如需有關活動類型的詳細資料，請參閱[活動概觀](bot-framework-rest-connector-activities.md)。 |
+| **type** | 字串 | 活動的類型。 下列任一值：**contactRelationUpdate**、**conversationUpdate**、**deleteUserData**、**message**、**typing**、**event** 和 **endOfConversation**。 如需有關活動類型的詳細資料，請參閱[活動概觀](bot-framework-rest-connector-activities.md)。 |
 | **value** | 物件 | 開放端點的值。 |
 | **semanticAction** |[SemanticAction](#semanticaction-object) | **SemanticAction** 物件，代表程式設計動作的參考。 |
 
@@ -463,7 +463,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
-| **contentType** | 字串 | 附件中內容的媒體類型。 若為媒體檔案，請將此屬性設為已知的媒體類型如：**image/png**、**audio/wav** 和 **video/mp4**。 若為豐富資訊卡，請將此屬性設為下列任一個廠商特有類型：<ul><li>**application/vnd.microsoft.card.adaptive**：可包含文字、語音、影像、按鈕及輸入欄位任意組合的豐富資訊卡。 將**內容**屬性設為 <a href="http://adaptivecards.io/documentation/#create-cardschema" target="_blank">AdaptiveCard</a> 物件。</li><li>**application/vnd.microsoft.card.animation**：可播放動畫的豐富資訊卡。 將**內容**屬性設為 [AnimationCard](#animationcard-object) 物件。</li><li>**application/vnd.microsoft.card.audio**：可播放音訊檔案的豐富資訊卡。 將**內容**屬性設為 [AudioCard](#audiocard-object) 物件。</li><li>**application/vnd.microsoft.card.video**：可播放影片的豐富資訊卡。 將**內容**屬性設為 [VideoCard](#videocard-object) 物件。</li><li>**application/vnd.microsoft.card.hero**：主圖卡。 將**內容**屬性設為 [HeroCard](#herocard-object) 物件。</li><li>**application/vnd.microsoft.card.thumbnail**：縮圖卡。 將**內容**屬性設為 [ThumbnailCard](#thumbnailcard-object) 物件。</li><li>**application/vnd.microsoft.com.card.receipt**：回條卡。 將**內容**屬性設為 [ReceiptCard](#receiptcard-object) 物件。</li><li>**application/vnd.microsoft.com.card.signin**：使用者登入卡。 將**內容**屬性設為 [SignInCard](#signincard-object) 物件。</li></ul> |
+| **contentType** | 字串 | 附件中內容的媒體類型。 若為媒體檔案，請將此屬性設為已知的媒體類型如：**image/png**、**audio/wav** 和 **video/mp4**。 若為豐富資訊卡，請將此屬性設為下列任一個廠商特有類型：<ul><li>**application/vnd.microsoft.card.adaptive**：豐富卡片可包含文字、語音、影像、按鈕和輸入欄位的任何組合。 將**內容**屬性設為 <a href="http://adaptivecards.io/documentation/#create-cardschema" target="_blank">AdaptiveCard</a> 物件。</li><li>**application/vnd.microsoft.card.animation**：可播放動畫的豐富介面卡。 將**內容**屬性設為 [AnimationCard](#animationcard-object) 物件。</li><li>**application/vnd.microsoft.card.audio**：可播放音訊檔案的豐富介面卡。 將**內容**屬性設為 [AudioCard](#audiocard-object) 物件。</li><li>**application/vnd.microsoft.card.video**：可播放影片的豐富介面卡。 將**內容**屬性設為 [VideoCard](#videocard-object) 物件。</li><li>**application/vnd.microsoft.card.hero**：主圖卡片。 將**內容**屬性設為 [HeroCard](#herocard-object) 物件。</li><li>**application/vnd.microsoft.card.thumbnail**：縮圖卡片。 將**內容**屬性設為 [ThumbnailCard](#thumbnailcard-object) 物件。</li><li>**application/vnd.microsoft.com.card.receipt**：收據卡片。 將**內容**屬性設為 [ReceiptCard](#receiptcard-object) 物件。</li><li>**application/vnd.microsoft.com.card.signin**：使用者登入卡片。 將**內容**屬性設為 [SignInCard](#signincard-object) 物件。</li></ul> |
 | **contentUrl** | 字串 | 附件內容的 URL。 例如，若附件為影像，則將 **contentUrl** 設為代表該影像位置的 URL。 支援的通訊協定：HTTP、HTTPS、檔案和資料。 |
 | **content** | 物件 | 附件的內容。 若附件是豐富資訊卡，則將此屬性設為豐富資訊卡物件。 此屬性與 **contentUrl** 屬性互斥。 |
 | **name** | 字串 | 附件的名稱。 |
