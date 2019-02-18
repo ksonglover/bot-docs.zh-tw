@@ -8,30 +8,35 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 02/04/2019
+ms.date: 02/11/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8bcb2e545cea640f74a37cac20f16b288c690956
-ms.sourcegitcommit: fd60ad0ff51b92fa6495b016e136eaf333413512
+ms.openlocfilehash: 1904bb09d8bd387cc5cec0d85f82df24d1f6ec9d
+ms.sourcegitcommit: 7f418bed4d0d8d398f824e951ac464c7c82b8c3e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55764183"
+ms.lasthandoff: 02/14/2019
+ms.locfileid: "56240174"
 ---
-# <a name="migrate-a-bot-within-the-same-net-framework-project"></a>在相同的 .NET Framework 專案中移轉 Bot
+# <a name="migrate-a-net-sdk-v3-bot-to-v4"></a>將 .NET SDK v3 Bot 遷移至 v4
 
-Bot Framework SDK v4 是以與 SDK v3 相同的基礎 REST API 作為基礎。 不過，SDK v4 是舊版 SDK 的重構，讓開發人員對於其 Bot 有更多的彈性和控制權。 SDK 中的主要變更包括：<!--TODO: Replace with a snippet summary of changes that includes a link to the concept topic.-->
+我們在本文中將 v3 [ContosoHelpdeskChatBot](https://github.com/Microsoft/intelligent-apps/tree/master/ContosoHelpdeskChatBot/ContosoHelpdeskChatBot) 轉換 v4 Bot，而「不需轉換專案類型」。 其仍然是 .NET Framework 專案。
+此轉換可細分成下列步驟：
+
+1. 更新和安裝 NuGet 套件
+1. 更新 Global.asax.cs 檔案
+1. 更新 MessagesController 類別
+1. 轉換您的對話
+
+<!--TODO: Link to the converted bot...[ContosoHelpdeskChatBot](https://github.com/EricDahlvang/intelligent-apps/tree/v4netframework/ContosoHelpdeskChatBot).-->
+
+Bot Framework SDK v4 是以與 SDK v3 相同的基礎 REST API 作為基礎。 不過，SDK v4 是舊版 SDK 的重構，讓開發人員對於其 Bot 有更多的彈性和控制權。 SDK 中的主要變更包括：
 
 - 透過狀態管理物件和屬性存取子管理狀態。
 - 設定回合處理常式並將活動傳遞給它已變更。
 - 可評分項目已不存在。 將控制權交給您的對話之前，可以檢查回合處理常式中的「全域」命令。
 - 與前一版非常不同的新 Dialogs 程式庫。 您必須使用元件和瀑布式對話，以及適用於 v4 的 Formflow 對話社群實作，將舊的對話轉換至新的對話系統。
 
-在這篇文章中，我們將著重於 v3 [ContosoHelpdeskChatBot](https://github.com/Microsoft/intelligent-apps/tree/master/ContosoHelpdeskChatBot/ContosoHelpdeskChatBot) 並將它轉換成 v4 Bot。 <!--TODO: Link to the converted bot...[ContosoHelpdeskChatBot](https://github.com/EricDahlvang/intelligent-apps/tree/v4netframework/ContosoHelpdeskChatBot).--> 我們會轉換 Bot，但不轉換專案類型，因此會保留 .NET Framework 專案。 此轉換可細分成下列步驟：
-
-1. 更新和安裝 NuGet 套件
-1. 更新 Global.asax.cs 檔案
-1. 更新 MessagesController 類別
-1. 轉換您的對話
+如需特定變更的詳細資訊，請參閱 [v3 和 v4 .NET SDK 之間差異](migration-about.md)。
 
 ## <a name="update-and-install-nuget-packages"></a>更新和安裝 NuGet 套件
 
@@ -343,7 +348,6 @@ v4 程式碼的注意事項：
 - 瀑布步驟具有 `WaterfallStepContext` 參數，其衍生自 `DialogContext`。
 - 所有具體的對話和提示類別均衍生自抽象的 `Dialog` 類別。
 - 您會在建立元件對話時指派識別碼。 對話集中的每個對話都需要被指派該集合內唯一的識別碼。
-- 我們會實作 `PostAsync` 和 `Done` 擴充方法，讓我們轉換的對話更近似 v3。 您可新增其他擴充方法，以減輕更多轉換程序，也可以跳過此操作，讓您移轉的程式碼更近似 v4。
 
 ### <a name="update-the-root-dialog"></a>更新根對話
 

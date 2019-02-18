@@ -7,14 +7,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 10/30/2018
+ms.date: 02/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3bfbcb27aa6e38792f96e0d3fe042f02f6e11083
-ms.sourcegitcommit: d385ec5fe61c469ab17e6f21b4a0d50e5110d0fd
+ms.openlocfilehash: c55909afa0a8942a01d3fca0f8a64331bbcdf963
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54298315"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971518"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
 
@@ -51,7 +51,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 ## <a name="overview"></a>概觀
 
-本教學課程使用 Azure AD v1 或 v2 權杖建立了一個連線至 Microsoft Graph 的範例 Bot。 而在此程序中，您將使用來自 [Microsoft/BotBuilder-Samples](https://github.com/Microsoft/BotBuilder-Samples) GitHub 存放庫的程式碼；本教學課程將說明如何進行設定，包括 Bot 應用程式。
+本教學課程使用 Azure AD v1 或 v2 權杖建立了一個連線至 Microsoft Graph 的範例 Bot，以及相關聯的 Azure AD 應用程式。 而在此程序中，您將使用來自 [Microsoft/BotBuilder-Samples](https://github.com/Microsoft/BotBuilder-Samples) GitHub 存放庫的程式碼；本教學課程將說明如何進行設定，包括 Bot 應用程式。
 
 - **建立 Bot 和驗證應用程式**
 - **準備 Bot 範例程式碼**

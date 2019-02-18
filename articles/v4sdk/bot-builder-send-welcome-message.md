@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/20/2018
+ms.date: 02/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8198e5d23975780b313dc49bb78d44374a1fd106
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+ms.openlocfilehash: 2ec48d8c5f79031e05f88b2e70e4c6ed301989d6
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55711962"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971438"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
@@ -24,10 +24,12 @@ ms.locfileid: "55711962"
 建立任何 Bot 時的主要目標就是讓您的使用者參與有意義的對話。 達成此目標的最佳方式之一就是確保從使用者第一次連線的那一刻，他們就了解您 Bot 的主要用途和功能，以及您 Bot 的建立原因。 這篇文章提供程式碼範例，協助您歡迎使用者使用 Bot。
 
 ## <a name="prerequisites"></a>必要條件
+
 - 了解 [bot 基本概念](bot-builder-basics.md)。 
 - 採用 [C#](https://aka.ms/bot-welcome-sample-cs) 或 [JS](https://aka.ms/bot-welcome-sample-js) 的一份**歡迎使用者範例**。 此範例中的程式碼用來說明如何傳送歡迎訊息。
 
 ## <a name="same-welcome-for-different-channels"></a>不同通道使用相同的歡迎
+
 每當使用者第一次與您的 Bot 互動時，應該就會產生歡迎訊息。 若要達成此目的，您可以監視 Bot 的 [活動] 類型並監看新的連線。 視通道而定，每個新連線都可以產生最多兩個對話更新活動。
 
 - 當使用者的 Bot 連線到對話時產生一個。
@@ -40,10 +42,11 @@ ms.locfileid: "55711962"
 ![雙重歡迎訊息](./media/double_welcome_message.png)
 
 只針對第二個對話更新事件，產生初始歡迎訊息，可以避免此重複訊息。 在下列兩種情況下，可以偵測到第二個事件：
+
 - 已發生對話更新事件。
 - 新的成員 (使用者) 已加入對話。
 
-下列範例可監看新的「對話更新」活動，根據加入對話的使用者只傳送一則歡迎訊息，以及設定提示狀態旗標來忽略使用者的初始對話輸入。 
+下列程式碼範例會監看任何新的「交談更新活動」，而且對每位加入交談的新使用者只會傳送一則歡迎訊息。 Bot 發生第一個 _conversationUpdate_ 事件時，Bot 本身會新增為通道的活動「收件者」。 此程式碼會檢查新增的成員 == _turnContext.Activity.Recipient.Id_。如果為 true，其已偵測到初始交談更新事件，並略過可尋找新連線使用者的程式碼。
 
 [!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
 
@@ -150,43 +153,56 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
 新增使用者時，此 JavaScript 程式碼就會傳送歡迎訊息。 檢查對話活動並確認新成員已新增至對話，即可完成此作業。
 
 ```javascript
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 // Import required Bot Framework classes.
 const { ActivityTypes } = require('botbuilder');
 const { CardFactory } = require('botbuilder');
 
-// Welcomed User property name
-const WELCOMED_USER = 'DidBotWelcomeUser';
+// Adaptive Card content
+const IntroCard = require('./resources/IntroCard.json');
 
-class MainDialog {
-    constructor (userState) {
+// Welcomed User property name
+const WELCOMED_USER = 'welcomedUserProperty';
+
+class WelcomeBot {
+    /**
+     *
+     * @param {UserState} User state to persist boolean flag to indicate
+     *                    if the bot had already welcomed the user
+     */
+    constructor(userState) {
         // Creates a new user property accessor.
         // See https://aka.ms/about-bot-state-accessors to learn more about the bot state and state accessors.
-        this.welcomedUserPropery = userState.createProperty(WELCOMED_USER);
-    }
+        this.welcomedUserProperty = userState.createProperty(WELCOMED_USER);
 
-    async onTurn(turnContext) 
-    {
+        this.userState = userState;
+    }
+    /**
+     *
+     * @param {TurnContext} context on turn context object.
+     */
+    async onTurn(turnContext) {
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
-        if (turnContext.activity.type === ActivityTypes.Message) 
-        {
-            // Read UserState. If the 'DidBotWelcomeUser' does not exist (first time ever for a user)
+        if (turnContext.activity.type === ActivityTypes.Message) {
+            // Read UserState. If the 'DidBotWelcomedUser' does not exist (first time ever for a user)
             // set the default to false.
-            let didBotWelcomeUser = await this.welcomedUserPropery.get(turnContext, false);
+            const didBotWelcomedUser = await this.welcomedUserProperty.get(turnContext, false);
 
             // Your bot should proactively send a welcome message to a personal chat the first time
             // (and only the first time) a user initiates a personal chat with your bot.
-            if (didBotWelcomeUser === false) 
-            {
+            if (didBotWelcomedUser === false) {
                 // The channel should send the user name in the 'From' object
                 let userName = turnContext.activity.from.name;
-                await turnContext.sendActivity("You are seeing this message because this was your first message ever sent to this bot.");
-                await turnContext.sendActivity(`It is a good practice to welcome the user and provdie personal greeting. For example, welcome ${userName}.`);
-                
+                await turnContext.sendActivity('You are seeing this message because this was your first message ever sent to this bot.');
+                await turnContext.sendActivity(`It is a good practice to welcome the user and provide personal greeting. For example, welcome ${ userName }.`);
+
                 // Set the flag indicating the bot handled the user's first message.
-                await this.welcomedUserPropery.set(turnContext, true);
+                await this.welcomedUserProperty.set(turnContext, true);
+            } else {
+                // ...
             }
-            . . .
-            
             // Save state changes
             await this.userState.saveChanges(turnContext);
         } else if (turnContext.activity.type === ActivityTypes.ConversationUpdate) {
@@ -197,49 +213,46 @@ class MainDialog {
             await turnContext.sendActivity(`[${ turnContext.activity.type } event detected]`);
         }
     }
-    
-    // Sends welcome messages to conversation members when they join the conversation.
-    // Messages are only sent to conversation members who aren't the bot.
+
+    /**
+     * Sends welcome messages to conversation members when they join the conversation.
+     * Messages are only sent to conversation members who aren't the bot.
+     * @param {TurnContext} turnContext
+     */
     async sendWelcomeMessage(turnContext) {
-        // If any new membmers added to the conversation
-        if (turnContext.activity && turnContext.activity.membersAdded) {
-            // Define a promise that will welcome the user
-            async function welcomeUserFunc(conversationMember) {
+        // Do we have any new members added to the conversation?
+        if (turnContext.activity.membersAdded.length !== 0) {
+            // Iterate over all new members added to the conversation
+            for (let idx in turnContext.activity.membersAdded) {
                 // Greet anyone that was not the target (recipient) of this message.
-                // The bot is the recipient of all events from the channel, including all ConversationUpdate-type activities
-                // turnContext.activity.membersAdded !== turnContext.activity.aecipient.id indicates 
-                // a user was added to the conversation 
-                if (conversationMember.id !== this.activity.recipient.id) {
-                    // Because the TurnContext was bound to this function, the bot can call
-                    // `TurnContext.sendActivity` via `this.sendActivity`;
-                    await this.sendActivity(`Welcome to the 'Welcome User' Bot. This bot will introduce you to welcoming and greeting users.`);
-                    await this.sendActivity("You are seeing this message because the bot recieved at least one 'ConversationUpdate'" + 
-                                            "event,indicating you (and possibly others) joined the conversation. If you are using the emulator, "+ 
-                                            "pressing the 'Start Over' button to trigger this event again. The specifics of the 'ConversationUpdate' "+
-                                            "event depends on the channel. You can read more information at https://aka.ms/about-botframewor-welcome-user");
-                    await this.sendActivity(`It is a good pattern to use this event to send general greeting to user, explaining what your bot can do. `+ 
+                // Since the bot is the recipient for events from the channel,
+                // context.activity.membersAdded === context.activity.recipient.Id indicates the
+                // bot was added to the conversation, and the opposite indicates this is a user.
+                if (turnContext.activity.membersAdded[idx].id !== turnContext.activity.recipient.id) {
+                    await turnContext.sendActivity(`Welcome to the 'Welcome User' Bot. This bot will introduce you to welcoming and greeting users.`);
+                    await turnContext.sendActivity("You are seeing this message because the bot received at least one 'ConversationUpdate'" +
+                                            'event,indicating you (and possibly others) joined the conversation. If you are using the emulator, ' +
+                                            "pressing the 'Start Over' button to trigger this event again. The specifics of the 'ConversationUpdate' " +
+                                            'event depends on the channel. You can read more information at https://aka.ms/about-botframework-welcome-user');
+                    await turnContext.sendActivity(`It is a good pattern to use this event to send general greeting to user, explaining what your bot can do. ` +
                                             `In this example, the bot handles 'hello', 'hi', 'help' and 'intro. ` +
                                             `Try it now, type 'hi'`);
                 }
             }
-    
-            // Prepare Promises to greet the  user.
-            // The current TurnContext is bound so `replyForReceivedAttachments` can also send replies.
-            const replyPromises = turnContext.activity.membersAdded.map(welcomeUserFunc.bind(turnContext));
-            await Promise.all(replyPromises);
         }
     }
 }
 
-module.exports = MainDialog;
+module.exports.WelcomeBot = WelcomeBot;
 ```
 
 ---
 
 ## <a name="discard-initial-user-input"></a>捨棄初始使用者輸入
-此外，務必考量使用者的輸入何時實際上可能包含實用資訊，而這也可能因通道而異。 為了確保您的使用者在所有可能的通道上均有良好的體驗，我們會提供初始提示，並設定要在使用者的回覆中尋找的關鍵字，以避免處理無效的回應資料。
 
-## <a name="ctabcsharpmulti"></a>[C#](#tab/csharpmulti)
+此外，務必考量使用者的輸入何時實際上可能包含實用資訊，而這也可能因通道而異。 若要確保使用者在所有可能的通道上都有美好的體驗，我們會檢查狀態旗標 _didBotWelcomeUser_，如果這是 "false"，我們就會避免處理此初始使用者輸入。 我們會改為提供使用者對於其回應的初始提示。 然後 _didBotWelcomeUser_ 變數會設為 "true"，而我們的程式碼會處理來自所有其他訊息活動的使用者輸入。
+
+## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```csharp
 public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = new CancellationToken())
@@ -296,46 +309,44 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
 
 ```
 
-## <a name="javascripttabjsmulti"></a>[JavaScript](#tab/jsmulti)
+## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
 ```javascript
-class MainDialog 
-{ 
+class MainDialog
+{
     // Previous Code Sample
-    
-    async onTurn(turnContext) 
+    async onTurn(turnContext)
     {
         // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
         if (turnContext.activity.type === ActivityTypes.Message) {
-            
             // Previous Code Sample
-            
-            if (didBotWelcomeUser === false) 
-            {
+            if (didBotWelcomeUser === false) {
                 // Previous Code Sample
-            }
-            else 
-            {
-                // This example hardcodes specific uterances. You should use LUIS or QnA for more advance language understanding.
+            } else  {
+                // This example uses an exact match on user's input utterance.
+                // Consider using LUIS or QnA for Natural Language Processing.
                 let text = turnContext.activity.text.toLowerCase();
-                switch (text) 
-                {
-                    case "hello":
-                    case "hi":
-                        await turnContext.sendActivity(`You said "${turnContext.activity.text}"`);
-                        break;
-                    case "intro":
-                    case "help":
-                    default :
-                        await turnContext.sendActivity(`This is a simple Welcome Bot sample. You can say 'intro' to 
-                                                        see the introduction card. If you are running this bot in the Bot 
+                switch (text) {
+                case 'hello':
+                case 'hi':
+                    await turnContext.sendActivity(`You said "${ turnContext.activity.text }"`);
+                    break;
+                case 'intro':
+                case 'help':
+                    await turnContext.sendActivity({
+                        text: 'Intro Adaptive Card',
+                        attachments: [CardFactory.adaptiveCard(IntroCard)]
+                    });
+                    break;
+                default :
+                    await turnContext.sendActivity(`This is a simple Welcome Bot sample. You can say 'intro' to
+                                                        see the introduction card. If you are running this bot in the Bot
                                                         Framework Emulator, press the 'Start Over' button to simulate user joining a bot or a channel`);
                 }
             }
         }
-       
        // Previous Sample Code
-    } 
+    }
 }
 ```
 
@@ -345,7 +356,7 @@ class MainDialog
 
 另一種問候使用者的方式是使用調適型卡片問候語。 您可以在[傳送調適型卡片](./bot-builder-howto-add-media-attachments.md)中深入了解調適型卡片問候語。
 
-## <a name="ctabcsharpwelcomeback"></a>[C#](#tab/csharpwelcomeback)
+## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```csharp
 // Sends an adaptive card greeting.
@@ -387,8 +398,7 @@ switch (text)
 }
 ```
 
-
-## <a name="javascripttabjswelcomeback"></a>[JavaScript](#tab/jswelcomeback)
+## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
 首先我們要將調適型卡片新增至 Imports 正下方 _index.js_ 頂端的 Bot。
 
@@ -400,7 +410,7 @@ const IntroCard = require('./Resources/IntroCard.json');
 接下來，我們只要在 Bot 的 _switch (text)_ _case "help"_ 區段中使用以下程式碼，即可以調適型卡片回應使用者提示。
 
 ```javascript
-switch (text) 
+switch (text)
 {
     case "hello":
     case "hi":
@@ -419,10 +429,14 @@ switch (text)
                                         Framework Emulator, press the 'Start Over' button to simulate user joining a bot or a channel`);
 }
 ```
+
 ---
+
 ## <a name="test-the-bot"></a>測試 Bot
+
 如需執行 Bot 的相關指示，請參閱[讀我](https://aka.ms/bot-welcome-sample-cs)檔案。
 
 ## <a name="next-steps"></a>後續步驟
+
 > [!div class="nextstepaction"]
 > [收集使用者輸入](bot-builder-prompts.md)

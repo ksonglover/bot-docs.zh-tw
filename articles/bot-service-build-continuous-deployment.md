@@ -1,20 +1,17 @@
 ---
-title: 設定 Bot Service 的持續部署 | Microsoft Docs
-description: 了解如何設定從 Bot Service 原始檔控制的持續部署。
-keywords: 持續部署, 發佈, 部署, Azure 入口網站
-author: ivorb
-ms.author: v-ivorb
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.date: 12/06/2018
-ms.openlocfilehash: ffbc3ef83c8fe1cd6f04697a3fff9e229df9956f
-ms.sourcegitcommit: 080b9633925ffe381f2c3cf11c8f8ca4b37e2046
+redirect_url: /bot-framework/bot-builder-deploy-az-cli
+ms.openlocfilehash: 8149471553658df6778e2983bae114e80c846c9b
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53068711"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971421"
 ---
+<a name="--"></a><!--
+---
+標題：設定 Bot Service 的持續部署 | Microsoft Docs 描述：了解如何設定從 Bot Service 原始檔控制的持續部署。 keywords: 持續部署, 發佈, 部署, azure 入口網站 author: ivorb ms.author: v-ivorb manager: kamrani ms.topic: article ms.service: bot-service ms.date:12/06/2018
+---
+
 # <a name="set-up-continuous-deployment"></a>設定連續部署
 如果您將程式碼簽入 **GitHub** 或 **Azure DevOps (前身為 Visual Studio Team Services)**，請使用持續部署來自動將來源存放庫中的程式碼變更部署至 Azure。 在本主題中，我們將討論如何設定 **GitHub** 和 **Azure DevOps** 的持續部署。
 
@@ -71,3 +68,6 @@ ms.locfileid: "53068711"
 
 ## <a name="additional-information"></a>其他資訊
 - Visual Studio Team Services 現在是 [Azure DevOps Services](https://docs.microsoft.com/en-us/azure/devops/?view=vsts)
+
+
+-->

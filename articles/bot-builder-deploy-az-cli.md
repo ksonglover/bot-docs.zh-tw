@@ -1,108 +1,177 @@
 ---
-title: 使用 Azure CLI 部署 Bot | Microsoft Docs
+title: 部署您的 Bot | Microsoft Docs
 description: 將您的 Bot 部署至 Azure 雲端。
-keywords: 部署 bot, azure 部署, 發佈 bot, az 部署 bot, visual studio 部署 bot, msbot 發佈, msbot 複製
+keywords: 部署 bot, azure 部署 bot, 發佈 bot
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 01/07/2019
-ms.openlocfilehash: 3ebc13cf9e2d111d716d081c36f125d28a441811
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
+ms.date: 02/07/2019
+ms.openlocfilehash: b4c3b982bf061b3a24c6d240b05dc40b0cf07816
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360738"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971420"
 ---
-# <a name="deploy-your-bot-using-azure-cli"></a>使用 Azure CLI 部署 Bot
+# <a name="deploy-your-bot"></a>部署您的 Bot 
 
 [!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
 
 建立 Bot 並在本機測試後，您可以將其部署至 Azure，以便從任何地方進行存取。 將 Bot 部署至 Azure 時，需支付您所使用的服務。 [計費與成本管理](https://docs.microsoft.com/en-us/azure/billing/)一文協助您了解 Azure 計費方式、監視使用量和成本，以及管理帳戶和訂用帳戶。
 
-在本文中，我們會示範如何使用 `az` 和 `msbot` 將 C# 和 JavaScript Bot 部署至 Azure。 在依照步驟執行前閱讀本文很有用，您可完全了解部署 Bot 的相關事項。
+在本文中，我們會示範如何將 C# 和 JavaScript Bot 部署至 Azure。 在依照步驟執行前閱讀本文很有用，您可完全了解部署 Bot 的相關事項。
 
 ## <a name="prerequisites"></a>必要條件
+- 安裝最新版的 [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/MSBot) 工具。
+- 您已在本機電腦上開發的 [CSharp](./dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [JavaScript](./javascript/bot-builder-javascript-quickstart.md) Bot。 
+
+## <a name="create-a-web-app-bot-in-azure"></a>在 Azure 中建立 Web 應用程式 Bot
+此是選擇性章節。如果您已經在 Azure 中建立想要使用的 Bot。
+
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
+1. 按一下 Azure 入口網站左上角的 [建立新資源] 連結，然後選取 [AI + 機器學習服務] > [Web 應用程式 Bot]。
+1. 隨即開啟含有 Web 應用程式 Bot 相關資訊的新刀鋒視窗。 
+1. 在 [Bot 服務] 刀鋒視窗中，提供有關 Bot 的必要資訊。
+1. 按一下 [建立] 以建立服務，並將 Bot 部署到雲端。 此程序可能需要幾分鐘的時間。
+
+## <a name="download-the-source-code"></a>下載原始程式碼
+1. 在 [Bot 管理] 區段中，按一下 [組建]。
+1. 在右窗格中按一下**下載 Bot 原始程式碼**連結。
+1. 遵循提示以下載程式碼，然後將資料夾解壓縮。
+
+## <a name="decrypt-the-bot-file"></a>將 .bot 檔案解密
+您從 Azure 入口網站下載的原始程式碼包含已加密的 .bot 檔案。 您必須將其解密，以將其值複製到您的本機 .bot 檔案。  
+
+1. 在 Azure 入口網站中，為您的 Bot 開啟 Web 應用程式 Bot 資源。
+1. 開啟 Bot 的 [應用程式設定]。
+1. 在 [應用程式設定] 視窗中，向下捲動至 [應用程式設定]。
+1. 找出 **botFileSecret** 並複製其值。
+
+使用 `msbot cli` 將檔案解密。
+```
+msbot secret --bot <name-of-bot-file> --secret "<bot-file-secret>" --clear
+```
+
+## <a name="update-the-bot-file"></a>更新 .bot 檔案
+開啟您已解密的 .bot 檔案。 複製 `services` 區段底下所列的項目，然後將其新增至您的本機 .bot 檔案。 例如︰
+
+```
+{
+   "type": "endpoint",
+   "name": "production",
+   "endpoint": "https://<something>.azurewebsites.net/api/messages",
+   "appId": "<App Id>",
+   "appPassword": "<App Password>",
+   "id": "2
+}
+```
+
+儲存檔案。
+ 
+## <a name="setup-a-repository"></a>設定存放庫
+使用慣用的 git 原始檔控制提供者建立 git 存放庫。 將程式碼認可至存放庫。
+ 
+## <a name="update-app-settings-in-azure"></a>在 Azure 中更新應用程式設定
+1. 在 Azure 入口網站中，為您的 Bot 開啟 [Web 應用程式 Bot] 資源。
+1. 開啟 Bot 的 [應用程式設定]。
+1. 在 [應用程式設定] 視窗中，向下捲動至 [應用程式設定]。
+1. 找出 **botFileSecret** 並加以刪除。
+1. 更新 Bot 檔案名稱，以符合您簽入存放庫的檔案。
+1. 儲存變更。
+
+
+## <a name="deploy-using-azure-deployment-center"></a>使用 Azure 部署中心進行部署
+現在，您需要透過 Azure App Service 連線您的 git 存放庫。 遵循[設定持續部署](https://docs.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment)主題中的指示。 請注意，建議使用 `App Service Kudu build server` 建置。
+
+## <a name="test-your-deployment"></a>測試您的部署
+在成功部署後等候幾秒，選擇性地重新啟動您的 Web 應用程式，以清除任何快取。 回到您的 Web 應用程式 Bot 刀鋒視窗，使用 Azure 入口網站中提供的網路聊天進行測試。
+
+## <a name="additional-resources"></a>其他資源
+- [如何調查連續部署的常見問題](https://github.com/projectkudu/kudu/wiki/Investigating-continuous-deployment)
+
+<!--
+
+## Prerequisites
 
 [!INCLUDE [prerequisite snippet](~/includes/deploy/snippet-prerequisite.md)]
 
 
-## <a name="deploy-javascript-and-c-bots-using-az-cli"></a>使用 az cli 部署 JavaScript 和 C# Bot
+## Deploy JavaScript and C# bots using az cli
 
-您已在本機建立及測試 Bot，而現在想要將其部署至 Azure。 這些步驟假設您已建立必要的 Azure 資源。
+You've already created and tested a bot locally, and now you want to deploy it to Azure. These steps assume that you have created the required Azure resources.
 
 [!INCLUDE [az login snippet](~/includes/deploy/snippet-az-login.md)]
 
-### <a name="create-a-web-app-bot"></a>建立 Web 應用程式 Bot
+### Create a Web App Bot
 
-如果您還沒有可供發佈 Bot 的資源群組，請建立一個：
+If you don't already have a resource group to which to publish your bot, create one:
 
 [!INCLUDE [az create group snippet](~/includes/deploy/snippet-az-create-group.md)]
 
 [!INCLUDE [az create web app snippet](~/includes/deploy/snippet-create-web-app.md)]
 
-在繼續之前，請根據您用來登入 Azure 的電子郵件帳戶類型，閱讀您適用的指示。
+Before proceeding, read the instructions that apply to you based on the type of email account you use to log in to Azure.
 
-#### <a name="msa-email-account"></a>MSA 電子郵件帳戶
+#### MSA email account
 
-如果您使用 [MSA](https://en.wikipedia.org/wiki/Microsoft_account) 電子郵件帳戶，則必須在應用程式註冊入口網站上建立應用程式識別碼和應用程式密碼，以搭配 `az bot create` 命令使用。
+If you are using an [MSA](https://en.wikipedia.org/wiki/Microsoft_account) email account, you will need to create the app ID and app password on the Application Registration Portal to use with `az bot create` command.
 
 [!INCLUDE [create bot msa snippet](~/includes/deploy/snippet-create-bot-msa.md)]
 
-#### <a name="business-or-school-account"></a>公司或學校帳戶
+#### Business or school account
 
 [!INCLUDE [create bot snippet](~/includes/deploy/snippet-create-bot.md)]
 
-### <a name="download-the-bot-from-azure"></a>從 Azure 下載 Bot
+### Download the bot from Azure
 
-接下來，下載您剛建立的 Bot。 
+Next, download the bot you just created. 
 [!INCLUDE [download bot snippet](~/includes/deploy/snippet-download-bot.md)]
 
-### <a name="decrypt-the-downloaded-bot-file-and-use-in-your-project"></a>將下載的 .bot 檔案解密並使用於專案中
+### Decrypt the downloaded .bot file and use in your project
 
-.bot 檔案中的敏感性資訊已加密。
+The sensitive information in the .bot file is encrypted.
 
 [!INCLUDE [decrypt bot snippet](~/includes/deploy/snippet-decrypt-bot.md)]
 
-### <a name="update-the-bot-file"></a>更新 .bot 檔案
+### Update the .bot file
 
-如果 Bot 使用 LUIS、QnA Maker 或分派服務，您必須將這些參考新增至 .bot 檔案。 否則，您可以略過此步驟。
+If your bot uses LUIS, QnA Maker, or Dispatch services, you will need to add references to them to your .bot file. Otherwise, you can skip this step.
 
-1. 使用新的 .bot 檔案，在 BotFramework Emulator 中開啟 Bot。 Bot 不需要在本機執行。
-1. 在 [BOT 總管] 面板中，展開 [服務] 區段。
-1. 若要新增 LUIS 應用程式的參考，請按一下 [服務] 右邊的加號 (+)。
-   1. 選取 [新增 Language Understanding (LUIS)]。
-   1. 依照提示來登入您的 Azure 帳戶。
-   1. 其會呈現您有存取權的 LUIS 應用程式清單。 選取您的 Bot 適用的項目。
-1. 若要新增 QnA Maker 知識庫的參考，請按一下 [服務] 右邊的加號 (+)。
-   1. 選取 [新增 QnA Maker]。
-   1. 依照提示來登入您的 Azure 帳戶。
-   1. 其會呈現您有存取權的知識庫清單。 選取您的 Bot 適用的項目。
-1. 若要新增分派模型的參考，請按一下 [服務] 右邊的加號 (+)。
-   1. 選取 [新增分派]。
-   1. 依照提示來登入您的 Azure 帳戶。
-   1. 其會呈現您有存取權的分派模型清單。 選取您的 Bot 適用的項目。
+1. Open your bot in the BotFramework Emulator, using the new .bot file. The bot does not need to be running locally.
+1. In the **BOT EXPLORER** panel, expand the **SERVICES** section.
+1. To add references to LUIS apps, click the plus-sign (+) to the right of **SERVICES**.
+   1. Select **Add Language Understanding (LUIS)**.
+   1. If it prompts you to log into your Azure account, do so.
+   1. It presents a list of LUIS applications you have access to. Select the ones for your bot.
+1. To add references to a QnA Maker knowledge base, click the plus-sign (+) to the right of **SERVICES**.
+   1. Select **Add QnA Maker**.
+   1. If it prompts you to log into your Azure account, do so.
+   1. It presents a list of knowledge bases you have access to. Select the ones for your bot.
+1. To add references to Dispatch models, click the plus-sign (+) to the right of **SERVICES**.
+   1. Select **Add Dispatch**.
+   1. If it prompts you to log into your Azure account, do so.
+   1. It presents a list of Dispatch models you have access to. Select the ones for your bot.
 
-### <a name="test-your-bot-locally"></a>在本機測試 Bot
+### Test your bot locally
 
-此時，您 Bot 的運作方式應該與使用舊 .bot 檔案時相同。 確保使用新 .bot 檔案能如預期般運作。
+At this point, your bot should work the same way it did with the old .bot file. Make sure that it works as expected with the new .bot file.
 
-### <a name="publish-your-bot-to-azure"></a>將 Bot 發佈至 Azure
-
-<!-- TODO: re-encrypt your .bot file? -->
+### Publish your bot to Azure
 
 [!INCLUDE [publish snippet](~/includes/deploy/snippet-publish.md)]
 
-<!-- TODO: If we tell them to re-encrypt, this step is not necessary. -->
 
 [!INCLUDE [clear encryption snippet](~/includes/deploy/snippet-clear-encryption.md)]
 
-## <a name="additional-resources"></a>其他資源
+## Additional resources
 
 [!INCLUDE [additional resources snippet](~/includes/deploy/snippet-additional-resources.md)]
 
-## <a name="next-steps"></a>後續步驟
+## Next steps
 > [!div class="nextstepaction"]
-> [設定持續部署](bot-service-build-continuous-deployment.md)
+> [Set up continous deployment](bot-service-build-continuous-deployment.md)
+
+-->

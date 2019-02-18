@@ -1,21 +1,18 @@
 ---
-title: 使用 Visual Studio 部署 C# Bot
-description: 將您的 Bot 部署至 Azure 雲端。
-keywords: 部署 bot, azure 部署, 發佈 bot, az 部署 bot, visual studio 部署 bot, msbot 發佈, msbot 複製
-author: ivorb
-ms.author: v-ivorb
-manager: kamrani
-ms.topic: get-started-article
-ms.service: bot-service
-ms.subservice: abs
-ms.date: 12/08/2018
-ms.openlocfilehash: eb559418bc2925ec6fb64902086dede50e485414
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+redirect_url: /bot-framework/bot-builder-deploy-az-cli
+ms.openlocfilehash: a300d6602a59c5e7d7cebdf14bb4f720a30ecbf8
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55712012"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971468"
 ---
+<a name="--"></a><!--
+---
+標題：使用 Visual Studio | Microsoft Docs 描述部署 C# Bot：將您的 Bot 部署至 Azure 雲端。
+keywords: 部署 bot, azure 部署, 發佈 bot, az 部署 bot, visual studio 部署 bot, msbot 發佈, msbot 複製 author: ivorb ms.author: v-ivorb manager: kamrani ms.topic: get-started-article ms.service: bot-service ms.subservice: abs ms.date:02/07/2019
+---
+
 # <a name="deploy-your-c-bot-using-visual-studio"></a>使用 Visual Studio 部署 C# Bot
 
 [!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
@@ -28,7 +25,16 @@ ms.locfileid: "55712012"
 - 安裝 [Bot Framework 模擬器](https://aka.ms/Emulator-wiki-getting-started)。
 - [.bot](v4sdk/bot-file-basics.md) 檔案的知識。
 
+
+## <a name="update-bot-file-properties"></a>更新 .bot 檔案屬性
+
+開始部署程序之前，在 Visual Studio 中更新下列 .bot 檔案屬性：
+- **建置動作：內容**
+- **複製到輸出目錄：永遠複製**
+
+
 ## <a name="deploy-your-bot-in-app-service"></a>在 App Service 中部署 Bot
+
 您會先在 App Service 中將 Bot 從 Visual Studio部署至 Azure。 然後，您將使用 Bot 通道註冊，透過 Azure Bot Service 設定您的 Bot。
 
 **注意：如果 Visual Studio 專案名稱包含空格，如下所述的部署步驟將無法運作。**
@@ -164,3 +170,4 @@ ms.locfileid: "55712012"
 ## <a name="next-steps"></a>後續步驟
 > [!div class="nextstepaction"]
 > [設定持續部署](bot-service-build-continuous-deployment.md)
+-->

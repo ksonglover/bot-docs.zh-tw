@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 01/17/2019
-ms.openlocfilehash: 515ef592e4ce7f159890db4cb5f61f97cccf3786
-ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
+ms.date: 02/07/2019
+ms.openlocfilehash: 2648058456677fb009e3fe76c4215f8028aac6bf
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54453942"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971508"
 ---
 # <a name="create-a-bot-with-azure-bot-service"></a>建立具有 Azure Bot Service 的 Bot
 
@@ -138,10 +138,6 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 若要這麼做，請移至 Azure 入口網站。 在入口網站中選取您的 Bot，接著在 [App Service 設定] 區段下，按一下 [應用程式設定]。 在 [應用程式設定] 窗格中，您將會看到 `botFilePath` 和 `botFileSecret` 值。 複製這些值，並更新.env 或 appsettings.json 檔案。 
 
 ## <a name="next-steps"></a>後續步驟
-
-在此主題中，您已了解如何使用 Azure Bot Service 建立**回應** Web 應用程式 Bot，並使用內建的網路聊天控制項驗證 Bot 功能。 現在，請了解如何管理 Bot 並開始處理其原始程式碼。
-
-> [!div class="nextstepaction"]
-> [Bot 的運作方式](~/v4sdk/bot-builder-basics.md)
+下載程式碼之後，您可以繼續在電腦本機開發 Bot。 當您測試 Bot 並準備將 Bot 程式碼上傳至 Azure 入口網站時，請遵循部署主題的[設定存放庫](./bot-builder-deploy-az-cli.md#setup-a-repository)一節底下所列的指示。
 
 ::: moniker-end
