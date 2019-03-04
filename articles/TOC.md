@@ -39,7 +39,7 @@
 ### [提示使用者輸入](v4sdk/bot-builder-primitive-prompts.md) 
 ### [將歡迎訊息傳送給使用者](v4sdk/bot-builder-send-welcome-message.md)
 <!-- ## [Add input hints to messages](v4sdk/bot-builder-howto-add-input-hints.md) -->
-### [從 Bot 取得通知](v4sdk/bot-builder-howto-proactive-message.md)
+### [將主動式通知傳送給使用者](v4sdk/bot-builder-howto-proactive-message.md)
 ### [將自然語言理解新增至您的 Bot](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答使用者的問題](v4sdk/bot-builder-howto-qna.md)
 ### [使用多個 LUIS 和 QnA 模型](v4sdk/bot-builder-tutorial-dispatch.md)

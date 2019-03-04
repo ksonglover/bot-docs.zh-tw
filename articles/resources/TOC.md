@@ -9,6 +9,7 @@
 ## [概觀](../v4sdk/bot-builder-virtual-assistant-introduction.md)
 # [常見問題集](../bot-service-resources-bot-framework-faq.md)
 # [取得支援](../bot-service-resources-links-help.md)
+# [通道參考](../bot-service-channels-reference.md)
 # [識別碼指南](../bot-service-resources-identifiers-guide.md)
 # [App Insights 金鑰](../bot-service-resources-app-insights-keys.md)
 # [使用者代理程式要求](../bot-service-resources-user-agent.md)
