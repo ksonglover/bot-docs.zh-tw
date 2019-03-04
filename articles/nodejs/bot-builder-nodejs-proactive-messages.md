@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8ca8043c5680a993fa27e2febb9740206691884c
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: e5f8ec76e5711371653e75e11ac6fcc447b4f2e1
+ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225573"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56590934"
 ---
 # <a name="send-proactive-messages"></a>傳送主動訊息
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
@@ -71,7 +71,7 @@ function sendProactiveMessage(address) {
 
 ## <a name="send-a-dialog-based-proactive-message"></a>傳送對話方塊式的主動訊息
 
-下列程式碼範例示範如何使用適用於 Node.js 的 Bot Framework SDK 傳送對話式主動訊息。 您可在 [Microsoft/BotBuilder-Samples/Node/core-proactiveMessages/startNewDialog](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages/startNewDialog) 資料夾中找到完整的運作範例。
+下列程式碼範例示範如何使用適用於 Node.js 的 Bot Framework SDK 傳送對話式主動訊息。 您可在 [startNewDialog](https://aka.ms/js-startnewdialog-sample-v3) 資料夾中找到完整的運作範例。
 
 為能將交談方式式的訊息傳送給使用者，Bot 必須先收集 (並儲存) 來自目前交談的相關資訊。 `session.message.address` 物件包含 Bot 需要傳送給使用者之對話方塊式主動訊息的所有資訊。 
 
@@ -103,7 +103,7 @@ function startProactiveDialog(address) {
 ```
 
 > [!NOTE]
-> 上述程式碼範例需要自訂的檔案 **botadapter.js**，您可以[從 GitHub 下載](https://github.com/Microsoft/BotBuilder-Samples/blob/master/Node/core-proactiveMessages/startNewDialog/botadapter.js)。
+> 上述程式碼範例需要自訂的檔案 **botadapter.js**，您可以[從 GitHub 下載](https://aka.ms/js-botadaptor-file-v3)。
 
 調查交談方塊會控制交談直到結束。 然後，它會關閉 (呼叫 `session.endDialog()`)，再將控制權傳回給之前的對話方塊。 
 
@@ -122,7 +122,7 @@ bot.dialog('survey', function (session, args, next) {
 
 ## <a name="sample-code"></a>範例程式碼
 
-如需示範如何使用適用於 Node.js 的 Bot Framework SDK 傳送主動訊息的完整範例，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages" target="_blank">主動訊息範例</a>。 在主動訊息範例中，<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages/simpleSendMessage" target="_blank">simpleSendMessage</a> 示範如何傳送臨機操作的主動訊息，而 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages/startNewDialog" target="_blank">startNewDialog</a> 示範如何傳送對話方塊式的主動訊息。
+如需示範如何使用適用於 Node.js 的 Bot Framework SDK 傳送主動訊息的完整範例，請參閱 GitHub 中的<a href="https://aka.ms/js-proactivemessages-sample-v3" target="_blank">主動訊息範例</a>。 在主動訊息範例中，<a href="https://aka.ms/js-simplesendmessage-sample-v3" target="_blank">simpleSendMessage</a> 示範如何傳送臨機操作的主動訊息，而 <a href="https://aka.ms/js-startnewdialog-sample-v3" target="_blank">startNewDialog</a> 示範如何傳送對話方塊式的主動訊息。
 
 ## <a name="additional-resources"></a>其他資源
 

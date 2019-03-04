@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/20/2018
+ms.date: 02/19/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2e591f19f7df8fa6281573c0ac7f1330d95f4c53
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 4b18cc5d32d04b69fa349d22058b51fcec0e12d7
+ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225433"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56591069"
 ---
 # <a name="create-your-own-prompts-to-gather-user-input"></a>建立您自己的提示，以收集使用者輸入
 
@@ -56,7 +56,7 @@ Bot 應該追蹤交談的內容，以便管理其行為，以及記住先前問�
 我們會定義下列類型。
 
 - Bot 將要收集的使用者資訊的 `UserProfile` 類別。
-- `ConversationFlow` 類別可追蹤我們在交談中的位置資訊。
+- 用來追蹤我們在交談中所在位置資訊的 `ConversationFlow` 類別。
 - 內部 `ConversationFlow.Question` 列舉可用於追蹤我們在交談中的位置。
 - 在其中組合狀態管理資訊的 `CustomPromptBotAccessors` 類別。
 
@@ -84,6 +84,8 @@ Bot 存取子類別包含狀態管理和狀態屬性存取子物件，可透過�
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
+在 **CustomPromptBot.cs** 中，取得狀態屬性並呼叫 helper 方法。 (請注意，`_accessors` 執行個體屬性會設定在 Bot 的建構函式中)。
+
 ```csharp
 public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
 {
@@ -106,6 +108,8 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+在 **bot.js** 中，取得狀態屬性並呼叫 helper 方法。 (請注意，`conversationFlow` 執行個體屬性會設定在 Bot 的建構函式中)。
 
 ```javascript
 // The bot's turn handler.

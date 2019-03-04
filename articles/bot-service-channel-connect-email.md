@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/10/2018
-ms.openlocfilehash: bd18edb87cdff502ed66177f92f88a8488135431
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 02/08/2019
+ms.openlocfilehash: e77f6cddac07cdcc06d6d35cda98544f33dd1d43
+ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225703"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56591179"
 ---
 # <a name="connect-a-bot-to-office-365-email"></a>將 Bot 連結到 Office 365 電子郵件
 
@@ -70,6 +70,10 @@ ms.locfileid: "54225703"
 ::: moniker range="azure-bot-service-4.0"
 如需有關使用 `channelData` 的詳細資訊，請參閱[如何實作通道專屬功能](~/v4sdk/bot-builder-channeldata.md)。
 ::: moniker-end
+
+## <a name="other-considerations"></a>其他考量
+
+如果 Bot 未在 15 秒內傳回 200 OK HTTP 狀態碼以回應傳入的電子郵件訊息，電子郵件通道將會嘗試重新傳送訊息，因此 Bot 可能會收到相同的電子郵件訊息活動好幾次。 如需詳細資訊，請參閱 **Bot 的運作方式**中的 [HTTP 詳細資料](v4sdk/bot-builder-basics.md#http-details)一節，以及如何[未逾時錯誤進行疑難排解](https://github.com/daveta/analytics/blob/master/troubleshooting_timeout.md)一文。
 
 ## <a name="additional-resources"></a>其他資源
 
