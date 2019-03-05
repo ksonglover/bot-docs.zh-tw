@@ -1,5 +1,3 @@
-# <a name="implement-channel-specific-functionality"></a>實作通道特定的功能
-
 某些通道所提供的功能，無法只透過訊息文字和附件來實作。 若要實作通道特定的功能，您可以將原生中繼資料傳遞至活動物件「通道資料」屬性中的通道。 例如，Bot 可以使用通道資料屬性，指示 Telegram 傳送貼圖或指示 Office365 傳送電子郵件。
 
 此文章說明如何使用訊息活動的通道資料屬性，來實作此通道特定的功能：
@@ -370,6 +368,72 @@ Bot 可以透過正常方式回覆此訊息，也可以將其回應直接張貼�
                 }
         }
     ]
+}
+```
+
+## <a name="create-a-line-message"></a>建立 LINE 訊息
+
+若要建立會實作 LINE 特有訊息類型 (例如貼圖、範本或 LINE 特有動作類型，像是開啟手機相機) 的訊息，請將活動物件的通道資料屬性設定為會指定 LINE 訊息類型和動作類型的 JSON 物件。 
+
+| 屬性 | 說明 |
+|----|----|
+| type | LINE 動作/訊息類型名稱 |
+
+支援這些 LINE 訊息類型：
+* 貼圖
+* 影像地圖 
+* 範本 (按鈕、確認、橫向捲軸) 
+* Flex 
+
+您可以在訊息類型 JSON 物件的動作欄位中，指定這些 LINE 動作： 
+* Postback 
+* 訊息 
+* URI 
+* Datetimerpicker 
+* Camera 
+* Camera roll 
+* 位置 
+
+如需這些 LINE 方法和其參數的詳細資訊，請參閱 [LINE Bot API 文件](https://developers.line.biz/en/docs/messaging-api/)。 
+
+此程式碼片段會舉例示範 `channelData` 屬性，此屬性會指定通道訊息類型 `ButtonTemplate` 和 3 個動作類型：camera、cameraRoll、Datetimepicker。 
+
+```json
+"channelData": { 
+    "type": "ButtonsTemplate", 
+    "altText": "This is a buttons template", 
+    "template": { 
+        "type": "buttons", 
+        "thumbnailImageUrl": "https://example.com/bot/images/image.jpg", 
+        "imageAspectRatio": "rectangle", 
+        "imageSize": "cover", 
+        "imageBackgroundColor": "#FFFFFF", 
+        "title": "Menu", 
+        "text": "Please select", 
+        "defaultAction": { 
+            "type": "uri", 
+            "label": "View detail", 
+            "uri": "http://example.com/page/123" 
+        }, 
+        "actions": [{ 
+                "type": "cameraRoll", 
+                "label": "Camera roll" 
+            }, 
+            { 
+                "type": "camera", 
+                "label": "Camera" 
+            }, 
+            { 
+                "type": "datetimepicker", 
+                "label": "Select date", 
+                "data": "storeId=12345", 
+                "mode": "datetime", 
+                "initial": "2017-12-25t00:00", 
+                "max": "2018-01-24t23:59", 
+                "min": "2017-12-25t00:00" 
+            } 
+        ] 
+    } 
 }
 ```
 
