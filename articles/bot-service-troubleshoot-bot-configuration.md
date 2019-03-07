@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/20/2018
-ms.openlocfilehash: 8a3ff4a30e3041937ba831efc237343c9aa27e62
-ms.sourcegitcommit: 8161753641368567f239e24a35ad61768acccd8e
+ms.date: 2/26/2019
+ms.openlocfilehash: 53cb392dea5ee0e355451e7455a16512f22ebbaa
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2019
-ms.locfileid: "54202544"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224846"
 ---
 # <a name="troubleshoot-bot-configuration-issues"></a>針對 Bot 設定問題進行疑難排解
 
@@ -87,3 +87,7 @@ Bot 無法運作的可能原因很多。 最可能是 Bot 應用程式已關閉�
 偶爾，某些通道可能會中斷服務。 通常，這類中斷不會持續很久。 不過，如果您懷疑發生中斷，請洽詢通道網站或社交媒體。
 
 判斷通道是否中斷的另一種方法是建立測試 Bot (例如簡單的 Echo Bot) 並新增通道。 如果測試 Bot 適用於某些通道，但不適用於其他通道，則表示問題不在您的生產 Bot。
+
+## <a name="additional-resources"></a>其他資源
+
+請參閱[偵錯 Bot](bot-service-debug-bot.md) 操作說明，以及該區段中的其他偵錯文章。

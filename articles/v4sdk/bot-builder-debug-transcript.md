@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservices: sdk
-ms.date: 10/18/2018
+ms.date: 2/26/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2c493a27d7829e7c7be21b6ce70cb6f046dad616
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 997ad82e15a0fcd67d47b2fd6495c8e88a5ea127
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452090"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224816"
 ---
 # <a name="debug-your-bot-using-transcript-files"></a>使用文字記錄檔進行 Bot 偵錯
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -65,9 +65,10 @@ Bot 文字記錄檔是特製化的 JSON 檔案，可保留使用者與 Bot 之�
 使用文字記錄檔搭配 Bot Framework 模擬器，只是可用來協助您進行 Bot 程式碼與使用者互動測試和偵錯的許多工具之一。 若要尋找更多 Bot 測試和偵錯的方法，請參閱下面所列的其他資源。
 
 ## <a name="additional-resources"></a>其他資源
+
 如需其他測試和偵錯資訊，請參閱：
+
 * [Bot 測試和偵錯指導方針](./bot-builder-testing-debugging.md)
 * [使用 Bot Framework 模擬器進行偵錯](../bot-service-debug-emulator.md)
+* [針對一般問題進行疑難排解](../bot-service-troubleshoot-bot-configuration.md)以及該區段中的其他疑難排解文章。
 * [Visual Studio 偵錯](https://docs.microsoft.com/en-us/visualstudio/debugger/index)
-
-

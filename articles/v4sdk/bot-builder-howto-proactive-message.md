@@ -1,5 +1,5 @@
 ---
-title: 從 Bot 取得通知 | Microsoft Docs
+title: 將主動式通知傳送給使用者 | Microsoft Docs
 description: 了解如何傳送通知訊息
 keywords: 主動式訊息, 通知訊息, bot 通知,
 author: jonathanfingold
@@ -10,14 +10,14 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 780fdb05acf2c81d72aaa6c415bdd9a6b0229082
-ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
+ms.openlocfilehash: 207dfaf71e8af7af3a36e496deb506ff9d0c13c8
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2019
-ms.locfileid: "55971498"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224886"
 ---
-# <a name="get-notification-from-bots"></a>從 Bot 取得通知
+# <a name="send-proactive-notifications-to-users"></a>將主動式通知傳送給使用者
 
 [!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
@@ -64,6 +64,7 @@ ms.locfileid: "55971498"
 
 `JobLog` 類別會追蹤作業資料 (依作業編號 (時間戳記) 編製索引)。 `JobLog` 類別可追蹤所有未完成的作業。  每項作業是透過唯一索引鍵來識別。 `JobData` 會描述作業狀態，並且定義為字典的內部類別。
 
+**JobLog.cs**
 ```csharp
 public class JobLog : Dictionary<long, JobLog.JobData>
 {
@@ -85,6 +86,7 @@ public class JobLog : Dictionary<long, JobLog.JobData>
 
 `JobState` 類別會將作業狀態與交談或使用者狀態分開管理。
 
+**JobState.cs**
 ```csharp
 using Microsoft.Bot.Builder;
 
@@ -111,6 +113,7 @@ public class JobState : BotState
 
 `ConfigureServices` 方法可註冊 Bot 和端點服務，包括錯誤處理和狀態管理。 也可註冊作業狀態存取子。
 
+**Startup.cs**
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
@@ -135,9 +138,8 @@ public void ConfigureServices(IServiceCollection services)
 
 Bot 需要狀態儲存系統，才能保存訊息之間的對話和使用者狀態，其在此情況下會使用記憶體內的儲存體提供者來定義。
 
+**index.js**
 ```javascript
-// index.js
-
 const memoryStorage = new MemoryStorage();
 const botState = new BotState(memoryStorage, () => 'proactiveBot.botState');
 
@@ -179,6 +181,7 @@ Bot 有幾個層面：
 
 來自使用者的每次互動都會建立 `ProactiveBot` 類別的執行個體。 每次有需要時就建立服務的程序，稱為暫時性存留期服務。 應該仔細管理建構成本昂貴或存留期超過單一回合的物件。
 
+**ProactiveBot.cs**
 ```csharp
 namespace Microsoft.BotBuilderSamples
 {
@@ -196,6 +199,7 @@ namespace Microsoft.BotBuilderSamples
 
 ### <a name="add-initialization-code"></a>新增初始化程式碼
 
+**ProactiveBot.cs**
 ```csharp
 private readonly JobState _jobState;
 private readonly IStatePropertyAccessor<JobLog> _jobLogPropertyAccessor;
@@ -214,6 +218,7 @@ public ProactiveBot(JobState jobState, EndpointService endpointService)
 
 配接器會將活動轉送給回合處理常式，而該處理常式會檢查 `Activity` 類型並呼叫適當的方法。 每個 Bot 都必須實作回合處理常式。
 
+**ProactiveBot.cs**
 ```csharp
 public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
 {
@@ -305,6 +310,7 @@ private static async Task SendWelcomeMessageAsync(ITurnContext turnContext)
 
 當作業完成事件時，將作業標示為已完成並通知使用者。
 
+**ProactiveBot.cs**
 ```csharp
 private async Task OnSystemActivityAsync(ITurnContext turnContext)
 {
@@ -339,6 +345,7 @@ private async Task OnSystemActivityAsync(ITurnContext turnContext)
 - 繼續對話呼叫會提示通道起始與使用者無關的回合。
 - 配接器會執行相關聯的回呼，代替 Bot 的正常回合處理常式。 此回合有屬於自己的回合內容，我們可從中擷取狀態資訊並傳送主動式訊息給使用者。
 
+**ProactiveBot.cs**
 ```csharp
 // Creates and "starts" a new job.
 private JobLog.JobData CreateJob(ITurnContext turnContext, JobLog jobLog)
@@ -357,6 +364,7 @@ private JobLog.JobData CreateJob(ITurnContext turnContext, JobLog jobLog)
 
 ### <a name="sends-a-proactive-message-to-the-user"></a>將主動式訊息傳送給使用者
 
+**ProactiveBot.cs**
 ```csharp
 private async Task CompleteJobAsync(
     BotAdapter adapter,
@@ -370,6 +378,7 @@ private async Task CompleteJobAsync(
 
 ### <a name="creates-the-turn-logic-to-use-for-the-proactive-message"></a>建立要用於主動式訊息的回合邏輯
 
+**ProactiveBot.cs**
 ```csharp
 private BotCallbackHandler CreateCallback(JobLog.JobData jobInfo)
 {
@@ -436,6 +445,7 @@ module.exports.ProactiveBot = ProactiveBot;
 
 `onTurn` 和 `showJobs` 方法定義於 `ProactiveBot` 類別中。 `onTurn` 會處理來自使用者的輸入。 其也會接收來自假設作業履行系統的事件活動。 `showJobs` 會將作業記錄格式化並且傳送。
 
+**bot.js**
 ```javascript
 /**
     *
@@ -498,6 +508,7 @@ async showJobs(turnContext) {
 
 `createJob` 方法定義於 `ProactiveBot` 類別中。 其會為使用者建立並記錄新作業。 理論上，其也會將此資訊轉送到作業履行系統。
 
+**bot.js**
 ```javascript
 // Save job ID and conversation reference.
 async createJob(turnContext) {
@@ -541,6 +552,7 @@ async createJob(turnContext) {
 
 `completeJob` 方法定義於 `ProactiveBot` 類別中。 其會執行一些簿記工作，並將主動式訊息傳送給作業已完成的使用者 (在使用者的原始對話中)。
 
+**bot.js**
 ```javascript
 async completeJob(turnContext, jobIdNumber) {
     // Get the list of jobs from the bot's state property accessor.

@@ -6,13 +6,13 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 09/26/2018
-ms.openlocfilehash: 34a23910c76a22fe39d1ce5457bb74dd285ca939
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 02/26/2019
+ms.openlocfilehash: 48a0a42d193b0e561a484330222217c18a611e8d
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225515"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224946"
 ---
 # <a name="troubleshooting-general-problems"></a>對一般問題進行疑難排解
 這些常見問答集可協助您對常見的 Bot 開發或作業問題進行疑難排解。
@@ -20,11 +20,12 @@ ms.locfileid: "54225515"
 ## <a name="how-can-i-troubleshoot-issues-with-my-bot"></a>如何對 Bot 的問題進行疑難排解？
 
 1. 使用 [Visual Studio Code](debug-bots-locally-vscode.md) 或 [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/debugger/navigating-through-code-with-the-debugger?view=vs-2017) 針對 Bot 的原始程式碼進行偵錯。
-2. 在將 Bot 部署至雲端之前，使用[模擬器](bot-service-debug-emulator.md)來測試它。
-3. 將 Bot 部署至如 Azure 的雲端主機平台，然後在 <a href="https://dev.botframework.com" target="_blank">Bot Framework 入口網站</a> \(英文\) 中使用 Bot 儀表板上的內建網路聊天控制項來測試 Bot 的連線能力。 如果您在將 Bot 部署至 Azure 後遇到問題，則可以考慮使用這篇部落格文章：[了解 Azure 疑難排解和支援](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)。
-4. 排除問題是由[驗證][TroubleshootingAuth]所導致的可能性。
-5. 在 Skype 上測試您的 Bot。 這將能協助您驗證端對端的使用者體驗。
-6. 請考慮在具有額外驗證需求的通道 (例如直接線路或網路聊天) 上測試 Bot。
+1. 在將 Bot 部署至雲端之前，使用[模擬器](bot-service-debug-emulator.md)來測試它。
+1. 將 Bot 部署至如 Azure 的雲端主機平台，然後在 <a href="https://dev.botframework.com" target="_blank">Bot Framework 入口網站</a> \(英文\) 中使用 Bot 儀表板上的內建網路聊天控制項來測試 Bot 的連線能力。 如果您在將 Bot 部署至 Azure 後遇到問題，則可以考慮使用這篇部落格文章：[了解 Azure 疑難排解和支援](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)。
+1. 排除問題是由[驗證][TroubleshootingAuth]所導致的可能性。
+1. 在 Skype 上測試您的 Bot。 這將能協助您驗證端對端的使用者體驗。
+1. 請考慮在具有額外驗證需求的通道 (例如直接線路或網路聊天) 上測試 Bot。
+1. 請檢閱[偵錯 Bot](bot-service-debug-bot.md) 操作說明，以及該區段中的其他偵錯文章。
 
 ## <a name="how-can-i-troubleshoot-authentication-issues"></a>如何對驗證問題進行疑難排解？
 

@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/15/2018
+ms.date: 02/25/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dfbc9f4ed0f08c7349d758147460b8268c49e372
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 06982f1790bd573e7300cee249042e6e3d60e912
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225863"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224906"
 ---
 # <a name="managing-state"></a>管理狀態
 
@@ -118,7 +118,8 @@ Bot Framework SDK 包含儲存層的一些實作：
 - 存取子的 *get* 方法：
   - 存取子會要求狀態快取中的屬性。
   - 如果屬性位於快取中，請將其傳回。 否則，從狀態管理物件中取得。
-    (如果屬性尚未存在於狀態中，請使用存取子的 *get* 呼叫中所提供的 Factory 方法。) - 存取子的 *set* 方法：
+    (如果屬性尚未存在於狀態中，請使用存取子的 *get* 呼叫中所提供的 Factory 方法。)
+- 存取子的 *set* 方法：
   - 使用新的屬性值更新狀態快取。
 - 狀態管理物件的 *save changes* 方法：
   - 檢查狀態快取中的屬性變更。

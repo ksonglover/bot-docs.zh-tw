@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 2/09/2019
-ms.openlocfilehash: 3aae1e212759dd70226fab3b0567ba5b4e345a30
-ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
+ms.date: 2/26/2019
+ms.openlocfilehash: 1e806358ffdba90848f0c8124c8315fd4e2dec76
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2019
-ms.locfileid: "55971448"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224836"
 ---
 # <a name="debug-a-bot"></a>對 Bot 進行偵錯
 
@@ -131,8 +131,10 @@ ms.locfileid: "55971448"
 
 ## <a name="additional-resources"></a>其他資源
 
-若要深入了解如何在生產環境中進行 Bot 偵錯，請參閱[使用 ngrok 在本機進行任何通道偵錯](https://blog.botframework.com/2017/10/19/debug-channel-locally-using-ngrok/)部落格文章。
+- 請參閱[針對一般問題疑難排解](bot-service-troubleshoot-bot-configuration.md)以及該區段中的其他疑難排解文章。
+- 請參閱如何[使用 ngrok 對本機任何通道進行偵錯](https://blog.botframework.com/2017/10/19/debug-channel-locally-using-ngrok/)部落格文章。
 
 ## <a name="next-steps"></a>後續步驟
+
 > [!div class="nextstepaction"]
-> [使用文字記錄檔進行 Bot 偵錯](~/v4sdk/bot-builder-debug-transcript.md)。
+> [使用文字記錄檔進行 Bot 偵錯](v4sdk/bot-builder-debug-transcript.md)。

@@ -6,13 +6,13 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 12/13/17
-ms.openlocfilehash: 2335ac34292e224f44a09820574f3bd9de00eda4
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 02/26/2019
+ms.openlocfilehash: 780dcf4d9db48f9ef7f5a92180dc13c41cc63305
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224653"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224936"
 ---
 # <a name="troubleshooting-bot-framework-authentication"></a>針對 Bot Framework 驗證進行疑難排解
 
@@ -227,6 +227,7 @@ Bot Framework 要求可從網際網路存取 Bot，因此您必須將您的 Bot 
 
 如果在完成上述步驟之後仍然遇到問題，您可以：
 
+* 請檢閱[偵錯 Bot](bot-service-debug-bot.md) 操作說明，以及該區段中的其他偵錯文章。
 * 使用 Bot Framework 模擬器和<a href="https://ngrok.com/" target="_blank">ngrok</a> [在雲端針對您的 Bot 進行偵錯](~/bot-service-debug-emulator.md)。
 * 使用像 [Fiddler](https://www.telerik.com/fiddler) 這樣的 Proxy 處理工具，來檢查進出 Bot 的 HTTPS 流量。 Fiddler 並非 Microsoft 產品。
 * 若要了解 Bot Framework 所使用的驗證技術，請檢閱 [Bot 連接器驗證指南][BotConnectorAuthGuide]。

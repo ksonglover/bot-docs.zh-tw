@@ -8,24 +8,28 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 01/16/2019
+ms.date: 02/27/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4999f08c62d2926be37b5730a2d1025749fc280e
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+ms.openlocfilehash: ed723e2caebd7fc085c6f9f2887e277195ee3516
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55711982"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224876"
 ---
 # <a name="add-media-to-messages"></a>將媒體新增至訊息
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-使用者與 Bot 之間交換的訊息可以包含媒體附件，例如影像、視訊、音訊和檔案等。 Bot Framework SDK 支援將豐富訊息傳送給使用者的工作。 若要判斷通道 (Facebook、Skype、Slack 等等) 支援的豐富訊息類型，請參閱通道文件中的限制相關資訊。 請參閱[設計使用者體驗](../bot-service-design-user-experience.md)，以取得一份可用的卡片。
+使用者與 Bot 之間交換的訊息可以包含媒體附件，例如影像、視訊、音訊和檔案等。 Bot Framework SDK 支援將豐富訊息傳送給使用者的工作。 若要判斷通道 (Facebook、Skype、Slack 等等) 支援的豐富訊息類型，請參閱通道文件中的限制相關資訊。
+
+請參閱[設計使用者體驗](../bot-service-design-user-experience.md)，以取得可用卡片的範例。
 
 ## <a name="send-attachments"></a>傳送附件
 
 若要傳送影像或視訊之類的使用者內容，您可以將附件或附件清單新增至訊息。
+
+請參閱[設計使用者體驗](../bot-service-design-user-experience.md)，以取得可用卡片的範例。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -34,7 +38,6 @@ ms.locfileid: "55711982"
 
 ```csharp
 using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Schema;
 
 var reply = turnContext.Activity.CreateReply();
@@ -51,7 +54,7 @@ var attachment = new Attachment
 reply.Attachments = new List<Attachment>() { attachment };
 
 // Send the activity to the user.
-await turnContext.SendActivityAsync(reply, cancellationToken);
+await turnContext.SendActivityAsync(reply, cancellationToken: cancellationToken);
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -92,7 +95,6 @@ getInternetAttachment() {
 
 ```csharp
 using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Schema;
 
 var reply = turnContext.Activity.CreateReply();
@@ -112,7 +114,7 @@ var card = new HeroCard
 // Add the card to our reply.
 reply.Attachments = new List<Attachment>() { card.ToAttachment() };
 
-await turnContext.SendActivityAsync(reply, cancellationToken);
+await turnContext.SendActivityAsync(reply, cancellationToken: cancellationToken);
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -168,7 +170,6 @@ await turnContext.sendActivity(reply);
 
 ```csharp
 using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Schema;
 
 var reply = turnContext.Activity.CreateReply();
@@ -239,7 +240,6 @@ await context.sendActivity(hero);
 ```csharp
 using AdaptiveCards;
 using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Schema;
 using Newtonsoft.Json;
 
@@ -261,7 +261,7 @@ var cardAttachment = CreateAdaptiveCardAttachment(adaptiveCardJsonFilePath);
 var reply = turnContext.Activity.CreateReply();
 reply.Attachments = new List<Attachment>() { cardAttachment };
 
-await turnContext.SendActivityAsync(reply, cancellationToken);
+await turnContext.SendActivityAsync(reply, cancellationToken: cancellationToken);
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -305,7 +305,6 @@ await context.sendActivity({
 
 ```csharp
 using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Schema;
 
 // Create the activity and attach a set of Hero cards.
@@ -339,7 +338,7 @@ var activity = MessageFactory.Carousel(
     });
 
 // Send the activity as a reply to the user.
-await context.SendActivity(activity);
+await turnContext.SendActivityAsync(reply, cancellationToken: cancellationToken);
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -363,6 +362,8 @@ await context.sendActivity(messageWithCarouselOfCards);
 <!-- TODO: Add a media card, such as video or audion. Revisit which examples we put here and link to the 06 through 08 samples. -->
 
 ## <a name="additional-resources"></a>其他資源
+
+請參閱[設計使用者體驗](../bot-service-design-user-experience.md)，以取得可用卡片的範例。
 
 如需結構描述的詳細資訊，請參閱 Bot Framework 活動結構描述的 [Bot Framework 卡片結構描述](https://aka.ms/botSpecs-cardSchema)和[訊息活動區段](https://aka.ms/botSpecs-activitySchema#message-activity)。
 

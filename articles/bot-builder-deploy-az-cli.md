@@ -9,12 +9,12 @@ ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 02/13/2019
-ms.openlocfilehash: 53889703d58983a87a7a2d16622f1298d56c87db
-ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
+ms.openlocfilehash: 2ee66ac335ab9e34d7a73996d44da939e74d5b87
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2019
-ms.locfileid: "56591026"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224916"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
@@ -64,12 +64,11 @@ ms.locfileid: "56591026"
 1. 開啟 Bot 的 [應用程式設定]。
 1. 在 [應用程式設定] 視窗中，向下捲動至 [應用程式設定]。
 1. 找出 **botFileSecret** 並複製其值。
+1. 使用 `msbot cli` 將檔案解密。
 
-使用 `msbot cli` 將檔案解密。
-
-```cmd
-msbot secret --bot <name-of-bot-file> --secret "<bot-file-secret>" --clear
-```
+    ```cmd
+    msbot secret --bot <name-of-bot-file> --secret "<bot-file-secret>" --clear
+    ```
 
 ### <a name="update-your-local-bot-file"></a>更新本機 .bot 檔案
 
@@ -128,18 +127,24 @@ msbot secret --bot <name-of-bot-file> --secret "<bot-file-secret>" --clear
 
 儲存檔案。
 
+您可以使用 msbot 工具來產生新祕密，並在發佈前加密 .bot 檔案。 如果要重新加密 .bot 檔案，請更新 Azure 入口網站中 Bot 的 **botFileSecret**，以包含新的祕密。
+
+```cmd
+msbot secret --bot <name-of-bot-file> --new
+```
+
 ### <a name="setup-a-repository"></a>設定存放庫
 
-若要支援持續部署，請使用慣用的 git 原始檔控制提供者建立 git 存放庫。 將程式碼認可至存放庫。 
+若要支援持續部署，請使用慣用的 git 原始檔控制提供者建立 git 存放庫。 將程式碼認可至存放庫。
 
 確定您的存放庫根目錄具有正確檔案，如[準備存放庫](https://docs.microsoft.com/azure/app-service/deploy-continuous-deployment#prepare-your-repository)底下所述。
 
 ### <a name="update-app-settings-in-azure"></a>在 Azure 中更新應用程式設定
-本機 Bot 不會使用加密的 .bot 檔案，但 Azure 入口網站則設定為使用加密的 .bot 檔案。 
+本機 Bot 不會使用加密的 .bot 檔案，但 Azure 入口網站則設定為使用加密的 .bot 檔案。 您可以透過移除儲存在 Azure Bot 設定中的 **botFileSecret** 來解決這個問題。
 1. 在 Azure 入口網站中，為您的 Bot 開啟 [Web 應用程式 Bot] 資源。
 1. 開啟 Bot 的 [應用程式設定]。
 1. 在 [應用程式設定] 視窗中，向下捲動至 [應用程式設定]。
-1. 找出 **botFileSecret** 並加以刪除。
+1. 找出 **botFileSecret** 並加以刪除。 (如果要重新加密 .bot 檔案，請確定 **botFileSecret** 包含新祕密且**不要**刪除該設定。)
 1. 更新 Bot 檔案名稱，以符合您簽入存放庫的檔案。
 1. 儲存變更。
 
