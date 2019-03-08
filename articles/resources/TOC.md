@@ -1,10 +1,7 @@
 # 企業範本
-## [簡介](../v4sdk/bot-builder-enterprise-template-overview.md)
-## [概觀](../v4sdk/bot-builder-enterprise-template-overview-detail.md)
-## [建立專案](../v4sdk/bot-builder-enterprise-template-create-project.md)
+## [概觀](../v4sdk/bot-builder-enterprise-template-overview.md)
+## [快速入門](../v4sdk/bot-builder-enterprise-template-getting-started.md)
 ## [自訂範本](../v4sdk/bot-builder-enterprise-template-customize.md)
-## [部署範本](../v4sdk/bot-builder-enterprise-template-deployment.md)
-## [分析](../v4sdk/bot-builder-enterprise-template-powerbi.md)
 # 虛擬小幫手 
 ## [概觀](../v4sdk/bot-builder-virtual-assistant-introduction.md)
 # [常見問題集](../bot-service-resources-bot-framework-faq.md)
