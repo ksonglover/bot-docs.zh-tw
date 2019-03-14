@@ -9,12 +9,12 @@ ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 02/13/2019
-ms.openlocfilehash: 2ee66ac335ab9e34d7a73996d44da939e74d5b87
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: 9cd2ed67110aa1611c41c33c31874f103e24b14d
+ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224916"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "57568195"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
@@ -55,6 +55,7 @@ ms.locfileid: "57224916"
 1. 在 [Bot 管理] 區段中，按一下 [組建]。
 1. 在右窗格中按一下**下載 Bot 原始程式碼**連結。
 1. 遵循提示以下載程式碼，然後將資料夾解壓縮。
+    1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
 
 ### <a name="decrypt-the-bot-file"></a>將 .bot 檔案解密
 
@@ -201,6 +202,8 @@ If you are using an [MSA](https://en.wikipedia.org/wiki/Microsoft_account) email
 
 Next, download the bot you just created. 
 [!INCLUDE [download bot snippet](~/includes/deploy/snippet-download-bot.md)]
+
+[!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
 
 ### Decrypt the downloaded .bot file and use in your project
 

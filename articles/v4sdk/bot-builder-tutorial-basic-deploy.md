@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 1/9/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dbde6eba946e27aaa6b883f1e9205adc63cb22f8
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
+ms.openlocfilehash: 7927ab97dc88657a198c8f1d8e56bcb1ddf0fabe
+ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360942"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "57568235"
 ---
 # <a name="tutorial-create-and-deploy-a-basic-bot"></a>教學課程：建立及部署基本 Bot
 
@@ -80,6 +80,8 @@ ms.locfileid: "54360942"
 
 接下來，下載您剛建立的 Bot。 
 [!INCLUDE [download bot snippet](~/includes/deploy/snippet-download-bot.md)]
+
+[!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
 
 ### <a name="decrypt-the-downloaded-bot-file-and-use-in-your-project"></a>將下載的 .bot 檔案解密並使用於專案中
 

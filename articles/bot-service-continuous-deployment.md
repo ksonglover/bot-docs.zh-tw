@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 12/13/2017
-ms.openlocfilehash: 38b26ed5a50409de64518562faabf532f45c857e
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 65de0e4e4be129c9fa467cd8610cf0f0b13e5965
+ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999145"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "57568175"
 ---
 # <a name="publish-a-bot-to-bot-service"></a>將 Bot 發佈至 Bot Service
 
@@ -34,6 +34,7 @@ ms.locfileid: "49999145"
 若要設定從 Visual Studio 使用 `.PublishSettings` 檔案進行發佈的作業，請執行下列步驟：
 
 1. 在 Azure 入口網站中按一下您的 Bot Service，再按一下 [組建] 索引標籤，然後按一下 [下載 zip 檔案]。
+    1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
 3. 將已下載 zip 的檔案內容解壓縮到本機資料夾。
 4. 在 [總管] 中找出 Bot 的 Visual Studio 解決方案 (.sln) 檔案，並按兩下。
 4. 在 Visual Studio 中按一下 [檢視]，然後按一下 [方案總管]。
@@ -66,6 +67,7 @@ ms.locfileid: "49999145"
 如果您想要使用 Visual Studio Online 或 Github *以外的*原始檔控制服務，請遵循下列步驟。 Visual Studio Online 和 Github 會從 Azure 提取 Bot 的原始程式碼，因此這兩項服務的使用者可略過這些步驟。
 
 3. 針對 App Service 方案上的 Bot，請在 Azure 上找出您的 Bot 頁面、按一下 [建置] 索引標籤，找出 [下載原始程式碼] 區段，然後按一下 [下載 zip 檔案]。
+    1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
 1. 在 Azure 支援的其中一個原始檔控制系統中，建立空的存放庫。
 
     ![原始檔控制系統](~/media/continuous-integration-sourcecontrolsystem.png)

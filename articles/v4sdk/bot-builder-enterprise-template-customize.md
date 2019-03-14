@@ -8,20 +8,19 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 02/7/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d472cbe7c0235862f8dcff1bcc2d53d977bb7657
-ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
+ms.openlocfilehash: 115c81bef6f555bb3404dfb2249dc751d7eed7e5
+ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2019
-ms.locfileid: "55971488"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "57568205"
 ---
 # <a name="enterprise-bot-template---customize-your-bot"></a>企業 Bot 範本 - 自訂您的 Bot
 
 > [!NOTE]
 > 本主題適用於 SDK 的 v4 版本。 
 
-## <a name="net"></a>.NET
-在您依照[這裡](bot-builder-enterprise-template-deployment.md)所列的指示，部署及測試企業 Bot 範本能否端對端運作之後，即可根據您的案例和需求輕鬆地自訂 Bot。 此範本的目標是要提供穩固的基礎來打造對話式體驗。
+在您依照[這裡](bot-builder-enterprise-template-getting-started.md)所列的指示，部署及測試企業 Bot 範本能否端對端運作之後，即可根據您的案例和需求輕鬆地自訂 Bot。 此範本的目標是要提供穩固的基礎來打造對話式體驗。
 
 ## <a name="project-structure"></a>專案結構
 
@@ -81,56 +80,56 @@ Bot 的資料夾結構如下所示，且代表我們建議的最佳做法，可�
 若要更新企業範本現有的 LUIS 模型，請執行下列步驟：
 1. 在 [LUIS 入口網站](http://luis.ai)中或使用 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 和 [Luis](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUIS) CLI 工具，對 LUIS 模型進行變更。 
 2. 執行下列命令來更新分派模型，以反映您的變更 (確保正確的訊息路由)：
-```shell
+    ```shell
     dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
-```
+    ```
 3. 從每個已更新模型的專案根目錄執行下列命令，以更新其相關聯的 LuisGen 類別： 
-```shell
+    ```shell
     luis export version --appId [LUIS_APP_ID] --versionId [LUIS_APP_VERSION] --authoringKey [YOUR_LUIS_AUTHORING_KEY] | luisgen --cs [CS_FILE_NAME] -o "\Dialogs\Shared\Resources"
-```
+    ```
 
 ### <a name="updating-an-existing-qna-maker-knowledge-base"></a>更新現有的 QnA Maker 知識庫
 若要更新現有的 QnA Maker 知識庫，請執行下列步驟：
 1. 透過 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 和 [QnA Maker](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/QnAMaker) CLI 工具或 [QnA Maker 入口網站](https://qnamaker.ai)，變更您的 QnA Maker 知識庫。
 2. 執行下列命令來更新分派模型，以反映您的變更 (確保正確的訊息路由)：
-```shell
+    ```shell
     dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
-```
+    ```
 
 ### <a name="adding-a-new-luis-model"></a>新增 LUIS 模型
 
 在您要將 LUIS 模型新增至您的專案的案例中，您必須更新 Bot 組態和發送器，以確保其知道其他模型。 
 1. 透過 LuDown/LUIS CLI 工具或透過 LUIS 入口網站建立 LUIS 模型
 2. 執行下列命令，將您的 LUIS 應用程式連線到 .bot 檔案：
-```shell
+    ```shell
     msbot connect luis --appId [LUIS_APP_ID] --authoringKey [LUIS_AUTHORING_KEY] --subscriptionKey [LUIS_SUBSCRIPTION_KEY] 
-```
+    ```
 3. 透過下列命令將這個新的 LUIS 模型新增至您的發送器
-```shell
+    ```shell
     dispatch add -t luis -id LUIS_APP_ID -bot "YOUR_BOT.bot" --secret YOURSECRET
-```
+    ```
 4. 重新整理分派模型，以透過下列命令反映 LUIS 模型變更
-```shell
+    ```shell
     dispatch refresh -bot "YOUR_BOT.bot" --secret YOUR_SECRET
-```
+    ```
 
 ### <a name="adding-an-additional-qna-maker-knowledge-base"></a>新增額外的 QnA Maker 知識庫
 
 在某些情況下，您可能想要將額外的 QnA Maker 知識庫新增至 Bot，這可透過下列步驟執行。
 
 1. 使用下列在輔助目錄中執行的命令，從 JSON 檔案建立新的 QnA Maker 知識庫
-```shell
-qnamaker create kb --in <KB.json> --msbot | msbot connect qna --stdin --bot "YOUR_BOT.bot" --secret YOURSECRET
-```
+    ```shell
+    qnamaker create kb --in <KB.json> --msbot | msbot connect qna --stdin --bot "YOUR_BOT.bot" --secret YOURSECRET
+    ```
 2. 執行下列命令來更新分派模型，以反映您的變更
-```shell
-dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
-```
+    ```shell
+    dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
+    ```
 3. 更新強型別分派類別以反映新的 QnA 來源
-```shell
-msbot get dispatch --bot "YOUR_BOT.bot" | luis export version --stdin > dispatch.json
-luisgen dispatch.json -cs Dispatch -o Dialogs\Shared
-```
+    ```shell
+    msbot get dispatch --bot "YOUR_BOT.bot" | luis export version --stdin > dispatch.json
+    luisgen dispatch.json -cs Dispatch -o Dialogs\Shared
+    ```
 4.  更新 `Dialogs\Main\MainDialog.cs` 檔案，以在所提供的範例後面，包含新 QnA 來源的對應分派意圖。
 
 您現在應該能夠利用多個 QnA 來源作為 Bot 的一部分。
@@ -203,6 +202,3 @@ await _responder.ReplyWith(sc.Context, OnboardingResponses.ResponseIds.HaveNameM
 對話方塊基礎結構的最後一步，是建立範圍僅限於您對話方塊的狀態類別。 建立新的類別，並確保其衍生自 `DialogState`
 
 對話方塊完成後，您必須使用 `AddDialog`，將對話方塊新增至 `MainDialog` 元件。 若要使用新的對話方塊，請從 `RouteAsync` 方法呼叫 `dc.BeginDialogAsync()`，如有需要，請使用適當的 LUIS 意圖觸發。
-
-## <a name="conversational-insights-using-powerbi-dashboard-and-application-insights"></a>使用 PowerBI 儀表板和 Application Insights 的對話式見解
-- 若要從取得對話式見解著手，請繼續進行[使用 PowerBI 儀表板設定對話式分析](bot-builder-enterprise-template-powerbi.md)。
