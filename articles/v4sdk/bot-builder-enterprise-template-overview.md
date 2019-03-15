@@ -1,6 +1,6 @@
 ---
-title: 企業 Bot 範本的概觀 | Microsoft Docs
-description: 深入了解企業 Bot 範本的功能
+title: Enterprise Bot Template 的詳細介紹 | Microsoft Docs
+description: 深入了解 Enterprise Bot Template 背後的設計決策
 author: darrenj
 ms.author: darrenj
 manager: kamrani
@@ -8,39 +8,82 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a0b56b77990c095d1cf8bb28235d06444837d164
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 582ec21d36e15fcbaef2d26616a9e55a04d8e5f2
+ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224594"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "57568215"
 ---
-# <a name="enterprise-bot-template"></a>企業 Bot 範本 
+# <a name="enterprise-bot-template---overview"></a>Enterprise Bot Template - 概觀
 
 > [!NOTE]
 > 本主題適用於 SDK 的 v4 版本。 
 
-建立高品質對話式體驗時，需要一組基本功能。 為了協助您成功打造絕佳的對話式體驗，我們建立了企業 Bot 範本。 此範本結合了我們透過打造對話式體驗所找出的所有最佳做法與支援元件。 
+Enterprise Bot Template 為打造絕佳的對話式體驗、減少工作量和提高品質標準所需的最佳做法和服務，提供了穩固的基礎。 此範本利用 [Bot Builder SDK v4](https://github.com/Microsoft/botbuilder) 和 [Bot Builder 工具](https://github.com/Microsoft/botbuilder-tools)，提供下列功能：
 
-此範本大幅簡化新 Bot 專案的建立。 此範本利用 [Bot Framework SDK v4](https://github.com/Microsoft/botbuilder) 和 [Bot Framework Tools](https://github.com/Microsoft/botbuilder-tools)，提供下列立即可用的功能。
-
-功能 | 說明 |
+功能      | 說明 |
 ------------ | -------------
-簡介訊息 | 在開始對話時，採用調適型卡片的簡介訊息。 其會說明 Bot 功能，並會提供按鈕來引導初始的問題。 開發人員可以接著視需要加以自訂。
-自動化輸入指標  | 在對話期間傳送視覺輸入指標，並針對長時間執行的作業重複此動作。
-.bot 檔案驅動的組態 | Bot 的所有組態資訊 (例如 LUIS、發送器端點、Application Insights) 會包裝在 .bot 檔案內，而且用於促使 Bot 啟動。
-基本對話式意圖  | 以英文、法文、義大利文、德文、西班牙文和中文提供的基本意圖 (問候語、道別、協助、取消等等)。 這些意圖會以 .LU (語言理解) 檔案提供，以便輕鬆修改。
-基本對話式回應  | 對基本對話式意圖的回應會提取到個別的檢視類別中。 這些回應未來會移至新的語言生成 (LG) 檔案。
-不適內容或 PII (個人識別資訊) 偵測  |透過在中介軟體元件中使用[內容審查工具](https://azure.microsoft.com/en-us/services/cognitive-services/content-moderator/)，偵測傳入交談中的不當或 PII 資料。
-文字記錄  | Azure 儲存體中儲存的所有對話的文字記錄
-發送器 | 整合式[分派](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig)模型，用來識別指定的語句應該由 LUIS 與 Code 處理或傳遞至 QnA Maker。
-QnA Maker 整合  | 與 [QnA Maker](https://www.qnamaker.ai) 整合，可以運用現有的資料來源 (例如 PDF 手冊) 來回答知識庫中的一般問題。 此外，也包含 QnA Maker 閒聊模型，以提供常用查詢的標準解答 ([了解更多](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/chit-chat-knowledge-base))。
-對話式見解  | 與 [Application Insights](https://azure.microsoft.com/en-gb/services/application-insights/) 整合，可收集所有對話的遙測，而範例 PowerBI 儀表板可讓您開始深入了解您的對話式體驗。
+簡介 | 在開始對話時，採用[調適型卡片]()的簡介訊息
+輸入指標  | 在對話期間自動化視覺輸入指標，並針對長時間執行的作業重複此動作
+基本 LUIS 模型  | 支援常見的意圖，例如**取消**、**說明**、**呈報**等等
+基本對話方塊 | 擷取基本使用者資訊，以及取消和說明意圖等中斷邏輯的對話方塊流程
+基本回應  | 基本意圖和對話方塊的文字及語音回應
+常見問題集 | 與 [QnA Maker](https://www.qnamaker.ai) 整合以回答知識庫的一般問題 
+閒聊 | 專業人員閒聊模型，以提供常用查詢的標準解答 ([了解更多](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/chit-chat-knowledge-base))
+發送器 | 整合式[分派](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig)模型，用來識別指定的語句應該由 LUIS 或 QnA Maker 處理。
+語言支援 | 提供英文、法文、義大利文、德文、西班牙文和中文
+文字記錄 | Azure 儲存體中儲存的所有對話的文字記錄
+遙測  | [Application Insights](https://azure.microsoft.com/en-gb/services/application-insights/) 整合，以收集所有對話的遙測資料
+分析 | Power BI 儀表板範例，可讓您深入了解對話式體驗。
+自動化部署 | 使用 [Bot Builder 工具](https://github.com/Microsoft/botbuilder-tools)輕鬆部署所有上述服務
 
-此外，會自動部署 Bot 所需的所有 Azure 資源：Bot 註冊、Azure App Service、LUIS、QnA Maker、內容審查工具、CosmosDB、Azure 儲存體和 Application Insights。 此外，會建立、定型及發行基底 LUIS、QnA Maker 和分派模型，以便立即測試基本意圖和路由。
+# <a name="background"></a>背景
 
-建立範本並執行部署步驟之後，您可以按 F5 來進行端對端測試。 這可提供開始對話式體驗的穩固基礎，減少每個專案必須承擔的許多天投入時間，並提高交談式品質標準。
+## <a name="introduction-card"></a>簡介卡片
+簡介卡片可以透過提供 Bot 功能的概觀，並提供範例語句簡化使用者入門方法，從而改善對話。 其也會建立使用者的 Bot 個人特質。
 
-若要開始使用，請繼續[建立專案](bot-builder-enterprise-template-create-project.md)。 若要深入了解已推動上述功能的最佳做法和知識，請參閱[範本詳細資料](bot-builder-enterprise-template-overview-detail.md)主題。 
+## <a name="base-luis-model-with-common-intents"></a>基本 LUIS 模型與一般意圖
+範本中包含的基本 LUIS 模型，涵蓋了大部分 Bot 需要處理的最常見意圖選取範圍。 您可以在 Bot 中使用以下立即可用的意圖：
 
-在此 [GitHub 位置](https://github.com/Microsoft/AI/tree/master/templates/Enterprise-Template)可取得企業 Bot 範本的完整原始程式碼
+意圖       | 範例語句 |
+-------------|-------------|
+取消       |取消、沒關係|
+呈報     |我可以洽詢人員嗎？|
+FinishTask   |完成、全部完成|
+GoBack       |返回|
+說明         |可以請您提供協助嗎？|
+Repeat       |可以再說一次嗎？|
+SelectAny    |任一|
+SelectItem   |第一個|
+SelectNone   |以上皆非|
+ShowNext     |顯示較多|
+ShowPrevious |顯示上一個|
+StartOver    |*restart*|
+Stop         |*stop*|
+
+## <a name="qna-maker"></a>QnA Maker
+
+[QnA Maker](https://www.qnamaker.ai/) 為非開發人員提供產生問題和答案配對集合的功能，以便在 Bot 中使用。 此知識可以從常見問題集資料來源和產品手冊中匯入，或在 QnA Maker 入口網站內手動建立。
+
+範本中提供了兩個 QnA Maker 模型範例，一個用於常見問題集，另一個用於[專業人員閒聊](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/chit-chat-knowledge-base)。 
+
+## <a name="dispatch"></a>分派
+
+分派服務是透過從每個服務中擷取語句並建立中央分派 LUIS 模型，來管理多個 LUIS 模型和 QnA Maker 知識庫之間的路由。
+
+這可讓 Bot 快速找出應處理指定語句的元件，並確保系統會認為 QnA Maker 資料在意圖處理的最上層，而不是在階層的最下層。
+
+這個分派工具也可以評估您的模型，反白顯示服務中重疊的語句和差異。
+
+## <a name="telemetry"></a>遙測
+
+對 Bot 對話提供深入了解，協助您了解使用者參與層級、使用者正在使用的功能以及 Bot 無法處理的問題。
+
+[Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) 擷取 Bot 服務的操作遙測，以及特定事件的對話。 可以使用 [Power BI](https://powerbi.microsoft.com/en-us/what-is-power-bi/) 等工具將這些事件彙總為可以操作的資訊。 Power BI 儀表板範例可用於示範這項功能的 Enterprise Bot Template。
+
+# <a name="next-steps"></a>後續步驟
+請參閱[使用者入門](bot-builder-enterprise-template-getting-started.md)以了解如何建立與部署 Enterprise Bot。 
+
+# <a name="resources"></a>資源
+Enterprise Bot Template 的完整原始程式碼位於 [GitHub](https://github.com/Microsoft/AI/tree/master/templates/Enterprise-Template)。

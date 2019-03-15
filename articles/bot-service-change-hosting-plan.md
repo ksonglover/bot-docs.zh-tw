@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 12/13/2017
-ms.openlocfilehash: aafbfb2a38e2d5370cb2db5721dd7bc130497d74
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: e463b272385b97e630d4087908aa82e23a70fea9
+ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999215"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "57568185"
 ---
 # <a name="change-the-hosting-plan-for-your-bot-service"></a>變更您的 Bot Service 主控方案
 
@@ -33,6 +33,7 @@ App Service 方案上的 Bot 會以 Azure Web 應用程式的形式執行。 Web
 
 1. 在您的 Azure Bot 內，按一下 [設定] 索引標籤，然後展開 [持續部署] 區段。  
 2. 請按一下藍色按鈕以下載 zip 檔案，其中包含您 Bot 的原始程式碼。  
+    1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
     ![下載 Bot zip 檔案](~/media/continuous-deployment-consumption-download.png)
 3. 將已下載的 zip 檔案內容，解壓縮到本機資料夾。 
 
