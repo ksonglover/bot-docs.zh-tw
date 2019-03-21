@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/23/2018
+ms.date: 03/11/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fdf0b16cc89b322ffa9d36b5516b09b0338ce9dc
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: db7957c611df4a3010469f86f51184b52d49addb
+ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317568"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58073854"
 ---
 # <a name="manage-resources-with-a-bot-file"></a>使用 .bot 檔案管理資源
 
@@ -29,7 +29,7 @@ Bot 通常會耗用很多不同的服務，例如 [LUIS.ai](https://luis.ai) 或
 * [**Azure Bot Service**](https://azure.microsoft.com/en-us/services/bot-service/) Azure Bot Service 註冊。
 * [**LUIS.AI**](https://www.luis.ai/) LUIS 讓 Bot 能夠與使用自然語言的人員通訊。 
 * [**QnA Maker**](https://qnamaker.ai/) 根據常見問題集 URL、結構化文件或期刊內容，在短短幾分鐘內建置、定型及發佈簡單的問答 Bot。
-* [**分派**](https://github.com/Microsoft/botbuilder-tools/tree/master/Dispatch) 模型，可供分派於多項服務。
+* [**分派**](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Dispatch) 模型，可供分派於多項服務。
 * [**Azure Application Insights**](https://azure.microsoft.com/en-us/services/application-insights/)，可提供見解和 Bot 分析。
 * [**Azure Blob 儲存體**](https://azure.microsoft.com/en-us/services/storage/blobs/)可供保存 Bot 狀態。 
 * [**Azure Cosmos DB**](https://azure.microsoft.com/en-us/services/cosmos-db/) - 全球發行的多模型資料庫服務，用以保存 Bot 狀態。
