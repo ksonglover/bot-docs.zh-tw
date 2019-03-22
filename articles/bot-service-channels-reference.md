@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: tools
 ms.date: 03/01/2019
-ms.openlocfilehash: 0fb0f650b44d320d78a0ada5d46105048019964c
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: 28c4ece705c001d5f80fdc877773c03ac400204c
+ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224956"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58073844"
 ---
 # <a name="categorized-activities-by-channel"></a>依通路分類的活動
 
@@ -71,7 +71,7 @@ Event.*                    | :white_large_square: | :white_check_mark: | :white_
 Event.CreateConversation   | :white_large_square: | :white_large_square: | :white_large_square:   | :white_large_square: | :white_large_square:  | :white_large_square: | :white_large_square: | :white_large_square:  | :white_large_square:  | :white_large_square:  | :white_large_square:           | :white_large_square:     | :white_large_square:  
 Event.ContinueConversation | :white_large_square: | :white_large_square: | :white_large_square:   | :white_large_square: | :white_large_square:  | :white_large_square: | :white_large_square: | :white_large_square:  | :white_large_square:  | :white_large_square:  | :white_large_square:           | :white_large_square:     | :white_large_square:  
 
-- 事件活動是 Direct Line (_aka Direct Line_) 中的一個擴充性機制。
+- 事件活動是 Direct Line (_aka Web Chat_) 中的一個擴充性機制。
 - 同時擁有用戶端和伺服器的應用程式，可以選擇使用此事件活動透過服務來打開自己事件的通道。
 
 
@@ -85,7 +85,7 @@ Invoke.ComposeResponse     | :x:      | :x:          | :x: | :x:   | :x:       |
 
 - 除了許多其他類型的活動外，Microsoft Teams 還定義了一些特定叫用活動的小組。
 - 叫用活動是專屬於應用程式，而不是用戶端定義的內容。
-- 「叫用」沒有通用概念，僅有「活動」的特定子類型。
+- 活動的「叫用」特定子類型，沒有通用概念。
 - 叫用是 Bot 上目前唯一會觸發要求-回覆行為的活動。
 
 這非常重要：若使用 OAuth 提示的對話方塊，則 Invoke.TeamsVerification 活動必須轉寄給對話方塊。

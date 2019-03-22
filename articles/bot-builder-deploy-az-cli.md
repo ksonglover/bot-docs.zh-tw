@@ -9,12 +9,12 @@ ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 02/13/2019
-ms.openlocfilehash: 9cd2ed67110aa1611c41c33c31874f103e24b14d
-ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
+ms.openlocfilehash: 8db2f0629b0d95dda0cb5d10dea5c9225e5d8d83
+ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/07/2019
-ms.locfileid: "57568195"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58073784"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
@@ -133,6 +133,9 @@ ms.locfileid: "57568195"
 ```cmd
 msbot secret --bot <name-of-bot-file> --new
 ```
+
+> [!TIP]
+> 在 Visual Studio，您 .bot 檔案的檔案屬性中，請確認**複製到輸出目錄**設為*永遠複製*。
 
 ### <a name="setup-a-repository"></a>設定存放庫
 
