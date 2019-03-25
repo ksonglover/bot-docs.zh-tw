@@ -219,7 +219,7 @@ public class EchoBotAccessors
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-Yeoman 產生器會建立 [Restify](http://restify.com/) Web 應用程式。 如果您查看其文件中的 Restify 快速入門，您會看到類似於所產生 **index.js** 檔案的應用程式。 本節主要說明 **package.json****.env** 、**index.js**、**bot.js** 和 **echobot-with-counter.bot** 檔案。 有些檔案中的程式碼不會複製於此，但是您會在執行 Bot 時看到，還可參考 [Node.js echobot-with-counter](https://aka.ms/js-echobot-with-counter) 範例。
+Yeoman 產生器會建立 [Restify](http://restify.com/) Web 應用程式。 如果您查看其文件中的 Restify 快速入門，您會看到類似於所產生 **index.js** 檔案的應用程式。 本節主要說明 **package.json** **.env** 、 **index.js** 、**bot.js** 和 **echobot-with-counter.bot** 檔案。 有些檔案中的程式碼不會複製於此，但是您會在執行 Bot 時看到，還可參考 [Node.js echobot-with-counter](https://aka.ms/js-echobot-with-counter) 範例。
 
 ### <a name="packagejson"></a>package.json
 
