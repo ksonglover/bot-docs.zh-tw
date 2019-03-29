@@ -8,7 +8,7 @@ ms.topic: landing-page
 layout: LandingPage
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 01/16/2019
+ms.date: 03/28/2019
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -46,7 +46,7 @@ ms.date: 01/16/2019
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardText">
-                        <h3>語言</h3>
+                        <h3>Languages</h3>
                         <p><a href="/dotnet/api/?view=botbuilder-3.12.2.4">.NET</a></p>
                         <p><a href="https://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_.html">Node.js</a></p>
                     </div>
@@ -97,8 +97,8 @@ ms.date: 01/16/2019
 </div>
 
 <h2 style="margin-top: 36px">逐步教學課程</h2>
-<p><a href="/bot-framework/bot-builder-tutorial-basic-deploy">建立及部署基本 Bot</a></p>
-<p><a href="/bot-framework/bot-builder-tutorial-add-qna">新增 QnA Maker，並重新部署 Bot</a></p>
+<p><a href="/bot-framework/bot-builder-tutorial-basic-deploy">1. 建立及部署基本 Bot</a></p>
+<p><a href="/bot-framework/bot-builder-tutorial-add-qna">2. 新增 QnA Maker，並重新部署 Bot</a></p>
 <h2 style="margin-top: 36px">參考</h2>
 <ul class="panelContent cardsD">
     <li>
