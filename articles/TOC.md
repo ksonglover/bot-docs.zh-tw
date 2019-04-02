@@ -18,7 +18,7 @@
 ## [管理狀態](v4sdk/bot-builder-concept-state.md)
 ## [對話方塊程式庫](v4sdk/bot-builder-concept-dialog.md)
 ## [中介軟體](v4sdk/bot-builder-concept-middleware.md)
-## [使用 .bot 檔案管理資源](v4sdk/bot-file-basics.md)
+## [管理 bot 資源](v4sdk/bot-file-basics.md)
 <!-- [Language understanding](v4sdk/bot-builder-concept-luis.md) -->
 ## [Bot 服務範本](bot-service-concept-templates.md)
 ## [認知服務](bot-service-concept-intelligence.md)
