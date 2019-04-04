@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 02/07/2019
-ms.openlocfilehash: 8df68ccc78e7a0aa064cbfa83967d930f6b44878
-ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
+ms.openlocfilehash: e0d62d4effaf02d52714153f51736e06949a2263
+ms.sourcegitcommit: 53a36af930b3ab754a3e7bc896e3f0a9a734c3e4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/07/2019
-ms.locfileid: "57568255"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58809016"
 ---
 # <a name="create-a-bot-with-azure-bot-service"></a>建立具有 Azure Bot Service 的 Bot
 
@@ -134,9 +134,6 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 1. 在右窗格中按一下**下載 Bot 原始程式碼**連結。 
 1. 遵循提示以下載程式碼，然後將資料夾解壓縮。
     1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
-
-您下載的程式碼會使用加密 [.bot 檔案](./v4sdk/bot-file-basics.md)。 您將需要更新 appsettings.json 或.env 檔案中 `botFilePath` 和 `botFileSecret` 的項目。 
-若要這麼做，請移至 Azure 入口網站。 在入口網站中選取您的 Bot，接著在 [App Service 設定] 區段下，按一下 [應用程式設定]。 在 [應用程式設定] 窗格中，您將會看到 `botFilePath` 和 `botFileSecret` 值。 複製這些值，並更新.env 或 appsettings.json 檔案。 
 
 ## <a name="next-steps"></a>後續步驟
 下載程式碼之後，您可以繼續在電腦本機開發 Bot。 當您測試 Bot 並準備將 Bot 程式碼上傳至 Azure 入口網站時，請遵循部署主題的[設定存放庫](./bot-builder-deploy-az-cli.md#setup-a-repository)一節底下所列的指示。
