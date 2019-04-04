@@ -406,7 +406,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | 屬性 | 類型 | 說明 |
 |----|----|----|
 | **action** | 字串 | 要套用的動作或是已套用的動作。 使用**類型**屬性判斷動作的內容。 例如，在**類型**是 **contactRelationUpdate** 的情況下，若使用者將 Bot 新增至其連絡人清單，則 **action** 屬性的值會是 **add**；而若使用者將 Bot 從連絡人清單中移除，其值則為 **remove**。 |
-| **attachments** | [Attachment](#attachment-object)[] |  **Attachment** 物件陣列，用於定義要加入訊息的其他資訊。 每個附件可能是媒體檔案 (例如：音訊、影片、影像、檔案) 或豐富資訊卡。 |
+| **attachments** | [Attachment](#attachment-object)[] | **Attachment** 物件陣列，用於定義要加入訊息的其他資訊。 每個附件可能是媒體檔案 (例如：音訊、影片、影像、檔案) 或豐富資訊卡。 |
 | **attachmentLayout** | 字串 | 包含在訊息中的豐富資訊卡**附件**的版面配置。 下列任一值：**carousel**、**list**。 如需有關豐富資訊卡附件的詳細資訊，請參閱[將豐富資訊卡附件新增至訊息](bot-framework-rest-connector-add-rich-cards.md)。 |
 | **channelData** | 物件 | 包含通道專用內容的物件。 某些通道提供的功能，需要使用無法以附件結構描述來呈現的其他資訊。 在該等情況下，請將此屬性設定為通道文件中所定義的通道專用內容。 如需詳細資訊，請參閱[實作通道專屬功能](bot-framework-rest-connector-channeldata.md)。 |
 | **channelId** | 字串 | 可唯一識別通道的識別碼。 由通道設定。 | 
