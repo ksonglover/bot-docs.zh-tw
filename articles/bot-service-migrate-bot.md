@@ -7,22 +7,20 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 6/22/2017
+ms.date: 3/22/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6a1ae4d0966928a1b95e45ea7bcc62e9c1d14666
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: c6e91ebfe54857f11772bd4a926e3b5b2776c8cc
+ms.sourcegitcommit: 54a4382add4756346098b286695a9b4791db7139
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000065"
+ms.lasthandoff: 03/29/2019
+ms.locfileid: "58616934"
 ---
 # <a name="migrate-your-bot-to-azure"></a>將 Bot 移轉至 Azure
 
-
-
 所有在 [Bot Framework 入口網站](http://dev.botframework.com)中建立的 **Azure Bot Service (預覽版)** Bot，都必須移轉至 Azure 中的新 Bot Service。 此服務已在 2017 年 12 月正式推出 (GA)。 
 
-請注意，僅連線至下列通道的註冊 Bot *不需要*移轉：**Teams**、**Skype** 或 **Cortana**。 例如，連線至 **Facebook** 和 **Skype** 的註冊 Bot *需要*移轉，但連線至 **Skype** 和 **Cortana** 註冊 Bot 則*不需要*移轉。
+請注意，僅連線至下列通道的註冊 Bot「不需要」移轉：**Teams**、**Skype** 或 **Cortana**。 例如，連線至 **Facebook** 和 **Skype** 的註冊 Bot *需要*移轉，但連線至 **Skype** 和 **Cortana** 註冊 Bot 則*不需要*移轉。
 
 > [!IMPORTANT]
 > 移轉使用 Node.js 建立的 Functions Bot 之前，您必須使用 **Azure Functions Pack** 將 **node_modules** 模組封裝在一起。 這麼做可改善移轉期間的效能和 Functions Bot 在移轉之後的執行效能。 若要封裝您的模組，請參閱[使用 Funcpack 封裝 Functions Bot](#package-a-functions-bot-with-funcpack)。
@@ -52,7 +50,7 @@ ms.locfileid: "50000065"
 6.  使用 Bot Framework 模擬器執行 Functions Bot，在本機測試您的 Bot。 請在[這裡](https://github.com/Azure/azure-functions-pack#how-to-run)深入了解如何執行 *Funcpack* Bot。 
 7.  將您的程式碼上傳回 Azure。 請確定 `.funcpack` 目錄已上傳。 您不需要上傳 **node_modules** 目錄。
 8. 測試您遠端的 Bot，以確定它會如預期回應。
-9. 使用上述步驟[移轉您的 Bot](#migrate-your-bot-to-azure)。
+9. 使用上述步驟遷移您的 Bot。
 
 ## <a name="migration-under-the-hood"></a>實際移轉狀況
 

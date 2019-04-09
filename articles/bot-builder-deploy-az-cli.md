@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 02/13/2019
-ms.openlocfilehash: 8db2f0629b0d95dda0cb5d10dea5c9225e5d8d83
-ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
+ms.date: 04/02/2019
+ms.openlocfilehash: 556c444086fedf6c5be052726d934d9226b4eebb
+ms.sourcegitcommit: f1412178e4766fb6b29f0f33f7eff7cc9d0885cc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58073784"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58868028"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
@@ -25,9 +25,8 @@ ms.locfileid: "58073784"
 在本文中，我們會示範如何將 C# 和 JavaScript Bot 部署至 Azure。 在依照步驟執行前閱讀本文很有用，您可完全了解部署 Bot 的相關事項。
 
 ## <a name="prerequisites"></a>必要條件
-
-- 安裝最新版的 [msbot](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/MSBot) 工具。
-- 您已在本機電腦上開發的 [CSharp](./dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [JavaScript](./javascript/bot-builder-javascript-quickstart.md) Bot。
+- 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](http://portal.azure.com)。
+- 您已在本機電腦上開發的 [**CSharp**](./dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [**JavaScript**](./javascript/bot-builder-javascript-quickstart.md) Bot。
 
 ## <a name="1-prepare-for-deployment"></a>1.準備部署
 若要進行部署程序，Azure 中必須要有作為目標的 Web 應用程式 Bot，以便能在其中部署您的本機 Bot。 本機 Bot 會使用作為目標的 Web 應用程式 Bot 和使用此 Bot 在 Azure 中佈建的資源來進行部署。 這些是必要資源，因為本機 Bot 並不會佈建所有必要的 Azure 資源。 在建立作為目標的 Web 應用程式 Bot 時，系統會為您佈建下列資源：
@@ -39,7 +38,7 @@ ms.locfileid: "58073784"
 在建立作為目標的 Web 應用程式 Bot 期間，系統也會為您的 Bot 產生應用程式識別碼和密碼。 在 Azure 中，應用程式識別碼和密碼可支援[服務驗證和授權](https://docs.microsoft.com/azure/app-service/overview-authentication-authorization)。 您會擷取此資訊的某些資料，以便在本機 Bot 程式碼中使用。 
 
 > [!IMPORTANT]
-> 服務的 Bot 範本語言必須符合 Bot 的撰寫語言。
+> Azure 入口網站中所用 Bot 範本的程式設計語言必須符合 Bot 的撰寫語言。
 
 如果您已在 Azure 中建立想要使用的 Bot，則是否要建立新 Web 應用程式 Bot 的選擇權在您。
 
@@ -50,92 +49,49 @@ ms.locfileid: "58073784"
 1. 按一下 [建立] 以建立服務，並將 Bot 部署到雲端。 此程序可能需要幾分鐘的時間。
 
 ### <a name="download-the-source-code"></a>下載原始程式碼
-在建立作為目標的 Web 應用程式 Bot 之後，您必須從 Azure 入口網站將 Bot 程式碼下載到本機電腦。 下載程式碼的原因是為了取得 [.bot 檔案](./v4sdk/bot-file-basics.md)中的服務參考。 這些服務參考適用於 Web 應用程式 Bot、App Service 方案、App Service 和儲存體帳戶。 
+在建立作為目標的 Web 應用程式 Bot 之後，您必須從 Azure 入口網站將 Bot 程式碼下載到本機電腦。 下載程式碼的原因是要取得 appsettings.json 或 .env 檔案中的服務參考 (例如 MicrosoftAppID、MicrosoftAppPassword、LUIS 或 QnA)。 
 
 1. 在 [Bot 管理] 區段中，按一下 [組建]。
 1. 在右窗格中按一下**下載 Bot 原始程式碼**連結。
 1. 遵循提示以下載程式碼，然後將資料夾解壓縮。
     1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
 
-### <a name="decrypt-the-bot-file"></a>將 .bot 檔案解密
+### <a name="update-your-local-appsettingsjson-or-env-file"></a>更新本機 appsettings.json 或 .env 檔案
 
-您從 Azure 入口網站下載的原始程式碼包含已加密的 .bot 檔案。 您必須將其解密，以將其值複製到您的本機 .bot 檔案。 這是必要步驟，可讓您複製實際的服務參考而非加密版本。  
-
-1. 在 Azure 入口網站中，為您的 Bot 開啟 Web 應用程式 Bot 資源。
-1. 開啟 Bot 的 [應用程式設定]。
-1. 在 [應用程式設定] 視窗中，向下捲動至 [應用程式設定]。
-1. 找出 **botFileSecret** 並複製其值。
-1. 使用 `msbot cli` 將檔案解密。
-
-    ```cmd
-    msbot secret --bot <name-of-bot-file> --secret "<bot-file-secret>" --clear
-    ```
-
-### <a name="update-your-local-bot-file"></a>更新本機 .bot 檔案
-
-開啟您已解密的 .bot 檔案。 複製 `services` 區段底下所列出的**全部**項目，然後將其新增至您的本機 .bot 檔案。 解決任何重複的服務項目或重複的服務識別碼。 Bot 所仰賴的其他服務參考則全都保留下來。 例如︰
-
-```json
-"services": [
-    {
-        "type": "abs",
-        "tenantId": "<tenant-id>",
-        "subscriptionId": "<subscription-id>",
-        "resourceGroup": "<resource-group-name>",
-        "serviceName": "<bot-service-name>",
-        "name": "<friendly-service-name>",
-        "id": "1",
-        "appId": "<app-id>"
-    },
-    {
-        "type": "blob",
-        "connectionString": "<connection-string>",
-        "tenantId": "<tenant-id>",
-        "subscriptionId": "<subscription-id>",
-        "resourceGroup": "<resource-group-name>",
-        "serviceName": "<blob-service-name>",
-        "id": "2"
-    },
-    {
-        "type": "endpoint",
-        "appId": "",
-        "appPassword": "",
-        "endpoint": "<local-endpoint-url>",
-        "name": "development",
-        "id": "3"
-    },
-    {
-        "type": "endpoint",
-        "appId": "<app-id>",
-        "appPassword": "<app-password>",
-        "endpoint": "<hosted-endpoint-url>",
-        "name": "production",
-        "id": "4"
-    },
-    {
-        "type": "appInsights",
-        "instrumentationKey": "<instrumentation-key>",
-        "applicationId": "<appinsights-app-id>",
-        "apiKeys": {},
-        "tenantId": "<tenant-id>",
-        "subscriptionId": "<subscription-id>",
-        "resourceGroup": "<resource-group>",
-        "serviceName": "<appinsights-service-name>",
-        "id": "5"
-    }
-],
-```
+開啟您下載的 appsettings.json 或 .env 檔案。 複製其中所列的**所有**項目並將其新增到「本機」appsettings.json 或 .env 檔案。 解決任何重複的服務項目或重複的服務識別碼。 Bot 所仰賴的其他服務參考則全都保留下來。
 
 儲存檔案。
 
-您可以使用 msbot 工具來產生新祕密，並在發佈前加密 .bot 檔案。 如果要重新加密 .bot 檔案，請更新 Azure 入口網站中 Bot 的 **botFileSecret**，以包含新的祕密。
+### <a name="update-local-bot-code"></a>更新本機 Bot 程式碼
+將本機 Startup.cs 或 index.js 檔案更新為使用 appsettings.json 或 .env 檔案，而非使用 .bot 檔案。 .bot 檔案已淘汰，而我們正著手更新 VSIX 範本、Yeoman 產生器、範例，以及所有使用 appsettings.json 或 .env 檔案 (而非 .bot 檔案) 的其餘文件。 您同時必須對 Bot 程式碼進行變更。 
 
-```cmd
-msbot secret --bot <name-of-bot-file> --new
+從 appsettings.json 或 .env 檔案將程式碼更新為讀取設定。 
+
+# [<a name="c"></a>C#](#tab/csharp)
+在 `ConfigureServices` 方法中，使用 ASP.NET Core 提供的組態物件，例如： 
+
+**Startup.cs**
+```csharp
+var appId = Configuration.GetSection("MicrosoftAppId").Value;
+var appPassword = Configuration.GetSection("MicrosoftAppPassword").Value;
+options.CredentialProvider = new SimpleCredentialProvider(appId, appPassword);
 ```
 
-> [!TIP]
-> 在 Visual Studio，您 .bot 檔案的檔案屬性中，請確認**複製到輸出目錄**設為*永遠複製*。
+# [<a name="js"></a>JS](#tab/js)
+
+在 JavaScript 中，參考 `process.env` 物件外的 .env 變數，例如：
+   
+**index.js**
+
+```js
+const adapter = new BotFrameworkAdapter({
+    appId: process.env.MicrosoftAppId,
+    appPassword: process.env.MicrosoftAppPassword
+});
+```
+---
+
+- 儲存檔案並測試您的 Bot。
 
 ### <a name="setup-a-repository"></a>設定存放庫
 
@@ -144,12 +100,11 @@ msbot secret --bot <name-of-bot-file> --new
 確定您的存放庫根目錄具有正確檔案，如[準備存放庫](https://docs.microsoft.com/azure/app-service/deploy-continuous-deployment#prepare-your-repository)底下所述。
 
 ### <a name="update-app-settings-in-azure"></a>在 Azure 中更新應用程式設定
-本機 Bot 不會使用加密的 .bot 檔案，但 Azure 入口網站則設定為使用加密的 .bot 檔案。 您可以透過移除儲存在 Azure Bot 設定中的 **botFileSecret** 來解決這個問題。
+本機 Bot 不會使用加密的 .bot 檔案，但「如果」Azure 入口網站設定為使用加密的 .bot 檔案，則會使用加密的 .bot 檔案。 您可以透過移除儲存在 Azure Bot 設定中的 **botFileSecret** 來解決這個問題。
 1. 在 Azure 入口網站中，為您的 Bot 開啟 [Web 應用程式 Bot] 資源。
 1. 開啟 Bot 的 [應用程式設定]。
 1. 在 [應用程式設定] 視窗中，向下捲動至 [應用程式設定]。
-1. 找出 **botFileSecret** 並加以刪除。 (如果要重新加密 .bot 檔案，請確定 **botFileSecret** 包含新祕密且**不要**刪除該設定。)
-1. 更新 Bot 檔案名稱，以符合您簽入存放庫的檔案。
+1. 查看您的 Bot 是否具有 **botFileSecret** 和 **botFilePath** 項目。 如果您這麼做，請刪除。
 1. 儲存變更。
 
 ## <a name="2-deploy-using-azure-deployment-center"></a>2.使用 Azure 部署中心進行部署

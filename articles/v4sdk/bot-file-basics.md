@@ -1,64 +1,204 @@
 ---
 title: 使用 .bot 檔案管理資源 | Microsoft Docs
 description: 說明 Bot 檔案的用途與使用方式。
-keywords: bot 檔案, .bot, .bot 檔案, msbot, bot 資源, 管理 bot 資源
+keywords: bot 檔案, .bot, .bot 檔案, bot 資源, 管理 bot 資源
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
-ms.date: 03/11/2018
+ms.date: 03/30/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: db7957c611df4a3010469f86f51184b52d49addb
-ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
+ms.openlocfilehash: 14552c55da4b1f9b581b81917496de179e92762b
+ms.sourcegitcommit: 8d8b197c3f30593c4a5e4a6395ba5eff60dbd740
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58073854"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58811500"
 ---
-# <a name="manage-resources-with-a-bot-file"></a>使用 .bot 檔案管理資源
+# <a name="manage-bot-resources"></a>管理 Bot 資源
 
-Bot 通常會耗用很多不同的服務，例如 [LUIS.ai](https://luis.ai) 或 [QnaMaker.ai](https://qnamaker.ai)。 當您開發 bot 時，沒有統一位置可儲存使用中服務的相關中繼資料。  這導致我們無法建置可整體查看 Bot 的工具。
+Bot 通常會取用不同的服務，例如 [LUIS.ai](https://luis.ai) 或 [QnaMaker.ai](https://qnamaker.ai)。 當您開發 Bot 時，您需要能夠追蹤一切。 您可以使用各種方法，例如 appsettings.json、web.config 或 .env。 
 
-為了解決此問題，我們建立了 **.bot 檔案** 作為將所有服務參考匯合在一起的位置，以啟用工具功能。  比方說，Bot Framework 模擬器 ([V4](https://aka.ms/Emulator-wiki-getting-started)) 使用 .bot 檔案，建立 Bot 所用連線服務的統一檢視。  
+> [!IMPORTANT]
+> 在 Bot Framework SDK 4.3 發行之前，我們提供 .bot 檔案作為管理資源的機制。 不過，我們建議您今後使用 appsettings.json 或 .env 檔案來管理這些資源。 即使 .bot 檔案已經「淘汰」，使用 .bot 檔案的 Bot 目前仍會繼續運作。 如果您已使用 .bot 檔案來管理資源，請遵循適用於遷移設定的步驟。 
 
-使用 .bot 檔案，您可以註冊一些服務，例如：
+## <a name="migrating-settings-from-bot-file"></a>從 .bot 檔案遷移設定
+下列各節討論如何從 .bot 檔遷移設定。 請遵循您適用的案例。
 
-* **Localhost** 本機偵錯工具端點
-* [**Azure Bot Service**](https://azure.microsoft.com/en-us/services/bot-service/) Azure Bot Service 註冊。
-* [**LUIS.AI**](https://www.luis.ai/) LUIS 讓 Bot 能夠與使用自然語言的人員通訊。 
-* [**QnA Maker**](https://qnamaker.ai/) 根據常見問題集 URL、結構化文件或期刊內容，在短短幾分鐘內建置、定型及發佈簡單的問答 Bot。
-* [**分派**](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Dispatch) 模型，可供分派於多項服務。
-* [**Azure Application Insights**](https://azure.microsoft.com/en-us/services/application-insights/)，可提供見解和 Bot 分析。
-* [**Azure Blob 儲存體**](https://azure.microsoft.com/en-us/services/storage/blobs/)可供保存 Bot 狀態。 
-* [**Azure Cosmos DB**](https://azure.microsoft.com/en-us/services/cosmos-db/) - 全球發行的多模型資料庫服務，用以保存 Bot 狀態。
+**案例 1：具有 .bot 檔案的本機 Bot**
 
-除了這些以外，Bot 還可能依賴其他自訂服務。 您可以利用[泛型服務](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/docs/add-services.md)功能來連線一般服務組態。
+在此案例中，您具有使用 .bot 檔案的本機 Bot，但是「Bot 尚未遷移」至 Azure 入口網站。 請遵循下列步驟，將設定從 .bot 檔案遷移至 appsettings.json 或 .env 檔案。
 
-## <a name="when-is-a-bot-file-created"></a>何時建立 .bot 檔案？ 
-- 如果您使用 [Azure Bot Service](https://ms.portal.azure.com/#blade/Microsoft_Azure_Marketplace/GalleryResultsListBlade/selectedSubMenuItemId/%7B%22menuItemId%22%3A%22gallery%2FCognitiveServices_MP%2FBotService%22%2C%22resourceGroupId%22%3A%22%22%2C%22resourceGroupLocation%22%3A%22%22%2C%22dontDiscardJourney%22%3Afalse%2C%22launchingContext%22%3A%7B%22source%22%3A%5B%22GalleryFeaturedMenuItemPart%22%5D%2C%22menuItemId%22%3A%22CognitiveServices_MP%22%2C%22subMenuItemId%22%3A%22BotService%22%7D%7D) 建立 Bot，系統就會為您自動建立 .bot 檔案，其中已佈建連線服務清單。 預設會加密 .bot。
-- 如果您使用適用於 Visual Studio 的 Bot Framework V4 SDK [範本](https://marketplace.visualstudio.com/items?itemName=BotBuilder.botbuilderv4)或使用 Bot Builder [Yeoman Generator](https://www.npmjs.com/package/generator-botbuilder) 建立 Bot，則會自動建立 .bot 檔案。 此流程中不會佈建任何連線服務，而且 Bot 檔案不會加密。
-- 如果您開始使用 [BotBuilder-samples](https://github.com/Microsoft/botbuilder-samples)，Bot Framework V4 SDK 的每個範例都會包含 .bot 檔案，且 .bot 檔案不會加密。 
-- 您也可以使用 [MSBot](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/README.md) 工具建立 Bot 檔案。
+- 如果 .bot 檔案已加密，您必須使用下列命令將其解密：
 
-## <a name="what-does-a-bot-file-look-like"></a>bot 檔案的外觀為何？ 
-讓我們看一下範例 [.bot](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/docs/sample-bot-file.json) 檔案。
-若要深入了解 .bot 檔案的加密和解密，請參閱 [Bot 祕密](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/docs/bot-file-encryption.md)。
+```cli
+msbot secret --bot <name-of-bot-file> --secret "<bot-file-secret>" --clear` command.
+```
 
-## <a name="why-do-i-need-a-bot-file"></a>為何需要 .bot 檔案？
+- 開啟已解密的 .bot 檔案，複製其中的值並將其新增到 appsettings.json 或 .env 檔案。
+- 從 appsettings.json 或 .env 檔案將程式碼更新為讀取設定。
 
-使用 Bot Framework SDK 建置 Bot 時，**不**需要 .bot 檔案。 您可以繼續使用 appsettings.json、web.config、env、keyvault 或任何適當機制，追蹤您的 Bot 所依賴的服務參考和索引鍵。 不過，若要使用模擬器測試 Bot，您會需要 .bot 檔案。 好消息是模擬器可以建立 .bot 檔案以供測試。 若要這樣做，請啟動模擬器，按一下 [歡迎] 頁面上的 [建立新的 Bot 組態] 連結。 在出現的對話方塊中，輸入 [Bot 名稱] 和 [端點 URL]。 然後連線。
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-使用 .bot 檔案的優點：
-- 不論您使用的語言/平台為何，請提供儲存資源的標準方式。   
-- Bot Framework 模擬器和 CLI 工具會依賴且妥善處理以一致的格式 (.bot 檔案) 追蹤連線服務。 
-- 若沒有定義完善的結構描述 (.bot 檔案)，難以打造以服務建立和管理為主的精緻工具解決方案。  
+在 `ConfigureServices` 方法中，使用 ASP.NET Core 提供的組態物件，例如： 
+
+**Startup.cs**
+```csharp
+var appId = Configuration.GetSection("MicrosoftAppId").Value;
+var appPassword = Configuration.GetSection("MicrosoftAppPassword").Value;
+options.CredentialProvider = new SimpleCredentialProvider(appId, appPassword);
+```
+# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
+
+在 JavaScript 中，參考 `process.env` 物件外的 .env 變數，例如：
+   
+**index.js**
+
+```js
+const adapter = new BotFrameworkAdapter({
+    appId: process.env.MicrosoftAppId,
+    appPassword: process.env.MicrosoftAppPassword
+});
+```
+---
+
+如有需要，佈建資源並將其連線到使用 appsettings.json 或 .env 檔案的 Bot。
+
+**案例 2：Bot 部署至具有 .bot 檔案的 Azure**
+
+在此案例中，您已將 Bot 部署至使用 .bot 檔案的 Azure 入口網站，而您現在想要將設定從 .bot 遷移至 appsettings.json 或 .env 檔案。
+
+- 從 Azure 入口網站下載 Bot 程式碼。 當您下載程式碼時，系統會提示您包含 appsettings.json 或 .env 檔案，此檔案會有您的 MicrosoftAppId 和 MicrosoftAppPassword 以及任何其他設定。 
+- 開啟「已下載」的 appsettings.json 或 .env 檔案，並將其中的設定複製到「本機」 appsettings.json 或 .env 檔案。 別忘了從本機 appsettings.json 或 .env 檔案中移除 botSecret 和 botFilePath 項目。
+- 從 appsettings.json 或 .env 檔案將程式碼更新為讀取設定。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+在 `ConfigureServices` 方法中，使用 ASP.NET Core 提供的組態物件，例如： 
+
+**Startup.cs**
+```csharp
+var appId = Configuration.GetSection("MicrosoftAppId").Value;
+var appPassword = Configuration.GetSection("MicrosoftAppPassword").Value;
+options.CredentialProvider = new SimpleCredentialProvider(appId, appPassword);
+```
+# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
+在 JavaScript 中，參考 `process.env` 物件外的 .env 變數，例如：
+   
+**index.js**
+
+```js
+const adapter = new BotFrameworkAdapter({
+    appId: process.env.MicrosoftAppId,
+    appPassword: process.env.MicrosoftAppPassword
+});
+```
+---
+
+您也需要從 **Azure 入口網站**的 [應用程式設定] 區段中移除 `botFilePath` 和 `botFileSecret`。
+
+如有需要，佈建資源並將其連線到使用 appsettings.json 或 .env 檔案的 Bot。
+
+**案例 3：對於使用 appsettings.json 或 .env 檔案的 Bot**
+
+此案例涵蓋以下情況：您使用 SDK 4.3 從頭開始開發 Bot，且沒有要遷移的現有 .bot 檔案。 您想要在 Bot 中使用的所有設定都位於 appsettings.json 或 .env 檔案中，如下所示：
+
+```JSON
+{
+  "MicrosoftAppId": "<your-AppId>",
+  "MicrosoftAppPassword": "<your-AppPwd>"
+}
+```
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+若要讀取 C# 程式碼中的上述設定，您可使用 ASP.NET Core 提供的組態物件，例如：**Startup.cs**
+```csharp
+var appId = Configuration.GetSection("MicrosoftAppId").Value;
+var appPassword = Configuration.GetSection("MicrosoftAppPassword").Value;
+options.CredentialProvider = new SimpleCredentialProvider(appId, appPassword);
+```
+
+# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
+在 JavaScript 中，參考 `process.env` 物件外的 .env 變數，例如：**index.js**
+```js
+const adapter = new BotFrameworkAdapter({
+    appId: process.env.MicrosoftAppId,
+    appPassword: process.env.MicrosoftAppPassword
+});
+```
+
+---
+
+如有需要，佈建資源並將其連線到使用 appsettings.json 或 .env 檔案的 Bot。
 
 
-## <a name="using-bot-file-in-your-bot-framework-sdk-bot"></a>在 Bot Framework SDK Bot 中使用 .bot 檔案
+## <a name="faq"></a>常見問題集
+**問：** 我想要在 Azure 入口網站中建立新的 V4 Bot。 .bot 檔案移除對 Azure 入口網站體驗有何改變？
 
-您可以使用 .bot 檔案來取得 Bot 程式碼中的服務組態資訊。 可供 [C#](https://www.nuget.org/packages/Microsoft.Bot.Configuration) 和 [JS](https://www.npmjs.com/package/botframework-config) 使用的 BotFramework-Configuration 程式庫可協助您載入 Bot 檔案，並支援數種方法來查詢和取得適當的服務組態資訊。
+**答：** 當您在 Azure 入口網站中建立 Bot 時，將不會建立 .bot 檔案。 您可以使用 **Azure 入口網站**的 [應用程式設定] 區段來尋找識別碼/金鑰。 當您下載程式碼時，這些設定會儲存在 appsettings.json 或 .env 檔案中。 在您的 Bot 中，您可以先將程式碼更新為讀取這些設定，再對個別服務進行呼叫。 在您更新 Bot 程式碼之後，您可以使用 az bot publish 來部署 Bot。
+
+**問：** V3 Bot 如何？
+
+**答：** V3 Bot 案例類似於不含 Bot 檔案的 V4 Bot 案例。 部署程序將會繼續運作。 
 
 ## <a name="additional-resources"></a>其他資源
-如需使用 bot 檔案的詳細資訊，請參閱 [MSBot](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/README.md) 讀我檔案。
+- 如需部署 Bot 的步驟，請參閱[部署](../bot-builder-deploy-az-cli.md)主題。
+- 若要保護金鑰和祕密，建議您使用 Azure Key Vault。 Azure Key Vault 是可安全儲存及存取祕密 (例如 Bot 的端點和撰寫金鑰) 的工具。 其會提供[金鑰管理](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-whatis)解決方案，讓您輕鬆地建立及控制加密金鑰，進而嚴格控制您的祕密。
+
+
+<!--
+
+# Manage resources with a .bot file
+
+Bots usually consume lots of different services, such as [LUIS.ai](https://luis.ai) or [QnaMaker.ai](https://qnamaker.ai). When you are developing a bot, there is no uniform place to store the metadata about the services that are in use.  This prevents us from building tooling that looks at a bot as a whole.
+
+To address this problem, we have created a **.bot file** to act as the place to bring all service references together in one place to 
+enable tooling.  For example, the Bot Framework Emulator ([V4](https://aka.ms/Emulator-wiki-getting-started)) uses a  .bot file to create a unified view over the connected services your bot consumes.  
+
+With a .bot file, you can register services like:
+
+* **Localhost** local debugger endpoints
+* [**Azure Bot Service**](https://azure.microsoft.com/en-us/services/bot-service/) Azure Bot Service registrations.
+* [**LUIS.AI**](https://www.luis.ai/) LUIS gives your bot the ability to communicate with people using natural language.. 
+* [**QnA Maker**](https://qnamaker.ai/) Build, train and publish a simple question and answer bot based on FAQ URLs, structured documents or editorial content in minutes.
+* [**Dispatch**](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Dispatch) models for dispatching across multiple services.
+* [**Azure Application Insights**](https://azure.microsoft.com/en-us/services/application-insights/) for insights and bot analytics.
+* [**Azure Blob Storage**](https://azure.microsoft.com/en-us/services/storage/blobs/) for bot state persistence. 
+* [**Azure Cosmos DB**](https://azure.microsoft.com/en-us/services/cosmos-db/) - globally distributed, multi-model database service to persist bot state.
+
+Apart from these, your bot might rely on other custom services. You can leverage the [generic service](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/docs/add-services.md) capability to connect a generic service configuration.
+
+## When is a .bot file created? 
+- If you create a bot using [Azure Bot Service](https://ms.portal.azure.com/#blade/Microsoft_Azure_Marketplace/GalleryResultsListBlade/selectedSubMenuItemId/%7B%22menuItemId%22%3A%22gallery%2FCognitiveServices_MP%2FBotService%22%2C%22resourceGroupId%22%3A%22%22%2C%22resourceGroupLocation%22%3A%22%22%2C%22dontDiscardJourney%22%3Afalse%2C%22launchingContext%22%3A%7B%22source%22%3A%5B%22GalleryFeaturedMenuItemPart%22%5D%2C%22menuItemId%22%3A%22CognitiveServices_MP%22%2C%22subMenuItemId%22%3A%22BotService%22%7D%7D), a .bot file is automatically created for you with list of connected services provisioned. The .bot is encrypted by default.
+- If you create a bot using Bot Framework V4 SDK [Template](https://marketplace.visualstudio.com/items?itemName=BotBuilder.botbuilderv4) for Visual Studio or using Bot Builder [Yeoman Generator](https://www.npmjs.com/package/generator-botbuilder), a .bot file is automatically created. No connected services are provisioned in this flow and the bot file is not encrypted.
+- If you are starting with [BotBuilder-samples](https://github.com/Microsoft/botbuilder-samples), every sample for Bot Framework V4 SDK includes a .bot file and the .bot file is not encrypted. 
+- You can also create a bot file using the [MSBot](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/README.md) tool.
+
+## What does a bot file look like? 
+Take a look at a sample [.bot](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/docs/sample-bot-file.json) file.
+To learn about encrypting and decrypting the .bot file, see [Bot Secrets](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/docs/bot-file-encryption.md).
+
+## Why do I need a .bot file?
+
+A .bot file is **not** a requirement to build bots with Bot Framework SDK. You can continue to use appsettings.json, web.config, env, 
+keyvault or any mechanism you see fit to keep track of service references and keys that your bot depends on. However, to test
+the bot using the Emulator, you'll need a .bot file. The good news is that Emulator can create a .bot file for testing. To do that, 
+start the Emulator, click on the **create a new bot configuration** link on the Welcome page. In the dialog box that appears, type a **Bot name** and an **Endpoint URL**. Then connect.
+
+The advantages of using .bot file are:
+- Provides a standard way of storing resources regardless of the language/platform you use.   
+- Bot Framework Emulator and CLI tools rely on and work great with tracking connected services in a consistent format (in a .bot file) 
+- Elegant tooling solutions around services creation and management is harder without a well defined schema (.bot file).  
+
+
+## Using .bot file in your Bot Framework SDK bot
+
+You can use the .bot file to get service configuration information in your bot's code. The BotFramework-Configuration library available 
+for [C#](https://www.nuget.org/packages/Microsoft.Bot.Configuration) and [JS](https://www.npmjs.com/package/botframework-config) helps you load a bot file and supports several methods to query and get the appropriate service configuration information.
+
+## Additional resources
+Refer to [MSBot](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/README.md) readme file for more information on using a bot file.
+
+-->
+

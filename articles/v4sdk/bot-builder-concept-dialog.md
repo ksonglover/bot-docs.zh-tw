@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/28/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 31a0497f1422cee8c4966e59d94a89ae359a5cb7
-ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
+ms.openlocfilehash: 997399997770db9a810db54c6dcb0cb943a99da9
+ms.sourcegitcommit: 54a4382add4756346098b286695a9b4791db7139
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54453932"
+ms.lasthandoff: 03/29/2019
+ms.locfileid: "58616944"
 ---
 # <a name="dialogs-library"></a>對話方塊程式庫
 
@@ -121,7 +121,7 @@ Dialogs 程式庫中的提示，可讓您輕鬆地向使用者詢問資訊並評
 
 對話可被視為程式設計堆疊，我們稱之為「對話堆疊」，其由回合處理常式引導，而如果堆疊是空的，則會作為後援。 該堆疊最上方的項目會被視為「作用中對話」，而對話內容會將所有輸入導向作用中對話。
 
-當對話開始時，其會推送至堆疊，而成為作用中對話。 其會在結束前保持為作用中對話，而 [replace dialog](#repeating-a-dialog) 方法會將它移除，或另一個對話會推送至堆疊 (經由回合處理常式或作用中對話本身) 並成為作用中對話。 當新的對話結束時，其就會從堆疊中彈出，而下一個對話會再度成為作用中對話。 這允許進行如下所述的[分支和迴圈處理](#looping-and-branching)。
+當對話開始時，其會推送至堆疊，而成為作用中對話。 其會在結束前保持為作用中對話，而 [replace dialog](#repeating-a-dialog) 方法會將它移除，或另一個對話會推送至堆疊 (經由回合處理常式或作用中對話本身) 並成為作用中對話。 當新的對話結束時，其就會從堆疊中彈出，而下一個對話會再度成為作用中對話。 這允許進行如下所述的分支和迴圈處理。
 
 ### <a name="create-the-dialog-context"></a>建立對話內容
 

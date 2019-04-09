@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/12/2018
-ms.openlocfilehash: 0932372c5b2bcf574d244cd60d46ef579acbd106
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 57a3efd36ddae5c52a2d791b87ed4fa6a96d5e8a
+ms.sourcegitcommit: 152760771214865b9c7d0ed481acfba05bdc44dc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000155"
+ms.lasthandoff: 03/29/2019
+ms.locfileid: "58655518"
 ---
 # <a name="connect-a-bot-to-facebook"></a>將 Bot 連線到 Facebook
 
@@ -150,6 +150,12 @@ Bot 完成之後，Facebook 對於發佈到 Messenger 的應用程式有自己�
 
 ### <a name="make-the-app-public-and-publish-the-page"></a>將應用程式設為公用並發佈至頁面
 如需詳細資訊，請參閱**將 Bot 連線至 Facebook Messenger** 一節。
+
+## <a name="setting-the-api-version"></a>設定 API 版本
+
+如果您收到來自 Facebook 關於特定 Graph API 版本淘汰的通知，請移至 [Facebook 開發人員頁面](https://developers.facebook.com)。 瀏覽至 Bot 的 [應用程式設定] 並移至 [設定] > [進階] > [升級 API 版本]，然後將 [升級所有呼叫] 切換為 3.0。
+
+![API 版本升級](~/media/channels/facebook-version-upgrade.png)
 
 ## <a name="sample-code"></a>範例程式碼
 

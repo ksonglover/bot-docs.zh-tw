@@ -9,20 +9,21 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: a8619a8de7b3b73d67c297a8abb4234d520fa425
-ms.sourcegitcommit: d385ec5fe61c469ab17e6f21b4a0d50e5110d0fd
+ms.openlocfilehash: 6bd918416c4eee9fc74809b0d5837012021556e0
+ms.sourcegitcommit: 152760771214865b9c7d0ed481acfba05bdc44dc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54298235"
+ms.lasthandoff: 03/29/2019
+ms.locfileid: "58655478"
 ---
 # <a name="connect-a-bot-to-skype-for-business"></a>將 Bot 連結到商務用 Skype
 
 商務用 Skype Online 可讓您與同事和商務夥伴，透過立即訊息、電話和視訊通話連線。 藉由建置使用者可以透過商務用 Skype 介面探索與互動的 Bot 來擴充此功能。
 
-> [!NOTE]
-> 商務用 Skype Bot Framework 通道目前為開發人員預覽版。
-> 適用於商務用 Skype Online 和混合式組態。 不支援商務用 Skype Server 2015。 
+> [!IMPORTANT]
+> **Bot Framework 中的商務用 Skype 通道即將在 2019 年 6 月 30 日淘汰。**
+> 
+> 在該日期之後，沒有任何新的 Bot 能夠新增商務用 Skype 通道。  現有的 Bot 將繼續運作，直到 2019 年 10 月 31 日為止。 Microsoft Teams 是 Microsoft 建議的通訊工具。  了解如何[將 Bot 連線至 Microsoft Teams](https://msdn.microsoft.com/en-us/microsoft-teams/bots)。
 
 ## <a name="enable-the-channel"></a>啟用頻道
 
