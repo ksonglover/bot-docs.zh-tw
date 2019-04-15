@@ -1,6 +1,6 @@
 ---
 title: 攔截訊息 | Microsoft Docs
-description: 了解如何藉由使用適用於 Node.js 的 Bot Framework SDK 來攔截和處理資訊交換，來建立記錄檔或其他記錄。
+description: 了解如何藉由使用適用於 Node.js 的 Bot Framework SDK 來攔截和處理資訊交換，來建立記錄或其他記錄。
 author: RobStand
 ms.author: kamrani
 manager: kamrani

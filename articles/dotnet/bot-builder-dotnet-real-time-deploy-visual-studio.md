@@ -79,7 +79,7 @@ Bot 的完全合格網域名稱 (FQDN) 不適用於 Azure RoleEnvironment API。
 
 ![按一下 [下一步] 並前往「設定」索引標籤](../media/real-time-media-bot-publish-settings.png)
 
-您可以自行選擇**進階設定**並指定部署記錄檔 (用於偵錯問題) 的儲存體帳戶。
+您可以自行選擇**進階設定**並指定部署記錄 (用於偵錯問題) 的儲存體帳戶。
 
 ![按一下「進階設定」索引標籤](../media/real-time-media-bot-publish-advanced-settings.png)
 
