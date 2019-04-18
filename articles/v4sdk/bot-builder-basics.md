@@ -10,16 +10,16 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 1/10/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 70f333cdce15f1d1e908b73d21e706f1af33454b
-ms.sourcegitcommit: c7d2e939ec71f46f48383c750fddaf6627b6489d
+ms.openlocfilehash: a7f6c22f35719eacf66598e79df5fe52ff19dd43
+ms.sourcegitcommit: 103aa3316f9ff658cf2b0d341c5e76c3efc581ee
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55783377"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59540362"
 ---
 # <a name="how-bots-work"></a>Bot 的運作方式
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 Bot 是使用者可運用文字、圖形 (例如卡片或影像) 或語音等對話方式進行互動的應用程式。 使用者與 Bot 之間的每次互動都會產生「活動」。 Bot Framework Service 是 Azure Bot Service 的元件，會在使用者的 Bot 連線應用程式 (例如 Facebook、Skype、Slack 等，我們稱之為「通道」) 與 Bot 之間傳送資訊。 每個通道都可以在其傳送的活動中包含其他資訊。 建立 Bot 之前，請務必了解 Bot 如何使用活動物件來與其使用者通訊。 讓我們先看看當我們執行簡單回應 Bot 時所交換的活動。 
 
