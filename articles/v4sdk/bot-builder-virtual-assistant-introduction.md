@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 13/12/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3a3074ff9e8de36d7a7cf7b86fef62979bc53fa8
-ms.sourcegitcommit: 958a28bbab7dd29b384bb2e2d58d866e88f53316
+ms.openlocfilehash: 1d231672284e20e3f215cbba16d881ae0ecab7ec
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52500655"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59540984"
 ---
 # <a name="virtual-assistant-solution-overview"></a>虛擬小幫手解決方案概觀
 
@@ -44,12 +44,12 @@ ms.locfileid: "52500655"
 ToDo 技術 | 預覽 ToDo 技術，可提供常見工作相關活動的全方位語言模型。這項技術目前已整合到 OneNote 中，而且很快就會提供 Microsoft Graph (outlookTask) 支援。
 裝置整合 | 採用調適型卡片的 Azure Bot Service SDK (DirectLine) 和語音 SDK 都能夠輕鬆進行裝置的跨平台整合。 已規劃其他裝置整合範例和平台 (包括 Edge)。
 測試載入器 | 除了 Bot Framework 模擬器，還提供了 WebChat 型測試載入器，以便測試更複雜的驗證案例。 簡單的主控台型測試載入器會示範交換訊息的方法，以協助塑造不費力的裝置整合。
-自動化部署 | 系統會自動部署您的小幫手所需的所有 Azure 資源：Bot 註冊、Azure App Service、LUIS、QnAMaker、內容審查工具、CosmosDB、Azure 儲存體和 Application Insights。 此外，系統會建立、定型及發行適用於所有技術的 LUIS 模型、QnAMaker 和分派模型，以便立即測試。
+自動化部署 | 會自動部署助理所需的所有 Azure 資源：Bot 註冊、Azure App Service、LUIS、QnAMaker、內容審查工具、CosmosDB、Azure 儲存體和 Application Insights。 此外，系統會建立、定型及發行適用於所有技術的 LUIS 模型、QnAMaker 和分派模型，以便立即測試。
 汽車業語言模型 | 即將推出汽車業語言模型，其中涵蓋電話、導航及車用功能控制等核心領域
 
 ## <a name="example-scenarios"></a>範例案例
 
-虛擬小幫手已延伸到廣泛的產業案例中，參考用的一些範例案例如下所示。
+虛擬助理橫跨廣泛的產業。 以下一些範例案例供您參考。
 
 - 汽車業：藉由將啟用語音的個人助理整合到汽車中，可讓終端使用者執行傳統汽車操作 (例如導航和廣播) 及攸關生產力的案例，例如在您快遲到時更改會議時間、新增項目到您的工作清單，以及提供更積極的體驗，例如汽車可以在您啟動引擎、回家或啟用定速巡航時提供要完成的工作建議。 調適性卡片會在透過隨按即說 (Push-To-Talk) 或喚醒字互動來執行的前端單元和語音整合中進行轉譯。
 

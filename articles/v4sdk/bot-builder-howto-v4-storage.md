@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/13/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a7d881e5e7748da11ea46721c23c5489597cdc94
-ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
+ms.openlocfilehash: 314a8a55906ec150d001b56c67ffbfe0ae2049f8
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58073824"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541124"
 ---
 # <a name="write-directly-to-storage"></a>直接寫入儲存體
 
@@ -621,7 +621,7 @@ public ConversationHistoryBot(AzureBlobTranscriptStore transcriptStore)
 ```
 
 ### <a name="store-user-conversations-in-azure-blob-transcripts"></a>在 Azure blob 文字記錄中儲存使用者對話
-在 Blob 容器可用於儲存文字記錄之後，您可以開始保留使用者與 Bot 的對話。 這些對話稍後可當作偵錯工具，查看使用者與 Bot 的互動方式。 當 ctivity.text 收到輸入訊息 _!history_ 時，下列程式碼會保留使用者對話輸入。
+TranscriptLoggerMiddleware 加入之後，文字記錄存放區會自動開始保留使用者與 Bot 的對話。 這些對話稍後可當作偵錯工具，查看使用者與 Bot 的互動方式。 下列程式碼會擷取文字記錄，然後在 activity.text 收到輸入訊息 _!history_ 時，將其傳送到目前的對話。 注意：SendConversationHistoryAsync 方法在 Direct Line、網路聊天和模擬器通道中受支援。
 
 
 ```csharp

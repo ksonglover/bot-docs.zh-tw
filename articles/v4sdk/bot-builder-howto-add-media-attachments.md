@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/27/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ed723e2caebd7fc085c6f9f2887e277195ee3516
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: aea34c068afa6fef3a701bc1179341ff4861e32a
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224876"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541094"
 ---
 # <a name="add-media-to-messages"></a>將媒體新增至訊息
 
@@ -225,9 +225,9 @@ await context.sendActivity(hero);
 
 再者，調適型卡片會以卡片格式傳遞訊息，而通道會決定卡片的版面配置。 MessageFactory 傳遞的訊息格式取決於通道，而且不一定是以卡片格式傳遞，除非調適型卡片是附件的一部分。 
 
-如需調適型卡片通道支援的最新資訊，請參閱<a href="http://adaptivecards.io/visualizer/">調適型卡片視覺化檢視</a>。
+如需調適型卡片通道支援的最新資訊，請參閱<a href="http://adaptivecards.io/designer/">調適型卡片設計工具</a>。
 
-若要使用調適型卡片，請務必新增 `Microsoft.AdaptiveCards`NuGet 套件。 
+若要使用調適型卡片，請務必新增 `AdaptiveCards`NuGet 套件。 
 
 
 > [!NOTE]

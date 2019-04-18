@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: b3f9a0d2c24809c0814baa9bfb8f993a4ba55ef7
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59551562"
+---
 ## <a name="prerequisites"></a>必要條件
 
 - [Visual Studio Code](https://www.visualstudio.com/downloads)
@@ -11,6 +19,7 @@
 > 只有在您使用 Windows 作為開發作業系統時，才需要安裝以下所列的 Windows 建置工具。 在某些安裝中，restify 的安裝步驟會產生與 node-gyp 相關的錯誤。
 > 如果情況如此，您可嘗試以提升的權限執行此命令。
 > 如果您的系統上已安裝 python，此呼叫可能也會停止回應，但不會結束：
+
 > ```bash
 > npm install -g windows-build-tools
 > ```

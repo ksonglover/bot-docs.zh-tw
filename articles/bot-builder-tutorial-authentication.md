@@ -9,12 +9,12 @@ ms.service: bot-service
 ROBOTS: NOINDEX
 ms.date: 10/04/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 62b5608de20bb89a31106c7e652b20f32b099d15
-ms.sourcegitcommit: 152760771214865b9c7d0ed481acfba05bdc44dc
+ms.openlocfilehash: 54742bdeddee410ec9307157d0dbd34cc4fbe3c8
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2019
-ms.locfileid: "58655498"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541074"
 ---
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]  
 
@@ -68,7 +68,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 ## <a name="create-your-bot-and-an-authentication-application"></a>建立 Bot 和驗證應用程式
 
-您必須建立註冊 Bot 以藉此發佈 Bot 程式碼，以及建立 Azure AD (v1 或 v2) 應用程式以允許 Bot 存取 Office 365。
+您必須建立註冊 Bot，其中您將設定傳訊端點至部署的 Bot 程式碼，以及建立 Azure AD (v1 或 v2) 應用程式以允許 Bot 存取 Office 365。
 
 > [!NOTE]
 > 這些驗證功能皆可搭配其他類型的 Bot 使用。 不過，本教學課程所用的範例是僅具有註冊功能的 Bot。
@@ -234,10 +234,10 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
     </appSettings>
     ```
 
-    如果您不知道如何取得 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**值，請找到您在 Azure 入口網站上為 Bot 佈建的 Azure 應用程式服務，然後查看其中的 **ApplicationSettings**。
+    如果您不知道如何取得 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**值，您可以建立如下所述的新密碼：[bot-channels-registration-password](bot-service-quickstart-registration.md#bot-channels-registration-password) 或擷取 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**，從如下所述的部署使用 **Bot 通道註冊**佈建：[find-your-azure-bots-appid-and-appsecret](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)
 
     > [!NOTE]
-    > 您現在可將此 Bot 程式碼重新發佈至 Azure 訂用帳戶 (以滑鼠右鍵按一下專案，然後選擇 [發佈])，但此動作在本教學課程的範例中並非必要。 在 Azure 入口網站中配置 Bot 時，您必須進行發佈設定，其應使用您所用的應用程式和主控方案。
+    > 您現在可將此 Bot 程式碼發佈至 Azure 訂用帳戶 (以滑鼠右鍵按一下專案，然後選擇 [發佈])，但此動作在本教學課程的範例中並非必要。 在 Azure 入口網站中配置 Bot 時，您必須進行發佈設定，其應使用您所用的應用程式和主控方案。
 
 ## <a name="use-the-emulator-to-test-your-bot"></a>使用模擬器測試您的 Bot
 

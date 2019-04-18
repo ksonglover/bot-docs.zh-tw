@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 04/09/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 27c97d257261a6f3b9d867503aee40382b685e20
-ms.sourcegitcommit: 562dd44e38abacaa31427da5675da556a970cf11
+ms.openlocfilehash: 1a295f68be626c2d2ef17dcb49b7c7d31ae2cefa
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/10/2019
-ms.locfileid: "59477101"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541044"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
 
@@ -168,7 +168,7 @@ Sample payload
 
 下一步是向 Bot 註冊您已建立的 Azure AD 應用程式。
 
-# [<a name="azure-ad-v1"></a>Azure AD v1](#tab/aadv1)
+# <a name="azure-ad-v1tabaadv1"></a>[Azure AD v1](#tab/aadv1)
 
 1. 在 [Azure 入口網站](http://portal.azure.com/)瀏覽至 Bot 的資源頁面。
 1. 按一下 [設定] 。
@@ -193,7 +193,7 @@ Sample payload
 > [!NOTE]
 > 這些值可讓應用程式透過 Microsoft Graph API 存取 Office 365 資料。
 
-# [<a name="azure-ad-v2"></a>Azure AD v2](#tab/aadv2)
+# <a name="azure-ad-v2tabaadv2"></a>[Azure AD v2](#tab/aadv2)
 
 1. 在 [Azure 入口網站](http://portal.azure.com/)上瀏覽至 Bot 的 [Bot 通道註冊] 頁面。
 1. 按一下 [設定] 。
@@ -273,10 +273,14 @@ Sample payload
     }
     ```
 
-    如果您不知道如何取得 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**值，請找到您在 Azure 入口網站上為 Bot 佈建的 Azure 應用程式服務，然後查看其中的 **ApplicationSettings**。
+    如果您不知道如何取得 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**值，您可以建立如下所述的新密碼：
+
+    [bot-channels-registration-password](../bot-service-quickstart-registration.md#bot-channels-registration-password)
+
+    或擷取 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**，從如下所述的部署使用 **Bot 通道註冊**佈建：[find-your-azure-bots-appid-and-appsecret](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)
 
     > [!NOTE]
-    > 您現在可將此 Bot 程式碼重新發佈至 Azure 訂用帳戶 (以滑鼠右鍵按一下專案，然後選擇 [發佈])，但此動作在本教學課程的範例中並非必要。 在 Azure 入口網站中配置 Bot 時，您必須進行發佈設定，其應使用您所用的應用程式和主控方案。
+    > 您現在可將此 Bot 程式碼發佈至 Azure 訂用帳戶 (以滑鼠右鍵按一下專案，然後選擇 [發佈])，但此動作在本教學課程的範例中並非必要。 在 Azure 入口網站中配置 Bot 時，您必須進行發佈設定，其應使用您所用的應用程式和主控方案。
 
 ## <a name="use-the-emulator-to-test-your-bot"></a>使用模擬器測試您的 Bot
 
@@ -327,7 +331,7 @@ Sample payload
 
 在此程式碼中，首先 Bot 會快速檢查以判斷 Azure Bot 服務是否已有該使用者的權杖 (藉由目前的活動傳送者識別) 和指定的 ConnectionName (即設定中使用的連線名稱)。 Azure Bot 服務可能會快取權杖，也可能不會。 針對 GetUserTokenAsync 的呼叫會執行此快速檢查。 如果 Azure Bot 服務具有權杖並將其傳回，則該權杖可立即使用。 如果 Azure Bot 服務沒有權杖，此方法將傳回 Null。 在此情況下，Bot 可傳送自訂的 OAuthCard 供使用者登入。
 
-# [<a name="c"></a>C#](#tab/csharp)
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```csharp
 // First ask Bot Service if it already has a token for this user
@@ -342,7 +346,7 @@ else
 }
 ```
 
-# [<a name="javascript"></a>JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
 public async getUserToken(context: TurnContext, code?: string): Promise<TokenResponse|undefined> {
@@ -364,7 +368,7 @@ public async getUserToken(context: TurnContext, code?: string): Promise<TokenRes
 
 在此呼叫結束時，Bot 必須「等候權杖」回傳。 由於可能有許多使用者需要登入，因此等候過程會在主要的活動流中發生。
 
-# [<a name="c"></a>C#](#tab/csharp)
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```csharp
 private async Task SendOAuthCardAsync(ITurnContext turnContext, IMessageActivity message, CancellationToken cancellationToken = default(CancellationToken))
@@ -397,7 +401,7 @@ private async Task SendOAuthCardAsync(ITurnContext turnContext, IMessageActivity
 }
 ```
 
-# [<a name="javascript"></a>JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
 private async sendOAuthCardAsync(context: TurnContext, prompt?: string|Partial<Activity>): Promise<void> {
@@ -429,7 +433,7 @@ private async sendOAuthCardAsync(context: TurnContext, prompt?: string|Partial<A
 
 若您檢視每個範例的 Bot 程式碼，即可發現 `Event` 和 `Invoke` 活動也會路由傳送至對話方塊堆疊。
 
-# [<a name="c"></a>C#](#tab/csharp)
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```csharp
 // This can be called when the bot receives an Activity after sending an OAuthCard
@@ -477,7 +481,7 @@ private bool IsTeamsVerificationInvoke(ITurnContext turnContext)
 }
 ```
 
-# [<a name="javascript"></a>JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
 private async recognizeToken(context: TurnContext): Promise<PromptRecognizerResult<TokenResponse>> {

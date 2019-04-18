@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/13/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6ba140324fb6b50c2d6696aae6e4bd3e8824fd96
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: fa243d8cc00fd6fadf7c51668c9e7ba74d0c06e2
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997565"
+ms.lasthandoff: 04/18/2019
+ms.locfileid: "59508225"
 ---
 # <a name="activity-processing"></a>活動處理
 
@@ -29,7 +29,7 @@ Bot 和使用者會透過活動來互動並交換資訊。 Bot 應用程式收�
 
 Bot 介面卡可封裝驗證處理程序，並可與 Bot 連接器服務相互傳送和接收活動。 Bot 接收活動時，介面卡會包裝與該活動有關的所有項目、為該回合建立[內容物件](#turn-context)、將物件傳送至 Bot 應用程式邏輯，以及將 Bot 產生的回應傳回至使用者通道。
 
-## <a name="authentication"></a>驗證
+## <a name="authentication"></a>Authentication
 
 介面卡可使用活動的資訊和 REST 要求的 `Authentication` 標頭，驗證應用程式接收的每項內送活動。 介面卡會使用連接器物件及您的應用程式認證，驗證連出給使用者的活動。
 
@@ -46,7 +46,7 @@ Bot 連接器服務驗證採用 JWT (JSON Web 權杖) `Bearer` 權杖和 **Micro
 * 活動 - 交談中的要求和回覆即所有類型的活動。 此內容將提供內送活動的相關資訊，包括路由資訊、通道資訊、交談、傳送者及收件者資訊。
 * 自訂資訊 – 如果您實作中介軟體或在 Bot 邏輯中擴充 Bot 服務，則在每個回合中還可取得其他額外資訊。
 
-內容物件也可用於傳送回應至使用者，並取得介面卡參考資料<!-- to create a new conversation or continue an existing one-->。
+內容物件也可用於傳送回應至使用者，並取得介面卡參考資料<!-- to create a new conversation or continue an existing one-->上也提供本文中使用的原始碼。
 
 > [!NOTE]
 > 應用程式和介面卡將以非同步方式處理要求，不過您的業務邏輯不需要是「要求-回應」導向。

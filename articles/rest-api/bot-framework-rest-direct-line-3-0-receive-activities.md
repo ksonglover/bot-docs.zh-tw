@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: c2d4b9a8e2b8ffc1656df44e04ee1bde912e36ea
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: dd5e81ba3feaba09e60011c138dcbe1537144b5a
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998155"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541004"
 ---
 # <a name="receive-activities-from-the-bot"></a>接收來自 Bot 的活動
 
@@ -21,7 +21,7 @@ ms.locfileid: "49998155"
 
 ## <a name="websocket-vs-http-get"></a>WebSocket 與 HTTP GET
 
-串流 WebSocket 會有效率地將訊息推送到用戶端，而 GET 介面可讓用戶端明確地要求訊息。 雖然 WebSocket 機制因其效率而較常被使用，但 GET 機制對於無法使用 WebSockets 的用戶端或想要擷取對話記錄的用戶端而言非常實用。 
+串流 WebSocket 會有效率地將訊息推送到用戶端，而 GET 介面可讓用戶端明確地要求訊息。 雖然 WebSocket 機制因其效率而較常被使用，但 GET 機制對於無法使用 WebSockets 的用戶端而言非常實用。 
 
 並非所有[活動類型](bot-framework-rest-connector-activities.md)都可透過 WebSocket 和 HTTP GET 這兩者使用。 下表說明對於使用直接線路通訊協定的用戶端之各種活動類型的可用性。
 
@@ -99,9 +99,9 @@ WebSocket 串流包含即時更新和最近的訊息 (因為已發出透過 WebS
 
 ## <a id="http-get"></a> 使用 HTTP GET 擷取活動
 
-無法使用 WebSockets 的用戶端，或想要取得對話記錄的用戶端可以使用 `HTTP GET` 來擷取活動。
+無法使用 WebSockets 的用戶端可以使用 `HTTP GET` 擷取活動。
 
-若要擷取特定對話的訊息，請向 `/v3/directline/conversations/{conversationId}/activities` 端點發出 `GET` 要求，選擇性指定 `watermark` 參數以指出用戶端看到的最新訊息。 
+若要擷取特定交談的訊息，請向 `/v3/directline/conversations/{conversationId}/activities` 端點發出 `GET` 要求，選擇性指定 `watermark` 參數以指出用戶端看到的最新訊息。 
 
 下列程式碼片段提供「取得對話活動」的要求和回應範例。 「取得對話活動」回應包含 `watermark` 做為 [ActivitySet](bot-framework-rest-direct-line-3-0-api-reference.md#activityset-object) 的屬性。 用戶端應隨 `watermark` 值向前逐頁查詢可用的活動，直到沒有活動傳回。
 
@@ -165,7 +165,7 @@ HTTP/1.1 200 OK
 
 - 服務對服務應用程式通常會使用 5 秒或 10 秒的輪詢間隔。
 
-- 面向用戶端的應用程式通常使用 1 秒的輪詢間隔，並在用戶端傳送的每則訊息後，發出約 300 毫秒的其他要求 (以快速擷取 Bot 的回應)。 此 300 毫秒的延遲應根據 Bot 的速度和傳輸時間加以調整。
+- 面向用戶端的應用程式通常使用 1 秒的輪詢間隔，並在用戶端傳送的每則訊息後，迅速發出單一其他要求 (以快速擷取 Bot 的回應)。 此延遲最短 300 毫秒，但應根據 Bot 的速度和傳輸時間調整。 輪詢在任何長期中都不應頻繁於每秒一次。
 
 ## <a name="additional-resources"></a>其他資源
 
