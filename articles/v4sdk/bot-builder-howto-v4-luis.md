@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 11/28/18
+ms.date: 4/18/19
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1f077cb5efd838f8a91a0f18a9bcc2f64455ceb6
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: ee8a244bbc1684a57cd374f5ffbef5d45ff3f47d
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59541114"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904511"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>將自然語言理解新增至您的 Bot
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 讓您的 Bot 能透過對話和上下文了解使用者的意思，並不是簡單的工作，但這樣的功能可讓您的 Bot 使用起來更有自然對話的感覺。 Language Understanding (稱為 LUIS) 能讓您這麼做，使您的 Bot 可以辨識使用者訊息的意圖，這樣使用者就能使用更自然的語言，且更順利地引導交談流程。 此主題逐步引導您設定簡單的 Bot，並使用 LUIS 辨識幾個不同的意圖。 
 ## <a name="prerequisites"></a>必要條件

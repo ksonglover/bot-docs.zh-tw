@@ -8,17 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservices: sdk
-ms.date: 2/26/2019
+ms.date: 4/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 997ad82e15a0fcd67d47b2fd6495c8e88a5ea127
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: 5f8ce42cdc110a81719313db6f02e63639fcad1f
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224816"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904911"
 ---
 # <a name="debug-your-bot-using-transcript-files"></a>使用文字記錄檔進行 Bot 偵錯
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 成功進行 Bot 測試和偵錯的關鍵之一，就是能夠記錄並檢查在執行 Bot 時所發生的一些情況。 本文討論 Bot 文字記錄檔的建立和使用方式，以提供一組詳細的使用者互動和 Bot 回應以供測試和偵錯。
 

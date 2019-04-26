@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/18/2018
+ms.date: 4/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 554d040dd4c9d126fa70c24f1af5a1ac97a39204
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: 5361b2e411e12b296b60a0f27b560dee5f1f769f
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317611"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904861"
 ---
 # <a name="implement-sequential-conversation-flow"></a>實作循序對話流程
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 您可以使用對話方塊程式庫來管理簡單和複雜的對話流程。 在簡單互動中，Bot 透過一連串固定的步驟執行，然後完成對話。 在本文中，我們會使用「瀑布式對話方塊」一些「提示」和一個「對話方塊集」來建立簡單互動，以詢問使用者一系列的問題。
 

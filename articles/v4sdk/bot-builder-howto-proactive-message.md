@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/15/2018
+ms.date: 4/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 207dfaf71e8af7af3a36e496deb506ff9d0c13c8
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: 65d811babcdaf775d4e3a9889a1440c8f2b1ece6
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224886"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59905131"
 ---
 # <a name="send-proactive-notifications-to-users"></a>將主動式通知傳送給使用者
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 一般而言，Bot 直接傳送給使用者的每個訊息都與使用者先前的輸入相關。
 在某些情況下，Bot 可能需要將與目前對話主題或使用者最後傳送的訊息不直接相關的訊息傳送給使用者。 這些類型的訊息稱為_主動訊息_。

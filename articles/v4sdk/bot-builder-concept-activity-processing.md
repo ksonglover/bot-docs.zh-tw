@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/13/2018
+ms.date: 04/13/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fa243d8cc00fd6fadf7c51668c9e7ba74d0c06e2
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: d72c374978f509bec0a17ba99c585578757ded61
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "59508225"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904471"
 ---
 # <a name="activity-processing"></a>活動處理
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 Bot 和使用者會透過活動來互動並交換資訊。 Bot 應用程式收到的每個活動都會傳遞至 Bot 介面卡，而其可將活動資訊傳遞給 Bot 邏輯，最終再傳送回應給使用者。 接收活動與透過 Bot 的後續處理，稱為一回合；這代表 Bot 的一個完整的週期。 完成所有的執行、活動已完全處理，並且 Bot 的所有層級均已完成時，即為一輪結束。
 

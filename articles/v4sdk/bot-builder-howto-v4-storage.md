@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/13/18
+ms.date: 4/13/19
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 314a8a55906ec150d001b56c67ffbfe0ae2049f8
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: 1f74e34c0eaf303e612f94605104482cd5f1f080
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59541124"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904493"
 ---
 # <a name="write-directly-to-storage"></a>直接寫入儲存體
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 您可以將資料直接讀取及寫入至儲存體物件，無需使用中介軟體或內容物件。 這種方式適用於來自 Bot 對話流程以外來源的 Bot 使用者。 例如，假設您的 Bot 允許使用者要求取得氣象報告，且 Bot 會透過外部資料庫讀取氣象報告，以擷取特定日期的報告內容。 氣象資料庫的內容不需依賴使用者的資訊或對話內容，因此您可以直接在儲存體中讀取，不需使用狀態管理員。 本文中的程式碼範例示範如何使用 [記憶體儲存體]、[Cosmos DB]、[Blob 儲存體] 和 [Azure Blob文字記錄儲存區]，將資料讀取和寫入至儲存體。 
 

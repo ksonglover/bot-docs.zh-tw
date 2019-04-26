@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/26/18
+ms.date: 4/16/19
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4cafa3516395fb8e44d2755d0fa09e7a5bd6203c
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+ms.openlocfilehash: a79fd768f7c132301ba28bace03b5b86599fb4dd
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55711942"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904755"
 ---
 # <a name="save-user-and-conversation-data"></a>儲存使用者和對話資料
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 Bot 原本就是無狀態。 部署 Bot 後，在不同的回合中，Bot 便無法在相同程序中或同部電腦上執行。 不過，Bot 可能需要追蹤交談的內容，以便管理其行為，以及記住先前問題的答案。 SDK 的狀態和儲存體功能可讓您將狀態新增至 Bot。
 

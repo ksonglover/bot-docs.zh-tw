@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 02/27/2019
+ms.date: 04/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 494af4cc7936c8b191280d3f3f6cd73e7bc7d364
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: f28b5af3d8d063f0bd946045c94fe88361b86ca7
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224896"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904901"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答問題
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 您可以使用 QnA Maker 服務，對 Bot 新增問題和解答支援。 在建立您自己的 QnA Maker 服務時，其中一項基本需求是在服務中植入問題和解答。 許多時候，問題和解答早已存在於常見問題集或其他文件等內容中。 其他時候，您則會想要以更自然的對話方式自訂問題的解答。
 

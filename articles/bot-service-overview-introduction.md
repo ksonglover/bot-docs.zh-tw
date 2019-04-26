@@ -7,77 +7,17 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 1/10/2019
-ms.openlocfilehash: 4e11ecfa2d42b93b85d186a5078b612ef64e7cdd
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.date: 04/18/2019
+ms.openlocfilehash: 86a75fb315ec303cb8a519bfa02063c4e6780307
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317648"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904811"
 ---
-::: moniker range="azure-bot-service-3.0"
-
 # <a name="about-azure-bot-service"></a>關於 Azure Bot Service
 
-[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
-
-Azure Bot 服務提供可在單一位置建立、測試、部署及管理智慧型 Bot 的工具。 透過 SDK 提供的模組化可延伸架構，開發人員可以利用範本來建立可提供語音、語言理解、問答等功能的 Bot。  
-
-## <a name="what-is-a-bot"></a>什麼是 Bot？
-Bot 是使用者可運用文字、圖形 (卡片) 或語音等交談方式進行互動的應用程式。 Bot 可能是簡單的問答對話方塊，或使用者可利用模式比對、狀態追蹤和與現有商業服務良好整合的人工智慧技術等智慧方式來與服務進行互動的複雜 Bot。 
-
-## <a name="building-a-bot"></a>建立 Bot 
-您可以選擇您慣用的開發環境或命令列工具，以 C# 或 Node.js 來建立 Bot。 我們在 Bot 各種開發階段皆提供各項工具，可協助您建立 Bot 並開始運用。    
-
-![Bot 概觀](media/bot-service-overview.png) 
-
-## <a name="plan"></a>規劃 
-撰寫程式碼之前，請先參閱 Bot [設計指南](bot-service-design-principles.md) 了解最佳作法，並找出您的 Bot 需求。 您可以建立簡單的 Bot 或加入更複雜的功能，例如語音、語言理解、問答功能，或從不同來源擷取知識並提供智慧型解答的能力。  
-
-> [!TIP]
-> 建立 [Azure](https://portal.azure.com) 帳戶。 
-
-## <a name="build-your-bot"></a>建立自己的 Bot 
-Bot 是一項藉由 Bot 服務來執行交談介面與進行通訊的 Web 服務。 您可以透過任意數量的環境和語言來建立此類解決方案；我們提供數種 Visual Studio 或 Yeoman 專用的便利入門工具供您使用，您也可以直接在 Azure 入口網站建立。 請查看下列可供使用的工具和服務。
-
-> [!TIP]
-> 使用 [Azure 入口網站](bot-service-quickstart.md)建立 Bot。 如有需要，請新增下列元件： 
-> - Language Understanding [LUIS](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/home). 
-> - [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/home) 知識庫，以回答使用者的問題。  
-
-## <a name="test-your-bot"></a>測試 Bot 
-Bot 是將許多不同組件整合在一起運作的複雜應用程式。 和其他複雜的應用程式一樣，這種方式會導致一些有趣的錯誤，或是讓 Bot 產生出乎意料的行為。 在發佈之前，請先測試 Bot。
-
-> [!TIP] 
-> - 在[網路聊天室](bot-service-manage-test-webchat.md)中測試 Bot，或在本機使用[模擬器](bot-service-debug-emulator.md)測試 Bot
-
-## <a name="publish"></a>發佈 
-準備就緒後，請在 Azure 或自己的 Web 服務或資料中心發佈 Bot。 您可以設定持續部署，以便在本機開發 Bot，且如果 Bot 簽入 GitHub 或 Visual Studio Team Services 等原始檔控制服務，此方法會相當實用。 只要您將變更簽入回來源存放庫中，您的變更就會自動部署至 Azure。
-
-> [!Tip]
-> - [下載程式碼並重新部署至 Azure](bot-service-build-download-source-code.md)
-
-## <a name="connect"></a>連線          
-將您的 Bot 連接到 Facebook、Messenger、Kik、Skype、Slack、Microsoft Teams、Telegram、簡訊 /SMS、Twilio、Cortana 及 Skype 等通道中，以增加和更多客戶的互動和接觸。  
-  
-> [!TIP]
-> - [選擇要加入的通道](bot-service-manage-channels.md)
-
-
-## <a name="evaluate"></a>評估 
-使用在 Azure 入口網站收集的資料，就有機會改善 Bot 功能和效能。 您可以取得服務層級和流量、延遲與整合等檢測資料。 Analytics 提供使用者、訊息和通道資料的相關交談層級報告。
-
-> [!Tip]
-> - [收集分析資料](bot-service-manage-analytics.md) 
-
-
-::: moniker-end
-
-::: moniker range="azure-bot-service-4.0"
-
-# <a name="about-azure-bot-service"></a>關於 Azure Bot Service
-
-[!INCLUDE [pre-release-label](includes/pre-release-label.md)]
+[!INCLUDE [applies-to-both](includes/applies-to-both.md)]
 
 Azure Bot 服務提供可在單一位置建立、測試、部署及管理智慧型 Bot 的工具。 利用 SDK 提供的模組化可延伸架構，工具、範本和 AI 服務開發人員可以建立可使用語音、理解自然語言、處理問與答等功能的 Bot。
 
@@ -147,5 +87,3 @@ Bot 是將許多不同組件整合在一起運作的複雜應用程式。 和其
 請查看這些 Bot [個案研究](https://azure.microsoft.com/services/bot-service/)，或按一下下方連結，即可建立 Bot。
 > [!div class="nextstepaction"]
 > [建立 Bot](bot-service-quickstart.md)
-
-::: moniker-end

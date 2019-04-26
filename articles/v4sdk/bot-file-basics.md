@@ -7,16 +7,18 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 03/30/2019
+ms.date: 04/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 14552c55da4b1f9b581b81917496de179e92762b
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: 65ad712a4d3cfeebb5c85375e023e301f0e101ca
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "58811500"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904521"
 ---
 # <a name="manage-bot-resources"></a>管理 Bot 資源
+
+[!INCLUDE [applies-to-v4](../includes/applies-to.md)]
 
 Bot 通常會取用不同的服務，例如 [LUIS.ai](https://luis.ai) 或 [QnaMaker.ai](https://qnamaker.ai)。 當您開發 Bot 時，您需要能夠追蹤一切。 您可以使用各種方法，例如 appsettings.json、web.config 或 .env。 
 

@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/28/2018
+ms.date: 04/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 997399997770db9a810db54c6dcb0cb943a99da9
-ms.sourcegitcommit: 54a4382add4756346098b286695a9b4791db7139
+ms.openlocfilehash: 36ccbb796c2cd014118d4ae1f426acd44aabed76
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2019
-ms.locfileid: "58616944"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904891"
 ---
 # <a name="dialogs-library"></a>對話方塊程式庫
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE [applies-to-v4](../includes/applies-to.md)]
 
 「對話」 是 SDK 的中心概念，可提供實用的方法來管理與使用者的交談。 對話是 Bot 中的結構，其作用類似 Bot 程式中的函式；每個對話的設計都是依照特定順序來執行特定工作。 您可以指定個別對話的順序來引導交談，並透過不同的方式叫用對話，有時透過給使用者的回應來叫用，有時透過給一些外部刺激的回應來叫用，也從其他對話來叫用。
 

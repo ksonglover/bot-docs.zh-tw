@@ -9,16 +9,16 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 2/26/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e0fbf2fe505866ec28385b2be3b9fcd7988be890
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: 618d438a384fa6a91ba919265519397cac555fda
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224926"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904851"
 ---
 # <a name="testing-and-debugging-guidelines"></a>測試和偵錯指導方針
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 Bot 是將許多不同組件整合在一起運作的複雜應用程式。 就像任何其他複雜的應用程式，這會導致一些有趣的錯誤 (bug)，或是讓 Bot 產生出乎意料的行為。
 
@@ -111,7 +111,7 @@ For example [QnA maker](bot-builder-howto-qna.md) is designed to handle certain 
 
 活動處理常式可能導入另一層次的複雜度，特別是因為每個活動都在獨立的執行緒 (或是背景工作角色，視您的程式設計語言而定) 上執行。 根據處理常式執行的內容，這可能會造成目前狀態與預期狀態不符的問題。
 
-內建狀態在回合結束時會被覆寫，不過由該回合產生的任何活動都會獨立執行，與回合管線無關。 通常，這對我們沒有影響，但如果活動處理常式變更狀態，而我們需要寫入以包含該變更的狀態，則狀況又會有所不同。 在此情況下，回合管線可能會等候活動完成處理，然後才完成作業，以確保它會記錄該回合的正確狀態。
+內建狀態在回合結束時會被覆寫，不過由該回合產生的任何活動都會獨立執行，與回合管線無關。 通常，這對我們沒有影響，但如果活動處理常式變更我們需要寫入以包含該變更的狀態，則狀況又會有所不同。 在此情況下，回合管線可能會等候活動完成處理，然後才完成作業，以確保它會記錄該回合的正確狀態。
 
 _send activity_ 方法，以及其處理常式，會造成一個特有的問題。 只需在 _on send activities_ 處理常式內呼叫 _send activity_，就會導致無限分支的執行緒。 針對該問題，有一些方法可以作為因應措施，例如將額外訊息附加到輸出資訊，或寫出到其他位置 (例如主控台)，或是寫出檔案來避免造成 Bot 當機。
 

@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 01/16/2019
+ms.date: 04/16/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b72ffa951e176a174dd8b00e69229b27bf28a360
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+ms.openlocfilehash: c0b225cd114f369d14978c16108827f493434390
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55711992"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59905141"
 ---
 # <a name="reuse-dialogs"></a>重複使用對話方塊
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 假設您正在建立可處理多項工作的旅館 Bot，例如問候使用者、預訂晚餐座位、點菜、設定鬧鐘、顯示目前天氣等等。 您可以在 Bot 中使用一個對話方塊物件來處理各項工作，但這可能會讓您的對話方塊程式碼太大而且雜亂。
 
