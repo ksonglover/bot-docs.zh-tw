@@ -10,14 +10,17 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/06/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4c268bc40b7dc3315232d8f695bdb79343b15e21
-ms.sourcegitcommit: c7d2e939ec71f46f48383c750fddaf6627b6489d
+ms.openlocfilehash: 75e12ab44915783c33c3b2ee10775cc6f00487bb
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55795586"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59905031"
 ---
 # <a name="add-telemetry-to-your-bot"></a>將遙測新增至 Bot
+
+[!INCLUDE[applies-to](../includes/applies-to.md)]
+
 在 Bot Framework sdk 4.2 版中，已在產品中新增遙測記錄功能。  這可讓 Bot 應用程式將事件資料傳送至 Application Insights 之類的服務。
 
 本文件說明如何整合 Bot 與新的遙測功能。  

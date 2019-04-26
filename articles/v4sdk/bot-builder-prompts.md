@@ -10,16 +10,16 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/19/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 68c01b0f12790393fe0ee7ae0bd28addf2d26ae7
-ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
+ms.openlocfilehash: 811921cdeccc8c870b5b9dfc9daaab57e449c0cd
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2019
-ms.locfileid: "56591119"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59905041"
 ---
 # <a name="gather-user-input-using-a-dialog-prompt"></a>使用對話方塊提示蒐集使用者輸入
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 張貼問題來收集資訊是 Bot 與使用者互動時的其中一種主要方式。 *dialogs* 程式庫可讓您輕鬆地詢問問題，以及驗證回應以確保回應符合特定資料類型或符合自訂驗證規則。 本主題詳細說明如何從瀑布式對話建立並呼叫提示。
 

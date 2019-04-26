@@ -10,16 +10,16 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 01/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bec6f44db929eab43cfcbbd6b2920b79924b7576
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+ms.openlocfilehash: 373470b000b168e6e434ed5ed08b35c18ab09a99
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55712002"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904961"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多個 LUIS 和 QnA 模型
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 在本教學課程中，我們示範有 Bot 針對不同案例支援的多個 LUIS 模型和 QnA maker 服務時，如何使用 Dispatch 服務來路由傳送語句。 在此情況下，我們會針對以住家自動化和天氣資訊為主的交談，設定具有多個 LUIS 模型的分派，加上以 QnA Maker 服務根據常見問題集文字檔案，來回答問題作為輸入。 這個範例結合下列服務。
 
@@ -41,7 +41,7 @@ ms.locfileid: "55712002"
 
  ### <a name="create-your-bot-using-service-ui"></a>使用服務 UI 建立 Bot
  
-若要開始手動建立 Bot，請將下列 4 個檔案 (位於 GitHub [BotFramework-Samples](https://aka.ms/botdispatchgitsamples) 存放庫) 下載到本機資料夾：[home-automation.json](https://aka.ms/dispatch-home-automation-json)、[weather.json](https://aka.ms/dispatch-weather-json)、[nlp-with-dispatchDispatch.json](https://aka.ms/dispatch-dispatch-json)、[QnAMaker.tsv](https://aka.ms/dispatch-qnamaker-tsv) 達成此目的其中一種方法是開啟上面的 GitHub 存放庫連結，按一下 **BotFramework-Samples**，然後將存放庫「複製或下載」到本機電腦。 請注意，這些檔案位於與必要條件中所提範例不同的存放庫。
+若要開始手動建立 Bot，請將下列 4 個檔案 (位於 GitHub [BotFramework-Samples](https://aka.ms/botdispatchgitsamples) 存放庫) 下載到本機資料夾：[home-automation.json](https://aka.ms/dispatch-home-automation-json)、[weather.json](https://aka.ms/dispatch-weather-json)、[nlp-with-dispatchDispatch.json](https://aka.ms/dispatch-dispatch-json)、[QnAMaker.tsv](https://aka.ms/dispatch-qnamaker-tsv) 達成此目的的其中一種方法是開啟上面的 GitHub 存放庫連結，按一下 **BotFramework-Samples**，然後將存放庫「複製或下載」到本機電腦。 請注意，這些檔案位於與必要條件中所提範例不同的存放庫。
 
 ### <a name="manually-create-luis-apps"></a>手動建立 LUIS 應用程式
 
