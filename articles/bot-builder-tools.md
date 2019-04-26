@@ -31,7 +31,7 @@ Chatdown 是一個文字記錄產生器，會使用 .chat 檔案來產生模擬�
 
 - 塑造 Bot 所支援的案例。
 - 讓商務決策者檢視，並提供意見。
-- 透過使用者與 Bot 之間的對話流程定義「理想路徑 (happy path)」(以及其他路徑)。.chat 檔案格式可協助您建立使用者與 Bot 之間的對話原型。 Chatdown CLI 工具會將 .chat 檔案轉換成對話文字記錄 (.transc ript 檔案)，而您可以在 [Bot Framework 模擬器 V4](https://github.com/microsoft/botframework-emulator) 中加以檢視。
+- 透過使用者與 Bot 之間的對話流程定義「理想路徑 (happy path)」(以及其他路徑)。chat 檔案格式可協助您建立使用者與 Bot 之間的對話原型。 Chatdown CLI 工具會將 .chat 檔案轉換成對話文字記錄 (.transc ript 檔案)，而您可以在 [Bot Framework 模擬器 V4](https://github.com/microsoft/botframework-emulator) 中加以檢視。
 
 以下是 `.chat` 檔案的範例：
 
