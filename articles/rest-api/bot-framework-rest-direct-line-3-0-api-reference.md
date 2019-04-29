@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 36a95ec60af117a9a13843dc078bd9bd5cfde635
-ms.sourcegitcommit: 6ed90a4c90add925a0a865be1127041b7775fd3d
+ms.openlocfilehash: 28074e7ad59249cabbd38436bd02dc48bcab5b88
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50234471"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904881"
 ---
 # <a name="api-reference---direct-line-api-30"></a>API 參考 - Direct Line API 3.0
 
@@ -194,7 +194,7 @@ Direct Line 3.0 結構描述包含 [Bot Framework v3 結構描述](bot-framework
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
-| **activities** | [Activity](bot-framework-rest-connector-api-reference.md#activity-object)[] | **Activity** 物件的陣列。 |
+| **活動** | [Activity](bot-framework-rest-connector-api-reference.md#activity-object)[] | **Activity** 物件的陣列。 |
 | **watermark** | 字串 | 一組訊息中，活動的最大浮水印。 用戶端可以使用 `watermark` 值，指出它在[從 Bot 擷取活動](bot-framework-rest-direct-line-3-0-receive-activities.md#http-get)時，或在[產生新的 WebSocket 資料流 URL](bot-framework-rest-direct-line-3-0-reconnect-to-conversation.md) 時，已看到的最新訊息。 |
 
 ### <a name="conversation-object"></a>Conversation 物件
@@ -223,6 +223,6 @@ Direct Line 3.0 結構描述包含 [Bot Framework v3 結構描述](bot-framework
 - `from` 屬性必須填入使用者識別碼，由用戶端選擇。
 - 附件可能包含現有資源的 URL，或透過 Direct Line 附件端點上傳的 URL。
 - `channelData` 屬性已保留而不修改。
-- 若序列化為 JSON，活動的總大小必須不超過 30 萬個字元。
+- 若序列化為 JSON 並且加密，則活動的總大小不得超過 256000 個字元。 因此，建議將活動保持在 15 萬以下。 如果需要更多資料，請考慮將活動分成多個活動及/或考慮使用附件。
 
 對於每個要求，用戶端可[傳送](bot-framework-rest-direct-line-3-0-send-activity.md)一個活動。 

@@ -9,16 +9,16 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 04/09/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1a295f68be626c2d2ef17dcb49b7c7d31ae2cefa
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: 2f15817abe087650bc3f2bb998a32f177848cf50
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59541044"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904531"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE [applies-to-v4](../includes/applies-to.md)]
 
 Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功能，讓您輕鬆開發可對 Azure AD (Azure Active Directory)、GitHub、Uber 等不同識別提供者驗證使用者的 Bot。 這些功能也讓部分用戶端無須進行_神奇代碼驗證 (Magic code verification)_，而改善使用者體驗。
 
@@ -273,14 +273,14 @@ Sample payload
     }
     ```
 
-    如果您不知道如何取得 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**值，您可以建立如下所述的新密碼：
+如果您不知道如何取得 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**值，您可以建立如下所述的新密碼：
 
-    [bot-channels-registration-password](../bot-service-quickstart-registration.md#bot-channels-registration-password)
-
-    或擷取 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**，從如下所述的部署使用 **Bot 通道註冊**佈建：[find-your-azure-bots-appid-and-appsecret](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)
+[bot-channels-registration-password](../bot-service-quickstart-registration.md#bot-channels-registration-password)
+  
+或擷取 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**，從如下所述的部署使用 **Bot 通道註冊**佈建：[find-your-azure-bots-appid-and-appsecret](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)
 
     > [!NOTE]
-    > 您現在可將此 Bot 程式碼發佈至 Azure 訂用帳戶 (以滑鼠右鍵按一下專案，然後選擇 [發佈])，但此動作在本教學課程的範例中並非必要。 在 Azure 入口網站中配置 Bot 時，您必須進行發佈設定，其應使用您所用的應用程式和主控方案。
+    > You could now publish this bot code to your Azure subscription (right-click on the project and choose **Publish**), but it is not necessary for this tutorial. You would need to set up a publishing configuration that uses the application and hosting plan that you used when configuration the bot in the Azure Portal.
 
 ## <a name="use-the-emulator-to-test-your-bot"></a>使用模擬器測試您的 Bot
 

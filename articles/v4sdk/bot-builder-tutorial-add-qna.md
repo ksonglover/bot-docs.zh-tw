@@ -8,16 +8,18 @@ manager: kamrani
 ms.topic: tutorial
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 01/15/2019
+ms.date: 04/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b1c34531ee60b2ce9037f42e4f5a7093501cf83a
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
+ms.openlocfilehash: bd29aa1ee56ebf64dc5db2edc47adc3ab250e7d5
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360945"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904941"
 ---
 # <a name="tutorial-use-qna-maker-in-your-bot-to-answer-questions"></a>教學課程：在 Bot 中使用 QnA Maker 回答問題
+
+[!INCLUDE [applies-to-v4](../includes/applies-to.md)]
 
 您可以使用 QnA Maker 服務和知識庫，對 Bot 新增問與答支援。 當您建立知識庫時，您會在其中植入問題與答案。
 
@@ -36,7 +38,7 @@ ms.locfileid: "54360945"
 * 在[上一個教學課程](bot-builder-tutorial-basic-deploy.md)中建立的 Bot。 我們會將問與答功能新增至 Bot。
 * 熟悉一下 QnA Maker 很有幫助。 我們將使用 QnA Maker 入口網站來建立、訓練及發佈要搭配 Bot 使用的知識庫。
 
-您應該已經有上一個教學課程的必要條件：
+您應該也已具備上一個教學課程的下列必要條件：
 
 [!INCLUDE [deployment prerequisites snippet](~/includes/deploy/snippet-prerequisite.md)]
 
@@ -62,212 +64,213 @@ ms.locfileid: "54360945"
 
    您的知識庫現在可供您的 Bot 使用。 記錄知識庫識別碼、端點金鑰和主機名稱。 您在下一個步驟中需要這些資訊。
 
-## <a name="add-knowledge-base-information-to-your-bot-file"></a>將知識庫資訊新增至 .bot 檔案
+## <a name="add-knowledge-base-information-to-your-bot"></a>將知識庫資訊新增至 Bot
+從 Bot Framwork v4.3 開始，Azure 不會再於您下載的 Bot 原始程式碼中提供 .bot 檔案。 使用下列指示將 CSharp 或 JavaScript Bot 連線到您的知識庫。
 
-將存取您的知識庫所需的資訊新增至 .bot 檔案。
+## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-1. 在編輯器中開啟 .bot 檔案。
-1. 將 `qna` 元素新增至 `services` 陣列。
+在 appsetting.json 檔案中新增下列值：
 
-    ```json
-    {
-        "type": "qna",
-        "name": "<your-knowledge-base-name>",
-        "kbId": "<your-knowledge-base-id>",
-        "hostname": "<your-qna-service-hostname>",
-        "endpointKey": "<your-knowledge-base-endpoint-key>",
-        "subscriptionKey": "<your-azure-subscription-key>",
-        "id": "<a-unique-id>"
-    }
-    ```
+```json
+{
+   "MicrosoftAppId": "",
+  "MicrosoftAppPassword": "",
+  "ScmType": "None",
+
+  "kbId": "<your-knowledge-base-id>",
+  "endpointKey": "<your-knowledge-base-endpoint-key>",
+  "hostname": "<your-qna-service-hostname>" // This is a URL
+}
+```
+
+## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+在 .env 檔案中新增下列值：
+
+```javascript
+MicrosoftAppId=""
+MicrosoftAppPassword=""
+ScmType=None
+
+kbId="<your-knowledge-base-id>"
+endpointKey="<your-knowledge-base-endpoint-key>"
+hostname="<your-qna-service-hostname>" // This is a URL
+
+```
+
+---
 
     | 欄位 | 值 |
     |:----|:----|
-    | type | 必須是 `qna`。 這表示此服務項目描述 QnA 知識庫。 |
-    | name | 您指派給知識庫的名稱。 |
     | kbId | QnA Maker 入口網站為您產生的知識庫識別碼。 |
-    | 主機名稱 | QnA Maker 入口網站所產生的主機 URL。 使用完整的 URL，其開頭為 `https://` 並以 `/qnamaker` 結尾。 |
     | endpointKey | QnA Maker 入口網站為您產生的端點金鑰。 |
-    | subscriptionKey | 在 Azure 中建立 QnA Maker 服務時所使用的訂用帳戶識別碼。 |
-    | id | 尚未用於 .bot 檔案中所列的其中一項其他服務的唯一識別碼，例如 "201"。 |
+    | 主機名稱 | QnA Maker 入口網站所產生的主機 URL。 使用完整的 URL，其開頭為 `https://` 並以 `/qnamaker` 結尾。 |
 
-1. 儲存您的編輯。
+現在儲存您的編輯。
 
 ## <a name="update-your-bot-to-query-the-knowledge-base"></a>更新 Bot 以查詢知識庫
 
 更新您的初始化程式碼，以載入您知識庫的服務資訊。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 1. 將 **Microsoft.Bot.Builder.AI.QnA** NuGet 套件新增至專案。
-1. 將您可實作 **IBot** 的類別重新命名為 `QnaBot`。
-1. 將包含 Bot 存取子的類別重新命名為 `QnaBotAccessors`。
-1. 在 **Startup.cs** 檔案中，新增這些命名空間參考。
-    ```csharp
-    using System.Collections.Generic;
-    using System.Linq;
-    using Microsoft.Bot.Builder.AI.QnA;
-    using Microsoft.Bot.Builder.Integration;
-    ```
-1. 然後，修改 **ConfigureServices** 方法，以初始化及註冊 **.bot** 檔案中所定義的知識庫。 請注意，以下前幾行已從其前面的 `services.AddBot<QnaBot>(options =>` 呼叫本文中移除。
-    ```csharp
-    public void ConfigureServices(IServiceCollection services)
-    {
-        var secretKey = Configuration.GetSection("botFileSecret")?.Value;
-        var botFilePath = Configuration.GetSection("botFilePath")?.Value;
+1. 將 **Microsoft.Extensions.Configuration** NuGet 套件新增至專案。
+1. 在 **startup.cs** 檔案中，新增下列命名空間參考。
 
-        // Loads .bot configuration file and adds a singleton that your Bot can access through dependency injection.
-        var botConfig = BotConfiguration.Load(botFilePath ?? @".\jfEchoBot.bot", secretKey);
-        services.AddSingleton(sp => botConfig ?? throw new InvalidOperationException($"The .bot config file could not be loaded. ({botConfig})"));
+   **startup.cs**
+   ```csharp
+       using Microsoft.Bot.Builder.AI.QnA;
+       using Microsoft.Extensions.Configuration;
+   ```
+1. 然後修改 _ConfigureServices_ 方法並建立 QnAMkaerEndpoint，其會連線到 **appsettings.json** 檔案中定義的知識庫。
 
-        // Initialize the QnA knowledge bases for the bot.
-        services.AddSingleton(sp => {
-            var qnaServices = new List<QnAMaker>();
-            foreach (var qnaService in botConfig.Services.OfType<QnAMakerService>())
-            {
-                qnaServices.Add(new QnAMaker(qnaService));
-            }
-            return qnaServices;
-        });
+   **startup.cs**
+   ```csharp
+   // Create QnAMaker endpoint as a singleton
+   services.AddSingleton(new QnAMakerEndpoint
+   {
+      KnowledgeBaseId = Configuration.GetValue<string>($"kbId"),
+      EndpointKey = Configuration.GetValue<string>($"endpointKey"),
+      Host = Configuration.GetValue<string>($"hostname")
+    });
 
-        services.AddBot<QnaBot>(options =>
-        {
-            // Retrieve current endpoint.
-            // ...
-        });
+   ```
+1. 在 **EchoBot.cs** 檔案中，新增下列命名空間參考。
 
-        // Create and register state accessors.
-        // ...
-    }
-    ```
-1. 在 **QnaBot.cs** 檔案中，新增這些命名空間參考。
-    ```csharp
-    using System.Collections.Generic;
-    using Microsoft.Bot.Builder.AI.QnA;
-    ```
-1. 新增 `_qnaServices` 屬性並在 Bot 的建構函式中加以初始化。
-    ```csharp
-    private readonly List<QnAMaker> _qnaServices;
+   **EchoBot.cs**
+   ```csharp
+   using System.Linq;
+   using Microsoft.Bot.Builder.AI.QnA;
+   ```
 
-    /// ...
-    public QnaBot(QnaBotAccessors accessors, List<QnAMaker> qnaServices, ILoggerFactory loggerFactory)
-    {
-        // ...
-        _qnaServices = qnaServices;
-    }
-    ```
-1. 修改回合處理常式，以針對使用者的輸入查詢任何已註冊的知識庫。 當您的 Bot 需要來自 QnAMaker 的解答時，從您的 Bot 程式碼呼叫 `GetAnswersAsync`，以根據目前的內容取得適當解答。 如果您要存取自己的知識庫，請變更以下的「沒有解答」 訊息，為您的使用者提供實用的指示。
-    ```csharp
-    public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-    {
-        if (turnContext.Activity.Type == ActivityTypes.Message)
-        {
-            foreach(var qnaService in _qnaServices)
-            {
-                var response = await qnaService.GetAnswersAsync(turnContext);
-                if (response != null && response.Length > 0)
-                {
-                    await turnContext.SendActivityAsync(
-                        response[0].Answer,
-                        cancellationToken: cancellationToken);
-                    return;
-                }
-            }
+1. 新增 `EchoBotQnA` 連接器並在 Bot 的建構函式中加以初始化。
 
-            var msg = "No QnA Maker answers were found. This example uses a QnA Maker knowledge base that " +
-                "focuses on smart light bulbs. Ask the bot questions like 'Why won't it turn on?' or 'I need help'.";
+   **EchoBot.cs**
+   ```csharp
+   public QnAMaker EchoBotQnA { get; private set; }
+   public EchoBot(QnAMakerEndpoint endpoint)
+   {
+      // connects to QnA Maker endpoint for each turn
+      EchoBotQnA = new QnAMaker(endpoint);
+   }
+   ```
+1. 新增下列程式碼，以在 _OnMembersAddedAsync( )_ 方法下方建立 _AccessQnAMaker( )_ 方法：
 
-            await turnContext.SendActivityAsync(msg, cancellationToken: cancellationToken);
-        }
-        else
-        {
-            await turnContext.SendActivityAsync($"{turnContext.Activity.Type} event detected");
-        }
-    }
-    ```
+   **EchoBot.cs**
+   ```csharp
+   private async Task AccessQnAMaker(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
+   {
+      var results = await EchoBotQnA.GetAnswersAsync(turnContext);
+      if (results.Any())
+      {
+         await turnContext.SendActivityAsync(MessageFactory.Text("QnA Maker Returned: " + results.First().Answer), cancellationToken);
+      }
+      else
+      {
+         await turnContext.SendActivityAsync(MessageFactory.Text("Sorry, could not find an answer in the Q and A system."), cancellationToken);
+      }
+   }
+   ```
+1. 現在在 _OnMessageActivityAsync( )_ 內呼叫您的新方法 _AccessQnAMaker( )_，如下所示：
 
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+   **EchoBot.cs**
+   ```csharp
+   protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
+   {
+      // First send the user input to your QnA Maker knowledgebase
+      await AccessQnAMaker(turnContext, cancellationToken);
+      ...
+   }
+   ```
+
+## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 1. 將終端機或命令提示字元開啟至您專案的根目錄。
 1. 將 **botbuilder-ai** npm 套件新增至您的專案。
-    ```shell
-    npm i botbuilder-ai
-    ```
-1. 在 **index.js** 檔案中，新增此 require 陳述式。
-    ```javascript
-    const { QnAMaker } = require('botbuilder-ai');
-    ```
-1. 讀入組態資訊以產生 QnA Maker 服務。
-    ```javascript
-    // Read bot configuration from .bot file.
-    // ...
+   ```shell
+   npm i botbuilder-ai
+   ```
 
-    // Initialize the QnA knowledge bases for the bot.
-    // Assume each QnA entry in the .bot file is well defined.
-    const qnaServices = [];
-    botConfig.services.forEach(s => {
-        if (s.type == 'qna') {
-            const endpoint = {
-                knowledgeBaseId: s.kbId,
-                endpointKey: s.endpointKey,
-                host: s.hostname
-            };
-            const options = {};
-            qnaServices.push(new QnAMaker(endpoint, options));
-        }
-    });
+1. 在 **index.js** 中，於 // Create Adapter 區段後面，新增下列程式碼以讀取產生 QnA Maker 服務所需的 .env 檔案組態資訊。
 
-    // Get bot endpoint configuration by service name
-    // ...
-    ```
-1. 更新 Bot 建構以傳入 QnA 服務。
-    ```javascript
-    // Create the bot.
-    const myBot = new MyBot(qnaServices);
-    ```
-1. 在 **bot.js** 檔案中，新增建構函式。
-    ```javascript
-    constructor(qnaServices) {
-        this.qnaServices = qnaServices;
-    }
-    ```
-1. 然後，更新回合處理常式，以查詢知識庫中的答案。
-    ```javascript
-    async onTurn(turnContext) {
-        if (turnContext.activity.type === ActivityTypes.Message) {
-            for (let i = 0; i < this.qnaServices.length; i++) {
-                // Perform a call to the QnA Maker service to retrieve matching Question and Answer pairs.
-                const qnaResults = await this.qnaServices[i].getAnswers(turnContext);
+   **index.js**
+   ```javascript
+   // Map knowledgebase endpoint values from .env file into the required format for `QnAMaker`.
+   const configuration = {
+      knowledgeBaseId: process.env.kbId,
+      endpointKey: process.env.endpointKey,
+      host: process.env.hostname
+   };
 
-                // If an answer was received from QnA Maker, send the answer back to the user and exit.
-                if (qnaResults[0]) {
-                    await turnContext.sendActivity(qnaResults[0].answer);
-                    return;
-                }
-            }
-            // If no answers were returned from QnA Maker, reply with help.
-            await turnContext.sendActivity('No QnA Maker answers were found. '
-                + 'This example uses a QnA Maker Knowledge Base that focuses on smart light bulbs. '
-                + `Ask the bot questions like "Why won't it turn on?" or "I need help."`);
-        } else {
-            await turnContext.sendActivity(`[${ turnContext.activity.type } event detected]`);
-        }
-    }
-    ```
+   ```
 
+1. 更新 Bot 建構以傳入 QnA 服務組態資訊。
+
+   **index.js**
+   ```javascript
+   // Create the main dialog.
+   const myBot = new MyBot(configuration, {}, logger);
+   ```
+
+1. 在 **bot.js** 檔案中，為 QnAMaker 新增此 require 陳述式
+
+   **bot.js**
+   ```javascript
+   const { QnAMaker } = require('botbuilder-ai');
+   ```
+
+1. 將建構函式修改為立即接收建立 QnAMaker 連接器所需的已傳遞組態參數，若未提供這些參數，則擲回錯誤。
+
+   **bot.js**
+   ```javascript
+      class MyBot extends ActivityHandler {
+         constructor(configuration, qnaOptions) {
+            super();
+            if (!configuration) throw new Error('[QnaMakerBot]: Missing parameter. configuration is required');
+            // now create a qnaMaker connector.
+            this.qnaMaker = new QnAMaker(configuration, qnaOptions);
+   ```
+
+1. 最後，將下列程式碼新增至 onMessage( ) 呼叫，該呼叫會將每個使用者輸入傳遞至 QnA Maker 知識庫並將 QnA Maker 回應傳回給使用者。  查詢知識庫中的答案。
+ 
+    **bot.js**
+    ```javascript
+   // send user input to QnA Maker.
+   const qnaResults = await this.qnaMaker.getAnswers(turnContext);
+
+   // If an answer was received from QnA Maker, send the answer back to the user.
+   if (qnaResults[0]) {
+      await turnContext.sendActivity(`QnAMaker returned response: ' ${ qnaResults[0].answer}`);
+   } 
+   else { 
+      // If no answers were returned from QnA Maker, reply with help.
+      wait turnContext.sendActivity('No QnA Maker response was returned.'
+           + 'This example uses a QnA Maker Knowledge Base that focuses on smart light bulbs. '
+           + `Ask the bot questions like "Why won't it turn on?" or "I need help."`);
+   }
+   ```
 ---
 
 ### <a name="test-the-bot-locally"></a>在本機測試 Bot
 
 此時您的 Bot 應該能夠回答一些問題。 在本機執行 Bot 並且在模擬器中開啟。
 
-![測試 qna 範例](~/media/emulator-v4/qna-test-bot.png)
+![測試 qna 範例](./media/qna-test-bot.png)
 
 ## <a name="re-publish-your-bot"></a>重新發佈 Bot
 
-我們現在可以重新發佈您的 Bot。
+我們現在可以將您的 Bot 重新發佈回到 Azure。
+
+## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 [!INCLUDE [publish snippet](~/includes/deploy/snippet-publish.md)]
+
+## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+[!INCLUDE [publish snippet](~/includes/deploy/snippet-publish-js.md)]
+
+---
 
 ### <a name="test-the-published-bot"></a>測試已發佈的 Bot
 
