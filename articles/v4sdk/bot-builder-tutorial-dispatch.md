@@ -8,64 +8,89 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 01/15/2019
+ms.date: 04/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 373470b000b168e6e434ed5ed08b35c18ab09a99
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: b3e488615f318529935d35dbebbed2dd3b734f62
+ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904961"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65039741"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多個 LUIS 和 QnA 模型
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-在本教學課程中，我們示範有 Bot 針對不同案例支援的多個 LUIS 模型和 QnA maker 服務時，如何使用 Dispatch 服務來路由傳送語句。 在此情況下，我們會針對以住家自動化和天氣資訊為主的交談，設定具有多個 LUIS 模型的分派，加上以 QnA Maker 服務根據常見問題集文字檔案，來回答問題作為輸入。 這個範例結合下列服務。
+如果 Bot 使用多個 LUIS 模型和 QnA Maker 知識庫 (KB)，您可以使用分派工具來判斷哪一個 LUIS 模型或 QnA Maker KB 最符合使用者輸入。 分派工具執行此操作的方式是建立單一 LUIS 應用程式，以將使用者輸入路由至正確的模型。 如需有關分派工具的詳細資訊 (包括 CLI 命令)，請參閱[讀我檔案][dispatch-readme]。
+
+## <a name="prerequisites"></a>必要條件
+- [Bot 基本概念](bot-builder-basics.md)、[LUIS][howto-luis] 和 [QnA Maker][howto-qna] 的知識。 
+- [分派工具](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Dispatch)
+- 從 [C# 範例][cs-sample]或 [JS 範例][js-sample]程式碼存放庫取得一份**採用分派的 NLP**。
+- 用來發佈 LUIS 應用程式的 [luis.ai](https://www.luis.ai/) 帳戶。
+- 用來發佈 QnA 知識庫的 [QnA Maker](https://www.qnamaker.ai/) 帳戶。
+
+## <a name="about-this-sample"></a>關於此範例
+
+此範例會以一組預先定義的 LUIS 和 QnA Maker 應用程式作為基礎。
+
+## <a name="ctabcs"></a>[C#](#tab/cs)
+
+![程式碼範例的邏輯流程](./media/tutorial-dispatch/dispatch-logic-flow.png)
+
+系統會針對每個收到的使用者輸入呼叫 `OnMessageActivityAsync`。 此模組會尋找評分最高的使用者意圖，並將該結果傳遞至 `DispatchToTopIntentAsync`。 接著，DispatchToTopIntentAsync 會呼叫適當的應用程式處理常式
+
+- `ProcessSampleQnAAsync` - 適用於 Bot 常見問題集的問題。
+- `ProcessWeatherAsync` - 適用於天氣查詢。
+- `ProcessHomeAutomationAsync` - 適用於家用光源命令。
+
+## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
+
+![程式碼範例的邏輯流程](./media/tutorial-dispatch/dispatch-logic-flow-js.png)
+
+系統會針對每個收到的使用者輸入呼叫 `onMessage`。 此模組會尋找評分最高的使用者意圖，並將該結果傳遞至 `dispatchToTopIntentAsync`。 接著，dispatchToTopIntentAsync 會呼叫適當的應用程式處理常式
+
+- `processSampleQnA` - 適用於 Bot 常見問題集的問題。
+- `processWeather` - 適用於天氣查詢。
+- `processHomeAutomation` - 適用於家用光源命令。
+
+---
+
+處理常式會呼叫 LUIS 或 QnA Maker 服務，並將產生的結果傳回給使用者。
+
+## <a name="create-luis-apps-and-qna-kb"></a>建立 LUIS 應用程式和 QnA KB
+建立分派模型之前，您必須先建立並發佈 LUIS 應用程式和 QnA KB。 在本文中，我們將發佈下列模型，這些模型包含在「採用分派的 NLP」範例的 `\CognitiveModels` 資料夾中： 
 
 | Name | 說明 |
 |------|------|
 | HomeAutomation | 使用相關聯的實體資料，辨識住家自動化意圖的 LUIS 應用程式。|
-| Weather | 使用位置資料辨識 `Weather.GetForecast` 和 `Weather.GetCondition` 意圖的 LUIS 應用程式。|
-| 常見問題集  | 提供 Bot 相關簡單問題解答的 QnA Maker 知識庫。 |
+| Weather | 使用位置資料辨識天氣相關意圖的 LUIS 應用程式。|
+| QnAMaker  | 提供 Bot 相關簡單問題解答的 QnA Maker 知識庫。 |
 
-## <a name="prerequisites"></a>必要條件
-
-- 本文中的程式碼是以**採用 Dispatch 的 NLP** 範例為基礎。 您需要採用 [C#](https://aka.ms/dispatch-sample-cs) 或 [JS](https://aka.ms/dispatch-sample-js) 的一份範例。
-- 需具備 [Bot 基本概念](bot-builder-basics.md)、[自然語言處理](bot-builder-howto-v4-luis.md)、[QnA Maker](bot-builder-howto-qna.md) 和 [.bot](bot-file-basics.md) 檔案的知識。
-- 用於測試的 [Bot Framework 模擬器](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download)。
-
-## <a name="create-the-services-and-test-the-bot"></a>建立服務及測試 Bot
-
-您可以依照 [ C#](https://aka.ms/dispatch-sample-readme-cs) 或 [JS](https://aka.ms/dispatch-sample-readme-js) 的**讀我檔案**指示，使用命令列介面呼叫建立此 Bot，或遵循下列步驟以使用 Azure、LUIS 和 QnAMaker 使用者介面手動建立 Bot。
-
- ### <a name="create-your-bot-using-service-ui"></a>使用服務 UI 建立 Bot
- 
-若要開始手動建立 Bot，請將下列 4 個檔案 (位於 GitHub [BotFramework-Samples](https://aka.ms/botdispatchgitsamples) 存放庫) 下載到本機資料夾：[home-automation.json](https://aka.ms/dispatch-home-automation-json)、[weather.json](https://aka.ms/dispatch-weather-json)、[nlp-with-dispatchDispatch.json](https://aka.ms/dispatch-dispatch-json)、[QnAMaker.tsv](https://aka.ms/dispatch-qnamaker-tsv) 達成此目的的其中一種方法是開啟上面的 GitHub 存放庫連結，按一下 **BotFramework-Samples**，然後將存放庫「複製或下載」到本機電腦。 請注意，這些檔案位於與必要條件中所提範例不同的存放庫。
-
-### <a name="manually-create-luis-apps"></a>手動建立 LUIS 應用程式
-
-登入 [LUIS Web 入口網站](https://www.luis.ai/)。 在 [我的應用程式] 區段之下，選取 [匯入新的應用程式] 索引標籤。 下列對話方塊隨即顯示：
+### <a name="create-luis-apps"></a>建立 LUIS 應用程式
+1. 登入 [LUIS Web 入口網站](https://www.luis.ai/)。 在 [我的應用程式] 區段之下，選取 [匯入新的應用程式] 索引標籤。 下列對話方塊隨即顯示：
 
 ![匯入 LUIS json 檔案](./media/tutorial-dispatch/import-new-luis-app.png)
 
-選取 [選擇應用程式檔案] 按鈕，然後選取下載的檔案 'home-automation.json'。 將選用名稱欄位保留空白。 選取 [完成] 。
+2. 選取 [選擇應用程式檔案] 按鈕，瀏覽至您範例程式碼的 CognitiveModel 資料夾，然後選取 'HomeAutomation.json' 檔案。 將選用名稱欄位保留空白。 
 
-在 LUIS 開啟您的住家自動化應用程式後，請選取 [訓練] 按鈕。 這會使用您剛使用 'home-automation.json' 檔案匯入的語句集合，訓練應用程式。
+3. 選取 [完成] 。
 
-訓練完成時，請選取 [發佈] 按鈕。 下列對話方塊隨即顯示：
+4. 在 LUIS 開啟您的住家自動化應用程式後，請選取 [訓練] 按鈕。 這會使用您剛使用 'home-automation.json' 檔案匯入的語句集合，訓練應用程式。
+
+5. 訓練完成時，請選取 [發佈] 按鈕。 下列對話方塊隨即顯示：
 
 ![發佈 LUIS 應用程式](./media/tutorial-dispatch/publish-luis-app.png)
 
-選擇 [生產] 環境，然後選取 [發佈] 按鈕。
+6. 選擇 [生產] 環境，然後選取 [發佈] 按鈕。
 
-開啟已發佈的新 LUIS 應用程式後，選取 [管理] 索引標籤。在 [應用程式資訊] 頁面中，記錄 `Application ID` 和 `Display name` 值。 在 [金鑰和端點] 頁面中，記錄 `Authoring Key` 和 `Region` 值。 這些值稍後會由 'nlp-with-dispatch.bot' 檔案使用。
+7. 開啟已發佈的新 LUIS 應用程式後，選取 [管理] 索引標籤。在 [應用程式資訊] 頁面中，將 `Application ID` 的值記錄為 "_app-id-for-app_"，並將 `Display name` 的值記錄為 "_name-of-app_"。 在 [金鑰和端點] 頁面中，將 `Authoring Key` 的值記錄為 "_your-luis-authoring-key_"，並將 `Region` 記錄為 "_your-region_"。 稍後在您的 'appsetting.json' 檔案中會用到這些值。
 
-完成後，針對在本機下載的 'weather.json' 和 'nlp-with-dispatchDispatch.json' 檔案重複相同步驟，以「訓練」和「發佈」您的 LUIS 氣象應用程式和 LUIS 分派應用程式。
+8. 完成後，針對 'Weather.json' 檔案重複上述步驟，以_訓練_和_發佈_您的 LUIS 氣象應用程式和 LUIS 分派應用程式。
 
-### <a name="manually-create-qna-maker-app"></a>手動建立 QnA Maker 應用程式
+### <a name="create-qna-maker-kb"></a>建立 QnA Maker KB
 
-設定 QnA Maker 知識庫的第一個步驟是先在 Azure 中設定 QnA Maker 服務。 若要這麼做，請遵循[這裡](https://aka.ms/create-qna-maker)的逐步指示。 現在登入 [LUIS Web 入口網站](https://qnamaker.ai)。 向下移至步驟 2
+設定 QnA Maker KB 的第一個步驟是在 Azure 中設定 QnA Maker 服務。 若要這麼做，請遵循[這裡](https://aka.ms/create-qna-maker)的逐步指示。 現在登入 [LUIS Web 入口網站](https://qnamaker.ai)。 向下移至步驟 2
 
 ![建立 QnA 步驟 2](./media/tutorial-dispatch/create-qna-step-2.png)
 
@@ -84,445 +109,285 @@ ms.locfileid: "59904961"
 
 ![建立 QnA 步驟 4](./media/tutorial-dispatch/create-qna-step-4.png)
 
-選取 [+ 新增檔案] 選項並選取下載的檔案 'QnAMaker.tsv'
+選取 [+ 新增檔案] 選項，瀏覽至您範例程式碼的 CognitiveModel 資料夾，然後選取 'QnAMaker.tsv' 檔案
 
 有其他選取項目可將「閒聊」個性新增至您的知識庫，但我們的範例不包含此選項。
 
-選取 [儲存並訓練]，在完成時選取 [發佈] 索引標籤並發佈您的應用程式。
+移至步驟 5
+
+選取 [建立您的 KB]。
+
+從您上傳的檔案中建立知識庫後，選取 [儲存並訓練]，然後在完成時選取 [發佈] 索引標籤，並發佈您的應用程式。
 
 發佈 QnA Maker 應用程式後，選取 [設定] 索引標籤，然後捲動至 [部署詳細資料]。 記錄以下來自 _Postman_ 範例 HTTP 要求的值。
 
-```
-POST /knowledgebases/<Your_Knowledgebase_Id>/generateAnswer
-Host: <Your_Hostname>
-Authorization: EndpointKey <Your_Endpoint_Key>
-```
-這些值稍後會由 'nlp-with-dispatch.bot' 檔案使用。
-
-### <a name="manually-update-your-bot-file"></a>手動更新 .bot 檔案
-
-建立所有服務應用程式後，每個服務應用程式的資訊都必須新增至 'nlp-with-dispatch.bot' 檔案。 在您先前下載的 C# 或 JS 範例檔案中開啟此檔案。 在 "type": "luis" 或 "type": "dispatch" 的每個區段中新增下列值
-
-```
-"appId": "<Your_Recorded_App_Id>",
-"authoringKey": "<Your_Recorded_Authoring_Key>",
-"subscriptionKey": "<Your_Recorded_Authoring_Key>",
-"version": "0.1",
-"region": "<Your_Recorded_Region>",
+```text
+POST /knowledgebases/<knowledge-base-id>/generateAnswer
+Host: <your-hostname>  // NOTE - this is a URL.
+Authorization: EndpointKey <your-endpoint-key>
 ```
 
-針對 "type": "qna" 的區段，新增下列值：
+您主機名稱的完整 URL 字串看起來會類似 "https://< >.azure.net/qnamaker"。
 
-```
-"type": "qna",
-"name": "sample-qna",
-"id": "201",
-"kbId": "<Your_Recorded_Knowledgebase_Id>",
-"subscriptionKey": "<Your_Azure_Subscription_Key>", // Used when creating your QnA service.
-"endpointKey": "<Your_Recorded_Endpoint_Key>",
-"hostname": "<Your_Recorded_Hostname>"
-```
+稍後在您的 `appsettings.json` 或 `.env` 檔案中會用到這些值。
 
+請記下 LUIS 應用程式和 QnA Maker 知識庫的名稱和識別碼。 也請記下您的 LUIS 撰寫金鑰和認知服務訂用帳戶金鑰。 您需要這所有資訊來完成此程序。
+
+## <a name="create-the-dispatch-model"></a>建立分派模型
+
+分派工具的 CLI 介面會建立分派給正確服務的模型。
+
+1. 開啟命令提示字元或終端機視窗，並將目錄變更為 **CognitiveModels** 目錄
+1. 請確定您有最新版的 npm 和分派工具。
+
+    ```cmd
+    npm i -g npm
+    npm i -g botdispatch
+    ```
+
+1. 使用 `dispatch init` 來初始化分派模型的 .dispatch 檔案建立。 使用您可辨識的檔案名稱來建立此檔案。
+
+    ```cmd
+    dispatch init -n <filename-to-create> --luisAuthoringKey "<your-luis-authoring-key>" --luisAuthoringRegion <your-region>
+    ```
+
+1. 使用 `dispatch add` 將您的 LUIS 應用程式和 QnA Maker 知識庫新增至 .dispatch 檔案。
+
+    ```cmd
+    dispatch add -t luis -i "<app-id-for-weather-app>" -n "<name-of-weather-app>" -v <app-version-number> -k "<your-luis-authoring-key>" --intentName l_Weather
+    dispatch add -t luis -i "<app-id-for-home-automation-app>" -n "<name-of-home-automation-app>" -v <app-version-number> -k "<your-luis-authoring-key>" --intentName l_HomeAutomation
+    dispatch add -t qna -i "<knowledge-base-id>" -n "<knowledge-base-name>" -k "<your-cognitive-services-subscription-id>" --intentName q_sample-qna
+    ```
+
+1. 使用 `dispatch create` 從 .dispatch 檔案中產生分派模型。
+
+    ```cmd
+    dispatch create
+    ```
+
+1. 使用產生的分派模型 JSON 檔案發佈分派 LUIS 應用程式。
+
+## <a name="use-the-dispatch-model"></a>使用分派模型
+
+產生的模型會針對每個應用程式和知識庫定義意圖，也會在語句沒有適當的相符項目時定義_無_意圖。
+
+- `l_HomeAutomation`
+- `l_Weather`
+- `None`
+- `q_sample-qna`
+
+請注意，這些服務必須以正確的名稱發佈，才能讓 Bot 正常運作。
+
+Bot 需要已發佈服務的相關資訊，好讓其可以存取這些服務。
+
+## <a name="ctabcs"></a>[C#](#tab/cs)
+
+### <a name="installing-packages"></a>安裝套件
+
+第一次執行此應用程式之前，請先確認您已安裝數個 NuGet 套件：
+
+**Microsoft.Bot.Builder**
+
+**Microsoft.Bot.Builder.AI.Luis**
+
+**Microsoft.Bot.Builder.AI.QnA**
+
+### <a name="manually-update-your-appsettingsjson-file"></a>手動更新 appsettings.json 檔案
+
+建立所有服務應用程式後，每個服務應用程式的資訊都必須新增至 'appsettings.json' 檔案。 初始的 [C# 範例][cs-sample]程式碼會包含空白的 appsettings.json 檔案：
+
+**appsettings.json** [!code-json[AppSettings](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/AppSettings.json?range=8-17)]
+
+針對下列所示的每個實體，在這些指示中新增您稍早所記錄的值：
+
+**appsettings.json**
+```json
+"MicrosoftAppId": "",
+"MicrosoftAppPassword": "",
+  
+"QnAKnowledgebaseId": "<knowledge-base-id>",
+"QnAAuthKey": "<your-endpoint-key>",
+"QnAEndpointHostName": "<your-hostname>",
+
+"LuisAppId": "<app-id-for-dispatch-app>",
+"LuisAPIKey": "<your-luis-authoring-key>",
+"LuisAPIHostName": "<your-dispatch-app-region>",
+```
 完成所有變更時，儲存這個檔案。
 
-### <a name="test-your-bot"></a>測試 Bot
+## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-現在使用模擬器執行範例。 當模擬器開啟時，選取 'nlp-with-dispatch.bot' 檔案。
+### <a name="installing-packages"></a>安裝套件
 
-以下是我們已納入服務所涵蓋的一些問題和命令，可供您參考：
+在第一次執行此應用程式之前，您必須安裝數個 npm 套件。
 
-* QnA Maker
-  * `hi`、`good morning`
-  * `what are you`、`what do you do`
-* LUIS (住家自動化)
-  * `turn on bedroom light`
-  * `turn off bedroom light`
-  * `make some coffee`
-* LUIS (天氣)
-  * `whats the weather in redmond washington`
-  * `what's the forecast for london`
-  * `show me the forecast for nebraska`
-
-### <a name="connecting-to-the-services-from-your-bot"></a>從 Bot 連線到服務
-
-若要連線到分派、LUIS 和 QnA Maker 服務，您的 Bot 會從 **.bot** 檔案提取資訊。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-在 **Startup.cs** 中，`ConfigureServices` 會讀入組態檔，而 `InitBotServices` 會使用該資訊來初始化服務。 每次建立 Bot 時，系統就會使用已註冊的 `BotServices` 物件初始化該 Bot。 以下是這兩種方法的相關部分。
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    //...
-    var botConfig = BotConfiguration.Load(botFilePath ?? @".\nlp-with-dispatch.bot", secretKey);
-    services.AddSingleton(sp => botConfig
-        ?? throw new InvalidOperationException($"The .bot config file could not be loaded. ({botConfig})"));
-
-    // ...
-    
-    var connectedServices = InitBotServices(botConfig);
-    services.AddSingleton(sp => connectedServices);
-    
-    services.AddBot<NlpDispatchBot>(options =>
-    {
-          
-          // The Memory Storage used here is for local bot debugging only. 
-          // When the bot is restarted, everything stored in memory will be gone.
-
-          Storage dataStore = new MemoryStorage();
-
-          // ...
-
-          // Create Conversation State object.
-          // The Conversation State object is where we persist anything at the conversation-scope.
-
-          var conversationState = new ConversationState(dataStore);
-          options.State.Add(conversationState);
-     });
-}
-
+```powershell
+npm install --save botbuilder
+npm install --save botbuilder-ai
 ```
-下列程式碼會初始化 Bot 的外部服務參考。 例如，LUIS 和 QnaMaker 服務會在此建立。 這些外部服務會根據您的 `.bot` 檔案內容，使用 `BotConfiguration` 類別 來設定。
+若要使用 .env 組態檔，您的 Bot 必須包含額外的套件：
 
-```csharp
-private static BotServices InitBotServices(BotConfiguration config)
-{
-    var qnaServices = new Dictionary<string, QnAMaker>();
-    var luisServices = new Dictionary<string, LuisRecognizer>();
-
-    foreach (var service in config.Services)
-    {
-        switch (service.Type)
-        {
-            case ServiceTypes.Luis:
-                {
-                    // ...
-                    var app = new LuisApplication(luis.AppId, luis.AuthoringKey, luis.GetEndpoint());
-                    var recognizer = new LuisRecognizer(app);
-                    luisServices.Add(luis.Name, recognizer);
-                    break;
-                }
-
-            case ServiceTypes.Dispatch:
-                // ...
-                var dispatchApp = new LuisApplication(dispatch.AppId, dispatch.AuthoringKey, dispatch.GetEndpoint());
-
-                // Since the Dispatch tool generates a LUIS model, we use the LuisRecognizer to resolve the
-                // dispatching of the incoming utterance.
-                var dispatchARecognizer = new LuisRecognizer(dispatchApp);
-                luisServices.Add(dispatch.Name, dispatchARecognizer);
-                break;
-
-            case ServiceTypes.QnA:
-                {
-                    // ...
-                    var qnaEndpoint = new QnAMakerEndpoint()
-                    {
-                        KnowledgeBaseId = qna.KbId,
-                        EndpointKey = qna.EndpointKey,
-                        Host = qna.Hostname,
-                    };
-
-                    var qnaMaker = new QnAMaker(qnaEndpoint);
-                    qnaServices.Add(qna.Name, qnaMaker);
-                    break;
-                }
-        }
-    }
-
-    return new BotServices(qnaServices, luisServices);
-}
+```powershell
+npm install --save dotenv
 ```
 
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+### <a name="manually-update-your-env-file"></a>手動更新 .env 檔案
 
-範例程式碼會使用預先定義的命名常數來識別 `.bot` 檔案的各種區段。 如果您已在 _nlp-with-dispatch.bot_ 檔案中從原始範例命名修改任何區段名稱，請務必在 **bot.js**、**homeAutomation.js**、**qna.js** 或 **weather.js** 檔案中找出相關聯的常數宣告，並將該項目變更為修改過的名稱。  
+建立所有服務應用程式後，每個服務應用程式的資訊都必須新增至 '.env' 檔案。 初始 [JavaScript 範例][js-sample]程式碼會包含空白的 .env 檔案。 
 
-```javascript
-// In file bot.js
-// this is the LUIS service type entry in the .bot file.
-const DISPATCH_CONFIG = 'nlp-with-dispatchDispatch';
+**.env** [!code-file[EmptyEnv](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/.env?range=1-10)]
 
-// In file homeAutomation.js
-// this is the LUIS service type entry in the .bot file.
-const LUIS_CONFIGURATION = 'Home Automation';
+新增您的服務連線值，如下所示：
 
-// In file qna.js
-// Name of the QnA Maker service in the .bot file.
-const QNA_CONFIGURATION = 'sample-qna';
+**.env**
+```file
+MicrosoftAppId=""
+MicrosoftAppPassword=""
 
-// In file weather.js
-// this is the LUIS service type entry in the .bot file.
-const WEATHER_LUIS_CONFIGURATION = 'Weather';
+QnAKnowledgebaseId="<knowledge-base-id>"
+QnAAuthKey="<your-endpoint-key>"
+QnAEndpointHostName="<your-hostname>"
+
+LuisAppId=<app-id-for-dispatch-app>
+LuisAPIKey=<your-luis-authoring-key>
+LuisAPIHostName=<your-dispatch-app-region>
+
 ```
+完成所有變更時，儲存這個檔案。
 
-在 **bot.js** 中，_nlp-with-dispatch.bot_ 組態檔中包含的資訊用於將分派 Bot 連線至各種服務。 每個建構函式都會根據以上詳述的區段名稱，尋找並使用組態檔的適當區段。
-
-```javascript
-class DispatchBot {
-    constructor(conversationState, userState, botConfig) {
-        //...
-        this.homeAutomationDialog = new HomeAutomation(conversationState, userState, botConfig);
-        this.weatherDialog = new Weather(botConfig);
-        this.qnaDialog = new QnA(botConfig);
-
-        this.conversationState = conversationState;
-        this.userState = userState;
-
-        // dispatch recognizer
-        const dispatchConfig = botConfig.findServiceByNameOrId(DISPATCH_CONFIG);
-        //...
-```
 ---
 
-### <a name="calling-the-services-from-your-bot"></a>從 Bot 呼叫服務
+### <a name="connect-to-the-services-from-your-bot"></a>從 Bot 連線到服務
 
-Bot 邏輯會針對合併的分派模型，檢查使用者輸入。
+若要連線到分派、LUIS 和 QnA Maker 服務，Bot 會從您先前提供的設定中提取資訊。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+## <a name="ctabcs"></a>[C#](#tab/cs)
 
-在 **NlpDispatchBot.cs** 檔案中，Bot 的建構函式會取得我們在啟動時註冊的 `BotServices` 物件。
+在 **BotServices.cs** 中，_appsettings.json_ 組態檔中包含的資訊會用於將分派 Bot 連線至 `Dispatch` 和 `SampleQnA` 服務。 建構函式會使用您提供的值來連線到這些服務。
 
-```csharp
-private readonly BotServices _services;
+**BotServices.cs** [!code-csharp[ReadConfigurationInfo](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/BotServices.cs?range=14-30)]
 
-public NlpDispatchBot(BotServices services)
-{
-    _services = services ?? throw new System.ArgumentNullException(nameof(services));
+## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-    //...
-}
-```
+在 **dispatchBot.js** 中，_.env_ 組態檔中包含的資訊會用來將分派 Bot 連線至 _LuisRecognizer(dispatch)_ 和 _QnAMaker_ 服務。 建構函式會使用您提供的值來連線到這些服務。
 
-在 Bot 的 `OnTurnAsync` 方法中，我們會根據分派模型檢查來自使用者的傳入訊息。
+**dispatchBot.js** [!code-javascript[ReadConfigurationInfo](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=18-31)]
 
-```csharp
-// Get the intent recognition result
-var recognizerResult = await _services.LuisServices[DispatchKey].RecognizeAsync(context, cancellationToken);
-var topIntent = recognizerResult?.GetTopScoringIntent();
-
-if (topIntent == null)
-{
-    await context.SendActivityAsync("Unable to get the top intent.");
-}
-else
-{
-    await DispatchToTopIntentAsync(context, topIntent, cancellationToken);
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 **bot.js** `onTurn` 方法中，我們會檢查來自使用者的傳入訊息。 如果收到 _ActivityType.Message_ 類型，則會透過 Bot 的 _dispatchRecognizer_ 送出此訊息。
-
-```javascript
-if (turnContext.activity.type === ActivityTypes.Message) {
-    // determine which dialog should fulfill this request
-    // call the dispatch LUIS model to get results.
-    const dispatchResults = await this.dispatchRecognizer.recognize(turnContext);
-    const dispatchTopIntent = LuisRecognizer.topIntent(dispatchResults);
-    //...
- }
-```
 ---
 
-### <a name="working-with-the-recognition-results"></a>使用辨識結果
+### <a name="call-the-services-from-your-bot"></a>從 Bot 呼叫服務
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+對於每個來自您使用者的輸入，Bot 邏輯會針對結合的分派模型來檢查使用者輸入、尋找最高分的傳回意圖，並使用該資訊來為輸入呼叫適當的服務。
 
-當模型產生結果時，它會指出哪一項服務最適合處理語句。 此 Bot 中的程式碼會將要求路由傳送至對應的服務，然後概述來自所呼叫服務的回應。
+## <a name="ctabcs"></a>[C#](#tab/cs)
 
-```csharp
-// Depending on the intent from Dispatch, routes to the right LUIS model or QnA service.
-private async Task DispatchToTopIntentAsync(
-    ITurnContext context,
-    (string intent, double score)? topIntent,
-    CancellationToken cancellationToken = default(CancellationToken))
-{
-    const string homeAutomationDispatchKey = "l_Home_Automation";
-    const string weatherDispatchKey = "l_Weather";
-    const string noneDispatchKey = "None";
-    const string qnaDispatchKey = "q_sample-qna";
+在 **DispatchBot.cs** 檔案中，每當呼叫 `OnMessageActivityAsync` 方法時，我們就會針對分派模型來檢查傳入的使用者訊息。 接著，我們會將分派模型的 `topIntent` 和 `recognizerResult` 傳遞至正確的方法，以呼叫服務並傳回結果。
 
-    switch (topIntent.Value.intent)
-    {
-        case homeAutomationDispatchKey:
-            await DispatchToLuisModelAsync(context, HomeAutomationLuisKey);
+**DispatchBot.cs** [!code-csharp[OnMessageActivity](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=26-36)]
 
-            // Here, you can add code for calling the hypothetical home automation service, passing in any entity
-            // information that you need.
-            break;
-        case weatherDispatchKey:
-            await DispatchToLuisModelAsync(context, WeatherLuisKey);
+## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-            // Here, you can add code for calling the hypothetical weather service,
-            // passing in any entity information that you need
-            break;
-        case noneDispatchKey:
-            // You can provide logic here to handle the known None intent (none of the above).
-            // In this example we fall through to the QnA intent.
-        case qnaDispatchKey:
-            await DispatchToQnAMakerAsync(context, QnAMakerKey);
-            break;
+在 **dispatchBot.js** `onMessage` 方法中，我們會針對分派模型檢查使用者輸入訊息、尋找 _topIntent_，然後藉由呼叫 _dispatchToTopIntentAsync_ 來傳遞此意圖。
 
-        default:
-            // The intent didn't match any case, so just display the recognition results.
-            await context.SendActivityAsync($"Dispatch intent: {topIntent.Value.intent} ({topIntent.Value.score}).");
-            break;
-    }
-}
+**dispatchBot.js**
 
-// Dispatches the turn to the request QnAMaker app.
-private async Task DispatchToQnAMakerAsync(
-    ITurnContext context,
-    string appName,
-    CancellationToken cancellationToken = default(CancellationToken))
-{
-    if (!string.IsNullOrEmpty(context.Activity.Text))
-    {
-        var results = await _services.QnAServices[appName].GetAnswersAsync(context).ConfigureAwait(false);
-        if (results.Any())
-        {
-            await context.SendActivityAsync(results.First().Answer, cancellationToken: cancellationToken);
-        }
-        else
-        {
-            await context.SendActivityAsync($"Couldn't find an answer in the {appName}.");
-        }
-    }
-}
+[!code-javascript[OnMessageActivity](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=37-50)]
 
-
-// Dispatches the turn to the requested LUIS model.
-private async Task DispatchToLuisModelAsync(
-    ITurnContext context,
-    string appName,
-    CancellationToken cancellationToken = default(CancellationToken))
-{
-    await context.SendActivityAsync($"Sending your request to the {appName} system ...");
-    var result = await _services.LuisServices[appName].RecognizeAsync(context, cancellationToken);
-
-    await context.SendActivityAsync($"Intents detected by the {appName} app:\n\n{string.Join("\n\n", result.Intents)}");
-
-    if (result.Entities.Count > 0)
-    {
-        await context.SendActivityAsync($"The following entities were found in the message:\n\n{string.Join("\n\n", result.Entities)}");
-    }
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-當模型產生結果時，它會指出哪一項服務最適合處理語句。 此 Bot 中的程式碼會將要求路由傳送至對應的服務。
-
-```javascript
-switch (dispatchTopIntent) {
-   case HOME_AUTOMATION_INTENT:
-      await this.homeAutomationDialog.onTurn(turnContext);
-      break;
-   case WEATHER_INTENT:
-      await this.weatherDialog.onTurn(turnContext);
-      break;
-   case QNA_INTENT:
-      await this.qnaDialog.onTurn(turnContext);
-      break;
-   case NONE_INTENT:
-      default:
-      // Unknown request
-       await turnContext.sendActivity(`I do not understand that.`);
-       await turnContext.sendActivity(`I can help with weather forecast, turning devices on and off and answer general questions like 'hi', 'who are you' etc.`);
- }
- ```
-
- 在 `homeAutomation.js` 中
- 
- ```javascript
- async onTurn(turnContext) {
-    // make call to LUIS recognizer to get home automation intent + entities
-    const homeAutoResults = await this.luisRecognizer.recognize(turnContext);
-    const topHomeAutoIntent = LuisRecognizer.topIntent(homeAutoResults);
-    // depending on intent, call turn on or turn off or return unknown
-    switch (topHomeAutoIntent) {
-       case HOME_AUTOMATION_INTENT:
-          await this.handleDeviceUpdate(homeAutoResults, turnContext);
-          break;
-       case NONE_INTENT:
-       default:
-         await turnContext.sendActivity(`HomeAutomation dialog cannot fulfill this request.`);
-    }
-}
-```
-
-在 `weather.js` 中
-
-```javascript
-async onTurn(turnContext) {
-   // Call weather LUIS model.
-   const weatherResults = await this.luisRecognizer.recognize(turnContext);
-   const topWeatherIntent = LuisRecognizer.topIntent(weatherResults);
-   // Get location entity if available.
-   const locationEntity = (LOCATION_ENTITY in weatherResults.entities) ? weatherResults.entities[LOCATION_ENTITY][0] : undefined;
-   const locationPatternAnyEntity = (LOCATION_PATTERNANY_ENTITY in weatherResults.entities) ? weatherResults.entities[LOCATION_PATTERNANY_ENTITY][0] : undefined;
-   // Depending on intent, call "Turn On" or "Turn Off" or return unknown.
-   switch (topWeatherIntent) {
-      case GET_CONDITION_INTENT:
-         await turnContext.sendActivity(`You asked for current weather condition in Location = ` + (locationEntity || locationPatternAnyEntity));
-         break;
-      case GET_FORECAST_INTENT:
-         await turnContext.sendActivity(`You asked for weather forecast in Location = ` + (locationEntity || locationPatternAnyEntity));
-         break;
-      case NONE_INTENT:
-      default:
-         wait turnContext.sendActivity(`Weather dialog cannot fulfill this request.`);
-   }
-}
-```
-
-在 `qna.js` 中
-
-```javascript
-async onTurn(turnContext) {
-   // Call QnA Maker and get results.
-   const qnaResult = await this.qnaRecognizer.generateAnswer(turnContext.activity.text, QNA_TOP_N, QNA_CONFIDENCE_THRESHOLD);
-   if (!qnaResult || qnaResult.length === 0 || !qnaResult[0].answer) {
-       await turnContext.sendActivity(`No answer found in QnA Maker KB.`);
-       return;
-    }
-    // respond with qna result
-    await turnContext.sendActivity(qnaResult[0].answer);
-}
-```
 ---
 
-## <a name="edit-intents-to-improve-performance"></a>編輯意圖以改善效能
+### <a name="work-with-the-recognition-results"></a>使用辨識結果
+
+## <a name="ctabcs"></a>[C#](#tab/cs)
+
+當模型產生結果時，它會指出哪一項服務最適合處理語句。 此 Bot 中的程式碼會將要求路由傳送至對應的服務，然後概述來自所呼叫服務的回應。 根據分派傳回的_意圖_，此程式碼會使用傳回的意圖來路由至正確的 LUIS 模型或 QnA 服務。
+
+**DispatchBot.cs** [!code-csharp[DispatchToTop](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=51-69)]
+
+如果叫用 `ProcessHomeAutomationAsync` 或 `ProcessWeatherAsync` 方法，則會從 _luisResult.ConnectedServiceResult_ 內的分派模型中傳遞結果。 接著，指定方法會提供顯示分派模型最高意圖的使用者意見反應，並且以排名列出所有偵測到的意圖和實體。
+
+如果叫用 `q_sample-qna` 方法，該方法會使用 turnContext 中包含的使用者輸入，從知識庫產生答案，並將該結果顯示給使用者。
+
+## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
+
+當模型產生結果時，它會指出哪一項服務最適合處理語句。 此範例中的程式碼會使用可辨識的 _topIntent_，示範如何將要求路由至相對應的服務。
+
+**DispatchBot.cs** [!code-javascript[DispatchToTop](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=67-83)]
+
+如果叫用 `processHomeAutomation` 或 `processWeather` 方法，則會從 _recognizerResult.luisResult_ 內的分派模型中傳遞結果。 接著，指定方法會提供顯示分派模型最高意圖的使用者意見反應，並且以排名列出所有偵測到的意圖和實體。
+
+如果叫用 `q_sample-qna` 方法，該方法會使用 turnContext 中包含的使用者輸入，從知識庫產生答案，並將該結果顯示給使用者。
+
+---
+
+> [!NOTE]
+> 如果這是生產應用程式，就會用此應用程式來將選取的 LUIS 方法連線到其指定服務、傳入使用者輸入及處理傳回的 LUIS 意圖和實體資料。
+
+## <a name="test-your-bot"></a>測試 Bot
+
+使用您的開發環境啟動範例程式碼。 在由您應用程式開啟的瀏覽器視窗中，記下網址列顯示的 localhost 位址："https://localhost:<Port_Number>" 開啟 Bot Framework Emulator 後，選取下列框起來的藍色文字：`create new bot configuration`。
+
+![建立新組態](./media/tutorial-dispatch/emulator-create-new-configuration.png)
+
+輸入您記下的 localhost 位址，將 '/api/messages' 加到結尾："https://localhost:<Port_Number>/api/messages"
+
+![與模擬器連線](./media/tutorial-dispatch/emulator-create-and-connect.png)
+
+現在，按一下 [`Save and connect`] 按鈕來存取執行的 Bot。 專為 Bot 所建置的服務涵蓋以下一些問題和命令，供您參考：
+
+- QnA Maker
+  - `hi`、`good morning`
+  - `what are you`、`what do you do`
+- LUIS (住家自動化)
+  - `turn on bedroom light`
+  - `turn off bedroom light`
+  - `make some coffee`
+- LUIS (天氣)
+  - `whats the weather in redmond washington`
+  - `what's the forecast for london`
+  - `show me the forecast for nebraska`
+
+## <a name="additional-information"></a>其他資訊
 
 當 Bot 正在執行時，移除類似或重疊的語句有可能改善 Bot 的效能。 例如，假設在 `Home Automation` LUIS 應用程式中，「開燈」這類要求對應至「TurnOnLights」意圖，但「為什麼無法打開燈？」要求則對應至 「無」意圖，因此系統便會將其傳遞至 QnA Maker。 使用分派工具結合 LUIS 應用程式和 QnA Maker 服務時，您必須執行下列動作：
 
-* 從原始的 `Home Automation` LUIS 應用程式移除 "None" 意圖，然後將該意圖中的語句新增至發送器應用程式中的 "None" 意圖。
-* 如果您未從原始 LUIS 應用程式中移除 "None" 意圖，則必須在 Bot 中新增邏輯，以將符合 "None" 意圖的訊息傳遞至 QnA maker 服務。
+- 從原始的 `Home Automation` LUIS 應用程式移除 "None" 意圖，然後將該意圖中的語句新增至發送器應用程式中的 "None" 意圖。
+- 如果您未從原始 LUIS 應用程式中移除 "None" 意圖，則必須在 Bot 中新增邏輯，以將符合 "None" 意圖的訊息傳遞至 QnA maker 服務。
 
-上述兩個動作都會減少 Bot 以「找不到答案」訊息回應使用者的次數。 
+上述兩個動作都會減少 Bot 以「找不到答案」訊息回應使用者的次數。
 
-## <a name="additional-resources"></a>其他資源
+### <a name="to-update-or-create-a-new-luis-model"></a>更新或建立新的 LUIS 模型
 
-**更新或建立新的 LUIS 模型：** 此範例是以預先設定的 LUIS 模型為基礎。 在[這裡](https://aka.ms/create-luis-model#updating-your-cognitive-models
-)可以找到其他資訊，協助您更新此模型，或建立新的 LUIS 模型。
+此範例是以預先設定的 LUIS 模型為基礎。 在[這裡](https://aka.ms/create-luis-model#updating-your-cognitive-models)可以找到其他資訊，協助您更新此模型，或建立新的 LUIS 模型。
 
-**刪除資源：** 此範例會建立一些應用程式和資源，您可以使用下面所列的步驟將其刪除，但不得刪除「任何其他應用程式或服務」所依賴的資源。 
+### <a name="to-delete-resources"></a>刪除資源
 
-_LUIS 資源_
+此範例會建立一些應用程式和資源，您可以使用下面所列的步驟將其刪除，但不得刪除「任何其他應用程式或服務」所依賴的資源。
+
+刪除 LUIS 資源：
+
 1. 登入 [luis.ai](https://www.luis.ai) 入口網站。
 1. 移至 [我的應用程式] 頁面。
 1. 選取此範例所建立的應用程式。
-   * `Home Automation`
-   * `Weather`
-   * `NLP-With-Dispatch-BotDispatch`
+   - `Home Automation`
+   - `Weather`
+   - `NLP-With-Dispatch-BotDispatch`
 1. 按一下 [刪除]，然後按一下 [確定] 進行確認。
 
-_QnA Maker 資源_
+刪除 QnA Maker 資源：
+
 1. 登入 [qnamaker.ai](https://www.qnamaker.ai/) 入口網站。
 1. 移至 [我的知識庫] 頁面。
 1. 按一下 `Sample QnA` 知識庫的刪除按鈕，然後按一下 [刪除] 進行確認。
 
-**最佳做法：** 若要改善此範例中使用的服務，請參閱 [LUIS](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-best-practices) 及 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/concepts/best-practices) 的最佳做法。
+### <a name="best-practice"></a>最佳做法
+
+若要改善此範例中使用的服務，請參閱 [LUIS](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-best-practices) 及 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/concepts/best-practices) 的最佳做法。
+
+
+[howto-luis]: bot-builder-howto-v4-luis.md
+[howto-qna]: bot-builder-howto-qna.md
+
+[cs-sample]: https://aka.ms/dispatch-sample-cs
+[js-sample]: https://aka.ms/dispatch-sample-js
+
+[dispatch-readme]: https://aka.ms/botbuilder-tools-dispatch
