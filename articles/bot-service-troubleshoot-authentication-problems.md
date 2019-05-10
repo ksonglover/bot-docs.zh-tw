@@ -6,20 +6,20 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 02/26/2019
-ms.openlocfilehash: 780dcf4d9db48f9ef7f5a92180dc13c41cc63305
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.date: 04/30/2019
+ms.openlocfilehash: 756e24409532de1473e546e3f771be416cb44c78
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224936"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033649"
 ---
 # <a name="troubleshooting-bot-framework-authentication"></a>針對 Bot Framework 驗證進行疑難排解
 
 此指南可協助您透過評估一系列的案例，來判斷問題所在，從而解決 Bot 的驗證問題。 
 
 > [!NOTE]
-> 若要完成此指南中的所有步驟，您必須下載並使用 [Bot Framework 模擬器][Emulator]，而且必須能夠存取 <a href="https://dev.botframework.com" target="_blank">Bot Framework 入口網站</a>中的 Bot 註冊設定。
+> 若要完成此指南中的所有步驟，您必須下載並使用 [Bot Framework Emulator][Emulator]，而且必須能夠存取 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>中的 Bot 註冊設定。
 
 ## <a id="PW"></a> 應用程式識別碼和密碼
 
@@ -65,15 +65,11 @@ var connector = new builder.ChatConnector({
 
 ::: moniker range="azure-bot-service-4.0"
 
-如果您使用適用於 .NET 的 Bot Framework SDK，請在 `.bot` 檔案中編輯這些設定：
+如果您使用適用於 .NET 的 Bot Framework SDK，請在 `appsettings.json` 檔案中編輯這些設定：
 
 ```json
-"services": [
-  {
-    "appId": "<your app ID>",
-    "appPassword": "<your app password>",
-  }
-]
+  "MicrosoftAppId": "<your app ID>",
+  "MicrosoftAppPassword": "<your app password>"
 ```
 
 如果您使用適用於 Node.js 的 Bot Framework SDK，請編輯這些值 (或更新對應的環境變數)：
@@ -84,8 +80,6 @@ const adapter = new BotFrameworkAdapter({
     appPassword: null
 });
 ```
-
-如果使用 `.bot` 檔案進行設定，您可以將 `appId` 和 `appPassword` 更新為 `""`。
 
 ::: moniker-end
 
@@ -148,7 +142,7 @@ curl -k -X POST https://login.microsoftonline.com/botframework.com/oauth2/v2.0/t
 
 您的 Bot 的安全性依賴 Microsoft 服務，即使您的 Bot 只在 localhost 上執行。 若要啟用 Bot 的安全性，請編輯其組態設定，以使用您在[步驟 2](#step-2) 中驗證的值填入應用程式識別碼和密碼。  此外，確定您的套件是最新狀態，特別是 `System.IdentityModel.Tokens.Jwt` 和 `Microsoft.IdentityModel.Tokens`。
 
-如果您使用適用於 .NET 的 Bot Framework SDK，請在 `appsettings.config` 中填入這些設定，或在 `.bot` 檔案中填入對應的值：
+如果您使用適用於 .NET 的 Bot Framework SDK，請在 `appsettings.config` 中填入這些設定，或在 `appsettings.json` 檔案中填入對應的值：
 
 ```xml
 <appSettings>
@@ -200,7 +194,7 @@ var connector = new builder.ChatConnector({
 Bot Framework 要求可從網際網路存取 Bot，因此您必須將您的 Bot 部署至裝載平台，例如 Azure 雲端。 確保在部署之前為您的 Bot 啟用安全性，如[步驟 3](#step-3) 中所述。
 
 > [!NOTE]
-> 若您還沒有雲端裝載提供者，則可以註冊<a href="https://azure.microsoft.com/en-us/free/" target="_blank">免費帳戶</a>。 
+> 若您還沒有雲端裝載提供者，則可以註冊<a href="https://azure.microsoft.com/free/" target="_blank">免費帳戶</a>。 
 
 如果您將 Bot 部署至 Azure，系統會自動為您的應用程式設定 SSL，以啟用 Bot Framework 所需的 **HTTPS** 端點。 如果您部署至其他雲端裝載提供者，請務必確認您的應用程式已設定 SSL，讓 Bot 能夠有 **HTTPS** 端點。
 
@@ -209,7 +203,7 @@ Bot Framework 要求可從網際網路存取 Bot，因此您必須將您的 Bot 
 若要在啟用安全性的情況下在雲端中測試 Bot，請完成下列步驟。
 
 1. 請確定您的 Bot 已成功部署和執行。 
-2. 登入 <a href="https://dev.botframework.com" target="_blank">Bot Framework 入口網站</a>。
+2. 登入 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>。
 3. 按一下 [我的 Bot]。
 4. 選取您想要測試的 Bot。
 5. 按一下 [測試] 以在內嵌的 Web 聊天控制項中開啟 Bot。
@@ -228,7 +222,7 @@ Bot Framework 要求可從網際網路存取 Bot，因此您必須將您的 Bot 
 如果在完成上述步驟之後仍然遇到問題，您可以：
 
 * 請檢閱[偵錯 Bot](bot-service-debug-bot.md) 操作說明，以及該區段中的其他偵錯文章。
-* 使用 Bot Framework 模擬器和<a href="https://ngrok.com/" target="_blank">ngrok</a> [在雲端針對您的 Bot 進行偵錯](~/bot-service-debug-emulator.md)。
+* 使用 Bot Framework Emulator 和 <a href="https://ngrok.com/" target="_blank">ngrok</a> 通道軟體[在雲端對您的 Bot 進行偵錯](~/bot-service-debug-emulator.md)。 *ngrok 並非 Microsoft 產品。*
 * 使用像 [Fiddler](https://www.telerik.com/fiddler) 這樣的 Proxy 處理工具，來檢查進出 Bot 的 HTTPS 流量。 Fiddler 並非 Microsoft 產品。
 * 若要了解 Bot Framework 所使用的驗證技術，請檢閱 [Bot 連接器驗證指南][BotConnectorAuthGuide]。
 * 使用 Bot Framework [支援][Support]資源向其他人請求協助。 

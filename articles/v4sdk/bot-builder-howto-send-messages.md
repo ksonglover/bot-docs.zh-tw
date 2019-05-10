@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 04/16/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0c6d1e779215b54f635adc019d93af39735e16e0
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 0d4279df31aba6cecb12b7d8d7262069aed8836b
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904871"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033394"
 ---
 # <a name="send-and-receive-text-message"></a>傳送及接收文字訊息
 
@@ -31,7 +31,7 @@ ms.locfileid: "59904871"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-在 Bot 的 `OnTurnAsync` 方法中，使用回合內容物件的 `SendActivityAsync` 方法傳送單一訊息回應。 您也可以使用該物件的 `SendActivitiesAsync` 方法同時傳送多個回應。
+在 Bot 的活動處理常式中，使用回合內容物件的 `SendActivityAsync` 方法傳送單一訊息回應。 您也可以使用該物件的 `SendActivitiesAsync` 方法同時傳送多個回應。
 
 ```cs
 await turnContext.SendActivityAsync($"Welcome!");
@@ -39,7 +39,7 @@ await turnContext.SendActivityAsync($"Welcome!");
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-在 Bot 的 `onTurn` 處理常式中，使用回合內容物件的 `sendActivity` 方法傳送單一訊息回應。 您也可以使用該物件的 `sendActivities` 方法同時傳送多個回應。
+在 Bot 的活動處理常式中，使用回合內容物件的 `sendActivity` 方法傳送單一訊息回應。 您也可以使用該物件的 `sendActivities` 方法同時傳送多個回應。
 
 ```javascript
 await context.sendActivity("Welcome!");
@@ -51,7 +51,7 @@ await context.sendActivity("Welcome!");
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-在 Bot 的 `OnTurnAsync` 方法中，使用下列程式碼來接收訊息。 
+在 Bot 的活動處理常式中，使用下列程式碼來接收訊息。 
 
 ```cs
 var responseMessage = turnContext.Activity.Text;
@@ -59,7 +59,7 @@ var responseMessage = turnContext.Activity.Text;
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-在 Bot 的 `OnTurnAsync` 方法中，使用下列程式碼來接收訊息。
+在 Bot 的活動處理常式中，使用下列程式碼來接收訊息。
 
 ```javascript
 let text = turnContext.activity.text;
@@ -70,5 +70,9 @@ let text = turnContext.activity.text;
 ## <a name="additional-resources"></a>其他資源
 
 - 如需一般活動處理方式的詳細資訊，請參閱[活動處理](~/v4sdk/bot-builder-basics.md#the-activity-processing-stack)。
-- 如需傳送豐富內容的相關資訊，請參閱如何新增[豐富的媒體](bot-builder-howto-add-media-attachments.md)附件。
 - 如需格式化的詳細資訊，請參閱 Bot Framework 活動結構描述的[訊息活動區段](https://aka.ms/botSpecs-activitySchema#message-activity)。
+
+## <a name="next-steps"></a>後續步驟
+
+> [!div class="nextstepaction"]
+> [將媒體新增至訊息](./bot-builder-howto-add-media-attachments.md)

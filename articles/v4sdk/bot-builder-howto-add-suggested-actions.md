@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 4/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bf0c5c0bba335c41a268d43014e925f6a9289d75
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 3dac86bbcd98d48c636521b44d107f1e6341a3f7
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904971"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033385"
 ---
 # <a name="use-button-for-input"></a>使用按鈕進行輸入
 
@@ -29,41 +29,23 @@ ms.locfileid: "59904971"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-您可以從 [GitHub](https://aka.ms/SuggestedActionsCSharp) 存取這裡使用的原始程式碼
+這裡顯示的原始程式碼是以[建議動作範例](https://aka.ms/SuggestedActionsCSharp)為基礎。
 
-```csharp
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Schema;
-
-var reply = turnContext.Activity.CreateReply("What is your favorite color?");
-
-reply.SuggestedActions = new SuggestedActions()
-{
-    Actions = new List<CardAction>()
-    {
-        new CardAction() { Title = "Red", Type = ActionTypes.ImBack, Value = "Red" },
-        new CardAction() { Title = "Yellow", Type = ActionTypes.ImBack, Value = "Yellow" },
-        new CardAction() { Title = "Blue", Type = ActionTypes.ImBack, Value = "Blue" },
-    },
-
-};
-await turnContext.SendActivityAsync(reply, cancellationToken: cancellationToken);
-```
+[!code-csharp[suggested actions](~/../botbuilder-samples/samples/csharp_dotnetcore/08.suggested-actions/Bots/SuggestedActionsBot.cs?range=87-100)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-您可以從 [GitHub](https://aka.ms/SuggestActionsJS) 存取這裡使用的原始程式碼。
 
-```javascript
-const { ActivityTypes, MessageFactory, TurnContext } = require('botbuilder');
+這裡顯示的原始程式碼是以[建議動作範例](https://aka.ms/SuggestActionsJS)為基礎。
 
-async sendSuggestedActions(turnContext) {
-    var reply = MessageFactory.suggestedActions(['Red', 'Yellow', 'Blue'], 'What is the best color?');
-    await turnContext.sendActivity(reply);
-}
-```
+[!code-javascript[suggested actions](~/../botbuilder-samples/samples/javascript_nodejs/08.suggested-actions/bots/suggestedActionsBot.js?range=61-64)]
 
 ---
 
 ## <a name="additional-resources"></a>其他資源
 
-您可以從 GitHub [[C#](https://aka.ms/SuggestedActionsCSharp) | [JS](https://aka.ms/SuggestActionsJS)] 存取這裡顯示的完整原始程式碼。
+您可以在此存取完整的原始程式碼：[CSharp 範例](https://aka.ms/SuggestedActionsCSharp)或 [JavaScript 範例](https://aka.ms/SuggestActionsJS)。
+
+## <a name="next-steps"></a>後續步驟
+
+> [!div class="nextstepaction"]
+> [儲存使用者和對話資料](./bot-builder-howto-v4-state.md)

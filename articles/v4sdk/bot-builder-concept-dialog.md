@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 04/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 36ccbb796c2cd014118d4ae1f426acd44aabed76
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: d896584b2048c8d2b330a1e6e63bc47122102532
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904891"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033399"
 ---
 # <a name="dialogs-library"></a>對話方塊程式庫
 
@@ -94,7 +94,7 @@ Dialogs 程式庫中的提示，可讓您輕鬆地向使用者詢問資訊並評
 
 ![對話方塊概念](media/bot-builder-dialog-concept.png)
 
-在瀑布式步驟內，瀑布式對話的內容會儲存在其「瀑布式步驟內容」中。 這類似於對話內容，因為其可供存取目前的回合內容和狀態。 請使用瀑布步驟內容物件，從瀑布步驟內與對話方塊集合互動。
+在瀑布式步驟內，瀑布式對話的內容會儲存在其*瀑布式步驟內容*中。 這類似於對話內容，因為其可供存取目前的回合內容和狀態。 請使用瀑布步驟內容物件，從瀑布步驟內與對話方塊集合互動。
 
 您所能處理的傳回值可來自對話中瀑布式步驟內的對話，或來自 Bot 的開啟回合處理常式，儘管您通常只需要檢查 Bot 回合邏輯的對話回合結果狀態。
 在瀑布步驟內，對話方塊會在瀑布步驟內容的「結果」屬性中提供傳回值。
@@ -121,7 +121,8 @@ Dialogs 程式庫中的提示，可讓您輕鬆地向使用者詢問資訊並評
 
 對話可被視為程式設計堆疊，我們稱之為「對話堆疊」，其由回合處理常式引導，而如果堆疊是空的，則會作為後援。 該堆疊最上方的項目會被視為「作用中對話」，而對話內容會將所有輸入導向作用中對話。
 
-當對話開始時，其會推送至堆疊，而成為作用中對話。 其會在結束前保持為作用中對話，而 [replace dialog](#repeating-a-dialog) 方法會將它移除，或另一個對話會推送至堆疊 (經由回合處理常式或作用中對話本身) 並成為作用中對話。 當新的對話結束時，其就會從堆疊中彈出，而下一個對話會再度成為作用中對話。 這允許進行如下所述的分支和迴圈處理。
+當對話開始時，其會推送至堆疊，而成為作用中對話。 其會在結束前保持為作用中對話，而 [replace dialog](#repeating-a-dialog) 方法會將它移除，或另一個對話會推送至堆疊 (經由回合處理常式或作用中對話本身) 並成為作用中對話。 當新的對話結束時，其就會從堆疊中彈出，而下一個對話會再度成為作用中對話。 這可允許[重複對話方塊](#repeating-a-dialog)或[建立對話分支](#branch-a-conversation)，如下所述。
+
 
 ### <a name="create-the-dialog-context"></a>建立對話內容
 

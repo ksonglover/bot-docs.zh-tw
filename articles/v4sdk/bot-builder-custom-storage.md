@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 4/31/2019
+ms.date: 04/30/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 41a33c20148e128efa1d10b72410eb06a6a94982
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: f6aaa824b978be28c050333c67d501a8cbbad005
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59905001"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033656"
 ---
 # <a name="implement-custom-storage-for-your-bot"></a>為您的 Bot 實作自訂儲存體
 
@@ -24,6 +24,10 @@ ms.locfileid: "59905001"
 Bot 的互動可分成三個方面：首先，交換活動與 Azure Bot Service，接著，利用 Store 載入及儲存對話方塊狀態，最後是 Bot 完成其作業所需處理的任何其他後端服務。
 
 ![水平擴充圖表](../media/scale-out/scale-out-interaction.png)
+
+
+## <a name="prerequisites"></a>必要條件
+- 本文中所使用的完整範例程式碼皆可在此處找到：[C# 範例](http://aka.ms/scale-out)。
 
 在本文中，我們將探索 Bot 與 Azure Bot Service 和 Store 的互動相關語意。
 
@@ -89,74 +93,11 @@ Bot Framework 架構包含預設實作。此實作最可能符合許多應用程
 
 所產生的介面如下：
 
-```csharp
-public interface IStore
-{
-  Task<(JObject content, string eTag)> LoadAsync(string key);
-  Task<bool> SaveAsync(string key, JObject content, string eTag);
-}
-```
+**IStore.cs** [!code-csharp[IStore](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/IStore.cs?range=14-19)]
+
 針對 Azure Blob 儲存體實作此介面很簡單。
-```csharp
-public class BlobStore : IStore
-{
-  private CloudBlobContainer _container;
 
-  public BlobStore(string myAccountName, string myAccountKey, string containerName)
-  {
-    var storageCredentials = new StorageCredentials(myAccountName, myAccountKey);
-    var cloudStorageAccount = new CloudStorageAccount(storageCredentials, useHttps: true);
-    var client = cloudStorageAccount.CreateCloudBlobClient();
-    _container = client.GetContainerReference(containerName);
-  }
-
-  public async Task<(JObject content, string eTag)> LoadAsync(string key)
-  {
-    var blob = _container.GetBlockBlobReference(key);
-    try
-    {
-      var content = await blob.DownloadTextAsync();
-      var obj = JObject.Parse(content);
-      var eTag = blob.Properties.ETag;
-      return (obj, eTag);
-    }
-    catch (StorageException e)
-      when (e.RequestInformation.HttpStatusCode ==
-        (int)HttpStatusCode.NotFound)
-    {
-      return (new JObject(), null);
-    }
-  }
-
-  public async Task<bool> SaveAsync(string key, JObject obj, string eTag)
-  {
-    var blob = _container.GetBlockBlobReference(key);
-    blob.Properties.ContentType = "application/json";
-    var content = obj.ToString();
-    if (eTag != null)
-    {
-      try
-      {
-        await blob.UploadTextAsync(content,
-          new AccessCondition { IfMatchETag = eTag },
-          new BlobRequestOptions(),
-          new OperationContext());
-      }
-      catch (StorageException e)
-        when (e.RequestInformation.HttpStatusCode ==
-          (int)HttpStatusCode.PreconditionFailed)
-      {
-        return false;
-      }
-    }
-    else
-    {
-      await blob.UploadTextAsync(content);
-    }
-    return true;
-  }
-}
-```
+**BlobStore.cs** [!code-csharp[BlobStore](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/BlobStore.cs?range=18-101)]
 
 如您所看，Azure Blob 儲存體正在此處進行實際工作。 請注意，特定例外狀況的捕捉，以及如何轉化以符合呼叫程式碼的期望。 也就是說，對於 Load，我們希望「找不到」例外狀況傳回 null，而對於 Save，「先決條件失敗」例外狀況傳回 bool。
 
@@ -170,39 +111,9 @@ public class BlobStore : IStore
 建立適當的索引鍵之後，我們會嘗試 Load 對應的狀態。 接著執行 Bot 的對話方塊，然後嘗試 Save。 如果 Save 成功，我們會傳送執行對話方塊所產生的輸出活動。 否則，我們會返回並重複 Load 前的整個程序。 重新進行 Load 讓我們擁有新的 ETag，所以下次 Save 很可能會成功。
 
 所產生的 OnTurn 實作如下所示：
-```csharp
-public async Task OnTurnAsync(ITurnContext turnContext,
-  CancellationToken cancellationToken = default(CancellationToken))
-{
-  // Create the storage key for this conversation.
-  string key = $"{turnContext.Activity.ChannelId}/conversations/{turnContext.Activity.Conversation?.Id}";
 
-  // The execution sits in a loop because there might be a retry if the save operation fails.
-  while (true)
-  {
-    // Load any existing state associated with this key
-    var (oldState, etag) = await _store.LoadAsync(key);
+**ScaleoutBot.cs** [!code-csharp[OnMessageActivity](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/Bots/ScaleOutBot.cs?range=43-72)]
 
-    // Run the dialog system with the old state and inbound activity,
-    // resulting in a new state and outbound activities.
-    var (activities, newState) = await DialogHost.RunAsync(_rootDialog, turnContext.Activity, oldState);
-
-    // Save the updated state associated with this key.
-    bool success = await _store.SaveAsync(key, newState, etag);
-
-    // Following a successful save, send any outbound Activities, otherwise retry everything.
-    if (success)
-    {
-      if (activities.Any())
-      {
-        // This is an actual send on the TurnContext we were given and so will actual do a send this time.
-        await turnContext.SendActivitiesAsync(activities);
-      }
-      break;
-    }
-  }
-}
-```
 請注意，我們已將對話方塊執行塑造為函式呼叫。 或許更複雜的實作定義了一個介面，並且讓此相依性得以插入，但是就我們的目的而言，讓對話方塊完全位於靜態函式後面，可強調我們方法的功能性質。 一般而言，組織我們的實作，使重要部分得以運作，讓我們能夠在網路上順利實作。
 
 
@@ -211,36 +122,10 @@ public async Task OnTurnAsync(ITurnContext turnContext,
 下一項需求是我們會緩衝處理輸出活動，直到已執行成功 Save 為止。 將會需要自訂 BotAdapter 實作。 在此程式碼中，我們會實作抽象的 SendActivity 函式，將活動新增至清單，而非傳送。 我們即將主控的對話方塊還是不明白。
 在此特殊案例中，不支援 UpdateActivity 和 DeleteActivity 作業，所以只要從這些方法擲回「未實作」即可。 我們也不在意 SendActivity 的傳回值。 在需要傳送活動更新的案例中，某些通道會使用此值，例如，通道中所顯示卡片上的停用按鈕。 特別在需要狀態時，這些訊息交換會變複雜，但這不在本文的討論範圍內。 自訂 BotAdapter 的完整實作看起來像這樣：
 
-```csharp
-public class DialogHostAdapter : BotAdapter
-{
-  private List<Activity> _response = new List<Activity>();
+**DialogHostAdapter.cs** [!code-csharp[DialogHostAdapter](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/DialogHostAdapter.cs?range=19-46)]
 
-  public IEnumerable<Activity> Activities => _response;
+## <a name="integration"></a>整合
 
-  public override Task<ResourceResponse[]> SendActivitiesAsync(ITurnContext turnContext,
-    Activity[] activities, CancellationToken cancellationToken)
-  {
-    foreach (var activity in activities)
-    {
-      _response.Add(activity);
-    }
-    return Task.FromResult(new ResourceResponse[0]);
-  }
-
-  public override Task DeleteActivityAsync(ITurnContext turnContext,
-    ConversationReference reference, CancellationToken cancellationToken)
-  {
-    throw new NotImplementedException();
-  }
-
-  public override Task<ResourceResponse> UpdateActivityAsync(ITurnContext turnContext,
-    Activity activity, CancellationToken cancellationToken)
-  {
-    throw new NotImplementedException();
-  }
-}
-```
 接下來，只要將各種新項目拼湊在一起，並將其插入現有的架構項目中。 主要重試迴圈正好位於 IBot OnTurn 函式中。 其會保留自訂 IStore 實作，而為了測試目的，我們讓相依性得以插入。 我們已將所有對話方塊主控程式碼放入稱為 DialogHost 的類別中，以便公開單一公用靜態函式。 此函式已定義為接受輸入活動和舊狀態，然後傳回所產生的活動和新狀態。
 
 在此函式中所要進行的第一件事，就是建立我們先前介紹的自訂 BotAdapter。 接著，我們會建立 DialogSet 和 DialogContext 並執行一般 [繼續] 或 [開始] 流程，以與往常完全相同的方式執行對話方塊。 我們尚未涵蓋的唯一項目是自訂存取子需求。 這其實是非常簡單的填充碼，可協助將對話方塊狀態傳入對話方塊系統中。 存取子會在使用對話方塊系統時使用 ref 語意，因此接下來只需要傳遞控制代碼。 為了讓事情變得更清楚，我們限制了使用於 ref 語意的類別範本。
@@ -248,104 +133,13 @@ public class DialogHostAdapter : BotAdapter
 我們對於分層極為小心謹慎，所以將 JsonSerialization 內嵌於我們的主控程式碼，因為當不同的實作可能以不同的方式序列化時，我們不希望其位於插入式儲存層內。
 
 以下是驅動程式程式碼：
-```csharp
-public class DialogHost
-{
-  private static readonly JsonSerializer StateJsonSerializer = new JsonSerializer()
-    { TypeNameHandling = TypeNameHandling.All };
 
-  public static async Task<Tuple<Activity[], JObject>> RunAsync(Dialog rootDialog,
-    Activity activity, JObject oldState)
-  {
-    // A custom adapter and corresponding TurnContext that buffers any messages sent.
-    var adapter = new DialogHostAdapter();
-    var turnContext = new TurnContext(adapter, activity);
+**DialogHost.cs** [!code-csharp[DialogHost](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/DialogHost.cs?range=22-72)]
 
-    // Run the dialog using this TurnContext with the existing state.
-    JObject newState = await RunTurnAsync(rootDialog, turnContext, oldState);
+最後，對於自訂存取子，我們只需要實作 Get，因為狀態依 ref 而定：
 
-    // The result is a set of activities to send and a replacement state.
-    return Tuple.Create(adapter.Activities.ToArray(), newState);
-  }
+**RefAccessor.cs** [!code-csharp[RefAccessor](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/RefAccessor.cs?range=22-60)]
 
-  private static async Task<JObject> RunTurnAsync(Dialog rootDialog,
-    TurnContext turnContext, JObject state)
-  {
-    if (turnContext.Activity.Type == ActivityTypes.Message)
-    {
-      // If we have some state, deserialize it. (This mimics the shape produced by BotState.cs.)
-      var dialogState = state?[nameof(DialogState)]?.ToObject<DialogState>(StateJsonSerializer);
-
-      // A custom accessor is used to pass a handle on the state to the dialog system.
-      var accessor = new RefAccessor<DialogState>(dialogState);
-
-      // The following is regular dialog driver code.
-      var dialogs = new DialogSet(accessor);
-      dialogs.Add(rootDialog);
-
-      var dialogContext = await dialogs.CreateContextAsync(turnContext);
-      var results = await dialogContext.ContinueDialogAsync();
-
-      if (results.Status == DialogTurnStatus.Empty)
-      {
-        await dialogContext.BeginDialogAsync("root");
-      }
-
-      // Serialize the result, and put its value back into a new JObject.
-      return new JObject
-      {
-        { nameof(DialogState), JObject.FromObject(accessor.Value, StateJsonSerializer) }
-      };
-    }
-
-    return state;
-  }
-}
-```
-最後，對於自訂存取子，我們只需要實作 Set，因為狀態依 ref 而定：
-```csharp
-public class RefAccessor<T> : IStatePropertyAccessor<T> where T : class
-{
-  public RefAccessor(T value)
-  {
-    Value = value;
-  }
-
-  public T Value { get; private set; }
-
-  public string Name => nameof(T);
-
-  public Task<T> GetAsync(ITurnContext turnContext, Func<T> defaultValueFactory = null,
-    CancellationToken cancellationToken = default(CancellationToken))
-  {
-    if (Value == null)
-    {
-      if (defaultValueFactory == null)
-      {
-        throw new KeyNotFoundException();
-      }
-      else
-      {
-        Value = defaultValueFactory();
-      }
-    }
-    return Task.FromResult(Value);
-  }
-
-  public Task DeleteAsync(ITurnContext turnContext,
-    CancellationToken cancellationToken = default(CancellationToken))
-  {
-    throw new NotImplementedException();
-  }
-
-  public Task SetAsync(ITurnContext turnContext, T value,
-    CancellationToken cancellationToken = default(CancellationToken))
-  {
-    throw new NotImplementedException();
-  }
-}
-```
-
-## <a name="additional-resources"></a>其他資源
-在 GitHub 上可取得本文中使用的 [C#](http://aka.ms/scale-out) 範例程式碼。
+## <a name="additional-information"></a>其他資訊
+在 GitHub 上可取得本文中使用的 [C# 範例](http://aka.ms/scale-out)程式碼。
 

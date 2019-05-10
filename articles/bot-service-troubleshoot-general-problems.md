@@ -6,13 +6,13 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 02/26/2019
-ms.openlocfilehash: 48a0a42d193b0e561a484330222217c18a611e8d
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.date: 04/30/2019
+ms.openlocfilehash: 1e0678d869b02d536eb5c3ce39461da94dbd9a57
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224946"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033094"
 ---
 # <a name="troubleshooting-general-problems"></a>對一般問題進行疑難排解
 這些常見問答集可協助您對常見的 Bot 開發或作業問題進行疑難排解。
@@ -21,7 +21,7 @@ ms.locfileid: "57224946"
 
 1. 使用 [Visual Studio Code](debug-bots-locally-vscode.md) 或 [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/debugger/navigating-through-code-with-the-debugger?view=vs-2017) 針對 Bot 的原始程式碼進行偵錯。
 1. 在將 Bot 部署至雲端之前，使用[模擬器](bot-service-debug-emulator.md)來測試它。
-1. 將 Bot 部署至如 Azure 的雲端主機平台，然後在 <a href="https://dev.botframework.com" target="_blank">Bot Framework 入口網站</a> \(英文\) 中使用 Bot 儀表板上的內建網路聊天控制項來測試 Bot 的連線能力。 如果您在將 Bot 部署至 Azure 後遇到問題，則可以考慮使用這篇部落格文章：[了解 Azure 疑難排解和支援](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)。
+1. 將 Bot 部署至如 Azure 的雲端主機平台，然後在 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>中使用 Bot 儀表板上的內建網路聊天控制項來測試 Bot 的連線能力。 如果您在將 Bot 部署至 Azure 後遇到問題，則可以考慮使用這篇部落格文章：[了解 Azure 疑難排解和支援](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)。
 1. 排除問題是由[驗證][TroubleshootingAuth]所導致的可能性。
 1. 在 Skype 上測試您的 Bot。 這將能協助您驗證端對端的使用者體驗。
 1. 請考慮在具有額外驗證需求的通道 (例如直接線路或網路聊天) 上測試 Bot。
@@ -104,7 +104,7 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 
 ## <a name="why-are-my-facebook-user-names-not-showing-anymore"></a>為何已不再顯示我的 Facebook 使用者名稱？
 
-您是否有變更您的 Facebook 密碼？ 這麼做將會使存取權杖無效，且您必須在 <a href="https://dev.botframework.com" target="_blank">Bot Framework 入口網站</a> \(英文\) 中針對 Facebook Messenger 通道更新您 Bot 的組態設定。
+您是否有變更您的 Facebook 密碼？ 這麼做將會使存取權杖無效，且您必須在 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>中針對 Facebook Messenger 通道更新您 Bot 的組態設定。
 
 ## <a name="why-is-my-kik-bot-replying-im-sorry-i-cant-talk-right-now"></a>為何我的 Kik Bot 會回覆 "I'm sorry, I can't talk right now" (抱歉，我現在無法交談)？
 
@@ -130,7 +130,7 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 如果要修正此問題，請將直接線路用戶端所傳送之每則訊息中的 `from` 屬性，設定為能唯一代表傳送該訊息之使用者的穩定值。 例如，如果使用者已經登入網頁或應用程式，您便可以將該使用者的現有識別碼，作為其所傳送之訊息中 `from` 屬性的值。 或者，您可以選擇在頁面載入或應用程式載入時產生隨機的使用者識別碼，將該識別碼儲存於 Cookie 或裝置狀態中，然後將該識別碼作為使用者所傳送之訊息中 `from` 屬性的值。
 
 ## <a name="what-causes-the-direct-line-30-service-to-respond-with-http-status-code-502-bad-gateway"></a>造成直接線路 3.0 服務回應 HTTP 狀態碼 502「不正確的閘道」的原因為何？
-直接線路 3.0 會在嘗試連絡 Bot 但無法成功完成要求的情況下，傳回 HTTP 狀態碼 502。 此錯誤表示 Bot 傳回錯誤或要求逾時。如需 Bot 會產生之錯誤的詳細資訊，請在 <a href="https://dev.botframework.com" target="_blank">Bot Framework 入口網站</a> \(英文\) 內移至 Bot 的儀表板，然後按一下 [問題] 連結以了解受影響的通道。 如果您已經針對 Bot 設定 Application Insights，便也可以在那裡找到詳細的錯誤資訊。 
+直接線路 3.0 會在嘗試連絡 Bot 但無法成功完成要求的情況下，傳回 HTTP 狀態碼 502。 此錯誤表示 Bot 傳回錯誤或要求逾時。如需 Bot 會產生的錯誤詳細資訊，請在 <a href="https://portal.azure.com" target="_blank">Azure Portal</a>內移至 Bot 的儀表板，然後按一下 [問題] 連結以了解受影響的通道。 如果您已經針對 Bot 設定 Application Insights，便也可以在那裡找到詳細的錯誤資訊。 
 
 ::: moniker range="azure-bot-service-3.0"
 
@@ -216,13 +216,6 @@ builder
     .InstancePerLifetimeScope();
 builder.Update(Conversation.Container);
 ```
-::: moniker-end
-
-## <a name="is-there-a-limit-on-the-amount-of-data-i-can-store-using-the-state-api"></a>使用狀態 API 儲存的資料量是否有限制？
-
-是，每個狀態存放區 (也就是使用者、交談及私人 Bot 資料包) 可以包含最多 64kb 的資料。 如需詳細資訊，請參閱[管理狀態資料][StateAPI]。
-
-::: moniker range="azure-bot-service-3.0"
 
 ## <a name="how-do-i-version-the-bot-data-stored-through-the-state-api"></a>如何設定透過狀態 API 所儲存之 Bot 資料的版本？
 
