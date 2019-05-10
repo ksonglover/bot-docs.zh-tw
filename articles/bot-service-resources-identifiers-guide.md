@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: 3c4f8549f40740961feea24f73aa2e4b9b7bc82f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 04/30/2019
+ms.openlocfilehash: 28932ca45c6faaad2f17ecc03f026ba04352a5a1
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998885"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033066"
 ---
 # <a name="id-fields-in-the-bot-framework"></a>Bot Framework 中的識別碼欄位
 
@@ -36,13 +36,13 @@ ms.locfileid: "49998885"
 
 ## <a name="bot-handle"></a>Bot 控制代碼
 
-每個已向 Bot Framework 註冊的 Bot 都有一個 Bot 控制代碼。
+每個已向 Azure Bot Service 註冊的 Bot 都有一個 Bot 控制代碼。
 
 範例： `FooBot`
 
-Bot 控制代碼代表 Bot 已向線上 Bot Framework 註冊。 這項註冊會與 HTTP Webhook 端點以及通道註冊相關聯。
+Bot 控制代碼代表 Bot 已向線上 Azure Bot Service 進行註冊。 這項註冊會與 HTTP Webhook 端點以及通道註冊相關聯。
 
-Bot Framework 開發人員入口網站可確保 Bot 控制代碼的唯一性。 入口網站會執行不區分大小寫的唯一性檢查 (亦即會將各種大小寫有所變化的 Bot 控制代碼視為單一控制代碼)，不過，這是開發人員入口網站的特性，而不一定是 Bot 控制代碼本身的特性。
+Azure Bot Service 可確保 Bot 控制代碼的唯一性。 Azure 入口網站會執行不區分大小寫的唯一性檢查 (亦即會將各種大小寫有所變化的 Bot 控制代碼視為單一控制代碼)，不過，這是 Azure 入口網站的特性，而不一定是 Bot 控制代碼本身的特性。
 
 ### <a name="rules-for-bot-handles"></a>Bot 控制代碼的規則
 
@@ -50,7 +50,7 @@ Bot Framework 開發人員入口網站可確保 Bot 控制代碼的唯一性。 
 
 ## <a name="app-id"></a>應用程式識別碼
 
-每個已向 Bot Framework 註冊的 Bot 都有一個應用程式識別碼。
+每個已向 Azure Bot Service 註冊的 Bot 都有一個應用程式識別碼。
 
 > [!NOTE]
 > 過去，應用程式通常稱為「MSA 應用程式」或「MSA/AAD 應用程式」。 現在，應用程式更常簡稱為「應用程式」，但某些通訊協定元素可能會一直將應用程式稱為「MSA 應用程式」。

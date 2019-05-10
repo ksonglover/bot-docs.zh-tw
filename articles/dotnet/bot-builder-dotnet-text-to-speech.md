@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3eef1ec583764449554a223ec9dc339ff505ace6
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: f93ab91281cf0f19be10898436dc41a6a1583c9a
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225593"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032983"
 ---
 # <a name="add-speech-to-messages"></a>將語音新增至訊息
 
@@ -51,7 +51,9 @@ ms.locfileid: "54225593"
 
 ## <a id="ssml"></a> 語音合成標記語言 (SSML)
 
-若要指定要由 Bot 讀出的文字，您可以使用純文字字串或格式化為語音合成標記語言 (SSML) 的字串，SSML 是一種以 XML 為基礎的標記語言，可讓您控制 Bot 語音的各種特性，例如聲音、速率、音量、發音、音調等等。 如需 SSML 的詳細資訊，請參閱<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言參考</a> \(英文\)。
+若要指定要由 Bot 讀出的文字，您可以提供 Bot 格式為語音合成標記語言 (SSML) 的字串。 SSML 是以 XML 為基礎的標記語言 (而且必須是有效的 XML)，可讓您控制 Bot 語音，例如語音、速率、磁碟區、發音及音調等各種特性。 如需 SSML 的詳細資訊，請參閱<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言參考</a> \(英文\)。
+
+當提供 SSML 格式化字串時，可能會省略外部的 SSML 包裝函式元素。
 
 ## <a name="input-hints"></a>輸入提示
 
@@ -66,7 +68,7 @@ ms.locfileid: "54225593"
 - [建立訊息](bot-builder-dotnet-create-messages.md)
 - [將輸入提示新增至訊息](bot-builder-dotnet-add-input-hints.md)
 - <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a> \(英文\)
-- <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-RollerSkill" target="_blank">骰子機技能範例 (GitHub)</a> \(英文\)
+- <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/demo-RollerSkill" target="_blank">骰子機技能範例 (GitHub)</a> \(英文\)
 - <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a> \(英文\)
 - <a href="/dotnet/api/microsoft.bot.connector.imessageactivity" target="_blank">IMessageActivity 介面</a>
 - <a href="/dotnet/api/microsoft.bot.builder.dialogs.internals.dialogcontext" target="_blank">DialogContext 類別</a>

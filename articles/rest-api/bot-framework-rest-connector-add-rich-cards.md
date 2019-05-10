@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: e38bb7ca93c5fc4174d67d1c5ebb0655eef68653
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: a662bb24f384d072a162242a4634fe4fe3a4b395
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997909"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033446"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>將複合式資訊卡 (Rich Card) 附件新增至訊息
 > [!div class="op_single_selector"]
@@ -53,7 +53,7 @@ Bot Framework 目前支援八種類型的複合式資訊卡：
 |----|----|----|
 | type | 字串 | 動作的類型 (下表中指定的其中一個值) |
 | title | 字串 | 按鈕的標題 |
-| 映像 | 字串 | 按鈕的影像 URL |
+| image | 字串 | 按鈕的影像 URL |
 | value | 字串 | 執行指定動作類型所需的值 |
 
 > [!NOTE]
@@ -117,7 +117,7 @@ Content-Type: application/json
                 "text": "descriptive text goes here",
                 "images": [
                     {
-                        "url": "http://aka.ms/Fo983c",
+                        "url": "https://aka.ms/DuckOnARock",
                         "alt": "picture of a duck",
                         "tap": {
                             "type": "playAudio",
@@ -134,7 +134,7 @@ Content-Type: application/json
                     {
                         "type": "openUrl",
                         "title": "Watch Video",
-                        "image": "http://aka.ms/Fo983c",
+                        "image": "https://aka.ms/DuckOnARock",
                         "value": "url goes here of the duck in flight"
                     }
                 ]

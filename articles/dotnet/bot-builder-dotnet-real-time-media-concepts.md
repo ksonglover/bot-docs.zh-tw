@@ -1,21 +1,18 @@
 ---
-title: 使用 Skype 進行即時媒體通話 | Microsoft Docs
-description: 了解建置 Bot 的主要概念，可以使用適用於 .NET 的 Bot Framework SDK，透過 Skype 進行即時音訊和視訊通話。
-author: ssulzer
-ms.author: ssulzer
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 12/13/2017
-monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 893458a484c0e26545c23016ccbf3049adc61960
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+redirect_url: https://aka.ms/realTimeMediaCalling-repo
+ms.openlocfilehash: f6568ed5d4f98addb19f452142a0a5d6d37e00c8
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225253"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032972"
 ---
+<a name="--"></a><!--
+---
+標題：使用 Skype 進行即時媒體通話 | Microsoft Docs 描述：了解建置 Bot 的主要概念，可以使用適用於 .NET 的 Bot Framework SDK，透過 Skype 進行即時音訊和視訊通話。
+author: ssulzer ms.author: ssulzer manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date:12/13/2017 monikerRange: 'azure-bot-service-3.0'
+---
+
 # <a name="real-time-media-calling-with-skype"></a>使用 Skype 進行即時媒體通話
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
@@ -65,3 +62,4 @@ Bot 的即時媒體平台可以與 Skype 通話雲端搭配運作，負責通話
 ### <a name="code-samples"></a>程式碼範例
 
 [BotBuilder-RealTimeMediaCalling](https://github.com/Microsoft/BotBuilder-RealTimeMediaCalling) GitHub 存放庫包含樣本，示範如何建置適用於 Skype 的即時媒體 Bot。
+-->

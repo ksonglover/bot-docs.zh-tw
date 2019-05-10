@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f7e68b9ab6ef1fca189108ed4117c0ab17f4d9f2
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 5ae3acded991411156d3e69f4ed9360df9bdccb1
+ms.sourcegitcommit: 4c5c08e7c7eaa5f74c6ac35d8478954b998625f9
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224293"
+ms.lasthandoff: 04/29/2019
+ms.locfileid: "64906302"
 ---
 # <a name="add-speech-to-messages"></a>將語音新增至訊息
 
@@ -31,7 +31,7 @@ ms.locfileid: "54224293"
 
 使用適用於 Node.js 的 Bot Framework SDK 時，有多種方式可用來指定要由 Bot 在具備語音功能的通道上讀出的文字。 您可以設定 `IMessage.speak` 屬性，並使用 `session.send()` 方法傳送訊息、使用 `session.say()` 方法 (傳入指定顯示文字、語音文字和選項的參數) 傳送訊息，或使用內建的提示 (指定選項 `speak` 和 `retrySpeak`) 傳送訊息。
 
-### <a id="message-speak"></a> IMessage.speak 
+### <a id="message-speak"></a> IMessage.speak
 
 如果您要建立將會使用 `session.send()` 方法來傳送的訊息，請設定 `speak`屬性以指定要由 Bot 讀出的文字。 下列程式碼範例會建立一則訊息，其中指定要讀出的文字，並指出 Bot 會[接受使用者輸入](bot-builder-nodejs-send-input-hints.md)。
 
@@ -47,7 +47,7 @@ ms.locfileid: "54224293"
 |----|----|
 | `displayText` | 要顯示的文字。 |
 | `speechText` | 要讀出的文字 (採用純文字或 <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">SSML</a> 格式)。 |
-| `options` | 可包含附件或[輸入提示](bot-builder-nodejs-send-input-hints.md)的 [IMessage][IMessage] 物件。 |
+| `options` | 可包含附件或[輸入提示](bot-builder-nodejs-send-input-hints.md)的 `IMessage` 物件。 |
 
 下列程式碼範例會傳送一則訊息，其中指定要顯示的文字和要讀出的文字，並指出 Bot 會[忽略使用者輸入](bot-builder-nodejs-send-input-hints.md)。
 
@@ -78,10 +78,3 @@ ms.locfileid: "54224293"
 
 - <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a> \(英文\)
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">骰子機範例 (GitHub)</a>
-- [適用於 Node.js 的 Bot Framework SDK 參考][SDKReference]
-
-[SDKReference]: https://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_.html
-
-[Message]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message
-
-[IMessage]: http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage

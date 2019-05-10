@@ -1,9 +1,8 @@
-# 企業範本
-## [概觀](../v4sdk/bot-builder-enterprise-template-overview.md)
-## [快速入門](../v4sdk/bot-builder-enterprise-template-getting-started.md)
-## [自訂範本](../v4sdk/bot-builder-enterprise-template-customize.md)
-# 虛擬小幫手 
+# 虛擬小幫手
 ## [概觀](../v4sdk/bot-builder-virtual-assistant-introduction.md)
+## [範本簡介](../v4sdk/bot-builder-virtual-assistant-template.md)
+# 技術 
+## [概觀](../v4sdk/bot-builder-skills-overview.md)
 # [常見問題集](../bot-service-resources-bot-framework-faq.md)
 # [取得支援](../bot-service-resources-links-help.md)
 # [通道參考](../bot-service-channels-reference.md)

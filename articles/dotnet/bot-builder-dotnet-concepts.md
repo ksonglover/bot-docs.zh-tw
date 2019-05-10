@@ -10,11 +10,11 @@ ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
 ms.openlocfilehash: e01473a06a0cdbef635de33e5734b02351e36cea
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54223803"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563453"
 ---
 # <a name="key-concepts-in-the-bot-framework-sdk-for-net"></a>適用於 .NET 的 Bot Framework SDK 重要概念
 

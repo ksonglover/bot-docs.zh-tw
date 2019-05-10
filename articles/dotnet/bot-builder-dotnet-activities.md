@@ -10,11 +10,11 @@ ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
 ms.openlocfilehash: 076e460f393c5db524cfade81e5c007484fe2cca
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225663"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64564071"
 ---
 # <a name="activities-overview"></a>活動概觀
 
@@ -38,7 +38,7 @@ ms.locfileid: "54225663"
 | [invoke](#invoke) | IInvokeActivity | 代表傳送給 Bot 以要求其執行特定作業的通訊。 此活動類型由 Microsoft Bot Framework 保留供內部使用。 |
 | [messageReaction](#messagereaction) | IMessageReactionActivity | 表示使用者已對現有活動做出回應。 例如，使用者按了訊息上的「讚」按鈕。 |
 
-## <a name="message"></a>Message
+## <a name="message"></a>message
 
 您的 Bot 會傳送 **message** 活動以傳達資訊，及接收來自使用者的 **message** 活動。 某些訊息可能只包含純文字，而其他訊息可能包含更豐富的內容，例如[要讀出的文字](bot-builder-dotnet-text-to-speech.md)、[建議的動作](bot-builder-dotnet-add-suggested-actions.md)、[媒體附件](bot-builder-dotnet-add-media-attachments.md)、[複合式資訊卡 (Rich Card)](bot-builder-dotnet-add-rich-card-attachments.md)，和[通道特定資料](bot-builder-dotnet-channeldata.md)。 如需常用訊息屬性的資訊，請參閱[建立訊息](bot-builder-dotnet-create-messages.md)。
 

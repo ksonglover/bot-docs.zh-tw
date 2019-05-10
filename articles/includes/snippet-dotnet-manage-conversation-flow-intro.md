@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 7eed8c8328456bad43f3bdfe0029df09efa062d6
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563488"
+---
 下圖顯示傳統應用程式的畫面流程與 Bot 對話流程的比較。 
 
 ![Bot](~/media/designing-bots/core/dialogs-screens.png)

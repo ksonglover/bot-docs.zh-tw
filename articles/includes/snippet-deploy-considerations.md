@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 4e2ab87f509c29c33a27810668445975e31f6ac4
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563849"
+---
 ## <a name="application-settings-and-messaging-endpoint"></a>應用程式設定和傳訊端點
 
 ### <a name="verify-application-settings"></a>確認應用程式設定

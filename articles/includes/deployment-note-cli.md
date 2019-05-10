@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: cc7e656d7c8a61e7bf784db579d0065c3bff331a
+ms.sourcegitcommit: 4ff7a8772124a567f43e2c3e13aded368c4002e3
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65035770"
+---
 如果您使用 LUIS 等服務，則也必須傳遞 `luisAuthoringKey`。 如果您想要在 Azure 中使用現有的資源群組，請使用 `groupName` 引數搭配上述命令。
 
 強烈建議您使用 `verbose` 選項來協助排解在 Bot 部署期間可能發生的問題。 搭配 `msbot clone services` 命令使用的其他選項如下所述：

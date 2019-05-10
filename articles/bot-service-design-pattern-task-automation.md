@@ -8,12 +8,13 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 2/13/2018
-ms.openlocfilehash: c14814dc7e2c83f740202db90b7e41efcdfb66a5
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+monikerRange: azure-bot-service-3.0
+ms.openlocfilehash: 21324f68332be6a60f55e6ab55545fc6102bedb9
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224403"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033025"
 ---
 # <a name="create-task-automation-bots"></a>建立工作自動化 Bot
 
@@ -28,8 +29,6 @@ ms.locfileid: "54224403"
 每天都會有員工打好幾通電話來 Contoso 公司的技術支援中心，要求重設密碼。 Contoso 想要將重設員工密碼這個簡單、可重複執行的工作自動化，以便技術支援中心代表可以將時間花費在處理更複雜的問題。 
 
 Contoso 的資深開發人員 John 決定建立 Bot，以將密碼重設工作自動化。 他開始撰寫 Bot 的設計規格，就像在建立新的應用程式或網站時一樣。 
-
-::: moniker range="azure-bot-service-3.0"
 
 ### <a name="navigation-model"></a>巡覽模式
 
@@ -63,10 +62,7 @@ Contoso 的資深開發人員 John 決定建立 Bot，以將密碼重設工作�
 
 #### <a name="resetpassword-dialog"></a>ResetPassword 對話方塊
 
-當使用者從根對話方塊中選擇 [重設密碼]時，會叫用 `ResetPassword` 對話方塊。 
-接著，`ResetPassword` 對話方塊會叫用另外兩個對話方塊。 
-首先，它會叫用 `PromptStringRegex` 對話方塊來收集使用者的電話號碼。 
-然後它會叫用 `PromptDate` 對話方塊來收集使用者的出生日期。 
+當使用者從根對話方塊中選擇 [重設密碼]時，會叫用 `ResetPassword` 對話方塊。 接著，`ResetPassword` 對話方塊會叫用另外兩個對話方塊。 首先，它會叫用 `PromptStringRegex` 對話方塊來收集使用者的電話號碼。 然後它會叫用 `PromptDate` 對話方塊來收集使用者的出生日期。 
 
 > [!NOTE]
 > 在此範例中，John 選擇實作的邏輯，會使用兩個不同的對話方塊來收集使用者的電話號碼與出生日期。 此方法不僅可簡化每個對話方塊所需的程式碼，也可增加未來在其他案例中使用這些對話方塊的機率。 
@@ -77,9 +73,7 @@ Contoso 的資深開發人員 John 決定建立 Bot，以將密碼重設工作�
 
 #### <a name="promptstringregex-dialog"></a>PromptStringRegex 對話方塊
 
-`PromptStringRegex` 對話方塊會提示使用者輸入其電話號碼，並驗證使用者提供的電話號碼符合預期的格式。 
-它也會負責使用者重複提供無效輸入的案例。 
-此規格描述 `PromptStringRegex` 對話方塊。
+`PromptStringRegex` 對話方塊會提示使用者輸入其電話號碼，並驗證使用者提供的電話號碼符合預期的格式。 它也會負責使用者重複提供無效輸入的案例。 此規格描述 `PromptStringRegex` 對話方塊。
 
 ![對話方塊結構](~/media/bot-service-design-pattern-task-automation/simple-task4.png)
 
@@ -89,8 +83,6 @@ Contoso 的資深開發人員 John 決定建立 Bot，以將密碼重設工作�
 
 ![對話方塊結構](~/media/bot-service-design-pattern-task-automation/simple-task5.png)
 
-::: moniker-end 
-
 ## <a name="bot-app-or-website"></a>Bot、應用程式還是網站？
 
 您可能會好奇，如果工作自動化 Bot 十分類似應用程式或網站，為什麼不改為建置應用程式或網站就好？ 根據您的特定案例，建置應用程式或網站而不建置 Bot 可能是完全合理的選擇。 您可能甚至會使用 [Bot Framework Direct Line API][directLineAPI] 或 <a href="https://aka.ms/BotFramework-WebChat" target="_blank">網路聊天控制項</a>，選擇將您的 Bot 內嵌到應用程式中。 在應用程式的內容中實作 Bot 有兩個優點：在同一個位置提供豐富的應用程式與對話體驗。 
@@ -99,7 +91,6 @@ Contoso 的資深開發人員 John 決定建立 Bot，以將密碼重設工作�
 
 此外，Bot 能夠自由地輕鬆延伸及擴充。 例如，開發人員可以選擇將自然語言和語音功能新增至密碼重設 Bot，使其可透過語音通話進行存取，或可新增文字簡訊的支援。 該公司可能會在整個建置中設定 kiosk，並在這個體驗中內嵌密碼重設 Bot。
 
-::: moniker range="azure-bot-service-3.0"
 <!-- TODO: SimpleTaskAutomation no longer exists
 ## Sample code
 
@@ -114,6 +105,5 @@ For a complete sample that shows how to implement simple task automation using t
 - [使用對話方塊來管理對話流程 (.NET)](~/dotnet/bot-builder-dotnet-manage-conversation-flow.md)
 - [使用對話方塊來管理對話流程 (Node.js)](~/nodejs/bot-builder-nodejs-manage-conversation-flow.md)
 
-::: moniker-end
 
 [directLineAPI]: https://docs.botframework.com/en-us/restapi/directline3/#navtitle

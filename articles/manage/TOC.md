@@ -4,7 +4,10 @@
 ## [將 Bot 連線至通道](../bot-service-manage-channels.md)
 ## [實作通道特有功能](../v4sdk/bot-builder-channeldata.md)
 ## [Cortana](../bot-service-channel-connect-cortana.md) 
-## [直接線路](../bot-service-channel-connect-directline.md) \(英文\)
+## Direct Line
+### [關於 Direct Line](../bot-service-channel-directline.md)
+### [連線至 Direct Line](../bot-service-channel-connect-directline.md)
+### [連線至 Direct Line Speech](../bot-service-channel-connect-directlinespeech.md)
 ## [電子郵件](../bot-service-channel-connect-email.md)
 ## [啟用網路聊天中的語音](../bot-service-channel-connect-webchat-speech.md)
 ## [Facebook](../bot-service-channel-connect-facebook.md) 

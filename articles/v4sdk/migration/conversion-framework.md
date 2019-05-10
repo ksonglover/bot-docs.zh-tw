@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/11/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1904bb09d8bd387cc5cec0d85f82df24d1f6ec9d
-ms.sourcegitcommit: 7f418bed4d0d8d398f824e951ac464c7c82b8c3e
+ms.openlocfilehash: ea6b859761a3bc8c1424d50d8bad0b7f1f50e86d
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2019
-ms.locfileid: "56240174"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033459"
 ---
 # <a name="migrate-a-net-sdk-v3-bot-to-v4"></a>將 .NET SDK v3 Bot 遷移至 v4
 
@@ -111,7 +111,7 @@ namespace ContosoHelpdeskChatBot
 
 ## <a name="update-your-globalasaxcs-file"></a>更新 Global.asax.cs 檔案
 
-某些 Scaffolding 已變更，而且我們必須自行在 v4 中設定部份的[狀態管理](/articles/v4sdk/bot-builder-concept-state.md)基礎結構。 例如，v4 會使用 Bot 配接器來處理驗證並將活動轉送到 Bot 程式碼，而我們會事先宣告我們的狀態屬性。
+某些 Scaffolding 已變更，而且我們必須自行在 v4 中設定部份的[狀態管理](../bot-builder-concept-state.md)基礎結構。 例如，v4 會使用 Bot 配接器來處理驗證並將活動轉送到 Bot 程式碼，而我們會事先宣告我們的狀態屬性。
 
 我們將建立 `DialogState` 的狀態屬性，我們現在需要該屬性才能在 v4 中支援對話。 我們將使用相依性插入來取得控制器和 Bot 程式碼的必要資訊。
 
@@ -246,7 +246,7 @@ namespace ContosoHelpdeskChatBot
         }
     }
     ```
-1. 新增 **OnTurnAsync** 方法，其中包含 Bot 的[回合處理常式](/articles/v4sdk/bot-builder-basics.md#the-activity-processing-stack)程式碼。
+1. 新增 **OnTurnAsync** 方法，其中包含 Bot 的[回合處理常式](../bot-builder-basics.md#the-activity-processing-stack)程式碼。
     > [!NOTE]
     > 因此 v4 中不存在可評分項目。 我們會在繼續任何作用中對話之前，先檢查 Bot 的回合處理常式中來自使用者的 `cancel` 訊息。
     ```csharp
@@ -353,8 +353,8 @@ v4 程式碼的注意事項：
 
 在此 Bot 中，根對話會提示使用者從一組選項中進行選擇，然後根據該選擇開始進行子對話。 接著在交談存留期間執行迴圈。
 
-- 我們可以將主要流程設定為瀑布式對話，這是 v4 SDK 中的新概念。 它會依序執行一組固定的步驟。 如需詳細資訊，請參閱[實作循序交談流程](/articles/v4sdk/bot-builder-dialog-manage-conversation-flow)。
-- 提示作業現在會透過提示類別來處理，而這些類別是簡短的子對話，可提示輸入資料、執行最少的處理和驗證，並傳回一個值。 如需詳細資訊，請參閱[使用對話提示收集使用者輸入](/articles/v4sdk/bot-builder-prompts.md)。
+- 我們可以將主要流程設定為瀑布式對話，這是 v4 SDK 中的新概念。 它會依序執行一組固定的步驟。 如需詳細資訊，請參閱[實作循序交談流程](~/v4sdk/bot-builder-dialog-manage-conversation-flow.md)。
+- 提示作業現在會透過提示類別來處理，而這些類別是簡短的子對話，可提示輸入資料、執行最少的處理和驗證，並傳回一個值。 如需詳細資訊，請參閱[使用對話提示收集使用者輸入](~/v4sdk/bot-builder-prompts.md)。
 
 在 **Dialogs/RootDialog.cs** 檔案中：
 
@@ -425,7 +425,7 @@ v4 程式碼的注意事項：
     }
     ```
 1. 我們可以使用瀑布的第二個步驟取代 **OnOptionSelected**。 我們仍會根據使用者的輸入開始子對話。
-   - 選擇提示會傳回 `FoundChoice` 值。 這會顯示在步驟內容的 `Result` 屬性中。 對話堆疊會將所有傳回值視為物件。 如果傳回值來自您的其中一個對話，您便知道物件值是何種類型。 如需每個提示類型傳回的內容清單，請參閱[提示類型](/articles/v4sdk/bot-builder-concept-dialog.md#prompt-types)。
+   - 選擇提示會傳回 `FoundChoice` 值。 這會顯示在步驟內容的 `Result` 屬性中。 對話堆疊會將所有傳回值視為物件。 如果傳回值來自您的其中一個對話，您便知道物件值是何種類型。 如需每個提示類型傳回的內容清單，請參閱[提示類型](../bot-builder-concept-dialog.md#prompt-types)。
    - 因為選擇提示不會擲回例外狀況，所以可移除 try-catch 區塊。
    - 我們必須新增一項通過，此方法才能一律傳回適當的值。 此程式碼應該永遠不會被叫用，但如果叫用，就會讓對話「正常失敗」。
     ```csharp

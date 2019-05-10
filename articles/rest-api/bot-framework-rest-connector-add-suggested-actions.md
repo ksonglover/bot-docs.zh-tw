@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 298a827af880223f80cee1876eaea745c6a4a88e
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 346c522a1e1cd3d5904b74ad6e6092a1457a001c
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000075"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032586"
 ---
 # <a name="add-suggested-actions-to-messages"></a>將建議的動作新增至訊息
 > [!div class="op_single_selector"]
@@ -22,9 +22,6 @@ ms.locfileid: "50000075"
 > - [REST](../rest-api/bot-framework-rest-connector-add-suggested-actions.md)
 
 [!INCLUDE [Introduction to suggested actions](../includes/snippet-suggested-actions-intro.md)]
-
-> [!TIP]
-> 若要了解各種通道如何呈現建議的動作，請參閱[通道偵測器][channelInspector]。
 
 ## <a name="send-suggested-actions"></a>傳送建議的動作
 

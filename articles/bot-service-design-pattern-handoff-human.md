@@ -6,13 +6,13 @@ ms.author: mateusv
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 12/13/2017
-ms.openlocfilehash: f18b375a1e4ebcf06d00d045e383db8b05fb5111
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 5/2/2019
+ms.openlocfilehash: a5bb8d8dce1fdb45ab9ab42b247e2697713e51ac
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225733"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033049"
 ---
 # <a name="transition-conversations-from-bot-to-human"></a>將交談從 Bot 切換為人類
 
@@ -71,10 +71,6 @@ Bot 正在等待人類時，它可能會以預設回應 (例如「在佇例中�
 
 > [!NOTE]
 > 在更進階的案例中，Bot 可以承擔除了只是在使用者與代理人員之間路由傳送訊息之外的責任。 例如，Bot 可以決定哪個回應合適，並且只要求代理人員確認以繼續進行。
-
-## <a name="sample-code"></a>範例程式碼
-
-如需示範如何使用適用於 Node.js 的 Bot Framework SDK 將交談從 Bot 遞交給人的完整範例，請參閱 GitHub 中的 <a href="https://github.com/palindromed/Bot-HandOff" target="_blank">Bot 遞交範例</a>。
 
 ## <a name="additional-resources"></a>其他資源
 

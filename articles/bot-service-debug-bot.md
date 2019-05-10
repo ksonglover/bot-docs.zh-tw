@@ -9,16 +9,16 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 2/26/2019
-ms.openlocfilehash: 1e806358ffdba90848f0c8124c8315fd4e2dec76
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: aa16bc839a96a49615ed127aaf56f686f50a5397
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224836"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033004"
 ---
 # <a name="debug-a-bot"></a>對 Bot 進行偵錯
 
-本文說明如何使用整合式開發環境 (IDE)，例如 Visual Studio 或 Visual Studio Code 和 Bot Framework 模擬器等，對 Bot 進行偵錯。 儘管您可以使用這些方法對任何 Bot 進行本機偵錯，本文會使用在快速入門中建立的 [C#](~/dotnet/bot-builder-dotnet-sdk-quickstart.md) 和 [JS](~/javascript/bot-builder-javascript-quickstart.md) Bot。
+本文說明如何使用整合式開發環境 (IDE)，例如 Visual Studio 或 Visual Studio Code 和 Bot Framework 模擬器等，對 Bot 進行偵錯。 儘管您可以使用這些方法對任何 Bot 進行本機偵錯，本文會使用在快速入門中建立的 [C# bot](~/dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [Javascript bot](~/javascript/bot-builder-javascript-quickstart.md)。
 
 ## <a name="prerequisites"></a>必要條件 
 - 下載並安裝 [Bot Framework 模擬器](https://aka.ms/Emulator-wiki-getting-started) (英文)。
@@ -29,7 +29,7 @@ ms.locfileid: "57224836"
 若要使用命令列執行 JavaScript Bot 並使用模擬器測試 Bot，請執行下列操作：
 1. 從命令列將目錄變更至 Bot 專案目錄。
 1. 執行命令 **node app.js** 以啟動 Bot。
-1. 啟動模擬器，然後連線到 Bot 的端點 (例如：**http://localhost:3978/api/messages**)。 如果這是您第一次執行 Bot，請按一下 [檔案] > [新的 Bot]，並遵循畫面上的指示。 否則，請按一下 [檔案] > [開啟 Bot] 以開啟現有的 Bot。 由於這個 Bot 在本機電腦上執行，您可以將 **MSA 應用程式識別碼**和 **MSA 應用程式密碼**欄位留白。 如需詳細資訊，請參閱[使用模擬器進行偵錯](bot-service-debug-emulator.md)。
+1. 啟動模擬器，然後連線到 Bot 的端點 (例如：**http://localhost:3978/api/messages**)。 如果這是您第一次執行 Bot，請按一下 [檔案] > [新的 Bot]，並遵循畫面上的指示。 否則，請按一下 [檔案] > [開啟 Bot] 以開啟現有的 Bot。 由於這個 Bot 在本機電腦上執行，您可以將 **MicrosoftAppId** 和 **MicrosoftAppPassword** 欄位留白。 如需詳細資訊，請參閱[使用模擬器進行偵錯](bot-service-debug-emulator.md)。
 1. 在模擬器中，向 Bot 傳送訊息 (例如：傳送「嗨」訊息)。 
 1. 使用模擬器視窗右側的 [偵測器] 和 [記錄] 面板來對您的 Bot 進行偵錯。 比方說，按一下任何一個訊息泡泡 (例如：在下方螢幕擷取畫面中的「嗨」訊息泡泡)，在 [偵測器] 面板中會向您顯示該訊息的詳細資料。 您可以用它來檢視要求和回應，因訊息會在模擬器和 Bot 之間交換。 或者，您也可以按一下 [記錄] 面板中任何連結的文字，以在 [偵測器] 面板中檢視詳細資料。
 
@@ -132,7 +132,7 @@ ms.locfileid: "57224836"
 ## <a name="additional-resources"></a>其他資源
 
 - 請參閱[針對一般問題疑難排解](bot-service-troubleshoot-bot-configuration.md)以及該區段中的其他疑難排解文章。
-- 請參閱如何[使用 ngrok 對本機任何通道進行偵錯](https://blog.botframework.com/2017/10/19/debug-channel-locally-using-ngrok/)部落格文章。
+- 了解如何[使用模擬器進行偵錯](bot-service-debug-emulator.md)。
 
 ## <a name="next-steps"></a>後續步驟
 

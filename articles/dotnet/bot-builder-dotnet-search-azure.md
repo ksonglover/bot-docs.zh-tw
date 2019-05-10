@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 1/28/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6169ed28fb765e84aaf31cf9e7d2ca404294bcad
-ms.sourcegitcommit: c7d2e939ec71f46f48383c750fddaf6627b6489d
+ms.openlocfilehash: e0ffb9c24b5e85b0eb1afdd885654e4864e65939
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55783357"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032934"
 ---
 # <a name="create-data-driven-experiences-with-azure-search"></a>使用 Azure 搜尋服務建立資料驅動體驗 
 
@@ -28,18 +28,17 @@ ms.locfileid: "55783357"
 
 Azure 搜尋服務是一項 Azure 服務，可提供關鍵字搜尋、內建語言、自訂評分、多面向導覽等等。 Azure 搜尋服務也可以對各種來源 (包括 Azure SQL DB、DocumentDB、Blob 儲存體和表格儲存體) 的內容編製索引。 它支援「推送」其他資料來源的編製索引，而且可以開啟 PDF、Office 文件，以及其他包含非結構化資料的格式。 收集後，內容就會進入 Azure 搜尋服務索引，然後 Bot 就可加以查詢。
 
-
 ## <a name="prerequisites"></a>必要條件
 
-在您的 Bot 專案中安裝 [Microsoft.Azure.Search](https://www.nuget.org/packages/Microsoft.Azure.Search/4.0.0-preview) Nuget 套件。 
+在您的 Bot 專案中安裝 [Microsoft.Azure.Search](https://www.nuget.org/packages/Microsoft.Azure.Search/4.0.0-preview) Nuget 套件。
 
-Bot 解決方案需要下列三個 C# 專案。 這些專案會為 Bot 與 Azure 搜尋服務提供額外功能。 從 [GitHub](https://github.com/Microsoft/botBuilder-Samples/tree/master/CSharp/demo-Search) 分支處理專案或直接下載原始程式碼。
+Bot 解決方案需要下列三個 C# 專案。 這些專案會為 Bot 與 Azure 搜尋服務提供額外功能。 從 [GitHub](https://aka.ms/v3-cs-search-demo) 分支處理專案或直接下載原始程式碼。
 
-* [Search.Azure](https://github.com/Microsoft/botBuilder-Samples/tree/master/CSharp/demo-Search/Search.Azure) 可定義 Azure 服務呼叫。 
-* [Search.Contracts](https://github.com/Microsoft/botBuilder-Samples/tree/master/CSharp/demo-Search/Search.Contracts) 可定義一般介面和資料模型來處理資料。
-* [Search.Dialogs](https://github.com/Microsoft/botBuilder-Samples/tree/master/CSharp/demo-Search/Search.Dialogs) 包含用來查詢 Azure 搜尋服務的一般 Bot 建立器對話方塊。
+- **Search.Azure** 專案可定義 Azure 服務呼叫。
+- **Search.Contracts** 專案可定義一般介面和資料模型來處理資料。
+- **Search.Dialogs** 專案包含用來查詢 Azure 搜尋服務的一般 Bot Builder 對話方塊。
 
-## <a name="configure-azure-search-settings"></a>進行 Azure 搜尋服務設定 
+## <a name="configure-azure-search-settings"></a>進行 Azure 搜尋服務設定
 
 在值欄位中使用自有的 Azure 搜尋服務認證，在專案的 **Web.config** 檔案中設定 Azure 搜尋服務設定。 `AzureSearchClient` 類別中的建構函式將使用這些設定來登錄並將 Bot 繫結至 Azure 服務。
 
@@ -176,7 +175,8 @@ public class SearchHitStyler : PromptStyler
 如需兩個示範如何使用適用於 .NET 的 Bot Framework SDK 支援 Azure 搜尋服務的完整 Bot 範例，請參閱 GitHub 中的[不動產 Bot 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/demo-Search/RealEstateBot)或[作業清單 Bot 範例](https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/demo-Search/JobListingBot)。 
 
 ## <a name="additional-resources"></a>其他資源
-* [Azure 搜尋服務][search]
-* [對話概觀](bot-builder-dotnet-dialogs.md)
+
+- [Azure 搜尋服務][search]
+- [對話概觀](bot-builder-dotnet-dialogs.md)
 
 [search]: /azure/search/search-what-is-azure-search

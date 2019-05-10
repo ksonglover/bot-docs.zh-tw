@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 8e5677fe59dd9edad6ac1da9d029e5f7c08bf179
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563967"
+---
 ## <a name="next-steps"></a>後續步驟
 在您將 Bot 部署至雲端，並使用 Bot Framework 模擬器測試 Bot 確認部署成功後，Bot 發佈程序的下一個步驟將取決於您是否已使用 Bot Framework 註冊 Bot。
 

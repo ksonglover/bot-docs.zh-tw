@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 2/26/2019
-ms.openlocfilehash: 53cb392dea5ee0e355451e7455a16512f22ebbaa
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.date: 4/30/2019
+ms.openlocfilehash: c208cef52d1850a00b62828ae0ea622a2606ec5b
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224846"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033419"
 ---
 # <a name="troubleshoot-bot-configuration-issues"></a>針對 Bot 設定問題進行疑難排解
 
@@ -72,7 +72,7 @@ Bot 無法運作的可能原因很多。 最可能是 Bot 應用程式已關閉�
 
 ### <a name="channel-specific-behavior"></a>通道特有的行為
 
-有些功能的實作可能因通道而有所不同。 例如，並非所有通道都支援調適型卡片。 大部分通道都支援按鈕，但是會以通道特有方式轉譯。 如果您看到某些訊息類型在不同通道中的運作方式有所差異，請參閱 [Channel Inspector](https://docs.botframework.com/channel-inspector/channels/Skype)。
+有些功能的實作可能因通道而有所不同。 例如，並非所有通道都支援調適型卡片。 大部分通道都支援按鈕，但是會以通道特有方式轉譯。 如果您看到某些訊息類型在不同通道中的運作方式有所差異，請參閱 [Channel Inspector](bot-service-channels-reference.md)。
 
 以下是一些額外的連結，可協助使用個別的通道：
 

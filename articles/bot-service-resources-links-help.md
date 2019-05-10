@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: f9379613953714333ce4d174f5fa544213f84e99
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: b63f58596e5e0f4548e766f30be1b13b5d2fcd4e
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224913"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033588"
 ---
 # <a name="bot-framework-additional-resources"></a>Bot Framework 其他資源
 
@@ -27,6 +27,7 @@ ms.locfileid: "54224913"
 |        <strong>社群聊天群組</strong>        |                                                                                                                                                                                                                        [Gitter.IM](https://gitter.im/Microsoft/BotBuilder)                                                                                                                                                                                                                        |
 |            <strong>使用 Bot</strong>             |                                                                                                                                                                                                                    透過發行者電子郵件連絡 Bot 的開發人員                                                                                                                                                                                                                     |
 | <strong>Bot Framework SDK 問題/建議</strong> |                                                                                                                                                                                           使用 <a href="https://github.com/Microsoft/BotBuilder-v3/" target="_blank">GitHub 存放庫</a>上的 [問題] 索引標籤                                                                                                                                                                                            |
+| <strong>Azure 協助及支援</strong>             |                                                                                       [Azure 説明 + 支援](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview)                                                                                                                                                            |
 |        <strong>文件問題</strong>        |                                                                                                                                                                     將<a href="https://github.com/MicrosoftDocs/bot-framework-docs/issues" target="_blank">問題</a>提交到 Bot Framework 文件 GitHub 存放庫。                                                                                                                                                                      |
 |       <strong>文件更新</strong>        |                                                                                                                                                   按一下文章上的 [編輯] 連結，並向 <a href="https://github.com/MicrosoftDocs/bot-framework-docs" target="_blank">Bot Framework 文件 GitHub 存放庫</a>提交提取要求。                                                                                                                                                   |
 |          <strong>檢舉不當使用</strong>           |                                                                                                                                                                                                            請透過 [bf-reports@microsoft.com](mailto://bf-reports@microsoft.com) 與我們連絡                                                                                                                                                                                                            |

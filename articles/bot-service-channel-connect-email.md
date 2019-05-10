@@ -10,11 +10,11 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/08/2019
 ms.openlocfilehash: e77f6cddac07cdcc06d6d35cda98544f33dd1d43
-ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/21/2019
-ms.locfileid: "56591179"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563414"
 ---
 # <a name="connect-a-bot-to-office-365-email"></a>將 Bot 連結到 Office 365 電子郵件
 

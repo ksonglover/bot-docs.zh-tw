@@ -9,12 +9,12 @@ ms.service: bot-service
 ROBOTS: NOINDEX
 ms.date: 10/04/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b79aaaa2f85ea3d7d6c4388ebc7051890350e9a8
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 8e2cb944e56271be9ff925e05c48236e94998f1d
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904497"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033006"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
 
@@ -122,7 +122,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 #### <a name="to-create-an-azure-ad-v2-application"></a>建立 Azure AD v2 應用程式
 
-1. 移至 [Microsoft 應用程式註冊入口網站](https://apps.dev.microsoft.com)。
+1. 移至 [Microsoft 應用程式註冊入口網站](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)。
 1. 按一下 [新增應用程式]
 1. 為您的 Azure AD 應用程式輸入名稱，然後按一下 [建立]。
 

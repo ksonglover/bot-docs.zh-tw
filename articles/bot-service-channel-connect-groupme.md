@@ -10,11 +10,11 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 ms.openlocfilehash: a2004293ff10cfbc7132f58b7c0c834a2012cfd1
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998565"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563575"
 ---
 # <a name="connect-a-bot-to-groupme"></a>將 Bot 連線至 GroupMe
 
