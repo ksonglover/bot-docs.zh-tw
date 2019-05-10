@@ -8,117 +8,180 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 04/12/2019
-ms.openlocfilehash: 4532fe55705524573de55017e633289255a20ab9
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.date: 05/01/2019
+monikerRange: azure-bot-service-4.0
+ms.openlocfilehash: a44e45cd5e9b83b2e4512c5a1fd882593024e1b3
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "59508215"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032886"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
-[!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
+[!INCLUDE [applies-to](./includes/applies-to.md)]
 
-建立 Bot 並在本機測試後，您可以將其部署至 Azure，以便從任何地方進行存取。 將 Bot 部署至 Azure 時，需支付您所使用的服務。 [計費與成本管理](https://docs.microsoft.com/en-us/azure/billing/)一文協助您了解 Azure 計費方式、監視使用量和成本，以及管理帳戶和訂用帳戶。
-
-在本文中，我們會示範如何將 C# 和 JavaScript Bot 部署至 Azure。 在依照步驟執行前閱讀本文很有用，您可完全了解部署 Bot 的相關事項。
+在本文中，我們會示範如何將 Bot 部署至 Azure。 在依照步驟執行前閱讀本文很有用，您可完全了解部署 Bot 的相關事項。
 
 ## <a name="prerequisites"></a>必要條件
-- 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](http://portal.azure.com)。
-- 您已在本機電腦上開發的 [**CSharp**](./dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [**JavaScript**](./javascript/bot-builder-javascript-quickstart.md) Bot。
+- 如果您沒有 Azure 訂用帳戶，請先建立[帳戶](https://azure.microsoft.com/free/)再開始。
+- 您已在本機電腦上開發的 CSharp、JavaScript 或 TypeScript Bot。
+- 最新版的 [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest)。
 
 ## <a name="1-prepare-for-deployment"></a>1.準備部署
-若要進行部署程序，Azure 中必須要有作為目標的 Web 應用程式 Bot，以便能在其中部署您的本機 Bot。 本機 Bot 會使用作為目標的 Web 應用程式 Bot 和使用此 Bot 在 Azure 中佈建的資源來進行部署。 這些是必要資源，因為本機 Bot 並不會佈建所有必要的 Azure 資源。 在建立作為目標的 Web 應用程式 Bot 時，系統會為您佈建下列資源：
--   Web 應用程式 Bot – 您會使用此 Bot 以便將本機 Bot 部署到其中。
--   App Service 方案 - 會提供 App Service 應用程式執行所需的資源。
--   App Service - 用於裝載 Web 應用程式的服務
--   儲存體帳戶 - 包含您所有的 Azure 儲存體資料物件：Blob、檔案、佇列、資料表和磁碟。
-
-在建立作為目標的 Web 應用程式 Bot 期間，系統也會為您的 Bot 產生應用程式識別碼和密碼。 在 Azure 中，應用程式識別碼和密碼可支援[服務驗證和授權](https://docs.microsoft.com/azure/app-service/overview-authentication-authorization)。 您會擷取此資訊的某些資料，以便在本機 Bot 程式碼中使用。 
+當您使用 Visual Studio 或 Yeoman 範本建立 Bot 時，所產生的原始程式碼會包含 `deploymentTemplates` 資料夾與 ARM 範本。 此處敘述的部署程序會使用 ARM 範本，然後以 Azure CLI 在 Azure 中佈建所需的 Bot 資源。 
 
 > [!IMPORTANT]
-> Azure 入口網站中所用 Bot 範本的程式設計語言必須符合 Bot 的撰寫語言。
+> 在 Bot Framework SDK 4.3 版本中，我們已_不再_使用 .bot 檔案，而是改用 appsettings.json 或 .env 檔案來管理資源。 若要了解如何將設定從 .bot 檔案遷移至 appsettings.json 或 .env 檔案，請參閱[管理 Bot 資源](v4sdk/bot-file-basics.md)。
 
-如果您已在 Azure 中建立想要使用的 Bot，則是否要建立新 Web 應用程式 Bot 的選擇權在您。
+### <a name="login-to-azure"></a>登入 Azure
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-1. 按一下 Azure 入口網站左上角的 [建立新資源] 連結，然後選取 [AI + 機器學習服務] > [Web 應用程式 Bot]。
-1. 隨即開啟含有 Web 應用程式 Bot 相關資訊的新刀鋒視窗。 
-1. 在 [Bot 服務] 刀鋒視窗中，提供有關 Bot 的必要資訊。
-1. 按一下 [建立] 以建立服務，並將 Bot 部署到雲端。 此程序可能需要幾分鐘的時間。
+您已在本機建立及測試 Bot，而現在想要將其部署至 Azure。 開啟命令提示字元以登入 Azure 入口網站。
 
-### <a name="download-the-source-code"></a>下載原始程式碼
-在建立作為目標的 Web 應用程式 Bot 之後，您必須從 Azure 入口網站將 Bot 程式碼下載到本機電腦。 下載程式碼的原因是要取得 appsettings.json 或 .env 檔案中的服務參考 (例如 MicrosoftAppID、MicrosoftAppPassword、LUIS 或 QnA)。 
+```cmd
+az login
+```
+瀏覽器視窗會隨即開啟，以便您登入。
 
-1. 在 [Bot 管理] 區段中，按一下 [組建]。
-1. 在右窗格中按一下**下載 Bot 原始程式碼**連結。
-1. 遵循提示以下載程式碼，然後將資料夾解壓縮。
-    1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
+### <a name="set-the-subscription"></a>設定訂用帳戶
+設定要使用的預設訂用帳戶。
 
-### <a name="update-your-local-appsettingsjson-or-env-file"></a>更新本機 appsettings.json 或 .env 檔案
-
-開啟您下載的 appsettings.json 或 .env 檔案。 複製其中所列的**所有**項目並將其新增到「本機」appsettings.json 或 .env 檔案。 解決任何重複的服務項目或重複的服務識別碼。 Bot 所仰賴的其他服務參考則全都保留下來。
-
-儲存檔案。
-
-### <a name="update-local-bot-code"></a>更新本機 Bot 程式碼
-將本機 Startup.cs 或 index.js 檔案更新為使用 appsettings.json 或 .env 檔案，而非使用 .bot 檔案。 .bot 檔案已淘汰，而我們正著手更新 VSIX 範本、Yeoman 產生器、範例，以及所有使用 appsettings.json 或 .env 檔案 (而非 .bot 檔案) 的其餘文件。 您同時必須對 Bot 程式碼進行變更。 
-
-從 appsettings.json 或 .env 檔案將程式碼更新為讀取設定。 
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-在 `ConfigureServices` 方法中，使用 ASP.NET Core 提供的組態物件，例如： 
-
-**Startup.cs**
-```csharp
-var appId = Configuration.GetSection("MicrosoftAppId").Value;
-var appPassword = Configuration.GetSection("MicrosoftAppPassword").Value;
-options.CredentialProvider = new SimpleCredentialProvider(appId, appPassword);
+```cmd
+az account set --subscription "<azure-subscription>"
 ```
 
-# <a name="jstabjs"></a>[JS](#tab/js)
+如果您不確定哪個訂用帳戶要用於部署 Bot ，可以使用 `az account list` 命令，檢視您帳戶的訂用帳戶清單。 瀏覽至 Bot 資料夾。
 
-在 JavaScript 中，參考 `process.env` 物件外的 .env 變數，例如：
-   
-**index.js**
+### <a name="create-an-app-registration"></a>建立應用程式註冊
+註冊應用程式意謂著您可以使用 Azure AD 來驗證使用者，以及要求存取使用者資源。 在 Azure 中，您的 Bot 需要已註冊的應用程式來允許 Bot 存取 Bot Framework 服務，以傳送和接收已驗證的訊息。 若要透過 Azure CLI 建立註冊應用程式，請執行下列命令：
 
-```js
-const adapter = new BotFrameworkAdapter({
-    appId: process.env.MicrosoftAppId,
-    appPassword: process.env.MicrosoftAppPassword
-});
+```cmd
+az ad app create --display-name "displayName" --password "AtLeastSixteenCharacters_0" --available-to-other-tenants
 ```
+
+| 選項   | 說明 |
+|:---------|:------------|
+| display-name | 應用程式的顯示名稱。 |
+| password | 應用程式密碼，也稱為「用戶端密碼」。 密碼必須至少有 16 個字元長，至少包含 1 個大寫或小寫字母，以及至少包含 1 個特殊字元|
+| available-to-other-tenants| 應用程式可以從任何 Azure AD 租用戶使用。 這必須設為 `true`，才能讓您的 Bot 使用 Azure Bot 服務通道。|
+
+上述命令會輸出具有 `appId` 索引鍵的 JSON，請儲存此索引鍵的值以用於 ARM 部署，該值會用在 `appId` 參數上。 提供的密碼將會用於 `appSecret` 參數。
+
+您可以將 Bot 部署在新的資源群組或現有的資源群組中。 選擇最適合您的選項。
+
+# <a name="deploy-via-arm-template-with-new-resource-grouptabnewrg"></a>[透過 ARM 範本部署 (使用**新**資源群組)](#tab/newrg)
+
+### <a name="create-azure-resources"></a>建立 Azure 資源
+
+您會在 Azure 中建立新的資源群組，然後使用 ARM 範本在其中建立指定資源。 在此案例中，我們提供 App Service 方案、Web 應用程式和 Bot 通道註冊。
+
+```cmd
+az deployment create --name "<name-of-deployment>" --template-file "template-with-new-rg.json" --location "location-name" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" botSku=F0 newAppServicePlanName="<name-of-app-service-plan>" newWebAppName="<name-of-web-app>" groupName="<new-group-name>" groupLocation="<location>" newAppServicePlanLocation="<location>"
+```
+
+| 選項   | 說明 |
+|:---------|:------------|
+| name | 部署的自訂名稱。 |
+| template-file | ARM 範本的路徑。 您可以使用專案資料夾 `deploymentTemplates` 中提供的 `template-with-new-rg.json` 檔案。 |
+| location |位置。 值的來源：`az account list-locations`。 您可以使用 `az configure --defaults location=<location>` 來設定預設位置。 |
+| parameters | 提供部署參數值。 執行 `az ad app create` 命令時所得的 `appId` 值。 `appSecret` 是您在上一個步驟中提供的密碼。 `botId` 參數應該是全域唯一，而且會用來作為不可變的 Bot 識別碼。 此參數也會用來設定 Bot 的顯示名稱，而這是可變動的。 `botSku` 是定價層，可以是 F0 (免費) 或 S1 (標準)。 `newAppServicePlanName` 是 App Service 方案的名稱。 `newWebAppName` 是您要建立的 Web 應用程式名稱。 `groupName` 是您要建立的 Azure 資源群組名稱。 `groupLocation` 是 Azure 資源群組的位置。 `newAppServicePlanLocation` 是 App Service 方案的位置。 |
+
+# <a name="deploy-via-arm-template-with-existing--resource-grouptaberg"></a>[透過 ARM 範本部署 (使用**現有的**資源群組)](#tab/erg)
+
+### <a name="create-azure-resources"></a>建立 Azure 資源
+
+使用現有的資源群組時，您可以使用現有的 App Service 方案或建立新的方案。 這兩個選項的步驟如下所列。 
+
+**選項 1：現有的 App Service 方案** 
+
+在此案例中，我們使用現有的 App Service 方案，但建立新的 Web 應用程式和 Bot 通道註冊。 
+
+_注意：botId 參數應該是全域唯一，而且會用來作為不可變的 Bot 識別碼。此參數也會用來設定 Bot 的 displayName，而這是可變動的。_
+
+```cmd
+az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" existingAppServicePlan="<name-of-app-service-plan>" appServicePlanLocation=<location>"
+```
+
+**選項 2：新的 App Service 方案** 
+
+在此案例中，我們會建立 App Service 方案、Web 應用程式和 Bot 通道註冊。 
+
+```cmd
+az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" newAppServicePlanName="<name-of-app-service-plan>" appServicePlanLocation="<location>"
+```
+
+| 選項   | 說明 |
+|:---------|:------------|
+| name | 部署的自訂名稱。 |
+| resource-group | Azure 資源群組的名稱 |
+| template-file | ARM 範本的路徑。 您可以使用專案資料夾 `deploymentTemplates` 中提供的 `template-with-preexisting-rg.json` 檔案。 |
+| location |位置。 值的來源：`az account list-locations`。 您可以使用 `az configure --defaults location=<location>` 來設定預設位置。 |
+| parameters | 提供部署參數值。 執行 `az ad app create` 命令時所得的 `appId` 值。 `appSecret` 是您在上一個步驟中提供的密碼。 `botId` 參數應該是全域唯一，而且會用來作為不可變的 Bot 識別碼。 此參數也會用來設定 Bot 的顯示名稱，而這是可變動的。 `newWebAppName` 是您要建立的 Web 應用程式名稱。 `newAppServicePlanName` 是 App Service 方案的名稱。 `newAppServicePlanLocation` 是 App Service 方案的位置。 |
+
 ---
 
-- 儲存檔案並測試您的 Bot。
+### <a name="retrieve-or-create-necessary-iiskudu-files"></a>擷取或建立必要的 IIS/Kudu 檔案
 
-### <a name="setup-a-repository"></a>設定存放庫
+**針對 C# Bot**
 
-若要支援持續部署，請使用慣用的 git 原始檔控制提供者建立 git 存放庫。 將程式碼認可至存放庫。
+```cmd
+az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "MyBot.csproj"
+```
 
-確定您的存放庫根目錄具有正確檔案，如[準備存放庫](https://docs.microsoft.com/azure/app-service/deploy-continuous-deployment#prepare-your-repository)底下所述。
+您必須提供與 --code-dir 對應的 .csproj 檔案路徑。 這可以透過 --proj-file-path 引數來執行。 此命令會將 --code-dir 和 --proj-file-path 解析為 "./MyBot.csproj"
 
-### <a name="update-app-settings-in-azure"></a>在 Azure 中更新應用程式設定
-本機 Bot 不會使用加密的 .bot 檔案，但「如果」Azure 入口網站設定為使用加密的 .bot 檔案，則會使用加密的 .bot 檔案。 您可以透過移除儲存在 Azure Bot 設定中的 **botFileSecret** 來解決這個問題。
-1. 在 Azure 入口網站中，為您的 Bot 開啟 [Web 應用程式 Bot] 資源。
-1. 開啟 Bot 的 [應用程式設定]。
-1. 在 [應用程式設定] 視窗中，向下捲動至 [應用程式設定]。
-1. 查看您的 Bot 是否具有 **botFileSecret** 和 **botFilePath** 項目。 如果您這麼做，請刪除。
-1. 儲存變更。
+**針對 JavaScript Bot**
 
-## <a name="2-deploy-using-azure-deployment-center"></a>2.使用 Azure 部署中心進行部署
+```cmd
+az bot prepare-deploy --code-dir "." --lang Javascript
+```
 
-現在，您需要將 Bot 程式碼上傳至 Azure。 請遵循[持續部署至 Azure App Service](https://docs.microsoft.com/azure/app-service/deploy-continuous-deployment)主題中的指示來進行。
+此命令會擷取 web.config，這是讓 Node.js 應用程式可以在 Azure App Service 上與 IIS 搭配運作的必要項目。 請確定 web.config 已儲存到您 Bot 的根目錄。
 
-請注意，建議使用 `App Service Kudu build server` 建置。
+**針對 TypeScript Bot**
 
-在設定好持續部署後，系統便會將您已認可至存放庫的變更發行出去。 不過，如果您將服務新增至 Bot，則需要將這些服務的項目新增至 .bot 檔案中。
+```cmd
+az bot prepare-deploy --code-dir "." --lang Typescript
+```
 
-## <a name="3-test-your-deployment"></a>3.測試您的部署
+此命令的運作方式類似上述的 JavaScript，但這適用於 Typescript Bot。
 
-在成功部署後等候幾秒，選擇性地重新啟動您的 Web 應用程式，以清除任何快取。 回到您的 Web 應用程式 Bot 刀鋒視窗，使用 Azure 入口網站中提供的網路聊天進行測試。
+### <a name="zip-up-the-code-directory-manually"></a>手動壓縮程式碼目錄
 
-## <a name="additional-resources"></a>其他資源
-- [如何調查連續部署的常見問題](https://github.com/projectkudu/kudu/wiki/Investigating-continuous-deployment)
+使用未設定的 [zip 部署 API](https://github.com/projectkudu/kudu/wiki/Deploying-from-a-zip-file-or-url)來部署您 Bot 的程式碼時，Web 應用程式/Kudu 的行為會如下所示：
 
+_根據預設，Kudu 會假設來自 zip 檔案的部署都已可供執行，而且部署期間不需要額外的建置步驟，例如 npm install 或 dotnet restore/dotnet publish。_
+
+因此，務必在要部署至 Web 應用程式的 zip 檔案中包含建置程式碼和所有必要相依性，否則您的 Bot 不會如預期般運作。
+
+> [!IMPORTANT]
+> 壓縮專案檔之前，請確定您_位在_正確的資料夾。 
+> - 針對 C# Bot，這是具有 .csproj 檔案的資料夾。 
+> - 針對 JS Bot，這是具有 app.js 或 index.js 檔案的資料夾。 
+>
+> 如果您的根資料夾位置不正確，**Bot 將無法在 Azure 入口網站中執行**。
+
+## <a name="2-deploy-code-to-azure"></a>2.將程式碼部署至 Azure
+此時，我們已準備好將程式碼部署至 Azure Web 應用程式。 從命令列執行下列命令，即可對 Web 應用程式使用 kudu zip 推送部署來執行部署。
+
+```cmd
+az webapp deployment source config-zip --resource-group "<new-group-name>" --name "<name-of-web-app>" --src "code.zip" 
+```
+
+| 選項   | 說明 |
+|:---------|:------------|
+| resource-group | 您先前在 Azure 中建立的資源群組名稱。 |
+| name | 您稍早使用的 Web 應用程式名稱。 |
+| src  | 您所建立的 zip 檔案路徑。 |
+
+## <a name="3-test-in-web-chat"></a>3.在網路聊天中測試
+- 在 Azure 入口網站中，移至 Web 應用程式 Bot 的刀鋒視窗。
+- 在 [Bot 管理] 區段中，按一下 [在網路聊天中測試]。 Azure Bot Service 會將網路聊天控制項載入，並連線至 Bot。
+- 在成功部署後等候幾秒，選擇性地重新啟動您的 Web 應用程式，以清除任何快取。 回到您的 Web 應用程式 Bot 刀鋒視窗，使用 Azure 入口網站中提供的網路聊天進行測試。
+
+## <a name="additional-information"></a>其他資訊
+將 Bot 部署至 Azure 時，需支付您所使用的服務。 [計費與成本管理](https://docs.microsoft.com/en-us/azure/billing/)一文協助您了解 Azure 計費方式、監視使用量和成本，以及管理帳戶和訂用帳戶。
+
+## <a name="next-steps"></a>後續步驟
+> [!div class="nextstepaction"]
+> [設定持續部署](bot-service-build-continuous-deployment.md)

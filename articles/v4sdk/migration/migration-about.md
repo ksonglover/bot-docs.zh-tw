@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 02/11/2019
+ms.date: 03/28/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7e5440e7d47d88b7ff6827359e7eb621bce53e3c
-ms.sourcegitcommit: 7f418bed4d0d8d398f824e951ac464c7c82b8c3e
+ms.openlocfilehash: 55b5a4073340bb29074af5b2ee74dd952ea40f0c
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/14/2019
-ms.locfileid: "56240484"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032245"
 ---
 # <a name="differences-between-the-v3-and-v4-net-sdk"></a>v3 和 v4 .NET SDK 之間的差異
 
@@ -25,15 +25,15 @@ Bot Framework SDK 第 4 版支援與第 3 版相同的基礎 Bot Framework 服�
   - 此配接器會處理 Bot Framework 驗證。
   - 此配接器會管理通道和 Bot 回合處理常式之間的傳入和傳出流量，並封裝對 Bot Framework 連接器的呼叫。
   - 此配接器會初始化每個回合的內容。
-  - 如需詳細資料，請參閱 [Bot 運作方式](../bot-builder-basics.md)。
+  - 如需詳細資料，請參閱 [Bot 運作方式][about-bots]。
 - 重構的狀態管理。
   - 狀態資料不再於 Bot 內自動提供使用。
   - 現在會透過狀態管理物件和屬性存取子管理狀態。
-  - 如需詳細資料，請參閱[管理狀態](../bot-builder-concept-state.md)。
+  - 如需詳細資料，請參閱[管理狀態][about-state]。
 - 新的 Dialogs 程式庫。
   - v3 對話需要針對新的對話程式庫重新撰寫。
-  - 可評分項目已不存在。 將控制權交給您的對話之前，可以檢查回合處理常式中的「全域」命令。
-  - 如需詳細資料，請參閱 [Dialogs 程式庫](../bot-builder-concept-dialog.md)。
+  - 可評分項目已不存在。 將控制權交給您的對話之前，可以檢查「全域」命令。 根據您設計 v4 Bot 的方式，這可能位在訊息處理常式或父代對話方塊中。 如需範例，請參閱如何[處理使用者中斷][interruptions]。
+  - 如需詳細資料，請參閱[對話方塊程式庫][about-dialogs]。
 - 支援 ASP.NET Core。
   - 建立新 C# Bot 的範本是以 ASP.NET Core 架構為目標。
   - 您仍然可將 ASP.NET 用於 Bot，但 v4 的重點在於支援 ASP.NET Core 架構。
@@ -41,39 +41,33 @@ Bot Framework SDK 第 4 版支援與第 3 版相同的基礎 Bot Framework 服�
 
 ## <a name="activity-processing"></a>活動處理
 
-當您針對 Bot 建立配接器時，您也會提供回合處理常式委派，該委派會接收來自通道和使用者的連入活動。 此配接器會針對每項接收的活動建立回合內容物件。 其會將回合內容物件傳遞給回合處理常式，然後在回合完成時處置物件。
+當您為 Bot 建立配接器時，您也會提供訊息處理常式委派，該委派會接收來自通道和使用者的連入活動。 此配接器會針對每項接收的活動建立回合內容物件。 其會將回合內容物件傳遞給 Bot 的回合處理常式，然後在回合完成時處置物件。
 
-回合處理常式可接收許多類型的活動。 一般情況下，您只想將「訊息」活動轉送給 Bot 包含的任何對話。 如需活動類型的詳細資訊，請參閱[活動結構描述](https://aka.ms/botSpecs-activitySchema)。
+回合處理常式可接收許多類型的活動。 一般情況下，您只想將「訊息」活動轉送給 Bot 包含的任何對話。 如果您從 `ActivityHandler` 衍生 Bot，Bot 的回合處理常式會將所有訊息活動轉送至 `OnMessageActivityAsync`。 覆寫此方法來加入訊息處理邏輯。 如需活動類型的詳細資訊，請參閱[活動結構描述][]。
 
 ### <a name="handling-turns"></a>處理回合
 
-您的回合處理常式必須符合 `BotCallbackHandler` 的簽章：
-
-```csharp
-public delegate Task BotCallbackHandler(
-    ITurnContext turnContext,
-    CancellationToken cancellationToken);
-```
-
-在處理回合時，使用回合內容來取得連入活動的相關資訊，並將活動傳送給使用者：
+在處理訊息時，使用回合內容來取得連入活動的相關資訊，並將活動傳送給使用者：
 
 | | |
 |-|-|
 | 若要取得連入活動 | 取得回合內容的 `Activity` 屬性。 |
-| 若要建立活動並傳送給使用者 | 呼叫回合內容的 `SendActivityAsync` 方法。<br/>如需詳細資訊，請參閱[傳送和接收簡訊](../bot-builder-howto-send-messages.md)和[將媒體新增至訊息](../bot-builder-howto-add-media-attachments.md) |
+| 若要建立活動並傳送給使用者 | 呼叫回合內容的 `SendActivityAsync` 方法。<br/>如需詳細資訊，請參閱[傳送和接收簡訊][send-messages]和[將媒體新增至訊息][send-media]。 |
 
 `MessageFactory` 類別會提供一些協助程式方法，以供建立活動及設定其格式。
 
 ### <a name="scorables-is-gone"></a>可評分項目已不存在
 
-在 Bot 的訊息迴圈中處理這些項目。 如需如何透過 v4 對話執行此作業的說明，請參閱如何[處理使用者中斷](../bot-builder-howto-handle-user-interrupt.md)。
+在 Bot 的訊息迴圈中處理這些項目。 如需如何透過 v4 對話執行此作業的說明，請參閱如何[處理使用者中斷][interruptions]。
 
 可組合的可評分分派樹狀目錄與可組合的鏈結對話 (例如_預設例外狀況_) 也都會消失。 重新產生這項功能的方法之一，就是在 Bot 的回合處理常式內實作。
 
 ## <a name="state-management"></a>狀態管理
 
+在 v3 中，您可以將對話資料儲存在 Bot 狀態服務中，此服務屬於 Bot Framework 所提供的較大型服務套件。 不過，該服務已在 2018 年 3 月 31 日淘汰。 從 v4 開始，管理狀態的設計考量就像任何 Web 應用程式一樣，並且有許多選項可用。 通常，在記憶體和相同程序中進行快取是最簡單的方式；不過，針對生產應用程式，您應該更永久地儲存狀態，例如儲存在 SQL 或 NoSQL 資料庫，或是儲存為 blob。
+
 v4 不會使用 `UserData`、`ConversationData` 及 `PrivateConversationData` 屬性和資料包來管理狀態。
-如[管理狀態](../bot-builder-concept-state.md)所述，現在會透過狀態管理物件和屬性存取子管理狀態。
+如[管理狀態][about-state]所述，現在會透過狀態管理物件和屬性存取子管理狀態。
 
 v4 會定義`UserState`、`ConversationState` 和 `PrivateConversationState` 類別，以便管理 Bot 的狀態資料。 您需要針對想保存的每個屬性建立狀態屬性存取子，而不只是讀取並寫入至預先定義的資料包。
 
@@ -101,8 +95,6 @@ v4 會定義`UserState`、`ConversationState` 和 `PrivateConversationState` 類
 | 若要更新目前快取的屬性值 | 呼叫 `IStatePropertyAccessor<T>.SetAsync`。<br/>這只會更新快取，而不會更新支援儲存層。 |
 | 若要將狀態變更保存至儲存體 | 在結束回合處理常式之前，針對狀態已變更的狀態管理物件，呼叫 `BotState.SaveChangesAsync`。 |
 
-如需詳細資訊，請參閱[儲存狀態](../bot-builder-concept-state.md#saving-state)。
-
 ### <a name="managing-concurrency"></a>管理並行存取
 
 您的 Bot 可能需要管理狀態並行。 如需詳細資訊，請參閱[管理狀態](../bot-builder-concept-state.md#saving-state)的**儲存狀態**一節，以及**直接寫入儲存體**的[使用 eTag 管理並行](../bot-builder-howto-v4-storage.md#manage-concurrency-using-etags)一節。
@@ -120,25 +112,21 @@ v4 會定義`UserState`、`ConversationState` 和 `PrivateConversationState` 類
 
 ### <a name="defining-dialogs"></a>定義對話
 
+雖然所提供的 v3 能夠使用 `IDialog` 介面彈性地實作對話方塊，但這表示您必須針對功能 (例如驗證) 實作自己的程式碼。 在 v4 中，現在有提示類別可自動驗證使用者輸入、將其限制為特定類型 (例如整數)，並在使用者提供有效輸入之前，反覆提示使用者。 一般來說，這表示開發人員可撰寫較少的程式碼。
+
 您現在有一些選項可定義對話：
 
-- 瀑布式對話，也就是 `WaterfallDialog` 類別的執行個體。
+| | |
+|:--|:--|
+| 元件對話，其衍生自 `ComponentDialog` 類別 | 可讓您封裝對話程式碼，而不會與外部內容發生命名衝突。 請參閱[重複使用對話][reuse-dialogs]。 |
+| 瀑布式對話，也就是 `WaterfallDialog` 類別的執行個體 | 其設計訴求是要搭配提示對話運作，而提示對話會提示使用者輸入並驗證各種類型的使用者輸入。 瀑布式對話會為您將大部分的程序自動化，但是對您的對話程式碼強加特定形式，請參閱[循序對話流程][sequential-flow]。 |
+| 自訂對話，其衍生自抽象 `Dialog` 類別 | 這讓您的對話運作方式擁有最大彈性，但您也需要深入了解對話堆疊的實作方式。 |
 
-  其設計訴求是要搭配提示對話運作，而提示對話會提示使用者輸入並驗證各種類型的使用者輸入。 請參閱[提示輸入](../bot-builder-prompts.md)。
+在 v3 中，您已使用 `FormFlow` 執行一組工作的步驟。 在 v4 中，瀑布式對話會取代 FormFlow。 當您建立瀑布式對話時，您會在建構函式中定義對話方塊的步驟。 執行的步驟順序會完全遵循您宣告的方式，並且會自動地逐一前進。
 
-  這會為您將大部分的程序自動化，但是對您的對話程式碼強加特定形式，請參閱[循序交談流程](../bot-builder-dialog-manage-conversation-flow.md)。 不過，您可藉由將多個對話新增至對話集來建立其他控制流程，請參閱[進階交談流程](../bot-builder-dialog-manage-complex-conversation-flow.md)。
+您也可以使用多個對話方塊來建立複雜的控制流程；請參閱[進階對話流程][complex-flow]。
 
-- 元件對話，其衍生自 `ComponentDialog` 類別。
-
-  這可讓您封裝對話程式碼，而不會與外部內容發生命名衝突。 請參閱[重複使用對話](../bot-builder-compositcontrol.md)。
-
-- 自訂對話，其衍生自抽象 `Dialog` 類別。
-
-  這讓您的對話運作方式擁有最大彈性，但您也需要深入了解對話堆疊的實作方式。
-
-若要存取對話，您需要在「對話集」中放入其執行個體，然後為該集合產生「對話內容」。
-
-當您建立對話集時，您需要提供對話狀態屬性存取子。 這可讓架構保存回合之間的對話狀態。 [管理狀態](../bot-builder-concept-state.md)說明如何在 v4 中管理狀態。
+若要存取對話，您需要在「對話集」中放入其執行個體，然後為該集合產生「對話內容」。 當您建立對話集時，您需要提供對話狀態屬性存取子。 這可讓架構保存回合之間的對話狀態。 [管理狀態][about-state]說明如何在 v4 中管理狀態。
 
 ### <a name="using-dialogs"></a>使用對話
 
@@ -158,7 +146,7 @@ v4 會定義`UserState`、`ConversationState` 和 `PrivateConversationState` 類
 
 v4 程式碼的其他注意事項：
 
-- v4 中的各種 `Prompt` 衍生類別會以包含兩個步驟的個別對話形式實作使用者提示。 請參閱如何[使用對話提示收集使用者輸入](../bot-builder-prompts.md)。
+- v4 中的各種 `Prompt` 衍生類別會以包含兩個步驟的個別對話形式實作使用者提示。 請參閱如何[實作循序對話流程][sequential-flow]。
 - 使用 `DialogSet.CreateContextAsync` 建立目前回合的對話內容。
 - 在對話內，使用 `DialogContext.Context` 屬性來取得目前的回合內容。
 - 瀑布步驟具有 `WaterfallStepContext` 參數，其衍生自 `DialogContext`。
@@ -190,3 +178,19 @@ v4 程式碼的其他注意事項：
 ## <a name="additional-resources"></a>其他資源
 
 - [將 .NET SDK v3 bot 遷移至 v4](conversion-framework.md)
+
+<!-- -->
+
+[about-bots]: ../bot-builder-basics.md
+[about-state]: ../bot-builder-concept-state.md
+[about-dialogs]: ../bot-builder-concept-dialog.md
+
+[send-messages]: ../bot-builder-howto-send-messages.md
+[send-media]: ../bot-builder-howto-add-media-attachments.md
+
+[sequential-flow]: ../bot-builder-dialog-manage-conversation-flow.md
+[complex-flow]: ../bot-builder-dialog-manage-complex-conversation-flow.md
+[reuse-dialogs]: ../bot-builder-compositcontrol.md
+[interruptions]: ../bot-builder-howto-handle-user-interrupt.md
+
+[活動結構描述]: https://aka.ms/botSpecs-activitySchema
