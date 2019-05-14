@@ -8,19 +8,22 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/20/2018
-ms.openlocfilehash: f86cacce5b25f60010f646cf5989123e3abf3bf2
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+ms.date: 4/30/2019
+ms.openlocfilehash: 93689b7cee1c89bd9a7079c15ddf6aa16fcacc26
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55711972"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033079"
 ---
 # <a name="troubleshoot-http-500-errors"></a>針對 HTTP 500 錯誤進行疑難排解
 
 針對 500 錯誤進行疑難排解的第一個步驟是啟用 Application Insights。
 
-luis-with-appinsights ([C#](https://aka.ms/cs-luis-with-appinsights-sample) / [JS](https://aka.ms/js-luis-with-appinsights-sample)) 和 qna-with-appinsights ([C#](https://aka.ms/qna-with-appinsights) / [JS](https://aka.ms/js-qna-with-appinsights-sample)) 範例示範可支援 Azure Application Insights 的 Bot。 如需有關如何將 Application Insights 新增至現有 Bot 的資訊，請參閱[交談和分析遙測](https://aka.ms/botPowerBiTemplate)。
+<!-- TODO: Add links back in once there's a fresh AppInsights sample.
+The luis-with-appinsights ([C# sample](https://aka.ms/cs-luis-with-appinsights-sample) / [JS sample](https://aka.ms/js-luis-with-appinsights-sample)) and qna-with-appinsights ([C# sample](https://aka.ms/qna-with-appinsights) / [JS sample](https://aka.ms/js-qna-with-appinsights-sample)) samples demonstrate bots that support Azure Application Insights.
+-->
+如需有關如何將 Application Insights 新增至現有 Bot 的資訊，請參閱[對話分析遙測](https://aka.ms/botframeworkanalytics)。
 
 ## <a name="enable-application-insights-on-aspnet"></a>在 ASP.Net 上啟用 Application Insights
 
@@ -71,7 +74,7 @@ union_all
 
 ### <a name="ensure-configuration-files-are-being-copied-net-only"></a>確保正在複製組態檔案 (僅限 .NET)
 
-確保在部署過程中正確封裝 `.bot` 組態檔案和 `appsettings.json` 檔案。
+確保在部署過程中正確封裝 `appsettings.json` 和其他設定檔。
 
 #### <a name="application-assemblies"></a>應用程式組件
 
@@ -86,7 +89,7 @@ union_all
 - Microsoft.AI.DependencyCollector
 - Microsoft.AI.Agent.Intercept
 
-確保在部署過程中正確封裝 `.bot` 組態檔案和 `appsettings.json` 檔案。
+確保在部署過程中正確封裝 `appsettings.json` 和其他設定檔。
 
 #### <a name="appsettingsjson"></a>appsettings.json
 
@@ -114,8 +117,6 @@ union_all
 
 ```json
 {
-    "botFilePath": "mybot.bot",
-    "botFileSecret": "<my secret>",
     "ApplicationInsights": {
         "InstrumentationKey": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     }
@@ -124,12 +125,13 @@ union_all
 
 ---
 
-### <a name="verify-bot-config-file"></a>驗證 .bot 組態檔
+### <a name="verify-config-file"></a>確認設定檔
 
-確保 .bot 檔案包含 Application Insights 金鑰。
+確保設定檔包含 Application Insights 金鑰。
 
 ```json
-    {
+{
+    "ApplicationInsights": {
         "type": "appInsights",
         "tenantId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
         "subscriptionId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -140,7 +142,8 @@ union_all
         "applicationId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
         "apiKeys": {},
         "id": ""
-    },
+    }
+},
 ```
 
 ### <a name="check-logs"></a>查看記錄

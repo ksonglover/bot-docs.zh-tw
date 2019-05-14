@@ -7,15 +7,35 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 04/09/2019
+ms.date: 04/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2f15817abe087650bc3f2bb998a32f177848cf50
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 4fd61d5d68b5b7b3a535afdd47d635eef3820622
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904531"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033642"
 ---
+<!-- Related TODO:
+- Check code in [Web Chat channel](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0)
+- Check guidance in [DirectLine authentication](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-4.0)
+-->
+
+<!-- General TODO: (Feedback from CSE (Nafis))
+- Add note that: token management is based on user ID
+- Explain why/how to share existing website authentication with a bot.
+- Risk: Even people who use a DirectLine token can be vulnerable to user ID impersonation.
+    Docs/samples that show exchange of secret for token don't specify a user ID, so an attacker can impersonate a different user by modifying the ID client side. There's a [blog post](https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Fblog.botframework.com%2F2018%2F09%2F01%2Fusing-webchat-with-azure-bot-services-authentication%2F&data=02%7C01%7Cv-jofing%40microsoft.com%7Cee005e1c9d2c4f4e7ea508d6b231b422%7C72f988bf86f141af91ab2d7cd011db47%7C1%7C0%7C636892323874079713&sdata=b0DWMxHzmwQvg5EJtlqKFDzR7fYKmg10fXma%2B8zGqEI%3D&reserved=0) that shows how to do this properly.
+"Major issues":
+- This doc is a sample walkthrough, but there's no deeper documentation explaining how the Azure Bot Service is handling tokens. How does the OAuth flow work? Where is it storing my users' access tokens? What's the security and best practices around using it?
+
+"Minor issues":
+- AAD v2 steps tell you to add delegated permission scopes during registration, but this shouldn't be necessary in AAD v2 due to dynamic scopes. (Ming, "This is currently necessary because scopes are not exposed through our runtime API. We don’t currently have a way for the developer to specify which scope he wants at runtime.")
+
+- "The scope of the connection setting needs to have both openid and a resource in the Azure AD graph, such as Mail.Read." Unclear if I need to take some action at this point to make happen. Kind of out of context. I'm registering an AAD application in the portal, there's no connection setting
+- Does the bot need all of these scopes for the samples? (e.g. "Read all users' basic profiles")
+-->
+
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
 
 [!INCLUDE [applies-to-v4](../includes/applies-to.md)]
@@ -72,27 +92,9 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
     若要啟用這項保護，請以 Direct Line 權杖啟動網路聊天，且該權杖必須包含可裝載 Bot 網路聊天用戶端的信任網域清單。 然後，在 Direct Line 組態頁面中以靜態方式指定信任網域 (原始) 清單。
 
-使用 Direct Line 的 `/v3/directline/tokens/generate` REST 端點產生對話的權杖，並指定要求承載中的使用者識別碼。 如需程式碼範例，請參閱[增強型 Direct Line 驗證功能](https://blog.botframework.com/2018/09/25/enhanced-direct-line-authentication-features/)部落格文章。
-
-<!-- The eventual article about this should talk about the tokens/generate endpoint and its parameters: user, trustedOrigins, and [maybe] eTag.
-Sample payload
-{
-  "user": {
-    "id": "string",
-    "name": "string",
-    "aadObjectId": "string",
-    "role": "string"
-  },
-  "trustedOrigins": [
-    "string"
-  ],
-  "eTag": "string"
-}
- -->
-
 ## <a name="prerequisites"></a>必要條件
 
-- [Bot 基本概念][concept-basics]和[管理狀態][concept-state]的知識。
+- [Bot 基本概念][concept-basics]、[管理狀態][concept-state]、[dialogs 程式庫][concept-dialogs]、如何[實作循序交談流程][simple-dialog]、如何[使用對話提示蒐集使用者輸入][dialog-prompts]，以及如何[重複使用對話][component-dialogs]的知識。
 - Azure 和 OAuth 2.0 開發的知識。
 - Visual Studio 2017 或更新版本、Node.js、npm 和 git。
 - 以下其中一個範例。
@@ -119,6 +121,8 @@ Sample payload
 
 > [!TIP]
 > 您必須在具有管理員權限的租用戶中，建立並登錄 Azure AD 應用程式。
+
+# <a name="azure-ad-v1tabaadv1"></a>[Azure AD v1](#tab/aadv1)
 
 1. 在 Azure 入口網站中開啟 [Azure Active Directory][azure-aad-blade] 面板。
     如果您不在正確的租用戶中，請按一下 [切換目錄] 以切換至正確的租用戶。 (如需建立租用戶的指示，請參閱[存取入口網站並建立租用戶](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-access-create-new-tenant)。)
@@ -163,6 +167,37 @@ Sample payload
    1. 關閉 [必要權限] 面板。
 
 您現在已完成 Azure AD v1 應用程式設定。
+
+# <a name="azure-ad-v2tabaadv2"></a>[Azure AD v2](#tab/aadv2)
+
+1. 移至 [Microsoft 應用程式註冊入口網站](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)。
+1. 按一下 [新增應用程式]
+1. 為您的 Azure AD 應用程式輸入名稱，然後按一下 [建立]。
+
+    記錄**應用程式識別碼**的 GUID。 您稍後需要提供此 GUID 做為連線設定的用戶端識別碼。
+
+1. 在 [應用程式密碼] 下，按一下 [產生新密碼]。
+
+    記錄快顯視窗中的密碼。 您稍後需要提供此密碼做為連線設定的用戶端密碼。
+
+1. 按一下 [平台] 下方的 [新增平台]。
+1. 在 [新增平台] 快顯視窗中，按一下 [Web]。
+
+    1. 將 [允許隱含流程] 保持勾選。
+    1. 在 [重新導向 URL] 中輸入 `https://token.botframework.com/.auth/web/redirect`。
+    1. 將 [登出 URL] 欄位保留空白。
+
+1. 在 [Microsoft Graph 權限] 下方，您可新增其他委派的權限。
+
+    - 在本教學課程中，新增 **Mail.Read**、**Mail.Send**、**openid**、**profile**、**User.Read** 和 **User.ReadBasic.All** 權限。
+      連線設定的範圍需要使用 **openid** 和 Azure AD Graph 中的資源，例如：**Mail.Read**。
+    - 記錄您選擇的權限。 您稍後需要提供此權限做為連線設定的範圍。
+
+1. 按一下頁面底部的 [儲存]  。
+
+您現在已完成 Azure AD v2 應用程式設定。
+
+---
 
 ### <a name="register-your-azure-ad-application-with-your-bot"></a>向 Bot 註冊 Azure AD 應用程式
 
@@ -230,93 +265,81 @@ Sample payload
 
 您現可在 Bot 程式碼中使用此連線名稱，以擷取使用者權杖。
 
-## <a name="prepare-the-bot-sample-code"></a>準備 Bot 範例程式碼
+## <a name="prepare-the-bot-code"></a>準備 Bot 程式碼
 
-視您所選的範例而定，您會使用 C# 或 Node。
+您需要 Bot 的應用程式識別碼和密碼來完成此程序。 若要擷取您的 Bot 應用程式識別碼和密碼：
 
-| 範例 | BotBuilder 版本 | 示範 |
-|:---|:---:|:---|
-| [**CSharp**][cs-auth-sample] 或 [**JavaScript**][js-auth-sample] 中的 **Bot 驗證** | v4 | OAuthCard 支援 |
-| [**CSharp**][cs-msgraph-sample] 或 [**JavaScript**][js-msgraph-sample] 中的 **Bot 驗證 MSGraph** | v4 |  OAuth 2 的 Microsoft Graph API 支援 |
+1. 在 [Azure 入口網站][]中，巡覽至您在其中建立通道註冊 Bot 的資源群組。
+1. 開啟 [部署] 窗格，然後開啟 Bot 的部署。
+1. 開啟 [輸入] 窗格，並複製 Bot 的 **appId** 和 **appSecret** 值。
 
-1. 按一下以上其中一個範例連結並複製 github 存放庫。
-1. 遵循 GitHub 讀我檔案頁面上的指示，了解如何執行該特定 Bot (C# 或 Node)。
-1. 如果您使用 C# Bot-Authentication 範例：
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-    1. 將 `AuthenticationBot.cs` 檔案中的 `ConnectionName` 參數設為您在配置 Bot 的 OAuth 2.0 連線設定時所用的值。
-    1. 將 `BotConfiguration.bot` 檔案中的 `appId` 值設為 Bot 的應用程式識別碼。
-    1. 將 `BotConfiguration.bot` 檔案中的 `appPassword` 值設為 Bot 的祕密。
+<!-- TODO: Add guidance (once we have it) on how not to hard-code IDs and ABS auth. -->
 
-1. 如果您使用 Node/JS Bot-Authentication 範例：
+1. 從您想要使用的 github 存放庫複製：[**Bot 驗證**][cs-auth-sample]或 [**Bot 驗證 MSGraph**][cs-msgraph-sample]。
+1. 遵循 GitHub 讀我檔案頁面上的指示，了解如何執行該特定 Bot。 <!--TODO: Can we remove this step and still have the instructions make sense? What is the minimum we need to say in its place? -->
+1. 更新 **appsettings.json**：
 
-    1. 將 `bot.js` 檔案中的 `CONNECTION_NAME` 參數設為您在配置 Bot 的 OAuth 2.0 連線設定時所用的值。
-    1. 將 `bot-authentication.bot` 檔案中的 `appId` 值設為 Bot 的應用程式識別碼。
-    1. 將 `bot-authentication.bot` 檔案中的 `appPassword` 值設為 Bot 的祕密。
+    - 將 `ConnectionName` 設定為您新增至 Bot 的 OAuth 連線名稱。
+    - 將 `MicrosoftAppId` 和 `MicrosoftAppPassword` 設定為您 Bot 的應用程式識別碼和應用程式祕密。
 
-    > [!IMPORTANT]
-    > 視密碼中的字元而定，您可能需要讓 XML 逸出該密碼。 例如，任何 & 符號都必須編碼為 `&amp;`。
+      視 Bot 祕密中的字元而定，您可能需要讓 XML 逸出該密碼。 例如，任何 & 符號都必須編碼為 `&amp;`。
 
-    ```json
-    {
-        "name": "BotAuthentication",
-        "secretKey": "",
-        "services": [
-            {
-            "appId": "",
-            "id": "http://localhost:3978/api/messages",
-            "type": "endpoint",
-            "appPassword": "",
-            "endpoint": "http://localhost:3978/api/messages",
-            "name": "BotAuthentication"
-            }
-        ]
-    }
-    ```
+[!code-json[appsettings](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/appsettings.json)]
 
-如果您不知道如何取得 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**值，您可以建立如下所述的新密碼：
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-[bot-channels-registration-password](../bot-service-quickstart-registration.md#bot-channels-registration-password)
-  
-或擷取 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**，從如下所述的部署使用 **Bot 通道註冊**佈建：[find-your-azure-bots-appid-and-appsecret](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)
+1. 從您想要使用的 github 存放庫複製：[**Bot 驗證**][js-auth-sample]或 [**Bot 驗證 MSGraph**][js-msgraph-sample]。
+1. 遵循 GitHub 讀我檔案頁面上的指示，了解如何執行該特定 Bot。 <!--TODO: Can we remove this step and still have the instructions make sense? What is the minimum we need to say in its place? -->
+1. 更新 **.env**：
 
-    > [!NOTE]
-    > You could now publish this bot code to your Azure subscription (right-click on the project and choose **Publish**), but it is not necessary for this tutorial. You would need to set up a publishing configuration that uses the application and hosting plan that you used when configuration the bot in the Azure Portal.
+    - 將 `connectionName` 設定為您新增至 Bot 的 OAuth 連線名稱。
+    - 將 `MicrosoftAppId` 和 `MicrosoftAppPassword` 值設定為您 Bot 的應用程式識別碼和應用程式祕密。
 
-## <a name="use-the-emulator-to-test-your-bot"></a>使用模擬器測試您的 Bot
+      視 Bot 祕密中的字元而定，您可能需要讓 XML 逸出該密碼。 例如，任何 & 符號都必須編碼為 `&amp;`。
 
-您必須安裝 [Bot 模擬器](https://github.com/Microsoft/BotFramework-Emulator)以便在本機測試 Bot。 您可使用 v3 或 v4 模擬器。
+    [!code-txt[.env](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/.env)]
 
-1. 啟動 Bot (無論是否啟用偵錯)。
-1. 請記下該頁面的 localhost 連接埠號碼。 稍後與 Bot 互動時，您會需要使用此資訊。
-1. 啟動模擬器。
-1. 連線至 Bot。 請確定 Bot 組態會在使用驗證時使用 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**
-1. 在模擬器設定中，確定已核取 [使用 OAuthCard 的登入驗證程式碼] 並已啟用 **ngrok**，所以 Azure Bot Service 可以將可用的權杖傳回模擬器。
+---
 
-   如果您尚未設定連線，請提供位址及 Bot 的 Microsoft 應用程式識別碼和密碼。 將 `/api/messages` 新增至 Bot 的 URL。 URL 外觀應該會類似於 `http://localhost:portNumber/api/messages`。
+如果您不知道如何取得 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**值，您可以：
 
-1. 輸入「`help`」以檢視適用於 Bot 的可用命令清單，以及測試驗證功能。
-1. 登入後一直到登出前，您都不需要再次提供認證。
-1. 若要登出並取消驗證，請輸入「`signout`」。
-
-<!--To restart completely from scratch you also need to:
-1. Navigate to the **AppData** folder for your account.
-1. Go to the **Roaming/botframework-emulator** subfolder.
-1. Delete the **Cookies** and **Coolies-journal** files.
--->
+- [如下所述](../bot-service-quickstart-registration.md#bot-channels-registration-password)建立新密碼
+- 從[這裡所述](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)的部署，擷取透過 [Bot 通道註冊]佈建的 [Microsoft 應用程式識別碼] 和 [Microsoft 應用程式密碼]
 
 > [!NOTE]
-> Bot 驗證需要使用 Bot 連接器服務。 該服務將針對您的 Bot 存取 Bot 通道註冊資訊，因此您必須在入口網站上設定 Bot 的傳訊端點。 此外，驗證也會需要使用 HTTPS，因此您必須建立 HTTPS 轉送位址，以供 Bot 在本機上執行。
+> 您現在可將此 Bot 程式碼發佈至 Azure 訂用帳戶 (以滑鼠右鍵按一下專案，然後選擇 [發佈])，但此動作在本文的範例中並非必要。 在 Azure 入口網站中配置 Bot 時，您必須進行發佈設定，其應使用您所用的應用程式和主控方案。
 
-<!--The following is necessary for WebChat:
-1. Use the **ngrok** command-line tool to get a forwarding HTTPS address for your bot.
-   - For information on how to do this, see [Debug any Channel locally using ngrok](https://blog.botframework.com/2017/10/19/debug-channel-locally-using-ngrok/).
-   - Any time you exit **ngrok**, you will need to redo this and the following step before starting the Emulator.
-1. On the Azure Portal, go to the **Settings** blade for your bot.
-   1. In the **Configuration** section, change the **Messaging endpoint** to the HTTPS forwarding address generated by **ngrok**.
-   1. Click **Save** to save your change.
--->
+## <a name="test-the-bot"></a>測試 Bot
 
-## <a name="notes-on-the-token-retrieval-flow"></a>權杖擷取流程注意事項
+1. 如果您尚未安裝 [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)，請進行安裝。
+1. 在您的電腦本機執行範例。
+1. 啟動模擬器、連線到您的 Bot，然後傳送訊息。
+
+    - 當您連線到 Bot 時，您必須提供 Bot 的應用程式識別碼和密碼。
+    - 輸入「`help`」以檢視適用於 Bot 的可用命令清單，以及測試驗證功能。
+    - 登入後一直到登出前，您都不需要再次提供認證。
+    - 若要登出並取消驗證，請輸入「`logout`」。
+
+> [!NOTE]
+> Bot 驗證需要使用 Bot 連接器服務。 該服務將針對您的 Bot 存取 Bot 通道註冊資訊。
+
+# <a name="bot-authenticationtabbot-oauth"></a>[Bot 驗證](#tab/bot-oauth)
+
+在 **Bot 驗證**範例中，對話的設計訴求是要在使用者登入後擷取使用者權杖。
+
+![範例輸出](media/how-to-auth/auth-bot-test.png)
+
+# <a name="bot-authentication-msgraphtabbot-msgraph-auth"></a>[Bot 驗證 MSGraph](#tab/bot-msgraph-auth)
+
+在 **Bot 驗證 MSGraph**範例中，對話的設計訴求是要接受使用者登入後的一組有限命令。
+
+![範例輸出](media/how-to-auth/msgraph-bot-test.png)
+
+---
+
+## <a name="additional-information"></a>其他資訊
 
 使用者要求 Bot 執行需要使用者登入的工作時，Bot 可使用 `OAuthPrompt` 起始擷取特定連線的權杖。 `OAuthPrompt` 會建立權杖擷取流程，其中包含：
 
@@ -325,199 +348,95 @@ Sample payload
 1. 在使用者按一下 `OAuthCard` 登入按鈕之後，Azure Bot Service 會將使用者的權杖傳直接送給 Bot，或者會向使用者顯示要在聊天視窗中輸入的 6 位數驗證碼。
 1. 如果使用者看到驗證碼，則 Bot 會將此驗證碼換成使用者的權杖。
 
-接下來的幾個程式碼片段皆取自 `OAuthPrompt`，以顯示這些步驟在提示字元中的運作方式。
+下列各節說明範例如何實作一些常見的驗證工作。
 
-### <a name="check-for-a-cached-token"></a>檢查已快取的權杖
-
-在此程式碼中，首先 Bot 會快速檢查以判斷 Azure Bot 服務是否已有該使用者的權杖 (藉由目前的活動傳送者識別) 和指定的 ConnectionName (即設定中使用的連線名稱)。 Azure Bot 服務可能會快取權杖，也可能不會。 針對 GetUserTokenAsync 的呼叫會執行此快速檢查。 如果 Azure Bot 服務具有權杖並將其傳回，則該權杖可立即使用。 如果 Azure Bot 服務沒有權杖，此方法將傳回 Null。 在此情況下，Bot 可傳送自訂的 OAuthCard 供使用者登入。
+### <a name="use-an-oauth-prompt-to-sign-the-user-in-and-get-a-token"></a>使用 OAuth 提示來登入使用者和取得權杖
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-```csharp
-// First ask Bot Service if it already has a token for this user
-var token = await adapter.GetUserTokenAsync(turnContext, connectionName, null, cancellationToken).ConfigureAwait(false);
-if (token != null)
-{
-    // use the token to do exciting things!
-}
-else
-{
-    // If Bot Service does not have a token, send an OAuth card to sign in
-}
-```
+![Bot 架構](media/how-to-auth/architecture.png)
+
+<!-- The two authentication samples have nearly identical architecture. Using 18.bot-authentication for the sample code. -->
+
+**Dialogs\MainDialog.cs**
+
+將 OAuth 提示新增至其建構函式中的 **MainDialog**。 在此，已從 **appsettings.json** 檔案擷取連線名稱值。
+
+[!code-csharp[Add OAuthPrompt](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/MainDialog.cs?range=23-31)]
+
+在對話步驟中，使用 `BeginDialogAsync` 來啟動 OAuth 提示，其會要求使用者登入。
+
+- 如果使用者已經登入，這會產生一個權杖回應事件，但不會提示使用者。
+- 否則會提示使用者登入。 Azure Bot Service 會在使用者嘗試登入後傳送權杖回應事件。
+
+[!code-csharp[Use the OAuthPrompt](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/MainDialog.cs?range=49)]
+
+在下列對話步驟中，檢查上一個步驟的結果中是否有權杖存在。 如果不是 Null，則表示使用者登入成功。
+
+[!code-csharp[Get the OAuthPrompt result](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/MainDialog.cs?range=54-58)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-```javascript
-public async getUserToken(context: TurnContext, code?: string): Promise<TokenResponse|undefined> {
-    // Get the token and call validator
-    const adapter: any = context.adapter as any; // cast to BotFrameworkAdapter
-    return await adapter.getUserToken(context, this.settings.connectionName, code);
-}
-```
+![Bot 架構](media/how-to-auth/architecture-js.png)
 
----
+**dialogs/mainDialog.js**
 
-### <a name="send-an-oauthcard-to-the-user"></a>傳送 OAuthCard 給使用者
+將 OAuth 提示新增至其建構函式中的 **MainDialog**。 在此，已從 **.env** 檔案擷取連線名稱值。
 
-您可將 OAuthCard 自訂為任何您想用的文字和按鈕文字。 需要注意的重點如下：
+[!code-javascript[Add OAuthPrompt](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/mainDialog.js?range=23-28)]
 
-- 將 `ContentType` 設為 `OAuthCard.ContentType`。
-- 將 `ConnectionName` 屬性設為您要使用之連線的名稱。
-- 包含一個具有 `Type` `ActionTypes.Signin` 之 `CardAction` 的按鈕；請注意，您不需要為登入連結指定任何值。
+在對話步驟中，使用 `beginDialog` 來啟動 OAuth 提示，其會要求使用者登入。
 
-在此呼叫結束時，Bot 必須「等候權杖」回傳。 由於可能有許多使用者需要登入，因此等候過程會在主要的活動流中發生。
+- 如果使用者已經登入，這會產生一個權杖回應事件，但不會提示使用者。
+- 否則會提示使用者登入。 Azure Bot Service 會在使用者嘗試登入後傳送權杖回應事件。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+[!code-javascript[Use OAuthPrompt](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/mainDialog.js?range=57)]
 
-```csharp
-private async Task SendOAuthCardAsync(ITurnContext turnContext, IMessageActivity message, CancellationToken cancellationToken = default(CancellationToken))
-{
-    if (message.Attachments == null)
-    {
-        message.Attachments = new List<Attachment>();
-    }
+在下列對話步驟中，檢查上一個步驟的結果中是否有權杖存在。 如果不是 Null，則表示使用者登入成功。
 
-    message.Attachments.Add(new Attachment
-    {
-        ContentType = OAuthCard.ContentType,
-        Content = new OAuthCard
-        {
-            Text = "Please sign in",
-            ConnectionName = connectionName,
-            Buttons = new[]
-            {
-                new CardAction
-                {
-                    Title = "Sign In",
-                    Text = "Sign In",
-                    Type = ActionTypes.Signin,
-                },
-            },
-        },
-    });
-
-    await turnContext.SendActivityAsync(message, cancellationToken).ConfigureAwait(false);
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-```javascript
-private async sendOAuthCardAsync(context: TurnContext, prompt?: string|Partial<Activity>): Promise<void> {
-    // Initialize outgoing message
-    const msg: Partial<Activity> =
-        typeof prompt === 'object' ? {...prompt} : MessageFactory.text(prompt, undefined, InputHints.ExpectingInput);
-    if (!Array.isArray(msg.attachments)) { msg.attachments = []; }
-
-    const cards: Attachment[] = msg.attachments.filter((a: Attachment) => a.contentType === CardFactory.contentTypes.oauthCard);
-    if (cards.length === 0) {
-        // Append oauth card
-        msg.attachments.push(CardFactory.oauthCard(
-            this.settings.connectionName,
-            this.settings.title,
-            this.settings.text
-        ));
-    }
-
-    // Send prompt
-    await context.sendActivity(msg);
-}
-```
+[!code-javascript[Get OAuthPrompt result](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/mainDialog.js?range=61-64)]
 
 ---
 
 ### <a name="wait-for-a-tokenresponseevent"></a>等候 TokenResponseEvent
 
-在此程式碼中，Bot 正在等候 `TokenResponseEvent` (下文將詳述其如何路由至對話方塊堆疊)。 `WaitForToken` 方法會先判斷此事件是否已傳送。 如果其已傳送，則可供 Bot 使用。 如果未傳送，則 `RecognizeTokenAsync` 方法將擷取任何傳送給 Bot 的文字，再將其傳遞至 `GetUserTokenAsync`。 此作法的原因是部分用戶端 (例如：WebChat) 不需要進行神奇代碼驗證碼，而可直接在 `TokenResponseEvent` 中傳送權杖。 其他用戶端 (例如：Facebook 或 Slack) 仍須使用神奇代碼。 Azure Bot 服務會向用戶端顯示一組六位數的神奇代碼，並要求使用者在聊天視窗中輸入該代碼。 此方式並非最理想的「回復」行為，因此，假如 `RecognizeTokenAsync` 收到代碼，則 Bot 可將代碼傳送至 Azure Bot Service 並獲取權杖。 若此呼叫也失敗，則您可決定是否要回報錯誤或採取其他行動。 不過大部分情況下，Bot 現在都會有使用者權杖。
-
-若您檢視每個範例的 Bot 程式碼，即可發現 `Event` 和 `Invoke` 活動也會路由傳送至對話方塊堆疊。
+當您啟動 OAuth 提示時，其會等候權杖回應事件，而且會從中擷取使用者的權杖。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-```csharp
-// This can be called when the bot receives an Activity after sending an OAuthCard
-private async Task<TokenResponse> RecognizeTokenAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-{
-    if (IsTokenResponseEvent(turnContext))
-    {
-        // The bot received the token directly
-        var tokenResponseObject = turnContext.Activity.Value as JObject;
-        var token = tokenResponseObject?.ToObject<TokenResponse>();
-        return token;
-    }
-    else if (IsTeamsVerificationInvoke(turnContext))
-    {
-        var magicCodeObject = turnContext.Activity.Value as JObject;
-        var magicCode = magicCodeObject.GetValue("state")?.ToString();
+**Bots\AuthBot.cs**
 
-        var token = await adapter.GetUserTokenAsync(turnContext, _settings.ConnectionName, magicCode, cancellationToken).ConfigureAwait(false);
-        return token;
-    }
-    else if (turnContext.Activity.Type == ActivityTypes.Message)
-    {
-        // make sure it's a 6-digit code
-        var matched = _magicCodeRegex.Match(turnContext.Activity.Text);
-        if (matched.Success)
-        {
-            var token = await adapter.GetUserTokenAsync(turnContext, _settings.ConnectionName, matched.Value, cancellationToken).ConfigureAwait(false);
-            return token;
-        }
-    }
+**AuthBot** 衍生自 `ActivityHandler` 並明確處理權杖回應事件活動。 在此，我們會持續進行作用中的對話，讓 OAuth 提示得以處理事件和擷取權杖。
 
-    return null;
-}
-
-private bool IsTokenResponseEvent(ITurnContext turnContext)
-{
-    var activity = turnContext.Activity;
-    return activity.Type == ActivityTypes.Event && activity.Name == "tokens/response";
-}
-
-private bool IsTeamsVerificationInvoke(ITurnContext turnContext)
-{
-    var activity = turnContext.Activity;
-    return activity.Type == ActivityTypes.Invoke && activity.Name == "signin/verifyState";
-}
-```
+[!code-csharp[OnTokenResponseEventAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Bots/AuthBot.cs?range=32-38)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-```javascript
-private async recognizeToken(context: TurnContext): Promise<PromptRecognizerResult<TokenResponse>> {
-    let token: TokenResponse|undefined;
-    if (this.isTokenResponseEvent(context)) {
-        token = context.activity.value as TokenResponse;
-    } else if (this.isTeamsVerificationInvoke(context)) {
-        const code: any = context.activity.value.state;
-        await context.sendActivity({ type: 'invokeResponse', value: { status: 200 }});
-        token = await this.getUserToken(context, code);
-    } else if (context.activity.type === ActivityTypes.Message) {
-        const matched: RegExpExecArray = /(\d{6})/.exec(context.activity.text);
-        if (matched && matched.length > 1) {
-            token = await this.getUserToken(context, matched[1]);
-        }
-    }
+**bots/authBot.js**
 
-    return token !== undefined ? { succeeded: true, value: token } : { succeeded: false };
-}
+**AuthBot** 衍生自 `ActivityHandler` 並明確處理權杖回應事件活動。 在此，我們會持續進行作用中的對話，讓 OAuth 提示得以處理事件和擷取權杖。
 
-private isTokenResponseEvent(context: TurnContext): boolean {
-    const activity: Activity = context.activity;
-    return activity.type === ActivityTypes.Event && activity.name === 'tokens/response';
-}
-
-private isTeamsVerificationInvoke(context: TurnContext): boolean {
-    const activity: Activity = context.activity;
-    return activity.type === ActivityTypes.Invoke && activity.name === 'signin/verifyState';
-}
-```
+[!code-javascript[onTokenResponseEvent](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/bots/authBot.js?range=28-33)]
 
 ---
 
-### <a name="message-controller"></a>訊息控制器
+### <a name="log-the-user-out"></a>登出使用者
 
-在對 Bot 的後續呼叫中，請注意此範例 Bot 永遠不會快取權杖。 這是因為 Bot 可一律向 Azure Bot 服務要求權杖。 當 Azure Bot 服務為您執行一切工作時，如此可避免 Bot 必須管理權杖生命週期、更新權杖等繁瑣作業。
+最佳做法是讓使用者明確登出，而不是依賴連接逾時。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+**Dialogs\LogoutDialog.cs**
+
+[!code-csharp[Allow logout](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/LogoutDialog.cs?range=20-61&highlight=35)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+**dialogs/logoutDialog.js**
+
+[!code-javascript[Allow logout](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/logoutDialog.js?range=13-42&highlight=25)]
+
+---
 
 ### <a name="further-reading"></a>進階閱讀
 
@@ -526,7 +445,7 @@ private isTeamsVerificationInvoke(context: TurnContext): boolean {
 
 <!-- Footnote-style links -->
 
-[Azure portal]: https://ms.portal.azure.com
+[Azure 入口網站]: https://ms.portal.azure.com
 [azure-aad-blade]: https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview
 [aad-registration-blade]: https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps
 

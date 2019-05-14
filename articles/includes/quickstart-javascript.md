@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: b3f9a0d2c24809c0814baa9bfb8f993a4ba55ef7
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: ee2c261f6b028542b20771801b114d0b23ab21ca
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59551562"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033180"
 ---
 ## <a name="prerequisites"></a>必要條件
 
@@ -12,7 +12,7 @@ ms.locfileid: "59551562"
 - [Node.js](https://nodejs.org/)
 - [Yeoman](http://yeoman.io/)，可使用產生器為您建立 Bot
 - [git](https://git-scm.com/)
-- [Bot Framework 模擬器](https://github.com/Microsoft/BotFramework-Emulator) (英文)
+- [Bot Framework 模擬器](https://aka.ms/bot-framework-emulator-readme) (英文)
 - 了解 [restify](http://restify.com/) 和 JavaScript 中的非同步程式設計
 
 > [!NOTE]
@@ -64,7 +64,7 @@ Yeoman 會提示您輸入一些用來建立 Bot 的資訊。 本教學課程使�
 由於有範本，專案中會包含要在本快速入門建立 Bot 所需的所有程式碼。 您實際上不需要撰寫任何額外的程式碼。
 
 > [!NOTE]
-> 如果選擇建立 `Basic` Bot，您需要 LUIS 語言模型。 您可以在 [luis.ai](https://www.luis.ai) 上建立一個模型。 建立模型之後，請更新 .bot 檔案。 您的 Bot 檔案應該看起來類似這[一個](../v4sdk/bot-builder-service-file.md)。
+> 如果選擇建立 `Basic` Bot，您需要 LUIS 語言模型。 您可以在 [luis.ai](https://www.luis.ai) 上建立一個模型。 建立模型之後，請更新設定檔。
 
 ## <a name="start-your-bot"></a>啟動 Bot
 
@@ -73,8 +73,8 @@ Yeoman 會提示您輸入一些用來建立 Bot 的資訊。 本教學課程使�
 ## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並連線至您的 Bot
 
 1. 啟動 Bot Framework 模擬器。
-2. 按一下模擬器 [歡迎] 索引標籤中的 [開啟 Bot] 連結。
-3. 選取位於您建立專案的目錄中的 .bot 檔案。
+2. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定] 連結。 
+3. 填寫 Bot 的欄位，然後按一下 [儲存並連接]。
 
 傳送訊息給 Bot，Bot 就會以訊息回應。
 ![模擬器執行中](../media/emulator-v4/js-quickstart.png)

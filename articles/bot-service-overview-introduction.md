@@ -7,19 +7,19 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 04/18/2019
-ms.openlocfilehash: 86a75fb315ec303cb8a519bfa02063c4e6780307
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.date: 05/05/2019
+ms.openlocfilehash: 569438e43a64a96239f7d9e490563498e7f6f279
+ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904811"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65039771"
 ---
 # <a name="about-azure-bot-service"></a>關於 Azure Bot Service
 
 [!INCLUDE [applies-to-both](includes/applies-to-both.md)]
 
-Azure Bot 服務提供可在單一位置建立、測試、部署及管理智慧型 Bot 的工具。 利用 SDK 提供的模組化可延伸架構，工具、範本和 AI 服務開發人員可以建立可使用語音、理解自然語言、處理問與答等功能的 Bot。
+Azure Bot 服務和 Bot Framework 提供可在單一位置建立、測試、部署及管理智慧型 Bot 的工具。 利用 SDK 提供的模組化可延伸架構，工具、範本和 AI 服務開發人員可以建立可使用語音、理解自然語言、處理問與答等功能的 Bot。
 
 ## <a name="what-is-a-bot"></a>什麼是 Bot？
 Bot 提供的體驗比較不像使用電腦，比較像是與人溝通，或至少是與智慧型機器人溝通。 在不再需要直接人為介入的自動化系統上，Bot 可用於輪替簡單、重複性工作，例如預訂晚餐或蒐集設定檔資訊。 使用者可使用文字、互動式卡片和語音來與 Bot 交談。 Bot 互動可以是快速的問與答，也可以是以智慧方式提供服務存取權的複雜對話。
@@ -28,7 +28,7 @@ Bot 很類似現代化 Web 應用程式，在網際網路上運作，並使用 A
 
 Bot 可執行其他類型的軟體可以執行的作業：讀取和寫入檔案、使用資料庫和 API，以及進行一般計算工作。 Bot 的特點就是其使用通常保留給人與人通訊的機制。 
 
-Azure Bot Service 提供：
+Azure Bot 服務和 Bot Framework 可提供：
 - 可供開發 Bot 的 Bot Framework SDK
 - Bot Framework 工具，可涵蓋端對端 Bot 開發工作流程
 - Bot Framework Service (BFS)，可在 Bot 與通道之間傳送及接收訊息和事件
@@ -40,7 +40,7 @@ Azure Bot Service 提供：
 
 ## <a name="building-a-bot"></a>建立 Bot 
 
-Azure Bot Service 提供一組整合式工具與服務，可加快此程序。 選擇您慣用的開發環境或命令列工具來建立 Bot。 C#、JavaScript 和 Typescript 均有 SDK。 (適用於 Java 和 Python 的 SDK 正在開發中。)我們在 Bot 各種開發階段皆提供各項工具，協助您設計及建置 Bot。
+Azure Bot 服務和 Bot Framework 可提供一組整合式工具與服務，可加快此程序。 選擇您慣用的開發環境或命令列工具來建立 Bot。 C#、JavaScript 和 Typescript 均有 SDK。 (適用於 Java 和 Python 的 SDK 正在開發中。)我們在 Bot 各種開發階段皆提供各項工具，協助您設計及建置 Bot。
 
 ![Bot 概觀](media/bot-service-overview.png) 
 
@@ -48,9 +48,9 @@ Azure Bot Service 提供一組整合式工具與服務，可加快此程序。 �
 如同任何類型的軟體，務必徹底了解目標、程序及使用者需求，才能建立成功的 Bot。 撰寫程式碼之前，請先參閱 Bot [設計指南](bot-service-design-principles.md) 了解最佳作法，並找出您的 Bot 需求。 您可以建立簡單的 Bot 或納入更複雜的功能，例如語音、自然語言理解或問題解答。
 
 ### <a name="build"></a>建置
-Bot 是一項 Web 服務，可實作對話式介面並透過 Bot Framework Service 進行通訊，以傳送和接收訊息和事件。 Bot Framework Service 是 Azure Bot Service 的其中一個元件。 您可以使用任意多個環境和語言建立 Bot。 您可以在 [Azure 入口網站](bot-service-quickstart.md)中開始進行 Bot 開發，或使用 [[C#](dotnet/bot-builder-dotnet-sdk-quickstart.md) | [JavaScript](javascript/bot-builder-javascript-quickstart.md)] 範本進行本機開發。
+Bot 是一項 Web 服務，可實作對話式介面並透過 Bot Framework Service 進行通訊，以傳送和接收訊息和事件。 Bot Framework Service 是 Azure Bot Service 和 Bot Framework 的其中一個元件。 您可以使用任意多個環境和語言建立 Bot。 您可以在 [Azure 入口網站](bot-service-quickstart.md)中開始進行 Bot 開發，或使用 [[C#](dotnet/bot-builder-dotnet-sdk-quickstart.md) | [JavaScript](javascript/bot-builder-javascript-quickstart.md)] 範本進行本機開發。
 
-我們在 Azure Bot Service 中提供可用來增強 Bot 功能的其他元件
+我們在 Azure Bot Service 和 Bot Framework 中提供可用來增強 Bot 功能的其他元件
 
 | 功能 | 說明 | 連結 |
 | --- | --- | --- |
@@ -62,7 +62,7 @@ Bot 是一項 Web 服務，可實作對話式介面並透過 Bot Framework Servi
 > [!NOTE]
 > 上表並非完整清單。 請參閱左側文章了解更多 Bot 功能，第一篇為[傳送訊息](~/v4sdk/bot-builder-howto-send-messages.md)。
 
-此外，我們會提供命令列工具，協助您建立、管理及測試 Bot 資產。 這些工具可管理 Bot 組態檔、設定 LUIS 應用程式、建置 QnA 知識庫、模擬對話，以及更多功能。 您可以在命令列工具[讀我檔案](https://aka.ms/botbuilder-tools-readme)中找到更多詳細資訊。
+此外，我們會提供命令列工具，協助您建立、管理及測試 Bot 資產。 這些工具可設定 LUIS 應用程式、建置 QnA 知識庫、建置模型以在元件之間分派、模擬對話等等。 您可以在命令列工具[讀我檔案](https://aka.ms/botbuilder-tools-readme)中找到更多詳細資訊。
 
 您也可以存取各種[範例](https://github.com/microsoft/botbuilder-samples)，這些範例展現許多可透過 SDK 取得的功能。 這些很適合尋求更多元用途起點的開發人員。
 

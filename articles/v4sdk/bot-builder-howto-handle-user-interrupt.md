@@ -11,561 +11,193 @@ ms.subservice: sdk
 ms.date: 04/18/2019
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9089334823c1c57c8ace48531c767c3f966b3355
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: bd8682966dbb2e33a536a72a4016ef23e9c1fc75
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59905011"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032624"
 ---
 # <a name="handle-user-interruptions"></a>處理使用者中斷
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-處理中斷是強固 Bot 很重要的層面。
+處理中斷是強固 Bot 很重要的層面。 使用者不一定會按照所定義的對話流程逐步進行。 其可能會嘗試詢問程序中期才會提出的問題，或想要直接取消問題而不想加以完成。 在本主題中，我們將會探索一些可供處理 Bot 使用者中斷的常見方式。
 
-您也許會認為使用者會乖乖逐步遵循您定義的對話流程，但是他們很有可能會改變心意，或者在程序中途詢問問題而不是回答問題。 在這些情況下，您的 Bot 要如何處理使用者的輸入？ 使用者體驗會是如何？ 如何維護使用者狀態資料？ 處理中斷表示確定 Bot 已準備好處理這種情況。
+## <a name="prerequisites"></a>必要條件
 
-這些問題沒有正確答案，因為每種情況對於您的 Bot 設計來處理的案例都是獨一無二的。 在本主題中，我們將會探索一些處理使用者插斷的常見方式，並且建議在您的 Bot 中加以實作的一些方法。
+- [Bot 基本概念][concept-basics]、[管理狀態][concept-state]、[對話方塊程式庫][concept-dialogs]及如何[重複使用對話方塊][component-dialogs]的知識。
+- 一份核心的 Bot 範例 (使用 [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample])。
 
-## <a name="handle-expected-interruptions"></a>處理預期的插斷
+## <a name="about-this-sample"></a>關於此範例
 
-程序性對話流程具有一組核心步驟，您會想要引導使用者進行這些步驟，與這些步驟不同的任何使用者動作都是潛在的中斷。 在一般流程中，會有您可以預期的中斷。
+本文所使用的範例會設計一個預訂航班的 Bot，其會使用對話方塊來向使用者取得航班資訊。 使用者可以在與 Bot 對話期間，隨時發出_協助_或_取消_命令來中斷對話。 在此，我們會處理兩種中斷：
 
-**餐廳訂位** 在餐廳訂位 Bot 中，核心步驟可能是向使用者詢問日期和時間、派對規模及訂位名稱。 在該程序中，您可以預期到的一些中斷可能包括：
+- **回合層級**：略過回合層級的處理，但讓對話方塊與所提供的資訊留在堆疊上。 在下一個回合時，從我們離開的地方接續進行。 
+- **對話方塊層級**：完全取消處理，讓 Bot 可以重新來過一次。
 
-* `cancel`：可結束程序。
-* `help`：可提供此程序相關的其他指引。
-* `more info`：可提供提示與建議，或提供餐廳訂位的替代方式 (例如：連絡用電子郵件地址或電話號碼)。
-* `show list of available tables`：如果這是選項；會顯示在使用者希望的日期和時間可供選擇的桌位清單。
+## <a name="define-and-implement-the-interruption-logic"></a>定義和實作中斷邏輯
 
-**訂購晚餐** 在訂購晚餐 Bot 中，核心步驟是提供選單項目清單，並且讓使用者可將項目新增至購物車。 在此程序中，您可以預期到的一些中斷可能包括：
+首先，我們要定義並實作_協助_和_取消_中斷。
 
-* `cancel`：可結束訂購程序。
-* `more info`：可提供每個選單項目的飲食詳細資料。
-* `help`：可提供如何使用系統的說明。
-* `process order`：可處理訂單。
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-您可用**建議的動作**清單或提示的形式，將這些項目提供給使用者，讓使用者至少知道可以傳送哪些 Bot 能夠了解的命令。
+若要使用對話方塊，請安裝 **Microsoft.Bot.Builder.Dialogs** NuGet 套件。
 
-例如，在訂購晚餐流程中，您可以提供預期的中斷以及選單項目。 在此情況下，選單項目是以 `choices` 陣列的形式傳送。
+**Dialogs\CancelAndHelpDialog.cs**
 
-# <a name="ctabcsharptab"></a>[C#](#tab/csharptab)
+一開始，我們會先實作 `CancelAndHelpDialog` 類別來處理使用者中斷。
 
-我們會將對話集定義為 **DialogSet** 的子類別。
+[!code-csharp[Class signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=11)]
 
-```csharp
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Builder.Dialogs.Choices;
+在 `CancelAndHelpDialog` 類別中，`OnBeginDialogAsync` 和 `OnContinueDialogAsync` 方法會呼叫 `InerruptAsync` 方法來檢查使用者是否已中斷一般流程。 如果流程已中斷，則會呼叫基底類別方法；，否則會從 `InterruptAsync` 傳回傳回值。
 
-public class OrderDinnerDialogs : DialogSet
-{
-    public OrderDinnerDialogs(IStatePropertyAccessor<DialogState> dialogStateAccessor)
-        : base(dialogStateAccessor)
-    {
-    }
-}
-```
+[!code-csharp[Overrides](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=18-27)]
 
-我們會定義幾個內部類別來描述功能表。
+如果使用者輸入「協助」，`InterrupAsync` 方法會傳送一則訊息，然後呼叫 `DialogTurnResult (DialogTurnStatus.Waiting)` 來指出最上層的對話方塊正在等候使用者回應。 如此一來，系統便只會在一個回合內中斷對話流程，到下一個回合時，我們就會從離開的地方接續進行。
 
-```cs
-/// <summary>
-/// Contains information about an item on the menu.
-/// </summary>
-public class DinnerItem
-{
-    public string Description { get; set; }
+如果使用者輸入「取消」，則會在其內部對話方塊內容上呼叫 `CancelAllDialogsAsync`，此方法會清除其對話方塊堆疊，並讓其以取消的狀態結束，且不會有結果值。 到 `MainDialog` (稍後會顯示) 時，其會顯示預約對話方塊已結束並傳回 Null，情況類似使用者選擇不要確認其預約時。
 
-    public double Price { get; set; }
-}
+[!code-csharp[Interrupt](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=40-61&highlight=11-12,16-17)]
 
-/// <summary>
-/// Describes the dinner menu, including the items on the menu and options for
-/// interrupting the ordering process.
-/// </summary>
-public class DinnerMenu
-{
-    /// <summary>Gets the items on the menu.</summary>
-    public static Dictionary<string, DinnerItem> MenuItems { get; } = new Dictionary<string, DinnerItem>
-    {
-        ["Potato salad"] = new DinnerItem { Description = "Potato Salad", Price = 5.99 },
-        ["Tuna sandwich"] = new DinnerItem { Description = "Tuna Sandwich", Price = 6.89 },
-        ["Clam chowder"] = new DinnerItem { Description = "Clam Chowder", Price = 4.50 },
-    };
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-    /// <summary>Gets all the "interruptions" the bot knows how to process.</summary>
-    public static List<string> Interrupts { get; } = new List<string>
-    {
-        "More info", "Process order", "Help", "Cancel",
-    };
+若要使用對話方塊，請安裝 **botbuilder-dialogs** npm 套件。
 
-    /// <summary>Gets all of the valid inputs a user can make.</summary>
-    public static List<string> Choices { get; }
-        = MenuItems.Select(c => c.Key).Concat(Interrupts).ToList();
-}
-```
+**dialogs/cancelAndHelpDialog.js**
 
-# <a name="javascripttabjstab"></a>[JavaScript](#tab/jstab)
+一開始，我們會先實作 `CancelAndHelpDialog` 類別來處理使用者中斷。
 
-我們先從基本的 EchoBot 範本開始。 如需指示，請參閱[適用於 JavaScript 的快速入門](~/javascript/bot-builder-javascript-quickstart.md)。
+[!code-javascript[Class signature](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=10)]
 
-可以從 NPM 下載 `botbuilder-dialogs` 程式庫。 若要安裝 `botbuilder-dialogs` 程式庫，請執行下列 npm 命令：
+在 `CancelAndHelpDialog` 類別中，`onBeginDialog` 和 `onContinueDialog` 方法會呼叫 `interrupt` 方法來檢查使用者是否已中斷一般流程。 如果流程已中斷，則會呼叫基底類別方法；，否則會從 `interrupt` 傳回傳回值。
 
-```cmd
-npm install --save botbuilder-dialogs
-```
+[!code-javascript[Overrides](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=11-25)]
 
-在 **bot.js** 檔案中，參考我們將會參考的類別，並定義我們將用於對話方塊的識別碼。
+如果使用者輸入「協助」，`interrupt` 方法會傳送一則訊息，然後傳回 `{ status: DialogTurnStatus.waiting }` 物件來指出最上層的對話方塊正在等候使用者回應。 如此一來，系統便只會在一個回合內中斷對話流程，到下一個回合時，我們就會從離開的地方接續進行。
 
-```javascript
-const { ActivityTypes } = require('botbuilder');
-const { DialogSet, ChoicePrompt, WaterfallDialog, DialogTurnStatus } = require('botbuilder-dialogs');
+如果使用者輸入「取消」，則會在其內部對話方塊內容上呼叫 `cancelAllDialogs`，此方法會清除其對話方塊堆疊，並讓其以取消的狀態結束，且不會有結果值。 到 `MainDialog` (稍後會顯示) 時，其會顯示預約對話方塊已結束並傳回 Null，情況類似使用者選擇不要確認其預約時。
 
-// Name for the dialog state property accessor.
-const DIALOG_STATE_PROPERTY = 'dialogStateProperty';
-
-// Name of the order-prompt dialog.
-const ORDER_PROMPT = 'orderingDialog';
-
-// Name for the choice prompt for use in the dialog.
-const CHOICE_PROMPT = 'choicePrompt';
-```
-
-定義我們想要顯示在排序對話方塊上的選項。
-
-```javascript
-// The options on the dinner menu, including commands for the bot.
-const dinnerMenu = {
-    choices: ["Potato Salad - $5.99", "Tuna Sandwich - $6.89", "Clam Chowder - $4.50",
-        "Process order", "Cancel", "More info", "Help"],
-    "Potato Salad - $5.99": {
-        description: "Potato Salad",
-        price: 5.99
-    },
-    "Tuna Sandwich - $6.89": {
-        description: "Tuna Sandwich",
-        price: 6.89
-    },
-    "Clam Chowder - $4.50": {
-        description: "Clam Chowder",
-        price: 4.50
-    }
-}
-```
+[!code-javascript[Interrupt](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=27-40&highlight=7-8,11-12)]
 
 ---
 
-在您的訂購邏輯中，您可以使用字串比對或規則運算式來檢查它們。
+## <a name="check-for-interruptions-each-turn"></a>每回合檢查中斷
 
-# <a name="ctabcsharptab"></a>[C#](#tab/csharptab)
+現在，我們已說明過中斷處理類別的運作方式，接著讓我們回頭看看當 Bot 收到來自使用者的新訊息時，會發生什麼事。
 
-首先，我們需要定義協助程式來追蹤我們的訂單。
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-```cs
-/// <summary>Helper class for storing the order.</summary>
-public class Order
-{
-    public double Total { get; set; } = 0.0;
+**Dialogs\MainDialog.cs**
 
-    public List<DinnerItem> Items { get; set; } = new List<DinnerItem>();
+有新的訊息活動送達時，Bot 會執行 `MainDialog`。 `MainDialog` 會提示使用者其能提供什麼協助。 然後，其會藉由呼叫 `BeginDialogAsync` 在 `MainDialog.ActStepAsync` 方法中啟動 `BookingDialog`，如下所示。
 
-    public bool ReadyToProcess { get; set; } = false;
+[!code-csharp[ActStepAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/MainDialog.cs?range=54-68&highlight=13-14)]
 
-    public bool OrderProcessed { get; set; } = false;
-}
-```
+接下來，在 `MainDialog` 類別的 `FinalStepAsync` 方法中，預約對話方塊會結束，並認為預約已完成或取消。
 
-新增一些常數，以追蹤我們需要的識別碼。
+[!code-csharp[FinalStepAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/MainDialog.cs?range=70-91)]
 
-```csharp
-/// <summary>The ID of the top-level dialog.</summary>
-public const string MainDialogId = "mainMenu";
+這裡不會顯示 `BookingDialog` 中的程式碼，因為其與中斷處理沒有直接關聯。 其會用來提示使用者輸入預約詳細資料。 您可以在 **Dialogs\BookingDialogs.cs** 中找到該程式碼。
 
-/// <summary>The ID of the choice prompt.</summary>
-public const string ChoicePromptId = "choicePrompt";
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-/// <summary>The ID of the order card value, tracked inside the dialog.</summary>
-public const string OrderCartId = "orderCart";
-```
+**dialogs/mainDialog.js**
 
-更新建構函式，以新增選擇提示和瀑布對話。 我們也會定義可實作瀑布步驟的方法。
+有新的訊息活動送達時，Bot 會執行 `MainDialog`。 `MainDialog` 會提示使用者其能提供什麼協助。 然後，其會藉由呼叫 `beginDialog` 在 `MainDialog.actStep` 方法中啟動 `bookingDialog`，如下所示。
 
-```cs
-public OrderDinnerDialogs(IStatePropertyAccessor<DialogState> dialogStateAccessor)
-    : base(dialogStateAccessor)
-{
-    // Add a choice prompt for the dialog.
-    Add(new ChoicePrompt(ChoicePromptId));
+[!code-javascript[Act step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=71-88&highlight=16-17)]
 
-    // Define and add the main waterfall dialog.
-    WaterfallStep[] steps = new WaterfallStep[]
-    {
-        PromptUserAsync,
-        ProcessInputAsync,
-    };
+接下來，在 `MainDialog` 類別的 `finalStep` 方法中，預約對話方塊會結束，並認為預約已完成或取消。
 
-    Add(new WaterfallDialog(MainDialogId, steps));
-}
+[!code-javascript[Final step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=93-110)]
 
-/// <summary>
-/// Defines the first step of the main dialog, which is to ask for input from the user.
-/// </summary>
-/// <param name="stepContext">The current waterfall step context.</param>
-/// <param name="cancellationToken">The cancellation token.</param>
-/// <returns>The task to perform.</returns>
-private async Task<DialogTurnResult> PromptUserAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // Initialize order, continuing any order that was passed in.
-    Order order = (stepContext.Options is Order oldCart && oldCart != null)
-        ? new Order
-        {
-            Items = new List<DinnerItem>(oldCart.Items),
-            Total = oldCart.Total,
-            ReadyToProcess = oldCart.ReadyToProcess,
-            OrderProcessed = oldCart.OrderProcessed,
-        }
-        : new Order();
-
-    // Set the order cart in dialog state.
-    stepContext.Values[OrderCartId] = order;
-
-    // Prompt the user.
-    return await stepContext.PromptAsync(
-        "choicePrompt",
-        new PromptOptions
-        {
-            Prompt = MessageFactory.Text("What would you like for dinner?"),
-            RetryPrompt = MessageFactory.Text(
-                "I'm sorry, I didn't understand that. What would you like for dinner?"),
-            Choices = ChoiceFactory.ToChoices(DinnerMenu.Choices),
-        },
-        cancellationToken);
-}
-
-/// <summary>
-/// Defines the second step of the main dialog, which is to process the user's input, and
-/// repeat or exit as appropriate.
-/// </summary>
-/// <param name="stepContext">The current waterfall step context.</param>
-/// <param name="cancellationToken">The cancellation token.</param>
-/// <returns>The task to perform.</returns>
-private async Task<DialogTurnResult> ProcessInputAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // Get the order cart from dialog state.
-    Order order = stepContext.Values[OrderCartId] as Order;
-
-    // Get the user's choice from the previous prompt.
-    string response = (stepContext.Result as FoundChoice).Value;
-
-    if (response.Equals("process order", StringComparison.InvariantCultureIgnoreCase))
-    {
-        order.ReadyToProcess = true;
-
-        await stepContext.Context.SendActivityAsync(
-            "Your order is on it's way!",
-            cancellationToken: cancellationToken);
-
-        // In production, you may want to store something more helpful.
-        // "Process" the order and exit.
-        order.OrderProcessed = true;
-        return await stepContext.EndDialogAsync(null, cancellationToken);
-    }
-    else if (response.Equals("cancel", StringComparison.InvariantCultureIgnoreCase))
-    {
-        // Cancel the order.
-        await stepContext.Context.SendActivityAsync(
-            "Your order has been canceled",
-            cancellationToken: cancellationToken);
-
-        // Exit without processing the order.
-        return await stepContext.EndDialogAsync(null, cancellationToken);
-    }
-    else if (response.Equals("more info", StringComparison.InvariantCultureIgnoreCase))
-    {
-        // Send more information about the options.
-        string message = "More info: <br/>" +
-            "Potato Salad: contains 330 calories per serving. Cost: 5.99 <br/>"
-            + "Tuna Sandwich: contains 700 calories per serving. Cost: 6.89 <br/>"
-            + "Clam Chowder: contains 650 calories per serving. Cost: 4.50";
-        await stepContext.Context.SendActivityAsync(
-            message,
-            cancellationToken: cancellationToken);
-
-        // Continue the ordering process, passing in the current order cart.
-        return await stepContext.ReplaceDialogAsync(MainDialogId, order, cancellationToken);
-    }
-    else if (response.Equals("help", StringComparison.InvariantCultureIgnoreCase))
-    {
-        // Provide help information.
-        string message = "To make an order, add as many items to your cart as " +
-            "you like. Choose the `Process order` to check out. " +
-            "Choose `Cancel` to cancel your order and exit.";
-        await stepContext.Context.SendActivityAsync(
-            message,
-            cancellationToken: cancellationToken);
-
-        // Continue the ordering process, passing in the current order cart.
-        return await stepContext.ReplaceDialogAsync(MainDialogId, order, cancellationToken);
-    }
-
-    // We've checked for expected interruptions. Check for a valid item choice.
-    if (!DinnerMenu.MenuItems.ContainsKey(response))
-    {
-        await stepContext.Context.SendActivityAsync("Sorry, that is not a valid item. " +
-            "Please pick one from the menu.");
-
-        // Continue the ordering process, passing in the current order cart.
-        return await stepContext.ReplaceDialogAsync(MainDialogId, order, cancellationToken);
-    }
-    else
-    {
-        // Add the item to cart.
-        DinnerItem item = DinnerMenu.MenuItems[response];
-        order.Items.Add(item);
-        order.Total += item.Price;
-
-        // Acknowledge the input.
-        await stepContext.Context.SendActivityAsync(
-            $"Added `{response}` to your order; your total is ${order.Total:0.00}.",
-            cancellationToken: cancellationToken);
-
-        // Continue the ordering process, passing in the current order cart.
-        return await stepContext.ReplaceDialogAsync(MainDialogId, order, cancellationToken);
-    }
-}
-```
-
-# <a name="javascripttabjstab"></a>[JavaScript](#tab/jstab)
-
-在 Bot 建構函式中定義您的對話方塊。 請注意，程式碼會先檢查並處理中斷，然後繼續進行下一個邏輯步驟。
-
-```javascript
-constructor(conversationState) {
-    this.dialogStateAccessor = conversationState.createProperty(DIALOG_STATE_PROPERTY);
-    this.conversationState = conversationState;
-
-    this.dialogs = new DialogSet(this.dialogStateAccessor)
-        .add(new ChoicePrompt(CHOICE_PROMPT))
-        .add(new WaterfallDialog(ORDER_PROMPT, [
-            async (step) => {
-                if (step.options && step.options.orders) {
-                    // If an order cart was passed in, continue to use it.
-                    step.values.orderCart = step.options;
-                } else {
-                    // Otherwise, start a new cart.
-                    step.values.orderCart = {
-                        orders: [],
-                        total: 0
-                    };
-                }
-                return await step.prompt(CHOICE_PROMPT, "What would you like?", dinnerMenu.choices);
-            },
-            async (step) => {
-                const choice = step.result;
-                if (choice.value.match(/process order/ig)) {
-                    if (step.values.orderCart.orders.length > 0) {
-                        // If the cart is not empty, process the order by returning the order to the parent context.
-                        await step.context.sendActivity("Your order has been processed.");
-                        return await step.endDialog(step.values.orderCart);
-                    } else {
-                        // Otherwise, prompt again.
-                        await step.context.sendActivity("Your cart was empty. Please add at least one item to the cart.");
-                        return await step.replaceDialog(ORDER_PROMPT);
-                    }
-                } else if (choice.value.match(/cancel/ig)) {
-                    // Cancel the order, and return "cancel" to the parent context.
-                    await step.context.sendActivity("Your order has been canceled.");
-                    return await step.endDialog("cancelled");
-                } else if (choice.value.match(/more info/ig)) {
-                    // Provide more information, and then continue the ordering process.
-                    var msg = "More info: <br/>Potato Salad: contains 330 calories per serving. <br/>"
-                        + "Tuna Sandwich: contains 700 calories per serving. <br/>"
-                        + "Clam Chowder: contains 650 calories per serving."
-                    await step.context.sendActivity(msg);
-                    return await step.replaceDialog(ORDER_PROMPT, step.values.orderCart);
-                } else if (choice.value.match(/help/ig)) {
-                    // Provide help information, and then continue the ordering process.
-                    var msg = `Help: <br/>`
-                        + `To make an order, add as many items to your cart as you like then choose `
-                        + `the "Process order" option to check out.`
-                    await step.context.sendActivity(msg);
-                    return await step.replaceDialog(ORDER_PROMPT, step.values.orderCart);
-                } else {
-                    // The user has chosen a food item from the menu. Add the item to cart.
-                    var item = dinnerMenu[choice.value];
-                    step.values.orderCart.orders.push(item.description);
-                    step.values.orderCart.total += item.price;
-
-                    await step.context.sendActivity(`Added ${item.description} to your cart. <br/>`
-                        + `Current total: $${step.values.orderCart.total}`);
-
-                    // Continue the ordering process.
-                    return await step.replaceDialog(ORDER_PROMPT, step.values.orderCart);
-                }
-            }
-        ]));
-}
-```
-
-更新回合處理常式，以呼叫對話方塊並顯示排序程序的結果。
-
-```javascript
-async onTurn(turnContext) {
-    if (turnContext.activity.type === ActivityTypes.Message) {
-        let dc = await this.dialogs.createContext(turnContext);
-        let dialogTurnResult = await dc.continueDialog();
-        if (dialogTurnResult.status === DialogTurnStatus.complete) {
-            // The dialog completed this turn.
-            const result = dialogTurnResult.result;
-            if (!result || result === "cancelled") {
-                await turnContext.sendActivity('You cancelled your order.');
-            } else {
-                await turnContext.sendActivity(`Your order came to $${result.total}`);
-            }
-        } else if (!turnContext.responded) {
-            // No dialog was active.
-            await turnContext.sendActivity("Let's order dinner...");
-            await dc.cancelAllDialogs();
-            await dc.beginDialog(ORDER_PROMPT);
-        } else {
-            // The dialog is active.
-        }
-    } else {
-        await turnContext.sendActivity(`[${turnContext.activity.type} event detected]`);
-    }
-    // Save state changes
-    await this.conversationState.saveChanges(turnContext);
-}
-```
+這裡不會顯示 `BookingDialog` 中的程式碼，因為其與中斷處理沒有直接關聯。 其會用來提示使用者輸入預約詳細資料。 您可以在 **dialogs/bookingDialogs.js** 中找到該程式碼。
 
 ---
 
-## <a name="handle-unexpected-interruptions"></a>處理未預期的中斷
+## <a name="handle-unexpected-errors"></a>處理未預期的錯誤
 
-有些中斷不在您 Bot 設計要執行的功能範圍內。
-雖然您無法預期所有中斷，但可以針對 Bot 進行程式設計，來處理一些中斷的模式。
+接下來，我們要處理可能會發生的任何未處理例外狀況。
 
-### <a name="switching-topic-of-conversations"></a>切換對話主題
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-如果使用者正在對話中，而且想要切換至另一個對話，怎麼辦？ 例如，您的 Bot 可以處理餐廳訂位和訂購晚餐。
-當使用者處於_餐廳訂位_流程中時，使用者並非回答「派對中有多少人？」的問題，而是傳送「訂購晚餐」訊息。 在此情況下，使用者改變了心意並且想要參與訂購晚餐對話。 您應該如何處理此中斷？
+**AdapterWithErrorHandler.cs**
 
-您可以將主題切換為訂購晚餐流程，或者可以藉由告知使用者您正在等待數量並且重新提示他們，讓問題固定下來。 如果您允許他們切換主題，接著就必須決定是否要儲存進度，讓使用者可以從他們離開的地方再開始；或者可以刪除已收集的所有資訊，讓他們在下一次訂位的時候從頭開始。 如需管理使用者狀態資料的詳細資訊，請參閱[使用對話和使用者屬性來儲存狀態](bot-builder-howto-v4-state.md)。
+在我們的範例中，配接器的 `OnTurnError` 處理常式會接收 Bot 的回合邏輯所擲回的任何例外狀況。 如果有擲回的例外狀況，處理常式就會刪除目前對話的對話狀態，防止 Bot 卡在因為狀態不良而導致的錯誤迴圈中。
 
-### <a name="apply-artificial-intelligence"></a>套用人工智慧
+[!code-csharp[AdapterWithErrorHandler](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/AdapterWithErrorHandler.cs?range=12-41)]
 
-針對範圍之外的中斷，您可以嘗試猜測使用者的想法。 您可以使用 AI 服務 (例如 QnA Maker、LUIS) 或您的自訂邏輯，然後針對 Bot 所判斷的使用者需求的提供建議，來達到這項目的。
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-例如，在餐廳訂位流程當中，使用者說：「我想要訂購漢堡」。 Bot 不會知道要如何在這個對話流程中處理這個訊息。 因為目前的流程與訂購毫無相關，Bot 的其他對話命令是「訂購晚餐」，所以 Bot 不知道要怎麼處理這個輸入。 舉例來說，如果您套用 LUIS，就可以訓練模型來辨識使用者想要訂購餐點 (例如：LUIS 可以傳回 "orderFood" 意圖)。 因此，Bot 就可以回應：「您似乎想要訂購餐點。 您要切換到我們的訂購晚餐程序嗎？」 如需訓練 LUIS 並且偵測使用者意圖的詳細資訊，請參閱[使用 LUIS 理解語言](bot-builder-howto-v4-luis.md)。
+**index.js**
 
-### <a name="default-response"></a>預設回應
+在我們的範例中，配接器的 `onTurnError` 處理常式會接收 Bot 的回合邏輯所擲回的任何例外狀況。 如果有擲回的例外狀況，處理常式就會刪除目前對話的對話狀態，防止 Bot 卡在因為狀態不良而導致的錯誤迴圈中。
 
-如果所有解決方案都失敗，您應該傳送預設回應，而不是毫無作為，讓使用者臆測究竟發生什麼事。 預設回應應該告知使用者 Bot 可以理解哪些命令，讓使用者可以回到正軌。
-
-您可以檢查 Bot 邏輯結尾的內容**已回應**旗標，以查看 Bot 是否在使用者等待時將任何項目傳回給使用者。 如果 Bot 會處理使用者的輸入，但是不會回應，有可能是 Bot 不知道該如何處理輸入。 在此情況下，您可以攔截它，並且將預設訊息傳送給使用者。
-
-如果 Bot 的預設值是為使用者提供 `mainMenu` 對話，您則必須決定使用者在這種情形下會有何種 Bot 體驗。
-
-# <a name="ctabcsharptab"></a>[C#](#tab/csharptab)
-
-```cs
-// Check whether we replied. If not then clear the dialog stack and present the main menu.
-if (!turnContext.Responded)
-{
-    await dc.CancelAllDialogsAsync(cancellationToken);
-    await dc.BeginDialogAsync(OrderDinnerDialogs.MainDialogId, null, cancellationToken);
-}
-```
-
-# <a name="javascripttabjstab"></a>[JavaScript](#tab/jstab)
-
-```javascript
-// Check to see if anyone replied. If not then clear all the stack and present the main menu
-if (!context.responded) {
-    await dc.cancelAllDialogs();
-    await step.beginDialog('mainMenu');
-}
-```
+[!code-javascript[AdapterWithErrorHandler](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=28-38)]
 
 ---
 
-## <a name="handling-global-interruptions"></a>處理全域中斷
+## <a name="register-services"></a>註冊伺服器
 
-在上述範例中，我們會處理可能在特定對話方塊中的特定回合發生的中斷。 如果我們想要處理全域中斷 - 隨時可能發生的種類，該怎麼做？
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-做法是將中斷處理邏輯放入 Bot 的主要處理常式中 - 這是可處理傳入 `turnContext` 並決定其處理方式的函式。
+**Startup.cs**
 
-在以下範例中，Bot 進行的「第一件事」是檢查傳入訊息文字中是否有使用者需要協助或想要取消的徵象 - Bot 很常遇到的兩種中斷情形。 在這項檢查完成之後，Bot 會呼叫 `dc.continueDialog()` 以處理仍然擱置的任何使用中對話方塊。
+最後，在 `Startup.cs` 中會建立暫時性的 Bot，且每一回合都會建立新的 Bot 執行個體。
 
-# <a name="ctabcsharptab"></a>[C#](#tab/csharptab)
+[!code-csharp[Add transient bot](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Startup.cs?range=46-47)]
 
-```cs
-// Check for top-level interruptions.
-string utterance = turnContext.Activity.Text.Trim().ToLowerInvariant();
+如需參考，以下是呼叫中用來建立上述 Bot 的類別定義。
 
-if (utterance == "help")
-{
-    // Start a general help dialog. Dialogs already on the stack remain and will continue
-    // normally if the help dialog exits normally.
-    await dc.BeginDialogAsync(OrderDinnerDialogs.HelpDialogId, null, cancellationToken);
-}
-else if (utterance == "cancel")
-{
-    // Cancel any dialog on the stack.
-    await turnContext.SendActivityAsync("Canceled.", cancellationToken: cancellationToken);
-    await dc.CancelAllDialogsAsync(cancellationToken);
-}
-else
-{
-    await dc.ContinueDialogAsync(cancellationToken);
+[!code-csharp[MainDialog signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/MainDialog.cs?range=15)]
+[!code-csharp[DialogAndWelcomeBot signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Bots/DialogAndWelcomeBot.cs?range=16)]
+[!code-csharp[DialogBot signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Bots/DialogBot.cs?range=18)]
 
-    // Check whether we replied. If not then clear the dialog stack and present the main menu.
-    if (!turnContext.Responded)
-    {
-        await dc.CancelAllDialogsAsync(cancellationToken);
-        await dc.BeginDialogAsync(OrderDinnerDialogs.MainDialogId, null, cancellationToken);
-    }
-}
-```
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-# <a name="javascripttabjstab"></a>[JavaScript](#tab/jstab)
+**index.js**
 
-我們會先處理中斷，再將使用者回應傳送至對話方塊。
+最後，在 `index.js` 中便會建立 Bot。
 
-此程式碼片段假設我們的對話方塊集中有 `helpDialog` 和`mainMenu`。
+[!code-javascript[Create bot](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=55-56)]
 
-```javascript
-const utterance = (context.activity.text || '').trim();
+如需參考，以下是呼叫中用來建立上述 Bot 的類別定義。
 
-// Let's look for some interruptions first!
-if (utterance.match(/help/ig)) {
-    // Launch a new help dialog if the user asked for help
-    await dc.beginDialog('helpDialog');
-} else if (utterance.match(/cancel/ig)) {
-    // Cancel any active dialogs if the user says cancel
-    await dc.context.sendActivity('Canceled.');
-    await dc.cancelAllDialogs();
-}
-
-// If the bot hasn't yet responded...
-if (!context.responded) {
-    // Continue any active dialog, which might send a response...
-    await dc.continueDialog();
-
-    // Finally, if the bot still hasn't sent a response, send instructions.
-    if (!context.responded) {
-        await dc.cancelAllDialogs();
-        await context.sendActivity("Starting the main menu...");
-        await dc.beginDialog('mainMenu');
-    }
-}
-```
+[!code-javascript[MainDialog signature](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=12)]
+[!code-javascript[DialogAndWelcomeBot signature](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/bots/dialogAndWelcomeBot.js?range=8)]
+[!code-javascript[DialogBot signature](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/bots/dialogBot.js?range=6)]
 
 ---
+
+## <a name="to-test-the-bot"></a>測試 Bot
+
+1. 如果您尚未安裝 [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)，請進行安裝。
+1. 在您的電腦本機執行範例。
+1. 啟動模擬器、連線到您的 Bot 並傳送如下所示的訊息。
+
+<!--![test dialog prompt sample](~/media/emulator-v4/test-dialog-prompt.png)-->
+
+## <a name="additional-information"></a>其他資訊
+
+- [驗證範例](https://aka.ms/logout)會示範如何處理登出，此登出會使用如下所示的類似模式來處理中斷。
+
+- 您應該傳送預設回應，而不是毫無作為，讓使用者臆測究竟發生什麼事。 預設回應應該告知使用者 Bot 可以理解哪些命令，讓使用者可以回到正軌。
+
+- 在回合中的任何時點，回合內容的_回應_屬性都會指出 Bot 是否已在這個回合傳送訊息給使用者。 回合結束之前，Bot 應該會傳送某些訊息給使用者，即使是簡單的輸入通知也是如此。
+
+<!-- Footnote-style links -->
+
+[concept-basics]: bot-builder-basics.md
+[concept-state]: bot-builder-concept-state.md
+[concept-dialogs]: bot-builder-concept-dialog.md
+
+[using-luis]: bot-builder-howto-v4-luis.md
+[using-qna]: bot-builder-howto-qna.md
+
+[simple-flow]: bot-builder-dialog-manage-conversation-flow.md
+[prompting]: bot-builder-prompts.md
+[component-dialogs]: bot-builder-compositcontrol.md
+
+[cs-sample]: https://aka.ms/cs-core-sample
+[js-sample]: https://aka.ms/js-core-sample

@@ -7,15 +7,15 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: 96f2963604d12c9c9e235288ad4df25924f45af4
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 04/10/2019
+ms.openlocfilehash: 717a95d580bad218ade9a884522724f1c6b96ad7
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998005"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032645"
 ---
-# <a name="authentication"></a>驗證
+# <a name="authentication"></a>Authentication
 
 用戶端可以藉由在 Bot Framework 入口網站使用您[從 Direct Line 頻道設定頁面取得](../bot-service-channel-connect-directline.md)的**祕密**來驗證 Direct Line API 3.0 的要求，或使用您在執行階段取得的**權杖**來驗證。 祕密或權杖應該使用下列格式，指定於每個要求的 `Authorization` 標頭中： 
 
@@ -59,6 +59,26 @@ Authorization: Bearer SECRET
 POST https://directline.botframework.com/v3/directline/tokens/generate
 Authorization: Bearer RCurR_XV9ZA.cwA.BKA.iaJrC8xpy8qbOF5xnR2vtCX7CZj0LdjAPGfiCpg4Fv0
 ```
+
+要求承載 (其中包含權杖參數) 是選用，但建議使用的項目。 在產生可送回 Direct Line 服務的權杖時，請提供下列承載，讓連線更加安全。 藉由包含這些值，Direct Line 可對使用者識別碼和名稱執行額外的安全性驗證，以抑制惡意用戶端竄改這些值。 包含這些值也會改善 Direct Line 傳送_交談更新_活動的能力，可讓其在使用者加入交談時立即產生交談更新。 若未提供此資訊，使用者必須先傳送內容，Direct Line 才能傳送交談更新。
+
+```json
+{
+  "user": {
+    "id": "string",
+    "name": "string"
+  },
+  "trustedOrigins": [
+    "string"
+  ]
+}
+```
+
+| 參數 | 類型 | 說明 |
+| :--- | :--- | :--- |
+| `user.id` | 字串 | 選用。 權杖內要編碼的使用者通道專屬識別碼。 若為 Direct Line 使用者，這必須以 `dl_` 開頭。 您可以針對每次交談建立唯一的使用者識別碼，且基於安全考量，您應該讓此識別碼無法猜測。 |
+| `user.name` | 字串 | 選用。 權杖內要編碼的使用者易記顯示名稱。 |
+| `trustedOrigins` | 字串陣列 | 選用。 權杖內要內嵌的受信任網域清單。 這些是可以裝載 Bot 網路聊天用戶端的網域。 這應該符合 Direct Line 設定頁面中您 Bot 的清單。 |
 
 ### <a name="response"></a>Response
 

@@ -1,21 +1,18 @@
 ---
-title: 即時媒體 Bot 的需求和考量 | Microsoft Docs
-description: 了解使用適用於 .NET 的 Bot Framework SDK，來建立適用於 Skype 之即時媒體的重要需求和考量。
-author: ssulzer
-ms.author: ssulzer
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 12/13/17
-monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d8cd326a3027fe5fcb440d9b205ba7d32a8b1640
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+redirect_url: https://aka.ms/realTimeMediaCalling-repo
+ms.openlocfilehash: 8868ee0d72aa0de6480a392368469b6adf18b561
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224933"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032914"
 ---
+<a name="--"></a><!--
+---
+標題：即時媒體 Bot 的需求和考量 | Microsoft Docs 描述：了解使用適用於 .NET 的 Bot Framework SDK，來建立適用於 Skype 之即時媒體的重要需求和考量。
+author: ssulzer ms.author: ssulzer manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date:12/13/17 monikerRange: 'azure-bot-service-3.0'
+---
+
 # <a name="requirements-and-considerations-for-real-time-media-bots"></a>即時媒體 Bot 的需求和考量
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
@@ -54,3 +51,4 @@ ms.locfileid: "54224933"
   2. 即時媒體平台目前不會利用可在 VM 上取得的任何圖形處理器 (GPU) 來卸載 H.264 視訊編碼/解碼。 相反地，視訊編碼和解碼都會以 CPU 上的軟體來完成。 如果 GPU 可供使用，Bot 就可利用它來進行自己的圖形轉譯 (例如，如果 Bot 使用 3D 圖形引擎)。
 
 - 裝載即時媒體 Bot 的 VM 執行個體必須至少有 2 個 CPU 核心。 對於 Azure，建議使用 Dv2 系列的虛擬機器。 您可以在 <a href="/azure/virtual-machines/windows/sizes-general" target="_blank">Azure 文件</a>中找到 Azure VM 類型的詳細資訊。 
+-->

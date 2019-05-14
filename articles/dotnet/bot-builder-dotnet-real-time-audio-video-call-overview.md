@@ -1,21 +1,18 @@
 ---
-title: 建置適用於 Skype 的即時媒體 Bot | Microsoft Docs
-description: 了解如何建置 Bot，以便透過 Skype 進行即時音訊/視訊通話、使用適用於 .NET 的 Bot Framework SDK 和適用於 .NET 的 Bot Builder-RealTimeMediaCalling SDK。
-author: MalarGit
-ms.author: malarch
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 12/13/17
-monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a539ca3258e8c9a8020bfa7c939f6eddbdd30feb
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+redirect_url: https://aka.ms/realTimeMediaCalling-repo
+ms.openlocfilehash: 9251c3a8ea75376b0891fc173975470a66ccaec8
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225653"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032961"
 ---
+<a name="--"></a><!--
+---
+標題：建置適用於 Skype 的即時媒體 Bot | Microsoft Docs 描述：了解如何建置 Bot，以便透過 Skype 進行即時音訊/視訊通話、使用適用於 .NET 的 Bot Framework SDK 和適用於 .NET 的 Bot Builder-RealTimeMediaCalling SDK。
+作者︰MalarGit ms.author: malarch manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date:12/13/17 monikerRange: 'azure-bot-service-3.0'
+---
+
 # <a name="build-a-real-time-media-bot-for-skype"></a>建置適用於 Skype 的即時媒體 Bot
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
@@ -375,3 +372,4 @@ Bot 可以選擇藉由在 `IRealTimeMediaCallService` 上呼叫 `EndCall` 來結
 ### <a name="handle-call-clean-up-by-the-bot-framework"></a>由 Bot Framework 處理呼叫清除
 在錯誤狀況 (例如，若未在合理的時間內接收 `AnswerAppHostedMediaOutcomeEvent`) 下，Bot Framework 可能會終止呼叫。 Bot 應該註冊 `OnCallCleanup` 事件並處置媒體通訊端。
 
+-->

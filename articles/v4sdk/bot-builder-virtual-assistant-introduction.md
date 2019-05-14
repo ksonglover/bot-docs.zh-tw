@@ -8,29 +8,34 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 13/12/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1d231672284e20e3f215cbba16d881ae0ecab7ec
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: 99c37812a5c13fe2409a68cbb8614cf8144d0711
+ms.sourcegitcommit: b94c4286f6f64955fd51ccf4a68109c43db0e47d
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59540984"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65083697"
 ---
-# <a name="virtual-assistant-solution-overview"></a>虛擬小幫手解決方案概觀
+# <a name="virtual-assistant-overview"></a>虛擬助理概觀
 
 ## <a name="overview"></a>概觀
-我們發現客戶和合作夥伴都極需要提供專屬於其品牌的對話式小幫手，並且還需要為他們的客戶量身打造，以及在各種對話式畫布和裝置上使用。 開放原始碼的自訂個人小幫手解決方案會延續針對 Bot Framework SDK 開發的 Microsoft 開放原始碼方法，讓您根據一組基本功能來完全控制終端使用者的體驗。 此外，此體驗可注入關於終端使用者和任何裝置/生態系統資訊的情報，以達到真正的整合及智慧型體驗。
+
+客戶與合作夥伴極需提供專屬於其品牌的交談式助理，並且還需要為他們的使用者量身打造，以及在各種畫布和裝置上提供使用。 <br/><br/> 開放原始碼的虛擬助理解決方案會延續針對 Bot Framework SDK 開發的 Microsoft 開放原始碼方法，為您提供一組核心功能來完全控制終端使用者的體驗。 <br/><br/> 此範本納入先前的企業範本，並且將所有最佳做法與透過建置交談式體驗所識別的支援元件結合在一起，大幅簡化新 Bot 專案的建立程序，包括：基本交談式意圖、分派整合、QnA Maker、Application Insights 和自動化部署。
 
 我們深信客戶應該擁有他們的客戶關係和見解，並且加以擴充。 因此，任何虛擬小幫手都會透過在 GitHub 上開放原始碼，將使用者體驗的完整控制權提供給客戶和合作夥伴。 名稱、語音和特質都可根據組織需求加以變更。 虛擬小幫手解決方案簡化了自行建立小幫手的程序，可讓您在幾分鐘內開始使用此功能，然後使用我們的端對端開發工具來擴充。
 
 虛擬小幫手功能的範圍很廣泛，通常會提供一系列功能給使用者。 為提升開發人員的生產力，並啟用可重複使用對話式體驗的活躍生態系統，我們會針對可重複使用的對話式技能，提供初始範例給開發人員。 這些技術可新增到對話式應用程式，以開啟特定對話體驗，例如尋找景點、與行事曆、工作、電子郵件互動等許多其他案例。 技術皆開放為完全自訂，且包含適用於多種語言、對話方塊和程式碼的語言模型。
 
-我們目前在開放原始碼存放庫方面，與初始客戶及合作夥伴密切合作，目標是先將最初的體驗帶入生活。
-
 ![虛擬小幫手圖表](./media/enterprise-template/customassistantdiagram.jpg)
+
+## <a name="get-started"></a>開始使用
+
+如需詳細資訊，請探索[虛擬助理及技能](https://github.com/Microsoft/AI)文件。
 
 ## <a name="whats-in-the-box"></a>產品內容 
 
-虛擬小幫手是以[企業範本](./bot-builder-enterprise-template-overview.md)功能為基礎，其可為對話式體驗提供基礎功能，包括多種語言的基礎對話式見解、分派、QnA 和對話式見解。 目前提供下列小幫手相關功能，並已規劃進一步的功能，我們將與客戶及合作夥伴密切合作，協助提供藍圖資訊。
+虛擬助理範本結合了數個我們在建置交談式體驗時發現的最佳做法，並自動整合對 Bot Framework 開發人員非常有幫助的元件。 本節涵蓋了一些重要決策的背景知識，以協助說明為什麼範本會如此運作。
+
+虛擬助理範本現在納入先前的企業範本功能，包括多種語言的基礎交談意圖、分派、QnA 和交談見解。 目前提供下列小幫手相關功能，並已規劃進一步的功能，我們將與客戶及合作夥伴密切合作，協助提供藍圖資訊。
 
 功能 | 說明 |
 ------------ | -------------
@@ -97,5 +102,4 @@ ToDo 技術 | 預覽 ToDo 技術，可提供常見工作相關活動的全方位
 
 ## <a name="getting-started"></a>開始使用
 
-在[此 GitHub 存放庫](https://github.com/Microsoft/AI/tree/master/solutions/Virtual-Assistant)中可取得虛擬助理解決方案，而虛擬助理小組會定期更新該解決方案。 在相同的存放庫中可取得更詳細的文件，而且可以透過 GitHub 意見反應機制直接提供問題/意見反應。 如果您有想要與我們討論的主要案例，請填寫[此表單](https://aka.ms/customassistantpreviewform)，我們將與您連絡。
-
+在[此 GitHub 存放庫](https://github.com/Microsoft/AI/)中可取得虛擬助理解決方案，而虛擬助理小組會定期更新該解決方案。 在相同的存放庫中可取得更詳細的文件，而且可以透過 GitHub 意見反應機制直接提供問題/意見反應。

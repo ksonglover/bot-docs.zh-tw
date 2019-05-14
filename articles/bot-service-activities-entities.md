@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 03/01/2018
-ms.openlocfilehash: 818017a81b497b13ee181dbb6b87c03a0182736d
-ms.sourcegitcommit: 75f32b3325dd0fc4d8128dee6c22ebf91e5785b3
+ms.openlocfilehash: 9fa9a23f4d14667aeb97d304498b415f2c8041d1
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53120675"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033065"
 ---
 # <a name="entities-and-activity-types"></a>實體和活動類型
 
@@ -159,93 +159,7 @@ if(context.activity.type === 'message'){
 
 ---
 
-活動可以屬於數個會傳遞最常見**訊息**的不同類型。 有數種活動類型：
-
-| Activity.Type | 介面 | 說明 |
-|-----|-----|-----|
-| [message](#message) | IMessageActivity (C#) <br> Activity (JS) | 代表 Bot 和使用者之間的通訊。 |
-| [contactRelationUpdate](#contactrelationupdate) | IContactRelationUpdateActivity (C#) <br> Activity (JS) | 表示 Bot 已新增至或從使用者的連絡人清單中移除。 |
-| [conversationUpdate](#conversationupdate) | IConversationUpdateActivity (C#) <br> Activity (JS) | 表示 Bot 新增至對話、其他成員新增至或從對話中移除，或對話中繼資料已變更。 |
-| [deleteUserData](#deleteuserdata) | n/a | 表示使用者已要求 Bot 刪除任何可能已儲存的使用者資料。 |
-| [endOfConversation](#endofconversation) | IEndOfConversationActivity (C#) <br> Activity (JS) | 表示對話結束。 |
-| [event](#event) | IEventActivity (C#) <br> Activity (JS) | 代表傳送給 Bot 的通訊使用者看不到。 |
-| [installationUpdate](#installationupdate) | IInstallationUpdateActivity (C#) <br> Activity (JS) | 代表在通道的組織單位內 (例如客戶租用戶或「小組」) 安裝或解除安裝 Bot。 |
-| [invoke](#invoke) | IInvokeActivity (C#) <br> Activity (JS) | 代表傳送給 Bot 以要求它執行特定作業的通訊。 此活動類型由 Microsoft Bot Framework 保留供內部使用。 |
-| [messageReaction](#messagereaction) | IMessageReactionActivity (C#) <br> Activity (JS) | 表示使用者已對現有活動做出回應。 例如，使用者按了訊息上的「讚」按鈕。 |
-| [typing](#typing) | ITypingActivity (C#) <br> Activity (JS) | 表示使用者或在對話另一端的 Bot 正在編譯回應。 |
-| messageUpdate | IMessageUpdateActivity (C#) <br> Activity (JS) | 表示要更新交談中先前訊息活動的要求。 |
-| messageDelete | IMessageDeleteActivity (C#) <br> Activity (JS) | 表示要刪除交談中先前訊息活動的要求。 |
-| 建議 | ISuggestionActivity (C#) <br> Activity (JS) | 表示對於另一個特定活動相關收件者的私人建議。 |
-| trace | ITraceActivity (C#) <br> Activity (JS) | 一項活動，可供 Bot 將內部資訊記錄到已記錄的交談文字記錄中。 |
-| handoff | IHandoffActivity (C#) <br> Activity (JS) | 已移轉的交談控制權，或是要移轉交談控制權的要求。 |
-
-## <a name="message"></a>Message
-
-<!-- Only the last link is different. -->
-
-::: moniker range="azure-bot-service-3.0"
-
-Bot 會傳送 message 活動以傳達資訊，及接收來自使用者的 message 活動。
-某些訊息可能只包含純文字，而其他訊息可能包含更豐富的內容，例如要讀出的文字、[建議的動作](v4sdk/bot-builder-howto-add-suggested-actions.md)、[媒體附件](v4sdk/bot-builder-howto-add-media-attachments.md)、[複合式資訊卡 (Rich Card)](v4sdk/bot-builder-howto-add-media-attachments.md#send-a-hero-card) 和[通道特有資料](~/dotnet/bot-builder-dotnet-channeldata.md)。
-
-::: moniker-end
-
-::: moniker range="azure-bot-service-4.0"
-
-Bot 會傳送 message 活動以傳達資訊，及接收來自使用者的 message 活動。
-某些訊息可能只包含純文字，而其他訊息可能包含更豐富的內容，例如要讀出的文字、[建議的動作](v4sdk/bot-builder-howto-add-suggested-actions.md)、[媒體附件](v4sdk/bot-builder-howto-add-media-attachments.md)、[複合式資訊卡 (Rich Card)](v4sdk/bot-builder-howto-add-media-attachments.md#send-a-hero-card) 和[通道特有資料](~/v4sdk/bot-builder-channeldata.md)。
-
-::: moniker-end
-
-## <a name="contactrelationupdate"></a>contactRelationUpdate
-
-每當 Bot 加入或從使用者的連絡人清單中移除時，Bot 會收到連絡人關係更新活動。 活動的 action 屬性值 (新增 | 移除) 會指出 Bot 是否已加入或已從使用者的連絡人清單中移除。
-
-## <a name="conversationupdate"></a>conversationUpdate
-
-每當 Bot 已加入對話、其他成員已加入或從對話中移除，或對話中繼資料已變更，Bot 會收到對話更新活動。
-
-如果成員已加入對話，活動的「新增的成員」屬性會包含通道帳戶物件陣列以識別新成員。
-
-若要判斷 Bot 是否已加入對話 (亦即成為其中一個新成員)，請評估活動的收件者識別碼值 (亦即 Bot 的識別碼) 是否符合成員所新增陣列中任何帳戶的 Id 屬性。
-
-如果成員已從對話中移除，「移除的成員」屬性會包含通道帳戶物件陣列以識別移除的成員。
-
-> [!TIP]
-> 如果您的 Bot 收到對話更新活動指出使用者已加入對話，您可以選擇傳送歡迎訊息給使用者做為回應。
-
-## <a name="deleteuserdata"></a>deleteUserData
-
-當使用者要求刪除 Bot 先前為其保存的任何資料，Bot 會收到刪除使用者資料活動。 如果您的 Bot 收到此類型的活動，它會為提出要求的使用者刪除先前已儲存的任何個人識別資訊 (PII)。
-
-## <a name="endofconversation"></a>endOfConversation
-
-Bot 會收到結束對話活動，表示使用者已結束對話。 Bot 會傳送結束對話活動，向使用者表示對話已結束。
-
-## <a name="event"></a>事件
-
-Bot 可能會從外部處理序或服務收到事件活動，其想要傳達資訊給您的 Bot，而不向使用者顯示該資訊。 事件活動的傳送者通常不會預期 Bot 以任何方式確認收到活動。
-
-## <a name="installationupdate"></a>installationUpdate
-
-安裝更新活動代表在通道的組織單位內 (例如客戶租用戶或「小組」) 安裝或解除安裝 Bot。 安裝更新活動通常不代表新增或移除通道。 在通道內的租用戶、小組或其他組織單位中新增或移除 Bot 時，通道可以傳送安裝活動。 在通道內安裝或移除 Bot 時，通道不應該傳送安裝活動。
-
-## <a name="invoke"></a>invoke
-
-Bot 可能會收到叫用活動，代表執行特定作業的要求。
-叫用活動的傳送者通常會預期 Bot 透過 HTTP 回應確認收到活動。
-此活動類型由 Microsoft Bot Framework 保留供內部使用。
-
-## <a name="messagereaction"></a>messageReaction
-
-當使用者對現有活動做出回應，某些通道會傳送訊息回應活動給 Bot。 例如，使用者按了訊息上的「讚」按鈕。 replyToId 屬性會指出使用者回應了哪一個活動。
-
-訊息回應活動可能對應到通道所定義任何數目的訊息回應類型。 比方說，「讚」或「PlusOne」為通道可能傳送的反應類型。
-
-## <a name="typing"></a>typing
-
-Bot 會收到輸入活動，表示使用者正在輸入回應。
-Bot 會傳送輸入活動，向使用者表示 Bot 正在運作以完成要求或編譯回應。
+活動類型有好幾種；活動可以屬於數個會傳遞最常見**訊息**的不同類型。 說明和進一步的資訊可於[活動結構描述頁面](https://aka.ms/botSpecs-activitySchema)中找到。
 
 ::: moniker range="azure-bot-service-3.0"
 

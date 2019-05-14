@@ -1,6 +1,6 @@
 ---
 title: 實作循序對話流程 | Microsoft Docs
-description: 了解如何在適用於 Node.js 的 Bot Framework SDK 中，利用對話管理簡單的交談流程。
+description: 了解如何在 Bot Framework SDK 中利用交談管理簡單的交談流程。
 keywords: 簡單對話流程, 循序對話流程, 對話, 提示, 瀑布, 對話方塊集
 author: JonathanFingold
 ms.author: v-jofing
@@ -8,537 +8,235 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 4/18/2019
+ms.date: 04/24/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5361b2e411e12b296b60a0f27b560dee5f1f769f
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: ad1209481691e1c1ed4e00b42086b8996aeea6a5
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904861"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032678"
 ---
 # <a name="implement-sequential-conversation-flow"></a>實作循序對話流程
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-您可以使用對話方塊程式庫來管理簡單和複雜的對話流程。 在簡單互動中，Bot 透過一連串固定的步驟執行，然後完成對話。 在本文中，我們會使用「瀑布式對話方塊」一些「提示」和一個「對話方塊集」來建立簡單互動，以詢問使用者一系列的問題。
+張貼問題來收集資訊是 Bot 與使用者互動時的其中一種主要方式。 dialogs 程式庫可讓您輕鬆地詢問問題，以及驗證回應以確保回應符合特定資料類型或符合自訂驗證規則。
+
+您可以使用對話方塊程式庫來管理簡單和複雜的對話流程。 在簡單互動中，Bot 透過一連串固定的步驟執行，然後完成對話。 一般而言，當 Bot 需要向使用者蒐集資訊時，對話就很實用。 本主題詳細說明如何建立提示並從瀑布對話進行呼叫，以實作簡單的交談流程。 
 
 ## <a name="prerequisites"></a>必要條件
-- [Bot Framework 模擬器](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download) (英文)
-- 本文中的程式碼是以 **multi-turn-prompt** 範例為基礎。 您需要採用 [C#](https://aka.ms/cs-multi-prompts-sample) 或 [JS](https://aka.ms/js-multi-prompts-sample) 的一份範例。
-- [Bot 基本概念](bot-builder-basics.md)、[對話程式庫](bot-builder-concept-dialog.md)、[對話狀態](bot-builder-dialog-state.md) 和 [.bot](bot-file-basics.md)檔案的知識。
 
+- [Bot 基本概念][concept-basics]、[管理狀態][concept-state]和 [dialogs 程式庫][concept-dialogs]的知識。
+- [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample] 中的一份**多回合提示**範例。
 
-下列各節反映您對大部分 Bot 實作簡單對話方塊時所會採取的步驟：
+## <a name="about-this-sample"></a>關於此範例
 
-## <a name="configure-your-bot"></a>設定 Bot
+在多回合提示範例中，我們會使用瀑布式對話、一些提示和元件對話來建立簡單互動，以詢問使用者一系列的問題。 程式碼會使用對話來循環下列步驟：
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+| 步驟        | 提示類型  |
+|:-------------|:-------------| 
+| 要求使用者的運輸模式 | 選擇提示 |
+| 要求使用者的名稱 | 文字提示 |
+| 詢問使用者是否要提供年齡 | 確認提示 |
+| 如果他們回答 [是]，則要求年齡  | 包含驗證的數字提示，只接受大於 0 且小於 150 的年齡。 |
+| 詢問所收集的資訊是否「合適」 | 重複使用確認提示 |
 
-我們會針對 **Startup.cs** 檔案的組態程式碼中 Bot 的對話方塊狀態，初始化狀態屬性存取子。
+最後，如果他們回答 [是]，則顯示所收集的資訊；否則，告訴使用者將不會保留其資訊。
 
-我們會定義 `MultiTurnPromptsBotAccessors` 類別，以保存 Bot 的狀態管理物件和狀態屬性存取子。
-在此，我們只會呼叫部分的程式碼。
-
-```csharp
-public class MultiTurnPromptsBotAccessors
-{
-    // Initializes a new instance of the class.
-    public MultiTurnPromptsBotAccessors(ConversationState conversationState, UserState userState)
-    {
-        ConversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
-        UserState = userState ?? throw new ArgumentNullException(nameof(userState));
-    }
-
-    public IStatePropertyAccessor<DialogState> ConversationDialogState { get; set; }
-    public IStatePropertyAccessor<UserProfile> UserProfile { get; set; }
-
-    public ConversationState ConversationState { get; }
-    public UserState UserState { get; }
-}
-```
-
-我們會在 `Startup` 類別的 `ConfigureServices` 方法中註冊存取子類別。
-同樣地，我們只會呼叫部分的程式碼。
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // ...
-
-    // Create and register state accessors.
-    // Accessors created here are passed into the IBot-derived class on every turn.
-    services.AddSingleton<MultiTurnPromptsBotAccessors>(sp =>
-    {
-        // We need to grab the conversationState we added on the options in the previous step
-        var options = sp.GetRequiredService<IOptions<BotFrameworkOptions>>().Value;
-        var conversationState = options.State.OfType<ConversationState>().FirstOrDefault();
-        var userState = options.State.OfType<UserState>().FirstOrDefault();
-
-        // Create the custom state accessor.
-        // State accessors enable other components to read and write individual properties of state.
-        var accessors = new MultiTurnPromptsBotAccessors(conversationState, userState)
-        {
-            ConversationDialogState = conversationState.CreateProperty<DialogState>("DialogState"),
-            UserProfile = userState.CreateProperty<UserProfile>("UserProfile"),
-        };
-
-        return accessors;
-    });
-}
-```
-
-透過相依性插入，存取子可供 Bot 的建構函式程式碼使用。
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 **index.js** 檔案中，我們會定義狀態管理物件。
-在此，我們只會呼叫部分的程式碼。
-
-```javascript
-// Import required bot services. See https://aka.ms/bot-services to learn more about the different part of a bot.
-const { BotFrameworkAdapter, ConversationState, MemoryStorage, UserState } = require('botbuilder');
-
-// Define the state store for your bot. See https://aka.ms/about-bot-state to learn more about using MemoryStorage.
-// A bot requires a state storage system to persist the dialog and user state between messages.
-const memoryStorage = new MemoryStorage();
-
-// Create conversation state with in-memory storage provider.
-const conversationState = new ConversationState(memoryStorage);
-const userState = new UserState(memoryStorage);
-
-// Create the main dialog, which serves as the bot's main handler.
-const bot = new MultiTurnBot(conversationState, userState);
-```
-
-Bot 的建構函式會為 Bot 建立狀態屬性存取子：`this.dialogState` 和 `this.userProfile`。
-
----
-
-## <a name="update-the-bot-turn-handler-to-call-the-dialog"></a>更新 Bot 回合處理常式以呼叫對話方塊
-
-若要執行對話方塊，Bot 的回合處理常式必須針對包含 Bot 對話的對話方塊集，建立對話方塊內容。 Bot 可以定義多個對話集，但一般而言，您應該只能為 Bot 義一個對話集。 
+## <a name="create-the-main-dialog"></a>建立主要對話
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-對話方塊是從 Bot 的回合處理常式執行。 處理常式會先建立 `DialogContext` 並繼續進行作用中對話方塊，或視需要開始新的對話方塊。 然後，處理常式會在回合結束時儲存對話和使用者狀態。
+若要使用對話，請安裝 **Microsoft.Bot.Builder.Dialogs** NuGet 套件。
 
-在 `MultiTurnPromptsBot` 類別中，我們已定義了 `_dialogs` 屬性，其中包含我們會從中產生對話內容的對話方塊集。 同樣地，我們只會在此顯示部分的回合處理常式程式碼。
+Bot 會透過 `UserProfileDialog` 與使用者互動。 當我們建立 Bot 的 `DialogBot` 類別時，我們會設定 `UserProfileDialog` 作為其主要對話。 Bot 接著會使用 `Run` 協助程式方法來存取此對話。
 
-```csharp
-public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-{
-    // ...
-    if (turnContext.Activity.Type == ActivityTypes.Message)
-    {
-        // Run the DialogSet - let the framework identify the current state of the dialog from
-        // the dialog stack and figure out what (if any) is the active dialog.
-        var dialogContext = await _dialogs.CreateContextAsync(turnContext, cancellationToken);
-        var results = await dialogContext.ContinueDialogAsync(cancellationToken);
+![使用者設定檔對話](media/user-profile-dialog.png)
 
-        // If the DialogTurnStatus is Empty we should start a new dialog.
-        if (results.Status == DialogTurnStatus.Empty)
-        {
-            await dialogContext.BeginDialogAsync("details", null, cancellationToken);
-        }
-    }
+**Dialogs\UserProfileDialog.cs**
 
-    // ...
-    // Save the dialog state into the conversation state.
-    await _accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
+我們首先會建立 `UserProfileDialog`，其衍生自 `ComponentDialog` 類別並具有 6 個步驟。
 
-    // Save the user profile updates into the user state.
-    await _accessors.UserState.SaveChangesAsync(turnContext, false, cancellationToken);
-}
-```
+在 `UserProfileDialog` 建構函式中，建立瀑布式步驟、提示和瀑布式對話，然後將其新增至對話集。 提示必須位於其使用所在的相同對話集中。
+
+[!code-csharp[Constructor snippet](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=22-41)]
+
+接下來，我們會實作對話使用的步驟。 若要使用提示，請從您對話中的步驟中呼叫，並在下列步驟中使用 `stepContext.Result` 擷取提示結果。 在幕後，提示為兩個步驟的對話方塊。 第一步，提示會要求輸入；第二步，其會傳回有效值，或利用重新提示從頭開始，直到其收到有效輸入為止。
+
+您應該一律從瀑布式步驟傳回非 Null 的 `DialogTurnResult`。 如果不這麼做，您的對話可能無法依照設計方式運作。 我們在此示範如何在瀑布式對話中實作 `NameStepAsync`。
+
+[!code-csharp[Name step](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=56-61)]
+
+在 `AgeStepAsync` 中，我們會在使用者的輸入驗證失敗時，指定重試提示，而驗證失敗是因為提示無法剖析其格式，或輸入不符合驗證準則。 在此情況下，如果未提供任何重試提示，則提示會使用初始提示文字來重新提示使用者提供輸入。
+
+[!code-csharp[Age step](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=74-93&highlight=10)]
+
+**UserProfile.cs**
+
+使用者的運輸方式、名稱和年齡都會儲存在 `UserProfile` 類別的執行個體中。
+
+[!code-csharp[UserProfile class](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/UserProfile.cs?range=9-16)]
+
+**Dialogs\UserProfileDialog.cs**
+
+在最後一個步驟中，我們會檢查由前一個瀑布式步驟中呼叫的對話所傳回的 `stepContext.Result`。 如果傳回的值為 true，我們會使用使用者設定檔存取子來取得及更新使用者設定檔。 若要取得使用者設定檔，我們會呼叫 `GetAsync` 方法，然後設定 `userProfile.Transport`、`userProfile.Name` 和 `userProfile.Age` 屬性的值。 最後，我們會先摘要說明使用者資訊，再呼叫 `EndDialogAsync` 來結束對話。 結束對話就會將其從對話堆疊中取出，並將選擇性結果傳回給對話的父代。 父代是開始剛結束之對話的對話或方法。
+
+[!code-csharp[SummaryStepAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=108-134&highlight=5-10,25-26)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-Bot 程式碼會使用對話方塊程式庫中的一些類別。
+若要使用對話，您的專案需要安裝 **botbuilder-dialogs** npm 套件。
 
-```javascript
-const { ChoicePrompt, DialogSet, NumberPrompt, TextPrompt, WaterfallDialog } = require('botbuilder-dialogs');
-```
+Bot 會透過 `UserProfileDialog` 與使用者互動。 當我們建立 Bot 的 `DialogBot` 時，我們會設定 `UserProfileDialog` 作為其主要對話。 Bot 接著會使用 `run` 協助程式方法來存取此對話。
 
-對話方塊是從 Bot 的回合處理常式執行。 處理常式會先建立 `DialogContext` (`dc`) 並繼續進行作用中對話方塊，或視需要開始新的對話方塊。 然後，處理常式會在回合結束時儲存對話方塊和使用者狀態。
+![使用者設定檔對話](media/user-profile-dialog-js.png)
 
-`MultiTurnBot` 類別會定義於 **bot.js** 檔案中。 這個類別的建構函式會新增對話方塊集的 `dialogs` 屬性，我們會從中產生對話方塊內容。 此 Bot 會收集使用者資料一次，並 使用 `WHO_ARE_YOU` 對話方塊。 一旦已填入使用者設定檔，Bot 就會使用 `HELLO_USER` 對話方塊來回應。 同樣地，我們只會在此顯示部分的回合處理常式程式碼。
+**dialogs\userProfileDialog.js**
 
-```javascript
-async onTurn(turnContext) {
-    if (turnContext.activity.type === ActivityTypes.Message) {
-        // Create a dialog context object.
-        const dc = await this.dialogs.createContext(turnContext);
+我們首先會建立 `UserProfileDialog`，其衍生自 `ComponentDialog` 類別並具有 6 個步驟。
 
-        const utterance = (turnContext.activity.text || '').trim().toLowerCase();
+在 `UserProfileDialog` 建構函式中，建立瀑布式步驟、提示和瀑布式對話，然後將其新增至對話集。 提示必須位於其使用所在的相同對話集中。
 
-        // ...
-        // If the bot has not yet responded, continue processing the current dialog.
-        await dc.continueDialog();
+[!code-javascript[Constructor snippet](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=25-47)]
 
-        // Start the sample dialog in response to any other input.
-        if (!turnContext.responded) {
-            const user = await this.userProfile.get(dc.context, {});
-            if (user.name) {
-                await dc.beginDialog(HELLO_USER);
-            } else {
-                await dc.beginDialog(WHO_ARE_YOU);
-            }
-        }
-    }
+接下來，我們會實作對話使用的步驟。 若要使用提示，請從您對話中的步驟中呼叫，並從步驟內容的下列步驟中擷取提示結果，在此例中請使用 `step.result`。 在幕後，提示為兩個步驟的對話方塊。 第一步，提示會要求輸入；第二步，其會傳回有效值，或利用重新提示從頭開始，直到其收到有效輸入為止。
 
-    // ...
-    // Save changes to the user state.
-    await this.userState.saveChanges(turnContext);
+您應該一律從瀑布式步驟傳回非 Null 的 `DialogTurnResult`。 如果不這麼做，您的對話可能無法依照設計方式運作。 我們在此示範如何在瀑布式對話中實作 `nameStep`。
 
-    // End this turn by saving changes to the conversation state.
-    await this.conversationState.saveChanges(turnContext);
-}
-```
+[!code-javascript[name step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=75-78)]
+
+在 `ageStep` 中，我們會在使用者的輸入驗證失敗時指定重試提示，而驗證失敗是因為提示無法剖析其格式，或輸入不符合驗證準則 (在前述建構函式中指定)。 在此情況下，如果未提供任何重試提示，則提示會使用初始提示文字來重新提示使用者提供輸入。
+
+[!code-javascript[age step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=90-101&highlight=5)]
+
+**userProfile.js**
+
+使用者的運輸方式、名稱和年齡都會儲存在 `UserProfile` 類別的執行個體中。
+
+[!code-javascript[user profile](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/userProfile.js?range=4-10)]
+
+**Dialogs\UserProfileDialog.cs**
+
+在最後一個步驟中，我們會檢查由前一個瀑布式步驟中呼叫的對話所傳回的 `step.result`。 如果傳回的值為 true，我們會使用使用者設定檔存取子來取得及更新使用者設定檔。 若要取得使用者設定檔，我們會呼叫 `get` 方法，然後設定 `userProfile.transport`、`userProfile.name` 和 `userProfile.age` 屬性的值。 最後，我們會先摘要說明使用者資訊，再呼叫 `endDialog` 來結束對話。 結束對話就會將其從對話堆疊中取出，並將選擇性結果傳回給對話的父代。 父代是開始剛剛結束對話的對話或方法。
+
+[!code-javascript[summary step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=115-136&highlight=4-8,20-21)]
 
 ---
 
-在 Bot 的回合處理常式中，我們會建立對話方塊集的對話方塊內容。 對話方塊內容會存取 Bot 的狀態快取，有效地記住對話中最後一個回合停止的地方。
+## <a name="create-the-extension-method-to-run-the-waterfall-dialog"></a>建立擴充方法來執行瀑布式對話
 
-如果有作用中對話方塊，則對話方塊內容的「繼續對話方塊」方法會使用觸發此回合的使用者輸入來推進對話方塊；否則 Bot 會呼叫對話方塊內容的「開始對話方塊」方法來開始對話方塊。
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-最後，我們會在狀態管理物件上呼叫「儲存變更」方法，以保存這一回合發生的任何變更。
+我們已定義 `Run` 擴充方法，其將用於建立及存取對話內容。 在此，`accessor` 是對話狀態屬性的狀態屬性存取子，而 `dialog` 是使用者設定檔元件對話。 由於元件對話會定義內部對話集，因此我們必須建立可讓訊息處理常式程式碼看見的外部對話集，並使用其建立對話內容。
+
+對話內容是經由呼叫 `CreateContext` 方法來建立，且用於在 Bot 的回合處理常式內與對話集互動。 對話內容包含目前的回合內容、父代對話，以及對話狀態，可供保留對話中的資訊。
+
+對話內容可讓您開始一個具有字串識別碼的對話，或繼續目前的對話 (例如具有多個步驟的瀑布式對話)。 對話內容會傳遞至 Bot 的對話和瀑布式步驟。
+
+**DialogExtensions.cs**
+
+[!code-csharp[Run method](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/DialogExtensions.cs?range=13-24)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+我們已在 `userProfileDialog` 內定義 `run` 協助程式方法，其將用於建立及存取對話內容。 在此，`accessor` 是對話狀態屬性的狀態屬性存取子，而 `this` 是使用者設定檔元件對話。 由於元件對話會定義內部對話集，因此我們必須建立可讓訊息處理常式程式碼看見的外部對話集，並使用其建立對話內容。
+
+對話內容是經由呼叫 `createContext` 方法來建立，且用於在 Bot 的回合處理常式內與對話集互動。 對話內容包含目前的回合內容、父代對話，以及對話狀態，可供保留對話中的資訊。
+
+對話內容可讓您開始一個具有字串識別碼的對話，或繼續目前的對話 (例如具有多個步驟的瀑布式對話)。 對話內容會傳遞至 Bot 的對話和瀑布式步驟。
+
+[!code-javascript[run method](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=55-64)]
+
+---
+
+## <a name="run-the-dialog"></a>執行對話
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+**Bots\DialogBot.cs**
+
+`OnMessageActivityAsync` 處理常式會使用擴充方法來開始或繼續對話。 在 `OnTurnAsync` 中，我們會使用 Bot 的狀態管理物件將任何狀態變更保存到儲存體。 (`ActivityHandler.OnTurnAsync` 方法會呼叫各種活動處理常式方法，例如 `OnMessageActivityAsync`。 如此一來，我們會在訊息處理常式完成後，但在回合本身完成之前儲存狀態。)
+
+[!code-csharp[overrides](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Bots/DialogBot.cs?range=33-48&highlight=5-7)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+`onMessage` 處理常式會使用協助程式方法來開始或繼續對話。 在 `onDialog` 中，我們會使用 Bot 的狀態管理物件將任何狀態變更保存到儲存體。 (在其他已定義的處理常式 (例如 `onMessage`) 執行之後，最後會呼叫 `onDialog` 方法。 如此一來，我們會在訊息處理常式完成後，但在回合本身完成之前儲存狀態。)
+
+[!code-javascript[overrides](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/bots/dialogBot.js?range=30-44)]
+
+---
+
+## <a name="register-services-for-the-bot"></a>為 Bot 註冊服務
+
+此 Bot 會使用下列_服務_。
+
+- Bot 的基本服務：認證提供者、配接器及 Bot 實作。
+- 用於管理狀態的服務：儲存體、使用者狀態及交談狀態。
+- Bot 會使用的對話。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+**Startup.cs**
+
+我們會在 `Startup` 中為 Bot 註冊服務。 這些服務可透過相依性插入來提供給程式碼的其他部分。
+
+[!code-csharp[ConfigureServices](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Startup.cs?range=17-41)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+**index.js**
+
+我們會在 `index.js` 中為 Bot 註冊服務。 
+
+[!code-javascript[overrides](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/index.js?range=18-49)]
+
+---
+
+> [!NOTE]
+> 記憶體儲存體僅供測試用途，而不適用於生產環境。
+> 針對生產 Bot，請務必使用永續性的儲存體類型。
+
+## <a name="to-test-the-bot"></a>測試 Bot
+
+1. 如果您尚未安裝 [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)，請進行安裝。
+1. 在您的電腦本機執行範例。
+1. 啟動模擬器、連線到您的 Bot 並傳送如下所示的訊息。
+
+![多回合提示對話的執行範例](../media/emulator-v4/multi-turn-prompt.png)
+
+## <a name="additional-information"></a>其他資訊
 
 ### <a name="about-dialog-and-bot-state"></a>關於對話方塊和 Bot 狀態
 
 在此 Bot 中，我們已定義兩個狀態屬性存取子：
 
-* 一個建立於對話狀態屬性的對話方塊狀態內。 對話方塊狀態會追蹤使用者在對話方塊集中對話方塊的位置，並由對話方塊內容更新，例如當我們呼叫開始對話方塊或繼續對話方塊方法時。
-* 一個建立於使用者設定檔屬性的使用者狀態內。 Bot 會使用此項來追蹤其使用者的相關資訊，而我們會在 Bot 程式碼中明確地管理此狀態。
+- 一個建立於對話狀態屬性的對話方塊狀態內。 對話方塊狀態會追蹤使用者在對話方塊集中對話方塊的位置，並由對話方塊內容更新，例如當我們呼叫開始對話方塊或繼續對話方塊方法時。
+- 一個建立於使用者設定檔屬性的使用者狀態內。 Bot 會使用此項來追蹤其使用者的相關資訊，而我們會在對話程式碼中明確地管理此狀態。
 
 狀態屬性存取子的 _get_ 和 _set_ 方法，會取得及設定狀態管理物件的快取中的屬性值。 快取會第一次填入回合中要求的狀態屬性值，但必須明確地保存。 為了保存這兩個狀態屬性的變更，我們會呼叫對應狀態管理物件的「儲存變更」方法。
-
-## <a name="initialize-your-bot-and-define-your-dialog"></a>初始化 Bot 並定義對話方塊
-
-我們的簡單對話會塑造為一系列對使用者提出的問題。 C# 和 JavaScript 版本的步驟稍有不同：
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-1. 詢問他們的名稱。
-1. 詢問他們是否願意提供其年齡。
-1. 若是如此，詢問其年齡，否則略過此步驟。
-1. 詢問所蒐集的資訊是否正確。
-1. 傳送狀態訊息並結束。
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-針對 `who_are_you` 對話方塊：
-
-1. 詢問他們的名稱。
-1. 詢問他們是否願意提供其年齡。
-1. 若是如此，詢問其年齡，否則略過此步驟。
-1. 傳送狀態訊息並結束。
-
-針對 `hello_user` 對話方塊：
-
-1. 顯示 Bot 已蒐集的使用者資訊。
-
----
-
-以下是在定義自己的瀑布式步驟時，所要記住的幾個事項。
-
-* 每個 Bot 回合都會反映使用者的輸入，後面接著來自 Bot 的回應。 因此，您會在瀑布式步驟的結尾要求使用者輸入，並且在下一個瀑布式步驟中接收其答案。
-* 每個提示實際上是兩個步驟的對話方塊，該對話方塊會顯示其提示並執行迴圈，直到其收到「有效」輸入為止。 
-
-在此範例中，對話會定義於 Bot 檔案內，並在 Bot 的建構函式中初始化。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-定義對話方塊集合的執行個體屬性。
-
-```csharp
-// The DialogSet that contains all the Dialogs that can be used at runtime.
-private DialogSet _dialogs;
-```
-
-在 Bot 的建構函式內建立對話方塊集合，並在集合中新增提示和瀑布對話方塊。
-
-```csharp
-public MultiTurnPromptsBot(MultiTurnPromptsBotAccessors accessors)
-{
-    _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-
-    // The DialogSet needs a DialogState accessor, it will call it when it has a turn context.
-    _dialogs = new DialogSet(accessors.ConversationDialogState);
-
-    // This array defines how the Waterfall will execute.
-    var waterfallSteps = new WaterfallStep[]
-    {
-        NameStepAsync,
-        NameConfirmStepAsync,
-        AgeStepAsync,
-        ConfirmStepAsync,
-        SummaryStepAsync,
-    };
-
-    // Add named dialogs to the DialogSet. These names are saved in the dialog state.
-    _dialogs.Add(new WaterfallDialog("details", waterfallSteps));
-    _dialogs.Add(new TextPrompt("name"));
-    _dialogs.Add(new NumberPrompt<int>("age"));
-    _dialogs.Add(new ConfirmPrompt("confirm"));
-}
-```
-
-在此範例中，我們將每個步驟定義為不同的方法。 您也可以使用 lambda 運算式在建構函式中定義內嵌步驟。
-
-```csharp
-private static async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-    // Running a prompt here means the next WaterfallStep will be run when the users response is received.
-    return await stepContext.PromptAsync("name", new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") }, cancellationToken);
-}
-
-private async Task<DialogTurnResult> NameConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // Get the current profile object from user state.
-    var userProfile = await _accessors.UserProfile.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
-
-    // Update the profile.
-    userProfile.Name = (string)stepContext.Result;
-
-    // We can send messages to the user at any point in the WaterfallStep.
-    await stepContext.Context.SendActivityAsync(MessageFactory.Text($"Thanks {stepContext.Result}."), cancellationToken);
-
-    // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-    return await stepContext.PromptAsync("confirm", new PromptOptions { Prompt = MessageFactory.Text("Would you like to give your age?") }, cancellationToken);
-}
-
-private async Task<DialogTurnResult> AgeStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    if ((bool)stepContext.Result)
-    {
-        // User said "yes" so we will be prompting for the age.
-
-        // Get the current profile object from user state.
-        var userProfile = await _accessors.UserProfile.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
-
-        // WaterfallStep always finishes with the end of the Waterfall or with another dialog, here it is a Prompt Dialog.
-        return await stepContext.PromptAsync("age", new PromptOptions { Prompt = MessageFactory.Text("Please enter your age.") }, cancellationToken);
-    }
-    else
-    {
-        // User said "no" so we will skip the next step. Give -1 as the age.
-        return await stepContext.NextAsync(-1, cancellationToken);
-    }
-}
-
-
-private async Task<DialogTurnResult> ConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // Get the current profile object from user state.
-    var userProfile = await _accessors.UserProfile.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
-
-    // Update the profile.
-    userProfile.Age = (int)stepContext.Result;
-
-    // We can send messages to the user at any point in the WaterfallStep.
-    if (userProfile.Age == -1)
-    {
-        await stepContext.Context.SendActivityAsync(MessageFactory.Text($"No age given."), cancellationToken);
-    }
-    else
-    {
-        // We can send messages to the user at any point in the WaterfallStep.
-        await stepContext.Context.SendActivityAsync(MessageFactory.Text($"I have your age as {userProfile.Age}."), cancellationToken);
-    }
-
-    // WaterfallStep always finishes with the end of the Waterfall or with another dialog, here it is a Prompt Dialog.
-    return await stepContext.PromptAsync("confirm", new PromptOptions { Prompt = MessageFactory.Text("Is this ok?") }, cancellationToken);
-}
-
-private async Task<DialogTurnResult> SummaryStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    if ((bool)stepContext.Result)
-    {
-        // Get the current profile object from user state.
-        var userProfile = await _accessors.UserProfile.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
-
-        // We can send messages to the user at any point in the WaterfallStep.
-        if (userProfile.Age == -1)
-        {
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"I have your name as {userProfile.Name}."), cancellationToken);
-        }
-        else
-        {
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"I have your name as {userProfile.Name} and age as {userProfile.Age}."), cancellationToken);
-        }
-    }
-    else
-    {
-        // We can send messages to the user at any point in the WaterfallStep.
-        await stepContext.Context.SendActivityAsync(MessageFactory.Text("Thanks. Your profile will not be kept."), cancellationToken);
-    }
-
-    // WaterfallStep always finishes with the end of the Waterfall or with another dialog, here it is the end.
-    return await stepContext.EndDialogAsync(cancellationToken: cancellationToken);
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在此範例中，瀑布對話方塊會定義在 **bot.js** 檔案內。
-
-定義要用於狀態屬性存取子、提示和對話方塊的識別碼。
-
-```javascript
-const DIALOG_STATE_PROPERTY = 'dialogState';
-const USER_PROFILE_PROPERTY = 'user';
-
-const WHO_ARE_YOU = 'who_are_you';
-const HELLO_USER = 'hello_user';
-
-const NAME_PROMPT = 'name_prompt';
-const CONFIRM_PROMPT = 'confirm_prompt';
-const AGE_PROMPT = 'age_prompt';
-```
-
-在 Bot 的建構函式中定義並建立對話方塊集，並在集合中新增提示和瀑布式對話方塊。
-`NumberPrompt` 包含自訂驗證，可確保使用者輸入大於 0 的年齡。
-
-```javascript
-constructor(conversationState, userState) {
-    // Create a new state accessor property. See https://aka.ms/about-bot-state-accessors to learn more about bot state and state accessors.
-    this.conversationState = conversationState;
-    this.userState = userState;
-
-    this.dialogState = this.conversationState.createProperty(DIALOG_STATE_PROPERTY);
-
-    this.userProfile = this.userState.createProperty(USER_PROFILE_PROPERTY);
-
-    this.dialogs = new DialogSet(this.dialogState);
-
-    // Add prompts that will be used by the main dialogs.
-    this.dialogs.add(new TextPrompt(NAME_PROMPT));
-    this.dialogs.add(new ChoicePrompt(CONFIRM_PROMPT));
-    this.dialogs.add(new NumberPrompt(AGE_PROMPT, async (prompt) => {
-        if (prompt.recognized.succeeded) {
-            if (prompt.recognized.value <= 0) {
-                await prompt.context.sendActivity(`Your age can't be less than zero.`);
-                return false;
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }));
-
-    // Create a dialog that asks the user for their name.
-    this.dialogs.add(new WaterfallDialog(WHO_ARE_YOU, [
-        this.promptForName.bind(this),
-        this.confirmAgePrompt.bind(this),
-        this.promptForAge.bind(this),
-        this.captureAge.bind(this)
-    ]));
-
-    // Create a dialog that displays a user name after it has been collected.
-    this.dialogs.add(new WaterfallDialog(HELLO_USER, [
-        this.displayProfile.bind(this)
-    ]));
-}
-```
-
-由於我們的對話方塊步驟方法會參考執行個體屬性，因此必須使用 `bind` 方法，所以 `this` 物件會在每個步驟方法內正確地解析。
-
-在此範例中，我們將每個步驟定義為不同的方法。 您也可以使用 lambda 運算式在建構函式中定義內嵌步驟。
-
-```javascript
-// This step in the dialog prompts the user for their name.
-async promptForName(step) {
-    return await step.prompt(NAME_PROMPT, `What is your name, human?`);
-}
-
-// This step captures the user's name, then prompts whether or not to collect an age.
-async confirmAgePrompt(step) {
-    const user = await this.userProfile.get(step.context, {});
-    user.name = step.result;
-    await this.userProfile.set(step.context, user);
-    await step.prompt(CONFIRM_PROMPT, 'Do you want to give your age?', ['yes', 'no']);
-}
-
-// This step checks the user's response - if yes, the bot will proceed to prompt for age.
-// Otherwise, the bot will skip the age step.
-async promptForAge(step) {
-    if (step.result && step.result.value === 'yes') {
-        return await step.prompt(AGE_PROMPT, `What is your age?`,
-            {
-                retryPrompt: 'Sorry, please specify your age as a positive number or say cancel.'
-            }
-        );
-    } else {
-        return await step.next(-1);
-    }
-}
-
-// This step captures the user's age.
-async captureAge(step) {
-    const user = await this.userProfile.get(step.context, {});
-    if (step.result !== -1) {
-        user.age = step.result;
-        await this.userProfile.set(step.context, user);
-        await step.context.sendActivity(`I will remember that you are ${ step.result } years old.`);
-    } else {
-        await step.context.sendActivity(`No age given.`);
-    }
-    return await step.endDialog();
-}
-
-// This step displays the captured information back to the user.
-async displayProfile(step) {
-    const user = await this.userProfile.get(step.context, {});
-    if (user.age) {
-        await step.context.sendActivity(`Your name is ${ user.name } and you are ${ user.age } years old.`);
-    } else {
-        await step.context.sendActivity(`Your name is ${ user.name } and you did not share your age.`);
-    }
-    return await step.endDialog();
-}
-```
-
----
 
 此範例會在對話方塊內更新使用者設定檔狀態。 這種做法適用於簡單的 Bot，但如果您想要在所有 Bot 中重複使用一個對話方塊，則不可行。
 
 有各種選項可將對話方塊步驟和 Bot 狀態分開。 例如，一旦對話方塊蒐集完整資訊，您即可：
 
-* 使用「結束對話方塊」方法，提供所收集的資料作為父代內容的傳回值。 這可以是 Bot 的回合處理常式，或對話方塊堆疊上先前作用中的對話方塊。 這就是提示類別的設計方式。
-* 產生適當服務的要求。 如果 Bot 作為大型服務的前端，這可能效果良好。
-
-## <a name="test-your-dialog"></a>測試對話方塊
-
-在本機建置並執行 Bot，然後使用模擬器與 Bot 互動。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-1. Bot 會傳送初始問候訊息，以回應使用者加入對話方塊的對話方塊更新活動。
-1. 輸入 `hi` 或其他輸入。 因為這回合還沒有作用中的對話方塊，所以 Bot 會開始 `details` 對話方塊。
-   * Bot 會傳送對話方塊的第一個提示，並等候更多輸入。
-1. 在 Bot 詢問他們時回答問題，並透過對話方塊進行。
-1. 對話方塊的最後一個步驟會根據您的輸入，傳送 `Thanks` 訊息。
-   * 當對話方塊結束時，其會從對話方塊堆疊中移除，而 Bot 不再有作用中的對話方塊。
-1. 輸入 `hi` 或其他輸入，再度開始對話方塊。
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-1. Bot 會傳送初始問候訊息，以回應使用者加入對話方塊的對話方塊更新活動。
-1. 輸入 `hi` 或其他輸入。 因為這回合還沒有作用中的對話方塊，而且尚無使用者設定檔，所以 Bot 會開始 `who_are_you` 對話方塊。
-   * Bot 會傳送對話方塊的第一個提示，並等候更多輸入。
-1. 在 Bot 詢問他們時回答問題，並透過對話方塊進行。
-1. 對話方塊的最後一個步驟會傳送簡短的確認訊息。
-1. 輸入 `hi` 或其他輸入。
-   * Bot 會開始單一步驟的 `hello_user` 對話方塊，這會顯示所收集資料中的資訊，然後立即結束。
-
----
-
-## <a name="additional-resources"></a>其他資源
-您可以依賴每種提示類型的內建驗證 (如這裡所示)，也可以將自己的自訂驗證新增至提示。 如需詳細資訊，請參閱[使用對話提示收集使用者輸入](bot-builder-prompts.md)。
+- 使用結束對話方法，提供所收集的資料作為父代內容的傳回值。 這可以是 Bot 的回合處理常式，或對話方塊堆疊上先前作用中的對話方塊。 這就是提示類別的設計方式。
+- 產生適當服務的要求。 如果 Bot 作為大型服務的前端，這可能效果良好。
 
 ## <a name="next-steps"></a>後續步驟
 
 > [!div class="nextstepaction"]
-> [使用分支和迴圈建立進階的對話流程](bot-builder-dialog-manage-complex-conversation-flow.md)
+> [將自然語言理解新增至您的 Bot](bot-builder-howto-v4-luis.md)
+
+<!-- Footnote-style links -->
+
+[concept-basics]: bot-builder-basics.md
+[concept-state]: bot-builder-concept-state.md
+[concept-dialogs]: bot-builder-concept-dialog.md
+
+[prompting]: bot-builder-prompts.md
+[component-dialogs]: bot-builder-compositcontrol.md
+
+[cs-sample]: https://aka.ms/cs-multi-prompts-sample
+[js-sample]: https://aka.ms/js-multi-prompts-sample
