@@ -8,9 +8,9 @@ ms.locfileid: "65198865"
 ---
 ## <a name="prerequisites"></a>必要條件
 - Visual Studio [2017 或更新版本](https://www.visualstudio.com/downloads)
-- 適用於 C#](https://aka.ms/bot-vsix) 的 Bot Framework SDK v4 [範本
+- 適用於 Bot Framework SDK v4 的 [C# 範本](https://aka.ms/bot-vsix)
 - [Bot Framework 模擬器](https://aka.ms/bot-framework-emulator-readme) (英文)
-- 了解 [ASP.Net Core](https://docs.microsoft.com/aspnet/core/) 和 [ C# 中的非同步程式設計](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/index)
+- 了解 [ASP.Net Core](https://docs.microsoft.com/aspnet/core/) 和 [C# 的非同步程式設計](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/index)
 
 ## <a name="create-a-bot"></a>建立 Bot
 安裝您在必要條件區段下載的 BotBuilderVSIX.vsix 範本。
@@ -20,7 +20,7 @@ ms.locfileid: "65198865"
 ![Visual Studio 專案](~/media/azure-bot-quickstarts/bot-builder-dotnet-project.png)
 
 > [!TIP] 
-> 如有需要，請將專案組建類型變更為 ``.Net Core 2.1``。 此外，視需要更新 `Microsoft.Bot.Builder` [NuGet 套件](https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
+> 如有需要，請將專案組建類型變更為 `.Net Core 2.1`。 此外，視需要更新 `Microsoft.Bot.Builder` [NuGet 套件](https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
 
 由於有範本，專案中會包含要在本快速入門建立 Bot 所需的所有程式碼。 您實際上不需要撰寫任何額外的程式碼。
 
