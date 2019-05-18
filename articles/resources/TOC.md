@@ -1,8 +1,10 @@
 # 虛擬小幫手
 ## [概觀](../v4sdk/bot-builder-virtual-assistant-introduction.md)
 ## [範本簡介](../v4sdk/bot-builder-virtual-assistant-template.md)
+## [開始使用](../v4sdk/bot-builder-virtual-assistant-gettingstarted.md)
 # 技術 
 ## [概觀](../v4sdk/bot-builder-skills-overview.md)
+## [開始使用](../v4sdk/bot-builder-skills-gettingstarted.md)
 # [常見問題集](../bot-service-resources-bot-framework-faq.md)
 # [取得支援](../bot-service-resources-links-help.md)
 # [通道參考](../bot-service-channels-reference.md)
