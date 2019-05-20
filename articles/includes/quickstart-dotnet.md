@@ -20,7 +20,7 @@ ms.locfileid: "65198865"
 ![Visual Studio 專案](~/media/azure-bot-quickstarts/bot-builder-dotnet-project.png)
 
 > [!TIP] 
-> 如有需要，請將專案組建類型變更為 `.Net Core 2.1`。 此外，視需要更新 `Microsoft.Bot.Builder` [NuGet 套件](https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
+> 如有需要，請將專案組建類型變更為 `.Net Core 2.1`。此外，視需要更新 `Microsoft.Bot.Builder` [NuGet 套件](https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
 
 由於有範本，專案中會包含要在本快速入門建立 Bot 所需的所有程式碼。 您實際上不需要撰寫任何額外的程式碼。
 
