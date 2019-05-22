@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 05/01/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a44e45cd5e9b83b2e4512c5a1fd882593024e1b3
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 6e7bd108bc67595c1d523c3c038e8b403ce387b1
+ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032886"
+ms.lasthandoff: 05/16/2019
+ms.locfileid: "65733302"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
@@ -50,10 +50,10 @@ az login
 az account set --subscription "<azure-subscription>"
 ```
 
-如果您不確定哪個訂用帳戶要用於部署 Bot ，可以使用 `az account list` 命令，檢視您帳戶的訂用帳戶清單。 瀏覽至 Bot 資料夾。
+如果您不確定哪個訂用帳戶要用於部署 Bot ，可以使用 `az account list` 命令，檢視帳戶的訂用帳戶清單。 瀏覽至 Bot 資料夾。
 
 ### <a name="create-an-app-registration"></a>建立應用程式註冊
-註冊應用程式意謂著您可以使用 Azure AD 來驗證使用者，以及要求存取使用者資源。 在 Azure 中，您的 Bot 需要已註冊的應用程式來允許 Bot 存取 Bot Framework 服務，以傳送和接收已驗證的訊息。 若要透過 Azure CLI 建立註冊應用程式，請執行下列命令：
+註冊應用程式意謂著您可以使用 Azure AD 來驗證使用者，以及要求存取使用者資源。 在 Azure 中，您的 Bot 需要已註冊的應用程式來允許 Bot 存取 Bot Framework 服務，以便傳送和接收已驗證的訊息。 若要透過 Azure CLI 建立註冊應用程式，請執行下列命令：
 
 ```cmd
 az ad app create --display-name "displayName" --password "AtLeastSixteenCharacters_0" --available-to-other-tenants
@@ -99,7 +99,7 @@ az deployment create --name "<name-of-deployment>" --template-file "template-wit
 _注意：botId 參數應該是全域唯一，而且會用來作為不可變的 Bot 識別碼。此參數也會用來設定 Bot 的 displayName，而這是可變動的。_
 
 ```cmd
-az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" existingAppServicePlan="<name-of-app-service-plan>" appServicePlanLocation=<location>"
+az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" existingAppServicePlan="<name-of-app-service-plan>" appServicePlanLocation="<location>"
 ```
 
 **選項 2：新的 App Service 方案** 

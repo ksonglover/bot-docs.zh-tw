@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 04/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d896584b2048c8d2b330a1e6e63bc47122102532
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: caa1938abd6ca2b79f9b42f28f3965413d24d81b
+ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033399"
+ms.lasthandoff: 05/16/2019
+ms.locfileid: "65733376"
 ---
 # <a name="dialogs-library"></a>對話方塊程式庫
 
@@ -164,7 +164,7 @@ end dialog 方法可將對話從堆疊中取出，並將選擇性結果傳回給
 
 ### <a name="repeating-a-dialog"></a>重複對話方塊
 
-您可使用對話來取代對話本身，並建立迴圈。
+您可以使用*取代對話方塊*方法取代對話方塊本身，進而建立迴圈。
 這很適合用來處理[複雜的反覆運作](~/v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)，也是管理功能表的好方法。
 
 > [!NOTE]

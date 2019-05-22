@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 04/17/2019
+ms.date: 05/20/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f24fc4e0aa4ccb9d99275360df693c8465e5a4ad
-ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
+ms.openlocfilehash: 10ae35f51a072a1af6cf7d4bdf2fd2f4cb3d66ee
+ms.sourcegitcommit: 72cc9134bf50f335cbb33265b048bf6b76252ce4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65039761"
+ms.lasthandoff: 05/21/2019
+ms.locfileid: "65973849"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答問題
 
@@ -58,10 +58,10 @@ QnA Maker 會透過您的資料提供對話式的問題和解答層。 這可讓
 ## <a name="obtain-values-to-connect-your-bot-to-the-knowledge-base"></a>取得值，將您的 Bot 連線到知識庫
 1. 在 [QnA Maker](https://www.qnamaker.ai/) 網站上，選取您的知識庫。
 1. 開啟您的知識庫，然後選取 [設定]。 記錄針對「服務名稱」顯示的值。 使用 QnA Maker 入口網站介面時，此值很適合用於尋找您感興趣的知識庫。 但不會用於將 Bot 應用程式連線到此知識庫。 
-1. 向下捲動以尋找 [部署詳細資料] 及記錄下列值：
-   - POST /knowledgebases/<Your_Knowledge_Base_Id>/getAnswers
-   - 主機：<Your_Hostname>/qnamaker
-   - 授權：EndpointKey <Your_Endpoint_Key>
+1. 從 Postman 範例 HTTP 要求，向下捲動以尋找 [部署詳細資料] 並記錄下列值：
+   - POST /knowledgebases/\<knowledge-base-id>/generateAnswer
+   - 主機：\<your-hostname> / / 以 /qnamaker 結尾的完整 URL
+   - 授權：EndpointKey \<your-endpoint-key>
    
 您主機名稱的完整 URL 字串看起來會類似 "https://< >.azure.net/qnamaker"。 這三個值會為您的應用程式提供透過 Azure QnA 服務連線到 QnA Maker 知識庫所需的資訊。  
 
