@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 4/13/2019
-ms.openlocfilehash: 17d80fe4d4730ed294b770fd05bc5d7ea3d114af
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: f3e0ac52a3bfe5759202af6c704626acafef617b
+ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033031"
+ms.lasthandoff: 05/16/2019
+ms.locfileid: "65733307"
 ---
 # <a name="manage-a-bot"></a>管理 Bot
 
@@ -52,7 +52,7 @@ ms.locfileid: "65033031"
 
 ### <a name="microsoftappid-and-microsoftapppassword"></a>MicrosoftAppID 和 MicrosoftAppPassword
 
-**MicrosoftAppID** 和 **MicrosoftAppPassword** 會保存在 Bot 組態檔或 Azure Key Vault 內。 若要擷取，請下載您的 Bot 設定或組態檔，或是存取 Azure Key Vault。 您可能需要使用識別碼和密碼在本機進行測試。
+**MicrosoftAppID** 和 **MicrosoftAppPassword** 會保存在 Bot 的設定檔 (`appsettings.json` 或 `.env`) 或 Azure Key Vault 內。 若要擷取，請下載您 Bot 的設定檔或組態檔 (如果存在的話，適用於舊版 Bot)，或存取 Azure Key Vault。 您可能需要使用識別碼和密碼在本機進行測試。
 
 > [!NOTE]
 > **Bot 通道註冊** Bot 服務隨附 *MicrosoftAppID*，但因為沒有應用程式服務與這種類型的服務建立關聯，所以沒有任何 [應用程式設定] 刀鋒視窗可供您查閱 *MicrosoftAppPassword*。 若要取得密碼，您必須先產生密碼。 若要產生 **Bot 通道註冊**的密碼，請參閱 [Bot 通道註冊密碼](bot-service-quickstart-registration.md#bot-channels-registration-password)

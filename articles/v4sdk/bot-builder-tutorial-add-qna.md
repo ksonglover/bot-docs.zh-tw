@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: tutorial
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/30/2019
+ms.date: 05/20/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: deafe148310dd214ab857d60595edb1abef9e46d
-ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
+ms.openlocfilehash: e51683a5dbae29879d73ee322586272d49708b22
+ms.sourcegitcommit: 72cc9134bf50f335cbb33265b048bf6b76252ce4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65039718"
+ms.lasthandoff: 05/21/2019
+ms.locfileid: "65973871"
 ---
 # <a name="tutorial-use-qna-maker-in-your-bot-to-answer-questions"></a>教學課程：在 Bot 中使用 QnA Maker 回答問題
 
@@ -61,7 +61,19 @@ ms.locfileid: "65039718"
 1. **儲存並訓練**知識庫。
 1. **發佈**知識庫。
 
-您的知識庫現在可供您的 Bot 使用。 記錄知識庫識別碼、端點金鑰和主機名稱。 您在下一個步驟中需要這些資訊。
+發佈 QnA Maker 應用程式後，選取 [設定] 索引標籤，然後捲動至 [部署詳細資料]。 記錄以下來自 _Postman_ 範例 HTTP 要求的值。
+
+```text
+POST /knowledgebases/<knowledge-base-id>/generateAnswer
+Host: <your-hostname>  // NOTE - this is a URL ending in /qnamaker.
+Authorization: EndpointKey <qna-maker-resource-key>
+```
+
+您主機名稱的完整 URL 字串看起來會類似 "https://< >.azure.net/qnamaker"。
+
+在下一個步驟中，您會在 `appsettings.json` 或 `.env` 檔案中用到這些值。
+
+您的知識庫現在可供您的 Bot 使用。
 
 ## <a name="add-knowledge-base-information-to-your-bot"></a>將知識庫資訊新增至 Bot
 從 Bot Framework v4.3 開始，Azure 不會再於您下載的 Bot 原始程式碼中提供 .bot 檔案。 使用下列指示將 CSharp 或 JavaScript Bot 連線到您的知識庫。
@@ -76,9 +88,9 @@ ms.locfileid: "65039718"
   "MicrosoftAppPassword": "",
   "ScmType": "None",
   
-  "QnAKnowledgebaseId": "<your-knowledge-base-id>",
-  "QnAAuthKey": "<your-knowledge-base-endpoint-key>",
-  "QnAEndpointHostName": "<your-qna-service-hostname>" // This is a URL
+  "QnAKnowledgebaseId": "<knowledge-base-id>",
+  "QnAAuthKey": "<qna-maker-resource-key>",
+  "QnAEndpointHostName": "<your-hostname>" // This is a URL ending in /qnamaker
 }
 ```
 
@@ -91,18 +103,18 @@ MicrosoftAppId=""
 MicrosoftAppPassword=""
 ScmType=None
 
-QnAKnowledgebaseId="<your-knowledge-base-id>"
-QnAAuthKey="<your-knowledge-base-endpoint-key>"
-QnAEndpointHostName="<your-qna-service-hostname>" // This is a URL
+QnAKnowledgebaseId="<knowledge-base-id>"
+QnAAuthKey="<qna-maker-resource-key>"
+QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
 ```
 
 ---
 
 | 欄位 | 值 |
 |:----|:----|
-| kbId | QnA Maker 入口網站為您產生的知識庫識別碼。 |
-| endpointKey | QnA Maker 入口網站為您產生的端點金鑰。 |
-| 主機名稱 | QnA Maker 入口網站所產生的主機 URL。 使用完整的 URL，其開頭為 `https://` 並以 `/qnamaker` 結尾。 完整的 URL 字串看起來會類似 "https://< >.azure.net/qnamaker"。 |
+| QnAKnowledgebaseId | QnA Maker 入口網站為您產生的知識庫識別碼。 |
+| QnAAuthKey | QnA Maker 入口網站為您產生的端點金鑰。 |
+| QnAEndpointHostName | QnA Maker 入口網站所產生的主機 URL。 使用完整的 URL，其開頭為 `https://` 並以 `/qnamaker` 結尾。 完整的 URL 字串看起來會類似 "https://< >.azure.net/qnamaker"。 |
 
 現在儲存您的編輯。
 
@@ -259,6 +271,15 @@ QnAEndpointHostName="<your-qna-service-hostname>" // This is a URL
 ## <a name="republish-your-bot"></a>重新發佈 Bot
 
 我們現在可以將您的 Bot 重新發佈回到 Azure。
+
+> [!IMPORTANT]
+> 建立專案檔案的壓縮檔之前，請確定您「位在」正確的資料夾中。 
+> - 針對 C# Bot，這是具有 .csproj 檔案的資料夾。 
+> - 針對 JS Bot，這是具有 app.js 或 index.js 檔案的資料夾。 
+>
+> 選取所有檔案並在該資料夾中壓縮，然後在該資料夾中執行命令。
+>
+> 如果您的根資料夾位置不正確，**Bot 將無法在 Azure 入口網站中執行**。
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 ```cmd

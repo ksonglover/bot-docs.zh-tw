@@ -1,4 +1,4 @@
-# [Azure Bot 服務文件](index.md)
+# [Azure Bot 服務文件](index.yml)
 # 概觀
 ## [關於 Azure Bot Service](bot-service-overview-introduction.md)
 ## [新功能](what-is-new.md)

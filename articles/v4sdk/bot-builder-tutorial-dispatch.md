@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/15/2019
+ms.date: 05/20/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b3e488615f318529935d35dbebbed2dd3b734f62
-ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
+ms.openlocfilehash: c81e463c221c64250684827a4e0ed059e7f98a02
+ms.sourcegitcommit: 72cc9134bf50f335cbb33265b048bf6b76252ce4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65039741"
+ms.lasthandoff: 05/21/2019
+ms.locfileid: "65973885"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多個 LUIS 和 QnA 模型
 
@@ -90,9 +90,25 @@ ms.locfileid: "65039741"
 
 ### <a name="create-qna-maker-kb"></a>建立 QnA Maker KB
 
-設定 QnA Maker KB 的第一個步驟是在 Azure 中設定 QnA Maker 服務。 若要這麼做，請遵循[這裡](https://aka.ms/create-qna-maker)的逐步指示。 現在登入 [LUIS Web 入口網站](https://qnamaker.ai)。 向下移至步驟 2
+設定 QnA Maker KB 的第一個步驟是在 Azure 中設定 QnA Maker 服務。 若要這麼做，請遵循[這裡](https://aka.ms/create-qna-maker)的逐步指示。
 
-![建立 QnA 步驟 2](./media/tutorial-dispatch/create-qna-step-2.png)
+在 Azure 中建立 QnA Maker 服務之後，您需要記錄針對 QnA Maker 服務提供的認知服務「金鑰 1」。 將 qna 新增至分派應用程式時，此金鑰會當作 \<azure-qna-service-key1> 使用。 下列步驟為您提供此金鑰：
+    
+![選取認知服務](./media/tutorial-dispatch/select-qna-cognitive-service.png)
+
+1. 在 Azure 入口網站中選取您的 QnA Maker 認知服務。
+
+![選取認知服務金鑰](./media/tutorial-dispatch/select-cognitive-service-keys.png)
+
+2. 選取左側功能表上 [資源管理] 區段之下的 [金鑰] 圖示。
+
+![選取認知服務金鑰 1](./media/tutorial-dispatch/select-cognitive-service-key1.png)
+
+3. 將「金鑰 1」的值複製到剪貼簿並儲存在本機。 稍後將 qna 新增至分派應用程式時，此金鑰會用於 (-k) 金鑰值\<azure-qna-service-key1>。
+
+現在登入 [LUIS Web 入口網站](https://qnamaker.ai)。 向下移至步驟 2
+
+![建立 QnA 步驟 2](./media/tutorial-dispatch/create-qna-step-2.png) 
 
 及選取
 1. 您的 Azure AD 帳戶。
@@ -124,7 +140,7 @@ ms.locfileid: "65039741"
 ```text
 POST /knowledgebases/<knowledge-base-id>/generateAnswer
 Host: <your-hostname>  // NOTE - this is a URL.
-Authorization: EndpointKey <your-endpoint-key>
+Authorization: EndpointKey <qna-maker-resource-key>
 ```
 
 您主機名稱的完整 URL 字串看起來會類似 "https://< >.azure.net/qnamaker"。
@@ -156,7 +172,7 @@ Authorization: EndpointKey <your-endpoint-key>
     ```cmd
     dispatch add -t luis -i "<app-id-for-weather-app>" -n "<name-of-weather-app>" -v <app-version-number> -k "<your-luis-authoring-key>" --intentName l_Weather
     dispatch add -t luis -i "<app-id-for-home-automation-app>" -n "<name-of-home-automation-app>" -v <app-version-number> -k "<your-luis-authoring-key>" --intentName l_HomeAutomation
-    dispatch add -t qna -i "<knowledge-base-id>" -n "<knowledge-base-name>" -k "<your-cognitive-services-subscription-id>" --intentName q_sample-qna
+    dispatch add -t qna -i "<knowledge-base-id>" -n "<knowledge-base-name>" -k "<azure-qna-service-key1>" --intentName q_sample-qna
     ```
 
 1. 使用 `dispatch create` 從 .dispatch 檔案中產生分派模型。
@@ -206,7 +222,7 @@ Bot 需要已發佈服務的相關資訊，好讓其可以存取這些服務。
 "MicrosoftAppPassword": "",
   
 "QnAKnowledgebaseId": "<knowledge-base-id>",
-"QnAAuthKey": "<your-endpoint-key>",
+"QnAAuthKey": "<qna-maker-resource-key>",
 "QnAEndpointHostName": "<your-hostname>",
 
 "LuisAppId": "<app-id-for-dispatch-app>",
@@ -245,7 +261,7 @@ MicrosoftAppId=""
 MicrosoftAppPassword=""
 
 QnAKnowledgebaseId="<knowledge-base-id>"
-QnAAuthKey="<your-endpoint-key>"
+QnAAuthKey="<qna-maker-resource-key>"
 QnAEndpointHostName="<your-hostname>"
 
 LuisAppId=<app-id-for-dispatch-app>

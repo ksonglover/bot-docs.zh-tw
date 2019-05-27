@@ -1,0 +1,63 @@
+### YamlMime:YamlDocument
+documentType: LandingData
+title: Azure Bot 服務文件
+metadata:
+  document_id: 1d934240-28c7-635f-d41b-3e43ae02970c
+  title: Azure Bot Service 文件 - 教學課程和 API 參考
+  meta.description: 'Learn how to create bots. Documentation helps you create, deploy, and manage bots in the cloud.'
+  author: ivorb
+  manager: kamrani
+  ms.service: bot-service
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 05/23/2019
+  ms.author: ivorb
+abstract:
+  description: 'Azure Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot Framework SDK，並支援 C# 和 JavaScript。 了解如何透過我們的快速入門、教學課程和範例使用 Bot 服務。'
+  aside:
+    image:
+      alt: null
+      height: 110
+      src: media/video/satya-video.png
+      width: 250
+    title: '由 Satya Nadella 建置 2019 重點演說。 (1:25:09)'
+    href: 'https://mybuild.techcommunity.microsoft.com/sessions/77571?source=%7B%7B%20ctrl.source#top-anchor'
+    width: 250
+sections:
+  - title: 5 分鐘快速入門
+    items:
+      - type: paragraph
+        text: 了解如何建立您的第一個 Bot：
+      - type: list
+        style: icon48
+        items:
+          - image:
+              src: media/index/azure_portal.png
+            text: Azure 入口網站
+            href: 'https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart'
+          - image:
+              src: v4sdk/media/logo_csharp.svg
+            text: 'C#'
+            href: 'https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-sdk-quickstart'
+          - image:
+              src: v4sdk/media/logo_js.svg
+            text: JavaScript
+            href: 'https://docs.microsoft.com/en-us/azure/bot-service/javascript/bot-builder-javascript-quickstart'
+  - title: 逐步教學課程
+    items:
+      - type: paragraph
+        text: 了解如何建立及部署在 Azure 上的 Bot。
+      - type: list
+        style: ordered
+        items:
+          - html: <a href="/bot-framework/bot-builder-tutorial-basic-deploy"> 建立及部署基本 Bot</a>
+          - html: <a href="/bot-framework/bot-builder-tutorial-add-qna">新增 QnA Maker，並重新部署 Bot</a>
+  - title: 參考
+    items:
+      - type: list
+        style: cards
+        className: cardsD
+        items:
+          - title: Languages
+            html: '<p><a href="/dotnet/api/?view=botbuilder-dotnet-stable">.NET</a></p><p><a href="https://docs.microsoft.com/en-us/javascript/api/botbuilder/index?view=botbuilder-ts-latest">JavaScript</a></p>'

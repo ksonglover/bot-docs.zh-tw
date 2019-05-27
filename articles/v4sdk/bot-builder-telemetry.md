@@ -10,94 +10,115 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/06/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 414417e3722e2d9063e1d177b534b6caa814c0db
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 95b56ec8e278c3d94430dc3c870803e8672fb053
+ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032439"
+ms.lasthandoff: 05/16/2019
+ms.locfileid: "65733331"
 ---
 # <a name="add-telemetry-to-your-bot"></a>將遙測新增至 Bot
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-在 Bot Framework sdk 4.2 版中，已在產品中新增遙測記錄功能。  這可讓 Bot 應用程式將事件資料傳送至 Application Insights 之類的服務。 第一節會說明這兩種方法，之後則會有更廣泛的遙測功能。
+在 Bot Framework sdk 4.2 版中，已在產品中新增遙測記錄功能。  這可讓 Bot 應用程式將事件資料傳送至 Application Insights 之類的服務。 第一節會說明這些方法，之後則會有更廣泛的遙測功能。
 
-本文件說明如何整合 Bot 與新的遙測功能。
+本文件說明如何整合 Bot 與新的遙測功能。 
 
 ## <a name="basic-telemetry-options"></a>基本遙測選項
 
-### <a name="basic-application-insights"></a>基本的 Application insights
-設定 Bot 有兩種方法。  第一種方法假設您要與 Application Insights 整合。
+### <a name="basic-application-insights"></a>基本 Application insights
 
-設定檔包含有關 Bot 在執行時所用外部服務的中繼資料。  例如，CosmosDB、Application Insights 和 Language Understanding (LUIS) 服務連線和中繼資料都會儲存在這裡。   
+首先，讓我們將基本遙測新增至您的 Bot，並使用 Application Insights。 如需有關設定的其他詳細資訊，請參閱[開始使用 Application Insights](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started-with-Application-Insights-for-ASP.NET-Core) 的前幾節。   
 
-如果您想要「貯存」Application Insights，不需要額外的 Application Insights 專屬設定 (例如遙測初始設定式)，只要在初始化期間傳入組態物件 (通常是 `IConfiguration`) 即可。   這是最簡單的初始化方法並且會設定 Application Insights，以開始追蹤要求、其他服務的外部呼叫，以及跨服務相互關聯事件。
+如果您想要「貯存」Application Insights，不需要額外的 Application Insights 專屬設定 (例如遙測初始設定式)，請將以下內容新增至 `ConfigureServices()` 方法。   這是最簡單的初始化方法並且會設定 Application Insights，以開始追蹤要求、其他服務的外部呼叫，以及跨服務相互關聯事件。
 
-您必須新增 **Microsoft.Bot.Builder.Integration.ApplicationInsights.Core** NuGet 套件。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+您必須新增下面程式碼片段中包含的 NuGet 套件。
 
 **Startup.cs**
 ```csharp
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.Bot.Builder.ApplicationInsights;
+using Microsoft.Bot.Builder.Integration.ApplicationInsights.Core;
+using Microsoft.Bot.Builder.Integration.AspNet.Core;
+ 
+// This method gets called by the runtime. Use this method to add services to the container.
 public void ConfigureServices(IServiceCollection services)
 {
-     ...
-     // Add Application Insights - pass in the bot configuration
-     services.AddBotApplicationInsights(<your IConfiguration variable name - likely "config">);
-     ...
+    ...
+    // Add Application Insights services into service collection
+    services.AddApplicationInsightsTelemetry();
+
+    // Add the standard telemetry client
+    services.AddSingleton<IBotTelemetryClient, BotTelemetryClient>();
+
+    // Add ASP middleware to store the HTTP body, mapped with bot activity key, in the httpcontext.items
+    // This will be picked by the TelemetryBotIdInitializer
+    services.AddTransient<TelemetrySaveBodyASPMiddleware>();
+
+    // Add telemetry initializer that will set the correlation context for all telemetry items
+    services.AddSingleton<ITelemetryInitializer, OperationCorrelationTelemetryInitializer>();
+
+    // Add telemetry initializer that sets the user ID and session ID (in addition to other 
+    // bot-specific properties, such as activity ID)
+    services.AddSingleton<ITelemetryInitializer, TelemetryBotIdInitializer>();
+    ...
 }
 
+// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-     app.UseBotApplicationInsights()
-                 ...
-                .UseDefaultFiles()
-                .UseStaticFiles()
-                .UseBotFramework();
-                ...
+    ...
+    app.UseBotApplicationInsights();
 }
 ```
 
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+然後，必須將 Application Insights 檢測金鑰儲存在 `appsettings.json` 檔案中或儲存為環境變數。 `appsettings.json` 檔案包含有關 Bot 在執行時所用外部服務的中繼資料。  例如，CosmosDB、Application Insights 和 Language Understanding (LUIS) 服務連線和中繼資料都會儲存在這裡。 您可以在 Azure 入口網站的 [概觀] 區段 (在該頁面上您服務的 `Essentials` 下拉式清單 (若已摺疊) 之下) 找到檢測金鑰。 您可以在[這裡](~/bot-service-resources-app-insights-keys.md)找到取得金鑰的詳細資訊。
 
-```JavaScript
-const appInsightsClient = new ApplicationInsightsTelemetryClient(<your configuration variable name - likely "config">);
+此架構會為您尋找金鑰 (如果格式正確)。 `appsettings.json` 項目的格式化應該如下所示：
+
+```json
+    "ApplicationInsights": {
+        "InstrumentationKey": "putinstrumentationkeyhere"
+    },
+    "Logging": {
+        "LogLevel": {
+            "Default": "Warning"
+        }
+    }
 ```
 
----
+如需有關如何將 Application Insights 新增至 ASP.NET Core 應用程式的詳細資訊，請參閱[這篇文章](https://docs.microsoft.com/en-us/azure/azure-monitor/app/asp-net-core-no-visualstudio)。 
 
-### <a name="overriding-the-telemetry-client"></a>覆寫遙測用戶端
+### <a name="customize-your-telemetry-client"></a>自訂您的遙測用戶端
 
-如果您想要自訂 Application Insights 用戶端，或者想要登入完全不同的服務，則必須以不同的方式設定系統。 透過 nuget 下載套件 `Microsoft.Bot.Builder.ApplicationInsights`，或使用 npm 安裝 `botbuilder-applicationinsights`。 檢測金鑰可於 Azure 入口網站上找到。
+如果您想要自訂 Application Insights 用戶端，或者想要登入完全不同的服務，則必須以不同的方式設定系統。 透過 nuget 下載套件 `Microsoft.Bot.Builder.ApplicationInsights`，或使用 npm 安裝 `botbuilder-applicationinsights`。 您可以在[這裡](~/bot-service-resources-app-insights-keys.md)找到取得 Application Insights 金鑰的詳細資訊。
 
 **修改 Application Insights 組態**
 
-```csharp
+若要修改您的組態，請在新增 Application Insights 時納入 `options`。 否則，所有項目都與上述相同。
 
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-     ...
-     // Create Application Insight Telemetry Client
-     // with custom configuration.
-     var telemetryClient = TelemetryClient(myCustomConfiguration)
-     
-     // Add Application Insights
-     services.AddBotApplicationInsights(new BotTelemetryClient(telemetryClient), "InstrumentationKey");
+    ...
+    // Add Application Insights services into service collection
+    services.AddApplicationInsightsTelemetry(options);
+    ...
+}
 ```
 
-**使用自訂遙測** 如果您想要將 Bot Framework 所產生的遙測事件記錄到完全不同的系統，請建立自基底介面衍生的新類別並加以設定。  
+`options` 物件的類型為 `ApplicationInsightsServiceOptions`。 您[可以在這裡找到]()這些選項的詳細資訊。
+
+**使用自訂遙測** 如果您想要將 Bot Framework 所產生的遙測事件記錄到完全不同的系統，請建立自基底介面 `IBotTelemetryClient` 衍生的新類別並加以設定。 然後，在新增上述遙測用戶端時，只要插入自訂用戶端即可。 
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-     ...
-     // Create my IBotTelemetryClient-based logger
-     var myTelemetryClient = MyTelemetryLogger();
-     
-     // Add Application Insights
-     services.AddSingleton(myTelemetryClient);
-     ...
+    ...
+    // Add the telemetry client.
+    services.AddSingleton<IBotTelemetryClient, CustomTelemetryClient>();
+    ...
 }
 ```
 
@@ -140,9 +161,11 @@ public void ConfigureServices(IServiceCollection services)
 TelemetryLoggerMiddleware 是無須修改即可新增的 Bot Framework 元件，其會執行記錄而能提供會隨附於 Bot Framework SDK 的現成可用報告。 
 
 ```csharp
-var telemetryClient = sp.GetService<IBotTelemetryClient>();
-var telemetryLogger = new TelemetryLoggerMiddleware(telemetryClient, logPersonalInformation: true);
-options.Middleware.Add(telemetryLogger);  // Add to the middleware collection
+// Create the telemetry middleware to track conversation events
+services.AddSingleton<IMiddleware, TelemetryLoggerMiddleware>();
+
+// Create the Bot Framework Adapter with error handling enabled.
+services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
 ```
 
 #### <a name="adding-properties"></a>新增屬性
@@ -174,8 +197,8 @@ class MyTelemetryMiddleware : TelemetryLoggerMiddleware
 而在啟動時，我們會新增新的類別：
 
 ```csharp
-var telemetryLogger = new TelemetryLuisRecognizer(telemetryClient, logPersonalInformation: true);
-options.Middleware.Add(telemetryLogger);  // Add to the middleware collection
+// Create the telemetry middleware to track conversation events
+services.AddSingleton<IMiddleware, MyTelemetryMiddleware>();
 ```
 
 #### <a name="completely-replacing-properties--additional-events"></a>完全取代屬性/其他事件
@@ -430,11 +453,11 @@ class MyLuisRecognizer : TelemetryQnAMaker
 
 除了產生您自己的事件，SDK 內的 `WaterfallDialog` 物件現在也會產生事件。 下一節說明從 Bot Framework 內產生的事件。 在 `WaterfallDialog` 上設定 `TelemetryClient` 屬性，就會儲存這些事件。
 
-以下範例示範如何修改利用 `WaterfallDialog` 來記錄遙測事件的範例 (BasicBot)。  BasicBot 會利用當 `WaterfallDialog` 置於 `ComponentDialog` (`GreetingDialog`) 內時使用的通用樣式。
+以下範例示範如何修改利用 `WaterfallDialog` 來記錄遙測事件的範例 (CoreBot)。  CoreBot 會利用當 `WaterfallDialog` 置於 `ComponentDialog` (`GreetingDialog`) 內時使用的通用樣式。
 
 ```csharp
 // IBotTelemetryClient is direct injected into our Bot
-public BasicBot(BotServices services, UserState userState, ConversationState conversationState, IBotTelemetryClient telemetryClient)
+public CoreBot(BotServices services, UserState userState, ConversationState conversationState, IBotTelemetryClient telemetryClient)
 ...
 
 // The IBotTelemetryClient passed to the GreetingDialog
