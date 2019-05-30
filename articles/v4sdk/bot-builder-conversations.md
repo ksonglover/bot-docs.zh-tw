@@ -8,19 +8,19 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/01/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7f35b8a135cdde6ffaf11798a5c0e4a3688d5b4f
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 167e496fa510cdf755be13f71cf3a596b0183ec1
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904821"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215471"
 ---
 # <a name="conversation-flow"></a>交談流程
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-在設計 Bot 交談流程時，您要決定使用者向 Bot 發出訊息後，Bot 應該如何回應。 Bot 會先根據使用者的訊息辨識工作或交談主題。 Bot 會尋找使用者訊息中的字詞或模式，或利用 [Language Understanding](bot-builder-concept-luis.md) 和 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 這類服務，以判斷與使用者訊息相關的工作或主題 (稱為「意圖」)。
+在設計 Bot 交談流程時，您要決定使用者向 Bot 發出訊息後，Bot 應該如何回應。 Bot 會先根據使用者的訊息辨識工作或交談主題。 Bot 會尋找使用者訊息中的字詞或模式，或利用 [Language Understanding](bot-builder-concept-luis.md) 和 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 這類服務，以判斷與使用者訊息相關的工作或主題 (稱為「意圖」  )。
 
 Bot 辨識出使用者意圖後，Bot 將視情況在單次回覆內滿足使用者的要求，或在單次回合結束交談，否則可能就需要多回合。 如為多回合的交談流程，Bot Framework SDK 可提供用於追蹤交談的[狀態管理](./bot-builder-howto-v4-state.md)作業、用於詢問更多資訊的[提示](bot-builder-prompts.md)，以及模擬交談流程的[交談方塊](bot-builder-dialog-manage-conversation-flow.md)。
 
@@ -103,7 +103,7 @@ Bot Framework SDK 提供的_辨識器_可處理訊息，如此您的 Bot 即可�
 ## <a name="conversation-lifetime"></a>交談存留期
 
 <!-- Note: these activities are dependent on whether the channel actually sends them. Also, we should add links -->
-每當 Bot 已加入交談、其他成員已加入或從交談中移除，或交談中繼資料已變更，Bot 會收到「交談更新」活動。
+每當 Bot 已加入交談、其他成員已加入或從交談中移除，或交談中繼資料已變更，Bot 會收到「交談更新」  活動。
 您可能會希望 Bot 透過向使用者顯示歡迎訊息或自我介紹的方式，回應交談更新活動。
 
 Bot 會收到_結束交談_活動，表示使用者已結束交談。 Bot 會傳送_結束對話_活動，表示對話已結束。

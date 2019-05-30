@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/30/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bb6346d8364e0323c1e5f12329e8cdea97bad0ac
-ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
+ms.openlocfilehash: 7c9bdbbf0ad41bc678476237ef6b6d1d0f872426
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/16/2019
-ms.locfileid: "65733354"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66214251"
 ---
 # <a name="tutorial-create-and-deploy-a-basic-bot"></a>教學課程：建立及部署基本 Bot
 
@@ -188,7 +188,7 @@ az webapp deployment source config-zip --resource-group "<new-group-name>" --nam
 
 ### <a name="3-test-in-web-chat"></a>3.在網路聊天中測試
 - 在 Azure 入口網站中，移至 Web 應用程式 Bot 的刀鋒視窗。
-- 在 [Bot 管理] 區段中，按一下 [在網路聊天中測試]。 Azure Bot Service 會將網路聊天控制項載入，並連線至 Bot。
+- 在 [Bot 管理]  區段中，按一下 [在網路聊天中測試]  。 Azure Bot Service 會將網路聊天控制項載入，並連線至 Bot。
 - 在成功部署後等候幾秒，選擇性地重新啟動您的 Web 應用程式，以清除任何快取。 回到您的 Web 應用程式 Bot 刀鋒視窗，使用 Azure 入口網站中提供的網路聊天進行測試。
 
 ## <a name="additional-resources"></a>其他資源

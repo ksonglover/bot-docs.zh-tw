@@ -6,14 +6,14 @@ ms.author: darrenj
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 05/06/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 36a4b01dfc19cfab747de281c65d7166cb05f406
-ms.sourcegitcommit: 39d548b2d2fb050d72cf7b6c8fe389b47d0c9099
+ms.openlocfilehash: ce3ab86d5716250e24a44268f5e5fc39fbdd3398
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65168972"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66214177"
 ---
 # <a name="virtual-assistant---template-outline"></a>虛擬助理 - 範本大綱
 
@@ -54,17 +54,17 @@ LU 檔案會以英文、中文、法文、義大利文、德文、西班牙文�
 
 意圖       | 範例語句 |
 -------------|-------------|
-取消       |取消、沒關係|
-呈報     |我可以洽詢人員嗎？|
-FinishTask   |完成、全部完成|
-GoBack       |返回|
-說明         |可以請您提供協助嗎？|
-Repeat       |可以再說一次嗎？|
-SelectAny    |任一|
-SelectItem   |第一個|
-SelectNone   |以上皆非|
-ShowNext     |顯示較多|
-ShowPrevious |顯示上一個|
+取消       |取消  、沒關係 |
+呈報     |我可以洽詢人員嗎？ |
+FinishTask   |完成  、全部完成 |
+GoBack       |返回 |
+說明         |可以請您提供協助嗎？ |
+Repeat       |可以再說一次嗎？ |
+SelectAny    |任一 |
+SelectItem   |第一個 |
+SelectNone   |以上皆非 |
+ShowNext     |顯示較多 |
+ShowPrevious |顯示上一個 |
 StartOver    |*restart*|
 Stop         |*stop*|
 

@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 02/06/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 95b56ec8e278c3d94430dc3c870803e8672fb053
-ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
+ms.openlocfilehash: b6b4d30aea493180fddaee4a7f74bef72c1992ae
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/16/2019
-ms.locfileid: "65733331"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215268"
 ---
 # <a name="add-telemetry-to-your-bot"></a>將遙測新增至 Bot
 
@@ -27,7 +27,7 @@ ms.locfileid: "65733331"
 
 ## <a name="basic-telemetry-options"></a>基本遙測選項
 
-### <a name="basic-application-insights"></a>基本 Application insights
+### <a name="basic-application-insights"></a>基本的 Application insights
 
 首先，讓我們將基本遙測新增至您的 Bot，並使用 Application Insights。 如需有關設定的其他詳細資訊，請參閱[開始使用 Application Insights](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started-with-Application-Insights-for-ASP.NET-Core) 的前幾節。   
 
@@ -73,7 +73,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-然後，必須將 Application Insights 檢測金鑰儲存在 `appsettings.json` 檔案中或儲存為環境變數。 `appsettings.json` 檔案包含有關 Bot 在執行時所用外部服務的中繼資料。  例如，CosmosDB、Application Insights 和 Language Understanding (LUIS) 服務連線和中繼資料都會儲存在這裡。 您可以在 Azure 入口網站的 [概觀] 區段 (在該頁面上您服務的 `Essentials` 下拉式清單 (若已摺疊) 之下) 找到檢測金鑰。 您可以在[這裡](~/bot-service-resources-app-insights-keys.md)找到取得金鑰的詳細資訊。
+然後，必須將 Application Insights 檢測金鑰儲存在 `appsettings.json` 檔案中或儲存為環境變數。 `appsettings.json` 檔案包含有關 Bot 在執行時所用外部服務的中繼資料。  例如，CosmosDB、Application Insights 和 Language Understanding (LUIS) 服務連線和中繼資料都會儲存在這裡。 您可以在 Azure 入口網站的 [概觀]  區段 (在該頁面上您服務的 `Essentials` 下拉式清單 (若已摺疊) 之下) 找到檢測金鑰。 您可以在[這裡](~/bot-service-resources-app-insights-keys.md)找到取得金鑰的詳細資訊。
 
 此架構會為您尋找金鑰 (如果格式正確)。 `appsettings.json` 項目的格式化應該如下所示：
 
@@ -148,7 +148,7 @@ public void ConfigureServices(IServiceCollection services)
 
 - Bot Framework 中介軟體元件 (*TelemetryLoggerMiddleware*)，會在接收、傳送、更新或刪除訊息時留下記錄。 您可以進行覆寫來建立自訂記錄。
 - *LuisRecognizer* 類別。  您可以透過兩種方式進行覆寫來建立自訂記錄 - 經由叫用 (新增/取代屬性) 或衍生類別。
-- QnAMaker 類別。  您可以透過兩種方式進行覆寫來建立自訂記錄 - 經由叫用 (新增/取代屬性) 或衍生類別。
+- QnAMaker  類別。  您可以透過兩種方式進行覆寫來建立自訂記錄 - 經由叫用 (新增/取代屬性) 或衍生類別。
 
 ### <a name="telemetry-middleware"></a>遙測中介軟體
 
@@ -543,12 +543,12 @@ AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient =
 若未加以覆寫，則會使用 `Microsoft.Bot.Builder.IBotTelemetry.TrackEvent()` 方法從 `Microsoft.Bot.Builder.TelemetryLoggerMiddleware` 記錄此事件。
 
 - 工作階段識別碼  
-  - 使用 Application Insights 時，會從 `TelemetryBotIdInitializer` 將此屬性記錄為 Application Insights 中所使用的**工作階段**識別碼 (Temeletry.Context.Session.Id)。  
+  - 使用 Application Insights 時，會從 `TelemetryBotIdInitializer` 將此屬性記錄為 Application Insights 中所使用的**工作階段**識別碼 (Temeletry.Context.Session.Id  )。  
   - 對應至 Bot Framework 通訊協定所定義的[對話識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#conversation)。
   - 所記錄的屬性名稱是 `session_id`。
 
 - 使用者識別碼
-  - 使用 Application Insights 時，會從 `TelemetryBotIdInitializer` 將此屬性記錄為 Application Insights 中所使用的**使用者**識別碼 (Telemetry.Context.User.Id)。  
+  - 使用 Application Insights 時，會從 `TelemetryBotIdInitializer` 將此屬性記錄為 Application Insights 中所使用的**使用者**識別碼 (Telemetry.Context.User.Id  )。  
   - 此屬性的值結合了 Bot Framework 通訊協定所定義的[通道識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id)和[使用者識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from) (串連在一起) 屬性。
   - 所記錄的屬性名稱是 `user_id`。
 
@@ -754,7 +754,7 @@ union_all
 {"code":"DeploymentFailed","message":"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-debug for usage details.","details":[{"code":"BadRequest","message":"{\r\n \"error\": {\r\n \"code\": \"InvalidTemplate\",\r\n \"message\": \"Unable to process template language expressions for resource '/subscriptions/45d8a30e-3363-4e0e-849a-4bb0bbf71a7b/resourceGroups/core67/providers/Microsoft.Portal/dashboards/Bot Analytics Dashboard' at line '34' and column '9'. 'The template parameter 'virtualMachineName' is not found. Please see https://aka.ms/arm-template/#parameters for usage details.'\"\r\n }\r\n}"}]}
 ```
 
-若要檢視資料，請移至 Azure 入口網站。 按一下左邊的 [儀表板]，然後從下拉式清單中選取您建立的儀表板。
+若要檢視資料，請移至 Azure 入口網站。 按一下左邊的 [儀表板]  ，然後從下拉式清單中選取您建立的儀表板。
 
 ## <a name="additional-resources"></a>其他資源
 您可以參考這些實作遙測的範例：

@@ -1,21 +1,21 @@
 ---
 title: 將現有 v3 JavaScript Bot 遷移至新的 v4 專案 | Microsoft Docs
 description: 我們採用現有 v3 JavaScript Bot 並將其遷移至 v4 SDK，而且使用新的專案。
-keywords: JavaScript, bot 移轉, formflow, 對話, v3 bot
+keywords: JavaScript, bot 移轉, 對話方塊, v3 bot
 author: JonathanFingold
 ms.author: v-jofing
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/13/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3692c723bf2ac4d2275176bb0f7c5f8103225808
-ms.sourcegitcommit: 178140eb060d71803f1c6357dd5afebd7f44fe1d
+ms.openlocfilehash: 591f58e1cefca576e2e3e4a486ecc6fbe0a6b0e4
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/17/2019
-ms.locfileid: "65856657"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215598"
 ---
 # <a name="migrate-a-sdk-v3-javascript-bot-to-v4"></a>將 SDK v3 Javascript Bot 遷移至 v4
 
@@ -34,7 +34,7 @@ Bot Framework SDK v4 是以與 SDK v3 相同的基礎 REST API 作為基礎。 �
 
 - 透過狀態管理物件和屬性存取子管理狀態。
 - 我們處理回合的方式已改變，也就是，Bot 接收及回應來自使用者通道的傳入活動的方式。
-- v4 不會使用 `session` 物件，而是具有「回合內容」物件，其中包含傳入活動的相關資訊，可用來送回回應活動。
+- v4 不會使用 `session` 物件，而是具有「回合內容」  物件，其中包含傳入活動的相關資訊，可用來送回回應活動。
 - 與 v3 非常不同的新 Dialogs 程式庫。 您必須將舊的對話轉換至新的對話系統，並使用元件和瀑布式對話。
 
 <!-- TODO
@@ -107,7 +107,7 @@ V4 範本會針對應用程式進入點建立 **index.js** 檔案，以及針對
     };
     ```
 
-    在 v4 中，我們使用「Bot 配接器」將傳入活動傳送至 Bot。 配接器可讓我們在回合完成前攔截及回應錯誤。 在此，如果應用程式發生錯誤，我們會清除交談狀態，這會重設所有對話並且讓 Bot 停留在損毀的交談狀態。
+    在 v4 中，我們使用「Bot 配接器」  將傳入活動傳送至 Bot。 配接器可讓我們在回合完成前攔截及回應錯誤。 在此，如果應用程式發生錯誤，我們會清除交談狀態，這會重設所有對話並且讓 Bot 停留在損毀的交談狀態。
 
 1. 以此取代用於建立 Bot 的範本程式碼。
 
@@ -167,13 +167,13 @@ module.exports = {
 |:---|:---|
 | **./dialogs/flights.js** | 這會包含 `hotels` 對話的遷移後邏輯。 |
 | **./dialogs/hotels.js** | 這會包含 `flights` 對話的遷移後邏輯。 |
-| **./dialogs/main.js** | 這會包含 Bot 的遷移後邏輯，而且會代替「根」對話。 |
+| **./dialogs/main.js** | 這會包含 Bot 的遷移後邏輯，而且會代替「根」  對話。 |
 
 我們尚未遷移支援對話。 如需如何在 v4 中實作協助對話的範例，請參閱[處理使用者中斷](../bot-builder-howto-handle-user-interrupt.md?tabs=javascript)。
 
 ### <a name="implement-the-main-dialog"></a>實作主要對話
 
-在 v3 中，所有 Bot 都是建置於對話系統之上。 在 v4 中，Bot 邏輯和對話邏輯目前不同。 我們已採用 v3 Bot 中的「根對話」，並且讓 `MainDialog` 類別取代它的位置。
+在 v3 中，所有 Bot 都是建置於對話系統之上。 在 v4 中，Bot 邏輯和對話邏輯目前不同。 我們已採用 v3 Bot 中的「根對話」  ，並且讓 `MainDialog` 類別取代它的位置。
 
 編輯 **./dialogs/main.js**。
 
@@ -223,7 +223,7 @@ module.exports = {
 
     這會宣告主要對話直接參考的其他對話和提示。
 
-    - 主要瀑布式對話，其中包含此對話的步驟。 當元件對話開始時，它會開始其「初始對話」。
+    - 主要瀑布式對話，其中包含此對話的步驟。 當元件對話開始時，它會開始其「初始對話」  。
     - 我們將用來詢問使用者想要執行哪項工作的選擇提示。 我們已使用驗證程式建立選擇提示。
     - 兩個子對話：航班和旅館。
 
@@ -250,7 +250,7 @@ module.exports = {
 
     在 v4 中，Bot 會先建立對話內容，然後呼叫 `continueDialog`，藉此與對話系統互動。 如果有作用中的對話，控制權就會交給它；否則，只會傳回此呼叫。 `empty` 的結果表示沒有作用中的對話，所以我們會在此再次重新開始主要對話。
 
-    `accessor` 參數會傳入對話狀態屬性的存取子。 「對話堆疊」的狀態會儲存在這個屬性中。 如需有關狀態和對話在 v4 中運作方式的詳細資訊，請分別參閱[管理狀態](../bot-builder-concept-state.md)和 [Dialogs 程式庫](../bot-builder-concept-dialog.md)。
+    `accessor` 參數會傳入對話狀態屬性的存取子。 「對話堆疊」  的狀態會儲存在這個屬性中。 如需有關狀態和對話在 v4 中運作方式的詳細資訊，請分別參閱[管理狀態](../bot-builder-concept-state.md)和 [Dialogs 程式庫](../bot-builder-concept-dialog.md)。
 
 1. 在此類別中，為選擇提示新增主要對話的瀑布式步驟和驗證程式。
 

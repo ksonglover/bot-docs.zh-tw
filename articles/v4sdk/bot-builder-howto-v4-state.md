@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 4/16/19
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 38a8034687ef1a0b8b3bcf3e01d3b33b91bdfd18
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: b198408a800feaedff3c13dbab965ae63307eeb0
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033221"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215345"
 ---
 # <a name="save-user-and-conversation-data"></a>儲存使用者和對話資料
 
@@ -104,7 +104,7 @@ Bot 原本就是無狀態。 部署 Bot 後，在不同的回合中，Bot 便無
 
 **StateManagementBot.cs** [!code-csharp[OnMessageActivityAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=38-85)]
 
-結束回合處理常式之前，我們會使用狀態管理物件的 SaveChangesAsync() 方法，將所有狀態變更寫回儲存體。
+結束回合處理常式之前，我們會使用狀態管理物件的 SaveChangesAsync()  方法，將所有狀態變更寫回儲存體。
 
 **StateManagementBot.cs** [!code-csharp[OnTurnAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=24-31)]
 

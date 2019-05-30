@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 05/05/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ded465802ff3e16563dd56998e4114d6bd98ad5f
-ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
+ms.openlocfilehash: de497fa5ad694081258486dd5c6e9fd37b107879
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65047885"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215565"
 ---
 # <a name="whats-new-in-bot-framework"></a>Bot Framework 中的新功能
 Bot Framework SDK v4 是[開放原始碼 SDK][1a]，可讓開發人員使用其慣用的程式設計語言塑造與建置複雜的對話。
@@ -43,7 +43,7 @@ Bot Framework SDK v4 是[開放原始碼 SDK][1a]，可讓開發人員使用其�
 [111]:https://github.com/Microsoft/botbuilder-python/tree/master/samples
 
 <a name="V4-whats-new"></a>
-## <a name="bot-framework-sdk-new-in-preview"></a>Bot Framework SDK (預覽中的新功能) In preview)
+## <a name="bot-framework-sdk-new-in-preview"></a>Bot Framework SDK (新功能！ 處於預覽狀態)
 
 - [自適性對話方塊][47] | [docs][48] | [C# 範例][49]：自適性對話方塊可讓開發人員建置對話，並隨著對話的進展而動態變化。  傳統上，開發人員已事先安排好整個對話流程，但這會限制對話彈性。  自適性對話方塊則可讓開發人員更有彈性地回應內容變化，並隨著對話的進展而插入新步驟或整個子對話方塊。 
 
@@ -78,7 +78,7 @@ Botkit 是 Microsoft Bot Framework 的一部分，其依據 [MIT 開放原始碼
 [106]:https://github.com/howdyai/botkit/tree/master/packages/botbuilder-adapter-twilio-sms#readme
 [107]:https://github.com/howdyai/botkit/tree/master/packages/botbuilder-adapter-web#readme
 
-## <a name="bot-framework-solutions-new-in-preview"></a>Bot Framework 解決方案 (預覽中的新功能) In preview)
+## <a name="bot-framework-solutions-new-in-preview"></a>Bot Framework 解決方案 (新功能！ 處於預覽狀態)
 
 [Bot Framework 解決方案存放庫](https://github.com/Microsoft/AI#readme)是一組範本、解決方案加速器和技能的所在地，可用來協助建置類似小幫手的進階對話式體驗。
 
@@ -109,7 +109,7 @@ Azure Bot Service 可讓您裝載有智慧的企業級 Bot，且您可以完整�
 - [下載最新版本][61] | [Docs][62]
 
 <a name="Emulator-whats-new"></a>
-### <a name="bot-inspector-new-in-preview"></a>Bot Inspector (預覽中的新功能) In preview)
+### <a name="bot-inspector-new-in-preview"></a>Bot Inspector (新功能！ 處於預覽狀態)
 
 Bot Framework Emulator 已發行新 Bot Inspector 功能的搶鮮版 (Beta)。 其可讓您在 Microsoft Teams、Slack、Cortana、Facebook Messenger、Skype 等通道上對 Bot Framework SDK v4 Bot 進行偵錯和測試。當您有對話時，訊息便會鏡像傳送到 Bot Framework Emulator，您可以在其中檢查 Bot 所收到的訊息資料。 此外，也會呈現通道和 Bot 之間任何給定回合的 Bot 狀態快照集。 深入了解 [Bot Inspector](https://github.com/Microsoft/BotFramework-Emulator/blob/master/content/CHANNELS.md)
 

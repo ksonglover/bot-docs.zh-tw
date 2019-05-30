@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: tutorial
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/20/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e51683a5dbae29879d73ee322586272d49708b22
-ms.sourcegitcommit: 72cc9134bf50f335cbb33265b048bf6b76252ce4
+ms.openlocfilehash: f72bc15d4c239946afcf6790193cffa5c6d0f0bc
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/21/2019
-ms.locfileid: "65973871"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66214237"
 ---
 # <a name="tutorial-use-qna-maker-in-your-bot-to-answer-questions"></a>教學課程：在 Bot 中使用 QnA Maker 回答問題
 
@@ -57,11 +57,11 @@ ms.locfileid: "65973871"
    1. 將 QnA 服務連線到知識庫。
    1. 為您的知識庫命名。
    1. 若要填入您的知識庫，請使用範例存放庫中的 **BotBuilder-Samples\samples\csharp_dotnetcore\11.qnamaker\CognitiveModels\smartLightFAQ.tsv** 檔案。
-   1. 按一下 [建立知識庫] 以建立知識庫。
+   1. 按一下 [建立知識庫]  以建立知識庫。
 1. **儲存並訓練**知識庫。
 1. **發佈**知識庫。
 
-發佈 QnA Maker 應用程式後，選取 [設定] 索引標籤，然後捲動至 [部署詳細資料]。 記錄以下來自 _Postman_ 範例 HTTP 要求的值。
+發佈 QnA Maker 應用程式後，選取 [設定]  索引標籤，然後捲動至 [部署詳細資料]。 記錄以下來自 _Postman_ 範例 HTTP 要求的值。
 
 ```text
 POST /knowledgebases/<knowledge-base-id>/generateAnswer
@@ -182,7 +182,7 @@ QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
       }
    }
    ```
-1. 現在在 _OnMessageActivityAsync( )_ 內呼叫您的新方法 _AccessQnAMaker( )_，如下所示：
+1. 現在在 _OnMessageActivityAsync( )_ 內呼叫您的新方法 _AccessQnAMaker( )_ ，如下所示：
 
    **EchoBot.cs**
    ```csharp
@@ -273,7 +273,7 @@ QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
 我們現在可以將您的 Bot 重新發佈回到 Azure。
 
 > [!IMPORTANT]
-> 建立專案檔案的壓縮檔之前，請確定您「位在」正確的資料夾中。 
+> 建立專案檔案的壓縮檔之前，請確定您「位在」  正確的資料夾中。 
 > - 針對 C# Bot，這是具有 .csproj 檔案的資料夾。 
 > - 針對 JS Bot，這是具有 app.js 或 index.js 檔案的資料夾。 
 >
@@ -306,8 +306,8 @@ az webapp deployment source config-zip --resource-group <resource-group-name> --
 如果您不打算繼續使用此應用程式，請使用下列步驟來刪除相關聯的資源：
 
 1. 在 Azure 入口網站中，開啟您 Bot 的資源群組。
-1. 按一下 [刪除資源群組] 來刪除群組及其包含的所有資源。
-1. 在確認窗格中，輸入資源群組名稱，然後按一下 [刪除]。
+1. 按一下 [刪除資源群組]  來刪除群組及其包含的所有資源。
+1. 在確認窗格中，輸入資源群組名稱，然後按一下 [刪除]  。
 
 ## <a name="next-steps"></a>後續步驟
 

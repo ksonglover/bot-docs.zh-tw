@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 03/13/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0858cf73c1a744100c2f7106013fd963cff84454
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: f7709d6273739be6d2b3e9e3174f24ea2734f22d
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032539"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215314"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
@@ -37,7 +37,7 @@ Bot 會遇到的兩個主要事件為
 
 ![歡迎使用者邏輯流程](media/welcome-user-flow.png)
 
-每當有新的使用者連線時，Bot 便會向其提供 `WelcomeMessage`、`InfoMessage` 和 `PatternMessage`。 收到新的使用者輸入時，便會檢查 WelcomeUserState 以查看 `DidBotWelcomeUser` 是否設定為 true。 如果沒有，便會對使用者傳回初始的歡迎使用者訊息。
+每當有新的使用者連線時，Bot 便會向其提供 `WelcomeMessage`、`InfoMessage` 和 `PatternMessage`。 收到新的使用者輸入時，便會檢查 WelcomeUserState 以查看 `DidBotWelcomeUser` 是否設定為 true  。 如果沒有，便會對使用者傳回初始的歡迎使用者訊息。
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 Bot 會遇到的兩個主要事件為
@@ -46,7 +46,7 @@ Bot 會遇到的兩個主要事件為
 
 ![歡迎使用者邏輯流程](media/welcome-user-flow-js.png)
 
-每當有新的使用者連線時，Bot 便會向其提供 `welcomeMessage`、`infoMessage` 和 `patternMessage`。 收到新的使用者輸入時，便會檢查 `welcomedUserProperty` 以查看 `didBotWelcomeUser` 是否設定為 true。 如果沒有，便會對使用者傳回初始的歡迎使用者訊息。
+每當有新的使用者連線時，Bot 便會向其提供 `welcomeMessage`、`infoMessage` 和 `patternMessage`。 收到新的使用者輸入時，便會檢查 `welcomedUserProperty` 以查看 `didBotWelcomeUser` 是否設定為 true  。 如果沒有，便會對使用者傳回初始的歡迎使用者訊息。
 
 ---
 
@@ -130,7 +130,7 @@ Bot 會遇到的兩個主要事件為
 
 ## <a name="using-hero-card-greeting"></a>使用主圖卡片問候語
 
-如先前所述，某些使用者輸入會產生「主圖卡片」以回應其要求。 您可以在[傳送簡介卡片](./bot-builder-howto-add-media-attachments.md)中深入了解主圖卡片問候語。 必須有下列程式碼才能建立此 Bot 的主圖卡片回應。
+如先前所述，某些使用者輸入會產生「主圖卡片」  以回應其要求。 您可以在[傳送簡介卡片](./bot-builder-howto-add-media-attachments.md)中深入了解主圖卡片問候語。 必須有下列程式碼才能建立此 Bot 的主圖卡片回應。
 
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 

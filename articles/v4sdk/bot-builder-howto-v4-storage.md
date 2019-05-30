@@ -8,20 +8,20 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 4/13/19
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 417833b380e80788e26682ce3abd9cc98199eee5
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 07a66eb468bc456fb463c9c215a2c941e4fafe0a
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032783"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215337"
 ---
 # <a name="write-directly-to-storage"></a>直接寫入儲存體
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-您可以將資料直接讀取及寫入至儲存體物件，無需使用中介軟體或內容物件。 這種方式適用於 Bot 使用者用來保留交談的資料，或來自 Bot 交談流程以外來源的資料。 在此資料儲存體模型中，資料會直接從儲存體讀取，而非使用狀態管理員。 本文中的程式碼範例示範如何使用 [記憶體儲存體]、[Cosmos DB]、[Blob 儲存體] 和 [Azure Blob文字記錄儲存區]，將資料讀取和寫入至儲存體。 
+您可以將資料直接讀取及寫入至儲存體物件，無需使用中介軟體或內容物件。 這種方式適用於 Bot 使用者用來保留交談的資料，或來自 Bot 交談流程以外來源的資料。 在此資料儲存體模型中，資料會直接從儲存體讀取，而非使用狀態管理員。 本文中的程式碼範例示範如何使用 [記憶體儲存體]  、[Cosmos DB]  、[Blob 儲存體]  和 [Azure Blob文字記錄儲存區]  ，將資料讀取和寫入至儲存體。 
 
 ## <a name="prerequisites"></a>必要條件
 - 如果您沒有 Azure 訂用帳戶，請在開始前建立[免費帳戶](https://azure.microsoft.com/free/)。
@@ -242,7 +242,7 @@ module.exports.MyBot = MyBot;
 ### <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並且連線至您的 Bot
 - 安裝 Bot Framework [Emulator](https://aka.ms/bot-framework-emulator-readme) 接下來，啟動模擬器，然後在模擬器中連線至您的 Bot：
 
-1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定] 連結。 
+1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定]  連結。 
 2. 以您啟動 Bot 時顯示在網頁上的資訊，填妥欄位以連線到 Bot。
 
 ### <a name="interact-with-your-bot"></a>與您的 Bot 互動
@@ -262,13 +262,13 @@ module.exports.MyBot = MyBot;
 
 ![建立 Cosmos DB 資料庫](./media/create-cosmosdb-database.png)
 
-2. 按一下 [建立資源] > [資料庫] > [Azure Cosmos DB]。
+2. 按一下 [建立資源] > [資料庫] > [Azure Cosmos DB]  。
 
 ![Cosmos DB 新增帳戶頁面](./media/cosmosdb-new-account-page.png)
 
-3. 在 [新增帳戶] 頁面上，提供 [訂用帳戶]、[資源群組] 資訊。 為您的 [帳戶名稱] 欄位建立唯一的名稱 - 這最終會成為您的資料存取 URL 名稱的一部分。 針對 [API]，選取 [Core(SQL)]，並提供附近的 [位置] 來改善資料存取時間。
-4. 然後按一下 [檢閱 + 建立]。
-5. 驗證成功後，按一下 [建立]。
+3. 在 [新增帳戶]  頁面上，提供 [訂用帳戶]  、[資源群組]  資訊。 為您的 [帳戶名稱]  欄位建立唯一的名稱 - 這最終會成為您的資料存取 URL 名稱的一部分。 針對 [API]  ，選取 [Core(SQL)]  ，並提供附近的 [位置]  來改善資料存取時間。
+4. 然後按一下 [檢閱 + 建立]  。
+5. 驗證成功後，按一下 [建立]  。
 
 建立帳戶需要幾分鐘的時間。 等候入口網站顯示 恭喜! 已建立您的 Azure Cosmos DB 帳戶 頁面。
 
@@ -276,7 +276,7 @@ module.exports.MyBot = MyBot;
 
 ![新增 Cosmos DB 集合](./media/add_database_collection.png)
 
-1. 按一下 [設定] > [新增集合]。 [新增集合] 區域會顯示在最右邊，您可能需要向右捲動才能看到它。 由於 Cosmos DB 的近期更新，請務必新增單一分割區索引鍵：_/id_。此索引鍵可避免跨分割區查詢錯誤。
+1. 按一下 [設定] > [新增集合]  。 [新增集合]  區域會顯示在最右邊，您可能需要向右捲動才能看到它。 由於 Cosmos DB 的近期更新，請務必新增單一分割區索引鍵： _/id_。此索引鍵可避免跨分割區查詢錯誤。
 
 ![Cosmos DB](./media/cosmos-db-sql-database.png)
 
@@ -284,7 +284,7 @@ module.exports.MyBot = MyBot;
 
 ![Cosmos DB 金鑰](./media/comos-db-keys.png)
 
-3. 您資料庫設定的 [金鑰] 索引標籤中會提供端點 URI 和金鑰。 本文稍後設定您的程式碼時，需要使用這些值。 
+3. 您資料庫設定的 [金鑰]  索引標籤中會提供端點 URI 和金鑰。 本文稍後設定您的程式碼時，需要使用這些值。 
 
 ### <a name="add-configuration-information"></a>新增組態資訊
 我們要新增 Cosmos DB 儲存體的組態資料簡短又簡單，當您的 Bot 變得複雜時，您可以使用相同方法新增其他組態設定。 此範例使用上述範例中的 Cosmos DB 資料庫和集合名稱。
@@ -329,7 +329,7 @@ Install-Package Microsoft.Bot.Builder.Azure
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 您可以透過 npm，在專案中新增對 botbuilder-azure 的參考。
->**注意** - 這個 npm 套件依賴您開發電腦上現有的 Python 安裝。 如果先前尚未安裝 Python，您可以在此為您的電腦尋找安裝資源：[Python.org](https://www.python.org/downloads/)
+>**注意** - 這個 npm 套件依賴您開發電腦上現有的 Python 安裝。 如果先前尚未安裝 Python，您可以在此為電腦尋找安裝資源：[Python.org](https://www.python.org/downloads/)
 
 ```powershell
 npm install --save botbuilder-azure 
@@ -414,7 +414,7 @@ var storage = new CosmosDbStorage({
 ## <a name="test-your-bot-with-bot-framework-emulator"></a>使用 Bot Framework Emulator 測試您的 Bot
 現在啟動 Bot Framework Emulator 並連線到 Bot：
 
-1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定] 連結。 
+1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定]  連結。 
 2. 以您啟動 Bot 時顯示在網頁上的資訊，填妥欄位以連線到 Bot。
 
 ## <a name="interact-with-your-bot"></a>與您的 Bot 互動
@@ -423,7 +423,7 @@ var storage = new CosmosDbStorage({
 
 
 ### <a name="view-your-data"></a>檢視資料
-在您執行 Bot 並儲存資訊之後，我們可以在 Azure 入口網站的 [資料總管] 索引標籤下檢視所儲存的資料。 
+在您執行 Bot 並儲存資訊之後，我們可以在 Azure 入口網站的 [資料總管]  索引標籤下檢視所儲存的資料。 
 
 ![資料總管範例](./media/data_explorer.PNG)
 
@@ -437,13 +437,13 @@ Azure Blob 儲存體是 Microsoft 針對雲端推出的物件儲存體解決方�
 
 ![建立 Blob 儲存體](./media/create-blob-storage.png)
 
-2. 按一下 [建立資源] > [儲存體] > [儲存體帳戶 - Blob、檔案、資料表、佇列]。
+2. 按一下 [建立資源] > [儲存體] > [儲存體帳戶 - Blob、檔案、資料表、佇列]  。
 
 ![Blob 儲存體新增帳戶頁面](./media/blob-storage-new-account.png)
 
-3. 在 [新增帳戶] 頁面中，輸入儲存體帳戶的 [名稱]，針對 [帳戶種類] 選取 [Blob 儲存體]，提供 [位置]、[資源群組] 和 [訂用帳戶] 資訊。  
-4. 然後按一下 [檢閱 + 建立]。
-5. 驗證成功後，按一下 [建立]。
+3. 在 [新增帳戶]  頁面中，輸入儲存體帳戶的 [名稱]  ，針對 [帳戶種類]  選取 [Blob 儲存體]  ，提供 [位置]  、[資源群組]  和 [訂用帳戶]  資訊。  
+4. 然後按一下 [檢閱 + 建立]  。
+5. 驗證成功後，按一下 [建立]  。
 
 ### <a name="create-blob-storage-container"></a>建立 Blob 儲存體容器
 建立 Blob 儲存體帳戶之後，開啟此帳戶，做法如下： 
@@ -452,12 +452,12 @@ Azure Blob 儲存體是 Microsoft 針對雲端推出的物件儲存體解決方�
 
 ![建立 Blob 儲存體容器](./media/create-blob-container.png)
 
-3. 以滑鼠右鍵按一下 [Blob 容器]，選取 [建立 Blob 容器]。
+3. 以滑鼠右鍵按一下 [Blob 容器]，選取 [建立 Blob 容器]  。
 4. 新增名稱。 您將使用此名稱作為 "your-blob-storage-container-name" 的值，以供存取您的 Blob 儲存體帳戶。
 
 #### <a name="add-configuration-information"></a>新增組態資訊
 尋找您為 Bot 設定 Blob 儲存體所需的 Blob 儲存體金鑰，如上所示：
-1. 在 Azure 入口網站中，開啟 Blob 儲存體帳戶，然後選取 [設定] > [存取金鑰]。
+1. 在 Azure 入口網站中，開啟 Blob 儲存體帳戶，然後選取 [設定] > [存取金鑰]  。
 
 ![尋找 Blob 儲存體金鑰](./media/find-blob-storage-keys.png)
 
@@ -496,7 +496,7 @@ npm install --save dotenv
 ```csharp
 using Microsoft.Bot.Builder.Azure;
 ```
-更新可將 "myStorage" 指向現有 Blob 儲存體帳戶的程式碼行。
+更新可將 "myStorage"  指向現有 Blob 儲存體帳戶的程式碼行。
 
 **EchoBot.cs**
 ```csharp
@@ -546,7 +546,7 @@ var storage = new BlobStorage({
 ## <a name="start-the-emulator-and-connect-your-bot"></a>啟動模擬器並且連線至您的 Bot
 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 
-1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定] 連結。 
+1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定]  連結。 
 2. 以您啟動 Bot 時顯示在網頁上的資訊，填妥欄位以連線到 Bot。
 
 ## <a name="interact-with-your-bot"></a>與您的 Bot 互動
@@ -555,20 +555,20 @@ var storage = new BlobStorage({
 ![模擬器測試儲存體 Bot](./media/emulator-direct-storage-test.png)
 
 ### <a name="view-your-data"></a>檢視資料
-在您執行 Bot 並儲存您的資訊之後，我們可以在 Azure 入口網站的 [儲存體總管] 索引標籤下檢視。
+在您執行 Bot 並儲存您的資訊之後，我們可以在 Azure 入口網站的 [儲存體總管]  索引標籤下檢視。
 
 ## <a name="blob-transcript-storage"></a>Blob 文字記錄儲存體
 Azure Blob 文字記錄儲存體會提供一個特製化儲存體選項，讓您輕鬆地以記錄的文字記錄形式儲存和擷取使用者對話。 Azure Blob 文字記錄儲存體特別適合用於自動擷取使用者輸入，以便在對 Bot 效能進行偵錯時檢查。
 
 ### <a name="set-up"></a>設定
-Azure Blob 文字記錄儲存體可以使用遵循上面「建立 Blob 儲存體帳戶」和「新增組態資訊」小節中詳述的步驟所建立的相同 Blob 儲存體帳戶。 我們現在會新增容器來保留我們的文字記錄
+Azure Blob 文字記錄儲存體可以使用遵循上面「建立 Blob 儲存體帳戶」  和「新增組態資訊」  小節中詳述的步驟所建立的相同 Blob 儲存體帳戶。 我們現在會新增容器來保留我們的文字記錄
 
 ![建立文字記錄容器](./media/create-blob-transcript-container.png)
 
 1. 開啟 Azure Blob 儲存體帳戶。
-1. 按一下 [儲存體總管]。
-1. 以滑鼠右鍵按一下 [Blob 容器]，然後選取 [建立 Blob 容器]。
-1. 輸入文字記錄容器的名稱，然後選取 [確定]。 (我們輸入了 mybottranscripts)
+1. 按一下 [儲存體總管]  。
+1. 以滑鼠右鍵按一下 [Blob 容器]  ，然後選取 [建立 Blob 容器]  。
+1. 輸入文字記錄容器的名稱，然後選取 [確定]  。 (我們輸入了 mybottranscripts)
 
 ### <a name="implementation"></a>實作 
 下列程式碼會將文字記錄儲存體指標 `_myTranscripts` 連到新的 Azure Blob 文字記錄儲存體帳戶。 若要使用新的容器名稱 <your-blob-transcript-container-name> 建立此連結，請在 Blob 儲存體內建立新容器來保存文字記錄檔。
@@ -589,7 +589,7 @@ public class EchoBot : ActivityHandler
 ```
 
 ### <a name="store-user-conversations-in-azure-blob-transcripts"></a>在 Azure blob 文字記錄中儲存使用者對話
-在 Blob 容器可用於儲存文字記錄之後，您可以開始保留使用者與 Bot 的對話。 這些交談稍後可當作偵錯工具，查看使用者與 Bot 的互動方式。 每個模擬器 [重新開始交談] 會啟始建立新的文字記錄交談清單。 下列程式碼會在預存文字記錄檔內保留使用者交談輸入。
+在 Blob 容器可用於儲存文字記錄之後，您可以開始保留使用者與 Bot 的對話。 這些交談稍後可當作偵錯工具，查看使用者與 Bot 的互動方式。 每個模擬器 [重新開始交談]  會啟始建立新的文字記錄交談清單。 下列程式碼會在預存文字記錄檔內保留使用者交談輸入。
 - 使用 `LogActivityAsync` 可儲存目前的文字記錄。
 - 使用 `ListTranscriptsAsync` 可擷取已儲存的文字記錄。
 在此範例程式碼中，每個預存文字記錄的識別碼會儲存到名為 "storedTranscripts" 的清單中。 這份清單稍後用來管理我們保留的預存 Blob 文字記錄數目。
@@ -758,7 +758,7 @@ async function createSampleNote(storage, context) {
 }
 ```
 
-在 `createSampleNote` 協助程式函式內初始化 `changes` 物件，並在其中新增「附註」，然後將其寫入儲存體。
+在 `createSampleNote` 協助程式函式內初始化 `changes` 物件，並在其中新增「附註」  ，然後將其寫入儲存體。
 
 **bot.js**
 ```javascript

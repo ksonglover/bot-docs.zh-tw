@@ -6,14 +6,14 @@ ms.author: darrenj
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 13/12/2018
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dcef01d8ba07d44aebaeeeecb5637af691caccb9
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f4b8243580ee678390177881b136a9016be4a786
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997075"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215459"
 ---
 ## <a name="custom-assistant-overview"></a>自訂小幫手概觀
 

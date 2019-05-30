@@ -7,14 +7,14 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 2/26/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 618d438a384fa6a91ba919265519397cac555fda
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 3e1ebc07c73dcd7033a6b9a22c94379593c5890e
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904851"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215267"
 ---
 # <a name="testing-and-debugging-guidelines"></a>測試和偵錯指導方針
 
@@ -81,11 +81,11 @@ Bot 遵循事件驅動程式設計架構，如果您還不熟悉，就很難進�
 
 Azure Blob 文字記錄儲存體提供特製化資源，您可以在其中[儲存及擷取文字記錄](bot-builder-howto-v4-storage.md)，內含使用者與您的 bot 之間的互動。  
 
-此外，一旦儲存使用者輸入互動，您即可使用 Azure 的「儲存體總管」，手動檢視 Blob 文字記錄存放區內所儲存的文字記錄中包含的資料。 下列範例會從 "_mynewtestblobstorage_" 的設定開啟「儲存體總管」。 若要開啟儲存的使用者輸入選取：  Blob 容器 > ChannelId > TranscriptId > ConversationId
+此外，一旦儲存使用者輸入互動，您即可使用 Azure 的「儲存體總管」  ，手動檢視 Blob 文字記錄存放區內所儲存的文字記錄中包含的資料。 下列範例會從 "_mynewtestblobstorage_" 的設定開啟「儲存體總管」  。 若要開啟儲存的使用者輸入選取：  Blob 容器 > ChannelId > TranscriptId > ConversationId
 
 ![Examine_stored_transcript_text](./media/examine_transcript_text_in_azure.png)
 
-這會開啟以 JSON 格式儲存的使用者對話輸入。 使用者輸入會與索引鍵 "_text:_" 一起保存。
+這會開啟以 JSON 格式儲存的使用者對話輸入。 使用者輸入會與索引鍵 "_text:_ " 一起保存。
 
 ### <a name="how-middleware-works"></a>中介軟體的運作方式
 

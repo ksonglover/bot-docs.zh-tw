@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 4/18/19
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 58d1e83b67d0601a9783e175318a50f8c0646bb2
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 7b06d99ae1265d2519b5c1aa8fe838a4e3e4d43a
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033551"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215354"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>將自然語言理解新增至您的 Bot
 
@@ -65,13 +65,13 @@ ms.locfileid: "65033551"
 如需範例的其他層面 (例如對話或狀態) 詳細資訊，請參閱[使用對話提示蒐集使用者輸入](bot-builder-prompts.md)或[儲存使用者和交談資料](bot-builder-howto-v4-state.md)。 
 
 ## <a name="create-a-luis-app-in-the-luis-portal"></a>在 LUIS 入口網站中建立 LUIS 應用程式
-登入 LUIS 入口網站以建立自己的範例 LUIS 應用程式版本。 您可以在 [我的應用程式] 上建立和管理應用程式。 
+登入 LUIS 入口網站以建立自己的範例 LUIS 應用程式版本。 您可以在 [我的應用程式]  上建立和管理應用程式。 
 
-1. 選取 [匯入新的應用程式]。 
-1. 按一下 [選擇應用程式檔案 (JSON 格式)...] 
-1. 選取 `FlightBooking.json` 檔案，該檔案位於範例的 `CognitiveModels` 資料夾中。 在 [選擇性名稱] 中，輸入 **FlightBooking**。 此檔案包含三個意圖：[預訂航班]、[取消] 和 [無]。 我們將使用這些意圖，了解使用者將訊息傳送給 Bot 時的用意。
+1. 選取 [匯入新的應用程式]  。 
+1. 按一下 [選擇應用程式檔案 (JSON 格式)...]  
+1. 選取 `FlightBooking.json` 檔案，該檔案位於範例的 `CognitiveModels` 資料夾中。 在 [選擇性名稱]  中，輸入 **FlightBooking**。 此檔案包含三個意圖：[預訂航班]、[取消] 和 [無]。 我們將使用這些意圖，了解使用者將訊息傳送給 Bot 時的用意。
 1. [訓練](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-how-to-train)應用程式。
-1. 將應用程式[發佈](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)到「生產」環境。
+1. 將應用程式[發佈](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)到「生產」  環境。
 
 ### <a name="why-use-entities"></a>為何使用實體
 LUIS 實體可讓 Bot 以智慧方式了解與標準意圖不同的特定事項或事件。 這可讓您向使用者收集額外資訊，進而讓 Bot 更聰明地回應，或可能略過要求使用者提供該資訊的某些問題。 除了三個 LUIS 意圖 [預訂航班]、[取消] 和 [無] 的定義，FlightBooking.json 檔案還包含一組實體，例如 'From.Airport' 和 'To.Airport'。 這些實體可讓 LUIS 偵測使用者原始輸入內含的其他資訊，並且在使用者要求新的旅行預約時傳回這些資訊。
@@ -82,10 +82,10 @@ LUIS 實體可讓 Bot 以智慧方式了解與標準意圖不同的特定事項�
 ### <a name="retrieve-application-information-from-the-luisai-portal"></a>從 LUIS.ai 入口網站擷取應用程式資訊
 settings 檔案 (`appsettings.json` 或 `.env`) 檔案可作為將所有服務參考匯合在一起的位置。 您所擷取的資訊會新增至下一節中的這個檔案。 
 1. 從 [luis.ai](https://www.luis.ai) 中選取已發佈的 LUIS 應用程式。
-1. 開啟已發佈的 LUIS 應用程式後，選取 [管理] 索引標籤。![管理 LUIS 應用程式](./media/how-to-luis/manage-luis-app.png)
-1. 選取左側的 [應用程式資訊] 索引標籤，將針對 [應用程式識別碼] 顯示的值記錄為 <YOUR_APP_ID>。
-1. 選取左側 [金鑰和端點] 索引標籤，將針對 [撰寫金鑰] 所顯示的值記錄為 <YOUR_AUTHORING_KEY>。
-1. 向下捲動到頁面結尾，將針對 [地區] 顯示的值記錄為 <YOUR_REGION>。
+1. 開啟已發佈的 LUIS 應用程式後，選取 [管理]  索引標籤。![管理 LUIS 應用程式](./media/how-to-luis/manage-luis-app.png)
+1. 選取左側的 [應用程式資訊]  索引標籤，將針對 [應用程式識別碼]  顯示的值記錄為 <YOUR_APP_ID>。
+1. 選取左側 [金鑰和端點]  索引標籤，將針對 [撰寫金鑰]  所顯示的值記錄為 <YOUR_AUTHORING_KEY>。
+1. 向下捲動到頁面結尾，將針對 [地區]  顯示的值記錄為 <YOUR_REGION>。
 
 ### <a name="update-the-settings-file"></a>更新 settings 檔案
 

@@ -8,27 +8,27 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/08/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3470b1c8f3fbcfb7fecbb060a54b1a356ad41b61
-ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
+ms.openlocfilehash: bfd37b703a43e056142ad161eb3308fd2b754e25
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/16/2019
-ms.locfileid: "65733325"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215319"
 ---
 # <a name="create-your-own-prompts-to-gather-user-input"></a>建立您自己的提示，以收集使用者輸入
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-Bot 和使用者之間的對話，通常牽涉到要求 (提示) 使用者輸入資訊、剖析使用者的回應，然後根據該資訊行動。 Bot 應該追蹤交談的內容，以便管理其行為，以及記住先前問題的答案。 Bot 的「狀態」是其所追蹤的資訊，以便適當地回應內送訊息。 
+Bot 和使用者之間的對話，通常牽涉到要求 (提示) 使用者輸入資訊、剖析使用者的回應，然後根據該資訊行動。 Bot 應該追蹤交談的內容，以便管理其行為，以及記住先前問題的答案。 Bot 的「狀態」  是其所追蹤的資訊，以便適當地回應內送訊息。 
 
 > [!TIP]
 > 對話方塊程式庫會提供內建提示，讓使用者可使用更多的功能。 您可以在[實作循序對話流程](bot-builder-dialog-manage-conversation-flow.md)文章中找到這些提示的範例。
 
 ## <a name="prerequisites"></a>必要條件
 
-- 本文中的程式碼是以「提示使用者輸入」範例為基礎。 您需要一份 **[C# 範例](https://aka.ms/cs-primitive-prompt-sample)或 [JavaScript 範例](https://aka.ms/js-primitive-prompt-sample)**。
+- 本文中的程式碼是以「提示使用者輸入」範例為基礎。 您需要一份 **[C# 範例](https://aka.ms/cs-primitive-prompt-sample)或 [JavaScript 範例](https://aka.ms/js-primitive-prompt-sample)** 。
 - [管理狀態](bot-builder-concept-state.md)以及如何[儲存使用者和交談資料](bot-builder-howto-v4-state.md)的知識。
 
 ## <a name="about-the-sample-code"></a>關於範例程式碼
@@ -52,7 +52,7 @@ Bot 和使用者之間的對話，通常牽涉到要求 (提示) 使用者輸入
 ---
 
 使用者狀態會追蹤使用者的名稱、年齡與所選日期，而對話狀態會追蹤我們剛才詢問使用者的內容。
-因為我們不打算部署此 Bot，所以我們會將使用者和交談狀態設定為使用「記憶體儲存體」。 
+因為我們不打算部署此 Bot，所以我們會將使用者和交談狀態設定為使用「記憶體儲存體」  。 
 
 我們會使用 Bot 的訊息回合處理常式加上使用者和對話狀態屬性，來管理對話流程和輸入集合。 在 Bot 中，我們會記錄每個訊息回合處理常式循環期間收到的狀態屬性資訊。
 
@@ -104,7 +104,7 @@ Bot 和使用者之間的對話，通常牽涉到要求 (提示) 使用者輸入
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-若要處理訊息活動，我們會先使用協助程式方法 FillOutUserProfileAsync()，然後再使用 SaveChangesAsync() 儲存狀態。 以下是完整程式碼。
+若要處理訊息活動，我們會先使用協助程式方法 FillOutUserProfileAsync()  ，然後再使用 SaveChangesAsync()  儲存狀態。 以下是完整程式碼。
 
 **Bots/CustomPromptBot.cs** [!code-csharp[custom prompt bot](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Bots/CustomPromptBot.cs?range=30-44)]
 

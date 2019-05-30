@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/16/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6840305684eff7dc325a541a0b545396e6c30fa8
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 1f9070b0fd3b4e88eb7d752f5a73c4374bfe8415
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033475"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215527"
 ---
 # <a name="reuse-dialogs"></a>重複使用對話方塊
 
@@ -58,7 +58,7 @@ ms.locfileid: "65033475"
 
 [!code-csharp[Class](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=13)]
 
-在建構函式中，`AddDialog` 方法會將對話和提示新增至元件對話。 您使用此方法新增的第一個項目會設定為初始對話，但您可以藉由明確地設定 `InitialDialogId` 屬性，來加以變更。 當您啟動元件對話時，就會啟動其「初始對話」。
+在建構函式中，`AddDialog` 方法會將對話和提示新增至元件對話。 您使用此方法新增的第一個項目會設定為初始對話，但您可以藉由明確地設定 `InitialDialogId` 屬性，來加以變更。 當您啟動元件對話時，就會啟動其「初始對話」  。
 
 [!code-csharp[Constructor](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=17-42)]
 
@@ -78,7 +78,7 @@ ms.locfileid: "65033475"
 
 [!code-javascript[Class](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=24)]
 
-在建構函式中，`AddDialog` 方法會將對話和提示新增至元件對話。 您使用此方法新增的第一個項目會設定為初始對話，但您可以藉由明確地設定 `InitialDialogId` 屬性，來加以變更。 當您啟動元件對話時，就會啟動其「初始對話」。
+在建構函式中，`AddDialog` 方法會將對話和提示新增至元件對話。 您使用此方法新增的第一個項目會設定為初始對話，但您可以藉由明確地設定 `InitialDialogId` 屬性，來加以變更。 當您啟動元件對話時，就會啟動其「初始對話」  。
 
 [!code-javascript[Constructor](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=25-47)]
 

@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/20/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c81e463c221c64250684827a4e0ed059e7f98a02
-ms.sourcegitcommit: 72cc9134bf50f335cbb33265b048bf6b76252ce4
+ms.openlocfilehash: 942ab2d5b3a43ca071c877b5cc18e8141838d604
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/21/2019
-ms.locfileid: "65973885"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66214261"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多個 LUIS 和 QnA 模型
 
@@ -59,7 +59,7 @@ ms.locfileid: "65973885"
 處理常式會呼叫 LUIS 或 QnA Maker 服務，並將產生的結果傳回給使用者。
 
 ## <a name="create-luis-apps-and-qna-kb"></a>建立 LUIS 應用程式和 QnA KB
-建立分派模型之前，您必須先建立並發佈 LUIS 應用程式和 QnA KB。 在本文中，我們將發佈下列模型，這些模型包含在「採用分派的 NLP」範例的 `\CognitiveModels` 資料夾中： 
+建立分派模型之前，您必須先建立並發佈 LUIS 應用程式和 QnA KB。 在本文中，我們將發佈下列模型，這些模型包含在「採用分派的 NLP」  範例的 `\CognitiveModels` 資料夾中： 
 
 | Name | 說明 |
 |------|------|
@@ -68,23 +68,23 @@ ms.locfileid: "65973885"
 | QnAMaker  | 提供 Bot 相關簡單問題解答的 QnA Maker 知識庫。 |
 
 ### <a name="create-luis-apps"></a>建立 LUIS 應用程式
-1. 登入 [LUIS Web 入口網站](https://www.luis.ai/)。 在 [我的應用程式] 區段之下，選取 [匯入新的應用程式] 索引標籤。 下列對話方塊隨即顯示：
+1. 登入 [LUIS Web 入口網站](https://www.luis.ai/)。 在 [我的應用程式]  區段之下，選取 [匯入新的應用程式]  索引標籤。 下列對話方塊隨即顯示：
 
 ![匯入 LUIS json 檔案](./media/tutorial-dispatch/import-new-luis-app.png)
 
-2. 選取 [選擇應用程式檔案] 按鈕，瀏覽至您範例程式碼的 CognitiveModel 資料夾，然後選取 'HomeAutomation.json' 檔案。 將選用名稱欄位保留空白。 
+2. 選取 [選擇應用程式檔案]  按鈕，瀏覽至您範例程式碼的 CognitiveModel 資料夾，然後選取 'HomeAutomation.json' 檔案。 將選用名稱欄位保留空白。 
 
-3. 選取 [完成] 。
+3. 選取 [完成]  。
 
-4. 在 LUIS 開啟您的住家自動化應用程式後，請選取 [訓練] 按鈕。 這會使用您剛使用 'home-automation.json' 檔案匯入的語句集合，訓練應用程式。
+4. 在 LUIS 開啟您的住家自動化應用程式後，請選取 [訓練]  按鈕。 這會使用您剛使用 'home-automation.json' 檔案匯入的語句集合，訓練應用程式。
 
-5. 訓練完成時，請選取 [發佈] 按鈕。 下列對話方塊隨即顯示：
+5. 訓練完成時，請選取 [發佈]  按鈕。 下列對話方塊隨即顯示：
 
 ![發佈 LUIS 應用程式](./media/tutorial-dispatch/publish-luis-app.png)
 
-6. 選擇 [生產] 環境，然後選取 [發佈] 按鈕。
+6. 選擇 [生產] 環境，然後選取 [發佈]  按鈕。
 
-7. 開啟已發佈的新 LUIS 應用程式後，選取 [管理] 索引標籤。在 [應用程式資訊] 頁面中，將 `Application ID` 的值記錄為 "_app-id-for-app_"，並將 `Display name` 的值記錄為 "_name-of-app_"。 在 [金鑰和端點] 頁面中，將 `Authoring Key` 的值記錄為 "_your-luis-authoring-key_"，並將 `Region` 記錄為 "_your-region_"。 稍後在您的 'appsetting.json' 檔案中會用到這些值。
+7. 開啟已發佈的新 LUIS 應用程式後，選取 [管理]  索引標籤。在 [應用程式資訊] 頁面中，將 `Application ID` 的值記錄為 "_app-id-for-app_"，並將 `Display name` 的值記錄為 "_name-of-app_"。 在 [金鑰和端點] 頁面中，將 `Authoring Key` 的值記錄為 "_your-luis-authoring-key_"，並將 `Region` 記錄為 "_your-region_"。 稍後在您的 'appsetting.json' 檔案中會用到這些值。
 
 8. 完成後，針對 'Weather.json' 檔案重複上述步驟，以_訓練_和_發佈_您的 LUIS 氣象應用程式和 LUIS 分派應用程式。
 
@@ -92,7 +92,7 @@ ms.locfileid: "65973885"
 
 設定 QnA Maker KB 的第一個步驟是在 Azure 中設定 QnA Maker 服務。 若要這麼做，請遵循[這裡](https://aka.ms/create-qna-maker)的逐步指示。
 
-在 Azure 中建立 QnA Maker 服務之後，您需要記錄針對 QnA Maker 服務提供的認知服務「金鑰 1」。 將 qna 新增至分派應用程式時，此金鑰會當作 \<azure-qna-service-key1> 使用。 下列步驟為您提供此金鑰：
+在 Azure 中建立 QnA Maker 服務之後，您需要記錄針對 QnA Maker 服務提供的認知服務「金鑰 1」  。 將 qna 新增至分派應用程式時，此金鑰會當作 \<azure-qna-service-key1> 使用。 下列步驟為您提供此金鑰：
     
 ![選取認知服務](./media/tutorial-dispatch/select-qna-cognitive-service.png)
 
@@ -100,11 +100,11 @@ ms.locfileid: "65973885"
 
 ![選取認知服務金鑰](./media/tutorial-dispatch/select-cognitive-service-keys.png)
 
-2. 選取左側功能表上 [資源管理] 區段之下的 [金鑰] 圖示。
+2. 選取左側功能表上 [資源管理]  區段之下的 [金鑰] 圖示。
 
 ![選取認知服務金鑰 1](./media/tutorial-dispatch/select-cognitive-service-key1.png)
 
-3. 將「金鑰 1」的值複製到剪貼簿並儲存在本機。 稍後將 qna 新增至分派應用程式時，此金鑰會用於 (-k) 金鑰值\<azure-qna-service-key1>。
+3. 將「金鑰 1」  的值複製到剪貼簿並儲存在本機。 稍後將 qna 新增至分派應用程式時，此金鑰會用於 (-k) 金鑰值\<azure-qna-service-key1>。
 
 現在登入 [LUIS Web 入口網站](https://qnamaker.ai)。 向下移至步驟 2
 
@@ -125,17 +125,17 @@ ms.locfileid: "65973885"
 
 ![建立 QnA 步驟 4](./media/tutorial-dispatch/create-qna-step-4.png)
 
-選取 [+ 新增檔案] 選項，瀏覽至您範例程式碼的 CognitiveModel 資料夾，然後選取 'QnAMaker.tsv' 檔案
+選取 [+ 新增檔案]  選項，瀏覽至您範例程式碼的 CognitiveModel 資料夾，然後選取 'QnAMaker.tsv' 檔案
 
-有其他選取項目可將「閒聊」個性新增至您的知識庫，但我們的範例不包含此選項。
+有其他選取項目可將「閒聊」  個性新增至您的知識庫，但我們的範例不包含此選項。
 
 移至步驟 5
 
-選取 [建立您的 KB]。
+選取 [建立您的 KB]  。
 
-從您上傳的檔案中建立知識庫後，選取 [儲存並訓練]，然後在完成時選取 [發佈] 索引標籤，並發佈您的應用程式。
+從您上傳的檔案中建立知識庫後，選取 [儲存並訓練]  ，然後在完成時選取 [發佈]  索引標籤，並發佈您的應用程式。
 
-發佈 QnA Maker 應用程式後，選取 [設定] 索引標籤，然後捲動至 [部署詳細資料]。 記錄以下來自 _Postman_ 範例 HTTP 要求的值。
+發佈 QnA Maker 應用程式後，選取 [設定]  索引標籤，然後捲動至 [部署詳細資料]。 記錄以下來自 _Postman_ 範例 HTTP 要求的值。
 
 ```text
 POST /knowledgebases/<knowledge-base-id>/generateAnswer
@@ -285,7 +285,7 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-在 **dispatchBot.js** 中，_.env_ 組態檔中包含的資訊會用來將分派 Bot 連線至 _LuisRecognizer(dispatch)_ 和 _QnAMaker_ 服務。 建構函式會使用您提供的值來連線到這些服務。
+在 **dispatchBot.js** 中， _.env_ 組態檔中包含的資訊會用來將分派 Bot 連線至 _LuisRecognizer(dispatch)_ 和 _QnAMaker_ 服務。 建構函式會使用您提供的值來連線到這些服務。
 
 **dispatchBot.js** [!code-javascript[ReadConfigurationInfo](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=18-31)]
 
@@ -377,23 +377,23 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 ### <a name="to-delete-resources"></a>刪除資源
 
-此範例會建立一些應用程式和資源，您可以使用下面所列的步驟將其刪除，但不得刪除「任何其他應用程式或服務」所依賴的資源。
+此範例會建立一些應用程式和資源，您可以使用下面所列的步驟將其刪除，但不得刪除「任何其他應用程式或服務」  所依賴的資源。
 
 刪除 LUIS 資源：
 
 1. 登入 [luis.ai](https://www.luis.ai) 入口網站。
-1. 移至 [我的應用程式] 頁面。
+1. 移至 [我的應用程式]  頁面。
 1. 選取此範例所建立的應用程式。
    - `Home Automation`
    - `Weather`
    - `NLP-With-Dispatch-BotDispatch`
-1. 按一下 [刪除]，然後按一下 [確定] 進行確認。
+1. 按一下 [刪除]  ，然後按一下 [確定]  進行確認。
 
 刪除 QnA Maker 資源：
 
 1. 登入 [qnamaker.ai](https://www.qnamaker.ai/) 入口網站。
-1. 移至 [我的知識庫] 頁面。
-1. 按一下 `Sample QnA` 知識庫的刪除按鈕，然後按一下 [刪除] 進行確認。
+1. 移至 [我的知識庫]  頁面。
+1. 按一下 `Sample QnA` 知識庫的刪除按鈕，然後按一下 [刪除]  進行確認。
 
 ### <a name="best-practice"></a>最佳做法
 

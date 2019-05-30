@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/17/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7093f13d1958c741b497a50535eb70a255dfcbe8
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 844e3d65794e814dc8a1d16e2b7cf0e7a0e75fab
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032584"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215400"
 ---
 # <a name="add-media-to-messages"></a>將媒體新增至訊息
 
@@ -106,7 +106,7 @@ ms.locfileid: "65032584"
 
 ## <a name="process-events-within-rich-cards"></a>處理複合式資訊卡 (Rich Card) 內的事件
 
-若要處理複合式資訊卡 (Rich Card) 內的事件，請使用_卡片動作_物件，指定在使用者按一下按鈕或點選卡片的某區段時，所應發生的情況。 每個卡片動作都有「類型」和「值」。
+若要處理複合式資訊卡 (Rich Card) 內的事件，請使用_卡片動作_物件，指定在使用者按一下按鈕或點選卡片的某區段時，所應發生的情況。 每個卡片動作都有「類型」  和「值」  。
 
 為達到正常運作，請為卡片上每個可點選的項目指派一個動作類型。 下表列出和說明可用的動作類型，以及相關聯的值屬性應有內容。
 

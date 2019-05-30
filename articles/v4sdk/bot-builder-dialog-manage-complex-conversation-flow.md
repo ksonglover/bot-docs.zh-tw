@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/18/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ad374ea8c404693836d7e90bb899669726366fcc
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: f08fa3295ff7fdd08039b2c57f4deec6819324c0
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033500"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215437"
 ---
 # <a name="create-advanced-conversation-flow-using-branches-and-loops"></a>使用分支和迴圈建立進階的交談流程
 
@@ -61,7 +61,7 @@ ms.locfileid: "65033500"
 我們會在 `Startup` 中為 Bot 註冊服務。 這些服務可透過相依性插入來提供給程式碼的其他部分。
 
 - Bot 的基本服務：認證提供者、配接器及 Bot 實作。
-- 用於管理狀態的服務：儲存體、使用者狀態及對話狀態。
+- 用於管理狀態的服務：儲存體、使用者狀態及交談狀態。
 - Bot 會使用的對話方塊。
 
 [!code-csharp[ConfigureServices](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Startup.cs?range=22-39)]

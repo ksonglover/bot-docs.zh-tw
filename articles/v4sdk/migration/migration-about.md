@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 03/28/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 55b5a4073340bb29074af5b2ee74dd952ea40f0c
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 862fbf59cf33406e35e9051c0814489fdfdaa8f3
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032245"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215584"
 ---
 # <a name="differences-between-the-v3-and-v4-net-sdk"></a>v3 和 v4 .NET SDK 之間的差異
 
@@ -43,7 +43,7 @@ Bot Framework SDK 第 4 版支援與第 3 版相同的基礎 Bot Framework 服�
 
 當您為 Bot 建立配接器時，您也會提供訊息處理常式委派，該委派會接收來自通道和使用者的連入活動。 此配接器會針對每項接收的活動建立回合內容物件。 其會將回合內容物件傳遞給 Bot 的回合處理常式，然後在回合完成時處置物件。
 
-回合處理常式可接收許多類型的活動。 一般情況下，您只想將「訊息」活動轉送給 Bot 包含的任何對話。 如果您從 `ActivityHandler` 衍生 Bot，Bot 的回合處理常式會將所有訊息活動轉送至 `OnMessageActivityAsync`。 覆寫此方法來加入訊息處理邏輯。 如需活動類型的詳細資訊，請參閱[活動結構描述][]。
+回合處理常式可接收許多類型的活動。 一般情況下，您只想將「訊息」  活動轉送給 Bot 包含的任何對話。 如果您從 `ActivityHandler` 衍生 Bot，Bot 的回合處理常式會將所有訊息活動轉送至 `OnMessageActivityAsync`。 覆寫此方法來加入訊息處理邏輯。 如需活動類型的詳細資訊，請參閱[活動結構描述][]。
 
 ### <a name="handling-turns"></a>處理回合
 
@@ -106,7 +106,7 @@ v4 會定義`UserState`、`ConversationState` 和 `PrivateConversationState` 類
 - Dialogs 程式庫現在是個別的 NuGet 套件：**Microsoft.Bot.Builder.Dialogs**。
 - 對話類別不再必須是可序列化。 透過 `DialogState` 狀態屬性存取子管理對話狀態。
   - 現在會保存回合之間的對話狀態屬性，而不是對話物件本身。
-- `IDialogContext` 介面會由 `DialogContext` 類別所取代。 在回合內，您會建立「對話集」的對話內容。
+- `IDialogContext` 介面會由 `DialogContext` 類別所取代。 在回合內，您會建立「對話集」  的對話內容。
   - 此對話內容會封裝對話堆疊 (舊的堆疊框架)。 這項資訊會保存在對話狀態屬性內。
 - `IDialog` 介面會由抽象 `Dialog` 類別所取代。
 
@@ -126,7 +126,7 @@ v4 會定義`UserState`、`ConversationState` 和 `PrivateConversationState` 類
 
 您也可以使用多個對話方塊來建立複雜的控制流程；請參閱[進階對話流程][complex-flow]。
 
-若要存取對話，您需要在「對話集」中放入其執行個體，然後為該集合產生「對話內容」。 當您建立對話集時，您需要提供對話狀態屬性存取子。 這可讓架構保存回合之間的對話狀態。 [管理狀態][about-state]說明如何在 v4 中管理狀態。
+若要存取對話，您需要在「對話集」  中放入其執行個體，然後為該集合產生「對話內容」  。 當您建立對話集時，您需要提供對話狀態屬性存取子。 這可讓架構保存回合之間的對話狀態。 [管理狀態][about-state]說明如何在 v4 中管理狀態。
 
 ### <a name="using-dialogs"></a>使用對話
 
