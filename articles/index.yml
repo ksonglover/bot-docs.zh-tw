@@ -11,7 +11,7 @@ metadata:
   ms.tgt_pltfrm: na
   ms.devlang: na
   ms.topic: landing-page
-  ms.date: 05/23/2019
+  ms.date: 05/31/2019
   ms.author: ivorb
 abstract:
   description: 'Azure Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot Framework SDK，並支援 C# 和 JavaScript。 了解如何透過我們的快速入門、教學課程和範例使用 Bot 服務。'
@@ -25,6 +25,22 @@ abstract:
     href: 'https://mybuild.techcommunity.microsoft.com/sessions/77571?source=%7B%7B%20ctrl.source#top-anchor'
     width: 250
 sections:
+  - items:
+      - type: list
+        style: cards
+        className: cardsM
+        columns: 3
+        items:
+          - href: 'https://docs.microsoft.com/en-us/azure/bot-service/bot-service-overview-introduction'
+            html: <p>了解 Azure Bot Service。</p>
+            image:
+              src: media/index/i_overview.png
+            title: 什麼是 Azure Bot Service？
+          - href: 'https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-basics'
+            html: <p>了解 Bot 的運作方式。</p>
+            image:
+              src: media/index/i_guidelines.png
+            title: Bot 的運作方式
   - title: 5 分鐘快速入門
     items:
       - type: paragraph
@@ -33,17 +49,17 @@ sections:
         style: icon48
         items:
           - image:
-              src: media/index/azure_portal.png
-            text: Azure 入口網站
-            href: 'https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart'
-          - image:
               src: v4sdk/media/logo_csharp.svg
             text: 'C#'
-            href: 'https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-sdk-quickstart'
+            href: 'https://docs.microsoft.com/azure/bot-service/dotnet/bot-builder-dotnet-sdk-quickstart'
           - image:
               src: v4sdk/media/logo_js.svg
             text: JavaScript
-            href: 'https://docs.microsoft.com/en-us/azure/bot-service/javascript/bot-builder-javascript-quickstart'
+            href: 'https://docs.microsoft.com/azure/bot-service/javascript/bot-builder-javascript-quickstart'
+          - image:
+              src: media/index/azure_portal.png
+            text: Azure 入口網站
+            href: 'https://docs.microsoft.com/azure/bot-service/bot-service-quickstart'
   - title: 逐步教學課程
     items:
       - type: paragraph
