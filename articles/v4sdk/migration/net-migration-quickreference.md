@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/23/2019
+ms.date: 05/31/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 93f660820407d6caf4c29efb3c128851059f3b02
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: b4226e842384caf1315170354c763a44c15b0c70
+ms.sourcegitcommit: 18ff5705d15b8edc85fb43001969b173625eb387
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215568"
+ms.lasthandoff: 05/31/2019
+ms.locfileid: "66453215"
 ---
 # <a name="net-migration-quick-reference"></a>.NET 移轉快速參考
 
@@ -454,3 +454,112 @@ protected override Task OnEventActivityAsync(ITurnContext<IEventActivity> turnCo
     // Handle event activities in general here.
 }
 ```
+
+## <a name="to-log-all-activities"></a>若要記錄所有活動
+
+### <a name="v3"></a>v3
+
+已使用 [IActivityLogger](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.history.iactivitylogger)。
+
+```csharp
+builder.RegisterType<ActivityLoggerImplementation>().AsImplementedInterfaces().InstancePerDependency(); 
+
+public class ActivityLoggerImplementation : IActivityLogger
+{
+    async Task IActivityLogger.LogAsync(IActivity activity)
+    {
+        // Store the activity.
+    }
+}
+```
+
+### <a name="v4"></a>v4
+
+使用 [ITranscriptLogger](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.itranscriptlogger)。
+
+```csharp
+var transcriptMiddleware = new TranscriptLoggerMiddleware(new TranscriptLoggerImplementation(Configuration.GetSection("StorageConnectionString").Value));
+adapter.Use(transcriptMiddleware);
+
+public class TranscriptLoggerImplementation : ITranscriptLogger
+{
+    async Task ITranscriptLogger.LogActivityAsync(IActivity activity)
+    {
+        // Store the activity.
+    }
+}
+```
+
+## <a name="to-add-bot-state-storage"></a>若要新增 bot 狀態儲存體
+
+已變更用於存放_使用者資料_、_對話資料_和_私人對話資料_的介面。
+
+### <a name="v3"></a>v3
+
+狀態使用 `IBotDataStore` 實作來持續運作，並使用 Autofac 將其插入 SDK 的對話方塊狀態系統。  Microsoft 在 [Microsoft.Bot.Builder.Azure](https://github.com/Microsoft/BotBuilder-Azure/) 中提供了 `MemoryStorage`、`DocumentDbBotDataStore`、`TableBotDataStore`，以及 `SqlBotDataStore` 個類別。
+
+[IBotDataStore<BotData>](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.dialogs.internals.ibotdatastore-1?view=botbuilder-dotnet-3.0) 用來保存資料。
+
+```csharp
+Task<bool> FlushAsync(IAddress key, CancellationToken cancellationToken);
+Task<T> LoadAsync(IAddress key, BotStoreType botStoreType, CancellationToken cancellationToken);
+Task SaveAsync(IAddress key, BotStoreType botStoreType, T data, CancellationToken cancellationToken);
+```
+
+```csharp
+var dbPath = ConfigurationManager.AppSettings["DocDbPath"];
+var dbKey = ConfigurationManager.AppSettings["DocDbKey"];
+var docDbUri = new Uri(dbPath);
+var storage = new DocumentDbBotDataStore(docDbUri, dbKey);
+builder.Register(c => storage)
+                .Keyed<IBotDataStore<BotData>>(AzureModule.Key_DataStore)
+                .AsSelf()
+                .SingleInstance();
+```
+
+### <a name="v4"></a>v4
+
+儲存層使用`IStorage`介面，在為 Bot 建立每個狀態管理物件時，指定儲存層物件，例如 `UserState`、`ConversationState` 或 `PrivateConversationState`。 狀態管理物件提供到基礎儲存層的金鑰，並且也可以當做屬性管理員。 例如，使用 `IPropertyManager.CreateProperty<T>(string name)` 來建立狀態屬性存取子。  這些屬性存取子用來擷取，以及傳入和傳出 Bot 基礎儲存體儲存的值。
+
+使用 [IStorage](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.istorage?view=botbuilder-dotnet-stable) 來保存資料。
+
+```csharp
+Task DeleteAsync(string[] keys, CancellationToken cancellationToken = default(CancellationToken));
+Task<IDictionary<string, object>> ReadAsync(string[] keys, CancellationToken cancellationToken = default(CancellationToken));
+Task WriteAsync(IDictionary<string, object> changes, CancellationToken cancellationToken = default(CancellationToken));
+```
+
+```csharp
+var storageOptions = new CosmosDbStorageOptions()
+{
+    AuthKey = configuration["cosmosKey"],
+    CollectionId = configuration["cosmosCollection"],
+    CosmosDBEndpoint = new Uri(configuration["cosmosPath"]),
+    DatabaseId = configuration["cosmosDatabase"]
+};
+
+IStorage dataStore = new CosmosDbStorage(storageOptions);
+var conversationState = new ConversationState(dataStore);
+services.AddSingleton(conversationState);
+
+```
+
+## <a name="to-use-form-flow"></a>使用表單流程
+
+### <a name="v3"></a>v3
+
+[Microsoft.Bot.Builder.FormFlow](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.formflow?view=botbuilder-dotnet-3.0) 已包含在核心 Bot Builder SDK 中。
+
+### <a name="v4"></a>v4
+
+[Bot.Builder.Community.Dialogs.FormFlow](https://www.nuget.org/packages/Bot.Builder.Community.Dialogs.FormFlow/) 現在是 Bot Builder 社群程式庫。  來源位於社群[存放庫](https://github.com/BotBuilderCommunity/botbuilder-community-dotnet/tree/develop/libraries/Bot.Builder.Community.Dialogs.FormFlow)。
+
+## <a name="to-use-luisdialog"></a>使用 LuisDialog
+
+### <a name="v3"></a>v3
+
+[Microsoft.Bot.Builder.Dialogs.LuisDialog](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.dialogs.luisdialog-1?view=botbuilder-dotnet-3.0) 已包含在核心 Bot Builder SDK 中。
+
+### <a name="v4"></a>v4
+
+[Bot.Builder.Community.Dialogs.Luis](https://www.nuget.org/packages/Bot.Builder.Community.Dialogs.Luis/) 現在是 Bot Builder 社群程式庫。  來源位於社群[存放庫](https://github.com/BotBuilderCommunity/botbuilder-community-dotnet/tree/develop/libraries/Bot.Builder.Community.Dialogs.Luis)。

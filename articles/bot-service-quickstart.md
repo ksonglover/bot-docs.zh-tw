@@ -8,35 +8,33 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 02/07/2019
-ms.openlocfilehash: 882dc15bd900667d76eac41049ee88b51ec5c120
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.date: 05/31/2019
+ms.openlocfilehash: 721a64fab578f6c49b1dbebe5fee28045a198153
+ms.sourcegitcommit: 0eb7ac64c4eb28944a9957a0cd2f65b046232244
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033127"
+ms.lasthandoff: 06/01/2019
+ms.locfileid: "66455451"
 ---
 # <a name="create-a-bot-with-azure-bot-service"></a>建立具有 Azure Bot Service 的 Bot
 
 ::: moniker range="azure-bot-service-3.0"
 
-[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+> [!NOTE]
+> **於 2019 年 6 月 10 日起，您將無法在 Azure 入口網站中建立 V3 SDK Bot。我們鼓勵客戶建立接下來的 [V4 SDK](https://docs.microsoft.com/azure/bot-service/bot-service-quickstart?view=azure-bot-service-4.0) Bot。關於 V3 SDK 長期支援的更多資訊，請參閱[這裡](https://docs.microsoft.com/azure/bot-service/bot-service-resources-bot-framework-faq?view=azure-bot-service-3.0#bot-framework-sdk-version-3-lifetime-support)** 。 
 
 Bot 服務會提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Framework SDK 和將 Bot 連線至通道的 Bot Framework。 建立支援 .NET 和 Node.js 的 Bot 時，Bot 服務提供五種範本供您選擇。 在本主題中，您將了解如何使用 Bot 服務來建立使用 Bot Framework SDK 的新 Bot。
 
 ## <a name="log-in-to-azure"></a>登入 Azure
 登入 [Azure 入口網站](http://portal.azure.com)。
 
-> [!TIP]
-> 若您還沒有訂用帳戶，則可以註冊<a href="https://azure.microsoft.com/en-us/free/" target="_blank">免費帳戶</a>。
-
 ## <a name="create-a-new-bot-service"></a>建立新的 Bot 服務
 
-1. 按一下 Azure 入口網站左上角的 [建立新資源] 連結，然後選取 [AI + 機器學習服務] > [Web 應用程式 Bot]。 
+1. 按一下 Azure 入口網站左上角的 [建立新資源]  連結，然後選取 [AI + 機器學習服務] > [Web 應用程式 Bot]  。 
 
 2. 隨即開啟含有 **Web 應用程式 Bot** 相關資訊的新刀鋒視窗。  
 
-3. 在 [Bot 服務] 刀鋒視窗中，依照下圖下方表格中說明的內容，提供有關您 Bot 的必要資訊。  <br/>
+3. 在 [Bot 服務]  刀鋒視窗中，依照下圖下方表格中說明的內容，提供有關您 Bot 的必要資訊。  <br/>
    ![建立 Web 應用程式 Bot 刀鋒視窗](./media/azure-bot-quickstarts/sdk-create-bot-service-blade.png)
 
    | 設定 | 建議的值 | 說明 |
@@ -47,18 +45,18 @@ Bot 服務會提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot F
    | **位置** | 預設的位置 | 選取資源群組的地理位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 一旦建立 Bot，就無法變更位置。 |
    | **定價層** | F0 | 選取定價層。 您可以隨時更新定價層。 如需詳細資訊，請參閱 [Bot 服務價格](https://azure.microsoft.com/en-us/pricing/details/bot-service/)。 |
    | **應用程式名稱** | 唯一的名稱 | Bot 的唯一 URL 名稱。 例如，如果您將 Bot 命名為 *myawesomebot*，則 Bot 的 URL 將會是 `http://myawesomebot.azurewebsites.net`。 名稱只能使用英數字元和底線字元。 此欄位有 35 個字元的長度限制。 一旦建立 Bot，就無法變更應用程式名稱。 |
-   | **Bot 範本** | 基本 | 選擇 [C#] 或 [Node.js]，並選取 [基本] 範本以供此快速入門使用，然後按一下 [選取]。 基本範本會建立回應 Bot。 [深入了解](bot-service-concept-templates.md)範本。 |
+   | **Bot 範本** | 基本 | 選擇 [C#]  或 [Node.js]  ，並選取 [基本]  範本以供此快速入門使用，然後按一下 [選取]  。 基本範本會建立回應 Bot。 [深入了解](bot-service-concept-templates.md)範本。 |
    | **App Service 方案/位置** | 您的 App Service 方案  | 選取 [App Service 方案](https://azure.microsoft.com/en-us/pricing/details/app-service/plans/)位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 (不適用於 Functions Bot)。 |
-   | **Application Insights** | 另一 | 決定您要**開啟**或**關閉** [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果您選取 [開啟]，您也必須指定區域位置。 您可以選擇任何列出的位置，但通常最好是選擇與 Bot 服務位置相同的位置。 |
+   | **Application Insights** | 另一 | 決定您要**開啟**或**關閉** [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果您選取 [開啟]  ，您也必須指定區域位置。 您可以選擇任何列出的位置，但通常最好是選擇與 Bot 服務位置相同的位置。 |
    | **Microsoft 應用程式識別碼和密碼** | 自動建立應用程式識別碼和密碼 | 如果您需要手動輸入 Microsoft 應用程式識別碼和密碼，請使用此選項。 否則，在 Bot 建立程序期間，便會為您建立新的 Microsoft 應用程式識別碼和密碼。 |
 
    > [!NOTE]
    > 
-   > 如果您建立的是 **Functions Bot**，則不會看到 [App Service 方案/位置] 欄位。 相反地，您會看到 [主控方案] 欄位。 在該案例中，請選擇[主控方案](bot-service-overview-readme.md#hosting-plans)。
+   > 如果您建立的是 **Functions Bot**，則不會看到 [App Service 方案/位置]  欄位。 相反地，您會看到 [主控方案]  欄位。 在該案例中，請選擇[主控方案](bot-service-overview-readme.md#hosting-plans)。
 
-4. 按一下 [建立] 以建立服務，並將 Bot 部署到雲端。 此程序可能需要幾分鐘的時間。
+4. 按一下 [建立]  以建立服務，並將 Bot 部署到雲端。 此程序可能需要幾分鐘的時間。
 
-勾選 [通知] 來確認已部署 Bot。 通知會從 [部署進行中] 變更為 [部署成功]。 按一下 [前往資源] 按鈕以開啟 Bot 的資源刀鋒視窗。
+勾選 [通知]  來確認已部署 Bot。 通知會從 [部署進行中]  變更為 [部署成功]  。 按一下 [前往資源]  按鈕以開啟 Bot 的資源刀鋒視窗。
 
  > [!TIP] 
  > 基於效能考量，執行 Node.js 範本的 **Functions Bot** 已經使用 *Azure Functions Pack* 工具封裝。 *Azure Functions Pack* 工具會擷取所有 Node.js 模組，並將它們結合成一個 *.js 檔案。
@@ -92,13 +90,13 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 ### <a name="create-a-new-bot-service"></a>建立新的 Bot 服務
 
 1. 登入 [Azure 入口網站](http://portal.azure.com/)。
-1. 按一下 Azure 入口網站左上角的 [建立新資源] 連結，然後選取 [AI + 機器學習服務] > [Web 應用程式 Bot]。 
+1. 按一下 Azure 入口網站左上角的 [建立新資源]  連結，然後選取 [AI + 機器學習服務]  > [Web 應用程式 Bot]  。 
 
 ![建立 Bot](~/media/azure-bot-quickstarts/abs-create-blade.png)
 
-2. 隨即開啟含有 *Web 應用程式 Bot* 相關資訊的「新刀鋒視窗」。  
+2. 隨即開啟含有 *Web 應用程式 Bot* 相關資訊的「新刀鋒視窗」  。  
 
-3. 在 [Bot 服務] 刀鋒視窗中，依照下圖下方表格中說明的內容，提供有關您 Bot 的必要資訊。  <br/>
+3. 在 [Bot 服務]  刀鋒視窗中，依照下圖下方表格中說明的內容，提供有關您 Bot 的必要資訊。  <br/>
  ![建立 Web 應用程式 Bot 刀鋒視窗](~/media/azure-bot-quickstarts/sdk-create-bot-service-blade.png)
 
  | 設定 | 建議的值 | 說明 |
@@ -109,19 +107,19 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
  | **位置** | 預設的位置 | 選取資源群組的地理位置。 您可以選擇任何列出的位置，但通常最佳的選擇是最靠近您客戶的位置。 一旦建立 Bot，就無法變更位置。 |
  | **定價層** | F0 | 選取定價層。 您可以隨時更新定價層。 如需詳細資訊，請參閱 [Bot 服務價格](https://azure.microsoft.com/en-us/pricing/details/bot-service/)。 |
  | **應用程式名稱** | 唯一的名稱 | Bot 的唯一 URL 名稱。 例如，如果您將 Bot 命名為 *myawesomebot*，則 Bot 的 URL 將會是 `http://myawesomebot.azurewebsites.net`。 名稱只能使用英數字元和底線字元。 此欄位有 35 個字元的長度限制。 一旦建立 Bot，就無法變更應用程式名稱。 |
- | **Bot 範本** | 回應 Bot | 選擇 [SDK v4]。 選取 [C#] 或 [Node.js] 以供本快速入門使用，然後按一下 [選取]。  
+ | **Bot 範本** | 回應 Bot | 選擇 [SDK v4]  。 選取 [C#] 或 [Node.js] 以供本快速入門使用，然後按一下 [選取]  。  
  | **App Service 方案/位置** | 您的 App Service 方案  | 選取 [App Service 方案](https://azure.microsoft.com/en-us/pricing/details/app-service/plans/)位置。 您可以選擇任何列出的位置，但通常最好是選擇與 Bot 服務相同的位置。 |
- | **Application Insights** | 另一 | 決定您要**開啟**或**關閉** [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果您選取 [開啟]，您也必須指定區域位置。 您可以選擇任何列出的位置，但通常最好是選擇與 Bot 服務相同的位置。 |
+ | **Application Insights** | 另一 | 決定您要**開啟**或**關閉** [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果您選取 [開啟]  ，您也必須指定區域位置。 您可以選擇任何列出的位置，但通常最好是選擇與 Bot 服務相同的位置。 |
  | **Microsoft 應用程式識別碼和密碼** | 自動建立應用程式識別碼和密碼 | 如果您需要手動輸入 Microsoft 應用程式識別碼和密碼，請使用此選項。 否則，在 Bot 建立程序期間，便會為您建立新的 Microsoft 應用程式識別碼和密碼。 |
 
-4. 按一下 [建立] 以建立服務，並將 Bot 部署到雲端。 此程序可能需要幾分鐘的時間。
+4. 按一下 [建立]  以建立服務，並將 Bot 部署到雲端。 此程序可能需要幾分鐘的時間。
 
-勾選 [通知] 來確認已部署 Bot。 通知會從 [部署進行中] 變更為 [部署成功]。 按一下 [前往資源] 按鈕以開啟 Bot 的資源刀鋒視窗。
+勾選 [通知]  來確認已部署 Bot。 通知會從 [部署進行中]  變更為 [部署成功]  。 按一下 [前往資源]  按鈕以開啟 Bot 的資源刀鋒視窗。
 
 現在，既然您已建立 Bot，請在 Web 聊天中測試。 
 
 ## <a name="test-the-bot"></a>測試 Bot
-在 [Bot 管理] 區段中，按一下 [在網路聊天中測試]。 Azure Bot Service 會將網路聊天控制項載入，並連線至 Bot。 
+在 [Bot 管理]  區段中，按一下 [在網路聊天中測試]  。 Azure Bot Service 會將網路聊天控制項載入，並連線至 Bot。 
 
 ![Azure 網路聊天測試](./media/azure-bot-quickstarts/azure-webchat-test.png)
 
@@ -129,7 +127,7 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 
 ## <a name="download-code"></a>下載程式碼
 您可以下載程式碼，以在本機上處理。 
-1. 在 [Bot 管理] 區段中，按一下 [組建]。 
+1. 在 [Bot 管理]  區段中，按一下 [組建]  。 
 1. 在右窗格中按一下**下載 Bot 原始程式碼**連結。 
 1. 遵循提示以下載程式碼，然後將資料夾解壓縮。
     1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
