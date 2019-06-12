@@ -10,14 +10,17 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: de497fa5ad694081258486dd5c6e9fd37b107879
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 2c8284bf1a78c4f8dd9fb5cc3dcb346ac99ad936
+ms.sourcegitcommit: 710d279898db587abb1e81d13628177a4e182293
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215565"
+ms.lasthandoff: 06/06/2019
+ms.locfileid: "66751298"
 ---
 # <a name="whats-new-in-bot-framework"></a>Bot Framework 中的新功能
+
+[!INCLUDE[applies-to](includes/applies-to.md)]
+
 Bot Framework SDK v4 是[開放原始碼 SDK][1a]，可讓開發人員使用其慣用的程式設計語言塑造與建置複雜的對話。
 
 本文摘要說明 Bot Framework 和 Azure Bot Service 中的重要新功能和增強功能。
