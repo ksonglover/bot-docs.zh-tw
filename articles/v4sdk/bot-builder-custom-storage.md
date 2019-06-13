@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9109808c786e3992d8bae6cd68b4272201a9b4f8
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 2b77b19a3b2d0fbd8e545e563f154124af894ffa
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215454"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693733"
 ---
 # <a name="implement-custom-storage-for-your-bot"></a>為您的 Bot 實作自訂儲存體
 
@@ -93,11 +93,13 @@ Bot Framework 架構包含預設實作。此實作最可能符合許多應用程
 
 所產生的介面如下：
 
-**IStore.cs** [!code-csharp[IStore](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/IStore.cs?range=14-19)]
+**IStore.cs**  
+[!code-csharp[IStore](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/IStore.cs?range=14-19)]
 
 針對 Azure Blob 儲存體實作此介面很簡單。
 
-**BlobStore.cs** [!code-csharp[BlobStore](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/BlobStore.cs?range=18-101)]
+**BlobStore.cs**  
+[!code-csharp[BlobStore](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/BlobStore.cs?range=18-101)]
 
 如您所看，Azure Blob 儲存體正在此處進行實際工作。 請注意，特定例外狀況的捕捉，以及如何轉化以符合呼叫程式碼的期望。 也就是說，對於 Load，我們希望「找不到」例外狀況傳回 null，而對於 Save，「先決條件失敗」例外狀況傳回 bool。
 

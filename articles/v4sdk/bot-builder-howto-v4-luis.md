@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7b06d99ae1265d2519b5c1aa8fe838a4e3e4d43a
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 4fc8ebd1eff03c2b6ac994ff80cb85b341bb7231
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215354"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693666"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>將自然語言理解新增至您的 Bot
 
@@ -76,6 +76,8 @@ ms.locfileid: "66215354"
 ### <a name="why-use-entities"></a>為何使用實體
 LUIS 實體可讓 Bot 以智慧方式了解與標準意圖不同的特定事項或事件。 這可讓您向使用者收集額外資訊，進而讓 Bot 更聰明地回應，或可能略過要求使用者提供該資訊的某些問題。 除了三個 LUIS 意圖 [預訂航班]、[取消] 和 [無] 的定義，FlightBooking.json 檔案還包含一組實體，例如 'From.Airport' 和 'To.Airport'。 這些實體可讓 LUIS 偵測使用者原始輸入內含的其他資訊，並且在使用者要求新的旅行預約時傳回這些資訊。
 
+如需有關如何在 LUIS 結果中顯示實體資訊的詳細資訊，請參閱[從具有意圖和實體的語句文字中擷取資料](https://docs.microsoft.com/azure/cognitive-services/luis/luis-concept-data-extraction)。
+
 ## <a name="obtain-values-to-connect-to-your-luis-app"></a>取得值以連線到您的 LUIS 應用程式
 在您的 LUIS 應用程式發佈之後，您即可從 Bot 進行存取。 您必須記錄數個值，以從 Bot 存取您的 LUIS 應用程式。 您可以使用 LUIS 入口網站擷取該資訊。
 
@@ -93,7 +95,8 @@ settings 檔案 (`appsettings.json` 或 `.env`) 檔案可作為將所有服務�
 
 將存取 LUIS 應用程式所需的資訊 (包括應用程式識別碼、撰寫金鑰和區域) 新增至 `appsettings.json` 檔案中。 這些是您先前從已發佈的 LUIS 應用程式儲存的值。 請注意，API 主機名稱應該採用 `<your region>.api.cognitive.microsoft.com` 格式。
 
-**appsetting.json** [!code-json[appsettings](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/appsettings.json?range=1-7)]
+**appsetting.json**  
+[!code-json[appsettings](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/appsettings.json?range=1-7)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -112,7 +115,8 @@ settings 檔案 (`appsettings.json` 或 `.env`) 檔案可作為將所有服務�
 
 若要連線到 LUIS 服務，Bot 會從 appsetting.json 檔案提取您前面新增的資訊。 `LuisHelper` 類別包含的程式碼可從 appsetting.json 檔案匯入您的設定，以及藉由呼叫 `RecognizeAsync` 方法來查詢 LUIS 服務。 如果傳回的最高意圖是 'Book_Flight'，其會檢查包含預訂 To、From 和 TravelDate 資訊等實體。
 
-**LuisHelper.cs** [!code-csharp[luis helper](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/LuisHelper.cs?range=15-54)]
+**LuisHelper.cs**  
+[!code-csharp[luis helper](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/LuisHelper.cs?range=15-54)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 

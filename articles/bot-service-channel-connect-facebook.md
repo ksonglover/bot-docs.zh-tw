@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/12/2018
-ms.openlocfilehash: 57a3efd36ddae5c52a2d791b87ed4fa6a96d5e8a
-ms.sourcegitcommit: 152760771214865b9c7d0ed481acfba05bdc44dc
+ms.openlocfilehash: 36d98c6eeb368399ee11ef9a048bb42922103f16
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2019
-ms.locfileid: "58655518"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693609"
 ---
 # <a name="connect-a-bot-to-facebook"></a>將 Bot 連線到 Facebook
 
@@ -33,7 +33,7 @@ ms.locfileid: "58655518"
 
 已透過 Facebook 頁面存取 Bot。 請[建立新的 Facebook 頁面](https://www.facebook.com/bookmarks/pages)或移至現有的頁面。
 
-* 請開啟 Facebook 頁面的 [關於] 頁面，然後複製並儲存 [頁面識別碼]。
+* 請開啟 Facebook 頁面的 [關於]  頁面，然後複製並儲存 [頁面識別碼]  。
 
 ### <a name="create-a-facebook-app"></a>建立 Facebook 應用程式
 
@@ -41,7 +41,7 @@ ms.locfileid: "58655518"
 
 ![建立應用程式識別碼](~/media/channels/FB-CreateAppId.png)
 
-* 複製並儲存 [應用程式識別碼]和 [應用程式祕密]。
+* 複製並儲存 [應用程式識別碼]  和 [應用程式祕密]  。
 
 ![儲存應用程式識別碼和祕密](~/media/channels/FB-get-appid.png)
 
@@ -57,31 +57,31 @@ ms.locfileid: "58655518"
 
 ### <a name="generate-a-page-access-token"></a>產生頁面存取權杖
 
-在 Messenger 區段的 [權杖產生] 面板中，選取目標頁面。 [頁面存取權杖] 隨即產生。
+在 Messenger 區段的 [權杖產生]  面板中，選取目標頁面。 [頁面存取權杖] 隨即產生。
 
-* 複製並儲存 [頁面存取權杖]。
+* 複製並儲存 [頁面存取權杖]  。
 
 ![產生權杖](~/media/channels/FB-generateToken.png)
 
 ### <a name="enable-webhooks"></a>啟用 Webhook
 
-按一下 [設定 Webhook]，將訊息事件從 Facebook Messenger 轉送到 Bot。
+按一下 [設定 Webhook]  ，將訊息事件從 Facebook Messenger 轉送到 Bot。
 
 ![啟用 Webhook](~/media/channels/FB-webhook.png)
 
 ### <a name="provide-webhook-callback-url-and-verify-token"></a>提供 Webhook 回呼 URL 並確認權杖
 
-在 [Azure 入口網站](https://portal.azure.com/)中開啟 Bot，按一下 [通道] 索引標籤，然後按一下 [Facebook Messenger]。
+在 [Azure 入口網站](https://portal.azure.com/)中開啟 Bot，按一下 [通道]  索引標籤，然後按一下 [Facebook Messenger]  。
 
-* 從入口網站複製 [回呼 URL] 和 [確認權杖] 值。
+* 從入口網站複製 [回呼 URL]  和 [確認權杖]  值。
 
 ![複製值](~/media/channels/fb-callbackVerify.png)
 
-1. 返回 Facebook Messenger 並且貼上 [回呼 URL] 和 [確認權杖] 值。
+1. 返回 Facebook Messenger 並且貼上 [回呼 URL]  和 [確認權杖]  值。
 
-2. 在 [訂用帳戶欄位] 底下，選取 [message\_deliveries]、[messages]、[messaging\_options] 及 [messaging\_postbacks]。
+2. 在 [訂用帳戶欄位]  底下，選取 [message\_deliveries]  、[messages]  、[messaging\_options]  及 [messaging\_postbacks]  。
 
-3. 按一下 [確認並儲存]。
+3. 按一下 [確認並儲存]  。
 
 ![設定 Webhook](~/media/channels/FB-webhookConfig.png)
 
@@ -92,7 +92,7 @@ ms.locfileid: "58655518"
 
 ### <a name="provide-facebook-credentials"></a>提供 Facebook 認證
 
-在 Azure 入口網站中，貼上先前從 Facebook Messenger 複製的 [Facebook 應用程式識別碼]、[Facebook 應用程式祕密]、[頁面識別碼] 及 [頁面存取權杖] 值。 您可以新增額外的頁面識別碼和存取權杖，以便在多個 Facebook 頁面上使用相同的 Bot。
+在 Azure 入口網站中，貼上先前從 Facebook Messenger 複製的 [Facebook 應用程式識別碼]  、[Facebook 應用程式祕密]  、[頁面識別碼]  及 [頁面存取權杖]  值。 您可以新增額外的頁面識別碼和存取權杖，以便在多個 Facebook 頁面上使用相同的 Bot。
 
 ![輸入認證](~/media/channels/fb-credentials2.png)
 
@@ -126,13 +126,13 @@ Bot 完成之後，Facebook 對於發佈到 Messenger 的應用程式有自己�
 
 遵循下列步驟，為您的 Workplace 建立[自訂整合](https://developers.facebook.com/docs/workplace/custom-integrations-new)：
 
-- 在 [管理面板] 中，開啟 [整合] 索引標籤。
-- 按一下 [建立自己的自訂應用程式] 按鈕。
+- 在 [管理面板]  中，開啟 [整合]  索引標籤。
+- 按一下 [建立自己的自訂應用程式]  按鈕。
 
 ![Workplace 整合](~/media/channels/fb-integration.png)
 
 - 選擇應用程式的顯示名稱和設定檔圖片。 這類資訊會與 'Bot' 類型的頁面共用。
-- 將 [允許 API 存取應用程式設定] 設定為 [是]。
+- 將 [允許 API 存取應用程式設定]  設定為 [是]。
 - 複製並安全地儲存您所看見的應用程式識別碼、應用程式祕密和應用程式權杖。
 
 ![Workplace 金鑰](~/media/channels/fb-keys.png)
@@ -143,7 +143,7 @@ Bot 完成之後，Facebook 對於發佈到 Messenger 的應用程式有自己�
 
 ### <a name="provide-facebook-credentials"></a>提供 Facebook 認證
 
-在 Azure 入口網站中，貼上先前從 Facebook Workplace 複製的 [Facebook 應用程式識別碼]、[Facebook 應用程式祕密] 和 [頁面存取權杖] 值。 請使用其 [關於] 頁面上整合名稱後面的數字，而不是傳統的 pageID。 類似於將 Bot 連線至 Facebook Messenger，Webhook 可透過 Azure 中顯示的認證來連線。
+在 Azure 入口網站中，貼上先前從 Facebook Workplace 複製的 [Facebook 應用程式識別碼]  、[Facebook 應用程式祕密]  和 [頁面存取權杖]  值。 請使用其 [關於]  頁面上整合名稱後面的數字，而不是傳統的 pageID。 類似於將 Bot 連線至 Facebook Messenger，Webhook 可透過 Azure 中顯示的認證來連線。
 
 ### <a name="submit-for-review"></a>提交以供審查
 如需詳細資訊，請參閱**將 Bot 連線至 Facebook Messenger** 一節和 [Workplace 開發人員文件](https://developers.facebook.com/docs/workplace)。
@@ -153,10 +153,14 @@ Bot 完成之後，Facebook 對於發佈到 Messenger 的應用程式有自己�
 
 ## <a name="setting-the-api-version"></a>設定 API 版本
 
-如果您收到來自 Facebook 關於特定 Graph API 版本淘汰的通知，請移至 [Facebook 開發人員頁面](https://developers.facebook.com)。 瀏覽至 Bot 的 [應用程式設定] 並移至 [設定] > [進階] > [升級 API 版本]，然後將 [升級所有呼叫] 切換為 3.0。
+如果您收到來自 Facebook 關於特定 Graph API 版本淘汰的通知，請移至 [Facebook 開發人員頁面](https://developers.facebook.com)。 瀏覽至 Bot 的 [應用程式設定]  並移至 [設定] > [進階] > [升級 API 版本]  ，然後將 [升級所有呼叫]  切換為 3.0。
 
 ![API 版本升級](~/media/channels/facebook-version-upgrade.png)
 
 ## <a name="sample-code"></a>範例程式碼
 
 如需進一步參考，<a href="https://aka.ms/facebook-events" target="_blank">Facebook-events</a> 範例 Bot 可用來探索 Bot 與 Facebook Messenger 的通訊。
+
+## <a name="also-available-as-an-adapter"></a>也可作為配接器提供
+
+此通道也可[作為配接器提供](https://botkit.ai/docs/v4/platforms/facebook.html)。 為協助您在配接器和通道之間做選擇，請參閱[目前可用的配接器](bot-service-channel-additional-channels.md#currently-available-adapters)。

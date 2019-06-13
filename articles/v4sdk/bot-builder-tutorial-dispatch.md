@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 942ab2d5b3a43ca071c877b5cc18e8141838d604
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 290b06b28e590b01335694a621cc71c189ff6296
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66214261"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693644"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多個 LUIS 和 QnA 模型
 
@@ -212,7 +212,8 @@ Bot 需要已發佈服務的相關資訊，好讓其可以存取這些服務。
 
 建立所有服務應用程式後，每個服務應用程式的資訊都必須新增至 'appsettings.json' 檔案。 初始的 [C# 範例][cs-sample]程式碼會包含空白的 appsettings.json 檔案：
 
-**appsettings.json** [!code-json[AppSettings](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/AppSettings.json?range=8-17)]
+**appsettings.json**  
+[!code-json[AppSettings](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/AppSettings.json?range=8-17)]
 
 針對下列所示的每個實體，在這些指示中新增您稍早所記錄的值：
 
@@ -251,7 +252,8 @@ npm install --save dotenv
 
 建立所有服務應用程式後，每個服務應用程式的資訊都必須新增至 '.env' 檔案。 初始 [JavaScript 範例][js-sample]程式碼會包含空白的 .env 檔案。 
 
-**.env** [!code-file[EmptyEnv](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/.env?range=1-10)]
+**.env**  
+[!code-file[EmptyEnv](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/.env?range=1-10)]
 
 新增您的服務連線值，如下所示：
 
@@ -281,13 +283,15 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 在 **BotServices.cs** 中，_appsettings.json_ 組態檔中包含的資訊會用於將分派 Bot 連線至 `Dispatch` 和 `SampleQnA` 服務。 建構函式會使用您提供的值來連線到這些服務。
 
-**BotServices.cs** [!code-csharp[ReadConfigurationInfo](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/BotServices.cs?range=14-30)]
+**BotServices.cs**  
+[!code-csharp[ReadConfigurationInfo](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/BotServices.cs?range=14-30)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
 在 **dispatchBot.js** 中， _.env_ 組態檔中包含的資訊會用來將分派 Bot 連線至 _LuisRecognizer(dispatch)_ 和 _QnAMaker_ 服務。 建構函式會使用您提供的值來連線到這些服務。
 
-**dispatchBot.js** [!code-javascript[ReadConfigurationInfo](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=18-31)]
+**dispatchBot.js**  
+[!code-javascript[ReadConfigurationInfo](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=18-31)]
 
 ---
 
@@ -299,13 +303,14 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 在 **DispatchBot.cs** 檔案中，每當呼叫 `OnMessageActivityAsync` 方法時，我們就會針對分派模型來檢查傳入的使用者訊息。 接著，我們會將分派模型的 `topIntent` 和 `recognizerResult` 傳遞至正確的方法，以呼叫服務並傳回結果。
 
-**DispatchBot.cs** [!code-csharp[OnMessageActivity](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=26-36)]
+**DispatchBot.cs**  
+[!code-csharp[OnMessageActivity](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=26-36)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
 在 **dispatchBot.js** `onMessage` 方法中，我們會針對分派模型檢查使用者輸入訊息、尋找 _topIntent_，然後藉由呼叫 _dispatchToTopIntentAsync_ 來傳遞此意圖。
 
-**dispatchBot.js**
+**dispatchBot.js**  
 
 [!code-javascript[OnMessageActivity](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=37-50)]
 
@@ -317,7 +322,8 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 當模型產生結果時，它會指出哪一項服務最適合處理語句。 此 Bot 中的程式碼會將要求路由傳送至對應的服務，然後概述來自所呼叫服務的回應。 根據分派傳回的_意圖_，此程式碼會使用傳回的意圖來路由至正確的 LUIS 模型或 QnA 服務。
 
-**DispatchBot.cs** [!code-csharp[DispatchToTop](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=51-69)]
+**DispatchBot.cs**  
+[!code-csharp[DispatchToTop](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=51-69)]
 
 如果叫用 `ProcessHomeAutomationAsync` 或 `ProcessWeatherAsync` 方法，則會從 _luisResult.ConnectedServiceResult_ 內的分派模型中傳遞結果。 接著，指定方法會提供顯示分派模型最高意圖的使用者意見反應，並且以排名列出所有偵測到的意圖和實體。
 
@@ -327,7 +333,8 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 當模型產生結果時，它會指出哪一項服務最適合處理語句。 此範例中的程式碼會使用可辨識的 _topIntent_，示範如何將要求路由至相對應的服務。
 
-**DispatchBot.cs** [!code-javascript[DispatchToTop](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=67-83)]
+**DispatchBot.cs**  
+[!code-javascript[DispatchToTop](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=67-83)]
 
 如果叫用 `processHomeAutomation` 或 `processWeather` 方法，則會從 _recognizerResult.luisResult_ 內的分派模型中傳遞結果。 接著，指定方法會提供顯示分派模型最高意圖的使用者意見反應，並且以排名列出所有偵測到的意圖和實體。
 

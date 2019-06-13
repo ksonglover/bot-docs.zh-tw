@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c17e830c61036a6551fa7f3dbab79f83bda38123
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: afb27ad20ec8585c2ca30810a9be6858adc17187
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66214310"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693525"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
@@ -158,6 +158,8 @@ _根據預設，Kudu 會假設來自 zip 檔案的部署都已可供執行，而
 > 壓縮專案檔之前，請確定您_位在_正確的資料夾。 
 > - 針對 C# Bot，這是具有 .csproj 檔案的資料夾。 
 > - 針對 JS Bot，這是具有 app.js 或 index.js 檔案的資料夾。 
+>
+> 選取所有檔案並**在該資料夾中**壓縮，然後在該資料夾中執行命令。
 >
 > 如果您的根資料夾位置不正確，**Bot 將無法在 Azure 入口網站中執行**。
 
