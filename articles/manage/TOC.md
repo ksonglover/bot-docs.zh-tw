@@ -21,6 +21,7 @@
 ## [Telegram](../bot-service-channel-connect-telegram.md) 
 ## [Twilio](../bot-service-channel-connect-twilio.md)
 ## [網路聊天](../bot-service-channel-connect-webchat.md)
+## [其他通道](../bot-service-channel-additional-channels.md)
 # [設定 Bot 設定](../bot-service-manage-settings.md)
 # [設定語音預備](../bot-service-manage-speech-priming.md)
 # [使用 Azure Bot 服務註冊 Bot](../bot-service-quickstart-registration.md)
