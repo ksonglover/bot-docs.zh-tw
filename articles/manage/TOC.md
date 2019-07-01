@@ -14,7 +14,7 @@
 ## [GroupMe](../bot-service-channel-connect-groupme.md) 
 ## [Kik](../bot-service-channel-connect-kik.md) 
 ## [線條](../bot-service-channel-connect-line.md)
-## [Microsoft Teams](https://msdn.microsoft.com/en-us/microsoft-teams/bots)
+## [Microsoft Teams](https://msdn.microsoft.com/microsoft-teams/bots)
 ## [Skype](../bot-service-channel-connect-skype.md)
 ## [商務用 Skype](../bot-service-channel-connect-skypeforbusiness.md)
 ## [Slack](../bot-service-channel-connect-slack.md) 
