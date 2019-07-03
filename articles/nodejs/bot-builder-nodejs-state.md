@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6d653e47d2e906c6306134804c7731b374d830ba
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 779411235bfef24719044b0fbad26574a373a34f
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563976"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404303"
 ---
 # <a name="manage-state-data"></a>管理狀態資料
 
@@ -129,7 +129,7 @@ session.userdata.start = startDate.toISOString();
 
 ### <a name="saving-data"></a>儲存資料
 
-在每個儲存體容器中建立的資料將保留於記憶體中，直到容器儲存為止。 適用於 Node.js 的 Bot Framework SDK 會分批將資料傳送至 `ChatConnector` 服務，以便在有要傳送的訊息時加以儲存。 若要儲存已存在於儲存體容器中的資料，而不傳送任何訊息，您可以手動呼叫 [`save`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#save) 方法。 如果您未呼叫 `save` 方法，存在於儲存體容器中的資料將會保存以作為批次處理的一部分。
+在每個儲存體容器中建立的資料將保留於記憶體中，直到容器儲存為止。 適用於 Node.js 的 Bot Framework SDK 會分批將資料傳送至 `ChatConnector` 服務，以便在有要傳送的訊息時加以儲存。 若要儲存已存在於儲存體容器中的資料，而不傳送任何訊息，您可以手動呼叫 [`save`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#save) 方法。 如果您未呼叫 `save` 方法，存在於儲存體容器中的資料將會保存以作為批次處理的一部分。
 
 ```javascript
 session.userData.favoriteColor = "Red";
@@ -203,9 +203,9 @@ session.dialogData = {};
 ## <a name="additional-resources"></a>其他資源
 - [提示使用者輸入](bot-builder-nodejs-dialog-prompt.md)
 
-[userDataURL]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#userdata
-[conversationDataURL]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#conversationdata
-[privateConversationDataURL]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#privateconversationdata
-[dialogDataURL]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#dialogdata
+[userDataURL]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#userdata
+[conversationDataURL]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#conversationdata
+[privateConversationDataURL]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#privateconversationdata
+[dialogDataURL]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#dialogdata
 
-[ChatConnector]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.chatconnector.html
+[ChatConnector]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.chatconnector.html

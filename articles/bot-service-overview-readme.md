@@ -8,19 +8,19 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 85ef0fde39980bab1b891518e338fddbd56b275a
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 74c48c779a41a6a2cbdf4f1c559c7136e7a94ca1
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563866"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405815"
 ---
 # <a name="how-bot-service-works"></a>Bot 服務 的運作方式
 
 Bot 服務會提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Framework SDK 和將 Bot 連線至通道的 Bot Framework。 建立支援 .NET 和 Node.js 的 Bot 時，Bot 服務提供五種範本供您選擇。
 
 > [!IMPORTANT]
-> 您必須擁有 Microsoft Azure 訂用帳戶，才可以使用 Bot 服務。 若您還沒有訂用帳戶，則可以註冊<a href="https://azure.microsoft.com/en-us/free/" target="_blank">免費帳戶</a>。
+> 您必須擁有 Microsoft Azure 訂用帳戶，才可以使用 Bot 服務。 若您還沒有訂用帳戶，則可以註冊<a href="https://azure.microsoft.com/free/" target="_blank">免費帳戶</a>。
 
 ## <a name="hosting-plans"></a>主機方案
 Bot 服務會為您的 Bot 提供兩項主控方案。 您可以選擇適合您需求的主控方案。

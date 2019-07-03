@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6dcfe6595f1c5961151a90783dd8ceee9c7684dd
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: a719ae4b3aa3fbf61503b4a6f055ec5cc3f5104a
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224333"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464588"
 ---
 # <a name="add-media-attachments-to-messages"></a>將媒體附件新增至訊息
 
@@ -25,7 +25,9 @@ ms.locfileid: "54224333"
 > - [Node.js](../nodejs/bot-builder-nodejs-send-receive-attachments.md)
 > - [REST](../rest-api/bot-framework-rest-connector-add-media-attachments.md)
 
-使用者與 Bot 之間的訊息交換可以包含媒體附件 (例如影像、視訊、音訊、檔案等)。 <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活動</a>物件的 `Attachments` 屬性包含<a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">附件</a>物件的陣列，代表訊息的媒體附件和內含的複合式資訊卡 (Rich Card)。 
+使用者與 Bot 之間的訊息交換可以包含媒體附件 (例如影像、視訊、音訊、檔案等)。 
+
+<a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活動</a>物件的 `Attachments` 屬性包含<a href="https://docs.microsoft.com/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">附件</a>物件的陣列，代表訊息的媒體附件和內含的複合式資訊卡 (Rich Card)。 
 
 > [!NOTE]
 > [將複合式資訊卡 (Rich Card) 新增至訊息](bot-builder-dotnet-add-rich-card-attachments.md)。
@@ -40,12 +42,12 @@ ms.locfileid: "54224333"
 
 ## <a name="additional-resources"></a>其他資源
 
-- [使用頻道偵測器來預覽功能][inspector]
+- [使用通道偵測器預覽功能][inspector]
 - [活動概觀](bot-builder-dotnet-activities.md)
 - [建立訊息](bot-builder-dotnet-create-messages.md)
 - [將複合式資訊卡 (Rich Card) 新增至訊息](bot-builder-dotnet-add-rich-card-attachments.md)
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活動類別</a>
-- <a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">附件類別</a>
+- <a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活動類別</a>
+- <a href="https://docs.microsoft.com/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">附件類別</a>
 
 [inspector]: ../bot-service-channel-inspector.md
 

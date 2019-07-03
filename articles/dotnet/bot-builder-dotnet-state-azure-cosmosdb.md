@@ -8,12 +8,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 19b44fbb09af69bde803b9b884d58108c248ebe5
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 7c00c17eaa8d4e84ffbeff1e318cbc403de2038a
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224825"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405628"
 ---
 # <a name="manage-custom-state-data-with-azure-cosmos-db-for-net"></a>使用適用於 .NET 的 Azure Cosmos DB 管理自訂狀態資料
 
@@ -28,21 +28,21 @@ ms.locfileid: "54224825"
  
 ## <a name="prerequisites"></a>必要條件
 您需要：
- - [Microsoft Azure 帳戶](https://azure.microsoft.com/en-us/free/)
+ - [Microsoft Azure 帳戶](https://azure.microsoft.com/free/)
  - [Visual Studio 2015 或更新版本](https://www.visualstudio.com/)
  - [Bot Builder Azure NuGet 套件](https://www.nuget.org/packages/Microsoft.Bot.Builder.Azure/)
  - [Autofac Web Api2 NuGet 套件](https://www.nuget.org/packages/Autofac.WebApi2/) (英文)
  - [Bot Framework 模擬器](~/bot-service-debug-emulator.md) (英文)
  
 ## <a name="create-azure-account"></a>建立 Azure 帳戶
-如果您沒有 Azure 帳戶，請按一下[這裡](https://azure.microsoft.com/en-us/free/)註冊免費帳戶。
+如果您沒有 Azure 帳戶，請按一下[這裡](https://azure.microsoft.com/free/)註冊免費帳戶。
 
 ## <a name="set-up-the-azure-cosmos-db-database"></a>設定 Azure Cosmos DB 資料庫
-1. 在您登入 Azure 入口網站之後，按一下 [新增] 以建立新的 *Azure Cosmos DB* 資料庫。 
-2. 按一下 [資料庫]。 
-3. 找到 **Azure Cosmos DB**，然後按一下 [建立]。
-4. 填寫欄位。 如果是 [**API**] 欄位，請選取 [**SQL (DocumentDB)**]。 填妥所有欄位後，按一下畫面底部的 [建立] 按鈕來部署新的資料庫。 
-5. 新資料庫部署完畢後，接著瀏覽至新資料庫。 按一下 [存取金鑰] 以尋找金鑰和連接字串。 您的 Bot 會使用此資訊來呼叫儲存體服務以儲存狀態資料。
+1. 在您登入 Azure 入口網站之後，按一下 [新增]  以建立新的 *Azure Cosmos DB* 資料庫。 
+2. 按一下 [資料庫]  。 
+3. 找到 **Azure Cosmos DB**，然後按一下 [建立]  。
+4. 填寫欄位。 如果是 [**API**] 欄位，請選取 [**SQL (DocumentDB)** ]。 填妥所有欄位後，按一下畫面底部的 [建立]  按鈕來部署新的資料庫。 
+5. 新資料庫部署完畢後，接著瀏覽至新資料庫。 按一下 [存取金鑰]  以尋找金鑰和連接字串。 您的 Bot 會使用此資訊來呼叫儲存體服務以儲存狀態資料。
 
 ## <a name="install-nuget-packages"></a>安裝 NuGet 套件
 1. 開啟現有的 C# Bot 專案，或使用 Visual Studio 中的 Bot 範本建立新專案。 
@@ -114,7 +114,7 @@ namespace SampleApp
 3. 在模擬器中輸入一些訊息以測試您的 Bot。 
 
 ## <a name="view-state-data-on-azure-portal"></a>在 Azure 入口網站上檢視狀態資料
-若要檢視狀態資料，請登入 Azure 入口網站並瀏覽至您的資料庫。 按一下 [資料總管 (預覽)] 來確認正在儲存的 Bot 狀態資訊。 
+若要檢視狀態資料，請登入 Azure 入口網站並瀏覽至您的資料庫。 按一下 [資料總管 (預覽)]  來確認正在儲存的 Bot 狀態資訊。 
 
 ## <a name="next-steps"></a>後續步驟
 在本文中，您可以使用 Cosmos DB 來儲存及管理您的 Bot 資料。 接下來，了解如何使用對話來模型化對話流程。

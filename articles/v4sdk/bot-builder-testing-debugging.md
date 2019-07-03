@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3e1ebc07c73dcd7033a6b9a22c94379593c5890e
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 7b3380a409641bd7d406c877ebcbf83ddf15431c
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215267"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404442"
 ---
 # <a name="testing-and-debugging-guidelines"></a>測試和偵錯指導方針
 
@@ -65,7 +65,7 @@ Bot 是將許多不同組件整合在一起運作的複雜應用程式。 就像
 
 ### <a name="other-testing"></a>其他測試
 
-不同類型的測試都可透過結合上述的等級，或是不同的角度 (例如壓力測試、效能測試或分析 Bot 活動) 來完成。 Visual Studio 提供達成此目的的本機方法以及[工具套件](https://azure.microsoft.com/en-us/solutions/dev-test/)，可用來測試您的應用程式，而 [Azure 入口網站](https://portal.azure.com)則提供 Bot 執行狀況的見解。
+不同類型的測試都可透過結合上述的等級，或是不同的角度 (例如壓力測試、效能測試或分析 Bot 活動) 來完成。 Visual Studio 提供達成此目的的本機方法以及[工具套件](https://azure.microsoft.com/solutions/dev-test/)，可用來測試您的應用程式，而 [Azure 入口網站](https://portal.azure.com)則提供 Bot 執行狀況的見解。
 
 ## <a name="debugging"></a>Debugging
 
@@ -105,7 +105,7 @@ For example [QnA maker](bot-builder-howto-qna.md) is designed to handle certain 
 
 持續追蹤狀態是 Bot 中很重要的一環，特別是針對複雜的工作更是如此。 一般而言，最佳做法是盡可能地快速處理活動，然後讓處理程序完成，如此狀態才會進入保存狀態。 活動可能近乎同時傳送給您的 Bot，而由於非同步架構的關係，可能造成非常令人困惑的錯誤 (Bug)。
 
-因此，最重要的是，務必確定保存的狀態符合您預期的狀態。 根據您保存的狀態的位置，適用於 [Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator) 和 [Azure 表格儲存體](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator)的儲存體模擬器有助於您在使用生產環境儲存體之前先驗證該狀態。
+因此，最重要的是，務必確定保存的狀態符合您預期的狀態。 根據您保存的狀態的位置，適用於 [Cosmos DB](https://docs.microsoft.com/azure/cosmos-db/local-emulator) 和 [Azure 表格儲存體](https://docs.microsoft.com/azure/storage/common/storage-use-emulator)的儲存體模擬器有助於您在使用生產環境儲存體之前先驗證該狀態。
 
 ### <a name="how-to-use-activity-handlers"></a>如何使用活動處理常式
 
@@ -117,9 +117,9 @@ _send activity_ 方法，以及其處理常式，會造成一個特有的問題�
 
 ## <a name="additional-resources"></a>其他資源
 
-* [Visual Studio 偵錯](https://docs.microsoft.com/en-us/visualstudio/debugger/index)
-* 針對 Bot Framework 進行[偵錯、追蹤與分析](https://docs.microsoft.com/en-us/dotnet/framework/debug-trace-profile/) \(機器翻譯\)
-* 針對您不想在生產環境程式碼中納入的方法使用 [ConditionalAttribute](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.conditionalattribute?view=netcore-2.0) \(英文\)
+* [Visual Studio 偵錯](https://docs.microsoft.com/visualstudio/debugger/index)
+* 針對 Bot Framework 進行[偵錯、追蹤與分析](https://docs.microsoft.com/dotnet/framework/debug-trace-profile/) \(機器翻譯\)
+* 針對您不想在生產環境程式碼中納入的方法使用 [ConditionalAttribute](https://docs.microsoft.com/dotnet/api/system.diagnostics.conditionalattribute?view=netcore-2.0) \(英文\)
 * 使用如 [Fiddler](https://www.telerik.com/fiddler) \(英文\) 的工具查看網路流量
 * [Bot 工具存放庫](https://github.com/Microsoft/botbuilder-tools) \(英文\)
 * 有助於進行測試的 Framework，例如 [Moq](https://github.com/moq/moq4) \(英文\)

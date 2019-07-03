@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4fc8ebd1eff03c2b6ac994ff80cb85b341bb7231
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: e019d2d04d843cc0efd5a39135d65fe4cfc022f3
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693666"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404507"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>將自然語言理解新增至您的 Bot
 
@@ -26,7 +26,7 @@ ms.locfileid: "66693666"
 ## <a name="prerequisites"></a>必要條件
 - [LUIS](https://www.luis.ai) 帳戶
 - 本文中的程式碼是以 **Core Bot** 範例為基礎。 您需要 **[CSharp](https://aka.ms/cs-core-sample) 或 [JavaScript](https://aka.ms/js-core-sample)** 中的一份範例。 
-- [Bot 基本概念](bot-builder-basics.md)、[自然語言處理](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/what-is-luis)和 [管理 Bot 資源](bot-file-basics.md)的知識。
+- [Bot 基本概念](bot-builder-basics.md)、[自然語言處理](https://docs.microsoft.com/azure/cognitive-services/luis/what-is-luis)和 [管理 Bot 資源](bot-file-basics.md)的知識。
 
 ## <a name="about-this-sample"></a>關於此範例
 
@@ -70,8 +70,8 @@ ms.locfileid: "66693666"
 1. 選取 [匯入新的應用程式]  。 
 1. 按一下 [選擇應用程式檔案 (JSON 格式)...]  
 1. 選取 `FlightBooking.json` 檔案，該檔案位於範例的 `CognitiveModels` 資料夾中。 在 [選擇性名稱]  中，輸入 **FlightBooking**。 此檔案包含三個意圖：[預訂航班]、[取消] 和 [無]。 我們將使用這些意圖，了解使用者將訊息傳送給 Bot 時的用意。
-1. [訓練](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-how-to-train)應用程式。
-1. 將應用程式[發佈](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)到「生產」  環境。
+1. [訓練](https://docs.microsoft.com/azure/cognitive-services/LUIS/luis-how-to-train)應用程式。
+1. 將應用程式[發佈](https://docs.microsoft.com/azure/cognitive-services/LUIS/publishapp)到「生產」  環境。
 
 ### <a name="why-use-entities"></a>為何使用實體
 LUIS 實體可讓 Bot 以智慧方式了解與標準意圖不同的特定事項或事件。 這可讓您向使用者收集額外資訊，進而讓 Bot 更聰明地回應，或可能略過要求使用者提供該資訊的某些問題。 除了三個 LUIS 意圖 [預訂航班]、[取消] 和 [無] 的定義，FlightBooking.json 檔案還包含一組實體，例如 'From.Airport' 和 'To.Airport'。 這些實體可讓 LUIS 偵測使用者原始輸入內含的其他資訊，並且在使用者要求新的旅行預約時傳回這些資訊。
@@ -102,7 +102,7 @@ settings 檔案 (`appsettings.json` 或 `.env`) 檔案可作為將所有服務�
 
 將存取 LUIS 應用程式所需的資訊 (包括應用程式識別碼、撰寫金鑰和區域) 新增至 `.env` 檔案中。 這些是您先前從已發佈的 LUIS 應用程式儲存的值。 請注意，API 主機名稱應該採用 `<your region>.api.cognitive.microsoft.com` 格式。
 
-**.env**
+**.env**  
 [!code[env](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/.env?range=1-5)]
 
 ---

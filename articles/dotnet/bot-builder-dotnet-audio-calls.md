@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 72b2c42acb4743c67c63f158fa37c2bdd0e09ab9
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 621be0d3fe785cfdd51e9bd5c864b9bc4f60d8ad
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563937"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464429"
 ---
 # <a name="conduct-audio-calls-with-skype"></a>使用 Skype 進行音訊通話
 
@@ -55,7 +55,7 @@ public class CallingController : ApiController
 > [!NOTE]
 > 除了支援音訊通話的 `CallingController` 以外，Bot 也可包含 `MessagesController` 以支援訊息。 同時使用這兩個選項，可讓使用者選擇其偏好的方式與 Bot 互動。 <!-- docs on MessagesController are where? -->
 
-##  <a name="answer-the-call"></a>接聽來電
+## <a name="answer-the-call"></a>接聽來電
 
 每當使用者用 Skype 起始與此 Bot 的通話時，就會執行 `ProcessIncomingCallAsync` 工作。
 建構函式會註冊 `IVRBot` 類別，其中包含為 `incomingCallEvent` 預先定義的處理常式。

@@ -1,12 +1,12 @@
 ---
-ms.openlocfilehash: 4b5181babf728861107a0c7bc28f844491761a7a
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 117f95799df0abbe957000d4979b10f05baf262c
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033882"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405528"
 ---
-開始部署之前，確定您有最新版的 [Azure cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) 和 [dotnet cli](https://dotnet.microsoft.com/download)。 如果您沒有 dotnet cli，請從上面提供的連結使用 .Net Core Runtime 選項安裝。 
+開始部署之前，確定您有最新版的 [Azure cli](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest) 和 [dotnet cli](https://dotnet.microsoft.com/download)。 如果您沒有 dotnet cli，請從上面提供的連結使用 .Net Core Runtime 選項安裝。 
 
 ### <a name="login-to-azure-cli-and-set-your-subscription"></a>登入 Azure CLI 並設定訂用帳戶
 您已在本機建立及測試 Bot，而現在想要將其部署至 Azure。 開啟命令提示字元以登入 Azure 入口網站。
@@ -47,7 +47,7 @@ az group create --name <resource-group-name> --location <geographic-location> --
 #### <a name="msa-email-account"></a>MSA 電子郵件帳戶
 如果您使用 MSA 電子郵件帳戶，則必須在應用程式註冊入口網站上建立應用程式識別碼和應用程式密碼，以搭配 `az bot create` 命令使用。
 1. 移至[**應用程式註冊入口網站**](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)。
-1. 按一下 [新增應用程式] 以註冊您的應用程式、建立 **Application-id**，以及**產生新密碼**。 如果您已經有應用程式和密碼，但不記得密碼，則必須在應用程式祕密區段中產生新密碼。
+1. 按一下 [新增應用程式]  以註冊您的應用程式、建立 **Application-id**，以及**產生新密碼**。 如果您已經有應用程式和密碼，但不記得密碼，則必須在應用程式祕密區段中產生新密碼。
 1. 儲存應用程式識別碼和您剛產生的新密碼，讓您能用來搭配 `az bot create` 命令。  
 
 ```cmd

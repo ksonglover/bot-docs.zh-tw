@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e195f83eefd5f162b74f8891f3b174efc8934700
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f8b64e5705085af5b00de6a3c00059dbdea24cb9
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997962"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405761"
 ---
 # <a name="bot-scenarios"></a>Bot 案例
 
@@ -44,7 +44,7 @@ Bot 會與 Office 365 整合，以便更快速且更輕鬆地建立與其他人�
 ## <a name="iot-bot-scenario"></a>IoT Bot 案例
 這個[物聯網 (IoT) Bot](bot-service-scenario-internet-things.md) 可讓您輕鬆地使用互動式聊天命令控制住家內的裝置，例如 Philips Hue 燈光。
 
-您可以使用這個簡單的 Bot，搭配免費的 If This Then That (IFTTT) 服務來控制 Philips Hue 燈光。 身為 IoT 裝置，Philips Hue 可透過其公開的 API 在本機進行控制。 不過，此 API 並未公開用於從本機網路外部所進行的一般存取。 不過，IFTTT 是 "[Friend of Hue](http://www2.meethue.com/en-us/friends-of-hue/ifttt/)"，因此，已公開多個您可以發出的控制命令，例如，開燈和關燈、變更燈色或光源強度。
+您可以使用這個簡單的 Bot，搭配免費的 If This Then That (IFTTT) 服務來控制 Philips Hue 燈光。 身為 IoT 裝置，Philips Hue 可透過其公開的 API 在本機進行控制。 不過，此 API 並未公開用於從本機網路外部所進行的一般存取。 不過，IFTTT 是 "[Friend of Hue](http://www2.meethue.com/friends-of-hue/ifttt/)"，因此，已公開多個您可以發出的控制命令，例如，開燈和關燈、變更燈色或光源強度。
 
 ## <a name="next-steps"></a>後續步驟
 您現已大致了解各種案例，接下來請深入了解每個案例。

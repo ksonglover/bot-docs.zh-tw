@@ -1,13 +1,13 @@
 ---
-ms.openlocfilehash: 7b065c8adf97b83454ee3dedf25a4bc3623c1db4
-ms.sourcegitcommit: 4ff7a8772124a567f43e2c3e13aded368c4002e3
+ms.openlocfilehash: 2f970239f7df015bf38d163dd6442a9920b21115
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65035683"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405578"
 ---
 - 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/) 。
-- 安裝最新版的 [Azure CLI 工具](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)。
+- 安裝最新版的 [Azure CLI 工具](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest)。
 - 安裝最新版的 [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/MSBot) 工具。
 - 安裝 [Bot Framework Emulator](https://aka.ms/Emulator-wiki-getting-started) 的最新發行版本。
 - 安裝及設定 [ngrok](https://github.com/Microsoft/BotFramework-Emulator/wiki/Tunneling-%28ngrok%29)。 

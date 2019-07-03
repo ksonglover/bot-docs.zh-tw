@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5c2b8832401ccc9260c9aa872c0848b3a3e8445b
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 34f2cb79d4dcef9ddb68c6de0333a94b4128b301
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225713"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404707"
 ---
 # <a name="manage-custom-state-data-with-azure-table-storage-for-nodejs"></a>使用適用於 Node.js 的 Azure 資料表儲存體管理自訂狀態資料
 
@@ -37,14 +37,14 @@ ms.locfileid: "54225713"
 - [儲存體總管](http://storageexplorer.com/)。
 
 ## <a name="create-azure-account"></a>建立 Azure 帳戶
-如果您沒有 Azure 帳戶，請按一下[這裡](https://azure.microsoft.com/en-us/free/)註冊免費帳戶。
+如果您沒有 Azure 帳戶，請按一下[這裡](https://azure.microsoft.com/free/)註冊免費帳戶。
 
 ## <a name="set-up-the-azure-table-storage-service"></a>設定 Azure 資料表儲存體服務
-1. 在您登入 Azure 入口網站之後，請按一下 [新增] 以建立新的 Azure 表格儲存體服務。 
-2. 搜尋實作 Azure 資料表的**儲存體帳戶**。 按一下 [建立] 開始建立儲存體帳戶。 
-3. 填寫欄位，按一下畫面底部的 [建立] 按鈕來部署新的儲存體服務。 
-4. 部署新的儲存體服務之後，巡覽至您剛才建立的儲存體帳戶。 您會發現它列在 [儲存體帳戶] 刀鋒視窗中。
-4. 選取 [存取金鑰]，並複製該金鑰供稍後使用。 您的 Bot 會使用 [儲存體帳戶名稱] 和 [金鑰] 來呼叫儲存體服務以儲存狀態資料。
+1. 在您登入 Azure 入口網站之後，請按一下 [新增]  以建立新的 Azure 表格儲存體服務。 
+2. 搜尋實作 Azure 資料表的**儲存體帳戶**。 按一下 [建立]  開始建立儲存體帳戶。 
+3. 填寫欄位，按一下畫面底部的 [建立]  按鈕來部署新的儲存體服務。 
+4. 部署新的儲存體服務之後，巡覽至您剛才建立的儲存體帳戶。 您會發現它列在 [儲存體帳戶]  刀鋒視窗中。
+4. 選取 [存取金鑰]  ，並複製該金鑰供稍後使用。 您的 Bot 會使用 [儲存體帳戶名稱]  和 [金鑰]  來呼叫儲存體服務以儲存狀態資料。
 
 ## <a name="install-botbuilder-azure-module"></a>安裝 botbuilder-azure 模組
 
@@ -71,7 +71,7 @@ npm install --save botbuilder-azure
    var storageName = "Table-Storage-Name"; // Obtain from Azure Portal
    var storageKey = "Azure-Table-Key"; // Obtain from Azure Portal
    ```
-   `storageName` 和 `storageKay` 值可在 Azure 資料表的 [存取金鑰] 功能表中找到。 如果 `tableName` 不存在於 Azure 資料表中，則會為您建立。
+   `storageName` 和 `storageKay` 值可在 Azure 資料表的 [存取金鑰]  功能表中找到。 如果 `tableName` 不存在於 Azure 資料表中，則會為您建立。
 
 3. 使用 `botbuilder-azure` 模組，建立兩個新的物件以連線至 Azure 資料表。 首先，建立傳入連線組態設定的 `AzureTableClient` 執行個體。 接下來，建立傳入 `AzureTableClient` 物件的 `AzureBotStorage` 執行個體。 例如︰
 
@@ -114,15 +114,15 @@ node app.js
 
 1. 將 <strong>http://localhost:port-number/api/messages</strong> 鍵入模擬器的網址列，其中連接埠號碼必須符合應用程式執行所在之瀏覽器中顯示的連接埠號碼。 您目前可以將 <strong>Microsoft 應用程式識別碼</strong>和 <strong>Microsoft 應用程式密碼</strong>欄位留白。 稍後[註冊 Bot](~/bot-service-quickstart-registration.md) 時，您會取得這些資訊。
 2. 按一下 [ **連接**]。
-3. 傳送訊息給 Bot，藉此測試您的 Bot。 像平常一樣，與 Bot 互動。 完成後，請前往 [儲存體總管] 並檢視已儲存的狀態資料。
+3. 傳送訊息給 Bot，藉此測試您的 Bot。 像平常一樣，與 Bot 互動。 完成後，請前往 [儲存體總管]  並檢視已儲存的狀態資料。
 
 ## <a name="view-data-in-storage-explorer"></a>在 [儲存體總管] 中檢視資料
 
-若要檢視狀態資料，請開啟 [儲存體總管] 並使用 Azure 入口網站認證連線至 Azure，或使用 `storageName` 和 `storageKey` 直接連線至表格，然後巡覽至您的 `tableName`。 
+若要檢視狀態資料，請開啟 [儲存體總管]  並使用 Azure 入口網站認證連線至 Azure，或使用 `storageName` 和 `storageKey` 直接連線至表格，然後巡覽至您的 `tableName`。 
 
 ![含有 botdata 資料表資料列之 [儲存體總管] 的螢幕擷取畫面](~/media/bot-builder-nodejs-state-azure-table-storage/bot-builder-nodejs-state-azure-table-storage-query.png)
 
-[資料] 資料行中交談的一筆記錄如下所示：
+[資料]  資料行中交談的一筆記錄如下所示：
 
 ```JSON
 {

@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: a049d77d506fa3fa678a079de52aa424264847c9
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 288fde1d8c4333256b956b270fe37a56217632ca
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997045"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404649"
 ---
 # <a name="key-concepts-in-direct-line-api-11"></a>直接線路 API 1.1 中的重要概念
 
@@ -22,7 +22,7 @@ ms.locfileid: "49997045"
 > [!IMPORTANT]
 > 本文介紹直接線路 API 1.1 中的重要概念，並提供相關開發人員資源的資訊。 如果要在用戶端應用程式與 Bot 之間建立新連線，請改為使用[直接線路 API 3.0](bot-framework-rest-direct-line-3-0-concepts.md)。
 
-## <a name="authentication"></a>驗證
+## <a name="authentication"></a>Authentication
 
 直接線路 API 1.1 要求可以使用您從 <a href="https://dev.botframework.com/" target="_blank">Bot Framework 入口網站</a> \(英文\) 中的 直接線路頻道設定頁面取得的**祕密**來驗證，或使用您在執行階段取得的**權杖**來驗證。  如需詳細資訊，請參閱[驗證](bot-framework-rest-direct-line-1-1-authentication.md)。
 
@@ -44,7 +44,7 @@ ms.locfileid: "49997045"
 
 Bot Framework 提供用戶端程式庫，有助於透過 C# 存取直接線路 API 1.1。 若要在 Visual Studio 專案中使用用戶端程式庫，請安裝 `Microsoft.Bot.Connector.DirectLine` <a href="https://www.nuget.org/packages/Microsoft.Bot.Connector.DirectLine/1.1.1" target="_blank">v1.x NuGet 套件</a> \(英文\)。 
 
-除了使用 C# 用戶端程式庫之外，您也可以使用<a href="https://docs.botframework.com/en-us/restapi/directline/swagger.json" target="_blank">直接線路 API 1.1 Swagger 檔案</a>以所選的語言產生自己的用戶端程式庫。
+除了使用 C# 用戶端程式庫之外，您也可以使用<a href="https://docs.botframework.com/restapi/directline/swagger.json" target="_blank">直接線路 API 1.1 Swagger 檔案</a>以所選的語言產生自己的用戶端程式庫。
 
 ### <a name="web-chat-control"></a>Web 聊天控制項 
 

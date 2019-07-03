@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 1/28/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e0ffb9c24b5e85b0eb1afdd885654e4864e65939
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: ee1e8c660eae27efae5c18b1392ff68d716f73da
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032934"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405645"
 ---
 # <a name="create-data-driven-experiences-with-azure-search"></a>使用 Azure 搜尋服務建立資料驅動體驗 
 
@@ -24,7 +24,7 @@ ms.locfileid: "65032934"
 > - [.NET](../dotnet/bot-builder-dotnet-search-azure.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-search-azure.md)
 
-您可以將 [Azure 搜尋服務](https://azure.microsoft.com/en-us/services/search/)新增至 Bot，以協助使用者瀏覽大量內容並建立資料驅動的探索體驗。
+您可以將 [Azure 搜尋服務](https://azure.microsoft.com/services/search/)新增至 Bot，以協助使用者瀏覽大量內容並建立資料驅動的探索體驗。
 
 Azure 搜尋服務是一項 Azure 服務，可提供關鍵字搜尋、內建語言、自訂評分、多面向導覽等等。 Azure 搜尋服務也可以對各種來源 (包括 Azure SQL DB、DocumentDB、Blob 儲存體和表格儲存體) 的內容編製索引。 它支援「推送」其他資料來源的編製索引，而且可以開啟 PDF、Office 文件，以及其他包含非結構化資料的格式。 收集後，內容就會進入 Azure 搜尋服務索引，然後 Bot 就可加以查詢。
 

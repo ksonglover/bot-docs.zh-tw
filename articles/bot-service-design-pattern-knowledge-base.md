@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 12/13/2017
-ms.openlocfilehash: 6820815f251c38c59391f1e0e7719e52a375ed48
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 4e73a56eb94207de49d8684c4db26155554820f3
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224903"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405856"
 ---
 # <a name="design-knowledge-bots"></a>設計知識型 Bot
 
@@ -57,7 +57,7 @@ ms.locfileid: "54224903"
 
 ### <a name="azure-search"></a>Azure 搜尋服務
 
-透過 <a href="https://azure.microsoft.com/en-us/services/search/" target="_blank">Azure 搜尋服務</a>，您可建立有效率的搜尋索引，讓 Bot 輕鬆搜尋、利用 Facet 過濾資料和篩選。 考慮使用 Azure 入口網站建立的搜尋索引。
+透過 <a href="https://azure.microsoft.com/services/search/" target="_blank">Azure 搜尋服務</a>，您可建立有效率的搜尋索引，讓 Bot 輕鬆搜尋、利用 Facet 過濾資料和篩選。 考慮使用 Azure 入口網站建立的搜尋索引。
 
 ![對話方塊結構](~/media/bot-service-design-pattern-knowledge-base/search3.PNG)
 
@@ -78,7 +78,7 @@ Facet 功能可針對指定屬性判斷存在於資料存放區中的值，以�
 ## <a name="qna-maker"></a>QnA Maker
 
 有些知識型 Bot 的功能僅單純回答常見問題集 (FAQ)。 
-<a href="https://www.microsoft.com/cognitive-services/en-us/qnamaker" target="_blank">QnA Maker</a> 是功能強大的工具，專用於此使用案例。 QnA Maker 的內建功能可從現有的常見問題集網站抓取問答，此外還可讓您手動配置專屬的自訂問答清單。 QnA Maker 支援自然語言處理功能，甚至可針對用字與預期有些微不同的問題提供回答。 不過，其並無語意語言理解能力。 舉例來說，QnA Maker 就無法判斷「幼犬 (puppy)」是「狗 (dog)」的一種。 
+<a href="https://www.microsoft.com/cognitive-services/qnamaker" target="_blank">QnA Maker</a> 是功能強大的工具，專用於此使用案例。 QnA Maker 的內建功能可從現有的常見問題集網站抓取問答，此外還可讓您手動配置專屬的自訂問答清單。 QnA Maker 支援自然語言處理功能，甚至可針對用字與預期有些微不同的問題提供回答。 不過，其並無語意語言理解能力。 舉例來說，QnA Maker 就無法判斷「幼犬 (puppy)」是「狗 (dog)」的一種。 
 
 使用 QnA Maker Web 介面，您即可設定具有三組問答的知識庫： 
 
@@ -130,7 +130,7 @@ Bot 可正確回答直接對應至知識庫中已經配置的問題。 不過，
 2. 先呼叫 LUIS，如果沒有任何意圖符合特定閾值分數 (即觸發「無」意圖)，則呼叫 QnA Maker。 或者，針對 QnA Maker 建立 LUIS 意圖，並使用對應至「QnAIntent」的範例 QnA 問題饋送至 LUIS 模型。 
 3. 先呼叫 QnA Maker，如果沒有任何答案符合特定閾值分數，則呼叫 LUIS。 
 
-Bot Framework SDK 具備 LUIS 和 QnA Maker 內建支援。 此可讓您觸發對話方塊，或使用 LUIS 和/或 QnA Maker 自動回答問題，而無須實作這兩項工具的自訂呼叫。 如需詳細資訊，請參閱[分派工具教學課程](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0)。
+Bot Framework SDK 具備 LUIS 和 QnA Maker 內建支援。 此可讓您觸發對話方塊，或使用 LUIS 和/或 QnA Maker 自動回答問題，而無須實作這兩項工具的自訂呼叫。 如需詳細資訊，請參閱[分派工具教學課程](https://docs.microsoft.com/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0)。
 
 > [!TIP]
 > 實作 LUIS、QnA Maker 和/或 Azure 搜尋服務組合時，使用每項工具測試輸入，以判斷每個模型的閾值分數。 LUIS、QnA Maker 和 Azure 搜尋服務會各自使用不同的評分條件來產生分數，因此這些工具產生的分數不一定相容。 此外，LUIS 和 QnA Maker 會標準化分數。 在 LUIS 模型中視為「良好」的分數，在其他模型不一定分類到「良好」。 
@@ -142,4 +142,4 @@ Bot Framework SDK 具備 LUIS 和 QnA Maker 內建支援。 此可讓您觸發�
 - For a sample that shows how to create more complex knowledge bots using the Bot Framework SDK for .NET, see the <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-Search" target="_blank">Search-powered Bots sample</a> in GitHub.
 -->
 
-[qnamakerTemplate]: https://docs.botframework.com/en-us/azure-bot-service/templates/qnamaker/#navtitle
+[qnamakerTemplate]: https://docs.botframework.com/azure-bot-service/templates/qnamaker/#navtitle

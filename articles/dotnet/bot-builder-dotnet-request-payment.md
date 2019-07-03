@@ -7,14 +7,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/17
+ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f9e693d8bd5aad03930259422939f5572a22ff0a
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 1b27cbc9a901318a4e1b050720fb9f8b230f9e75
+ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563700"
+ms.lasthandoff: 07/01/2019
+ms.locfileid: "67496653"
 ---
 # <a name="request-payment"></a>要求付款
 
@@ -41,7 +41,7 @@ ms.locfileid: "64563700"
 
 1. <a href="https://dashboard.stripe.com/register" target="_blank">如果您還沒有 Stripe 帳戶，請建立並啟用一個帳戶。</a>
 
-2. <a href="https://seller.microsoft.com/en-us/dashboard/registration/seller/?accountprogram=botframework" target="_blank">使用您的 Microsoft 帳戶登入賣方中心。</a>
+2. <a href="https://seller.microsoft.com/dashboard/registration/seller/?accountprogram=botframework" target="_blank">使用您的 Microsoft 帳戶登入賣方中心。</a>
 
 3. 在賣方中心內，連結您的帳戶與 Stripe。
 
@@ -62,22 +62,22 @@ ms.locfileid: "64563700"
 
 ## <a id="request-payment"></a> 要求付款
 
-Bot 可藉由傳送一則包含[豐富資訊卡附件](bot-builder-dotnet-add-rich-card-attachments.md)的訊息來向使用者要求付款，其中有一個指定 `CardAction.Type` 為「付款」的按鈕。 **付款 Bot** 範例中的這個程式碼片段會建立一則包含主圖卡的訊息，其中有一個 [購買] 按鈕，使用者按一下 (或點選) 該按鈕即可起始付款程序。 
+Bot 可藉由傳送一則包含[豐富資訊卡附件](bot-builder-dotnet-add-rich-card-attachments.md)的訊息來向使用者要求付款，其中有一個指定 `CardAction.Type` 為「付款」的按鈕。 **付款 Bot** 範例中的這個程式碼片段會建立一則包含主圖卡的訊息，其中有一個 [購買]  按鈕，使用者按一下 (或點選) 該按鈕即可起始付款程序。 
 
 [!code-csharp[Request payment](../includes/code/dotnet-request-payment.cs#requestPayment)]
 
 在此範例中，按鈕的類型會指定為 `PaymentRequest.PaymentActionType`，而 Bot Builder 程式庫將其定義為「付款」。 此按鈕的值會由 `BuildPaymentRequest` 方法填入，其將傳回 `PaymentRequest` 物件，當中包含支援的付款方式、詳細資料和選項相關資訊。 如需有關實作詳情的詳細資訊，請參閱<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/sample-payments" target="_blank">付款 Bot</a> 範例中的 **Dialogs/RootDialog.cs**。
 
-此螢幕擷取畫面會顯示由上述程式碼片段所產生的主圖卡 (具有 [購買] 按鈕)。 
+此螢幕擷取畫面會顯示由上述程式碼片段所產生的主圖卡 (具有 [購買]  按鈕)。 
  
 ![付款範例 Bot](../media/payments-bot-buy.png) 
 
 > [!IMPORTANT]
-> 只要使用者可存取 [購買] 按鈕，就可以透過該按鈕起始付款程序。 在群組對話的內容中，不可能指定一個按鈕，僅供特定使用者使用。 
+> 只要使用者可存取 [購買]  按鈕，就可以透過該按鈕起始付款程序。 在群組對話的內容中，不可能指定一個按鈕，僅供特定使用者使用。 
 
 ## <a id="user-experience"></a> 使用者體驗
 
-使用者按一下 [購買] 按鈕後，系統會將其導向至付款 Web 體驗，以透過其 Microsoft 帳戶提供所有必要的付款、運送及連絡人資訊。 
+使用者按一下 [購買]  按鈕後，系統會將其導向至付款 Web 體驗，以透過其 Microsoft 帳戶提供所有必要的付款、運送及連絡人資訊。 
 
 ![Microsoft 付款](../media/microsoft-payment.png)
 

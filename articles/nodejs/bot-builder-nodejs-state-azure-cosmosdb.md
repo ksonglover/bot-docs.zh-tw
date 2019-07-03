@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 92672e9d9ca9949da1ce4741bdc71bc809d982f7
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 67e86455aefd000c8a6956a71adcfdb821266196
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224513"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404337"
 ---
 # <a name="manage-custom-state-data-with-azure-cosmos-db-for-nodejs"></a>使用適用於 Node.js 的 Azure Cosmos DB 管理自訂狀態資料
 
@@ -36,14 +36,14 @@ ms.locfileid: "54224513"
 - 必須具備 Node.js Bot。 如果沒有，請[建立一個 Bot](bot-builder-nodejs-quickstart.md)。 
 
 ## <a name="create-azure-account"></a>建立 Azure 帳戶
-如果您沒有 Azure 帳戶，請按一下[這裡](https://azure.microsoft.com/en-us/free/)註冊免費帳戶。
+如果您沒有 Azure 帳戶，請按一下[這裡](https://azure.microsoft.com/free/)註冊免費帳戶。
 
 ## <a name="set-up-the-azure-cosmos-db-database"></a>設定 Azure Cosmos DB 資料庫
-1. 在您登入 Azure 入口網站之後，按一下 [新增] 以建立新的 *Azure Cosmos DB* 資料庫。 
-2. 按一下 [資料庫]。 
-3. 找到 **Azure Cosmos DB**，然後按一下 [建立]。
-4. 填寫欄位。 如果是 [**API**] 欄位，請選取 [**SQL (DocumentDB)**]。 填妥所有欄位後，按一下畫面底部的 [建立] 按鈕來部署新的資料庫。 
-5. 新資料庫部署完畢後，接著瀏覽至新資料庫。 按一下 [存取金鑰] 以尋找金鑰和連接字串。 您的 Bot 會使用此資訊來呼叫儲存體服務以儲存狀態資料。
+1. 在您登入 Azure 入口網站之後，按一下 [新增]  以建立新的 *Azure Cosmos DB* 資料庫。 
+2. 按一下 [資料庫]  。 
+3. 找到 **Azure Cosmos DB**，然後按一下 [建立]  。
+4. 填寫欄位。 如果是 [**API**] 欄位，請選取 [**SQL (DocumentDB)** ]。 填妥所有欄位後，按一下畫面底部的 [建立]  按鈕來部署新的資料庫。 
+5. 新資料庫部署完畢後，接著瀏覽至新資料庫。 按一下 [存取金鑰]  以尋找金鑰和連接字串。 您的 Bot 會使用此資訊來呼叫儲存體服務以儲存狀態資料。
 
 ## <a name="install-botbuilder-azure-module"></a>安裝 botbuilder-azure 模組
 
@@ -110,7 +110,7 @@ node app.js
 
 ## <a name="view-state-data-on-azure-portal"></a>檢視 Azure 入口網站的狀態資料
 
-若要檢視狀態資料，請登入 Azure 入口網站並瀏覽至您的資料庫。 按一下 [**資料總管 (預覽)**] 以確認正在儲存的 Bot 狀態資訊。
+若要檢視狀態資料，請登入 Azure 入口網站並瀏覽至您的資料庫。 按一下 [**資料總管 (預覽)** ] 以確認正在儲存的 Bot 狀態資訊。
 
 ## <a name="next-step"></a>後續步驟
 

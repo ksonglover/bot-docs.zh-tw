@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: bb7520e8e99ad6326d7d00d8190dae306bf11afa
-ms.sourcegitcommit: 4ff7a8772124a567f43e2c3e13aded368c4002e3
+ms.sourcegitcommit: a47183f5d1c2b2454c4a06c0f292d7c075612cdd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65035750"
+ms.lasthandoff: 06/19/2019
+ms.locfileid: "67252596"
 ---
 將本機 Bot 發佈至 Azure。 這個步驟可能需要一些時間。
 
@@ -15,7 +15,7 @@ az bot publish --name <bot-resource-name> --proj-file-path "<project-file-name>"
 | 選項 | 說明 |
 |:---|:---|
 | --name | Azure 中的 Bot 資源名稱。 |
-| --proj-file-path | 對於 C#，使用需要發佈的啟動專案檔名 (不含 .csproj)。 例如： `EnterpriseBot` 。 對於 Node.js，使用 Bot 的主要進入點。 例如： `index.js`。 |
+| --proj-file-path | 對於 C#，使用需要發佈的啟動專案檔名 (不含 .csproj)。 例如： `EnterpriseBot` 。 對於 Node.js，使用 Bot 的主要進入點。 例如： `index.js` 。 |
 | --resource-group | 資源群組的名稱。 |
 | --code-dir | 要從中上傳 Bot 程式碼的目錄。 |
 

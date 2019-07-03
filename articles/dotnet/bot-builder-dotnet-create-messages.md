@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 96a0c63575b1e77418262a22050013413f39141f
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: eaebb40e7b0e57966f0eb06c6d0108f6db1b62ff
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225913"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405668"
 ---
 # <a name="create-messages"></a>建立訊息
 
@@ -26,7 +26,7 @@ ms.locfileid: "54225913"
 
 ## <a name="customizing-a-message"></a>自訂訊息
 
-若要更充分地掌控訊息的文字格式設定，您可以先使用 [Activity](https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html) 物件建立自訂訊息並設定所需屬性，再將此物件傳送給使用者。
+若要更充分地掌控訊息的文字格式設定，您可以先使用 [Activity](https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html) 物件建立自訂訊息並設定所需屬性，再將此物件傳送給使用者。
 
 下列範例說明如何建立自訂 `message` 物件，並設定 `Text`、`TextFormat` 和 `Local` 屬性。
 
@@ -127,6 +127,6 @@ Bot 和使用者可以互相傳送訊息。 如果訊息較為複雜，Bot 可�
 - [將語音新增至訊息](bot-builder-dotnet-text-to-speech.md)
 - [將建議的動作新增至訊息](bot-builder-dotnet-add-suggested-actions.md)
 - [實作通道特有功能](bot-builder-dotnet-channeldata.md)
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a>
+- <a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a>
 - <a href="/dotnet/api/microsoft.bot.connector.imessageactivity" target="_blank">IMessageActivity 介面</a>
 

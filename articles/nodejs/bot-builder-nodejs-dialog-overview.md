@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: dfa52914b3f0a2e81f4ff3a2f90c7404bfe53d4a
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: f0b933a5bdcea5090ede1b2f589cd69f9e681757
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225993"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405014"
 ---
 # <a name="dialogs-in-the-bot-framework-sdk-for-nodejs"></a>適用於 Node.js 的 Bot Framework SDK 中的對話
 
@@ -53,7 +53,7 @@ Bot 會透過一系列在對話堆疊上維護的對話來與使用者互動。 
 在 Bot Framework 3.5 版之前，*根*對話是藉由新增名為 `/` 的對話來定義，這導致命名慣例會與 URL 的類似。 此命名慣例並不適合用來為對話命名。 
 
 > [!NOTE]
-> 從 Bot Framework 3.5 版開始，*預設對話*會註冊為 [`UniversalBot`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#constructor) \(英文\) 之建構函式中的第二個參數。  
+> 從 Bot Framework 3.5 版開始，*預設對話*會註冊為 [`UniversalBot`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#constructor) \(英文\) 之建構函式中的第二個參數。  
 
 下列程式碼片段會示範如何在建立 `UniversalBot` 物件時定義預設對話。
 
@@ -71,7 +71,7 @@ var bot = new builder.UniversalBot(connector, [
 
 ## <a name="starting-and-ending-dialogs"></a>開始和結束對話
 
-若要開始新的對話 (並將它推送到堆疊上)，請使用 [`session.beginDialog()`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#begindialog) \(英文\)。 若要結束對話 (並將它從堆疊中移除，然後將控制權還給呼叫對話)，請使用 [`session.endDialog()`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#enddialog) \(英文\) 或 [`session.endDialogWithResult()`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#enddialogwithresult) \(英文\)。 
+若要開始新的對話 (並將它推送到堆疊上)，請使用 [`session.beginDialog()`](http://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#begindialog) \(英文\)。 若要結束對話 (並將它從堆疊中移除，然後將控制權還給呼叫對話)，請使用 [`session.endDialog()`](http://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#enddialog) \(英文\) 或 [`session.endDialogWithResult()`](http://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#enddialogwithresult) \(英文\)。 
 
 ## <a name="using-waterfalls-and-prompts"></a>使用瀑布圖和提示
 

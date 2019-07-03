@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 69ce362f35054c5ee42035d8bffefb17c6fa7f71
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 0e0fe51e33e99bbb35ef1d731b611ff9ca12a138
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215500"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404308"
 ---
 # <a name="activity-processing"></a>活動處理
 
@@ -23,7 +23,7 @@ ms.locfileid: "66215500"
 
 Bot 和使用者會透過活動來互動並交換資訊。 Bot 應用程式收到的每個活動都會傳遞至 Bot 介面卡，而其可將活動資訊傳遞給 Bot 邏輯，最終再傳送回應給使用者。 接收活動與透過 Bot 的後續處理，稱為一回合；這代表 Bot 的一個完整的週期。 完成所有的執行、活動已完全處理，並且 Bot 的所有層級均已完成時，即為一輪結束。
 
-系統將以非同步方式處理活動，特別是在 Bot 回合期間[從 Bot 傳送](#generating-responses)的活動。 其為建置 Bot 的必要部分；如果您想要溫習所有作業的運作方式，請選擇您適用的語言，並參閱 [.NET 非同步](https://docs.microsoft.com/en-us/dotnet/csharp/async)或 [JavaScript 非同步](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)。
+系統將以非同步方式處理活動，特別是在 Bot 回合期間[從 Bot 傳送](#generating-responses)的活動。 其為建置 Bot 的必要部分；如果您想要溫習所有作業的運作方式，請選擇您適用的語言，並參閱 [.NET 非同步](https://docs.microsoft.com/dotnet/csharp/async)或 [JavaScript 非同步](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/async_function)。
 
 ## <a name="the-bot-adapter"></a>Bot 介面卡
 

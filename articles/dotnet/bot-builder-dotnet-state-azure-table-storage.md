@@ -8,12 +8,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d5d6dc4e635b41424dfee0e260a769f9ed5f595d
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 05ab8f9148cd520be266d9340cd65a9903bf6e23
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225783"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405625"
 ---
 # <a name="manage-custom-state-data-with-azure-table-storage-for-net"></a>使用適用於 .NET 的 Azure 表格儲存體來管理自訂狀態資料
 
@@ -28,7 +28,7 @@ ms.locfileid: "54225783"
 
 ## <a name="prerequisites"></a>必要條件
 您需要：
- - [Microsoft Azure 帳戶](https://azure.microsoft.com/en-us/free/)
+ - [Microsoft Azure 帳戶](https://azure.microsoft.com/free/)
  - [Visual Studio 2015 或更新版本](https://www.visualstudio.com/)
  - [Bot Builder Azure NuGet 套件](https://www.nuget.org/packages/Microsoft.Bot.Builder.Azure/)
  - [Autofac Web Api2 NuGet 套件](https://www.nuget.org/packages/Autofac.WebApi2/) (英文)
@@ -36,13 +36,13 @@ ms.locfileid: "54225783"
  - [Azure 儲存體總管](http://storageexplorer.com/)
  
 ## <a name="create-azure-account"></a>建立 Azure 帳戶
-如果您沒有 Azure 帳戶，請按一下[這裡](https://azure.microsoft.com/en-us/free/)註冊免費帳戶。
+如果您沒有 Azure 帳戶，請按一下[這裡](https://azure.microsoft.com/free/)註冊免費帳戶。
 
 ## <a name="set-up-the-azure-table-storage-service"></a>設定 Azure 資料表儲存體服務
-1. 在您登入 Azure 入口網站之後，請按一下 [新增] 以建立新的 Azure 表格儲存體服務。 
+1. 在您登入 Azure 入口網站之後，請按一下 [新增]  以建立新的 Azure 表格儲存體服務。 
 2. 搜尋會實作 Azure 表格的**儲存體帳戶**。 
-3. 填寫欄位，按一下畫面底部的 [建立] 按鈕來部署新的儲存體服務。 部署新的儲存體服務之後，它會顯示可用的功能和選項。
-4. 選取左側的 [存取金鑰] 索引標籤，並複製連接字串以供稍後使用。 您的 Bot 會使用此連接字串，來呼叫儲存體服務以儲存狀態資料。
+3. 填寫欄位，按一下畫面底部的 [建立]  按鈕來部署新的儲存體服務。 部署新的儲存體服務之後，它會顯示可用的功能和選項。
+4. 選取左側的 [存取金鑰]  索引標籤，並複製連接字串以供稍後使用。 您的 Bot 會使用此連接字串，來呼叫儲存體服務以儲存狀態資料。
 
 ## <a name="install-nuget-packages"></a>安裝 NuGet 套件
 1. 開啟現有的 C# Bot 專案，或使用 Visual Studio 中的 C# Bot 範本建立新專案。 

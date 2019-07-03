@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservices: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c10e6cda084f22cd4d97fd4ddce942941015733b
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 8aff8c550541304d63db951e8ab6b4c014fc72ac
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215446"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404589"
 ---
 # <a name="debug-your-bot-using-transcript-files"></a>使用文字記錄檔進行 Bot 偵錯
 
@@ -74,4 +74,4 @@ Bot 文字記錄檔是特製化的 JSON 檔案，可保留使用者與 Bot 之�
 * [Bot 測試和偵錯指導方針](./bot-builder-testing-debugging.md)
 * [使用 Bot Framework 模擬器進行偵錯](../bot-service-debug-emulator.md)
 * [針對一般問題進行疑難排解](../bot-service-troubleshoot-bot-configuration.md)以及該區段中的其他疑難排解文章。
-* [Visual Studio 偵錯](https://docs.microsoft.com/en-us/visualstudio/debugger/index)
+* [Visual Studio 偵錯](https://docs.microsoft.com/visualstudio/debugger/index)

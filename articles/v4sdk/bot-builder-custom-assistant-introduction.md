@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f4b8243580ee678390177881b136a9016be4a786
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: eba4ad9ba2fae85fbc2488e5fef8d5a7dac593ee
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215459"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464766"
 ---
 ## <a name="custom-assistant-overview"></a>自訂小幫手概觀
 
@@ -35,17 +35,17 @@ ms.locfileid: "66215459"
 
 ## <a name="complete-ownership-and-control-of-data"></a>完整的資料擁有權和控制權
 
-自訂小幫手將會部署在您的 Azure 訂用帳戶內。 因此，小幫手所產生的所有資料 (詢問的問題、使用者行為等) 會完全包含在您的 Azure 訂用帳戶中。 請參閱[認知服務的 Azure 可信任雲端](https://www.microsoft.com/en-us/trustcenter/cloudservices/cognitiveservices)和[信任中心的 Azure 區段](https://www.microsoft.com/en-us/TrustCenter/CloudServices/Azure)，以更具體地取得詳細資訊。
+自訂小幫手將會部署在您的 Azure 訂用帳戶內。 因此，小幫手所產生的所有資料 (詢問的問題、使用者行為等) 會完全包含在您的 Azure 訂用帳戶中。 請參閱[認知服務的 Azure 可信任雲端](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices)和[信任中心的 Azure 區段](https://www.microsoft.com/TrustCenter/CloudServices/Azure)，以更具體地取得詳細資訊。
 
 ## <a name="your-assistant-anywhere"></a>小幫手無所不在
 
-自訂小幫手會利用 Microsoft 的對話式 AI 平台，因此可以透過任何 Bot Framework [通道](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-manage-channels?view=azure-bot-service-4.0)呈現 – 例如 WebChat、FaceBook Messenger、Skype 等。此外，透過 [Direct Line](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts?view=azure-bot-service-4.0) 通道，我們可以將體驗內嵌至桌面和行動應用程式，包括汽車、喇叭、鬧鐘等裝置。
+自訂小幫手會利用 Microsoft 的對話式 AI 平台，因此可以透過任何 Bot Framework [通道](https://docs.microsoft.com/azure/bot-service/bot-service-manage-channels?view=azure-bot-service-4.0)呈現 – 例如 WebChat、FaceBook Messenger、Skype 等。此外，透過 [Direct Line](https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts?view=azure-bot-service-4.0) 通道，我們可以將體驗內嵌至桌面和行動應用程式，包括汽車、喇叭、鬧鐘等裝置。
 
 ## <a name="built-on-enterprise-grade-technology"></a>以企業級技術為基礎
 
-自訂小幫手解決方案以 Azure Bot 服務、Language Understanding 認知服務、整合語音及一整組支援 Azure 的元件作為基礎，這表示您可以從 [Azure 全域基礎結構](https://azure.microsoft.com/en-gb/global-infrastructure/)中獲益。
+自訂小幫手解決方案以 Azure Bot 服務、Language Understanding 認知服務、整合語音及一整組支援 Azure 的元件作為基礎，這表示您可以從 [Azure 全域基礎結構](https://azure.microsoft.com/global-infrastructure/)中獲益。
 
-此外，Language Understanding 支援由 LUIS 認知服務提供，可支援一整組[此處所列](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-supported-languages)的語言。 [翻譯工具認知服務](https://azure.microsoft.com/en-us/services/cognitive-services/translator-text-api/)提供額外的機器翻譯功能，可進一步擴大自訂小幫手的適用範圍。
+此外，Language Understanding 支援由 LUIS 認知服務提供，可支援一整組[此處所列](https://docs.microsoft.com/azure/cognitive-services/luis/luis-supported-languages)的語言。 [翻譯工具認知服務](https://azure.microsoft.com/services/cognitive-services/translator-text-api/)提供額外的機器翻譯功能，可進一步擴大自訂小幫手的適用範圍。
 
 ## <a name="integrated-and-context-aware"></a>整合與情境感知
 
@@ -61,7 +61,7 @@ ms.locfileid: "66215459"
 
 ## <a name="adaptive-cards"></a>調適型卡片
 
-[調適性卡片](https://adaptivecards.io/)可讓自訂小幫手傳回使用者體驗元素 (例如卡片、影像、按鈕) 及文字回應。 如果裝置或對話畫布上有一個畫面，這些調適性卡片可以跨各種支援使用者體驗的裝置與平台進行轉譯 (如果適用)。 您可以在[此處](https://adaptivecards.io/samples/)找到調適性卡片的範例，而[此處](https://docs.microsoft.com/en-us/adaptive-cards/rendering-cards/getting-started)的文件中有轉譯選項的相關資訊。
+[調適性卡片](https://adaptivecards.io/)可讓自訂小幫手傳回使用者體驗元素 (例如卡片、影像、按鈕) 及文字回應。 如果裝置或對話畫布上有一個畫面，這些調適性卡片可以跨各種支援使用者體驗的裝置與平台進行轉譯 (如果適用)。 您可以在[此處](https://adaptivecards.io/samples/)找到調適性卡片的範例，而[此處](https://docs.microsoft.com/adaptive-cards/rendering-cards/getting-started)的文件中有轉譯選項的相關資訊。
 
 
 ## <a name="skills"></a>技術

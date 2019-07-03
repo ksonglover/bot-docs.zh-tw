@@ -1,13 +1,13 @@
 ---
 ms.openlocfilehash: 14d9632ad578014a36b5f13e6dee883e2a6e1722
-ms.sourcegitcommit: 4ff7a8772124a567f43e2c3e13aded368c4002e3
+ms.sourcegitcommit: a47183f5d1c2b2454c4a06c0f292d7c075612cdd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65035692"
+ms.lasthandoff: 06/19/2019
+ms.locfileid: "67252647"
 ---
 1. 移至[**應用程式註冊入口網站**](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)。
-1. 按一下 [新增應用程式] 以註冊您的應用程式、建立 **Application-id**，以及**產生新密碼**。 如果您已經有應用程式和密碼，但不記得密碼，則必須在應用程式祕密區段中產生新密碼。
+1. 按一下 [新增應用程式]  以註冊您的應用程式、建立 **Application-id**，以及**產生新密碼**。 如果您已經有應用程式和密碼，但不記得密碼，則必須在應用程式祕密區段中產生新密碼。
 1. 儲存應用程式識別碼和您剛產生的新密碼，讓您能用來搭配 `az bot create` 命令。  
 
 ```cmd

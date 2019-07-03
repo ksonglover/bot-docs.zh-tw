@@ -1,9 +1,17 @@
+---
+ms.openlocfilehash: bbdad5f0cb51d99cf886070dd8400acae0ed24bb
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464568"
+---
 # <a name="bot-review-guidelines"></a>Bot 檢閱指導方針
 
 我們歡迎您，並感謝您投入您的才華和時間為 Microsoft 通道建置 Bot、Botlet、Web 應用程式、增益集或技能 (「應用程式整合」)。 下列是您的應用程式整合在發佈到 Microsoft 通道 (例如 Skype 或 Microsoft Teams) 之前必須滿足的最低需求。 除了下列詳細說明的需求之外，每個通道可能還有特定需求。 如果適用的話，您可以在每個通道的設定頁面上找到通道的特定條款，而且您可能需要先註冊通道的服務，才能將 Bot 發佈至該通道。
 
 ## <a name="app-integration-policies"></a>應用程式整合原則
-###  <a name="1-value-representation-security-and-usability"></a>1.值、表示法、安全性和可用性。
+### <a name="1-value-representation-security-and-usability"></a>1.值、表示法、安全性和可用性。
 
 您的應用程式整合和其相關聯的中繼資料必須：
 

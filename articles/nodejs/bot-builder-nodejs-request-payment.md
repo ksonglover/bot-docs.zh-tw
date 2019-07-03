@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 296004c654cfd59de6c245bf9702a80024526140
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 88fd1ee1eb46fa056ecadae1f0cc1b19eb7c908f
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563769"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404845"
 ---
 # <a name="request-payment"></a>要求付款
 
@@ -41,7 +41,7 @@ ms.locfileid: "64563769"
 
 1. <a href="https://dashboard.stripe.com/register" target="_blank">如果您還沒有 Stripe 帳戶，請建立並啟用一個帳戶。</a>
 
-2. <a href="https://seller.microsoft.com/en-us/dashboard/registration/seller/?accountprogram=botframework" target="_blank">使用您的 Microsoft 帳戶登入賣方中心。</a>
+2. <a href="https://seller.microsoft.com/dashboard/registration/seller/?accountprogram=botframework" target="_blank">使用您的 Microsoft 帳戶登入賣方中心。</a>
 
 3. 在賣方中心內，連結您的帳戶與 Stripe。
 
@@ -62,22 +62,22 @@ ms.locfileid: "64563769"
 
 ## <a id="request-payment"></a> 要求付款
 
-Bot 可藉由傳送一則包含[複合式資訊卡 (Rich Card)](bot-builder-nodejs-send-rich-cards.md) 的訊息來向使用者要求付款，該卡片中有一個指定 `type` 為「付款」的按鈕。 **付款 Bot**範例中的這個程式碼片段會建立一則包含 Hero 卡的訊息，該卡片中有一個 [購買] 按鈕，而使用者可以按一下 (或點選) 此按鈕來起始付款程序。 
+Bot 可藉由傳送一則包含[複合式資訊卡 (Rich Card)](bot-builder-nodejs-send-rich-cards.md) 的訊息來向使用者要求付款，該卡片中有一個指定 `type` 為「付款」的按鈕。 **付款 Bot**範例中的這個程式碼片段會建立一則包含 Hero 卡的訊息，該卡片中有一個 [購買]  按鈕，而使用者可以按一下 (或點選) 此按鈕來起始付款程序。 
 
 [!code-javascript[Request payment](../includes/code/node-request-payment.js#requestPayment)]
 
 在此範例中，按鈕的類型會指定為 `payments.PaymentActionType`，而應用程式將其定義為「付款」。 此按鈕的值會由 `createPaymentRequest` 函式填入，該函式會傳回 `PaymentRequest` 物件，其中包含支援的付款方式、詳細資料和選項相關資訊。 如需有關實作詳細資料的詳細資訊，請參閱<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/sample-payments" target="_blank">付款 Bot</a> 範例中的 **app.js**。
 
-此螢幕擷取畫面會顯示由上述程式碼片段所產生的 Hero 卡 (具有 [購買] 按鈕)。 
+此螢幕擷取畫面會顯示由上述程式碼片段所產生的 Hero 卡 (具有 [購買]  按鈕)。 
  
 ![付款範例 Bot](../media/payments-bot-buy.png) 
 
 > [!IMPORTANT]
-> 只要使用者可存取 [購買] 按鈕，就可以透過該按鈕起始付款程序。 在群組對話的內容中，不可能指定一個按鈕，僅供特定使用者使用。 
+> 只要使用者可存取 [購買]  按鈕，就可以透過該按鈕起始付款程序。 在群組對話的內容中，不可能指定一個按鈕，僅供特定使用者使用。 
 
 ## <a id="user-experience"></a> 使用者體驗
 
-當使用者按一下 [購買] 按鈕時，系統會將他或她導向至付款 Web 體驗，以透過其 Microsoft 帳戶提供所有必要的付款、交貨和連絡人資訊。 
+當使用者按一下 [購買]  按鈕時，系統會將他或她導向至付款 Web 體驗，以透過其 Microsoft 帳戶提供所有必要的付款、交貨和連絡人資訊。 
 
 ![Microsoft 付款](../media/microsoft-payment.png)
 
@@ -121,7 +121,7 @@ HTTP 回呼將傳送至 Bot，指出它應該執行特定作業。 每個回呼�
 
 [!INCLUDE [Test a payment bot](../includes/snippet-payment-test-bot.md)]
 
-在<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/sample-payments" target="_blank">付款 Bot</a> 範例中，**.env** 中的 `PAYMENTS_LIVEMODE` 環境變數可決定「付款完成」回呼將包含模擬的付款代碼或實際的付款代碼。 如果 `PAYMENTS_LIVEMODE` 設為 `false`，則標頭會新增至 Bot 的輸出付款要求，以指出 Bot 處於測試模式，而且「付款完成」回呼將包含無法收費的模擬付款代碼。 如果 `PAYMENTS_LIVEMODE` 設為 `true`，則指出 Bot 處於測試模式的標頭會從 Bot 的輸出付款要求中省略，而且「付款完成」回呼會包含 Bot 將提交至 Stripe 進行付款處理的實際付款權杖。 這會是向指定的付款工具收費的真實交易。 
+在<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/sample-payments" target="_blank">付款 Bot</a> 範例中， **.env** 中的 `PAYMENTS_LIVEMODE` 環境變數可決定「付款完成」回呼將包含模擬的付款代碼或實際的付款代碼。 如果 `PAYMENTS_LIVEMODE` 設為 `false`，則標頭會新增至 Bot 的輸出付款要求，以指出 Bot 處於測試模式，而且「付款完成」回呼將包含無法收費的模擬付款代碼。 如果 `PAYMENTS_LIVEMODE` 設為 `true`，則指出 Bot 處於測試模式的標頭會從 Bot 的輸出付款要求中省略，而且「付款完成」回呼會包含 Bot 將提交至 Stripe 進行付款處理的實際付款權杖。 這會是向指定的付款工具收費的真實交易。 
 
 ## <a name="additional-resources"></a>其他資源
 

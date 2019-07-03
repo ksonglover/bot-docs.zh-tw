@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5ae3acded991411156d3e69f4ed9360df9bdccb1
-ms.sourcegitcommit: 4c5c08e7c7eaa5f74c6ac35d8478954b998625f9
+ms.openlocfilehash: 14b8bf7aa4e99e3ca97442c2ba57dc8c57138d99
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/29/2019
-ms.locfileid: "64906302"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404690"
 ---
 # <a name="add-speech-to-messages"></a>將語音新增至訊息
 
@@ -46,7 +46,7 @@ ms.locfileid: "64906302"
 | 參數 | 說明 |
 |----|----|
 | `displayText` | 要顯示的文字。 |
-| `speechText` | 要讀出的文字 (採用純文字或 <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">SSML</a> 格式)。 |
+| `speechText` | 要讀出的文字 (採用純文字或 <a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">SSML</a> 格式)。 |
 | `options` | 可包含附件或[輸入提示](bot-builder-nodejs-send-input-hints.md)的 `IMessage` 物件。 |
 
 下列程式碼範例會傳送一則訊息，其中指定要顯示的文字和要讀出的文字，並指出 Bot 會[忽略使用者輸入](bot-builder-nodejs-send-input-hints.md)。
@@ -61,7 +61,7 @@ ms.locfileid: "64906302"
 
 ## <a id="ssml"></a>語音合成標記語言 (SSML)
 
-若要指定要由 Bot 讀出的文字，您可以使用純文字字串或格式化為語音合成標記語言 (SSML) 的字串，SSML 是一種以 XML 為基礎的標記語言，可讓您控制 Bot 語音的各種特性，例如聲音、速率、音量、發音、音調等等。 如需 SSML 的詳細資訊，請參閱<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">合成標記語言參考</a>。
+若要指定要由 Bot 讀出的文字，您可以使用純文字字串或格式化為語音合成標記語言 (SSML) 的字串，SSML 是一種以 XML 為基礎的標記語言，可讓您控制 Bot 語音的各種特性，例如聲音、速率、音量、發音、音調等等。 如需 SSML 的詳細資訊，請參閱<a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">合成標記語言參考</a>。
 
 > [!TIP]
 > 使用 <a href="https://www.npmjs.com/search?q=ssml" target="_blank">SSML 程式庫</a>建立格式正確的 SSML。
@@ -76,5 +76,5 @@ ms.locfileid: "64906302"
 
 ## <a name="additional-resources"></a>其他資源
 
-- <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a> \(英文\)
+- <a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a> \(英文\)
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">骰子機範例 (GitHub)</a>

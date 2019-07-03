@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1a502e949ce1f4f9851facae39c4aa030b4ae4a8
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: 24009289f65d214663693aa9221f9e076ba93bc2
+ms.sourcegitcommit: d29d3d7ccef401aa1e84e19e623db33b5ff13e63
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693663"
+ms.lasthandoff: 06/17/2019
+ms.locfileid: "67160627"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
@@ -146,7 +146,7 @@ Bot 會遇到的兩個主要事件為
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 **WelcomeUserBot.cs**  
-[!code-csharp[SendHeroCardGreeting](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=107-127)]
+[!code-csharp[SendHeroCardGreeting](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=107-125)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 

@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 8d9b2ea2e2133c86428b537427433f9dd15216ee
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: dbd7d437b7a1cdffd446337192e77a8c3d93e4a0
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225943"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405775"
 ---
 # <a name="upgrade-your-bot-to-bot-framework-api-v3"></a>將 Bot 升級為 Bot Framework API 第 3 版
 
@@ -23,9 +23,9 @@ ms.locfileid: "54225943"
 
 ## <a name="step-1-get-your-app-id-and-password-from-the-bot-framework-portal"></a>步驟 1：從 Bot Framework 入口網站取得您的應用程式識別碼和密碼
 
-登入 [Bot Framework 入口網站](https://dev.botframework.com/)，按一下 [My bots] \(我的 Bot\)，然後選取您的 Bot 以開啟其儀表板。 接下來，按一下位於頁面左側 [Bot 管理] 之下的 [設定] 連結。 
+登入 [Bot Framework 入口網站](https://dev.botframework.com/)，按一下 [My bots] \(我的 Bot\)  ，然後選取您的 Bot 以開啟其儀表板。 接下來，按一下位於頁面左側 [Bot 管理]  之下的 [設定]  連結。 
 
-在 [設定] 頁面的 [組態] 區段內，檢查 [Microsoft 應用程式識別碼] 欄位的內容並繼續進行接下來的步驟。
+在 [設定] 頁面的 [組態]  區段內，檢查 [Microsoft 應用程式識別碼]  欄位的內容並繼續進行接下來的步驟。
 
 <!-- TODO: Remove this 
 ### Case 1: App ID field is already populated
@@ -33,16 +33,16 @@ ms.locfileid: "54225943"
 If the **App ID** field is already populated, complete these steps:
 -->
 
-1. 按一下 [Manage Microsoft App ID and password] \(管理 Microsoft 應用程式識別碼和密碼\)。  
+1. 按一下 [Manage Microsoft App ID and password] \(管理 Microsoft 應用程式識別碼和密碼\)  。  
 ![組態](./media/upgrade/manage-app-id.png)
 
-2. 按一下 [產生新密碼]。  
+2. 按一下 [產生新密碼]  。  
 ![產生新密碼](./media/upgrade/generate-new-password.png)
 
 3. 複製並儲存新密碼以及 MSA 應用程式識別碼；您在未來將需要這些值。  
 ![新密碼](./media/upgrade/new-password-generated.png)
 
-依照這些[指示](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret/)，即可用另一種方法擷取 [Microsoft 應用程式識別碼和密碼]。
+依照這些[指示](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret/)，即可用另一種方法擷取 [Microsoft 應用程式識別碼和密碼]  。
 
 <!-- TODO: These steps are no longer valid. AppID will always be generated, confirmed with Support Engineers
 ### Case 2: App ID field is empty
@@ -71,15 +71,15 @@ If the **App ID** field is empty, complete these steps:
 
 V1 Bot 不再相容。 若要更新 Bot，您必須改為建立 V3 以下的新 Bot。 如果您想要保留任何舊程式碼，則必須手動遷移程式碼。
 
-最簡單的解決方法是使用新的 [SDK](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0) 重建 Bot 並加以部署。 
+最簡單的解決方法是使用新的 [SDK](https://docs.microsoft.com/azure/bot-service/?view=azure-bot-service-4.0) 重建 Bot 並加以部署。 
 
 如果您想要保留舊程式碼，請遵循下列步驟：
 
 1. 建立新的 Bot 應用程式。
 2. 將舊的程式碼複製到新的 Bot 應用程式。
 3. 透過 NuGet 套件管理員，將 SDK 升級為最新版本。
-4. 修正任何出現的錯誤，參考新的 [SDK](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)。
-5. 依照這些[指示](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)，將 Bot 部署至 Azure
+4. 修正任何出現的錯誤，參考新的 [SDK](https://docs.microsoft.com/azure/bot-service/?view=azure-bot-service-4.0)。
+5. 依照這些[指示](https://docs.microsoft.com/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)，將 Bot 部署至 Azure
 
 <!-- TODO: Remove outdated code 
 To update your bot code to version 3.0, complete these steps:
@@ -165,7 +165,7 @@ Bot Framework API 第 3 版則會使用在 **Web.Config** 中的下列索引鍵�
 
 ## <a id="step-3"></a> 步驟 3：將更新 Bot 部署至 Azure。
 
-將 Bot 程式碼升級至 API v3 之後，只要依照這些[指示](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)將 Bot 部署至 Azure 即可。 因為不再支援 V1，所有 Bot 在部署至 Azure 服務時都會自動使用 V3 API。
+將 Bot 程式碼升級至 API v3 之後，只要依照這些[指示](https://docs.microsoft.com/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)將 Bot 部署至 Azure 即可。 因為不再支援 V1，所有 Bot 在部署至 Azure 服務時都會自動使用 V3 API。
 
 <!-- TODO: Documentation set for removal 
 1. Sign in to the [Bot Framework Portal](https://dev.botframework.com/).

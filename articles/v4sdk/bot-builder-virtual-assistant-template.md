@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ce3ab86d5716250e24a44268f5e5fc39fbdd3398
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 503ec19444c51120bf46838e14edb891ec5c3bb5
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66214177"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464657"
 ---
 # <a name="virtual-assistant---template-outline"></a>虛擬助理 - 範本大綱
 
@@ -30,11 +30,11 @@ ms.locfileid: "66214177"
 基本對話方塊 | 擷取基本使用者資訊，以及取消和說明意圖等中斷邏輯的對話方塊流程
 基本回應  | 基本意圖和對話方塊的文字及語音回應
 常見問題集 | 與 [QnA Maker](https://www.qnamaker.ai) 整合以回答知識庫的一般問題 
-閒聊 | 專業人員閒聊模型，以提供常用查詢的標準解答 ([了解更多](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/chit-chat-knowledge-base))
-發送器 | 整合式[分派](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig)模型，用來識別指定的語句應該由 LUIS 或 QnA Maker 處理。
+閒聊 | 專業人員閒聊模型，以提供常用查詢的標準解答 ([了解更多](https://docs.microsoft.com/azure/cognitive-services/qnamaker/how-to/chit-chat-knowledge-base))
+發送器 | 整合式[分派](https://docs.microsoft.com/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig)模型，用來識別指定的語句應該由 LUIS 或 QnA Maker 處理。
 語言支援 | 提供英文、法文、義大利文、德文、西班牙文和中文
 文字記錄 | Azure 儲存體中儲存的所有對話的文字記錄
-遙測  | [Application Insights](https://azure.microsoft.com/en-gb/services/application-insights/) 整合，以收集所有對話的遙測資料
+遙測  | [Application Insights](https://azure.microsoft.com/services/application-insights/) 整合，以收集所有對話的遙測資料
 分析 | Power BI 儀表板範例，可讓您深入了解對話式體驗。
 自動化部署 | 使用 Azure ARM 範本輕鬆部署所有上述服務。
 
@@ -95,7 +95,7 @@ Bot 層級的遙測在本質上與技術和作業方面的遙測相連結，因�
 - 如果 LUIS 模型和 QnA Maker 中的語句在部分時間上稍微重疊，這可能會導致異常行為，其中 LUIS 可能會在問題應已導向 Qna Maker 時，嘗試處理該問題。
 - 如果有兩個或兩個以上的 LUIS 模型，Bot 必須叫用每一個模型，並執行某種形式的意圖評估比較，以識別傳送指定語句的目的地。 因為模型之間沒有通用的基準分數比較，無法有效運作會導致不良的使用者體驗。
 
-[發送器](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig)為此提供了簡潔的解決方案，方法是從每個設定的 LUIS 模型擷取語句，以及從 QnA Maker 擷取問題，然後建立中央分派 LUIS 模型。
+[發送器](https://docs.microsoft.com/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig)為此提供了簡潔的解決方案，方法是從每個設定的 LUIS 模型擷取語句，以及從 QnA Maker 擷取問題，然後建立中央分派 LUIS 模型。
 
 這可讓 Bot 快速找出應處理指定語句的 LUIS 模型或元件，並確保系統會認為 QnA Maker 資料在意圖處理的最上層，而不是跟之前一樣視為 None 意圖。
 

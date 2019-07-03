@@ -1,17 +1,17 @@
 ---
 ms.openlocfilehash: eac6abae509d92ea4714bc01221f180ea575950f
-ms.sourcegitcommit: 4ff7a8772124a567f43e2c3e13aded368c4002e3
+ms.sourcegitcommit: a47183f5d1c2b2454c4a06c0f292d7c075612cdd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65035742"
+ms.lasthandoff: 06/19/2019
+ms.locfileid: "67252632"
 ---
 取得加密金鑰。
 
 1. 登入 [Azure 入口網站](http://portal.azure.com/)。
 1. 為您的 Bot 開啟 Web 應用程式 Bot 資源。
-1. 開啟 Bot 的 [應用程式設定]。
-1. 在 [應用程式設定] 視窗中，向下捲動至 [應用程式設定]。
+1. 開啟 Bot 的 [應用程式設定]  。
+1. 在 [應用程式設定]  視窗中，向下捲動至 [應用程式設定]  。
 1. 找出 **botFileSecret** 並複製其值。
 
 將 .bot 檔案解密。

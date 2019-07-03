@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 03/01/2018
-ms.openlocfilehash: 9fa9a23f4d14667aeb97d304498b415f2c8041d1
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: e38d9887e50455e66ac7fdcd5c4e7bb309a3e3e9
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033065"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405947"
 ---
 # <a name="entities-and-activity-types"></a>實體和活動類型
 
@@ -24,19 +24,19 @@ ms.locfileid: "65033065"
 
 ## <a name="entities"></a>實體
 
-訊息的 Entities 屬性是開放式 <a href="http://schema.org/" target="_blank">schema.org</a> 物件的陣列，其允許交換通道與 Bot 之間的通用內容中繼資料。
+訊息的 Entities  屬性是開放式 <a href="http://schema.org/" target="_blank">schema.org</a> 物件的陣列，其允許交換通道與 Bot 之間的通用內容中繼資料。
 
 ### <a name="mention-entities"></a>提及實體
 
 許多通道都支援 Bot 或使用者在交談內容中「提及」某人的功能。
-若要在訊息中提及使用者，請以 mention 物件填入訊息的實體屬性。
+若要在訊息中提及使用者，請以 mention  物件填入訊息的實體屬性。
 提及物件包含下列屬性：
 
 | 屬性 | 說明 |
 |----|----|
 | 類型 | 實體的類型 ("mention") |
 | Mentioned | 通道帳戶物件，指出所提及的使用者 | 
-| 文字 | activity.text 屬性中的文字，表示 mention 本身 (可以是空白或 null) |
+| 文字 | activity.text  屬性中的文字，表示 mention 本身 (可以是空白或 null) |
 
 此程式碼範例示範如何將 mention 實體新增至實體集合。
 
@@ -66,7 +66,7 @@ entity = [mention];
 
 ### <a name="place-objects"></a>放置物件
 
-以 Place 物件或 GeoCoordinates 物件填入訊息的 entities 屬性，即可在訊息中傳達<a href="https://schema.org/Place" target="_blank">位置相關資訊</a>。
+以 Place  物件或 GeoCoordinates  物件填入訊息的 entities 屬性，即可在訊息中傳達<a href="https://schema.org/Place" target="_blank">位置相關資訊</a>。
 
 place 物件包含下列屬性：
 
@@ -165,5 +165,5 @@ if(context.activity.type === 'message'){
 
 ## <a name="additional-resources"></a>其他資源
 
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a> \(英文\)
+- <a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a> \(英文\)
 ::: moniker-end

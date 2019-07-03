@@ -11,12 +11,12 @@ ms.topic: conceptual
 ms.date: 05/02/2019
 ms.author: travisw
 ms.custom: ''
-ms.openlocfilehash: 8e0d2939078e1e27162c7056373e95790a03eb88
-ms.sourcegitcommit: 5042e31bc6b2762d7a6636e98c8f496b90ea33c1
+ms.openlocfilehash: 114274a66492d421a7b3d6294d77ee83d336d3ca
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/07/2019
-ms.locfileid: "65240429"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405925"
 ---
 # <a name="connect-a-bot-to-direct-line-speech-preview"></a>將 Bot 連線至 Direct Line Speech (預覽)
 
@@ -32,7 +32,7 @@ Direct Line Speech 目前為預覽版，而且需要在 [Azure 入口網站](htt
 
 ## <a name="add-the-direct-line-speech-channel"></a>新增 Direct Line Speech 通道
 
-1. 若要新增 Direct Line Speech 通道，請先在 [Azure 入口網站](https://portal.azure.com)中開啟 Bot，然後按一下設定刀鋒視窗中的 [通道]。
+1. 若要新增 Direct Line Speech 通道，請先在 [Azure 入口網站](https://portal.azure.com)中開啟 Bot，然後按一下設定刀鋒視窗中的 [通道]  。
 
     ![醒目提示位置以便選取所要連線的通道](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-selectchannel.png "選取通道")
 
@@ -52,13 +52,13 @@ Direct Line Speech 目前為預覽版，而且需要在 [Azure 入口網站](htt
 
 1. 如果您還沒這麼做，請在 [Azure 入口網站](https://portal.azure.com)中開啟您 Bot 的刀鋒視窗。 
 
-1. 按一下 [Bot 管理]類別之下的 [設定] (在 [通道] 的正下方)。 按一下 [啟用串流端點] 核取方塊。
+1. 按一下 [Bot 管理]  類別之下的 [設定]  (在 [通道]  的正下方)。 按一下 [啟用串流端點]  核取方塊。
 
     ![啟用串流通訊協定](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-enablestreamingsupport.png "啟用串流擴充功能支援")
 
-1. 按一下頁面頂端的 [儲存]。
+1. 按一下頁面頂端的 [儲存]  。
 
-1. 在相同刀鋒視窗的 [App Service 設定] 類別之下，按一下 [設定]。
+1. 在相同刀鋒視窗的 [App Service 設定]  類別之下，按一下 [設定]  。
 
     ![巡覽至 App Service 設定](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-configureappservice.png "設定 App Service")
 
@@ -84,10 +84,10 @@ Direct Line Speech 目前為預覽版，而且需要在 [Azure 入口網站](htt
 
 請注意，此服務目前為預覽版且可能隨時變更，這可能會影響您的 Bot 開發和整體效能。 以下是已知問題清單： 
 
-1. 此服務目前已部署至 [Azure 區域](https://azure.microsoft.com/en-us/global-infrastructure/regions/)美國西部 2。 我們很快就會推展到其他區域，讓所有客戶都能獲得與其 Bot 進行低延遲語音互動的好處。
+1. 此服務目前已部署至 [Azure 區域](https://azure.microsoft.com/global-infrastructure/regions/)美國西部 2。 我們很快就會推展到其他區域，讓所有客戶都能獲得與其 Bot 進行低延遲語音互動的好處。
 
 1. 即將推出控制欄位 (例如 [serviceUrl](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#service-url)) 的次要變更
 
 1. 用來示意交談開始與結束的 [conversationUpdate](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#conversation-update-activity) 和 [endOfCoversation](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#end-of-conversation-activity) 活動 (常用於產生歡迎訊息)，將會更新來與其他通道達到一致
 
-1. 通道尚未支援 [SigninCard](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-connector-add-rich-cards?view=azure-bot-service-4.0) 
+1. 通道尚未支援 [SigninCard](https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-connector-add-rich-cards?view=azure-bot-service-4.0) 

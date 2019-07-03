@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9bab3e3df6bb32607773da261698d785b1f261f7
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: b2cc303cdedbc3a9d44ce725bfc78dd308974763
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66214225"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464668"
 ---
 # <a name="virtual-assistant-overview"></a>虛擬助理概觀
 
@@ -67,17 +67,17 @@ ToDo 技術 | 預覽 ToDo 技術，可提供常見工作相關活動的全方位
 ### <a name="your-data-your-brand-and-your-experience"></a>您的資料、您的品牌和您的體驗
 您可以擁有和控制終端使用者體驗的所有層面。 這包括商標、名稱、語音、特質、回應和虛擬人偶。 虛擬小幫手的原始碼和支援技術會完全提供給您，讓您可根據需求來進行調整。
 
-虛擬小幫手將會部署在您的 Azure 訂用帳戶內。 因此，小幫手所產生的所有資料 (詢問的問題、使用者行為等) 會完全包含在您的 Azure 訂用帳戶中。 請參閱[認知服務的 Azure 可信任雲端](https://www.microsoft.com/en-us/trustcenter/cloudservices/cognitiveservices)和[信任中心的 Azure 區段](https://www.microsoft.com/en-us/TrustCenter/CloudServices/Azure)，以更具體地取得詳細資訊。
+虛擬小幫手將會部署在您的 Azure 訂用帳戶內。 因此，小幫手所產生的所有資料 (詢問的問題、使用者行為等) 會完全包含在您的 Azure 訂用帳戶中。 請參閱[認知服務的 Azure 可信任雲端](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices)和[信任中心的 Azure 區段](https://www.microsoft.com/TrustCenter/CloudServices/Azure)，以更具體地取得詳細資訊。
 
 ### <a name="write-it-once-embed-it-anywhere"></a>撰寫一次，隨處內嵌
-虛擬小幫手會利用 Microsoft 的對話式 AI 平台，因此可以透過任何 Bot Framework [通道](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-manage-channels?view=azure-bot-service-4.0)呈現 – 例如 WebChat、FaceBook Messenger、Skype 等。 
+虛擬小幫手會利用 Microsoft 的對話式 AI 平台，因此可以透過任何 Bot Framework [通道](https://docs.microsoft.com/azure/bot-service/bot-service-manage-channels?view=azure-bot-service-4.0)呈現 – 例如 WebChat、FaceBook Messenger、Skype 等。 
 
-此外，透過 [Direct Line](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts?view=azure-bot-service-4.0) 通道，我們可以將體驗內嵌至桌面和行動應用程式，包括汽車、喇叭、鬧鐘等裝置。
+此外，透過 [Direct Line](https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts?view=azure-bot-service-4.0) 通道，我們可以將體驗內嵌至桌面和行動應用程式，包括汽車、喇叭、鬧鐘等裝置。
 
 ### <a name="enterprise-grade-solutions"></a>企業級解決方案
-虛擬小幫手解決方案以 Azure Bot 服務、Language Understanding 認知服務、整合語音及一整組支援 Azure 的元件作為基礎，這表示您可以從 [Azure 全域基礎結構](https://azure.microsoft.com/en-gb/global-infrastructure/)中獲益，包括 ISO 27018、HIPPA、PCI DSS、SOC 1、2 和 3 認證。
+虛擬小幫手解決方案以 Azure Bot 服務、Language Understanding 認知服務、整合語音及一整組支援 Azure 的元件作為基礎，這表示您可以從 [Azure 全域基礎結構](https://azure.microsoft.com/global-infrastructure/)中獲益，包括 ISO 27018、HIPPA、PCI DSS、SOC 1、2 和 3 認證。
 
-此外，Language Understanding 支援由 LUIS 認知服務提供，可支援一整組[此處所列](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-supported-languages)的語言。 [翻譯工具認知服務](https://azure.microsoft.com/en-us/services/cognitive-services/translator-text-api/)提供額外的機器翻譯功能，可進一步擴大虛擬小幫手的適用範圍。
+此外，Language Understanding 支援由 LUIS 認知服務提供，可支援一整組[此處所列](https://docs.microsoft.com/azure/cognitive-services/luis/luis-supported-languages)的語言。 [翻譯工具認知服務](https://azure.microsoft.com/services/cognitive-services/translator-text-api/)提供額外的機器翻譯功能，可進一步擴大虛擬小幫手的適用範圍。
 
 ### <a name="integrated-and-context-aware"></a>整合與情境感知
 虛擬小幫手可以整合到您的裝置和生態系統中，讓您感受到真正的整合和智能體驗。 此情境感知功能可讓您開發更智慧型的體驗，並進一步提供別人沒有的個人化設定。
@@ -89,7 +89,7 @@ ToDo 技術 | 預覽 ToDo 技術，可提供常見工作相關活動的全方位
 我們的虛擬小幫手架構具有彈性，可與您在裝置型語音或自然語言處理功能上所做的投資進行整合，當然也可以與您現有的後端系統和 API 整合。
 
 ### <a name="adaptive-cards"></a>調適型卡片
-[調適性卡片](https://adaptivecards.io/)可讓虛擬小幫手傳回使用者體驗元素 (例如卡片、影像、按鈕) 及文字回應。 如果裝置或對話畫布上有一個畫面，這些調適性卡片可以跨各種支援使用者體驗的裝置與平台進行轉譯 (如果適用)。 您可以在[此處](https://adaptivecards.io/samples/)找到調適性卡片的範例，而[此處](https://docs.microsoft.com/en-us/adaptive-cards/rendering-cards/getting-started)的文件中有轉譯選項的相關資訊。
+[調適性卡片](https://adaptivecards.io/)可讓虛擬小幫手傳回使用者體驗元素 (例如卡片、影像、按鈕) 及文字回應。 如果裝置或對話畫布上有一個畫面，這些調適性卡片可以跨各種支援使用者體驗的裝置與平台進行轉譯 (如果適用)。 您可以在[此處](https://adaptivecards.io/samples/)找到調適性卡片的範例，而[此處](https://docs.microsoft.com/adaptive-cards/rendering-cards/getting-started)的文件中有轉譯選項的相關資訊。
 
 ### <a name="skills"></a>技術
 除了基本的小幫手功能，還有一組廣泛的常見功能需要每位開發人員自行建置。 生產力是絕佳範例，每個組織可能都需要建立語言模型 (LUIS)、對話 (程式碼)、整合 (程式碼) 和語言生成 (回應)，以啟用受歡迎的行事曆、工作或電子郵件體驗。

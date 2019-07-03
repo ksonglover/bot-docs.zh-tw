@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 96c28101c3ea72c70c6ad53b06306f4ea00b2929
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 497a00dd9327d3b4c26c1468bba04f18e2244ca1
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225603"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405030"
 ---
 # <a name="manage-conversation-flow-with-dialogs"></a>使用對話方塊管理交談流程
 
@@ -343,7 +343,7 @@ bot.dialog('orderDinner', [
 
 在上述範例中，對話是藉由使用 `session.endDialog` 或 `session.endDialogWithResult` 來關閉；這兩者均會結束對話，從堆疊中移除該對話，並將控制權還給呼叫對話。 在使用者已抵達對話結尾的情況下，您應該使用 `session.endConversation` 來指出該對話已結束。
 
-[`session.endConversation`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#endconversation) \(英文\) 方法會結束對話，並能選擇性地傳送訊息給使用者。 例如，上一個範例中的 `orderDinner` 對話 (dialog) 可以使用 `session.endConversation` 來結束對話 (conversation)，如下列程式碼範例所示。
+[`session.endConversation`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#endconversation) \(英文\) 方法會結束對話，並能選擇性地傳送訊息給使用者。 例如，上一個範例中的 `orderDinner` 對話 (dialog) 可以使用 `session.endConversation` 來結束對話 (conversation)，如下列程式碼範例所示。
 
 ```javascript
 bot.dialog('orderDinner', [
@@ -359,7 +359,7 @@ bot.dialog('orderDinner', [
 ]);
 ```
 
-呼叫 `session.endConversation` 將會清除對話 (dialog) 堆疊並重設 [`session.conversationData`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#conversationdata) \(英文\) 儲存體來結束對話 (conversation)。 如需資料儲存體的詳細資訊，請參閱[管理狀態資料](bot-builder-nodejs-state.md)。
+呼叫 `session.endConversation` 將會清除對話 (dialog) 堆疊並重設 [`session.conversationData`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#conversationdata) \(英文\) 儲存體來結束對話 (conversation)。 如需資料儲存體的詳細資訊，請參閱[管理狀態資料](bot-builder-nodejs-state.md)。
 
 當使用者完成設計 Bot 以進行的對話流程時，呼叫 `session.endConversation` 是一件合乎邏輯的事。 您也可以在使用者於對話期間輸入"cancel" (取消) 或 "goodbye" (再見) 的情況下，使用 `session.endConversation` 來結束對話。 若要這樣做，只需將 `endConversationAction` 附加至對話，並讓此觸發程序接聽符合 "cancel" (取消) 或 "goodbye" (再見) 的輸入。
 

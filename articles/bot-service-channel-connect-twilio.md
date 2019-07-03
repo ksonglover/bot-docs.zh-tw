@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/9/2018
-ms.openlocfilehash: 817623dd04612cd07d8877c8e9a199c05a2fd9e8
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: 4de93d821c6b652021a9f695536350610776f5b4
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693617"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405906"
 ---
 # <a name="connect-a-bot-to-twilio"></a>將 Bot 連線至 Twilio
 
@@ -26,7 +26,7 @@ ms.locfileid: "66693617"
 
 ## <a name="create-a-twiml-application"></a>建立 TwiML 應用程式
 
-依照指示<a href="https://support.twilio.com/hc/en-us/articles/223180928-How-Do-I-Create-a-TwiML-App-" target="_blank">建立 TwiML 應用程式</a>。
+依照指示<a href="https://support.twilio.com/hc/articles/223180928-How-Do-I-Create-a-TwiML-App-" target="_blank">建立 TwiML 應用程式</a>。
 
 ![建立應用程式](~/media/channels/twi-StepTwiml.png)
 
@@ -34,7 +34,7 @@ ms.locfileid: "66693617"
 
 ## <a name="select-or-add-a-phone-number"></a>選取或新增電話號碼
 
-請依照<a href = "https://support.twilio.com/hc/en-us/articles/223180048-Adding-a-Verified-Phone-Number-or-Caller-ID-with-Twilio" target="_blank">這裡</a>的指示，透過主控台網站新增已驗證的呼叫端識別碼。 完成之後，您會在 [管理號碼]  之下的 [作用中號碼]  中看見您已驗證的號碼。
+請依照<a href = "https://support.twilio.com/hc/articles/223180048-Adding-a-Verified-Phone-Number-or-Caller-ID-with-Twilio" target="_blank">這裡</a>的指示，透過主控台網站新增已驗證的呼叫端識別碼。 完成之後，您會在 [管理號碼]  之下的 [作用中號碼]  中看見您已驗證的號碼。
 
 ![設定電話號碼](~/media/channels/twi-StepPhone.png)
 
@@ -57,7 +57,7 @@ ms.locfileid: "66693617"
 
 ## <a name="submit-credentials"></a>提交認證
 
-在另一個視窗中，返回 Bot Framework 網站 https://dev.botframework.com/。 
+在另一個視窗中，返回 Bot Framework 網站 https://dev.botframework.com/ 。 
 
 - 選取 [我的 Bot]  ，然後選擇要連線至 Twilio 的 Bot。 這會將您導向 Azure 入口網站。
 - 選取 [Bot 管理]  之下的 [通道]  。 按一下 Twilio (SMS) 圖示。

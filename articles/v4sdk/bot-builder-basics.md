@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 94a3459760c8f0f14886a068d082dafeb9530b19
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 187a8427fd8627b0ce6b812ce8ee857e62b0394d
+ms.sourcegitcommit: a47183f5d1c2b2454c4a06c0f292d7c075612cdd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215547"
+ms.lasthandoff: 06/19/2019
+ms.locfileid: "67252685"
 ---
 # <a name="how-bots-work"></a>Bot 的運作方式
 
@@ -135,7 +135,7 @@ Bot 邏輯會處理來自從一或多個通道的傳入活動，並產生傳出�
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-主要 Bot 邏輯會定義於 Bot 程式碼，在此名為 `Bots/EchoBot.cs`。 `EchoBot` 衍生自 `AcitivityHandler`，而後者衍生自 `IBot` 介面。 `ActivityHandler` 會針對不同類型的活動定義各種處理常式，例如以下定義的兩項：`OnMessageActivityAsync` 和 `OnMembersAddedAsync`。 這些方法會受到保護，但可加以覆寫，因為是衍生自 `ActivityHandler`。
+主要 Bot 邏輯會定義於 Bot 程式碼，在此名為 `Bots/EchoBot.cs`。 `EchoBot` 衍生自 `ActivityHandler`，而後者衍生自 `IBot` 介面。 `ActivityHandler` 會針對不同類型的活動定義各種處理常式，例如以下定義的兩項：`OnMessageActivityAsync` 和 `OnMembersAddedAsync`。 這些方法會受到保護，但可加以覆寫，因為是衍生自 `ActivityHandler`。
 
 `ActivityHandler` 中定義的處理常式如下：
 
@@ -180,7 +180,7 @@ public class MyBot : ActivityHandler
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-主要 Bot 邏輯定義於 Bot 程式碼，在此名為 `bots\echoBot.js`。 `EchoBot` 衍生自 `AcitivityHandler`。 `ActivityHandler` 會針對不同類型的活動定義各種處理常式，而您可以提供額外的邏輯 (例如此處的 `onMessage` 和 `onConversationUpdate`) 以修改您 Bot 的行為。
+主要 Bot 邏輯定義於 Bot 程式碼，在此名為 `bots\echoBot.js`。 `EchoBot` 衍生自 `ActivityHandler`。 `ActivityHandler` 會針對不同類型的活動定義各種處理常式，而您可以提供額外的邏輯 (例如此處的 `onMessage` 和 `onConversationUpdate`) 以修改您 Bot 的行為。
 
 `ActivityHandler` 中定義的處理常式如下：
 
