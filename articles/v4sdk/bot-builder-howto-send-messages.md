@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4b2cd49d84ea90f0ac6449ce4da61495100d45c4
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: a72c103204384188d509777639c2c90e63431dd8
+ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215358"
+ms.lasthandoff: 07/01/2019
+ms.locfileid: "67496687"
 ---
 # <a name="send-and-receive-text-message"></a>傳送及接收文字訊息
 
@@ -24,6 +24,8 @@ ms.locfileid: "66215358"
 您的 Bot 與使用者進行往來通訊的主要方式，都是透過**訊息**活動。 有些訊息可能只包含純文字，有些則可能包含更豐富的內容，例如卡片或附件。 Bot 回合處理常式會接收來自使用者的訊息，而您可以從該處將回應傳送給使用者。 回合內容物件會提供將訊息傳回給使用者的方法。 本文說明如何傳送簡單的文字訊息。
 
 大部分文字欄位都支援 Markdown，但是支援可能因通道而有所不同。
+
+若要讓執行中的聊天機器人傳送和接收訊息，請遵循目錄上方的快速入門，或參閱[關於聊天機器人運作方式的文件](bot-builder-basics.md#bot-structure)，這也會連結至可供您自己執行的簡單範例。
 
 ## <a name="send-a-text-message"></a>傳送文字訊息
 

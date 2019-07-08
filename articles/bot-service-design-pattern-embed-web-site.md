@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: f9fa2bee156752f1545d201768040b6106558e01
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 97bdb1cb8b2181904b6c6992b6e0c3bd3b9f20cd
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563737"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405861"
 ---
 # <a name="embed-a-bot-in-a-website"></a>將 Bot 嵌入網站
 
@@ -31,7 +31,7 @@ Microsoft 提供兩種不同的 Bot 與網站整合方式：Skype web 控制項�
 
 ## <a name="open-source-web-control"></a>開放原始碼 web 控制項
 
-<a href="https://aka.ms/BotFramework-WebChat" target="_blank">開放原始碼網路聊天控制項</a>是以 ReactJS 為基礎，並使用 [Direct Line API] [ directLineAPI]與 Bot Framework 進行通訊。 網路聊天控制項提供實作網路聊天所需的空白畫布，讓您完整掌控其行為和其所提供的使用者體驗。 
+<a href="https://aka.ms/BotFramework-WebChat" target="_blank">開放原始碼網路聊天控制項</a>是以 ReactJS 為基礎，並使用 [Direct Line API][directLineAPI] 與 Bot Framework 進行通訊。 網路聊天控制項提供實作網路聊天所需的空白畫布，讓您完整掌控其行為和其所提供的使用者體驗。 
 
 *Backchannel* 機制可讓裝載控制項的網頁，運用使用者完全無法察覺的方式與 Bot 直接進行通訊。 這項功能可讓數個實用案例變得可行︰ 
 
@@ -55,4 +55,4 @@ Microsoft 提供兩種不同的 Bot 與網站整合方式：Skype web 控制項�
 - [開放原始碼網路聊天控制項](https://github.com/Microsoft/BotFramework-WebChat)
 - [使用 backchannel 機制](~/nodejs/bot-builder-nodejs-backchannel.md)
 
-[directLineAPI]: https://docs.botframework.com/en-us/restapi/directline3/#navtitle
+[directLineAPI]: https://docs.botframework.com/restapi/directline3/#navtitle
