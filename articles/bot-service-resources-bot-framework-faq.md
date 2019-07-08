@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 02/21/2019
-ms.openlocfilehash: 54be82eb263c2189fd6bb7a0dc4018b9ecf5c2f2
-ms.sourcegitcommit: e41dabe407fdd7e6b1d6b6bf19bef5f7aae36e61
+ms.openlocfilehash: 57efc2f1d137988792d9484d7f1f857bd193ecfa
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56893498"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405778"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常見問題集
 
@@ -61,21 +61,51 @@ SDK V3 Bot 會繼續執行並受 Azure Bot Service 支援。  自 Bot Framework 
 - 如果您在生產環境中已經有 Bot Framework SDK V3 Bot，別擔心，其會繼續按現狀針對可預見的未來運作。
 - 您可以透過 Azure 入口網站和 Azure 命令列，建立 Bot Framework SDK V4 及舊版 V3 Bot。 
 
+### <a name="how-can-i-migrate-azure-bot-service-from-one-region-to-another"></a>要如何在不同區域間遷移 Azure Bot Service？
+
+Azure Bot Service 不支援區域移動。 這是全球性服務，不會與任何特定區域繫結。
+
 ## <a name="channels"></a>聲道
 ### <a name="when-will-you-add-more-conversation-experiences-to-the-bot-framework"></a>何時會將更多的對話體驗新增至 Bot Framework？
 
 我們計劃持續改進 Bot Framework，包括額外的通道，但是目前尚無法提供排程。  
-如果您希望將特定通道新增至架構，請[讓我們知道][Support]。
+如果您希望將特定通道新增至架構，請[告訴我們][Support]。
 
 ### <a name="i-have-a-communication-channel-id-like-to-be-configurable-with-bot-framework-can-i-work-with-microsoft-to-do-that"></a>我有想要能夠使用 Bot Framework 設定的通訊通道。 可以與 Microsoft 合作完成嗎？
 
-我們沒有一般機制可以讓開發人員將新通道新增至 Bot Framework，但是您可以透過[直接線路 API][DirectLineAPI] 將您的 Bot 連線到應用程式。 如果您是通訊通道的開發人員，並且想要與我們配合，在 Bot Framework 中啟用您的通道，[歡迎與我們聯繫][Support]。
+我們沒有一般機制可以讓開發人員將新通道新增至 Bot Framework，但是您可以透過[直接線路 API][DirectLineAPI]. If you are a developer of a communication channel and would like to work with us to enable your channel in the Bot Framework [we’d love to hear from you][Support] 將聊天機器人連線到應用程式。
 
-### <a name="if-i-want-to-create-a-bot-for-skype-what-tools-and-services-should-i-use"></a>如果我想要建立適用於 Skype 的 Bot，應該使用哪些工具和服務？
+### <a name="if-i-want-to-create-a-bot-for-microsoft-teams-what-tools-and-services-should-i-use"></a>如果我想要建立適用於 Microsoft Teams 的聊天機器人，應該使用哪些工具和服務？
 
-Bot Framework 的設計訴求，是為 Skype 和其他許多通道建置、連線及部署高品質、回應靈敏、高效能和可調整的 Bot。 SDK 可以用來建立文字/簡訊、影像、按鈕和支援卡片的 Bot (涵蓋了現今對話體驗的大多數 Bot 互動)，以及 Skype 特定的 Bot 互動，例如豐富的音訊和視訊體驗。
+Bot Framework 的設計訴求，是為 Teams 和其他許多通道建置、連線及部署高品質、回應靈敏、高效能和可調整的聊天機器人。 SDK 可以用來建立文字/簡訊、影像、按鈕和支援卡片的聊天機器人 (涵蓋了現今對話體驗的大多數聊天機器人互動)，以及 Teams 特定的聊天機器人互動，例如豐富的音訊和視訊體驗。
 
-如果您已經有絕佳的 Bot，並且想要觸及 Skype 對象，您的 Bot 可以透過適用於 REST API 的 Bot Framework (前提是具有可存取網際網路的 REST 端點)，輕易地連線到 Skype (或任何受支援的通道)。
+如果您已經有絕佳的聊天機器人，並且想要觸及 Teams 對象，您的聊天機器人可以透過適用於 REST API 的 Bot Framework (前提是具有可存取網際網路的 REST 端點)，輕易地連線到 Teams (或任何受支援的通道)。
+
+### <a name="how-do-i-create-a-bot-that-uses-the-us-government-data-center"></a>要如何建立使用美國政府資料中心的聊天機器人？
+
+若要建立使用美國政府資料中心的聊天機器人，您必須執行 2 個主要步驟。
+1. 在 appsettings.json (或 App Service 設定) 中新增 [管道提供者] 設定。 此設定需要具體設定為下列名稱/值常數：ChannelService = "https://botframework.azure.us"。 appsetting.json 的使用範例如下所示。
+
+```json
+{
+  "MicrosoftAppId": "", 
+  "MicrosoftAppPassword": "",
+  "ChannelService": "https://botframework.azure.us"
+}
+```
+2. 如果您要使用 .NET Core，則必須在 startup.cs 檔案中新增 ConfigurationChannelProvider。 新增方式取決於您要使用的 SDK 版本。
+
+- 若為 4.3 版和更新版本，您必須在 ConfigureServices 方法中建立 ConfigurationChannelProvider 執行個體。 在使用 BotFrameworkHttpAdapter 類別時，請將此類別單獨插入到服務集合中，如下所示：
+
+```csharp  
+services.AddSingleton<IChannelProvider, ConfigurationChannelProvider>();
+```
+- 若為 4.3 之前的版本，則請在 ConfigureServices 方法中尋找 AddBot 方法。 在設定選項時，請務必新增：
+
+```csharp
+options.ChannelProvider = new ConfigurationChannelProvider();
+```
+您可以在[這裡](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-services-aiandcognitiveservices#azure-bot-service)找到有關政府服務的詳細資訊
 
 ## <a name="security-and-privacy"></a>安全性和隱私權
 ### <a name="do-the-bots-registered-with-the-bot-framework-collect-personal-information-if-yes-how-can-i-be-sure-the-data-is-safe-and-secure-what-about-privacy"></a>向 Bot Framework 註冊的 Bot 是否會收集個人資訊？ 如果是的話，我要如何確定資料是安全的？ 隱私權呢？
@@ -105,7 +135,7 @@ Bot Framework 的設計訴求，是為 Skype 和其他許多通道建置、連�
 沒有。 這種將 IP 位址或 DNS 列入白名單的做法並不切實際。 Bot Framework Connector Service 裝載於全球的 Azure 資料中心，而 Azure IP 清單會不斷地變更。 將某些 IP 位址列入白名單可能會運作一天，並隨著 Azure IP 位址變更而造成隔天中斷。
  
 ### <a name="what-keeps-my-bot-secure-from-clients-impersonating-the-bot-framework-connector-service"></a>何者可讓我的 Bot 保持安全，以便用戶端模擬 Bot Framework Connector Service？
-1. 每個 Bot 要求隨附的安全性權杖內都有 ServiceUrl 編碼，這表示即使攻擊者可以存取權杖，也無法將對話重新導向新的 ServiceUrl。 這是由 SDK 的所有實作強制執行，並記載於我們的驗證[參考](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-connector-authentication?view=azure-bot-service-3.0#bot-to-connector)資料中。
+1. 每個 Bot 要求隨附的安全性權杖內都有 ServiceUrl 編碼，這表示即使攻擊者可以存取權杖，也無法將對話重新導向新的 ServiceUrl。 這是由 SDK 的所有實作強制執行，並記載於我們的驗證[參考](https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-connector-authentication?view=azure-bot-service-3.0#bot-to-connector)資料中。
 
 2. 如果傳入權杖遺漏或格式不正確，Bot Framework SDK 不會在回應中產生權杖。 如果 Bot 的設定不正確，這會限制可以造成多少損害。
 3. 在 Bot 內，您可以手動檢查權杖中提供的 ServiceUrl。 這可讓 Bot 在發生服務拓撲變更時更容易受損，所以這是可行的，但不建議這麼做。
@@ -158,7 +188,55 @@ Cortana Intelligence 是完全受控的巨量資料、進階分析及智慧套�
 * 在其中您需要比[可內嵌網路聊天通道][WebChat]所提供更多自訂的網頁
 * 服務對服務應用程式
 
-[DirectLineAPI]: https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts
+
+## <a name="app-registration"></a>App 註冊
+
+### <a name="i-need-to-manually-create-my-app-registration-how-do-i-create-my-own-app-registration"></a>我需要手動建立「應用程式註冊」。 要如何建立我自己的應用程式註冊？
+
+如有下列情況，就必須建立自己的應用程式註冊：
+
+- 您已在 Bot Framework 入口網站 (例如 https://dev.botframework.com/bots/new) 中建立聊天機器人 
+- 您無法在組織中製作應用程式註冊，因此需要其他合作對象來為您建置的聊天機器人建立應用程式識別碼
+- 您另外需要手動建立自己的應用程式識別碼 (和密碼)
+
+若要建立您自己的應用程式識別碼，請遵循下列步驟。
+
+1. 登入 [Azure 帳戶](https://portal.azure.com)。 如果您沒有 Azure 帳戶，可以[註冊免費帳戶](https://azure.microsoft.com/free/)。
+2. 移至 [[應用程式註冊] 刀鋒視窗](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)，然後按一下頂端動作列中的 [新增註冊]  。
+
+    ![新增註冊](media/app-registration/new-registration.png)
+
+3. 在 [名稱]  欄位中輸入應用程式註冊的顯示名稱，然後選取支援的帳戶類型。 名稱不必和聊天機器人識別碼一樣。
+
+    > [!IMPORTANT]
+    > 在 [支援的帳戶類型]  中，選取 [任何組織目錄中的帳戶及個人的 Microsoft 帳戶 (例如 Skype、Xbox、Outlook.com)]  選項按鈕。 若有選取任何其他選項，則**聊天機器人的建立將會失敗**。
+
+    ![註冊詳細資料](media/app-registration/registration-details.png)
+
+4. 按一下 [註冊] 
+
+    之後，新建立的應用程式註冊應該會開啟一個刀鋒視窗。 複製 [概觀] 刀鋒視窗中的 [應用程式 (用戶端) 識別碼]  ，並貼到 [應用程式識別碼] 欄位中。
+
+    ![應用程式識別碼](media/app-registration/app-id.png)
+
+如果您要透過 Bot Framework 入口網站來建立聊天機器人，則此時便已完成應用程式註冊的設定；系統會自動產生祕密。 
+
+如果您要在 Azure 入口網站中建立聊天機器人，則必須為應用程式註冊產生祕密。 
+
+1. 在應用程式註冊刀鋒視窗的左側瀏覽資料行中，按一下 [憑證和祕密]  。
+2. 在該刀鋒視窗中，按一下 [新增用戶端祕密]  按鈕。 在彈出的對話方塊中，輸入祕密的選擇性說明，然後從 [到期] 選項按鈕群組中選取 [永不]  。 
+
+    ![新增祕密](media/app-registration/new-secret.png)
+
+3. 從 [用戶端祕密]  底下的資料表中複製祕密的值，然後將此值貼到應用程式的 [密碼]  欄位，並按一下該刀鋒視窗底部的 [確定]  。 接著，繼續建立聊天機器人。 
+
+    > [!NOTE]
+    > 進入此刀鋒視窗時才能看到祕密，離開該頁面後就無法加以擷取。 請務必將其複製到安全位置。
+
+    ![新增應用程式識別碼](media/app-registration/create-app-id.png)
+
+
+[DirectLineAPI]: https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts
 [Support]: bot-service-resources-links-help.md
 [WebChat]: bot-service-channel-connect-webchat.md
 
