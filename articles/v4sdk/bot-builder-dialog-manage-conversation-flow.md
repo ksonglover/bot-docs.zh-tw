@@ -10,25 +10,29 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 680d9148b463bbb5d10f4a6a06cc7b32b824b66e
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 0f29520b993d12ce01c65cd29517b3a4b2aada84
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215425"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404548"
 ---
 # <a name="implement-sequential-conversation-flow"></a>實作循序對話流程
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-張貼問題來收集資訊是 Bot 與使用者互動時的其中一種主要方式。 dialogs 程式庫可讓您輕鬆地詢問問題，以及驗證回應以確保回應符合特定資料類型或符合自訂驗證規則。
+張貼問題來收集資訊是 Bot 與使用者互動時的其中一種主要方式。 dialogs 程式庫提供實用的內建功能 (例如*提示*類別)，可讓您輕鬆地詢問問題，以及驗證回應以確保回應符合特定資料類型或符合自訂驗證規則。 
 
 您可以使用對話方塊程式庫來管理簡單和複雜的對話流程。 在簡單互動中，Bot 透過一連串固定的步驟執行，然後完成對話。 一般而言，當 Bot 需要向使用者蒐集資訊時，對話就很實用。 本主題詳細說明如何建立提示並從瀑布對話進行呼叫，以實作簡單的交談流程。 
 
+> [!TIP]
+> 如需查閱範例來了解如何撰寫您自己的提示而不使用對話程式庫，請參閱[建立您自己的提示，以收集使用者輸入](bot-builder-primitive-prompts.md)一文。 
+
+
 ## <a name="prerequisites"></a>必要條件
 
-- [Bot 基本概念][concept-basics]、[管理狀態][concept-state]和 [dialogs 程式庫][concept-dialogs]的知識。
-- [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample] 中的一份**多回合提示**範例。
+- [聊天機器人基本概念][concept-basics], [managing state][concept-state]和 [dialogs 程式庫][concept-dialogs] 的知識。
+- [**CSharp**][cs-sample] or [**JavaScript**][js-sample] 中的一份**多回合提示**範例。
 
 ## <a name="about-this-sample"></a>關於此範例
 
@@ -63,6 +67,8 @@ Bot 會透過 `UserProfileDialog` 與使用者互動。 當我們建立 Bot 的 
 [!code-csharp[Constructor snippet](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=22-41)]
 
 接下來，我們會實作對話使用的步驟。 若要使用提示，請從您對話中的步驟中呼叫，並在下列步驟中使用 `stepContext.Result` 擷取提示結果。 在幕後，提示為兩個步驟的對話方塊。 第一步，提示會要求輸入；第二步，其會傳回有效值，或利用重新提示從頭開始，直到其收到有效輸入為止。
+
+
 
 您應該一律從瀑布式步驟傳回非 Null 的 `DialogTurnResult`。 如果不這麼做，您的對話可能無法依照設計方式運作。 我們在此示範如何在瀑布式對話中實作 `NameStepAsync`。
 

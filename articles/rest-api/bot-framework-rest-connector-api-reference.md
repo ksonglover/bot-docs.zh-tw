@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/25/2018
-ms.openlocfilehash: fd98b1bc8c3aa3b2c9fd716289dfd3ce75bec75b
-ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
+ms.openlocfilehash: 41aceaa20613d9b6b7ac95a7837b4ae197d1dd4a
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2019
-ms.locfileid: "55971538"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464787"
 ---
 # <a name="api-reference"></a>API 參考資料
 
@@ -23,7 +23,7 @@ ms.locfileid: "55971538"
 在 Bot Framework 內，Bot 連接器服務可讓 Bot 透過您在 Bot Framework 入口網站中設定的通道和使用者交換訊息；而 Bot 狀態服務則可讓 Bot 儲存和擷取其使用 Bot 連接器服務進行交談時的相關狀態資料。 這兩種服務皆透過 HTTPS 使用業界標準的 REST 和 JSON。
 
 > [!IMPORTANT]
-> 不建議將 Bot Framework State Service API 用於生產環境，未來版本可能會加以取代。 建議更新您的 Bot 程式碼以使用記憶體內部儲存體進行測試，或將其中一個 **Azure 擴充功能**用於生產環境 Bot。 如需詳細資訊，請參閱 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 實作的＜管理狀態資料＞主題。
+> 不建議將 Bot Framework State Service API 用於生產環境，未來版本可能會加以取代。 建議更新您的 Bot 程式碼以使用記憶體內部儲存體進行測試，或將其中一個 **Azure 擴充功能**用於生產環境 Bot。 如需詳細資訊，請參閱 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 實作的＜管理狀態資料＞  主題。
 
 ## <a name="base-uri"></a>基底 URI
 
@@ -126,14 +126,17 @@ Authorization: Bearer ACCESS_TOKEN
 
 | 作業 | 說明 |
 |----|----|
-| [建立交談](#create-conversation) | 建立新交談。 | 
-| [傳送至交談](#send-to-conversation) | 將活動 (訊息) 傳送至指定交談的結尾處。 | 
-| [回覆活動](#reply-to-activity) | 將活動 (訊息) 傳送至指定交談，以回覆指定活動。 | 
+| [建立交談](#create-conversation) | 建立新交談。 |
+| [傳送至交談](#send-to-conversation) | 將活動 (訊息) 傳送至指定交談的結尾處。 |
+| [回覆活動](#reply-to-activity) | 將活動 (訊息) 傳送至指定交談，以回覆指定活動。 |
+| [取得交談](#get-conversations) | 取得聊天機器人所參與的交談清單。 |
 | [取得交談成員](#get-conversation-members) | 取得指定交談的成員。 |
 | [取得對話分頁成員](#get-conversation-paged-members) | 取得指定對話的成員 (一次一頁)。 |
-| [取得活動成員](#get-activity-members) | 取得指定交談中指定活動的成員。 | 
-| [更新活動](#update-activity) | 更新現有作業。 | 
-| [刪除活動](#delete-activity) | 刪除現有活動。 | 
+| [取得活動成員](#get-activity-members) | 取得指定交談中指定活動的成員。 |
+| [更新活動](#update-activity) | 更新現有作業。 |
+| [刪除活動](#delete-activity) | 刪除現有活動。 |
+| [刪除交談成員](#delete-conversation-member) | 從交談中移除成員。 |
+| [傳送交談記錄](#send-conversation-history) | 將過往活動的文字記錄上傳至交談。 |
 | [將附件上傳至通道](#upload-attachment-to-channel) | 將附件直接上傳到通道的 Blob 儲存體。 |
 
 ### <a name="create-conversation"></a>建立交談
@@ -145,7 +148,7 @@ POST /v3/conversations
 | | |
 |----|----|
 | **要求本文** | [Conversation](#conversation-object) 物件 |
-| **傳回** | [ResourceResponse ](#resourceresponse-object)物件 | 
+| **傳回** | [ConversationResourceResponse](#conversationresourceresponse-object) 物件 | 
 
 ### <a name="send-to-conversation"></a>傳送至交談
 將活動 (訊息) 傳送至指定交談。 系統將根據時間戳記或通道的語意，將活動附加至交談的結尾處。 若要回應交談內的特定訊息，請改為使用[回覆活動](#reply-to-activity)。
@@ -169,6 +172,17 @@ POST /v3/conversations/{conversationId}/activities/{activityId}
 | **要求本文** | [Activity](#activity-object) 物件 |
 | **傳回** | [Identification](#identification-object) 物件 | 
 
+### <a name="get-conversations"></a>取得交談
+取得聊天機器人所參與的交談清單。
+```http
+GET /v3/conversations?continuationToken={continuationToken}
+```
+
+| | |
+|----|----|
+| **要求本文** | n/a |
+| **傳回** | [ConversationsResult](#conversationsresult-object) 物件 | 
+
 ### <a name="get-conversation-members"></a>取得交談成員
 取得指定交談的成員。
 ```http
@@ -183,13 +197,13 @@ GET /v3/conversations/{conversationId}/members
 ### <a name="get-conversation-paged-members"></a>取得對話分頁成員
 取得指定對話的成員 (一次一頁)。
 ```http
-GET /v3/conversations/{conversationId}/pagedmembers
+GET /v3/conversations/{conversationId}/pagedmembers?pageSize={pageSize}&continuationToken={continuationToken}
 ```
 
 | | |
 |----|----|
 | **要求本文** | n/a |
-| **傳回** | [ChannelAccount](#channelaccount-object)件陣列，以及可用來取得更多值的接續權杖|
+| **傳回** | [ChannelAccount](#channelaccount-object)件陣列，以及可用來取得更多值的接續權杖 |
 
 ### <a name="get-activity-members"></a>取得活動成員
 取得指定交談中指定活動的成員。
@@ -224,8 +238,30 @@ DELETE /v3/conversations/{conversationId}/activities/{activityId}
 | **要求本文** | n/a |
 | **傳回** | 用於指出作業結果的 HTTP 狀態碼。 回應本文中未指定任何項目。 | 
 
+### <a name="delete-conversation-member"></a>刪除交談成員
+從交談中移除成員。 如果該成員是交談內的最後一個成員，則該交談也會遭到刪除。
+```http
+DELETE /v3/conversations/{conversationId}/members/{memberId}
+```
+
+| | |
+|----|----|
+| **要求本文** | n/a |
+| **傳回** | 用於指出作業結果的 HTTP 狀態碼。 回應本文中未指定任何項目。 | 
+
+### <a name="send-conversation-history"></a>傳送交談記錄
+將過往活動的文字記錄上傳至交談，以供用戶端呈現。
+```http
+POST /v3/conversations/{conversationId}/activities/history
+```
+
+| | |
+|----|----|
+| **要求本文** | [Transcript](#transcript-object) 物件。 |
+| **傳回** | [ResourceResponse](#resourceresponse-object) 物件。 | 
+
 ### <a name="upload-attachment-to-channel"></a>將附件上傳至通道
-將指定交談的附件直接上傳至通道的 Blob 儲存體。 如此一來，可讓您將資料儲存在相容的存放區。 
+將指定交談的附件直接上傳至通道的 Blob 儲存體。 如此一來，可讓您將資料儲存在相容的存放區。
 ```http 
 POST /v3/conversations/{conversationId}/attachments
 ```
@@ -364,7 +400,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | [Activity 物件](#activity-object) | 定義 Bot 和使用者之間交換的訊息。 |
 | [AnimationCard 物件](#animationcard-object) | 定義可播放動畫 GIF 或短片的資訊卡。 |
 | [Attachment 物件](#attachment-object) | 定義要包含在訊息中的其他資訊。 附件可能是媒體檔案 (例如：音訊、影片、影像、檔案) 或豐富資訊卡。 |
-| [AttachmentData 物件](#attachmentdata-object) |描述附件資料。 |
+| [AttachmentData 物件](#attachmentdata-object) | 描述附件資料。 |
 | [AttachmentInfo 物件](#attachmentinfo-object) | 描述附件。 |
 | [AttachmentView 物件](#attachmentview-object) | 定義附件檢視。 |
 | [AttachmentUpload 物件](#attachmentupload-object) | 定義要上傳的附件。 |
@@ -375,17 +411,19 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | [ChannelAccount 物件](#channelaccount-object) | 定義通道上的 Bot 或使用者帳戶。 |
 | [Conversation 物件](#conversation-object) | 定義交談，包含交談中的 Bot 及使用者。 |
 | [ConversationAccount 物件](#conversationaccount-object) | 定義通道中的交談。 |
+| [ConversationMembers 物件](#conversationmembers-object) | 定義交談的成員。 |
 | [ConversationParameters 物件](#conversationparameters-object) | 定義用來建立新交談的參數 |
 | [ConversationReference 物件](#conversationreference-object) | 定義交談中的特定要點。 |
-| [ConversationResourceResponse 物件](#conversationresourceresponse-object) | 包含資源的回應 |
+| [ConversationResourceResponse 物件](#conversationresourceresponse-object) | 定義[建立交談](#create-conversation)的回應。 |
+| [ConversationsResult 物件](#conversationsresult-object) | 定義[取得交談](#get-conversations)呼叫的結果。 |
 | [Entity 物件](#entity-object) | 定義實體物件。 |
 | [Error 物件](#error-object) | 定義錯誤。 |
 | [ErrorResponse 物件](#errorresponse-object) | 定義 HTTP API 回應。 |
 | [Fact 物件](#fact-object) | 定義包含事實的機碼值組。 |
-| [Geocoordinates 物件](#geocoordinates-object) | 定義採用「世界大地坐標系統 (WSG84)」座標的地理位置。 |
+| [GeoCoordinates 物件](#geocoordinates-object) | 定義採用「世界大地坐標系統 (WSG84)」座標的地理位置。 |
 | [HeroCard 物件](#herocard-object) | 定義具有大型影像、標題、文字及動作按鈕的資訊卡。 |
 | [Identification 物件](#identification-object) | 識別資源。 |
-| [MediaEventValue 物件](#mediaeventvalue-object) |媒體事件的增補參數。|
+| [MediaEventValue 物件](#mediaeventvalue-object) | 媒體事件的增補參數。 |
 | [MediaUrl 物件](#mediaurl-object) | 定義媒體檔案來源的 URL。 |
 | [Mention 物件](#mention-object) | 定義在交談中提及的使用者或 Bot。 |
 | [MessageReaction 物件](#messagereaction-object) | 定義對訊息的回應。 |
@@ -393,12 +431,13 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | [ReceiptCard 物件](#receiptcard-object) | 定義內含購買收據的資訊卡。 |
 | [ReceiptItem 物件](#receiptitem-object) | 定義收據內的明細項目。 |
 | [ResourceResponse 物件](#resourceresponse-object) | 定義資源。 |
+| [SemanticAction 物件](#semanticaction-object) | 定義程式設計動作的參考。 |
 | [SignInCard 物件](#signincard-object) | 定義可讓使用者登入至服務的資訊卡。 |
 | [SuggestedActions 物件](#suggestedactions-object) | 定義可讓使用者從中選擇的選項。 |
 | [ThumbnailCard 物件](#thumbnailcard-object) | 定義具有縮圖影像、標題、文字和動作按鈕的資訊卡。 |
 | [ThumbnailUrl 物件](#thumbnailurl-object) | 定義影像來源的 URL。 |
+| [Transcript 物件](#transcript-object) | 要使用[傳送交談記錄](#send-conversation-history)上傳的活動集合。 |
 | [VideoCard 物件](#videocard-object) | 定義可播放影片的資訊卡。 |
-| [SemanticAction 物件](#semanticaction-object) | 定義程式設計動作的參考。 |
 
 ### <a name="activity-object"></a>活動物件
 定義 Bot 和使用者之間交換的訊息。<br/><br/> 
@@ -410,7 +449,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **attachmentLayout** | 字串 | 包含在訊息中的豐富資訊卡**附件**的版面配置。 下列任一值：**carousel**、**list**。 如需有關豐富資訊卡附件的詳細資訊，請參閱[將豐富資訊卡附件新增至訊息](bot-framework-rest-connector-add-rich-cards.md)。 |
 | **channelData** | 物件 | 包含通道專用內容的物件。 某些通道提供的功能，需要使用無法以附件結構描述來呈現的其他資訊。 在該等情況下，請將此屬性設定為通道文件中所定義的通道專用內容。 如需詳細資訊，請參閱[實作通道專屬功能](bot-framework-rest-connector-channeldata.md)。 |
 | **channelId** | 字串 | 可唯一識別通道的識別碼。 由通道設定。 | 
-| 交談 | [ConversationAccount](#conversationaccount-object) | 定義活動所屬交談的 **ConversationAccount** 物件。 |
+| 交談  | [ConversationAccount](#conversationaccount-object) | 定義活動所屬交談的 **ConversationAccount** 物件。 |
 | **code** | 字串 | 指出交談終止原因的代碼。 |
 | **entities** | object[] | 代表訊息中提及之實體的物件陣列。 此陣列中的物件可能是任何 <a href="http://schema.org/" target="_blank">Schema.org</a> 物件。 例如，陣列可能包含 [Mention](#mention-object) 物件，可識別交談中提及的使用者；而 [Place](#place-object) 物件則可識別交談中提及的地點。 |
 | **from** | [ChannelAccount](#channelaccount-object) | 用於指出訊息傳送者的 **ChannelAccount** 物件。 |
@@ -426,7 +465,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **relatesTo** | [ConversationReference](#conversationreference-object) | 用於定義交談中特定要點的 **ConversationReference** 物件。 |
 | **replyToId** | 字串 | 此訊息要回覆之訊息的識別碼。 若要回覆使用者傳送的訊息，請將此屬性設為該使用者訊息的識別碼。 並非所有通道皆支援執行緒回覆。 在這些情況下，通道會忽略此屬性，並使用依照時間排序的語意 (時間戳記)，將訊息附加至交談。 | 
 | **serviceUrl** | 字串 | 用於指定通道服務端點的 URL。 由通道設定。 | 
-| **speak** | 字串 | 要讓 Bot 在支援語音功能的通道上以語音讀出的文字。 若要控制 Bot 語音的聲音、速率、音量、發音和音高等各種特性，請以<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a> 格式指定此屬性。 |
+| **speak** | 字串 | 要讓 Bot 在支援語音功能的通道上以語音讀出的文字。 若要控制 Bot 語音的聲音、速率、音量、發音和音高等各種特性，請以<a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a> 格式指定此屬性。 |
 | **suggestedActions** | [SuggestedActions](#suggestedactions-object) | 用於定義選項以讓使用者從中選擇的 **SuggestedActions** 物件。 |
 | **summary** | 字串 | 訊息包含的資訊摘要。 例如，若是透過電子郵件通道傳送的訊息，此屬性可指定電子郵件訊息的前 50 個字元。 |
 | **text** | 字串 | Bot 與使用者之間傳送的訊息文字。 請參閱通道文件，以了解加諸於此屬性內容的限制。 |
@@ -472,7 +511,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 <a href="#objects">回到結構描述資料表</a>
 
 ### <a name="attachmentdata-object"></a>AttachmentData 物件 
-描述附件資料。
+描述附件資料。<br/><br/> 
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
@@ -480,6 +519,8 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **originalBase64** | 字串 | 附件內容。 |
 | **thumbnailBase64** | 字串 | 附件縮圖內容。 |
 | **type** | 字串 | 附件的內容類型。 |
+
+<a href="#objects">回到結構描述資料表</a>
 
 ### <a name="attachmentinfo-object"></a>AttachmentInfo 物件
 描述附件。<br/><br/> 
@@ -607,8 +648,18 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 
 <a href="#objects">回到結構描述資料表</a>
 
+### <a name="conversationmembers-object"></a>ConversationMembers 物件
+定義交談的成員。<br/><br/>
+
+| 屬性 | 類型 | 說明 |
+|----|----|----|
+| **id** | 字串 | 交談識別碼。 |
+| **members** | array | [ChannelAccount](#channelaccount-object) 物件的陣列。 |
+
+<a href="#objects">回到結構描述資料表</a>
+
 ### <a name="conversationparameters-object"></a>ConversationParameters 物件
-定義用來建立新交談的參數
+定義用來建立新交談的參數。<br/><br/> 
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
@@ -619,6 +670,8 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **activity** | [活動](#activity-object) | (選用) 建立新交談時，以此活動做為交談的初始訊息。 |
 | **channelData** | 物件 | 建立交談時的通道特定酬載。 |
 
+<a href="#objects">回到結構描述資料表</a>
+
 ### <a name="conversationreference-object"></a>ConversationReference 物件
 定義交談中的特定要點。<br/><br/>
 
@@ -627,14 +680,14 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **activityId** | 字串 | 可唯一識別此物件參照之活動的識別碼。 | 
 | **Bot** | [ChannelAccount](#channelaccount-object) | 用於識別此物件參照之交談內 Bot 的 **ChannelAccount** 物件。 |
 | **channelId** | 字串 | 可唯一識別此物件參照之交談內通道的識別碼。 | 
-| 交談 | [ConversationAccount](#conversationaccount-object) | 用於定義此物件參照之交談的 **ChannelAccount** 物件。 |
+| 交談  | [ConversationAccount](#conversationaccount-object) | 用於定義此物件參照之交談的 **ChannelAccount** 物件。 |
 | **serviceUrl** | 字串 | 用於指定此物件參照之交談中通道服務端點的 URL。 | 
 | **user** | [ChannelAccount](#channelaccount-object) | 用於指出此物件參照之交談內使用者的 **ChannelAccount** 物件。 |
 
 <a href="#objects">回到結構描述資料表</a>
 
 ### <a name="conversationresourceresponse-object"></a>ConversationResourceResponse 物件
-定義包含資源的回應。
+定義[建立交談](#create-conversation)的回應。<br/><br/> 
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
@@ -642,8 +695,20 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **id** | 字串 | 資源的識別碼。 |
 | **serviceUrl** | 字串 | 服務端點。 |
 
+<a href="#objects">回到結構描述資料表</a>
+
+### <a name="conversationsresult-object"></a>ConversationsResult 物件
+定義[取得交談](#get-conversations)的結果。<br/><br/> 
+
+| 屬性 | 類型 | 說明 |
+|----|----|----|
+| **continuationToken** | 字串 | 可在[取得交談](#get-conversations)的後續呼叫中使用的接續權杖。 |
+| **交談** | array | [ConversationMembers](#conversationmembers-object) 物件的陣列 |
+
+<a href="#objects">回到結構描述資料表</a>
+
 ### <a name="error-object"></a>錯誤物件
-定義錯誤。<br/><br/>
+定義錯誤。<br/><br/> 
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
@@ -653,12 +718,13 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 <a href="#objects">回到結構描述資料表</a>
 
 ### <a name="entity-object"></a>實體物件
-定義實體物件。
+定義實體物件。<br/><br/> 
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
 | **type** | 字串 | 實體類型。 通常包含來自 schema.org 的類型。 |
 
+<a href="#objects">回到結構描述資料表</a>
 
 ### <a name="errorresponse-object"></a>ErrorResponse 物件
 定義 HTTP API 回應。<br/><br/> 
@@ -679,7 +745,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 
 <a href="#objects">回到結構描述資料表</a>
 
-### <a name="geocoordinates-object"></a>Geocoordinates 物件
+### <a name="geocoordinates-object"></a>GeoCoordinates 物件
 定義採用「世界大地坐標系統 (WSG84)」座標的地理位置。<br/><br/> 
 
 | 屬性 | 類型 | 說明 |
@@ -717,11 +783,13 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 <a href="#objects">回到結構描述資料表</a>
 
 ### <a name="mediaeventvalue-object"></a>MediaEventValue 物件 
-媒體事件的增補參數。
+媒體事件的增補參數。<br/><br/> 
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
-| **cardValue** | 物件 | 在產生此事件之媒體卡上，於 [值] 欄位中指定的回呼參數。 |
+| **cardValue** | 物件 | 在產生此事件之媒體卡上，於 [值]  欄位中指定的回呼參數。 |
+
+<a href="#objects">回到結構描述資料表</a>
 
 ### <a name="mediaurl-object"></a>MediaUrl 物件
 定義媒體檔案來源的 URL。<br/><br/> 
@@ -747,11 +815,13 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 <a href="#objects">回到結構描述資料表</a>
 
 ### <a name="messagereaction-object"></a>MessageReaction 物件
-定義對訊息的回應。
+定義對訊息的回應。<br/><br/> 
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
 | **type** | 字串 | 反應的類型。 |
+
+<a href="#objects">回到結構描述資料表</a>
 
 ### <a name="place-object"></a>Place 物件
 定義在交談中提及的地點。<br/><br/> 
@@ -800,10 +870,19 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 ### <a name="resourceresponse-object"></a>ResourceResponse 物件
 定義包含資源識別碼的回應。<br/><br/>
 
-
 |      屬性       |  類型  |                說明                |
 |---------------------|--------|-------------------------------------------|
 | <strong>id</strong> | 字串 | 可唯一識別資源的識別碼。 |
+
+<a href="#objects">回到結構描述資料表</a>
+
+### <a name="semanticaction-object"></a>SemanticAction 物件
+定義程式設計動作的參考。<br/><br/>
+
+| 屬性 | 類型 | 說明 |
+|----|----|----|
+| **id** | 字串 | 此動作的識別碼 |
+| **entities** | [實體](#entity-object) | 與此動作相關聯的實體 |
 
 <a href="#objects">回到結構描述資料表</a>
 
@@ -851,6 +930,15 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 
 <a href="#objects">回到結構描述資料表</a>
 
+### <a name="transcript-object"></a>Transcript 物件
+要使用[傳送交談記錄](#send-conversation-history)上傳的活動集合。<br/><br/> 
+
+| 屬性 | 類型 | 說明 |
+|----|----|----|
+| **活動** | array | [Activity](#activity-object) 物件的陣列。 這些物件各自都應該擁有唯一的識別碼和時間戳記。 |
+
+<a href="#objects">回到結構描述資料表</a>
+
 ### <a name="videocard-object"></a>VideoCard 物件
 定義可播放影片的資訊卡。<br/><br/>
 
@@ -868,15 +956,5 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **text** | 字串 | 顯示在資訊卡標題或子標題下方的描述或提示。 |
 | **title** | 字串 | 資訊卡的標題。 |
 | **value** | 物件 | 此資訊卡的增補參數|
-
-<a href="#objects">回到結構描述資料表</a>
-
-### <a name="semanticaction-object"></a>SemanticAction 物件
-定義程式設計動作的參考。<br/><br/>
-
-| 屬性 | 類型 | 說明 |
-|----|----|----|
-| **id** | 字串 | 此動作的識別碼 |
-| **entities** | [實體](#entity-object) | 與此動作相關聯的實體 |
 
 <a href="#objects">回到結構描述資料表</a>

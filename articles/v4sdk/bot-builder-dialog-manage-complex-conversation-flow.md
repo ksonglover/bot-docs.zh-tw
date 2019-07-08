@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f08fa3295ff7fdd08039b2c57f4deec6819324c0
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: bc11e5a4a5dec1a9588254b3a9d28d56ad163fb4
+ms.sourcegitcommit: 409e8f89a1e9bcd0e69a29a313add424f66a81e1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215437"
+ms.lasthandoff: 06/17/2019
+ms.locfileid: "67153064"
 ---
 # <a name="create-advanced-conversation-flow-using-branches-and-loops"></a>使用分支和迴圈建立進階的交談流程
 
@@ -226,7 +226,7 @@ Bot 的回合處理常式會重複這些對話所定義的一個交談流程。
 
 [!code-javascript[Overrides](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/bots/dialogBot.js?range=30-47)]
 
-**bots/dialogWandWelcomeBot.js**
+**bots/dialogAndWelcomeBot.js**
 
 `DialogAndWelcomeBot` 會展開上述的 `DialogBot`，以在使用者加入對話時提供歡迎訊息，並且是 `Startup.cs` 所呼叫的項目。
 

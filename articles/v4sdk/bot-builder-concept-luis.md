@@ -11,12 +11,12 @@ ms.subservice: cognitive-services
 ms.date: 09/19/2018
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bb280f3c43348a1293345bc698e83608694946b1
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 0c0918b0ac0a10927bd8d7c52283e74b4fd480bf
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000315"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404647"
 ---
 # <a name="language-understanding"></a>Language Understanding
 
@@ -33,13 +33,13 @@ Bot 可以使用各種對話風格，從結構化和引導式到自由形式和�
 
 ## <a name="recognize-intent"></a>辨識意圖
 
-[LUIS](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/home) (英文) 可協助您判斷使用者的**意圖**，也就是從使用者說話內容判斷他們想要做什麼，以便您的 Bot 可以適當回應。 當使用者對 Bot 說話的內容未遵循可預測的結構或特定模式時，LUIS 會特別有幫助。 如果 Bot 擁有對話式使用者介面，使用者可在其中說話或輸入回應，「語句」可能會有無數的變化 (語句是使用者的口語或文字輸入)。
+[LUIS](https://docs.microsoft.com/azure/cognitive-services/luis/home) (英文) 可協助您判斷使用者的**意圖**，也就是從使用者說話內容判斷他們想要做什麼，以便您的 Bot 可以適當回應。 當使用者對 Bot 說話的內容未遵循可預測的結構或特定模式時，LUIS 會特別有幫助。 如果 Bot 擁有對話式使用者介面，使用者可在其中說話或輸入回應，「語句」  可能會有無數的變化 (語句是使用者的口語或文字輸入)。
 
 例如，設想旅遊 Bot 的使用者要求預訂班機可使用的許多表達方法。
 
 ![以各種不同形式的語句來預訂班機](media/cognitive-services-add-bot-language/cognitive-services-luis-utterances.png)
 
-這些語句可能有不同的結構，並包含各種您想不到的「班機」同義詞。 對 Bot 而言，撰寫符合所有語句的邏輯，並與其他包含相同字組的意圖區別開來十分困難。 此外，Bot 必須擷取「實體」，也就是其他重要的字組，例如位置和時間。 LUIS 可在內容中為您識別意圖和實體，以簡化此程序。
+這些語句可能有不同的結構，並包含各種您想不到的「班機」同義詞。 對 Bot 而言，撰寫符合所有語句的邏輯，並與其他包含相同字組的意圖區別開來十分困難。 此外，Bot 必須擷取「實體」  ，也就是其他重要的字組，例如位置和時間。 LUIS 可在內容中為您識別意圖和實體，以簡化此程序。
 
 當您設計用於自然語言輸入的 Bot 時，您要判斷 Bot 必須辨識哪些意圖和實體，並思考其如何連接到 Bot 所採取的動作。 在 [luis.ai](https://www.luis.ai) (英文) 中，藉由為每個意圖提供範例，並標記其中的實體，您可以定義自訂意圖和實體並指定其行為。
 
@@ -51,9 +51,9 @@ Bot 會使用由 LUIS 辨識的意圖來判斷對話主題，或開始對話流�
 
 為了節省開發時間，LUIS 提供預先訓練的語言模型，可辨識 Bot 常見類別的常見語句。 
 
-**預先建置的領域**是預先訓練且已就緒可供使用的意圖和實體集合，可搭配用於常見案例，如約會、提醒、管理、保健、娛樂、通訊、預約等。 **公用程式**預先建置領域可協助 Bot 處理一般工作，如取消、確認、說明、重複、及停止。 查看 LUIS 提供的[預先建置的網域](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-how-to-use-prebuilt-domains)。
+**預先建置的領域**是預先訓練且已就緒可供使用的意圖和實體集合，可搭配用於常見案例，如約會、提醒、管理、保健、娛樂、通訊、預約等。 **公用程式**預先建置領域可協助 Bot 處理一般工作，如取消、確認、說明、重複、及停止。 查看 LUIS 提供的[預先建置的網域](https://docs.microsoft.com/azure/cognitive-services/LUIS/luis-how-to-use-prebuilt-domains)。
 
-**預先建置的實體**可協助 Bot 辨識常見類型的資訊，例如日期、時間、數字、溫度、貨幣、地理和年齡。 請參閱[使用預先建置的實體](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/pre-builtentities)，了解 LUIS 可辨識的類型背景資訊。
+**預先建置的實體**可協助 Bot 辨識常見類型的資訊，例如日期、時間、數字、溫度、貨幣、地理和年齡。 請參閱[使用預先建置的實體](https://docs.microsoft.com/azure/cognitive-services/LUIS/pre-builtentities)，了解 LUIS 可辨識的類型背景資訊。
 
 ## <a name="how-your-bot-gets-messages-from-luis"></a>您的 Bot 如何從 LUIS 取得訊息
 
@@ -61,7 +61,7 @@ Bot 會使用由 LUIS 辨識的意圖來判斷對話主題，或開始對話流�
 
 ![意圖和實體如何傳遞至您的 Bot](./media/cognitive-services-add-bot-language/cognitive-services-luis-message-flow-bot-code.png)
 
-若要開始搭配使用 LUIS 應用程式與 Bot，請參閱[使用 LUIS 理解語言](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0)。
+若要開始搭配使用 LUIS 應用程式與 Bot，請參閱[使用 LUIS 理解語言](https://docs.microsoft.com/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0)。
 
 ## <a name="best-practices-for-language-understanding"></a>Language Understanding 的最佳做法
 
@@ -96,11 +96,11 @@ LUIS 應用程式提供功能，可藉由檢閱使用者傳送的訊息，改善
 
 ### <a name="the-dispatch-tool"></a>分派工具
 
-分派工具可透過建立「分派應用程式」 (這是新的 LUIS 應用程式，可將訊息路由傳送至適當的 LUIS 和 QnAMaker 服務)，協助您將多個 LUIS 應用程式和 QnA Maker 服務與您的 Bot 整合。 請參閱[分派教學課程](./bot-builder-tutorial-dispatch.md)，取得在一個 Bot 中結合多個 LUIS 應用程式和 QnA Maker 的逐步教學。
+分派工具可透過建立「分派應用程式」  (這是新的 LUIS 應用程式，可將訊息路由傳送至適當的 LUIS 和 QnAMaker 服務)，協助您將多個 LUIS 應用程式和 QnA Maker 服務與您的 Bot 整合。 請參閱[分派教學課程](./bot-builder-tutorial-dispatch.md)，取得在一個 Bot 中結合多個 LUIS 應用程式和 QnA Maker 的逐步教學。
 
 ## <a name="use-luis-to-improve-speech-recognition"></a>使用 LUIS 改善語音辨識
 
-對於使用者會與其對話的 Bot，與 LUIS 整合可協助 Bot 識別從語音轉換文字時可能會遭誤解的字組。  例如，在西洋棋的情境中，使用者可能會說：「騎士移動到 A 7 (Move knight to A 7)」。 若沒有使用者意圖的背景，該語句可能會識別為：「移動晚上 287 (Move night 287)」。 藉由建立代表西洋棋和座標的實體，並將其標記在語句中，您可以提供語音辨識的背景來識別它們。 您可以使用與 Bing 語音整合的 Bot Framework 通道 (例如 Web Chat、Bot Framework 模擬器和 Cortana) 來[啟用語音辨識預備](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-manage-speech-priming?view=azure-bot-service-4.0)。  
+對於使用者會與其對話的 Bot，與 LUIS 整合可協助 Bot 識別從語音轉換文字時可能會遭誤解的字組。  例如，在西洋棋的情境中，使用者可能會說：「騎士移動到 A 7 (Move knight to A 7)」。 若沒有使用者意圖的背景，該語句可能會識別為：「移動晚上 287 (Move night 287)」。 藉由建立代表西洋棋和座標的實體，並將其標記在語句中，您可以提供語音辨識的背景來識別它們。 您可以使用與 Bing 語音整合的 Bot Framework 通道 (例如 Web Chat、Bot Framework 模擬器和 Cortana) 來[啟用語音辨識預備](https://docs.microsoft.com/azure/bot-service/bot-service-manage-speech-priming?view=azure-bot-service-4.0)。  
 
 ## <a name="additional-resources"></a>其他資源
-如需詳細資訊，請參閱[認知服務](https://docs.microsoft.com/en-us/azure/cognitive-services/)文件。
+如需詳細資訊，請參閱[認知服務](https://docs.microsoft.com/azure/cognitive-services/)文件。

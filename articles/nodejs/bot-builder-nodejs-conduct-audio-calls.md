@@ -7,14 +7,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/17
+ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 9251307cb77cfb240e88c7ae44b13fe7e7fa2cdb
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 147862b0fe684f9312a94fe903326ca737f5a3d6
+ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998635"
+ms.lasthandoff: 07/01/2019
+ms.locfileid: "67496697"
 ---
 # <a name="support-audio-calls-with-skype"></a>使用 Skype 支援語音通話
 
@@ -65,7 +65,7 @@ bot.dialog('/', function (session) {
 在您註冊 Bot 期間，系統將會指派應用程式識別碼和密碼給您，您應該將其貼入您 hello world Bot 的連接器設定。 您也需要取得完整的呼叫連結，並貼到 callbackUrl 設定中。
 
 ### <a name="add-bot-to-contacts"></a>將 Bot 新增至連絡人
-在您開發人員入口網站中的 Bot 註冊頁面上，您會在 Bot Skype 通道旁看到 [新增至 Skype] 按鈕。 按一下按鈕即可將 Bot 新增至 Skype 中的連絡人清單。  一旦您 (及取得此加入連結的任何人) 這麼做，將能夠與 Bot 進行通訊。
+在您開發人員入口網站中的 Bot 註冊頁面上，您會在 Bot Skype 通道旁看到 [新增至 Skype]  按鈕。 按一下按鈕即可將 Bot 新增至 Skype 中的連絡人清單。  一旦您 (及取得此加入連結的任何人) 這麼做，將能夠與 Bot 進行通訊。
 
 ### <a name="test-your-bot"></a>測試 Bot
 您可以使用 Skype 用戶端來測試 Bot。 當您按一下 Bot 連絡人項目 (您可能必須搜尋 Bot 才能看到它) 時，應該會注意到呼叫圖示亮起。如果您已將呼叫新增至現有的 Bot，呼叫圖示可能需要幾分鐘的時間才會亮起。  
@@ -73,9 +73,9 @@ bot.dialog('/', function (session) {
 如果您按下呼叫按鈕，應該會撥給您的 Bot，且您應該會聽到它說「Watson... 來這裡！」 然後掛斷。
 
 ## <a name="calling-basics"></a>呼叫基本概念
-[UniversalCallBot](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.universalcallbot) 和 [CallConnector](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callconnector) 類別可讓您使用與聊天 Bot 大致相同的方式來撰寫呼叫 Bot。 您要將基本上與[聊天對話方塊](bot-builder-nodejs-manage-conversation-flow.md)相同的對話方塊新增至您的 Bot。 您可以將[瀑布圖](bot-builder-nodejs-prompts.md)新增到您的 Bot。 有一個工作階段物件 ([CallSession](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession) 類別)，其中包含已新增的 [answer()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#answer)、[hangup()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#hangup)，以及 [reject()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#reject) 方法，可管理目前的呼叫。 一般情況下，您不需要擔心這些呼叫控制方法，因為 CallSession 具有邏輯，可自動管理您的呼叫。 如果您採取例如傳送訊息或呼叫內建提示等動作，工作階段會自動接聽電話。 如果您呼叫 [endConversation()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#endconversation)，它也會自動掛斷/拒絕呼叫，或是會偵測到您已停止詢問呼叫者問題 (您未呼叫內建的提示)。
+[UniversalCallBot](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.universalcallbot) 和 [CallConnector](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callconnector) 類別可讓您使用與聊天 Bot 大致相同的方式來撰寫呼叫 Bot。 您要將基本上與[聊天對話方塊](bot-builder-nodejs-manage-conversation-flow.md)相同的對話方塊新增至您的 Bot。 您可以將[瀑布圖](bot-builder-nodejs-prompts.md)新增到您的 Bot。 有一個工作階段物件 ([CallSession](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession) 類別)，其中包含已新增的 [answer()](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession#answer)、[hangup()](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession#hangup)，以及 [reject()](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession#reject) 方法，可管理目前的呼叫。 一般情況下，您不需要擔心這些呼叫控制方法，因為 CallSession 具有邏輯，可自動管理您的呼叫。 如果您採取例如傳送訊息或呼叫內建提示等動作，工作階段會自動接聽電話。 如果您呼叫 [endConversation()](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession#endconversation)，它也會自動掛斷/拒絕呼叫，或是會偵測到您已停止詢問呼叫者問題 (您未呼叫內建的提示)。
 
-呼叫和聊天 Bot 的另一個差異是，聊天 Bot 通常會將訊息、卡片和鍵盤傳送給使用者，而呼叫 Bot 則會處理「動作」和「結果」。 建立組成一或多個[動作](http://docs.botframework.com/en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.iaction)的[工作流程](http://docs.botframework.com/en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.iworkflow)時，需要 Skype 呼叫 Bot。  這在實務上是您不需要太擔心的另一項事情，因為 Bot 建立器呼叫 SDK 幾乎都會為您管理。 [CallSession.send()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#send) 方法可讓您傳遞動作或字串，從而會變成 [PlayPromptActions](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.playpromptaction)。  工作階段包含自動批次邏輯，可將多個動作合併成提交給呼叫服務的單一工作流程，以便您可以安全地多次呼叫 send()。  且您應仰賴 SDK 的內建[提示](bot-builder-nodejs-prompts.md)，當使用者在處理所有結果時，向他們收集輸入。  
+呼叫和聊天 Bot 的另一個差異是，聊天 Bot 通常會將訊息、卡片和鍵盤傳送給使用者，而呼叫 Bot 則會處理「動作」和「結果」。 建立組成一或多個[動作](http://docs.botframework.com/node/builder/calling-reference/interfaces/_botbuilder_d_.iaction)的[工作流程](http://docs.botframework.com/node/builder/calling-reference/interfaces/_botbuilder_d_.iworkflow)時，需要 Skype 呼叫 Bot。  這在實務上是您不需要太擔心的另一項事情，因為 Bot 建立器呼叫 SDK 幾乎都會為您管理。 [CallSession.send()](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession#send) 方法可讓您傳遞動作或字串，從而會變成 [PlayPromptActions](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.playpromptaction)。  工作階段包含自動批次邏輯，可將多個動作合併成提交給呼叫服務的單一工作流程，以便您可以安全地多次呼叫 send()。  且您應仰賴 SDK 的內建[提示](bot-builder-nodejs-prompts.md)，當使用者在處理所有結果時，向他們收集輸入。  
 
-[calling_sdk]: http://docs.botframework.com/en-us/node/builder/calling-reference/modules/_botbuilder_d_
-[chat_sdk]: http://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_
+[calling_sdk]: http://docs.botframework.com/node/builder/calling-reference/modules/_botbuilder_d_
+[chat_sdk]: http://docs.botframework.com/node/builder/chat-reference/modules/_botbuilder_d_

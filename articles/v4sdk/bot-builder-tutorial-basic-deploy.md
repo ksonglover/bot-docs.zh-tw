@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 305e89f5bef4b50e99b24780b0e31580e3b38fb9
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: fd6b1b7ed38b57e8245098679d7753bd5cbb9387
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693699"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464677"
 ---
 # <a name="tutorial-create-and-deploy-a-basic-bot"></a>教學課程：建立及部署基本 Bot
 
@@ -47,7 +47,7 @@ ms.locfileid: "66693699"
 ### <a name="prerequisites"></a>必要條件
 - 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/) 。
 - 在您本機電腦上執行的上述 Bot。
-- 最新版的 [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest)。
+- 最新版的 [Azure CLI](https://docs.microsoft.com/cli/azure/?view=azure-cli-latest)。
 
 ### <a name="1-prepare-for-deployment"></a>1.準備部署
 當您使用 Visual Studio 或 Yeoman 範本建立 Bot 時，所產生的原始程式碼會包含 `deploymentTemplates` 資料夾與 ARM 範本。 此處敘述的部署程序會使用 ARM 範本，然後以 Azure CLI 在 Azure 中佈建所需的 Bot 資源。 
@@ -65,7 +65,7 @@ az login
 設定要使用的預設訂用帳戶。
 
 ```cmd
-az account set --subscription "<azure-subscription>"
+az account set --subscription "azure-subscription"
 ```
 
 如果您不確定哪個訂用帳戶要用於部署 Bot ，可以使用 `az account list` 命令，檢視帳戶的訂用帳戶清單。 瀏覽至 Bot 資料夾。
@@ -94,7 +94,7 @@ az ad app create --display-name "displayName" --password "AtLeastSixteenCharacte
 您會在 Azure 中建立新的資源群組，然後使用 ARM 範本在其中建立指定資源。 在此案例中，我們提供 App Service 方案、Web 應用程式和 Bot 通道註冊。
 
 ```cmd
-az deployment create --name "<name-of-deployment>" --template-file "template-with-new-rg.json" --location "location-name" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" botSku=F0 newAppServicePlanName="<name-of-app-service-plan>" newWebAppName="<name-of-web-app>" groupName="<new-group-name>" groupLocation="<location>" newAppServicePlanLocation="<location>"
+az deployment create --name "name-of-deployment" --template-file "template-with-new-rg.json" --location "location-name" --parameters appId="msa-app-guid" appSecret="msa-app-password" botId="id-or-name-of-bot" botSku=F0 newAppServicePlanName="name-of-app-service-plan" newWebAppName="name-of-web-app" groupName="new-group-name" groupLocation="location" newAppServicePlanLocation="location"
 ```
 
 | 選項   | 說明 |
@@ -117,7 +117,7 @@ az deployment create --name "<name-of-deployment>" --template-file "template-wit
 _注意：botId 參數應該是全域唯一，而且會用來作為不可變的 Bot 識別碼。此參數也會用來設定 Bot 的 displayName，而這是可變動的。_
 
 ```cmd
-az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" existingAppServicePlan="<name-of-app-service-plan>" appServicePlanLocation="<location>"
+az group deployment create --name "name-of-deployment" --resource-group "name-of-resource-group" --template-file "template-with-preexisting-rg.json" --parameters appId="msa-app-guid" appSecret="msa-app-password" botId="id-or-name-of-bot" newWebAppName="name-of-web-app" existingAppServicePlan="name-of-app-service-plan" appServicePlanLocation="location"
 ```
 
 **選項 2：新的 App Service 方案** 
@@ -125,7 +125,7 @@ az group deployment create --name "<name-of-deployment>" --resource-group "<name
 在此案例中，我們會建立 App Service 方案、Web 應用程式和 Bot 通道註冊。 
 
 ```cmd
-az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" newAppServicePlanName="<name-of-app-service-plan>" appServicePlanLocation="<location>"
+az group deployment create --name "name-of-deployment" --resource-group "name-of-resource-group" --template-file "template-with-preexisting-rg.json" --parameters appId="msa-app-guid" appSecret="msa-app-password" botId="id-or-name-of-bot" newWebAppName="name-of-web-app" newAppServicePlanName="name-of-app-service-plan" appServicePlanLocation="location"
 ```
 
 | 選項   | 說明 |
@@ -177,7 +177,7 @@ _根據預設，Kudu 會假設來自 zip 檔案的部署都已可供執行，而
 此時，我們已準備好將程式碼部署至 Azure Web 應用程式。 從命令列執行下列命令，即可對 Web 應用程式使用 kudu zip 推送部署來執行部署。
 
 ```cmd
-az webapp deployment source config-zip --resource-group "<new-group-name>" --name "<name-of-web-app>" --src "code.zip" 
+az webapp deployment source config-zip --resource-group "new-group-name" --name "name-of-web-app" --src "code.zip" 
 ```
 
 | 選項   | 說明 |

@@ -7,27 +7,29 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: dd5e81ba3feaba09e60011c138dcbe1537144b5a
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.date: 06/13/2019
+ms.openlocfilehash: c99e7ce86415ee1291a92e2684b975fd03c822f7
+ms.sourcegitcommit: a47183f5d1c2b2454c4a06c0f292d7c075612cdd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59541004"
+ms.lasthandoff: 06/19/2019
+ms.locfileid: "67252701"
 ---
 # <a name="receive-activities-from-the-bot"></a>接收來自 Bot 的活動
 
-透過使用直接線路 3.0 通訊協定，用戶端可以透過 `WebSocket` 串流來接收活動，或透過發出 `HTTP GET` 要求來擷取活動。 
+透過使用直接線路 3.0 通訊協定，用戶端可以透過 `WebSocket` 串流來接收活動，或透過發出 `HTTP GET` 要求來擷取活動。
 
 ## <a name="websocket-vs-http-get"></a>WebSocket 與 HTTP GET
 
-串流 WebSocket 會有效率地將訊息推送到用戶端，而 GET 介面可讓用戶端明確地要求訊息。 雖然 WebSocket 機制因其效率而較常被使用，但 GET 機制對於無法使用 WebSockets 的用戶端而言非常實用。 
+串流 WebSocket 會有效率地將訊息推送到用戶端，而 GET 介面可讓用戶端明確地要求訊息。 雖然 WebSocket 機制因其效率而較常被使用，但 GET 機制對於無法使用 WebSockets 的用戶端而言非常實用。
+
+此服務只允許每個交談有 1 個 WebSocket 連線。 Direct Line 可能會關閉其他 WebSocket 連線，並顯示值為 `collision` 的原因。
 
 並非所有[活動類型](bot-framework-rest-connector-activities.md)都可透過 WebSocket 和 HTTP GET 這兩者使用。 下表說明對於使用直接線路通訊協定的用戶端之各種活動類型的可用性。
 
 | 活動類型 | 可用性 | 
 |----|----|
-| Message | HTTP GET 和 WebSocket |
+| message | HTTP GET 和 WebSocket |
 | typing | 只有 WebSocket |
 | conversationUpdate | 不透過用戶端傳送/接收 |
 | contactRelationUpdate | 直接線路中不支援 |

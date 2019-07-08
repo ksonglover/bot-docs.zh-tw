@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f93ab91281cf0f19be10898436dc41a6a1583c9a
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 94c0e7dd55e36c88066662ec7c9f3be1ce2dfd06
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032983"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405607"
 ---
 # <a name="add-speech-to-messages"></a>將語音新增至訊息
 
@@ -33,7 +33,7 @@ ms.locfileid: "65032983"
 
 ### <a id="message-speak"></a> IMessageActivity.Speak
 
-如果您要建立[訊息][ IMessageActivity]並設定其個別屬性，您可以設定訊息的 `Speak` 屬性來指定要由您的 Bot 讀出的文字。 下列程式碼範例會建立一則訊息，其中指定要顯示的文字和要讀出的文字，並指出 Bot 會[接受使用者輸入](bot-builder-dotnet-add-input-hints.md)。
+如果您要建立[訊息][IMessageActivity]並設定其個別屬性，您可以設定訊息的 `Speak` 屬性來指定要由您的 Bot 讀出的文字。 下列程式碼範例會建立一則訊息，其中指定要顯示的文字和要讀出的文字，並指出 Bot 會[接受使用者輸入](bot-builder-dotnet-add-input-hints.md)。
 
 [!code-csharp[Set speak property](../includes/code/dotnet-text-to-speech.cs#Speak1)]
 
@@ -51,7 +51,7 @@ ms.locfileid: "65032983"
 
 ## <a id="ssml"></a> 語音合成標記語言 (SSML)
 
-若要指定要由 Bot 讀出的文字，您可以提供 Bot 格式為語音合成標記語言 (SSML) 的字串。 SSML 是以 XML 為基礎的標記語言 (而且必須是有效的 XML)，可讓您控制 Bot 語音，例如語音、速率、磁碟區、發音及音調等各種特性。 如需 SSML 的詳細資訊，請參閱<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言參考</a> \(英文\)。
+若要指定要由 Bot 讀出的文字，您可以提供 Bot 格式為語音合成標記語言 (SSML) 的字串。 SSML 是以 XML 為基礎的標記語言 (而且必須是有效的 XML)，可讓您控制 Bot 語音，例如語音、速率、磁碟區、發音及音調等各種特性。 如需 SSML 的詳細資訊，請參閱<a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言參考</a> \(英文\)。
 
 當提供 SSML 格式化字串時，可能會省略外部的 SSML 包裝函式元素。
 
@@ -67,9 +67,9 @@ ms.locfileid: "65032983"
 
 - [建立訊息](bot-builder-dotnet-create-messages.md)
 - [將輸入提示新增至訊息](bot-builder-dotnet-add-input-hints.md)
-- <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a> \(英文\)
+- <a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a> \(英文\)
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/demo-RollerSkill" target="_blank">骰子機技能範例 (GitHub)</a> \(英文\)
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a> \(英文\)
+- <a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a> \(英文\)
 - <a href="/dotnet/api/microsoft.bot.connector.imessageactivity" target="_blank">IMessageActivity 介面</a>
 - <a href="/dotnet/api/microsoft.bot.builder.dialogs.internals.dialogcontext" target="_blank">DialogContext 類別</a>
 - <a href="/dotnet/api/microsoft.bot.builder.dialogs.internals.prompt-2" target="_blank">Prompt 類別</a>

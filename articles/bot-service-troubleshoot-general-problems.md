@@ -7,21 +7,21 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 04/30/2019
-ms.openlocfilehash: 1e0678d869b02d536eb5c3ce39461da94dbd9a57
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 7a018855b11aa638cbad1b70b53505395ae7f5f9
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033094"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464577"
 ---
 # <a name="troubleshooting-general-problems"></a>對一般問題進行疑難排解
 這些常見問答集可協助您對常見的 Bot 開發或作業問題進行疑難排解。
 
 ## <a name="how-can-i-troubleshoot-issues-with-my-bot"></a>如何對 Bot 的問題進行疑難排解？
 
-1. 使用 [Visual Studio Code](debug-bots-locally-vscode.md) 或 [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/debugger/navigating-through-code-with-the-debugger?view=vs-2017) 針對 Bot 的原始程式碼進行偵錯。
+1. 使用 [Visual Studio Code](debug-bots-locally-vscode.md) 或 [Visual Studio](https://docs.microsoft.com/visualstudio/debugger/navigating-through-code-with-the-debugger?view=vs-2017) 針對 Bot 的原始程式碼進行偵錯。
 1. 在將 Bot 部署至雲端之前，使用[模擬器](bot-service-debug-emulator.md)來測試它。
-1. 將 Bot 部署至如 Azure 的雲端主機平台，然後在 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>中使用 Bot 儀表板上的內建網路聊天控制項來測試 Bot 的連線能力。 如果您在將 Bot 部署至 Azure 後遇到問題，則可以考慮使用這篇部落格文章：[了解 Azure 疑難排解和支援](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)。
+1. 將 Bot 部署至如 Azure 的雲端主機平台，然後在 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>中使用 Bot 儀表板上的內建網路聊天控制項來測試 Bot 的連線能力。 如果您在將 Bot 部署至 Azure 後遇到問題，則可以考慮使用這篇部落格文章：[了解 Azure 疑難排解和支援](https://azure.microsoft.com/blog/understanding-azure-troubleshooting-and-support/)。
 1. 排除問題是由[驗證][TroubleshootingAuth]所導致的可能性。
 1. 在 Skype 上測試您的 Bot。 這將能協助您驗證端對端的使用者體驗。
 1. 請考慮在具有額外驗證需求的通道 (例如直接線路或網路聊天) 上測試 Bot。
@@ -34,10 +34,10 @@ ms.locfileid: "65033094"
 ## <a name="im-using-the-bot-framework-sdk-for-net-how-can-i-troubleshoot-issues-with-my-bot"></a>我使用適用於 .NET 的 Bot Framework SDK。 如何對 Bot 的問題進行疑難排解？
 
 **尋找例外狀況。**  
-在 Visual Studio 2017 中，移至 [偵錯] > [Windows] > [例外狀況設定]。 在 [例外狀況設定] 視窗中，選取位於 [Common Language Runtime 例外狀況] 旁邊的 [當擲回時中斷] 核取方塊。 當有擲回或未處理的例外狀況時，您也可以查看 [輸出] 視窗中的診斷輸出。
+在 Visual Studio 2017 中，移至 [偵錯]   > [Windows]   > [例外狀況設定]  。 在 [例外狀況設定]  視窗中，選取位於 [Common Language Runtime 例外狀況]  旁邊的 [當擲回時中斷]  核取方塊。 當有擲回或未處理的例外狀況時，您也可以查看 [輸出] 視窗中的診斷輸出。
 
 **查看呼叫堆疊。**  
-在 Visual Studio 中，您可以選擇是否要對 [Just My Code](https://msdn.microsoft.com/en-us/library/dn457346.aspx) 進行偵錯。 檢查完整的呼叫堆疊可能可以針對問題提供額外的見解。
+在 Visual Studio 中，您可以選擇是否要對 [Just My Code](https://msdn.microsoft.com/library/dn457346.aspx) 進行偵錯。 檢查完整的呼叫堆疊可能可以針對問題提供額外的見解。
 
 **確保所有對話方法都會以能處理下一個訊息的方案作為結尾。**  
 所有對話方塊步驟都必須饋送到瀑布的下一個步驟，或結束目前的對話方塊才能脫離堆疊。 如果未正確處理步驟，如您所預期，將不會繼續對話。 查看[對話方塊](v4sdk/bot-builder-concept-dialog.md)概念文章，更進一步了解對話方塊。
@@ -57,13 +57,13 @@ ms.locfileid: "65033094"
 
 回應中產生的訊息活動必須正確地定址，否則無法送達其目的地。 在大部分情況下，您不需要明確處理此事，SDK 會負責為您將訊息活動定址。 
 
-將活動正確地定址，表示包含適當的「對話參考」詳細資料，以及傳送者和接收者的相關詳細資料。 在大部分情況下，訊息活動會以回應形式傳送至已送達的其中一個活動。 因此，可以從輸入活動取得定址詳細資料。 
+將活動正確地定址，表示包含適當的「對話參考」  詳細資料，以及傳送者和接收者的相關詳細資料。 在大部分情況下，訊息活動會以回應形式傳送至已送達的其中一個活動。 因此，可以從輸入活動取得定址詳細資料。 
 
 如果您檢查追蹤或稽核記錄，您可以檢查以確保您的訊息正確地定址。 若非如此，請在 Bot 中設定中斷點，並查看在何處針對您的訊息設定識別碼。
 
 ## <a name="how-can-i-run-background-tasks-in-aspnet"></a>如何在 ASP.NET 中執行背景工作？ 
 
-在某些情況下，您可能會想要起始非同步工作以在幾秒後執行某些程式碼，來清除使用者設定檔或重設交談/對話狀態。 如需達成此目的的詳細資料，請參閱[如何在 ASP.NET 中執行背景工作](https://www.hanselman.com/blog/HowToRunBackgroundTasksInASPNET.aspx) \(英文\)。 請特別考慮使用 [HostingEnvironment.QueueBackgroundWorkItem](https://msdn.microsoft.com/en-us/library/dn636893(v=vs.110).aspx) \(機器翻譯\)。 
+在某些情況下，您可能會想要起始非同步工作以在幾秒後執行某些程式碼，來清除使用者設定檔或重設交談/對話狀態。 如需達成此目的的詳細資料，請參閱[如何在 ASP.NET 中執行背景工作](https://www.hanselman.com/blog/HowToRunBackgroundTasksInASPNET.aspx) \(英文\)。 請特別考慮使用 [HostingEnvironment.QueueBackgroundWorkItem](https://msdn.microsoft.com/library/dn636893(v=vs.110).aspx) \(機器翻譯\)。 
 
 
 ## <a name="how-do-user-messages-relate-to-https-method-calls"></a>使用者訊息和 HTTPS 方法呼叫有何關聯？
@@ -74,7 +74,7 @@ ms.locfileid: "65033094"
 
 Bot 為 Web 服務，而某些主機平台 (包括 Azure) 在該服務於一段時間內沒有接收到流量時，便會自動使該服務進入睡眠狀態。 如果您的 Bot 發生此情況，它於下次接收到訊息時便必須從頭重新啟動，這會讓它的回應速度比起已在執行情況下的速度還要慢上許多。
 
-某些主機平台會允許您設定服務，使它不會進入睡眠狀態。 如果要在 Azure 中執行此步驟，請在 [Azure 入口網站](https://portal.azure.com)中瀏覽至 Bot 的服務，選取 [應用程式設定]，然後選取 [一律開啟]。 此選項可供大部分 (但非全部) 的服務方案使用。
+某些主機平台會允許您設定服務，使它不會進入睡眠狀態。 如果要在 Azure 中執行此步驟，請在 [Azure 入口網站](https://portal.azure.com)中瀏覽至 Bot 的服務，選取 [應用程式設定]  ，然後選取 [一律開啟]  。 此選項可供大部分 (但非全部) 的服務方案使用。
 
 ## <a name="how-can-i-guarantee-message-delivery-order"></a>如何保證訊息傳遞順序？
 
@@ -108,11 +108,11 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 
 ## <a name="why-is-my-kik-bot-replying-im-sorry-i-cant-talk-right-now"></a>為何我的 Kik Bot 會回覆 "I'm sorry, I can't talk right now" (抱歉，我現在無法交談)？
 
-在 Kik 上開發的 Bot 僅允許有 50 個訂閱者。 在有 50 個唯一使用者與您的 Bot 互動之後，任何嘗試與 Bot 聊天的新使用者，都會接收到訊息 "I'm sorry, I can't talk right now" (抱歉，我現在無法交談)。 如需詳細資訊，請參閱 [Kik 文件](https://botsupport.kik.com/hc/en-us/articles/225764648-How-can-I-share-my-bot-with-Kik-users-while-in-development-) \(英文\)。
+在 Kik 上開發的 Bot 僅允許有 50 個訂閱者。 在有 50 個唯一使用者與您的 Bot 互動之後，任何嘗試與 Bot 聊天的新使用者，都會接收到訊息 "I'm sorry, I can't talk right now" (抱歉，我現在無法交談)。 如需詳細資訊，請參閱 [Kik 文件](https://botsupport.kik.com/hc/articles/225764648-How-can-I-share-my-bot-with-Kik-users-while-in-development-) \(英文\)。
 
 ## <a name="how-can-i-use-authenticated-services-from-my-bot"></a>如何從 Bot 使用已驗證的服務？
 
-如需 Azure Active Directory 驗證，請參閱新增驗證 [V3](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-3.0&tabs=csharp) | [V4](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-4.0&tabs=csharp)。 
+如需 Azure Active Directory 驗證，請參閱新增驗證 [V3](https://docs.microsoft.com/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-3.0&tabs=csharp) | [V4](https://docs.microsoft.com/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-4.0&tabs=csharp)。 
 
 > [!NOTE] 
 > 如果您有將驗證和安全性功能加入您的 Bot，您應該確保自己在程式碼中所實作的模式會符合適用於您應用程式的安全性標準。
@@ -157,7 +157,7 @@ SMS 和電子郵件訊息將會在 `from.Id` 屬性中提供未經處理的使�
 有數個選項︰
 
 * 透過 `Autofac` 和 `FiberModule.Key_DoNotSerialize`解析相依性。 這是最乾淨的解決方案。
-* 使用 [NonSerialized](https://msdn.microsoft.com/en-us/library/system.nonserializedattribute(v=vs.110).aspx) \(機器翻譯\) 和 [OnDeserialized](https://msdn.microsoft.com/en-us/library/system.runtime.serialization.ondeserializedattribute(v=vs.110).aspx) \(機器翻譯\) 屬性來還原針對還原序列化的相依性。 這是最簡單的解決方案。
+* 使用 [NonSerialized](https://msdn.microsoft.com/library/system.nonserializedattribute(v=vs.110).aspx) \(機器翻譯\) 和 [OnDeserialized](https://msdn.microsoft.com/library/system.runtime.serialization.ondeserializedattribute(v=vs.110).aspx) \(機器翻譯\) 屬性來還原針對還原序列化的相依性。 這是最簡單的解決方案。
 * 不儲存相依性，以使它不會被序列化。 此解決方案就技術上而言雖然可行，但並不建議。
 * 使用反映序列化代理。 此解決方案在某些情況下可能不可行，並會有過度序列化的風險。
 
@@ -224,7 +224,7 @@ builder.Update(Conversation.Container);
 
 狀態服務可讓您保存交談中的對話進度，讓使用者於稍後繼續與 Bot 交談時不會失去原先的位置。 若要保留此進度，透過狀態 API 所儲存的 Bot 資料屬性包將不會於您修改 Bot 的程式碼時自動清除。 您應該根據已修改的程式碼是否能與舊版資料相容，來決定是否要清除 Bot 資料。 
 
-* 如果您想要在開發 Bot 的期間手動重設交談的對話堆疊及狀態，則可以使用 ` /deleteprofile` 命令來刪除狀態資料。 請務必包含此命令的前置空格，以防止通道解譯它。
+* 如果您想要在開發 Bot 的期間手動重設交談的對話堆疊及狀態，則可以使用 `/deleteprofile` 命令來刪除狀態資料。 請務必包含此命令的前置空格，以防止通道解譯它。
 * 在您的 Bot 已部署至生產環境之後，您便可以對 Bot 資料進行版本設定，使系統會在您提升版本時清除相關聯的資料。 透過適用於 Node.js 的 Bot Framework SDK，可以使用中介軟體來達成此目的；透過適用於 .NET 的 Bot Framework SDK，則可以使用 `IPostToBot` 實作來達成此目的。
 
 > [!NOTE]
@@ -253,7 +253,7 @@ builder.Update(Conversation.Container);
 * [Language Understanding (LUIS) 簡介 - Microsoft 認知服務](https://www.youtube.com/watch?v=jWeLajon9M8) \(英文\) (影片)
 * [適用於 Language Understanding (LUIS) 的進階學習課程](https://www.youtube.com/watch?v=39L0Gv2EcSk) \(英文\) (影片)
 * [LUIS 文件](/azure/cognitive-services/LUIS/Home)
-* [Language Understanding 論壇](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=LUIS) 
+* [Language Understanding 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=LUIS) 
 
 
 ## <a name="what-are-some-community-authored-dialogs"></a>有哪些由社群撰寫的對話？
@@ -272,18 +272,18 @@ builder.Update(Conversation.Container);
 請先檢查您是否為該目錄的「來賓」：
 
 1. 登入 [Azure 入口網站](http://portal.azure.com)。
-2. 選取 [所有服務]，並搜尋 *active*。
+2. 選取 [所有服務]  ，並搜尋 *active*。
 3. 選取 **Azure Active Directory**。
-4. 按一下 [使用者] 。
-5. 從清單上找到該使用者，並確定 [使用者類型] 不是 [來賓]。
+4. 按一下 [使用者]  。
+5. 從清單上找到該使用者，並確定 [使用者類型]  不是 [來賓]  。
 
 ![Azure Active Directory 使用者類型](~/media/azure-active-directory/user_type.png)
 
 在您確定自己不是**來賓**之後，若要確保有效目錄內的使用者可以建立 Bot 服務，目錄管理員必須設定下列設定：
 
-1. 登入 [AAD 入口網站](http://aad.portal.azure.com)。 移至 [使用者和群組] 並選取 [使用者設定]。
-2. 在 [應用程式註冊] 區段底下，將 [使用者可以註冊應用程式] 設定為 [是]。 這可讓您目錄中的使用者建立 Bot 服務。
-3. 在 [外部使用者] 區段底下，將 [來賓使用者權限受限] 設定為 [否]。 這可讓您目錄中的來賓使用者建立 Bot 服務。
+1. 登入 [AAD 入口網站](http://aad.portal.azure.com)。 移至 [使用者和群組]  並選取 [使用者設定]  。
+2. 在 [應用程式註冊]  區段底下，將 [使用者可以註冊應用程式]  設定為 [是]  。 這可讓您目錄中的使用者建立 Bot 服務。
+3. 在 [外部使用者]  區段底下，將 [來賓使用者權限受限]  設定為 [否]  。 這可讓您目錄中的來賓使用者建立 Bot 服務。
 
 ![Azure Active Directory 管理中心](~/media/azure-active-directory/admin_center.png)
 

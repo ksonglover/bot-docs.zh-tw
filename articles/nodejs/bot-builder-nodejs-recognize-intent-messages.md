@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 211800211b422bb9c90c00705585be89737c77a9
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: e308445a43507db94fe54735432790dabdb88731
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225553"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404855"
 ---
 # <a name="recognize-user-intent-from-message-content"></a>從訊息內容辨識使用者意圖
 
@@ -36,7 +36,7 @@ ms.locfileid: "54225553"
 
 [!code-js[Add a regular expression recognizer (JavaScript)](../includes/code/node-regex-recognizer.js#addRegexRecognizer)]
 
-將辨識器新增至 Bot 後，請將 [triggerAction][triggerAction] 附加到您希望 Bot 在辨識器偵測到意圖時叫用的對話方塊。 使用 [matches][matches] 選項來指定意圖名稱，如下列程式碼所示：
+辨識器新增至聊天機器人後，請附加 [triggerAction][triggerAction] to the dialog that you want the bot to invoke when the recognizer detects the intent. Use the [matches][matches] 選項來指定意圖名稱，如下列程式碼所示：
 
 [!code-js[Map the CancelIntent recognizer to a cancel dialog (JavaScript)](../includes/code/node-regex-recognizer.js#bindCancelDialogToRegexRecognizer)]
 
@@ -61,7 +61,7 @@ Bot 可以註冊一個以上的辨識器。 請注意，自訂辨識器範例涉
 
 根據預設，辨識器則會以平行方式執行，但您可以在 [IIntentRecognizerSetOptions][IntentRecognizerSetOptions] 中設定 recognizeOrder，所以只要 Bot 找到可提供分數 1.0 的辨識器時，程序就會立即結束。
 
-Bot Framework SDK 包含一個[範例][DisambiguationSample]，該範例示範如何藉由實作 [IDisambiguateRouteHandler][IDisambiguateRouteHandler] 來提供自訂去除混淆邏輯。
+Bot Framework SDK 包含[範例][DisambiguationSample] that demonstrates how to provide custom disambiguation logic in your bot by implementing [IDisambiguateRouteHandler][IDisambiguateRouteHandler]。
 
 ## <a name="next-steps"></a>後續步驟
 使用規則運算式和檢查訊息內容的邏輯可能會變複雜，尤其是在 Bot 的對話流程為開放式時。 為了協助 Bot 處理來自使用者的各種文字和語音輸入，您可以使用 [LUIS][LUIS] 等意圖辨識服務，將自然語言理解新增到 Bot。
@@ -72,28 +72,28 @@ Bot Framework SDK 包含一個[範例][DisambiguationSample]，該範例示範�
 
 [LUIS]: https://www.luis.ai/
 
-[triggerAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#triggeraction
+[triggerAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#triggeraction
 
-[matches]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.itriggeractionoptions.html#matches
+[matches]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.itriggeractionoptions.html#matches
 
 [node-js-bot-how-to]: bot-builder-nodejs-recognize-intent-luis.md
 
 [LUISAzureDocs]: /azure/cognitive-services/LUIS/Home
 
-[IMessage]: http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
+[IMessage]: http://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
 
-[IntentRecognizerSetOptions]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizersetoptions.html
+[IntentRecognizerSetOptions]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizersetoptions.html
 
-[LuisRecognizer]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.luisrecognizer
+[LuisRecognizer]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.luisrecognizer
 
 [LUISSample]: https://aka.ms/v3-js-luisSample
 
-[LUISConcepts]: https://docs.botframework.com/en-us/node/builder/guides/understanding-natural-language/
+[LUISConcepts]: https://docs.botframework.com/node/builder/guides/understanding-natural-language/
 
 [DisambiguationSample]: https://aka.ms/v3-js-onDisambiguateRoute
 
-[IDisambiguateRouteHandler]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idisambiguateroutehandler.html
+[IDisambiguateRouteHandler]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.idisambiguateroutehandler.html
 
-[RegExpRecognizer]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.regexprecognizer.html
+[RegExpRecognizer]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.regexprecognizer.html
 
 [AlarmBot]: https://aka.ms/v3-js-luisSample

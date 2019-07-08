@@ -6,14 +6,14 @@ author: v-ducvo
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 05/01/18
+ms.date: 05/01/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: acf4f73ea83646878e08d14e036d0d2d66686756
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 7d07317afb6d89c2d22d6f4983f7b21c3a1a053c
+ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224953"
+ms.lasthandoff: 07/01/2019
+ms.locfileid: "67496669"
 ---
 # <a name="test-a-cortana-skill"></a>測試 Cortana 技能
 
@@ -62,7 +62,7 @@ ms.locfileid: "54224953"
 1. 開啟 Cortana。
 2. 在 Cortana 中開啟「筆記本」，然後按一下**關於我**即可查看您要為 Cortana  使用的帳戶。 請確定您是透過註冊 Bot 所使用的 Microsoft 帳戶登入。 
    ![登入 Cortana 的筆記本](~/media/cortana/cortana-notebook.png)
-2. 在 Cortana 應用程式或  Windows 的「詢問我任何事 」 搜尋方塊中按一下麥克風按鈕，然後說出您的 Bot 的[引動片語][InvocationNameGuidelines]。 引動片語包含*引動名稱*，可以唯一識別要引動的技能。 比方說，如果技能的引動名稱為「北風相片」 ，適當的引動片語可以包含 「 詢問北風相片...」 或「 告訴北風相片...」。
+2. 在 Cortana 應用程式或 Windows 的「詢問我任何事」搜尋方塊中按一下麥克風按鈕，然後說出 Bot 的[引動片語][InvocationNameGuidelines]。 引動片語包含*引動名稱*，可以唯一識別要引動的技能。 比方說，如果技能的引動名稱為「北風相片」 ，適當的引動片語可以包含 「 詢問北風相片...」 或「 告訴北風相片...」。
 
    您可以在為 Cortana 設定時指定 Bot 的*引動名稱*。
    ![在設定 Cortana 通道時輸入引動名稱](~/media/cortana/cortana-invocation-name-callout.png)
@@ -77,7 +77,7 @@ ms.locfileid: "54224953"
 * 請檢查您的引動名稱是否符合[指導方針][InvocationNameGuidelines]。 如果您的引動名稱長度超過三個單字、難以發音或聽起來像其他字，Cortana 可能就難以辨識。
 * 如果您的技能使用 LUIS 模型，請務必[啟用語音辨識預備](~/bot-service-manage-speech-priming.md)。
 
-請參閱[啟用 Cortana 技能的偵錯][ Cortana-TestBestPractice]以取得其他疑難排解提示以及如何啟用 Cortana 儀表板中技能偵錯的相關資訊。 
+請參閱[啟用 Cortana 技能的偵錯][Cortana-TestBestPractice]以取得其他疑難排解提示以及如何啟用 Cortana 儀表板中技能偵錯的相關資訊。 
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -90,7 +90,7 @@ ms.locfileid: "54224953"
 [CortanaGetStarted]: /cortana/getstarted
 
 [BFPortal]: https://dev.botframework.com/
-[CortanaDevCenter]: https://developer.microsoft.com/en-us/cortana
+[CortanaDevCenter]: https://developer.microsoft.com/cortana
 
 [CortanaSpecificEntities]: https://aka.ms/lgvcto
 [CortanaAuth]: https://aka.ms/vsdqcj

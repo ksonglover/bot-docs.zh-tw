@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 7ca595b1c24769addfbdf7975c48d3a052c4a2de
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 5a0756be0a29660ef63f50a67ce4fa0f27ccc50f
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54226003"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405038"
 ---
 # <a name="handle-user-actions"></a>處理使用者動作
 
@@ -49,11 +49,11 @@ ms.locfileid: "54226003"
 
 ## <a name="bind-actions-to-dialog"></a>將動作繫結至對話方塊
 
-使用者說出的語句或按下按鈕的動作可以*觸發*與[對話方塊](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html)相關聯的動作。
-如果指定「matches」，此動作將會聽取使用者所說出會觸發動作的字組或片語。  `matches` 選項可採用規則運算式或[辨識器][RecognizeIntent]名稱。
+使用者說出的語句或按下按鈕的動作可以*觸發*與[對話方塊](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html)相關聯的動作。
+如果指定「matches」  ，此動作將會聽取使用者所說出會觸發動作的字組或片語。  `matches` 選項可採用規則運算式或[辨識器][RecognizeIntent]名稱。
 若要將動作繫結至按下按鈕，請使用 [CardAction.dialogAction()][CardAction] 來觸發動作。
 
-動作皆「可鏈結」，以讓您將所需數量的動作繫結至對話方塊。
+動作皆「可鏈結」  ，以讓您將所需數量的動作繫結至對話方塊。
 
 ### <a name="bind-a-triggeraction"></a>繫結 triggerAction
 
@@ -116,7 +116,7 @@ bot.customAction({
 
 ### <a name="bind-a-begindialogaction"></a>繫結 beginDialogAction
 
-將 `beginDialogAction` 繫結至對話方塊會向對話註冊動作。 這個方法會在觸發時啟動另一個對話方塊。 此動作行為類似於呼叫 [beginDialog](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#begindialog) 方法。 系統會將新的對話方塊推至對話方塊堆疊最上方，因此，新對話不會自動結束目前的工作。 當新的對話方塊結束後，目前的工作就會繼續。 
+將 `beginDialogAction` 繫結至對話方塊會向對話註冊動作。 這個方法會在觸發時啟動另一個對話方塊。 此動作行為類似於呼叫 [beginDialog](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#begindialog) 方法。 系統會將新的對話方塊推至對話方塊堆疊最上方，因此，新對話不會自動結束目前的工作。 當新的對話方塊結束後，目前的工作就會繼續。 
 
 下列程式碼片段說明如何將 [beginDialogAction][beginDialogAction] 繫結至對話方塊。
 
@@ -142,7 +142,7 @@ bot.dialog('showDinnerCart', function(session){
 });
 ```
 
-如果您需要將額外引數傳遞至新的對話方塊，您可以在動作中新增 [`dialogArgs`](https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs) 選項。
+如果您需要將額外引數傳遞至新的對話方塊，您可以在動作中新增 [`dialogArgs`](https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs) 選項。
 
 使用上述範例，您就可以將它修改為接受透過 `dialogArgs` 傳遞的引數。
 
@@ -178,7 +178,7 @@ bot.dialog('showDinnerCart', function(session, args){
 
 ### <a name="bind-a-reloadaction"></a>繫結 reloadAction
 
-將 `reloadAction` 繫結至對話方塊便會將其註冊至對話中方塊。 將這個動作繫結至對話方塊，會讓對話方塊在觸發動作時重新啟動。 觸發此動作類似於呼叫 [replaceDialog](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#replacedialog) 方法。 這適合用來實作邏輯以處理使用者語句 (像是「start over」) 或建立[迴圈](bot-builder-nodejs-dialog-replace.md#repeat-an-action)。
+將 `reloadAction` 繫結至對話方塊便會將其註冊至對話中方塊。 將這個動作繫結至對話方塊，會讓對話方塊在觸發動作時重新啟動。 觸發此動作類似於呼叫 [replaceDialog](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#replacedialog) 方法。 這適合用來實作邏輯以處理使用者語句 (像是「start over」) 或建立[迴圈](bot-builder-nodejs-dialog-replace.md#repeat-an-action)。
 
 下列程式碼片段說明如何將 [reloadAction][reloadAction] 繫結至對話方塊。
 
@@ -193,7 +193,7 @@ bot.dialog('orderDinner', [
 });
 ```
 
-如果您需要將額外引數傳遞至重新載入的對話方塊，您可以在動作中新增 [`dialogArgs`](https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs) 選項。 此選項會傳遞至 `args` 參數。 重寫上述程式碼範例以便在重新載入動作上收到引數，會看起來像這樣：
+如果您需要將額外引數傳遞至重新載入的對話方塊，您可以在動作中新增 [`dialogArgs`](https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs) 選項。 此選項會傳遞至 `args` 參數。 重寫上述程式碼範例以便在重新載入動作上收到引數，會看起來像這樣：
 
 ```javascript
 // Order dinner.
@@ -236,7 +236,7 @@ bot.dialog('orderDinner', [
 
 ### <a name="bind-an-endconversationaction"></a>繫結 endConversationAction
 
-繫結 `endConversationAction` 會將其註冊至對話方塊中。 一經觸發，這個動作就會結束與使用者的對話。 觸發此動作類似於呼叫 [endConversation](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#endconversation) 方法。 交談結束後，適用於 Node.js 的 Bot Framework SDK 會清除對話堆疊和保存的狀態資料。 如需所保存狀態資料的詳細資訊，請參閱[管理狀態資料](bot-builder-nodejs-state.md)。
+繫結 `endConversationAction` 會將其註冊至對話方塊中。 一經觸發，這個動作就會結束與使用者的對話。 觸發此動作類似於呼叫 [endConversation](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#endconversation) 方法。 交談結束後，適用於 Node.js 的 Bot Framework SDK 會清除對話堆疊和保存的狀態資料。 如需所保存狀態資料的詳細資訊，請參閱[管理狀態資料](bot-builder-nodejs-state.md)。
 
 下列程式碼片段說明如何將 [endConversationAction][endConversationAction] 繫結至對話方塊。
 
@@ -255,7 +255,7 @@ bot.dialog('orderDinner', [
 
 上述絕大多數 (雖然不是全部) 的動作都會中斷一般對話流程。 許多動作具有干擾性，所以應謹慎處理。 例如，`triggerAction`、`cancelAction` 或 `endConversationAction` 會清除對話方塊堆疊。 如果使用者不小心觸發上述其中一個動作，他們就必須讓工作重新開始。 為了確保使用者真的想要觸發這些動作，您可以將`confirmPrompt`選項新增到這些動作。 `confirmPrompt` 會詢問使用者是否確定要取消或結束目前的工作。 它可讓使用者改變心意，並繼續原本的程序。
 
-下面的程式碼片段顯示 [cancelAction][cancelAction] 與 [confirmPrompt](http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.itriggeractionoptions#confirmprompt)，可確保使用者真的想要取消訂單程序。
+下面的程式碼片段顯示 [cancelAction][cancelAction] 與 [confirmPrompt](http://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.itriggeractionoptions#confirmprompt)，可確保使用者真的想要取消訂單程序。
 
 ```javascript
 // Order dinner.
@@ -280,16 +280,16 @@ bot.dialog('orderDinner', [
 > [管理狀態資料](bot-builder-nodejs-state.md)
 
 
-[triggerAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#triggeraction
+[triggerAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#triggeraction
 
-[cancelAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#cancelaction
+[cancelAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#cancelaction
 
-[reloadAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#reloadaction
+[reloadAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#reloadaction
 
-[beginDialogAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#begindialogaction
+[beginDialogAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#begindialogaction
 
-[endConversationAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#endconversationaction
+[endConversationAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#endconversationaction
 
 [RecognizeIntent]: bot-builder-nodejs-recognize-intent-messages.md
 
-[CardAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction
+[CardAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction

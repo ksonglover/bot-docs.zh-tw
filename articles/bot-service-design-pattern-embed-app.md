@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 08/15/2018
-ms.openlocfilehash: e68358ed65b9300ed8595496b88c5d0736819671
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 5a0ded9af5f624398df764f16e6dd2db0105255c
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998215"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405868"
 ---
 # <a name="embed-a-bot-in-an-app"></a>將 Bot 內嵌至應用程式
 
@@ -25,7 +25,7 @@ ms.locfileid: "49998215"
 
 ### <a name="native-mobile-app"></a>原生行動應用程式
 
-以原生程式碼建立的應用程式可以使用 [直接線路 API][directLineAPI]，透過 REST 或 websocket， 與 Bot Framework 通訊。
+以原生程式碼建立的應用程式可以使用 [Direct Line API][directLineAPI]，透過 REST 或 websocket， 與 Bot Framework 通訊。
 
 ### <a name="web-based-mobile-app"></a>網頁型行動應用程式
 
@@ -33,11 +33,11 @@ ms.locfileid: "49998215"
 
 ### <a name="iot-app"></a>IoT 應用程式
 
-IoT 應用程式可以使用[直接線路 API][directLineAPI] 與 Bot Framework 進行通訊。 在某些案例中，它也可以使用 <a href="https://www.microsoft.com/cognitive-services/" target="_blank">Microsoft 認知服務</a>啟用影像辨識和語音等功能。
+IoT 應用程式可以使用 [Direct Line API][directLineAPI] 與 Bot Framework 進行通訊。 在某些案例中，它也可以使用 <a href="https://www.microsoft.com/cognitive-services/" target="_blank">Microsoft 認知服務</a>啟用影像辨識和語音等功能。
 
 ### <a name="other-types-of-apps-and-games"></a>其他類型的應用程式和遊戲
 
-其他類型的應用程式和遊戲可以使用[直接線路 API][directLineAPI] 與 Bot Framework 進行通訊。 
+其他類型的應用程式和遊戲可以使用 [Direct Line API][directLineAPI] 與 Bot Framework 進行通訊。 
 
 ## <a name="creating-a-cross-platform-mobile-app-that-runs-a-bot"></a>建立執行 Bot 的跨平台行動應用程式
 
@@ -74,4 +74,4 @@ For a complete sample that shows how to create a cross-platform mobile app that 
 - [Direct Line API][directLineAPI]
 - <a href="https://www.microsoft.com/cognitive-services/" target="_blank">Microsoft 認知服務</a>
 
-[directLineAPI]: https://docs.botframework.com/en-us/restapi/directline3/#navtitle
+[directLineAPI]: https://docs.botframework.com/restapi/directline3/#navtitle

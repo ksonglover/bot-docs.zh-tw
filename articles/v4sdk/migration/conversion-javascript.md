@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 591f58e1cefca576e2e3e4a486ecc6fbe0a6b0e4
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 573dabba7a16f88db890f0d095a2d4a0f983660c
+ms.sourcegitcommit: 41c8caf0e0c849beeeb50cdccf6dbc1ba7cce442
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215598"
+ms.lasthandoff: 06/24/2019
+ms.locfileid: "67344586"
 ---
 # <a name="migrate-a-sdk-v3-javascript-bot-to-v4"></a>將 SDK v3 Javascript Bot 遷移至 v4
 
@@ -489,7 +489,7 @@ exports.FlightDialog = FlightDialog;
 
 將 **./bot.js** 重新命名為 **./bots/reservationBot.js**，並加以編輯。
 
-1. 檔案已經匯入 **ActivityHandler**，其可提供 Bot 的基底實作。
+1. 檔案已經匯入 `ActivityHandler`，其可提供 Bot 的基底實作。
 
     ```javascript
     const { ActivityHandler } = require('botbuilder');
@@ -634,3 +634,5 @@ v4 作法主題：
 - [傳送及接收文字訊息](../bot-builder-howto-send-messages.md)
 - [儲存使用者和對話資料](../bot-builder-howto-v4-state.md)
 - [實作循序對話流程](../bot-builder-dialog-manage-conversation-flow.md)
+- [使用模擬器進行偵錯](../../bot-service-debug-emulator.md)
+- [將遙測資料新增至 Bot](../bot-builder-telemetry.md)

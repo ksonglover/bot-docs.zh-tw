@@ -9,18 +9,18 @@ ms.service: bot-service
 ROBOTS: NOINDEX
 ms.date: 10/04/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8e2cb944e56271be9ff925e05c48236e94998f1d
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: d1b14d405b4df19db81269fc1f588305840485bd
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033006"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405965"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>透過 Azure Bot 服務將驗證新增至您的 Bot
 
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]  
 
-此教學課程將使用 Azure Bot 服務中的全新 Bot 驗證功能，並提供相關功能，讓您輕鬆開發可針對 Azure AD (Azure Active Directory)、GitHub、Uber 等不同身分識別提供者驗證使用者的 Bot。 此外，這些更新也排除了部分用戶端採用的_神奇代碼驗證 (Magic code verification)_，可進一步改善使用者體驗。
+此教學課程將使用 Azure Bot 服務中的全新 Bot 驗證功能，並提供相關功能，讓您輕鬆開發可針對 Azure AD (Azure Active Directory)、GitHub、Uber 等不同身分識別提供者驗證使用者的 Bot。 此外，這些更新也排除了部分用戶端採用的_神奇代碼驗證 (Magic code verification)_ ，可進一步改善使用者體驗。
 
 在此之前，您的 Bot 必須加入 OAuth 控制器和登入連結、儲存目標用戶端識別碼及密碼，並執行使用者權杖管理作業。
 <!--
@@ -76,73 +76,62 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 ### <a name="register-an-application-in-azure-ad"></a>在 Azure AD 中註冊應用程式
 
-您需要一個可讓 Bot 用來連線至 Microsoft Graph API 的 Azure AD 應用程式，以及專屬的 Azure AD 保護資源等等。
+您需要一個可讓 Bot 用來連線至 Microsoft Graph API 的 Azure AD 應用程式。
 
 針對此 Bot，您可使用 Azure AD v1 或 v2 端點。
 如需 v1 和 v2 端點之間差異的相關資訊，請參閱 [v1 與 v2 比較](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-compare)，以及 [Azure AD v2.0 端點概觀](https://docs.microsoft.com/azure/active-directory/develop/active-directory-appmodel-v2-overview)。
 
-#### <a name="to-create-an-azure-ad-v1-application"></a>建立 Azure AD v1 應用程式
+#### <a name="to-create-an-azure-ad-application"></a>建立 Azure AD 應用程式
 
-1. 移至 [Azure 入口網站的 Azure AD](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview)。
-1. 按一下 [應用程式註冊]。
-1. 在 [應用程式註冊] 面板中，按一下 [新增應用程式註冊]。
+建立下列步驟建立新的 Azure AD 應用程式。 您可以將 v1 或 v2 端點與所建立的應用程式一起使用。
+
+> [!TIP]
+> 您必須在可於其中同意應用程式所要求委派權限的租用戶中，建立並註冊 Azure AD 應用程式。
+
+1. 在 Azure 入口網站中開啟 [Azure Active Directory][azure-aad-blade] 面板。
+    如果您不在正確的租用戶中，請按一下 [切換目錄]  以切換至正確的租用戶。 (如需建立租用戶的指示，請參閱[存取入口網站並建立租用戶](https://docs.microsoft.com/azure/active-directory/fundamentals/active-directory-access-create-new-tenant)。)
+1. 開啟 [應用程式註冊]  面板。
+1. 在 [應用程式註冊]  面板中，按一下 [新增註冊]  。
 1. 填寫必要欄位並建立應用程式註冊。
+
    1. 為您的應用程式命名。
-   1. 將 [應用程式類型] 設為 [Web 應用程式/API]。
-   1. 將 [登入 URL] 設為 `https://token.botframework.com/.auth/web/redirect`。
-   1. 按一下頁面底部的 [新增] 。
-      - 建立後，即會顯示在 [註冊的應用程式] 窗格中。
-      - 記錄 [應用程式識別碼] 值。 您稍後需要提供此值做為_用戶端識別碼_。
-1. 按一下 [設定] 以設定應用程式。
-1. 按一下 [金鑰] 以開啟 [金鑰] 面板。
-   1. 在 [密碼] 下方建立 `BotLogin` 金鑰。
-   1. 將其 [持續時間] 設為 [永不過期]。
-   1. 按一下 [儲存] 並記錄金鑰值。 您稍後需要提供此值做為_應用程式密碼_。
-   1. 關閉 [金鑰] 面板。
-1. 按一下 [必要權限] 以開啟 [必要權限] 面板。
-   1. 按一下 [新增] 。
-   1. 按一下 [選取 API]，然後選取 [Microsoft Graph]，再按一下 [選取]。
-   1. 按一下 [選取權限]。 選擇您要讓應用程式使用的應用程式權限。
+   1. 為您的應用程式選取 [支援的帳戶類型]  。 (這些選項中的任一個都可以用於此範例。)
+   1. 針對 [重新導向 URI] 
+       1. 選取 [Web]  。
+       1. 將 URL 設為 `https://token.botframework.com/.auth/web/redirect`。
+   1. 按一下 [註冊]  。
+
+      - 建立好之後，Azure 就會顯示應用程式的 [概觀]  頁面。
+      - 記下 [應用程式 (用戶端) 識別碼]  值。 稍後當您向 Bot 註冊 Azure AD 應用程式時，您將使用此值作為_用戶端識別碼_。
+      - 並也記下 [目錄 (租用戶) 識別碼]  值。 您也將使用此值來向 Bot 註冊此應用程式。
+
+1. 在導覽窗格中，按一下 [憑證與祕密]  來建立您應用程式的祕密。
+
+   1. 在 [用戶端密碼]  底下，按一下 [新增用戶端密碼]  。
+   1. 新增描述，以便在其他可能建立的應用程式祕密中識別此祕密，例如 `bot login`。
+   1. 將 [到期]  設定為 [無期限]  。
+   1. 按一下 [新增]  。
+   1. 離開此頁面之前，請記下祕密。 稍後當您向 Bot 註冊 Azure AD 應用程式時，您將使用此值作為_用戶端密碼_。
+
+1. 在導覽窗格中，按一下 [API 權限]  來開啟 [API 權限]  面板。 這是明確設定應用程式 API 權限的最佳做法。
+
+   1. 按一下 [新增權限]  以顯示 [要求 API 權限]  窗格。
+   1. 在此範例中，請選取 [Microsoft API]  和 [Microsoft Graph]  。
+   1. 選擇 [委派權限]  ，並確定已選取您所需的權限。 此範例需要這些權限。
 
       > [!NOTE]
-      > 只要是標記為 [需要系統管理員] 的權限，則使用者和租用戶管理員皆必須登入，才能將 Bot 隔離在這些權限之外。
+      > 只要是標記為 [需要管理員同意]  的權限，則使用者和租用戶管理員皆必須登入，才能將 Bot 隔離在這些權限之外。
 
-      選取下列 Microsoft Graph 委派的權限：
-      - 讀取所有使用者的基本個人資料
-      - 讀取使用者的郵件
-      - 登入及讀取使用者設定檔
-      - 以使用者身分傳送郵件
-      - 檢視所有使用者的基本個人資料
-      - 檢視使用者的電子郵件地址
+      - **openid**
+      - **設定檔**
+      - **Mail.Read**
+      - **Mail.Send**
+      - **User.Read**
+      - **User.ReadBasic.All**
 
-   1. 按一下 [選取]，然後按一下 [完成]。
-   1. 關閉 [必要權限] 面板。
+   1. 按一下 [新增權限]  。 (使用者若是第一次透過 Bot 存取此應用程式，則必須授與同意。)
 
-您現在已完成 Azure AD v1 應用程式設定。
-
-#### <a name="to-create-an-azure-ad-v2-application"></a>建立 Azure AD v2 應用程式
-
-1. 移至 [Microsoft 應用程式註冊入口網站](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)。
-1. 按一下 [新增應用程式]
-1. 為您的 Azure AD 應用程式輸入名稱，然後按一下 [建立]。
-
-    記錄**應用程式識別碼**的 GUID。 您稍後需要提供此 GUID 做為連線設定的用戶端識別碼。
-
-1. 在 [應用程式密碼] 下，按一下 [產生新密碼]。
-
-    記錄快顯視窗中的密碼。 您稍後需要提供此密碼做為連線設定的用戶端密碼。
-
-1. 按一下 [平台] 下方的 [新增平台]。
-1. 在 [新增平台] 快顯視窗中，按一下 [Web]。
-    1. 將 [允許隱含流程] 保持勾選。
-    1. 在 [重新導向 URL] 中輸入 `https://token.botframework.com/.auth/web/redirect`。
-    1. 將 [登出 URL] 欄位保留空白。
-1. 在 [Microsoft Graph 權限] 下方，您可新增其他委派的權限。
-    - 在本教學課程中，新增的是 **Mail.Read**、**Mail.Send**、**openid**、**profile**、**User.Read** 和 **User.ReadBasic.All** 權限。
-      連線設定的範圍需要使用 **openid** 和 Azure AD Graph 中的資源，例如：**Mail.Read**。
-    - 記錄您選擇的權限。 您稍後需要提供此權限做為連線設定的範圍。
-
-1. 按一下頁面底部的 [儲存]  。
+您現在已完成 Azure AD 應用程式設定。
 
 ### <a name="create-your-bot-on-azure"></a>在 Azure 建立 Bot
 
@@ -152,64 +141,65 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 下一步是向 Bot 註冊您剛剛建立的 Azure AD 應用程式。
 
-#### <a name="to-register-an-azure-ad-v1-application"></a>註冊 Azure AD v1 應用程式
+# <a name="azure-ad-v1tabaadv1"></a>[Azure AD v1](#tab/aadv1)
 
 1. 在 [Azure 入口網站](http://portal.azure.com/)瀏覽至 Bot 的資源頁面。
-1. 按一下 [設定] 。
-1. 在靠近頁面底部的 [OAuth 連線設定] 下方，按一下 [新增設定]。
+1. 按一下 [設定]  。
+1. 在靠近頁面底部的 [OAuth 連線設定]  下方，按一下 [新增設定]  。
 1. 填寫表單，如下所示：
-    1. 若為 [名稱] 欄位，請輸入連線的名稱。 Bot 程式碼中會用到此名稱。
-    1. 若為 [服務提供者]，請選取 [Azure Active Directory]。 選取此項目後，Azure AD 專用的欄位隨即顯示。
-    1. 若為 [用戶端識別碼] 欄位，請輸入您為 Azure AD v1 應用程式記錄的應用程式識別碼。
-    1. 若為 [用戶端密碼] 欄位，請輸入您為應用程式 `BotLogin` 金鑰記錄的金鑰。
-    1. 若為 [授與類型] 欄位，請輸入「`authorization_code`」。
-    1. 若為 [登入 URL] 欄位，請輸入「`https://login.microsoftonline.com`」。
-    1. 若為 [租用戶識別碼] 欄位，請輸入 Azure Active Directory 的租用戶識別碼，例如：`microsoft.com` 或 `common`。
 
-       這將會是與可驗證之使用者相關聯的租用戶。 若要允許任何人透過 Bot 驗證身分，請使用 `common` 租用戶。
+    1. 若為 [名稱]  欄位，請輸入連線的名稱。 您將在 Bot 程式碼中使用此名稱。
+    1. 若為 [服務提供者]  ，請選取 [Azure Active Directory]  。 選取此項目後，Azure AD 專用的欄位隨即顯示。
+    1. 若為 [用戶端識別碼]  欄位，請輸入您為 Azure AD v1 應用程式記錄的應用程式 (用戶端) 識別碼。
+    1. 針對 [用戶端祕密]  ，輸入您已建立的祕密，以將 Bot 存取權授與 Azure AD 應用程式。
+    1. 若為 [授與類型]  欄位，請輸入「`authorization_code`」。
+    1. 若為 [登入 URL]  欄位，請輸入「`https://login.microsoftonline.com`」。
+    1. 針對 [租用戶識別碼]  ，輸入您稍早記下的 Azure AD 應用程式目錄 (租用戶) 識別碼。
 
-    1. 針對 [資源 URL]，輸入 `https://graph.microsoft.com/`。
-    1. 請將 [範圍] 欄位保留空白。
-1. 按一下 [檔案] 。
+       這將會是與可驗證之使用者相關聯的租用戶。
+
+    1. 針對 [資源 URL]  ，輸入 `https://graph.microsoft.com/`。
+    1. 請將 [範圍]  欄位保留空白。
+
+1. 按一下 [檔案]  。
 
 > [!NOTE]
 > 這些值可讓應用程式透過 Microsoft Graph API 存取 Office 365 資料。
 
-您現可在 Bot 程式碼中使用此連線名稱，以擷取使用者權杖。
-
-#### <a name="to-register-an-azure-ad-v2-application"></a>註冊 Azure AD v2 應用程式
+# <a name="azure-ad-v2tabaadv2"></a>[Azure AD v2](#tab/aadv2)
 
 1. 在 [Azure 入口網站](http://portal.azure.com/)上瀏覽至 Bot 的 [Bot 通道註冊] 頁面。
-1. 按一下 [設定] 。
-1. 在靠近頁面底部的 [OAuth 連線設定] 下方，按一下 [新增設定]。
+1. 按一下 [設定]  。
+1. 在靠近頁面底部的 [OAuth 連線設定]  下方，按一下 [新增設定]  。
 1. 填寫表單，如下所示：
-    1. 若為 [名稱] 欄位，請輸入連線的名稱。 Bot 程式碼中會用到此名稱。
-    1. 若為 [服務提供者] ，請選取 [Azure Active Directory v2]。 選取此項目後，Azure AD 專用的欄位隨即顯示。
-    1. 若為 [用戶端識別碼] 欄位，請輸入應用程式註冊時的 Azure AD v2 應用程式識別碼。
-    1. 若為 [用戶端密碼] 欄位，請輸入應用程式註冊時的 Azure AD v2 應用程式密碼。
-    1. 若為 [租用戶識別碼] 欄位，請輸入 Azure Active Directory 的租用戶識別碼，例如：`microsoft.com` 或 `common`。
 
-        這將會是與可驗證之使用者相關聯的租用戶。 若要允許任何人透過 Bot 驗證身分，請使用 `common` 租用戶。
+    1. 若為 [名稱]  欄位，請輸入連線的名稱。 Bot 程式碼中會用到此名稱。
+    1. 若為 [服務提供者]  ，請選取 [Azure Active Directory v2]  。 選取此項目後，Azure AD 專用的欄位隨即顯示。
+    1. 若為 [用戶端識別碼]  欄位，請輸入您為 Azure AD v1 應用程式記錄的應用程式 (用戶端) 識別碼。
+    1. 針對 [用戶端祕密]  ，輸入您已建立的祕密，以將 Bot 存取權授與 Azure AD 應用程式。
+    1. 針對 [租用戶識別碼]  ，輸入您稍早記下的 Azure AD 應用程式目錄 (租用戶) 識別碼。
 
-    1. 若為 [範圍] 欄位，請輸入應用程式註冊時您選擇之權限的名稱：`Mail.Read Mail.Send openid profile User.Read User.ReadBasic.All`。
+       這將會是與可驗證之使用者相關聯的租用戶。
+
+    1. 若為 [範圍]  欄位，請輸入應用程式註冊時您選擇之權限的名稱：`Mail.Read Mail.Send openid profile User.Read User.ReadBasic.All`。
 
         > [!NOTE]
-        > 若為 Azure AD v2，[範圍] 欄位接受區分大小寫並以空格區隔值的清單。
+        > 若為 Azure AD v2，[範圍]  欄位接受區分大小寫並以空格區隔值的清單。
 
-1. 按一下 [檔案] 。
+1. 按一下 [檔案]  。
 
 > [!NOTE]
 > 這些值可讓應用程式透過 Microsoft Graph API 存取 Office 365 資料。
 
-您現可在 Bot 程式碼中使用此連線名稱，以擷取使用者權杖。
+---
 
 #### <a name="to-test-your-connection"></a>測試連線
 
 1. 開啟您剛建立的連線。
-1. 按一下 [服務提供者連線設定] 窗格頂端的 [測試連線]。
+1. 按一下 [服務提供者連線設定]  窗格頂端的 [測試連線]  。
 1. 第一次將開啟新的瀏覽器索引標籤，其中列出應用程式要求的權限，並提示您接受要求。
-1. 按一下 [接受]。
-1. 此動作會將您重新導向 [測試對 `<your-connection-name>' 的連線已成功] 頁面。
+1. 按一下 [接受]  。
+1. 此動作會將您重新導向 [測試對 `<your-connection-name>' 的連線已成功]  頁面。
 
 ## <a name="prepare-the-bot-sample-code"></a>準備 Bot 範例程式碼
 
@@ -238,7 +228,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
     如果您不知道如何取得 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**值，您可以建立如下所述的新密碼：[bot-channels-registration-password](bot-service-quickstart-registration.md#bot-channels-registration-password) 或擷取 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**，從如下所述的部署使用 **Bot 通道註冊**佈建：[find-your-azure-bots-appid-and-appsecret](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)
 
     > [!NOTE]
-    > 您現在可將此 Bot 程式碼發佈至 Azure 訂用帳戶 (以滑鼠右鍵按一下專案，然後選擇 [發佈])，但此動作在本教學課程的範例中並非必要。 在 Azure 入口網站中配置 Bot 時，您必須進行發佈設定，其應使用您所用的應用程式和主控方案。
+    > 您現在可將此 Bot 程式碼發佈至 Azure 訂用帳戶 (以滑鼠右鍵按一下專案，然後選擇 [發佈]  )，但此動作在本教學課程的範例中並非必要。 在 Azure 入口網站中配置 Bot 時，您必須進行發佈設定，其應使用您所用的應用程式和主控方案。
 
 ## <a name="use-the-emulator-to-test-your-bot"></a>使用模擬器測試您的 Bot
 

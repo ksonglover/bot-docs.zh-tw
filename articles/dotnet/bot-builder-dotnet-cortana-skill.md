@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: fd7d20b71c8f6c3013e7af5c7c80623089f0dce0
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 9dd84e9e5e39e1e1b801e08fbee101dbfa8b0c49
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032901"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405685"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能建置啟用語音的 Bot
 
@@ -85,8 +85,8 @@ reply.InputHint = InputHints.ExpectingInput;
 |----|----|
 | [HeroCard][heroCard] | 通常包含單一大型影像、一或多個按鈕和文字的卡片。 |
 | [ThumbnailCard][thumbnailCard] | 通常包含單一縮圖影像、一或多個按鈕和文字的卡片。 |
-| [ReceiptCard][receiptCard] | 讓 Bot 向使用者提供收據的卡片。 通常包含收據上的項目清單 (稅金和總金額資訊) 和其他文字。 |
-| [SignInCard][signinCard] | 可讓 Bot 要求使用者登入的卡片。 它通常包含文字，以及一或多個按鈕，使用者可以按一下按鈕來起始登入流程。 |
+| [ReceiptCard][receiptCard] | 讓 Bot 向使用者提供收據的卡片。 通常包含收據上的項目清單、稅金和總金額資訊，以及其他文字。 |
+| [SignInCard][signinCard] | 可讓 Bot 要求使用者登入的卡片。 通常包含文字，以及一或多個使用者可以按一下以起始登入程序的按鈕。 |
 
 
 請參閱[卡片設計最佳做法][CardDesign]，以查看這些卡片在 Cortana 內的樣貌。 如需如何在 Bot 中使用複合式資訊卡 (Rich Card) 的範例，請參閱[將多媒體卡片附件新增到郵件](bot-builder-dotnet-add-rich-card-attachments.md)。 
@@ -99,7 +99,7 @@ The following code demonstrates how to add the `Speak` and `InputHint` propertie
 ## <a name="sample-rollerskill"></a>範例：RollerSkill
 下列各節中的程式碼來自擲骰子的範例 Cortana 技能。 請從 [BotBuilder-Samples 存放庫](https://github.com/Microsoft/BotBuilder-Samples/) (英文) 下載 Bot 的完整程式碼。
 
-您可以向 Cortana 說出技能的[叫用名稱][InvocationNameGuidelines]以便叫用技能。 對於骰子機技能，在您[將 Bot 新增至 Cortana 通道][CortanaChannel]並將其註冊為 Cortana 技能後，可以告訴 Cortana「啟動骰子機」或「讓骰子機擲骰子」以進行叫用。
+您必須說出其[叫用名稱][InvocationNameGuidelines] to Cortana. For the roller skill, after you [add the bot to the Cortana channel][CortanaChannel]來叫用該技能並將其註冊為 Cortana 技能，您可以告訴 Cortana「啟動骰子機」或「讓骰子機擲骰子」以進行叫用。
 
 ### <a name="explore-the-code"></a>探索程式碼
 
@@ -341,7 +341,7 @@ The following code demonstrates how to add the `Speak` and `InputHint` propertie
 [BFPortal]: https://dev.botframework.com/
 
 [SSMLRef]: https://aka.ms/cortana-ssml
-[CortanaDevCenter]: https://developer.microsoft.com/en-us/cortana
+[CortanaDevCenter]: https://developer.microsoft.com/cortana
 
 [CortanaSpecificEntities]: https://aka.ms/lgvcto
 [CortanaAuth]: https://aka.ms/vsdqcj

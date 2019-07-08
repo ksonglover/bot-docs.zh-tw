@@ -7,18 +7,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 05/31/2019
+ms.date: 06/07/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 89df62255c9ea6fbf55b2c7aed2d6f334d69c571
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: e708f6b556c832ed7f8858a893cc5fb0a8406ab2
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693690"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404319"
 ---
 <!-- Related TODO:
-- Check code in [Web Chat channel](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0)
-- Check guidance in [DirectLine authentication](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-4.0)
+- Check code in [Web Chat channel](https://docs.microsoft.com/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0)
+- Check guidance in [DirectLine authentication](https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-4.0)
 -->
 
 <!-- General TODO: (Feedback from CSE (Nafis))
@@ -98,15 +98,15 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 ## <a name="prerequisites"></a>必要條件
 
-- [Bot 基本概念][concept-basics]、[管理狀態][concept-state]、[對話方塊程式庫][concept-dialogs]、如何[實作循序對話流程][simple-dialog]及如何[重複使用對話方塊][component-dialogs]的知識。
+- [聊天機器人基本概念][concept-basics], [managing state][concept-state]、[dialogs 程式庫][concept-dialogs]、如何[實作循序對話流程][simple-dialog], and how to [reuse dialogs][component-dialogs]的知識。
 - Azure 和 OAuth 2.0 開發的知識。
 - Visual Studio 2017 或更新版本、Node.js、npm 和 git。
 - 以下其中一個範例。
 
 | 範例 | BotBuilder 版本 | 示範 |
 |:---|:---:|:---|
-| [**CSharp**][cs-auth-sample] 或 [**JavaScript**][js-auth-sample] 中的 **Bot 驗證** | v4 | OAuthCard 支援 |
-| [**CSharp**][cs-msgraph-sample] 或 [**JavaScript**][js-msgraph-sample] 中的 **Bot 驗證 MSGraph** | v4 |  OAuth 2 的 Microsoft Graph API 支援 |
+| [**CSharp**][cs-auth-sample] or [**JavaScript**][js-auth-sample] 中的**聊天機器人驗證** | v4 | OAuthCard 支援 |
+| [**CSharp**][cs-msgraph-sample] or [**JavaScript**][js-msgraph-sample] 中的**聊天機器人驗證 MSGraph** | v4 |  OAuth 2 的 Microsoft Graph API 支援 |
 
 ## <a name="create-your-bot-resource-on-azure"></a>在 Azure 上建立 Bot 資源
 
@@ -126,10 +126,10 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 建立下列步驟建立新的 Azure AD 應用程式。 您可以將 v1 或 v2 端點與所建立的應用程式一起使用。
 
 > [!TIP]
-> 您必須在具有管理員權限的租用戶中，建立並登錄 Azure AD 應用程式。
+> 您必須在可於其中同意應用程式所要求委派權限的租用戶中，建立並註冊 Azure AD 應用程式。
 
 1. 在 Azure 入口網站中開啟 [Azure Active Directory][azure-aad-blade] 面板。
-    如果您不在正確的租用戶中，請按一下 [切換目錄]  以切換至正確的租用戶。 (如需建立租用戶的指示，請參閱[存取入口網站並建立租用戶](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-access-create-new-tenant)。)
+    如果您不在正確的租用戶中，請按一下 [切換目錄]  以切換至正確的租用戶。 (如需建立租用戶的指示，請參閱[存取入口網站並建立租用戶](https://docs.microsoft.com/azure/active-directory/fundamentals/active-directory-access-create-new-tenant)。)
 1. 開啟 [應用程式註冊]  面板。
 1. 在 [應用程式註冊]  面板中，按一下 [新增註冊]  。
 1. 填寫必要欄位並建立應用程式註冊。
@@ -247,7 +247,7 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 <!-- TODO: Add guidance (once we have it) on how not to hard-code IDs and ABS auth. -->
 
-1. 從 github 存放庫複製您想要使用的範例：[**Bot 驗證**][cs-auth-sample]或 [**Bot 驗證 MSGraph**][cs-msgraph-sample]。
+1. 從 github 存放庫複製您想要使用的範例：[**聊天機器人驗證**][cs-auth-sample] or [**Bot authentication MSGraph**][cs-msgraph-sample]。
 1. 更新 **appsettings.json**：
 
     - 將 `ConnectionName` 設定為您新增至 Bot 的 OAuth 連線名稱。
@@ -259,7 +259,7 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-1. 從您想要使用的 github 存放庫複製：[**Bot 驗證**][js-auth-sample]或 [**Bot 驗證 MSGraph**][js-msgraph-sample]。
+1. 從您想要使用的 github 存放庫複製：[**聊天機器人驗證**][js-auth-sample] or [**Bot authentication MSGraph**][js-msgraph-sample]。
 1. 更新 **.env**：
 
     - 將 `connectionName` 設定為您新增至 Bot 的 OAuth 連線名稱。

@@ -7,12 +7,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 ROBOTS: NoIndex, NoFollow
-ms.openlocfilehash: d41c2c24ed38fffe76cd73a6bb8a685d3861ac55
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: fee70da7288b3214ff7f384998a69b40f91b3226
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000425"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464523"
 ---
 # <a name="configure-adaptive-cards"></a>設定調適型卡片
 > [!IMPORTANT]
@@ -41,19 +41,19 @@ ms.locfileid: "50000425"
 
 下方的程式碼片段會顯示 **myName** 實體在程式碼中定義的方式：
 
-``javascript
+```javascript
 {
    "type": "Input.Text",
    "id": "myName",
    "placeholder": "Last, First"
 }
-``
+```
 
 此外，如果欄位具有 `@task` 的識別碼，則欄位的值會作為工作名稱。 觸發這個欄位時 (例如：按一下按鈕)，就會執行已命名的工作。 
 
 以此程式碼片段為例：
 
-``javascript
+```javascript
 {
   'type': 'Action.Submit',
   'title': 'Search',
@@ -62,7 +62,7 @@ ms.locfileid: "50000425"
     '@task': 'Hotel Search'
   }
 }
-``
+```
 
 按下此按鈕時，會觸發提交動作並將 `context.sticky` 設定為 `Hotel Search`。 這會讓**旅館搜尋**工作開始執行。 若要使用此功能，請確定 `@task` 符合您在對話設計工具中所定義的工作名稱。
 

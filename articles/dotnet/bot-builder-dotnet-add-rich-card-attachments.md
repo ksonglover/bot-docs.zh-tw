@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5a6fc63005797a1c645de7506a8f15df2dcd0557
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: 51bdc5e52bd147747e9d068fc4721ca4b782ef27
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317673"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464513"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>將複合式資訊卡 (Rich Card) 附件新增至訊息
 
@@ -25,7 +25,9 @@ ms.locfileid: "54317673"
 > - [Node.js](../nodejs/bot-builder-nodejs-send-rich-cards.md)
 > - [REST](../rest-api/bot-framework-rest-connector-add-rich-cards.md)
 
-使用者與 Bot 之間的訊息交換，可以包含一或多個轉譯為清單或浮動切換的複合式資訊卡。 <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活動</a>物件的 `Attachments` 屬性包含<a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">附件</a>物件的陣列，代表訊息內的複合式資訊卡 (Rich Card) 和媒體附件。 
+使用者與 Bot 之間的訊息交換，可以包含一或多個轉譯為清單或浮動切換的複合式資訊卡。 
+
+<a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活動</a>物件的 `Attachments` 屬性包含<a href="https://docs.microsoft.com/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">附件</a>物件的陣列，代表訊息內的複合式資訊卡 (Rich Card) 和媒體附件。 
 
 > [!NOTE]
 > 如需如何將媒體附件新增至訊息的相關資訊，請參閱[將媒體附件新增至訊息](bot-builder-dotnet-add-media-attachments.md)。
@@ -37,12 +39,12 @@ Bot Framework 目前支援八種類型的複合式資訊卡 (Rich Card)：
 | 卡片類型 | 說明 |
 |----|----|
 | <a href="/adaptive-cards/get-started/bots">調適型卡片</a> | 可包含文字、語音、影像、按鈕和輸入欄位之任意組合的可自訂卡片。 請參閱[個別頻道支援](/adaptive-cards/get-started/bots#channel-status)。  |
-| [動畫卡片][animationCard] | 可播放動畫 GIF 或短片的卡片。 |
-| [音訊卡片][audioCard] | 可以播放音訊檔案的卡片。 |
+| [動畫卡片][animationCard] | 可以播放動畫 GIF 或短片的卡片。 |
+| [音訊卡片][audioCard] | 可播放音訊檔案的卡片。 |
 | [主圖卡片][heroCard] | 通常包含單一大型影像、一或多個按鈕和文字的卡片。 |
 | [縮圖卡片][thumbnailCard] | 通常包含單一縮圖影像、一或多個按鈕和文字的卡片。 |
-| [收據卡片][receiptCard] | 讓 Bot 向使用者提供收據的卡片。 其中通常包含收據上的項目清單 (稅金和總金額資訊) 和其他文字。 |
-| [登入卡][signinCard] | 可讓 Bot 要求使用者登入的卡片。 通常包含文字，以及一或多個使用者可以按一下以起始登入程序的按鈕。 |
+| [收據卡片][receiptCard] | 讓 Bot 向使用者提供收據的卡片。 通常包含收據上的項目清單、稅金和總金額資訊，以及其他文字。 |
+| [登入卡片][signinCard] | 可讓 Bot 要求使用者登入的卡片。 通常包含文字，以及一或多個使用者可以按一下以起始登入程序的按鈕。 |
 | [視訊卡片][videoCard] | 可播放視訊的卡片。 |
 
 > [!TIP]
@@ -124,13 +126,13 @@ Bot Framework 目前支援八種類型的複合式資訊卡 (Rich Card)：
 
 ## <a name="additional-resources"></a>其他資源
 
-- [使用頻道偵測器來預覽功能][inspector]
-- <a href="http://adaptivecards.io" target="_blank">調適型卡片</a>
+- [使用通道偵測器預覽功能][inspector]
+- <a href="http://adaptivecards.io" target="_blank">調適型卡片</a> \(英文\)
 - [活動概觀](bot-builder-dotnet-activities.md)
 - [建立訊息](bot-builder-dotnet-create-messages.md)
 - [將媒體附件新增至訊息](bot-builder-dotnet-add-media-attachments.md)
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活動類別</a>
-- <a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">附件類別</a>
+- <a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活動類別</a>
+- <a href="https://docs.microsoft.com/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">附件類別</a>
 
 [animationCard]: /dotnet/api/microsoft.bot.connector.animationcard
 

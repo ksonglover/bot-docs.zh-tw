@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/20/2018
-ms.openlocfilehash: 0b5bc1e82b6ef2dc5550fcaa5db176d06a7d2ea7
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: ecccbcadab93417dd52f72512a0046e70a83e85e
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999695"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405818"
 ---
 # <a name="design-the-user-experience"></a>設計使用者體驗
 
@@ -24,7 +24,7 @@ ms.locfileid: "49999695"
 
 **豐富使用者控制項**是 Bot 向使用者顯示的一般 UI 控制項，例如按鈕、影像、浮動切換和功能表，而使用者會和這些控制項互動以傳達選擇和意圖。 Bot 可以使用一組 UI 控制項來模擬應用程式，或甚至可以內嵌在應用程式中執行。 當 Bot 是內嵌在應用程式或網站中時，它可以利用裝載它的應用程式的功能，來代表幾乎任何 UI 控制項。 
 
-數十年來，應用程式和網頁開發人員都依靠 UI 控制項來讓使用者和其應用程式互動，而這些相同的 UI 控制項在 Bot 中也非常有效。 例如，按鈕很適合用來向使用者顯示簡單的選擇。 讓使用者以按一下標示為 [旅館] 的按鈕來傳達「旅館」，比強迫使用者輸入「旅館」更容易且更快。 對於在行動裝置上更是如此，因為在這些裝置上，按一下比輸入更容易。
+數十年來，應用程式和網頁開發人員都依靠 UI 控制項來讓使用者和其應用程式互動，而這些相同的 UI 控制項在 Bot 中也非常有效。 例如，按鈕很適合用來向使用者顯示簡單的選擇。 讓使用者以按一下標示為 [旅館]  的按鈕來傳達「旅館」，比強迫使用者輸入「旅館」更容易且更快。 對於在行動裝置上更是如此，因為在這些裝置上，按一下比輸入更容易。
 
 ## <a name="cards"></a>卡片
 
@@ -47,7 +47,7 @@ Microsoft Bot 服務卡片是可以程式設計的物件，其中包含可在各
 
 卡片讓您只要設計一次 Bot，然後就能讓它在各種通道上運作。 不過，並非所有可用的通道都完整支援所有卡片類型。 
 
-將卡片新增到 Bot 的詳細指示可以在以下各節中找到：[新增豐富卡片媒體附件](v4sdk/bot-builder-howto-add-media-attachments.md)、[新增訊息的建議動作](v4sdk/bot-builder-howto-add-suggested-actions.md)。 這裡也可以找到卡片的範例程式碼：[C#](https://aka.ms/bot-cards-sample-code-cs)/[JS](https://aka.ms/bot-cards-sample-code-js) 調適型卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)，附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-js-sample-code)，以及建議的動作：[C#](https://aka.ms/bot-suggested-actions-code)/[JS](https://aka.ms/bot-suggested-actions-js-code)。
+將卡片新增到 Bot 的詳細指示可以在以下各節中找到：[新增豐富卡片媒體附件](v4sdk/bot-builder-howto-add-media-attachments.md)、[新增訊息的建議動作](v4sdk/bot-builder-howto-add-suggested-actions.md)。 您也可以在此找到卡片的程式碼範例：[C#](https://aka.ms/bot-cards-sample-code-cs)/[JS](https://aka.ms/bot-cards-sample-code-js) 調適型卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)、附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-js-sample-code)，以及建議的動作：[C#](https://aka.ms/bot-suggested-actions-code)/[JS](https://aka.ms/bot-suggested-actions-js-code)。
 
 
 
@@ -77,7 +77,7 @@ Bot 可以接受使用者的**文字**輸入，然後嘗試使用規則運算式
 > 設計需要使用者提供特定命令的 Bot，通常可以提供好的使用者體驗，同時也消除對自然語言理解功能的需求。
 
   
-對於「知識庫」 Bot 或「問與答」 Bot的案例，使用者可能會**問一般性問題**。 例如，請想像一個可以根據好幾萬份文件來回答問題的 Bot。 <a href="https://qnamaker.ai" target="_blank">QnA Maker</a> \(英文\) 和 <a href="https://azure.microsoft.com/en-us/services/search/" target="_blank">Azure 搜尋服務</a>都是專門為此類型案例而設計的。 如需詳細資訊，請參閱[設計知識 Bot](bot-service-design-pattern-knowledge-base.md)。
+對於「知識庫」  Bot 或「問與答」  Bot的案例，使用者可能會**問一般性問題**。 例如，請想像一個可以根據好幾萬份文件來回答問題的 Bot。 <a href="https://qnamaker.ai" target="_blank">QnA Maker</a> \(英文\) 和 <a href="https://azure.microsoft.com/services/search/" target="_blank">Azure 搜尋服務</a>都是專門為此類型案例而設計的。 如需詳細資訊，請參閱[設計知識 Bot](bot-service-design-pattern-knowledge-base.md)。
 
 > [!TIP]
 > 如果您要設計的 Bot 將根據資料庫、網頁或文件的結構化或非結構化資料來回答問題，請考慮專門為解決這種案例而設計的技術，而不是嘗試使用自然語言理解來解決問題。

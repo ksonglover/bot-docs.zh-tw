@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 2/13/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 21324f68332be6a60f55e6ab55545fc6102bedb9
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: d81a7e55ab7ac5e3b430ae051d1abbb4ca94b44d
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033025"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405837"
 ---
 # <a name="create-task-automation-bots"></a>建立工作自動化 Bot
 
@@ -62,7 +62,7 @@ Contoso 的資深開發人員 John 決定建立 Bot，以將密碼重設工作�
 
 #### <a name="resetpassword-dialog"></a>ResetPassword 對話方塊
 
-當使用者從根對話方塊中選擇 [重設密碼]時，會叫用 `ResetPassword` 對話方塊。 接著，`ResetPassword` 對話方塊會叫用另外兩個對話方塊。 首先，它會叫用 `PromptStringRegex` 對話方塊來收集使用者的電話號碼。 然後它會叫用 `PromptDate` 對話方塊來收集使用者的出生日期。 
+當使用者從根對話方塊中選擇 [重設密碼]  時，會叫用 `ResetPassword` 對話方塊。 接著，`ResetPassword` 對話方塊會叫用另外兩個對話方塊。 首先，它會叫用 `PromptStringRegex` 對話方塊來收集使用者的電話號碼。 然後它會叫用 `PromptDate` 對話方塊來收集使用者的出生日期。 
 
 > [!NOTE]
 > 在此範例中，John 選擇實作的邏輯，會使用兩個不同的對話方塊來收集使用者的電話號碼與出生日期。 此方法不僅可簡化每個對話方塊所需的程式碼，也可增加未來在其他案例中使用這些對話方塊的機率。 
@@ -85,7 +85,7 @@ Contoso 的資深開發人員 John 決定建立 Bot，以將密碼重設工作�
 
 ## <a name="bot-app-or-website"></a>Bot、應用程式還是網站？
 
-您可能會好奇，如果工作自動化 Bot 十分類似應用程式或網站，為什麼不改為建置應用程式或網站就好？ 根據您的特定案例，建置應用程式或網站而不建置 Bot 可能是完全合理的選擇。 您可能甚至會使用 [Bot Framework Direct Line API][directLineAPI] 或 <a href="https://aka.ms/BotFramework-WebChat" target="_blank">網路聊天控制項</a>，選擇將您的 Bot 內嵌到應用程式中。 在應用程式的內容中實作 Bot 有兩個優點：在同一個位置提供豐富的應用程式與對話體驗。 
+您可能會好奇，如果工作自動化 Bot 十分類似應用程式或網站，為什麼不改為建置應用程式或網站就好？ 根據您的特定案例，建置應用程式或網站而不建置 Bot 可能是完全合理的選擇。 您可能甚至會使用 [Bot Framework Direct Line API][directLineAPI] 或<a href="https://aka.ms/BotFramework-WebChat" target="_blank">網路聊天控制項</a>，選擇將您的 Bot 內嵌到應用程式中。 在應用程式的內容中實作 Bot 有兩個優點：在同一個位置提供豐富的應用程式與對話體驗。 
 
 不過，在許多情況下，建置應用程式或網站可能遠比建置 Bot 還更複雜且更昂貴。 應用程式或網站通常必須支援多個用戶端和平台，因此封裝和部署可能會是既繁瑣又費時的流程，且必須下載及安裝應用程式的使用者經驗並不一定很理想。 基於這些理由，Bot 通常可提供較簡單的方式，來解決眼前的問題。 
 
@@ -106,4 +106,4 @@ For a complete sample that shows how to implement simple task automation using t
 - [使用對話方塊來管理對話流程 (Node.js)](~/nodejs/bot-builder-nodejs-manage-conversation-flow.md)
 
 
-[directLineAPI]: https://docs.botframework.com/en-us/restapi/directline3/#navtitle
+[directLineAPI]: https://docs.botframework.com/restapi/directline3/#navtitle

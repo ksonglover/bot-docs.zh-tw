@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 2/26/2019
-ms.openlocfilehash: 307a6bf697e274391336a0d216c64da85232616d
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 0e548700e81fff5029031fd1e349cc75d9d0bc7a
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033322"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464646"
 ---
 # <a name="debug-with-the-emulator"></a>使用模擬器進行偵錯
 
@@ -26,9 +26,13 @@ Bot Framework 模擬器是一項桌面應用程式，可讓 Bot 開發人員在�
 
 ![模擬器 UI](media/emulator-v4/emulator-welcome.png)
 
-若要連線到本機上執行的 Bot，請按一下 [開啟 Bot]，或選取您預先設定的組態檔 (.bot 檔案)。 您不需要用組態檔來連線到 Bot，但如果您的 Bot 有組態檔，模擬器仍會與其搭配使用。 如果您的 Bot 搭配 Microsoft 帳戶 (MSA) 認證執行，請也輸入這些認證。
+若要連線到本機上執行的 Bot，請按一下 [開啟 Bot]  ，或選取您預先設定的組態檔 (.bot 檔案)。 您不需要用組態檔來連線到 Bot，但如果您的 Bot 有組態檔，模擬器仍會與其搭配使用。 如果您的聊天機器人搭配 [Microsoft 帳戶 (MSA) 認證](#use-bot-credentials)執行，請也輸入這些認證。
 
 ![模擬器 UI](media/emulator-v4/emulator-open-bot.png)
+
+### <a name="use-bot-credentials"></a>使用聊天機器人認證
+
+當您開啟聊天機器人時，請設定 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼** (如果您的聊天機器人使用這些認證來執行)。 如果您使用 Azure Bot Service 建立了聊天機器人，則可於聊天機器人的 App Service 上 (在 [設定] -> [組態]  區段底下) 取得這些認證。 如果您不知道這些值，則可以從本機執行的聊天機器人組態檔中移除這些值，然後在模擬器中執行聊天機器人。 如果聊天機器人並未使用這些設定來執行，則不需要使用任一設定來執行模擬器。 
 
 ## <a name="view-detailed-message-activity-with-the-inspector"></a>使用偵測器檢視詳細訊息活動
 
@@ -38,19 +42,19 @@ Bot Framework 模擬器是一項桌面應用程式，可讓 Bot 開發人員在�
 
 ## <a name="save-and-load-conversations-with-bot-transcripts"></a>儲存及載入與 Bot 交談的文字記錄
 
-模擬器中的活動可以儲存為文字記錄。 從開啟的即時聊天視窗中，選取 [另存文字記錄]，以儲存文字記錄檔案。 您可以隨時使用 [重新開始] 按鈕來清除對話，並重新連線至 Bot。  
+模擬器中的活動可以儲存為文字記錄。 從開啟的即時聊天視窗中，選取 [另存文字記錄]  ，以儲存文字記錄檔案。 您可以隨時使用 [重新開始]  按鈕來清除對話，並重新連線至 Bot。  
 
 ![模擬器儲存文字記錄](media/emulator-v4/emulator-save-transcript.png)
 
-若要載入文字記錄，只需選取 [檔案] > [開啟文字記錄檔案]，再選取文字記錄即可。 新的 [文字記錄] 視窗隨即開啟，並將訊息活動轉譯為輸出視窗。 
+若要載入文字記錄，只需選取 [檔案] > [開啟文字記錄檔案]  ，再選取文字記錄即可。 新的 [文字記錄] 視窗隨即開啟，並將訊息活動轉譯為輸出視窗。 
 
 ![模擬器載入文字記錄](media/emulator-v4/emulator-load-transcript.png)
 
 ## <a name="add-services"></a>新增服務 
 
-您可以直接從模擬器輕鬆地將 LUIS 應用程式、QnA 知識庫或分派模型新增到 Bot。 載入 Bot 後，請選取模擬器視窗最左側的 [服務] 按鈕。 您會在 [服務] 功能表下方看到用來新增 LUIS、QnA Maker 和分派的選項。 
+您可以直接從模擬器輕鬆地將 LUIS 應用程式、QnA 知識庫或分派模型新增到 Bot。 載入 Bot 後，請選取模擬器視窗最左側的 [服務] 按鈕。 您會在 [服務]  功能表下方看到用來新增 LUIS、QnA Maker 和分派的選項。 
 
-若要新增服務應用程式，只需按一下 [+] 按鈕，然後選取您想要新增的服務。 系統會提示您登入 Azure 入口網站，以將服務新增至 Bot 檔案，並將服務連線到您的 Bot 應用程式。 
+若要新增服務應用程式，只需按一下 [+]  按鈕，然後選取您想要新增的服務。 系統會提示您登入 Azure 入口網站，以將服務新增至 Bot 檔案，並將服務連線到您的 Bot 應用程式。 
 
 > [!IMPORTANT]
 > 只有在您使用 `.bot` 組態檔時，才能新增服務。 服務需要個別加入。 如需詳細資訊，請參閱[管理 Bot 資源](v4sdk/bot-file-basics.md)，或針對您要新增的服務，參閱個別的操作說明文章。
@@ -65,7 +69,7 @@ Bot Framework 模擬器是一項桌面應用程式，可讓 Bot 開發人員在�
 
 ## <a name="inspect-services"></a>檢查服務
 
-透過新的 v4 模擬器，您也可以檢查 LUIS 和 QnA 的 JSON 回應。 使用已連接語言服務的 Bot 時，您可以在右下方選取 [記錄] 視窗中的 [追蹤]。 這項新工具也提供直接從模擬器更新語言服務的功能。 
+透過新的 v4 模擬器，您也可以檢查 LUIS 和 QnA 的 JSON 回應。 使用已連接語言服務的 Bot 時，您可以在右下方選取 [記錄] 視窗中的 [追蹤]  。 這項新工具也提供直接從模擬器更新語言服務的功能。 
 
 ![LUIS 偵測器](media/emulator-v4/emulator-luis-inspector.png)
 
@@ -106,7 +110,7 @@ Open the **Emulator Settings**, enter the path to ngrok, select whether or not t
 
     ![停用資料收集](media/emulator-v4/emulator-disable-data-1.png)
 
-2. 在 [資料收集] 區段底下，取消選取標示 [允許我們收集使用資料，以協助改善模擬器] 的核取方塊。
+2. 在 [資料收集]  區段底下，取消選取標示 [允許我們收集使用資料，以協助改善模擬器]  的核取方塊。
 
     ![停用資料收集](media/emulator-v4/emulator-disable-data-2.png)
 
@@ -118,7 +122,7 @@ Open the **Emulator Settings**, enter the path to ngrok, select whether or not t
 
 ## <a name="additional-resources"></a>其他資源
 
-Bot Framework 模擬器是開放原始碼。 您可以[參與][EmulatorGithubContribute]開發，並[提交 Bug 和建議][EmulatorGithubBugs]。
+Bot Framework 模擬器是開放原始碼。 您可以[參與][EmulatorGithubContribute] to the development and [submit bugs and suggestions][EmulatorGithubBugs]。
 
 如需進行疑難排解，請參閱[針對一般問題疑難排解](bot-service-troubleshoot-bot-configuration.md)以及該區段中的其他疑難排解文章。
 

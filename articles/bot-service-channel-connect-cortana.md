@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 04/30/2018
-ms.openlocfilehash: 6bb4945801ee127cfa954289792987a57eae7fd5
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 3df9d22b486e56547452cc5bce4add3946f670f5
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032994"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405929"
 ---
 # <a name="connect-a-bot-to-cortana"></a>將 Bot 連線至 Cortana
 
@@ -36,6 +36,8 @@ Cortana 是具有語音功能的通道，除了文字對話之外，還可以傳
 
 ![預設設定](~/media/channels/cortana-defaultsettings.png)
 
+>注意：Cortana 目前不支援使用 Azure Active Directory (AAD) 帳戶驗證。 您必須使用 Microsoft 帳戶 (MSA) 才能順利地將聊天機器人發佈至 Cortana。
+
 ## <a name="general-bot-information"></a>一般 Bot 資訊
 
 在**透過連線服務區段管理使用者身分識別**下方按下選項即可啟用。 填寫表單。
@@ -47,9 +49,9 @@ Cortana 是具有語音功能的通道，除了文字對話之外，還可以傳
 
 ### <a name="when-should-cortana-prompt-for-a-user-to-sign-in"></a>Cortana 何時應該提示使用者登入
 
-如果您希望 Cortana 讓使用者在叫用您的技能時登入，請選取 [在引動過程登入]。
+如果您希望 Cortana 讓使用者在叫用您的技能時登入，請選取 [在引動過程登入]  。
 
-如果您使用 Bot Service 登入卡片讓使用者登入，請選取 [在必要時登入]。 一般而言，只有在使用者使用需要驗證的功能時，才能使用此選項登入。 當您的技能傳送包含登入卡附件的訊息時，Cortana 會忽略登入卡，並使用連線帳戶設定執行授權流程。
+如果您使用 Bot Service 登入卡片讓使用者登入，請選取 [在必要時登入]  。 一般而言，只有在使用者使用需要驗證的功能時，才能使用此選項登入。 當您的技能傳送包含登入卡附件的訊息時，Cortana 會忽略登入卡，並使用連線帳戶設定執行授權流程。
 
 ### <a name="account-name"></a>帳戶名稱
 
@@ -69,15 +71,15 @@ Cortana 是具有語音功能的通道，除了文字對話之外，還可以傳
 
 ### <a name="token-options"></a>權杖選項
 
-選取 [POST] 。
+選取 [POST]  。
 
 ### <a name="grant-type"></a>授與類型
 
-選取 [授權碼] 以使用程式碼授與流程，或選取 [隱含] 以使用隱含流程。
+選取 [授權碼]  以使用程式碼授與流程，或選取 [隱含]  以使用隱含流程。
 
 ### <a name="token-url"></a>權杖 URL
 
-將 [授權碼] 授與類型設定為 `https://login.microsoftonline.com/common/oauth2/v2.0/token`。
+將 [授權碼]  授與類型設定為 `https://login.microsoftonline.com/common/oauth2/v2.0/token`。
 
 ### <a name="client-secretpassword-for-third-party-services"></a>第三方服務的用戶端密碼
 
@@ -85,7 +87,7 @@ Bot 的密碼。 當您註冊 Bot 時，就會收到密碼。
 
 ### <a name="client-authentication-scheme"></a>用戶端驗證配置
 
-選取 [HTTP 基本]。
+選取 [HTTP 基本]  。
 
 ### <a name="internet-access-required-to-authenticate-users"></a>驗證使用者所需的網際網路存取權
 
@@ -95,11 +97,11 @@ Bot 的密碼。 當您註冊 Bot 時，就會收到密碼。
 
 Cortana 會提供許多不同類型的使用者設定檔資訊，供您存取並為使用者自訂 Bot。 例如，如果技能有使用者名稱和位置的存取權，則可以為技能自訂回覆，例如「嗨，Kamran，祝你在華盛頓州倍有福有愉快的一天」。
 
-按一下 [新增使用者設定檔要求]，然後從下拉式清單中選取您想查看的使用者設定檔資訊。 新增用來從 Bot 程式碼存取這項資訊的易記名稱。
+按一下 [新增使用者設定檔要求]  ，然後從下拉式清單中選取您想查看的使用者設定檔資訊。 新增用來從 Bot 程式碼存取這項資訊的易記名稱。
 
 ### <a name="deploy-on-cortana"></a>在 Cortana 上部署
 
-填妥 Cortana 技能的註冊表單後，請按一下 [在 Cortana 上部署] 以完成連線。 這麼做會將您重新導向回您 Bot 的通道刀鋒視窗中，Bot 現應已連線至 Cortana。
+填妥 Cortana 技能的註冊表單後，請按一下 [在 Cortana 上部署]  以完成連線。 這麼做會將您重新導向回您 Bot 的通道刀鋒視窗中，Bot 現應已連線至 Cortana。
 
 此時您的 Bot 已經部署為您帳戶的 Cortana 技能。
 
@@ -109,6 +111,6 @@ Cortana 會提供許多不同類型的使用者設定檔資訊，供您存取並
 * [啟用偵錯](bot-service-debug-cortana-skill.md)
 * [發佈 Cortana 技能][publish]
 
-[invocation]: https://docs.microsoft.com/en-us/cortana/skills/cortana-invocation-guidelines
-[publish]: https://docs.microsoft.com/en-us/cortana/skills/publish-skill
+[invocation]: https://docs.microsoft.com/cortana/skills/cortana-invocation-guidelines
+[publish]: https://docs.microsoft.com/cortana/skills/publish-skill
 [CortanaEntity]: https://aka.ms/lgvcto

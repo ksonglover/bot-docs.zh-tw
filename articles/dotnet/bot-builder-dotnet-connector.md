@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 0407ec0d90c58e10aa14616e2aa9205bb8840d55
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 4df2dcc8857c2af9a69c18e6acf8c8d064e1e043
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225223"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405694"
 ---
 # <a name="send-and-receive-activities"></a>傳送及接收活動
 
@@ -29,7 +29,7 @@ Bot Framework Connector 提供單一 REST API，讓 Bot 能夠跨多個通道 (�
 
 ## <a name="create-a-connector-client"></a>建立連接器用戶端
 
-[ConnectorClient][ConnectorClient] 類別包含 Bot 用來與通道上的使用者進行通訊的方法。 當您的 Bot 接收到來自 Connector 的 <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity</a> 物件時，它應該使用針對該活動指定的 `ServiceUrl` 來建立連接器用戶端，後續將使用它來產生回應。 
+[ConnectorClient][ConnectorClient] 類別包含 Bot 用來與通道上的使用者進行通訊的方法。 當您的 Bot 接收到來自 Connector 的 <a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity</a> 物件時，它應該使用針對該活動指定的 `ServiceUrl` 來建立連接器用戶端，後續將使用它來產生回應。 
 
 [!code-csharp[Create connector client](../includes/code/dotnet-send-and-receive.cs#createConnectorClient)]
 
@@ -88,7 +88,7 @@ Connector 會使用 [Activity](bot-builder-dotnet-activities.md) 物件，在 Bo
 - [活動概觀](bot-builder-dotnet-activities.md)
 - [建立訊息](bot-builder-dotnet-create-messages.md)
 - <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">適用於 .NET 的 Bot Framework SDK 參考</a>
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a> \(英文\)
+- <a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a> \(英文\)
 - <a href="/dotnet/api/microsoft.bot.connector.connectorclient" target="_blank">ConnectorClient 類別</a>
 
 [ConnectorClient]: /dotnet/api/microsoft.bot.connector.connectorclient

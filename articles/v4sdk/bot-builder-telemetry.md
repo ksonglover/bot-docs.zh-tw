@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b6b4d30aea493180fddaee4a7f74bef72c1992ae
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 7225387933630eb7343a57aa849581ff1cbfbb0c
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215268"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464704"
 ---
 # <a name="add-telemetry-to-your-bot"></a>將遙測新增至 Bot
 
@@ -88,7 +88,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     }
 ```
 
-如需有關如何將 Application Insights 新增至 ASP.NET Core 應用程式的詳細資訊，請參閱[這篇文章](https://docs.microsoft.com/en-us/azure/azure-monitor/app/asp-net-core-no-visualstudio)。 
+如需有關如何將 Application Insights 新增至 ASP.NET Core 應用程式的詳細資訊，請參閱[這篇文章](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core-no-visualstudio)。 
 
 ### <a name="customize-your-telemetry-client"></a>自訂您的遙測用戶端
 
@@ -139,12 +139,12 @@ public void ConfigureServices(IServiceCollection services)
 `user_id`| `string` | [ChannelID](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id) + [From.Id](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)
 `session_id`| `string`|  [ConversationID](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#conversation)
 `customDimensions.activityId`| `string` | [Bot 活動識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#id)
-`customDimensions.activityType` | `string` | [Bot 活動類型](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id)
-`customDimensions.channelId` | `string` |  [Bot 活動通道識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id)
+`customDimensions.activityType` | `string` | [聊天機器人活動類型](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id)
+`customDimensions.channelId` | `string` |  [聊天機器人活動管道識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id)
 
 ## <a name="in-depth-telemetry"></a>深入的遙測
 
-4.4 版的 SDK 新增了三個新元件。  所有元件會使用 `IBotTelemetryClient` (在 node.js 中則使用 `BotTelemetryClient` ) 介面進行記錄，並可使用自訂實作來加以覆寫。
+4\.4 版的 SDK 新增了三個新元件。  所有元件會使用 `IBotTelemetryClient` (在 node.js 中則使用 `BotTelemetryClient` ) 介面進行記錄，並可使用自訂實作來加以覆寫。
 
 - Bot Framework 中介軟體元件 (*TelemetryLoggerMiddleware*)，會在接收、傳送、更新或刪除訊息時留下記錄。 您可以進行覆寫來建立自訂記錄。
 - *LuisRecognizer* 類別。  您可以透過兩種方式進行覆寫來建立自訂記錄 - 經由叫用 (新增/取代屬性) 或衍生類別。

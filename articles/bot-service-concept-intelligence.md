@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 12/17/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: bd01eafa70247bed2887ff9421be40365a6b070f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3f9cd112397a66bffb8efd41cbeab6feca8c7d7f
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000165"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464613"
 ---
 # <a name="cognitive-services"></a>認知服務
 
@@ -29,13 +29,13 @@ ms.locfileid: "50000165"
 
 認知服務能為這些 API 提供語言理解能力：
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/language-understanding-intelligent-service-luis" target="_blank">Language Understanding Intelligent Service (LUIS)</a> 可使用預先建置或自訂訓練的語言模型處理自然語言。 如需更多詳細資訊，請參閱 [Bot 的 Language Understanding](v4sdk/bot-builder-concept-luis.md)
+- <a href="https://www.microsoft.com/cognitive-services/language-understanding-intelligent-service-luis" target="_blank">Language Understanding Intelligent Service (LUIS)</a> 可使用預先建置或自訂訓練的語言模型處理自然語言。 如需更多詳細資訊，請參閱 [Bot 的 Language Understanding](v4sdk/bot-builder-concept-luis.md)
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/text-analytics-api" target="_blank">文字分析 API</a> 可從文字中偵測情緒、主要片語、主題和語言。
+- <a href="https://www.microsoft.com/cognitive-services/text-analytics-api" target="_blank">文字分析 API</a> 可從文字中偵測情緒、主要片語、主題和語言。
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/bing-spell-check-api" target="_blank">Bing 拼字檢查 API</a> 提供強大的拼字檢查功能，且可辨識名稱、品牌名稱和俚語之間的差異。
+- <a href="https://www.microsoft.com/cognitive-services/bing-spell-check-api" target="_blank">Bing 拼字檢查 API</a> 提供強大的拼字檢查功能，且可辨識名稱、品牌名稱和俚語之間的差異。
 
-- <a href="https://docs.microsoft.com/en-us/azure/machine-learning/studio/text-analytics-module-tutorial" target ="_blank">Azure Machine Learning Studio 中的文字分析模型</a>可讓您建置及操作文字分析模型，例如：詞形還原及文字預先處理。 這些模型可協助您解決文件分類或情緒分析等問題。
+- <a href="https://docs.microsoft.com/azure/machine-learning/studio/text-analytics-module-tutorial" target ="_blank">Azure Machine Learning Studio 中的文字分析模型</a>可讓您建置及操作文字分析模型，例如：詞形還原及文字預先處理。 這些模型可協助您解決文件分類或情緒分析等問題。
 
 深入了解採用 Microsoft 認知服務的 [Language Understanding][language]。
 
@@ -43,13 +43,13 @@ ms.locfileid: "50000165"
 
 認知服務提供四種知識 API，可讓您識別非結構化文字中的具名實體或片語、新增個人化建議、根據自然解譯使用者查詢提供自動完成建議，以及搜尋學術文章及其他研究，如同個人化常見問答集服務。
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/entity-linking-intelligence-service" target="_blank">實體連結智慧服務</a>可使用文字中提及的相關實體標註非結構化文字。 視內容而定，相同的字詞或片語可能指涉不同事物。 此服務了解所提供之文字中的情境，且能識別您文字中的每個實體。    
+- <a href="https://www.microsoft.com/cognitive-services/entity-linking-intelligence-service" target="_blank">實體連結智慧服務</a>可使用文字中提及的相關實體標註非結構化文字。 視內容而定，相同的字詞或片語可能指涉不同事物。 此服務了解所提供之文字中的情境，且能識別您文字中的每個實體。    
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/knowledge-exploration-service" target="_blank">知識探索服務</a>可解譯自然語言使用者查詢字串，再傳回加上註釋的解譯，進而支援可預期使用者輸入內容的豐富搜尋及自動完成功能體驗。 立即查詢完成建議和預期查詢調整皆以您自己的資料和應用程式特定文法為依據，可讓使用者執行更快的查詢。    
+- <a href="https://www.microsoft.com/cognitive-services/knowledge-exploration-service" target="_blank">知識探索服務</a>可解譯自然語言使用者查詢字串，再傳回加上註釋的解譯，進而支援可預期使用者輸入內容的豐富搜尋及自動完成功能體驗。 立即查詢完成建議和預期查詢調整皆以您自己的資料和應用程式特定文法為依據，可讓使用者執行更快的查詢。    
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/academic-knowledge-api" target="_blank">學術知識 API</a> 可從 <a href="https://www.microsoft.com/en-us/research/project/microsoft-academic-graph/" target="_blank">Microsoft Academic Graph</a> 傳回學術研究文章、作者、期刊、研討會、主題和大學資訊。 學術知識 API 以網域特定形式的範例內建於知識探索服務，可使用圖表式的對話方塊提供知識庫，且可從數千萬筆研究相關實體中搜尋內容。 搜尋主題、教授、大學或研討會，然後 API 為提供相關的出版刊物及相關實體。 其文法亦支援自然查詢如：「Michael Jordan 在 2010 年後有關機器學習的研究文章」。
+- <a href="https://www.microsoft.com/cognitive-services/academic-knowledge-api" target="_blank">學術知識 API</a> 可從 <a href="https://www.microsoft.com/research/project/microsoft-academic-graph/" target="_blank">Microsoft Academic Graph</a> 傳回學術研究文章、作者、期刊、研討會、主題和大學資訊。 學術知識 API 以網域特定形式的範例內建於知識探索服務，可使用圖表式的對話方塊提供知識庫，且可從數千萬筆研究相關實體中搜尋內容。 搜尋主題、教授、大學或研討會，然後 API 為提供相關的出版刊物及相關實體。 其文法亦支援自然查詢如：「Michael Jordan 在 2010 年後有關機器學習的研究文章」。
 
-- <a href="https://qnamaker.ai" target="_blank">QnA Maker</a> 是一項簡單易用的免費 REST API 及 Web 服務，可訓練 AI 以自然的交談方式回應使用者問題。 QnA Maker 具備最佳化機器學習邏輯，以及整合領先業界語言處理技術的能力，可抽取半結構化資料，例如：由問與答組成清楚且實用的解答。
+- <a href="https://qnamaker.ai" target="_blank">QnA Maker</a> 是一項簡單易用的 REST API 及 Web 服務，可訓練 AI 以自然的交談方式回應使用者問題。 QnA Maker 具備最佳化機器學習邏輯，以及整合領先業界語言處理技術的能力，可抽取半結構化資料，例如：由問與答組成清楚且實用的解答。
 
 深入了解採用 Microsoft 認知服務的[知識擷取][knowledge]。
 
@@ -61,9 +61,9 @@ ms.locfileid: "50000165"
 
 認知服務中有三個語音 API 可處理或合成語音：
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/speech-api" target="_blank">Bing 語音 API</a> 支援語音轉文字和文字轉語音功能。
-- <a href="https://www.microsoft.com/cognitive-services/en-us/custom-recognition-intelligent-service-cris" target="_blank">自訂辨識智慧型服務 (CRIS)</a> 可讓您建立自訂語音辨識模型，並根據應用程式的詞彙或使用者的說話方式調整語音轉文字設定。
-- <a href="https://www.microsoft.com/cognitive-services/en-us/speaker-recognition-api" target="_blank">說話者辨識 API</a> 可透過聲音辨識及驗證說話者。
+- <a href="https://www.microsoft.com/cognitive-services/speech-api" target="_blank">Bing 語音 API</a> 支援語音轉文字和文字轉語音功能。
+- <a href="https://www.microsoft.com/cognitive-services/custom-recognition-intelligent-service-cris" target="_blank">自訂辨識智慧型服務 (CRIS)</a> 可讓您建立自訂語音辨識模型，並根據應用程式的詞彙或使用者的說話方式調整語音轉文字設定。
+- <a href="https://www.microsoft.com/cognitive-services/speaker-recognition-api" target="_blank">說話者辨識 API</a> 可透過聲音辨識及驗證說話者。
 
 下列資源提供有關新增語音辨識功能至 Bot 的額外資訊。
 
@@ -80,15 +80,15 @@ Bing 搜尋 API 可讓您新增智慧 Web 搜尋功能至 Bot。 只要使用幾
 
 認知服務中有五種可用的 Bing 搜尋 API。
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/bing-web-search-api" target="_blank">Web 搜尋 API</a> 可透過單一 API 呼叫提供網頁、影像、影片、新聞和相關搜尋結果。
+- <a href="https://www.microsoft.com/cognitive-services/bing-web-search-api" target="_blank">Web 搜尋 API</a> 可透過單一 API 呼叫提供網頁、影像、影片、新聞和相關搜尋結果。
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/bing-image-search-api" target="_blank">影像搜尋 API</a> 可傳回具有增強中繼資料 (主色、影像類型等等) 的影像結果，並支援多種影像篩選功能以便自訂結果。
+- <a href="https://www.microsoft.com/cognitive-services/bing-image-search-api" target="_blank">影像搜尋 API</a> 可傳回具有增強中繼資料 (主色、影像類型等等) 的影像結果，並支援多種影像篩選功能以便自訂結果。
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/bing-video-search-api" target="_blank">影片搜尋 API</a> 可擷取具有豐富中繼資料 (影片大小、品質、價格等等) 的影片結果、影片預覽，並支援多種影像篩選功能以便自訂結果。
+- <a href="https://www.microsoft.com/cognitive-services/bing-video-search-api" target="_blank">影片搜尋 API</a> 可擷取具有豐富中繼資料 (影片大小、品質、價格等等) 的影片結果、影片預覽，並支援多種影像篩選功能以便自訂結果。
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/bing-news-search-api" target="_blank">新聞搜尋 API</a> 可尋找符合搜尋查詢的全球新聞報導，或目前在網際網路上的熱門趨勢話題。
+- <a href="https://www.microsoft.com/cognitive-services/bing-news-search-api" target="_blank">新聞搜尋 API</a> 可尋找符合搜尋查詢的全球新聞報導，或目前在網際網路上的熱門趨勢話題。
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/bing-autosuggest-api" target="_blank">自動建議 API</a> 提供立即查詢完成建議，可讓您用更少的輸入字元，更快完成搜尋查詢。 
+- <a href="https://www.microsoft.com/cognitive-services/bing-autosuggest-api" target="_blank">自動建議 API</a> 提供立即查詢完成建議，可讓您用更少的輸入字元，更快完成搜尋查詢。 
 
 深入了解採用 Microsoft 認知服務的[ Web 搜尋][search]。
 
@@ -100,13 +100,13 @@ Bing 搜尋 API 可讓您新增智慧 Web 搜尋功能至 Bot。 只要使用幾
 
 認知服務提供四種您可用於處理影像或影片的 API：
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/computer-vision-api" target="_blank">電腦視覺 API</a> 可擷取與影像相關的豐富資訊 (例如物件或人員)、判斷影像是否包含完整或明確的內容，以及 (使用 OCR) 處理影像中的文字。
+- <a href="https://www.microsoft.com/cognitive-services/computer-vision-api" target="_blank">電腦視覺 API</a> 可擷取與影像相關的豐富資訊 (例如物件或人員)、判斷影像是否包含完整或明確的內容，以及 (使用 OCR) 處理影像中的文字。
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/emotion-api" target="_blank">表情 API</a> 可分析人類臉部表情，並以人類可能出現的八種情緒分類來辨識情緒。
+- <a href="https://www.microsoft.com/cognitive-services/emotion-api" target="_blank">表情 API</a> 可分析人類臉部表情，並以人類可能出現的八種情緒分類來辨識情緒。
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/face-api" target="_blank">臉部 API</a> 可偵測人臉、與類似的臉比較，甚至根據視覺上的相似程度將人員分組。
+- <a href="https://www.microsoft.com/cognitive-services/face-api" target="_blank">臉部 API</a> 可偵測人臉、與類似的臉比較，甚至根據視覺上的相似程度將人員分組。
 
-- <a href="https://www.microsoft.com/cognitive-services/en-us/video-api" target="_blank">影片 API</a> 可分析並處理影片，以穩定影片輸出、偵測動作、追蹤臉部，且可產生影片的動態縮圖摘要。
+- <a href="https://www.microsoft.com/cognitive-services/video-api" target="_blank">影片 API</a> 可分析並處理影片，以穩定影片輸出、偵測動作、追蹤臉部，且可產生影片的動態縮圖摘要。
 
 深入了解採用 Microsoft 認知服務的[影像和影片理解][vision]。
 
@@ -114,9 +114,9 @@ Bing 搜尋 API 可讓您新增智慧 Web 搜尋功能至 Bot。 只要使用幾
 
 如需每項產品的完整文件及其對應的 API 參考資料，請參閱<a href="https://docs.microsoft.com/azure/cognitive-services" target="_blank">認知服務文件</a>。
 
-[language]: https://docs.microsoft.com/en-us/azure/cognitive-services/luis/home
-[search]: https://docs.microsoft.com/en-us/azure/cognitive-services/bing-web-search/search-the-web
-[vision]: https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home
-[knowledge]: https://docs.microsoft.com/en-us/azure/cognitive-services/kes/overview
-[speech]: https://docs.microsoft.com/en-us/azure/cognitive-services/speech/home
-[location]: https://docs.microsoft.com/en-us/azure/cognitive-services/
+[language]: https://docs.microsoft.com/azure/cognitive-services/luis/home
+[search]: https://docs.microsoft.com/azure/cognitive-services/bing-web-search/search-the-web
+[vision]: https://docs.microsoft.com/azure/cognitive-services/computer-vision/home
+[knowledge]: https://docs.microsoft.com/azure/cognitive-services/kes/overview
+[speech]: https://docs.microsoft.com/azure/cognitive-services/speech/home
+[location]: https://docs.microsoft.com/azure/cognitive-services/

@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e3bf4a6868702f24af08e69d5f07c036082ec3b6
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: cba67dc4da5a0b505b4f91f9cbf7fbc0a47b8974
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225233"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404807"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>將複合式資訊卡 (Rich Card) 附件新增至訊息
 
@@ -34,8 +34,8 @@ Bot Framework 目前支援八種類型的複合式資訊卡 (Rich Card)：
 | 卡片類型 | 說明 |
 |------|------|
 | <a href="/adaptive-cards/get-started/bots">調適型卡片</a> | 可包含文字、語音、影像、按鈕和輸入欄位之任意組合的可自訂卡片。  請參閱[個別頻道支援](/adaptive-cards/get-started/bots#channel-status)。 |
-| [動畫卡片][animationCard] | 可播放動畫 GIF 或短片的卡片。 |
-| [音訊卡片][audioCard] | 可以播放音訊檔案的卡片。 |
+| [動畫卡片][animationCard] | 可以播放動畫 GIF 或短片的卡片。 |
+| [音訊卡片][audioCard] | 可播放音訊檔案的卡片。 |
 | [主圖卡片][heroCard] | 通常包含單一大型影像、一或多個按鈕和文字的卡片。 |
 | [縮圖卡片][thumbnailCard] | 通常包含單一縮圖影像、一或多個按鈕和文字的卡片。|
 | [收據卡片][receiptCard] | 讓 Bot 向使用者提供收據的卡片。 通常包含收據上的項目清單、稅金和總金額資訊，以及其他文字。 |
@@ -79,7 +79,7 @@ bot.dialog('showShirts', function (session) {
 ```
 這個範例會使用 [Message][Message] 類別來建置浮動切換。  
 浮動切換會由 [HeroCard][heroCard] 類別的清單所組成，其中包含影像、文字，以及會觸發購買該項目的單一按鈕。  
-按一下 [Buy] \(購買\) 按鈕就會觸發傳送訊息，因此我們需要新增第二個對話來擷取按鈕點選動作。 
+按一下 [Buy]  \(購買\) 按鈕就會觸發傳送訊息，因此我們需要新增第二個對話來擷取按鈕點選動作。 
 
 ## <a name="handle-button-input"></a>處理按鈕輸入
 
@@ -151,7 +151,7 @@ To learn more about sending a typing indicator, see [How to send a typing indica
 
 Bot Framework 會實作批次處理，以試著防止來自 Bot 的多則訊息會以不按照順序的方式顯示。 <!-- Unfortunately, not all channels can guarantee this. --> 當您的 Bot 傳送多個回覆給使用者時，個別的訊息將會自動分組為批次，並以集合的形式傳遞給使用者，以試圖保留訊息的原始順序。 這個自動批次處理會在每次呼叫 **session.send()** 之後，以及起始對 **send()** 的下一個呼叫之前，預設等待 250 毫秒的時間。
 
-訊息批次處理延遲是可設定的。 若要停用 SDK 的自動批次處理邏輯，請將預設延遲設定為較大的數字，然後以手動方式呼叫 **sendBatch()**，並搭配會在傳遞批次之後叫用的回呼。
+訊息批次處理延遲是可設定的。 若要停用 SDK 的自動批次處理邏輯，請將預設延遲設定為較大的數字，然後以手動方式呼叫 **sendBatch()** ，並搭配會在傳遞批次之後叫用的回呼。
 
 ## <a name="send-an-adaptive-card"></a>傳送調適型卡片
 
@@ -169,34 +169,34 @@ Bot Framework 會實作批次處理，以試著防止來自 Bot 的多則訊息�
 
 ## <a name="additional-resources"></a>其他資源
 
-* [使用頻道偵測器來預覽功能][inspector]
+* [使用通道偵測器預覽功能][inspector]
 * <a href="http://adaptivecards.io" target="_blank">調適型卡片</a> \(英文\)
 * [AnimationCard][animationCard]
 * [AudioCard][audioCard]
 * [HeroCard][heroCard]
 * [ThumbnailCard][thumbnailCard]
 * [ReceiptCard][receiptCard]
-* [SignInCard][signinCard]
+* [SigninCard][signinCard]
 * [VideoCard][videoCard]
-* [Message][Message]
+* [訊息][Message]
 * [如何傳送附件](bot-builder-nodejs-send-receive-attachments.md)
 
 [MessageOrder]: bot-builder-nodejs-manage-conversation-flow.md#message-ordering
-[Message]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message
-[IMessage]: http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
+[Message]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.message
+[IMessage]: http://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
 
-[animationCard]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.animationcard.html 
+[animationCard]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.animationcard.html 
 
-[audioCard]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.audiocard.html 
+[audioCard]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.audiocard.html 
 
-[heroCard]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.herocard.html
+[heroCard]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.herocard.html
 
-[thumbnailCard]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.thumbnailcard.html 
+[thumbnailCard]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.thumbnailcard.html 
 
-[receiptCard]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.receiptcard.html 
+[receiptCard]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.receiptcard.html 
 
-[signinCard]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.signincard.html 
+[signinCard]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.signincard.html 
 
-[videoCard]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.videocard.html
+[videoCard]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.videocard.html
 
 [inspector]: ../bot-service-channel-inspector.md

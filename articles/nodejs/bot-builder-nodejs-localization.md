@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d592aa8b37e1d73e3cf9003209b985b8ca0f03f8
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: ce1b3f073c932cd4042b91ae9afc1e332a7443f2
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224393"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404898"
 ---
 # <a name="support-localization"></a>支援當地語系化
 
@@ -119,7 +119,7 @@ Bot Framework SDK 的預設當地語系化系統是以檔案為基礎，允許 B
 
 檔案的結構是訊息識別碼和當地語系化文字字串的簡單 JSON 對應圖。 如果值為陣列而非字串，當使用 [session.localizer.gettext()][GetText] 擷取該值時會隨機選擇陣列中的一個提示。 
 
-如果您在 [session.send()](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#send) 呼叫中傳送的是訊息識別碼，而不是特定語言文字，Bot 就會自動擷取訊息的當地語系化版本：
+如果您在 [session.send()](http://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#send) 呼叫中傳送的是訊息識別碼，而不是特定語言文字，Bot 就會自動擷取訊息的當地語系化版本：
 
 ```javascript
 var bot = new builder.UniversalBot(connector, [
@@ -134,7 +134,7 @@ var bot = new builder.UniversalBot(connector, [
 ]);
 ```
 
-在內部，SDK 會呼叫 [`session.preferredLocale()`][preferredLocale] 以取得使用者的慣用地區設定，然後在 [`session.localizer.gettext()`][GetText] 呼叫中使用它，將訊息識別碼對應至其當地語系化的文字字串。  您有時候可能需要手動呼叫當地語系化工具。 例如，傳送給 [`Prompts.choice()`][promptsChoice] 的列舉值永遠不會自動當地語系化，因此您需要先手動擷取當地語系化清單，再呼叫提示：
+在內部，SDK 會呼叫 [`session.preferredLocale()`][preferredLocale] to get the user's preferred locale and then uses that in a call to [`session.localizer.gettext()`][GetText] 以將訊息識別碼對應至其當地語系化的文字字串。  您有時候可能需要手動呼叫當地語系化工具。 例如，傳送給 [`Prompts.choice()`][promptsChoice] 的列舉值永遠不會自動當地語系化，因此您需要先手動擷取當地語系化清單，再呼叫提示：
 
 ```javascript
 var options = session.localizer.gettext(session.preferredLocale(), "choice_options");
@@ -159,14 +159,14 @@ builder.Prompts.choice(session, "choice_prompt", options);
 
 
 [LUIS]: https://www.luis.ai/
-[IMessage]: http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
-[IntentRecognizerSetOptions]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizersetoptions.html
-[LUISRecognizer]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.luisrecognizer
+[IMessage]: http://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
+[IntentRecognizerSetOptions]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizersetoptions.html
+[LUISRecognizer]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.luisrecognizer
 [LUISSample]: https://aka.ms/v3-js-luisSample
 [DisambiguationSample]: https://aka.ms/v3-js-onDisambiguateRoute
-[preferredLocal]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#preferredlocale
-[preferredLocale]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#preferredlocale
-[promptsChoice]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.__global.iprompts.html#choice
-[GetText]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ilocalizer.html#gettext
+[preferredLocal]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#preferredlocale
+[preferredLocale]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#preferredlocale
+[promptsChoice]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.__global.iprompts.html#choice
+[GetText]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.ilocalizer.html#gettext
 [IEFT]: https://en.wikipedia.org/wiki/IETF_language_tag
 

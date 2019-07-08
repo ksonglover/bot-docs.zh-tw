@@ -1,16 +1,16 @@
 ---
-ms.openlocfilehash: 04f9101d0cf29618fb7d50e126c008190064a831
-ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
+ms.openlocfilehash: 0570ec6a44c9fe1b007c1fd1b8c335288baa63cb
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65198865"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464849"
 ---
 ## <a name="prerequisites"></a>必要條件
-- Visual Studio [2017 或更新版本](https://www.visualstudio.com/downloads)
-- 適用於 Bot Framework SDK v4 的 [C# 範本](https://aka.ms/bot-vsix)
+- [Visual Studio 2017 或更新版本](https://www.visualstudio.com/downloads)
+- [適用於 C# 的 Bot Framework SDK v4 範本](https://aka.ms/bot-vsix)
 - [Bot Framework 模擬器](https://aka.ms/bot-framework-emulator-readme) (英文)
-- 了解 [ASP.Net Core](https://docs.microsoft.com/aspnet/core/) 和 [C# 的非同步程式設計](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/index)
+- 了解 [ASP.Net Core](https://docs.microsoft.com/aspnet/core/) 和 [ C# 的非同步程式設計](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/index)
 
 ## <a name="create-a-bot"></a>建立 Bot
 安裝您在必要條件區段下載的 BotBuilderVSIX.vsix 範本。
@@ -20,9 +20,9 @@ ms.locfileid: "65198865"
 ![Visual Studio 專案](~/media/azure-bot-quickstarts/bot-builder-dotnet-project.png)
 
 > [!TIP] 
-> 如有需要，請將專案組建類型變更為 `.Net Core 2.1`。此外，視需要更新 `Microsoft.Bot.Builder` [NuGet 套件](https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
+> 如有需要，請將專案組建類型變更為 ``.Net Core 2.1``。 此外，視需要更新 `Microsoft.Bot.Builder` [NuGet 套件](https://docs.microsoft.com/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
 
-由於有範本，專案中會包含要在本快速入門建立 Bot 所需的所有程式碼。 您實際上不需要撰寫任何額外的程式碼。
+由於有範本，專案中會包含要在本快速入門建立聊天機器人所需的所有程式碼。 您實際上不需要撰寫任何額外的程式碼。
 
 ## <a name="start-your-bot-in-visual-studio"></a>在 Visual Studio 中啟動 Bot
 
@@ -32,8 +32,9 @@ ms.locfileid: "65198865"
 
 接下來，請啟動模擬器，然後在模擬器中連線至您的 Bot：
 
-1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定] 連結。 
-2. 填寫 Bot 的欄位，然後按一下 [儲存並連接]。
+1. 按一下模擬器 [歡迎使用] 索引標籤中的 [建立新的 Bot 設定]  連結。 
+2. 填寫聊天機器人的欄位。 使用聊天機器人的歡迎頁面網址 (通常為 http://localhost:3978) )，並在此網址附加路由資訊 '/api/messages'。
+3. 然後按一下 [儲存並連線]  。
 
 ## <a name="interact-with-your-bot"></a>與您的 Bot 互動
 

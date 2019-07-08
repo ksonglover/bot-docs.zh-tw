@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 26b23c9beda872b71defd779563531328b63a0c8
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: ebbaa7473ec44ef9369df25a41873583abc28034
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225373"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405667"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 辨識意圖和實體 
 
@@ -24,7 +24,7 @@ ms.locfileid: "54225373"
 
 ## <a name="create-a-language-understanding-bot-with-bot-service"></a>使用 Bot 服務來建立 Language Understanding Bot
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，選取功能表刀鋒視窗中的 [建立新資源]，然後按一下 [查看全部]。
+1. 在 [Azure 入口網站](https://portal.azure.com)中，選取功能表刀鋒視窗中的 [建立新資源]  ，然後按一下 [查看全部]  。
 
     ![建立新資源](../media/bot-builder-dotnet-use-luis/bot-service-creation.png)
 
@@ -32,24 +32,24 @@ ms.locfileid: "54225373"
 
     ![建立新資源](../media/bot-builder-dotnet-use-luis/bot-service-selection.png)
 
-3. 在 [Bot 服務] 刀鋒視窗中提供必要資訊，然後按一下 [建立]。 這會建立 Bot 服務和 LUIS 應用程式，並將其部署到 Azure。 
-   * 將 [應用程式名稱] 設定為您 Bot 的名稱。 將 Bot 部署到雲端時，此名稱會用來作為子網域 (例如 mynotesbot.azurewebsites.net)。 此名稱也會用來作為與您 Bot 相關聯的 LUIS 應用程式名稱。 複製它以在稍後用來尋找與 Bot 相關聯的 LUIS 應用程式。
-   * 選取訂用帳戶、[資源群組](/azure/azure-resource-manager/resource-group-overview)、App Service 方案，以及[位置](https://azure.microsoft.com/en-us/regions/)。
-   * 針對 [Bot 範本] 欄位，選取 [Language Understanding (C#)] 範本。
+3. 在 [Bot 服務]  刀鋒視窗中提供必要資訊，然後按一下 [建立]  。 這會建立 Bot 服務和 LUIS 應用程式，並將其部署到 Azure。 
+   * 將 [應用程式名稱]  設定為您 Bot 的名稱。 將 Bot 部署到雲端時，此名稱會用來作為子網域 (例如 mynotesbot.azurewebsites.net)。 此名稱也會用來作為與您 Bot 相關聯的 LUIS 應用程式名稱。 複製它以在稍後用來尋找與 Bot 相關聯的 LUIS 應用程式。
+   * 選取訂用帳戶、[資源群組](/azure/azure-resource-manager/resource-group-overview)、App Service 方案，以及[位置](https://azure.microsoft.com/regions/)。
+   * 針對 [Bot 範本]  欄位，選取 [Language Understanding (C#)]  範本。
 
      ![Bot 服務刀鋒視窗](../media/bot-builder-dotnet-use-luis/bot-service-setting-callout-template.png)
 
    * 選取方塊以確認服務條款。
 
 4. 確認已部署 Bot 服務。
-    * 按一下 [通知] (位於 Azure 入口網站頂端邊緣的鈴鐺圖示)。 通知會從 [部署已開始] 變更為 [部署成功]。
-    * 在通知變更為 [部署成功] 之後，按一下該通知上的 [前往資源]。
+    * 按一下 [通知] (位於 Azure 入口網站頂端邊緣的鈴鐺圖示)。 通知會從 [部署已開始]  變更為 [部署成功]  。
+    * 在通知變更為 [部署成功]  之後，按一下該通知上的 [前往資源]  。
 
 ## <a name="try-the-bot"></a>測試聊天機器人
 
-勾選 [通知] 來確認已部署 Bot。 通知會從 [部署進行中] 變更為 [部署成功]。 按一下 [前往資源] 按鈕以開啟 Bot 的資源刀鋒視窗。
+勾選 [通知]  來確認已部署 Bot。 通知會從 [部署進行中]  變更為 [部署成功]  。 按一下 [前往資源]  按鈕以開啟 Bot 的資源刀鋒視窗。
 
-註冊 Bot 後，按一下 [在網路聊天中測試] 以開啟 [網路聊天] 窗格。 在網路聊天中輸入 "hello"。
+註冊 Bot 後，按一下 [在網路聊天中測試]  以開啟 [網路聊天] 窗格。 在網路聊天中輸入 "hello"。
 
   ![在網路聊天中測試 Bot](../media/bot-builder-dotnet-use-luis/bot-service-web-chat.png)
 
@@ -57,15 +57,15 @@ Bot 會說出 "You have reached Greeting. You said: hello" 來作為回應。 �
 
 ## <a name="modify-the-luis-app"></a>修改 LUIS 應用程式
 
-使用您用來登入 Azure 的相同帳戶登入 [https://www.luis.ai](https://www.luis.ai)。 按一下 [My apps] \(我的應用程式\)。 在應用程式清單中，尋找開頭為當您建立 Bot 服務時，於 [Bot 服務] 刀鋒視窗的 [應用程式名稱] 中指定之名稱的應用程式。 
+使用您用來登入 Azure 的相同帳戶登入 [https://www.luis.ai](https://www.luis.ai)。 按一下 [My apps] \(我的應用程式\)  。 在應用程式清單中，尋找開頭為當您建立 Bot 服務時，於 [Bot 服務]  刀鋒視窗的 [應用程式名稱]  中指定之名稱的應用程式。 
 
 LUIS 應用程式會以下列 4 個意圖作為開頭：Cancel、Greeting、Help 及 None。 <!-- picture -->
 
 下列步驟會新增 Note.Create、Note.ReadAloud 和 Note.Delete 意圖： 
 
-1. 在頁面左下角按一下 [預先建置的網域]。 尋找 **Note** 網域，然後按一下 [新增網域]。
+1. 在頁面左下角按一下 [預先建置的網域]  。 尋找 **Note** 網域，然後按一下 [新增網域]  。
 
-2. 本教學課程不會使用 **Note** 預先建置的網域中包含的所有意圖。 在 [意圖] 頁面上，按一下以下每一個意圖名稱，然後按一下 [刪除意圖] 按鈕。
+2. 本教學課程不會使用 **Note** 預先建置的網域中包含的所有意圖。 在 [意圖]  頁面上，按一下以下每一個意圖名稱，然後按一下 [刪除意圖]  按鈕。
    * Note.ShowNext
    * Note.DeleteNoteItem
    * Note.Confirm
@@ -84,12 +84,12 @@ LUIS 應用程式會以下列 4 個意圖作為開頭：Cancel、Greeting、Help
 
      ![LUIS 應用程式中所顯示的意圖](../media/bot-builder-dotnet-use-luis/luis-intent-list.png)
 
-3. 按一下右上角的 [定型] 按鈕，來將您的應用程式定型。
-4. 按一下上方導覽列中的 [發佈]，以開啟 [發佈] 頁面。 按一下 [發佈到生產位置] 按鈕。 成功發佈之後，複製 [發佈應用程式] 頁面上 [端點] 欄中所顯示的 URL，位於以資源名稱 Starter_Key 開頭的列中。 儲存此 URL，以便稍後在您的 Bot 程式碼中使用。 URL 的格式類似此範例：`https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx?subscription-key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&timezoneOffset=0&verbose=true&q=`
+3. 按一下右上角的 [定型]  按鈕，來將您的應用程式定型。
+4. 按一下上方導覽列中的 [發佈]  ，以開啟 [發佈]  頁面。 按一下 [發佈到生產位置]  按鈕。 成功發佈之後，複製 [發佈應用程式]  頁面上 [端點]  欄中所顯示的 URL，位於以資源名稱 Starter_Key 開頭的列中。 儲存此 URL，以便稍後在您的 Bot 程式碼中使用。 URL 的格式類似此範例：`https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx?subscription-key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&timezoneOffset=0&verbose=true&q=`
 
 ## <a name="modify-the-bot-code"></a>修改 Bot 程式碼
 
-按一下 [建置]，然後按一下 [開啟線上程式碼編輯器]。
+按一下 [建置]  ，然後按一下 [開啟線上程式碼編輯器]  。
     ![開啟線上程式碼編輯器](../media/bot-builder-dotnet-use-luis/bot-service-build.png)
 
 在程式碼編輯器中，開啟 `BasicLuisDialog.cs`。 它包含下列程式碼，以處理來自 LUIS 應用程式的意圖。
@@ -359,13 +359,13 @@ Bot 可以使用 `Note.ReadAloud` 意圖來顯示筆記的內容，如果未偵�
 ```
 
 ## <a name="build-the-bot"></a>建置 Bot
-在程式碼編輯器中，以滑鼠右鍵按一下 **build.cmd**，然後選擇 [從主控台執行]。
+在程式碼編輯器中，以滑鼠右鍵按一下 **build.cmd**，然後選擇 [從主控台執行]  。
 
    ![執行 build.cmd](../media/bot-builder-dotnet-use-luis/bot-service-run-console.png)
 
 ## <a name="test-the-bot"></a>測試 Bot
 
-在 Azure 入口網站中，按一下 [在網路聊天中測試] 來測試 Bot。 請嘗試輸入像是「建立筆記」、「讀取我的筆記」和「刪除筆記」等訊息。
+在 Azure 入口網站中，按一下 [在網路聊天中測試]  來測試 Bot。 請嘗試輸入像是「建立筆記」、「讀取我的筆記」和「刪除筆記」等訊息。
    ![在網路聊天中測試筆記 Bot](../media/bot-builder-dotnet-use-luis/bot-service-test-notebot.png)
 
 > [!TIP]

@@ -8,12 +8,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/10/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: ff2d55ccdd6312e95bdb1acb223d8e1d5f60b0b3
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 1b62ca7e98313fb0247d45cb66fcae8be32e6492
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032629"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405048"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能建置啟用語音的 Bot
 
@@ -58,7 +58,7 @@ Bot 的語音訊息會表示為語音合成標記語言 (SSML)。 Bot Framework 
 |------|------|
 | **acceptingInput** | 您的 Bot 會被動接受輸入，但不會等候回應。 如果使用者按住 [麥克風] 按鈕，Cortana 會接受使用者的輸入。|
 | **expectingInput** | 指出 Bot 正主動預期使用者的回應。 Cortana 會聆聽使用者對麥克風說的話。  |
-||注意：請_勿_在無周邊裝置 (沒有顯示器的裝置) 上使用 **expectingInput**。 請參閱 [Cortana 技能套件常見問題集](https://review.docs.microsoft.com/en-us/cortana/skills/faq)。|
+||注意：請_勿_在無周邊裝置 (沒有顯示器的裝置) 上使用 **expectingInput**。 請參閱 [Cortana 技能套件常見問題集](https://review.docs.microsoft.com/cortana/skills/faq)。|
 | **ignoringInput** | Cortana 會忽略輸入。 如果您的 Bot 主動處理要求，則可能會傳送這項提示，且在完成要求之前，將會忽略來自使用者的輸入。  |
 
 下列範例會示範 Cortana 如何讀取純文字或 SSML：
@@ -156,9 +156,9 @@ module.exports.speak = function (template, params, options) {
 ## <a name="display-cards-in-cortana"></a>在 Cortana 中顯示卡片
 
 除了語音回應，Cortana 也可以顯示卡片附件。 Cortana 可支援下列多媒體卡片：
-* [HeroCard](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.herocard.html)
-* [ReceiptCard](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.receiptcard.html)
-* [ThumbnailCard](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.thumbnailcard.html)
+* [HeroCard](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.herocard.html)
+* [ReceiptCard](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.receiptcard.html)
+* [ThumbnailCard](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.thumbnailcard.html)
 
 請參閱[卡片設計最佳做法][CardDesign]，以查看這些卡片在 Cortana 內的樣貌。 如需如何將複合式資訊卡 (Rich Card) 新增至 Bot 的範例，請參閱[傳送複合式資訊卡 (Rich Card)](bot-builder-nodejs-send-rich-cards.md)。 
 
@@ -195,7 +195,7 @@ module.exports.speak = function (template, params, options) {
 ## <a name="sample-rollerskill"></a>範例：RollerSkill
 下列各節中的程式碼來自擲骰子的範例 Cortana 技能。 請從 [BotBuilder-Samples 存放庫](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill) (英文) 下載 Bot 的完整程式碼。
 
-您可以向 Cortana 說出技能的[叫用名稱][InvocationNameGuidelines]以便叫用技能。 對於骰子機技能，在您[將 Bot 新增至 Cortana 通道][CortanaChannel]並將其註冊為 Cortana 技能後，可以告訴 Cortana「啟動骰子機」或「讓骰子機擲骰子」以進行叫用。
+您必須說出其[叫用名稱][InvocationNameGuidelines] to Cortana. For the roller skill, after you [add the bot to the Cortana channel][CortanaChannel]來叫用該技能並將其註冊為 Cortana 技能，您可以告訴 Cortana「啟動骰子機」或「讓骰子機擲骰子」以進行叫用。
 
 ### <a name="explore-the-code"></a>探索程式碼
 
@@ -430,9 +430,9 @@ bot.dialog('PlayGameDialog', function (session, args) {
 
 
 [SSMLRef]: https://aka.ms/cortana-ssml
-[IMessage]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html
-[Send]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#send
-[CortanaDevCenter]: https://developer.microsoft.com/en-us/cortana
+[IMessage]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html
+[Send]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#send
+[CortanaDevCenter]: https://developer.microsoft.com/cortana
 
 [CortanaSpecificEntities]: https://aka.ms/lgvcto
 [CortanaAuth]: https://aka.ms/vsdqcj

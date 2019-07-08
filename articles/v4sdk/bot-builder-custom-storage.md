@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2b77b19a3b2d0fbd8e545e563f154124af894ffa
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: 138f3c943fc6c4a7882e808c3f280d4ebe04f62f
+ms.sourcegitcommit: 409e8f89a1e9bcd0e69a29a313add424f66a81e1
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693733"
+ms.lasthandoff: 06/17/2019
+ms.locfileid: "67153077"
 ---
 # <a name="implement-custom-storage-for-your-bot"></a>為您的 Bot 實作自訂儲存體
 
@@ -114,7 +114,8 @@ Bot Framework 架構包含預設實作。此實作最可能符合許多應用程
 
 所產生的 OnTurn 實作如下所示：
 
-**ScaleoutBot.cs** [!code-csharp[OnMessageActivity](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/Bots/ScaleOutBot.cs?range=43-72)]
+**ScaleoutBot.cs**  
+[!code-csharp[OnMessageActivity](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/Bots/ScaleOutBot.cs?range=43-72)]
 
 請注意，我們已將對話方塊執行塑造為函式呼叫。 或許更複雜的實作定義了一個介面，並且讓此相依性得以插入，但是就我們的目的而言，讓對話方塊完全位於靜態函式後面，可強調我們方法的功能性質。 一般而言，組織我們的實作，使重要部分得以運作，讓我們能夠在網路上順利實作。
 
@@ -124,7 +125,8 @@ Bot Framework 架構包含預設實作。此實作最可能符合許多應用程
 下一項需求是我們會緩衝處理輸出活動，直到已執行成功 Save 為止。 將會需要自訂 BotAdapter 實作。 在此程式碼中，我們會實作抽象的 SendActivity 函式，將活動新增至清單，而非傳送。 我們即將主控的對話方塊還是不明白。
 在此特殊案例中，不支援 UpdateActivity 和 DeleteActivity 作業，所以只要從這些方法擲回「未實作」即可。 我們也不在意 SendActivity 的傳回值。 在需要傳送活動更新的案例中，某些通道會使用此值，例如，通道中所顯示卡片上的停用按鈕。 特別在需要狀態時，這些訊息交換會變複雜，但這不在本文的討論範圍內。 自訂 BotAdapter 的完整實作看起來像這樣：
 
-**DialogHostAdapter.cs** [!code-csharp[DialogHostAdapter](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/DialogHostAdapter.cs?range=19-46)]
+**DialogHostAdapter.cs**  
+[!code-csharp[DialogHostAdapter](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/DialogHostAdapter.cs?range=19-46)]
 
 ## <a name="integration"></a>整合
 
@@ -136,11 +138,13 @@ Bot Framework 架構包含預設實作。此實作最可能符合許多應用程
 
 以下是驅動程式程式碼：
 
-**DialogHost.cs** [!code-csharp[DialogHost](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/DialogHost.cs?range=22-72)]
+**DialogHost.cs**  
+[!code-csharp[DialogHost](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/DialogHost.cs?range=22-72)]
 
 最後，對於自訂存取子，我們只需要實作 Get，因為狀態依 ref 而定：
 
-**RefAccessor.cs** [!code-csharp[RefAccessor](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/RefAccessor.cs?range=22-60)]
+**RefAccessor.cs**  
+[!code-csharp[RefAccessor](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/RefAccessor.cs?range=22-60)]
 
 ## <a name="additional-information"></a>其他資訊
 在 GitHub 上可取得本文中使用的 [C# 範例](http://aka.ms/scale-out)程式碼。

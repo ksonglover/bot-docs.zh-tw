@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: afb27ad20ec8585c2ca30810a9be6858adc17187
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: cc49cab1a3c82b3f0af2a4d8ebf261415c137e36
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693525"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405968"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
@@ -26,7 +26,8 @@ ms.locfileid: "66693525"
 ## <a name="prerequisites"></a>必要條件
 - 如果您沒有 Azure 訂用帳戶，請先建立[帳戶](https://azure.microsoft.com/free/)再開始。
 - 您已在本機電腦上開發的 CSharp、JavaScript 或 TypeScript Bot。
-- 最新版的 [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest)。
+- 最新版的 [Azure CLI](https://docs.microsoft.com/cli/azure/?view=azure-cli-latest)。
+- 熟悉 [Azure CLI 和 ARM 範本](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)。
 
 ## <a name="1-prepare-for-deployment"></a>1.準備部署
 當您使用 Visual Studio 或 Yeoman 範本建立 Bot 時，所產生的原始程式碼會包含 `deploymentTemplates` 資料夾與 ARM 範本。 此處敘述的部署程序會使用 ARM 範本，然後以 Azure CLI 在 Azure 中佈建所需的 Bot 資源。 
@@ -182,7 +183,7 @@ az webapp deployment source config-zip --resource-group "<new-group-name>" --nam
 - 在成功部署後等候幾秒，選擇性地重新啟動您的 Web 應用程式，以清除任何快取。 回到您的 Web 應用程式 Bot 刀鋒視窗，使用 Azure 入口網站中提供的網路聊天進行測試。
 
 ## <a name="additional-information"></a>其他資訊
-將 Bot 部署至 Azure 時，需支付您所使用的服務。 [計費與成本管理](https://docs.microsoft.com/en-us/azure/billing/)一文協助您了解 Azure 計費方式、監視使用量和成本，以及管理帳戶和訂用帳戶。
+將 Bot 部署至 Azure 時，需支付您所使用的服務。 [計費與成本管理](https://docs.microsoft.com/azure/billing/)一文協助您了解 Azure 計費方式、監視使用量和成本，以及管理帳戶和訂用帳戶。
 
 ## <a name="next-steps"></a>後續步驟
 > [!div class="nextstepaction"]
