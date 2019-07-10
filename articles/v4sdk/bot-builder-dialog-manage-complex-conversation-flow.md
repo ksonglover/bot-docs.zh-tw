@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/23/2019
+ms.date: 07/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bc11e5a4a5dec1a9588254b3a9d28d56ad163fb4
-ms.sourcegitcommit: 409e8f89a1e9bcd0e69a29a313add424f66a81e1
+ms.openlocfilehash: b7ffa16c2f0a00043b12faec1d31bbfe5bfa250f
+ms.sourcegitcommit: b498649da0b44f073dc5b23c9011ea2831edb31e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/17/2019
-ms.locfileid: "67153064"
+ms.lasthandoff: 07/05/2019
+ms.locfileid: "67587478"
 ---
 # <a name="create-advanced-conversation-flow-using-branches-and-loops"></a>使用分支和迴圈建立進階的交談流程
 
@@ -27,8 +27,8 @@ ms.locfileid: "67153064"
 
 ## <a name="prerequisites"></a>必要條件
 
-- [Bot 基本概念][concept-basics]、[管理狀態][concept-state]、[對話方塊程式庫][concept-dialogs]及如何[實作循序對話流程][simple-dialog]的知識。
-- [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample] 中的複雜對話方塊範例副本。
+- [聊天機器人基本概念][concept-basics], [managing state][concept-state]、[dialogs 程式庫][concept-dialogs]，和如何[實作循序對話流程][simple-dialog]的知識。
+- [**CSharp**][cs-sample] or [**JavaScript**][js-sample] 中的複雜對話方塊範例副本。
 
 ## <a name="about-this-sample"></a>關於此範例
 
@@ -186,19 +186,21 @@ Bot 的回合處理常式會重複這些對話所定義的一個交談流程。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-**DialogExtensions.cs**
+<!-- **DialogExtensions.cs**
 
-在此範例中，我們定義了 `Run` 協助程式方法，我們將用此方法來建立及存取對話方塊內容。
-由於元件對話會定義內部對話集，因此我們必須建立可讓訊息處理常式程式碼看見的外部對話集，並使用其建立對話方塊內容。
+In this sample, we've defined a `Run` helper method that we will use to create and access the dialog context.
+Since component dialog defines an inner dialog set, we have to create an outer dialog set that's visible to the message handler code, and use that to create a dialog context.
 
-- `dialog` 是 Bot 的主要元件對話。
-- `turnContext` 是 Bot 目前的回合內容。
+- `dialog` is the main component dialog for the bot.
+- `turnContext` is the current turn context for the bot.
 
 [!code-csharp[Run method](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/DialogExtensions.cs?range=13-24)]
 
+-->
+
 **Bots\DialogBot.cs**
 
-訊息處理常式會呼叫 `Run` 協助程式方法來管理對話方塊，而我們已經覆寫回合處理常式來將任何變更儲存至對話和使用者狀態，這可能會在回合期間發生。 基礎 `OnTurnAsync` 會呼叫 `OnMessageActivityAsync` 方法，確保儲存呼叫會在回合結束時執行。
+訊息處理常式會呼叫 `RunAsync` 方法來管理對話方塊，而我們已經覆寫回合處理常式來將任何變更儲存至對話和使用者狀態，這可能會在回合期間發生。 基礎 `OnTurnAsync` 會呼叫 `OnMessageActivityAsync` 方法，確保儲存呼叫會在回合結束時執行。
 
 [!code-csharp[Overrides](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Bots/DialogBot.cs?range=33-48&highlight=5-7)]
 
@@ -276,12 +278,12 @@ Bot 的回合處理常式會重複這些對話所定義的一個交談流程。
 
 ## <a name="additional-resources"></a>其他資源
 
-如需實作對話方式的簡介，請參閱[實作循序對話流程][simple-dialog]，該流程使用單一瀑布式對話和一些提示來建立簡單的互動，以詢問使用者一連串的問題。
+如需實作對話方式的簡介，請參閱[實作循序交談流程][simple-dialog]，該流程使用單一瀑布式對話和一些提示來建立簡單的互動，以詢問使用者一連串的問題。
 
 Dialogs 程式庫包含提示的基本驗證。 您也可以新增自訂憑證。 如需詳細資訊，請參閱[使用對話提示收集使用者輸入][dialog-prompts]。
 
 若要簡化對話程式碼並重複使用於多個 Bot，您可以將部分的對話集定義為個別的類別。
-如需詳細資訊，請參閱[重複使用對話方塊][component-dialogs]。
+如需詳細資訊，請參閱[重複使用對話][component-dialogs]。
 
 ## <a name="next-steps"></a>後續步驟
 

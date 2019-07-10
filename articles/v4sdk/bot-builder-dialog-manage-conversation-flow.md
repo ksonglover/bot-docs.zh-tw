@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/23/2019
+ms.date: 07/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0f29520b993d12ce01c65cd29517b3a4b2aada84
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: c3c116eec8222ce50cd7dde672cc86f9765a3f97
+ms.sourcegitcommit: b498649da0b44f073dc5b23c9011ea2831edb31e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67404548"
+ms.lasthandoff: 07/05/2019
+ms.locfileid: "67587479"
 ---
 # <a name="implement-sequential-conversation-flow"></a>實作循序對話流程
 
@@ -122,29 +122,13 @@ Bot 會透過 `UserProfileDialog` 與使用者互動。 當我們建立 Bot 的 
 
 [!code-javascript[user profile](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/userProfile.js?range=4-10)]
 
-**Dialogs\UserProfileDialog.cs**
+**dialogs\userProfileDialog.js**
 
 在最後一個步驟中，我們會檢查由前一個瀑布式步驟中呼叫的對話所傳回的 `step.result`。 如果傳回的值為 true，我們會使用使用者設定檔存取子來取得及更新使用者設定檔。 若要取得使用者設定檔，我們會呼叫 `get` 方法，然後設定 `userProfile.transport`、`userProfile.name` 和 `userProfile.age` 屬性的值。 最後，我們會先摘要說明使用者資訊，再呼叫 `endDialog` 來結束對話。 結束對話就會將其從對話堆疊中取出，並將選擇性結果傳回給對話的父代。 父代是開始剛剛結束對話的對話或方法。
 
 [!code-javascript[summary step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=115-136&highlight=4-8,20-21)]
 
----
-
-## <a name="create-the-extension-method-to-run-the-waterfall-dialog"></a>建立擴充方法來執行瀑布式對話
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-我們已定義 `Run` 擴充方法，其將用於建立及存取對話內容。 在此，`accessor` 是對話狀態屬性的狀態屬性存取子，而 `dialog` 是使用者設定檔元件對話。 由於元件對話會定義內部對話集，因此我們必須建立可讓訊息處理常式程式碼看見的外部對話集，並使用其建立對話內容。
-
-對話內容是經由呼叫 `CreateContext` 方法來建立，且用於在 Bot 的回合處理常式內與對話集互動。 對話內容包含目前的回合內容、父代對話，以及對話狀態，可供保留對話中的資訊。
-
-對話內容可讓您開始一個具有字串識別碼的對話，或繼續目前的對話 (例如具有多個步驟的瀑布式對話)。 對話內容會傳遞至 Bot 的對話和瀑布式步驟。
-
-**DialogExtensions.cs**
-
-[!code-csharp[Run method](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/DialogExtensions.cs?range=13-24)]
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+**建立擴充方法來執行瀑布式對話方塊**
 
 我們已在 `userProfileDialog` 內定義 `run` 協助程式方法，其將用於建立及存取對話內容。 在此，`accessor` 是對話狀態屬性的狀態屬性存取子，而 `this` 是使用者設定檔元件對話。 由於元件對話會定義內部對話集，因此我們必須建立可讓訊息處理常式程式碼看見的外部對話集，並使用其建立對話內容。
 
@@ -162,7 +146,7 @@ Bot 會透過 `UserProfileDialog` 與使用者互動。 當我們建立 Bot 的 
 
 **Bots\DialogBot.cs**
 
-`OnMessageActivityAsync` 處理常式會使用擴充方法來開始或繼續對話。 在 `OnTurnAsync` 中，我們會使用 Bot 的狀態管理物件將任何狀態變更保存到儲存體。 (`ActivityHandler.OnTurnAsync` 方法會呼叫各種活動處理常式方法，例如 `OnMessageActivityAsync`。 如此一來，我們會在訊息處理常式完成後，但在回合本身完成之前儲存狀態。)
+`OnMessageActivityAsync` 處理常式會使用 `RunAsync` 方法來開始或繼續對話方塊。 在 `OnTurnAsync` 中，我們會使用 Bot 的狀態管理物件將任何狀態變更保存到儲存體。 (`ActivityHandler.OnTurnAsync` 方法會呼叫各種活動處理常式方法，例如 `OnMessageActivityAsync`。 如此一來，我們會在訊息處理常式完成後，但在回合本身完成之前儲存狀態。)
 
 [!code-csharp[overrides](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Bots/DialogBot.cs?range=33-48&highlight=5-7)]
 

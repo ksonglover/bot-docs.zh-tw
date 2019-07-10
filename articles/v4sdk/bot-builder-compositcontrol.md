@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/23/2019
+ms.date: 07/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1f9070b0fd3b4e88eb7d752f5a73c4374bfe8415
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 77f1c154af5821b1e476546f307a01be27f568c0
+ms.sourcegitcommit: b498649da0b44f073dc5b23c9011ea2831edb31e
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215527"
+ms.lasthandoff: 07/05/2019
+ms.locfileid: "67587496"
 ---
 # <a name="reuse-dialogs"></a>重複使用對話方塊
 
@@ -25,8 +25,8 @@ ms.locfileid: "66215527"
 
 ## <a name="prerequisites"></a>必要條件
 
-- [Bot 基本概念][concept-basics]、[對話方塊程式庫][concept-dialogs]及如何[管理對話][simple-flow]的知識。
-- [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample] 中的一份多回合提示範例。
+- [Bot 基本概念][concept-basics], the [dialogs library][concept-dialogs]，及如何[管理對話][簡單流程]的知識。
+- [**CSharp**][cs-sample] or [**JavaScript**][js-sample] 中的一份多回合提示範例。
 
 ## <a name="about-the-sample"></a>關於範例
 
@@ -106,15 +106,9 @@ ms.locfileid: "66215527"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-**DialogExtensions.cs**
+**Bots\DialoBot.cs**
 
-在範例中，這會使用 `Run` 擴充方法來執行，如下所示。
-
-[!code-csharp[Run method](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/DialogExtensions.cs?range=13-24)]
-
-**Bots\DialogBot.cs**
-
-`Run` 方法是從 Bot 的 `OnMessageActivityAsync` 方法中呼叫。
+在範例中，這是使用從 Bot 的 `OnMessageActivityAsync` 方法呼叫的 `RunAsync` 方法所完成。
 
 [!code-csharp[OnMessageActivityAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Bots/DialogBot.cs?range=42-48)]
 
