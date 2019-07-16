@@ -622,10 +622,10 @@ AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient =
 - ReplyToID
 - RecipientId
 - ConversationName
-- 地區設定
+- Locale
 - RecipientName (PII 選用)
-- 文字 (PII 選用)
-- 語音 (PII 選用)
+- Text (PII 選用)
+- Speak (PII 選用)
 
 
 ### <a name="customevent-botmessageupdate"></a>CustomEvent：BotMessageUpdate
@@ -638,8 +638,8 @@ AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient =
 - RecipientId
 - ConversationId
 - ConversationName
-- 地區設定
-- 文字 (PII 選用)
+- Locale
+- Text (PII 選用)
 
 
 ### <a name="customevent-botmessagedelete"></a>CustomEvent：BotMessageDelete
@@ -661,10 +661,10 @@ AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient =
 - UserID  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
 - SessionID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
 - ActivityID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- 通道 ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
+- Channel ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
 - ActivityType ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
 - ApplicationId
-- 意圖
+- Intent
 - IntentScore
 - Intent2 
 - IntentScore2 
@@ -672,7 +672,7 @@ AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient =
 - SentimentLabel
 - SentimentScore
 - Entities (json 形式)
-- 問題 (PII 選用)
+- Question (PII 選用)
 
 ## <a name="customevent-qnamessage"></a>CustomEvent：QnAMessage
 **記錄來源：** QnAMaker
@@ -682,14 +682,14 @@ AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient =
 - UserID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
 - SessionID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
 - ActivityID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- 通道 ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
+- Channel ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
 - ActivityType  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- 使用者名稱 (PII 選用)
-- 問題 (PII 選用)
+- Username (PII 選用)
+- Question (PII 選用)
 - MatchedQuestion
 - QuestionId
 - Answer
-- 分數
+- Score
 - ArticleFound
 
 ## <a name="querying-the-data"></a>查詢資料
