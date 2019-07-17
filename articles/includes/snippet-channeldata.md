@@ -1,4 +1,12 @@
-某些通道所提供的功能，無法只透過訊息文字和附件來實作。 若要實作通道特定的功能，您可以將原生中繼資料傳遞至活動物件「通道資料」屬性中的通道。 例如，Bot 可以使用通道資料屬性，指示 Telegram 傳送貼圖或指示 Office365 傳送電子郵件。
+---
+ms.openlocfilehash: c19287b38a2c807e6675af2c3f7e1824eb7eab8e
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68230774"
+---
+某些通道所提供的功能，無法只透過訊息文字和附件來實作。 若要實作通道特定的功能，您可以將原生中繼資料傳遞至活動物件「通道資料」  屬性中的通道。 例如，Bot 可以使用通道資料屬性，指示 Telegram 傳送貼圖或指示 Office365 傳送電子郵件。
 
 此文章說明如何使用訊息活動的通道資料屬性，來實作此通道特定的功能：
 
@@ -56,7 +64,7 @@
 若要建立不失真的 Slack 訊息，請將活動物件的通道資料屬性設定為 JSON 物件，以指定 <a href="https://api.slack.com/docs/messages" target="_blank">Slack 訊息</a>、<a href="https://api.slack.com/docs/message-attachments" target="_blank">Slack 附件</a>和/或 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按鈕</a>。
 
 > [!NOTE]
-> 若要在 Slack 訊息中支援按鈕，您必須在[將 Bot 連線](../bot-service-manage-channels.md)至 Slack 通道時啟用 [互動式訊息]。
+> 若要在 Slack 訊息中支援按鈕，您必須在[將 Bot 連線](../bot-service-manage-channels.md)至 Slack 通道時啟用 [互動式訊息]  。
 
 此程式碼片段顯示自訂 Slack 訊息的 `channelData` 屬性範例。
 
@@ -343,7 +351,7 @@ Bot 可以透過正常方式回覆此訊息，也可以將其回應直接張貼�
 
 | 屬性 | 說明 |
 |----|----|
-|  上限 | Kik 訊息的陣列。 如需 Kik 訊息格式的詳細資訊，請參閱 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 訊息格式</a>。 |
+| 上限 | Kik 訊息的陣列。 如需 Kik 訊息格式的詳細資訊，請參閱 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 訊息格式</a>。 |
 
 此程式碼片段顯示原生 Kik 訊息的 `channelData` 屬性範例。
 
@@ -392,7 +400,7 @@ Bot 可以透過正常方式回覆此訊息，也可以將其回應直接張貼�
 * Datetimerpicker 
 * Camera 
 * Camera roll 
-* 位置 
+* Location 
 
 如需這些 LINE 方法和其參數的詳細資訊，請參閱 [LINE Bot API 文件](https://developers.line.biz/en/docs/messaging-api/)。 
 
