@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: 0b991c438c0006d1fb4bafa90982f73f4a18be77
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563430"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68230666"
 ---
 Bot Builder Framework 可讓您的 Bot 儲存和擷取與使用者、對話或特定對話內容中的特定使用者相關聯的狀態資料。 狀態資料有許多用途，例如判斷上一個對話最後的內容，或是單純地以名字問候回來的使用者。 如果您儲存使用者的喜好設定，下次聊天時就可以使用該資訊來自訂對話。 例如，您可能會在有和使用者感興趣之主題相關的新聞文章，或有可用約會時警示使用者。 
 

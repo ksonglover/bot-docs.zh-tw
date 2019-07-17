@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: 0891b9652154f8ed086cc45ce6018aa0be1a67b8
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59905161"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68230567"
 ---
 若要將本機 JavaScript Bot 發佈回到 Azure，您必須先手動建立單一壓縮檔案，其中包含用來在本機建置及執行 Bot 的所有檔案。 這包括所有下載到 `node_modules` 資料夾中的所有 npm 程式庫。 建立此 zip 檔案時，_請確定您使用的根目錄是 index.js 檔案所在的相同目錄_。
 

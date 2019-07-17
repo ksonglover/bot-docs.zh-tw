@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: f09d0a7b81e3cfa69fd42356faf27f79e3bc038c
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563638"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68230690"
 ---
 接收「交貨地址更新」或「交貨選項更新」回呼，用戶端會在 `Activity.Value` 屬性中將付款詳細資料的目前狀態提供給 Bot。
 如果您是商家，則應將這些回呼視為靜態，根據輸入付款詳細資料，將會計算某些輸出付款詳細資料，而如果用戶端所提供的輸入狀態因任何理由而無效，則回呼會失敗。 

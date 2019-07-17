@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: 8484df6b140447d175805b396a81832c059c3b76
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405206"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68230527"
 ---
 ### <a name="cortana"></a>Cortana
 Bot 會從[儀表板](https://aka.ms/cortana-publish)發佈至 Cortana，並且用於提供 Cortana 技術。 發佈 Bot 即可加以提交進行檢閱。 您可部署 Cortana 技術以供自己使用、部署到小型群組，或發佈至全球。
