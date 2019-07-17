@@ -1,5 +1,6 @@
-<!--# [Migration overview](migratration-overview.md)-->
+# [移轉概觀](migration-overview.md)
 # [v3 和 v4.NET SDK 之間的差異](migration-about.md)
+# [v3 和 v4 JavaScript SDK 之間的差異](migration-about-javascript.md)
 # [.NET 移轉快速參考](net-migration-quickreference.md)
 # [JavaScript 移轉快速參考](javascript-migration-quickreference.md)
 # [將 .NET v3 Bot 遷移至 .NET Framework v4 bot](conversion-framework.md)

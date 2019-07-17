@@ -8,16 +8,16 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 05/23/2019
+ms.date: 07/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 73a675c6e54d676f74dad2df24b3668d5e4e98be
-ms.sourcegitcommit: a47183f5d1c2b2454c4a06c0f292d7c075612cdd
+ms.openlocfilehash: 898136303d2c5bbf6a8ce5ea5b87bff0bac0a5c7
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2019
-ms.locfileid: "67252375"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68230757"
 ---
-## <a name="use-direct-line-speech-in-your-bot"></a>在 Bot 中使用 Direct Line Speech 
+# <a name="use-direct-line-speech-in-your-bot"></a>在 Bot 中使用 Direct Line Speech 
 
 [!INCLUDE [applies-to-v4](includes/applies-to.md)]
 
@@ -29,11 +29,24 @@ Direct Line Speech 使用 Bot Framework 的新 WebSocket 型串流功能，在 D
 
 2.  移至 Bot 專案屬性之下的 [管理 Nuget 套件]。
 
-3.  如果您尚未以它作為來源，請從右上角的 NuGet 摘要設定將 `https://botbuilder.myget.org/F/experimental/api/v3/index.json` 新增為摘要。
+3.  新增 `Microsoft.Bot.Builder.StreamingExtensions` 套件。 您必須核取 [包含發行前版本] 方塊，以查看預覽套件。
 
-4.  選取此 NuGet 來源並新增其中一個 `Microsoft.Bot.Protocol.StreamingExtensions.NetCore` 套件。
+4.  接受任何提示，可完成將套件新增至您的專案。
 
-5.  接受任何提示，可完成將套件新增至您的專案。
+## <a name="set-the-speak-field-on-activities-you-want-spoken-to-the-user"></a>在想要與使用者對話的活動上，設定「說話」欄位
+您必須在想要與使用者對話的任何活動上 (由 Bot 傳送)，設定「說話」欄位。 
+
+```cs
+public IActivity Speak(string message)
+{
+    var activity = MessageFactory.Text(message);
+    string body = @"<speak version='1.0' xmlns='https://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
+        <voice name='Microsoft Server Speech Text to Speech Voice (en-US, JessaNeural)'>" +
+        $"{message}" + "</voice></speak>";
+    activity.Speak = body;
+    return activity;
+}
+```
 
 ## <a name="option-1-update-your-net-core-bot-code-if-your-bot-has-a-botcontrollercs"></a>選項 1：更新 .NET Core Bot 程式碼 _(如果 Bot 有 BotController.cs)_
 當您在 Azure 入口網站中使用其中一個範本 (例如 EchoBot) 建立新的 Bot 時，您會收到一個 Bot，其中包含可公開單一 POST 端點的 ASP.NET MVC 控制器。 下列指示說明如何將該控制器擴展為同時公開一個端點來接受 WebSocket 串流端點 (GET 端點)。
@@ -55,7 +68,7 @@ public async Task PostAsync()
 5.  新增命名空間：
 
 ```cs
-using Microsoft.Bot.Protocol.StreamingExtensions.NetCore;
+using Microsoft.Bot.Builder.StreamingExtensions;
 ```
 
 6.  在 ConfigureServices 方法中，在適當的 services.AddSingleton 呼叫中以 WebSocketEnabledHttpAdapter 取代使用 AdapterWithErrorHandler：
