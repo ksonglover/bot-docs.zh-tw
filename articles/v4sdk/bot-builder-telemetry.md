@@ -605,7 +605,7 @@ AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient =
   - 對應至 Bot Framework 通訊協定的[來源名稱](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)欄位。
   - 所記錄的屬性名稱是 `fromName`。
 
-- 地區設定
+- Locale
   - 對應至 Bot Framework 通訊協定的[來源名稱](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)欄位。
   - 所記錄的屬性名稱是 `fromName`。
 
