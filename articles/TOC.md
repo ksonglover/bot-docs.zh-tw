@@ -3,10 +3,9 @@
 ## [關於 Azure Bot Service](bot-service-overview-introduction.md)
 ## [新功能](what-is-new.md)
 # 快速入門
-## [建立具有 Azure Bot Service 的 Bot](~/bot-service-quickstart.md)
-## 在本機上建立 Bot
-### [.NET](dotnet/bot-builder-dotnet-sdk-quickstart.md)
-### [JavaScript](javascript/bot-builder-javascript-quickstart.md)
+## [使用 .NET 建立 Bot](dotnet/bot-builder-dotnet-sdk-quickstart.md)
+## [使用 JavaScript 建立 Bot](javascript/bot-builder-javascript-quickstart.md)
+## [使用 Azure Bot Service 建立 Bot](v4sdk/abs-quickstart.md)
 # 教學課程
 ## [1.建立及部署基本 Bot](v4sdk/bot-builder-tutorial-basic-deploy.md)
 ## [2.新增 QnA Maker，並重新部署 Bot](v4sdk/bot-builder-tutorial-add-qna.md)
@@ -55,6 +54,8 @@
 ### [在 Bot 中使用 Direct Line Speech](directline-speech-bot.md)
 ### [.NET](dotnet/TOC.md)
 ### [Node.js](nodejs/TOC.md)
+## 測試
+### [單元測試 Bot](v4sdk/unit-test-bots.md)
 ## [偵錯](debug/TOC.md)
 ## 部署
 ### [將 Bot 部署至 Azure](bot-builder-deploy-az-cli.md)
