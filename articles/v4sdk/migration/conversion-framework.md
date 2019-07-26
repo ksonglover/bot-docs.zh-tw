@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 45830f099833c41c308b0f5a5e7b104986604e03
-ms.sourcegitcommit: 93508adfb79523f610a919b361fc34f5c8dd3eff
+ms.openlocfilehash: 519515a2174a7028af7bc170ca8a7c40f7d48c52
+ms.sourcegitcommit: b053c0ca7f2e9e60679f7e82e583c57ae83fcb50
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/02/2019
-ms.locfileid: "67533391"
+ms.lasthandoff: 07/19/2019
+ms.locfileid: "68336732"
 ---
 # <a name="migrate-a-net-v3-bot-to-a-net-framework-v4-bot"></a>將 .NET v3 聊天機器人遷移至 .NET Framework v4 聊天機器人
 
@@ -53,6 +53,10 @@ Bot Framework SDK v4 是以與 SDK v3 相同的基礎 REST API 作為基礎。 �
 1. 新增 **Bot.Builder.Community.Dialogs.Formflow**
 
     這是一個社群程式庫，用於從 v3 Formflow 定義檔建置 v4 對話。 它以 **Microsoft.Bot.Builder.Dialogs** 作為其相依性之一，因此系統也會為我們安裝。
+
+> [!TIP]
+> 如果您的專案是以 .NET Framework 4.6 為目標，您必須將其更新為 4.6.1 或更新版本, 因為 **Bot.Builder.Community.Dialogs.Formflow** 是 .NET Standard 2.0 程式庫。
+> 如需詳細資訊，請參閱 [.NET 實作支援](https://docs.microsoft.com/en-us/dotnet/standard/net-standard#net-implementation-support)。
 
 如果您在此時建置，則會收到編譯器錯誤。 您可以忽略這些錯誤。 完成轉換之後，我們就會有工作程式碼。
 
