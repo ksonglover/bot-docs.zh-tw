@@ -11,14 +11,16 @@ ms.subservice: sdk
 ms.date: 04/18/2019
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bd8682966dbb2e33a536a72a4016ef23e9c1fc75
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: ba1bc99608558966f4cf45894b2e04b8f17c9a69
+ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032624"
+ms.lasthandoff: 07/25/2019
+ms.locfileid: "68483969"
 ---
 # <a name="handle-user-interruptions"></a>處理使用者中斷
+
+<!-- Rebuild to link to published samples in the master branch -->
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
@@ -26,8 +28,8 @@ ms.locfileid: "65032624"
 
 ## <a name="prerequisites"></a>必要條件
 
-- [Bot 基本概念][concept-basics]、[管理狀態][concept-state]、[對話方塊程式庫][concept-dialogs]及如何[重複使用對話方塊][component-dialogs]的知識。
-- 一份核心的 Bot 範例 (使用 [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample])。
+- 了解[聊天機器人基本概念][concept-basics], [managing state][concept-state]、[對話方塊程式庫][concept-dialogs]，以及如何[重複使用對話方塊][component-dialogs]。
+- 一份核心聊天機器人範例 (使用 [**CSharp**][cs-sample] or [**JavaScript**][js-sample])。
 
 ## <a name="about-this-sample"></a>關於此範例
 
@@ -48,17 +50,17 @@ ms.locfileid: "65032624"
 
 一開始，我們會先實作 `CancelAndHelpDialog` 類別來處理使用者中斷。
 
-[!code-csharp[Class signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=11)]
+[!code-csharp[Class signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=10)]
 
 在 `CancelAndHelpDialog` 類別中，`OnBeginDialogAsync` 和 `OnContinueDialogAsync` 方法會呼叫 `InerruptAsync` 方法來檢查使用者是否已中斷一般流程。 如果流程已中斷，則會呼叫基底類別方法；，否則會從 `InterruptAsync` 傳回傳回值。
 
-[!code-csharp[Overrides](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=18-27)]
+[!code-csharp[Overrides](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=22-31)]
 
 如果使用者輸入「協助」，`InterrupAsync` 方法會傳送一則訊息，然後呼叫 `DialogTurnResult (DialogTurnStatus.Waiting)` 來指出最上層的對話方塊正在等候使用者回應。 如此一來，系統便只會在一個回合內中斷對話流程，到下一個回合時，我們就會從離開的地方接續進行。
 
 如果使用者輸入「取消」，則會在其內部對話方塊內容上呼叫 `CancelAllDialogsAsync`，此方法會清除其對話方塊堆疊，並讓其以取消的狀態結束，且不會有結果值。 到 `MainDialog` (稍後會顯示) 時，其會顯示預約對話方塊已結束並傳回 Null，情況類似使用者選擇不要確認其預約時。
 
-[!code-csharp[Interrupt](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=40-61&highlight=11-12,16-17)]
+[!code-csharp[Interrupt](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=33-56&highlight=43-45,49-51)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -68,17 +70,17 @@ ms.locfileid: "65032624"
 
 一開始，我們會先實作 `CancelAndHelpDialog` 類別來處理使用者中斷。
 
-[!code-javascript[Class signature](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=10)]
+[!code-javascript[Class signature](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=11)]
 
 在 `CancelAndHelpDialog` 類別中，`onBeginDialog` 和 `onContinueDialog` 方法會呼叫 `interrupt` 方法來檢查使用者是否已中斷一般流程。 如果流程已中斷，則會呼叫基底類別方法；，否則會從 `interrupt` 傳回傳回值。
 
-[!code-javascript[Overrides](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=11-25)]
+[!code-javascript[Overrides](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=12-18)]
 
 如果使用者輸入「協助」，`interrupt` 方法會傳送一則訊息，然後傳回 `{ status: DialogTurnStatus.waiting }` 物件來指出最上層的對話方塊正在等候使用者回應。 如此一來，系統便只會在一個回合內中斷對話流程，到下一個回合時，我們就會從離開的地方接續進行。
 
 如果使用者輸入「取消」，則會在其內部對話方塊內容上呼叫 `cancelAllDialogs`，此方法會清除其對話方塊堆疊，並讓其以取消的狀態結束，且不會有結果值。 到 `MainDialog` (稍後會顯示) 時，其會顯示預約對話方塊已結束並傳回 Null，情況類似使用者選擇不要確認其預約時。
 
-[!code-javascript[Interrupt](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=27-40&highlight=7-8,11-12)]
+[!code-javascript[Interrupt](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=20-37&highlight=27-29,32-34)]
 
 ---
 
@@ -92,11 +94,11 @@ ms.locfileid: "65032624"
 
 有新的訊息活動送達時，Bot 會執行 `MainDialog`。 `MainDialog` 會提示使用者其能提供什麼協助。 然後，其會藉由呼叫 `BeginDialogAsync` 在 `MainDialog.ActStepAsync` 方法中啟動 `BookingDialog`，如下所示。
 
-[!code-csharp[ActStepAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/MainDialog.cs?range=54-68&highlight=13-14)]
+[!code-csharp[ActStepAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/MainDialog.cs?range=58-101&highlight=82-83)]
 
 接下來，在 `MainDialog` 類別的 `FinalStepAsync` 方法中，預約對話方塊會結束，並認為預約已完成或取消。
 
-[!code-csharp[FinalStepAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/MainDialog.cs?range=70-91)]
+[!code-csharp[FinalStepAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/MainDialog.cs?range=130-150)]
 
 這裡不會顯示 `BookingDialog` 中的程式碼，因為其與中斷處理沒有直接關聯。 其會用來提示使用者輸入預約詳細資料。 您可以在 **Dialogs\BookingDialogs.cs** 中找到該程式碼。
 
@@ -106,11 +108,11 @@ ms.locfileid: "65032624"
 
 有新的訊息活動送達時，Bot 會執行 `MainDialog`。 `MainDialog` 會提示使用者其能提供什麼協助。 然後，其會藉由呼叫 `beginDialog` 在 `MainDialog.actStep` 方法中啟動 `bookingDialog`，如下所示。
 
-[!code-javascript[Act step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=71-88&highlight=16-17)]
+[!code-javascript[Act step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=90-97&highlight=96-97)]
 
 接下來，在 `MainDialog` 類別的 `finalStep` 方法中，預約對話方塊會結束，並認為預約已完成或取消。
 
-[!code-javascript[Final step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=93-110)]
+[!code-javascript[Final step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=135-139)]
 
 這裡不會顯示 `BookingDialog` 中的程式碼，因為其與中斷處理沒有直接關聯。 其會用來提示使用者輸入預約詳細資料。 您可以在 **dialogs/bookingDialogs.js** 中找到該程式碼。
 
@@ -126,7 +128,7 @@ ms.locfileid: "65032624"
 
 在我們的範例中，配接器的 `OnTurnError` 處理常式會接收 Bot 的回合邏輯所擲回的任何例外狀況。 如果有擲回的例外狀況，處理常式就會刪除目前對話的對話狀態，防止 Bot 卡在因為狀態不良而導致的錯誤迴圈中。
 
-[!code-csharp[AdapterWithErrorHandler](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/AdapterWithErrorHandler.cs?range=12-41)]
+[!code-csharp[AdapterWithErrorHandler](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/AdapterWithErrorHandler.cs?range=13-45)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -134,7 +136,7 @@ ms.locfileid: "65032624"
 
 在我們的範例中，配接器的 `onTurnError` 處理常式會接收 Bot 的回合邏輯所擲回的任何例外狀況。 如果有擲回的例外狀況，處理常式就會刪除目前對話的對話狀態，防止 Bot 卡在因為狀態不良而導致的錯誤迴圈中。
 
-[!code-javascript[AdapterWithErrorHandler](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=28-38)]
+[!code-javascript[AdapterWithErrorHandler](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=34-44)]
 
 ---
 
@@ -146,11 +148,11 @@ ms.locfileid: "65032624"
 
 最後，在 `Startup.cs` 中會建立暫時性的 Bot，且每一回合都會建立新的 Bot 執行個體。
 
-[!code-csharp[Add transient bot](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Startup.cs?range=46-47)]
+[!code-csharp[Add transient bot](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Startup.cs?range=47-48)]
 
 如需參考，以下是呼叫中用來建立上述 Bot 的類別定義。
 
-[!code-csharp[MainDialog signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/MainDialog.cs?range=15)]
+[!code-csharp[MainDialog signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/MainDialog.cs?range=17)]
 [!code-csharp[DialogAndWelcomeBot signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Bots/DialogAndWelcomeBot.cs?range=16)]
 [!code-csharp[DialogBot signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Bots/DialogBot.cs?range=18)]
 
@@ -160,11 +162,11 @@ ms.locfileid: "65032624"
 
 最後，在 `index.js` 中便會建立 Bot。
 
-[!code-javascript[Create bot](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=55-56)]
+[!code-javascript[Create bot](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=69-73)]
 
 如需參考，以下是呼叫中用來建立上述 Bot 的類別定義。
 
-[!code-javascript[MainDialog signature](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=12)]
+[!code-javascript[MainDialog signature](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=11)]
 [!code-javascript[DialogAndWelcomeBot signature](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/bots/dialogAndWelcomeBot.js?range=8)]
 [!code-javascript[DialogBot signature](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/bots/dialogBot.js?range=6)]
 

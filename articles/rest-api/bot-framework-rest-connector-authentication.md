@@ -8,14 +8,14 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 1cb9143e5ab2d5eb7e92e263b838cdd9217492ef
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: cbe2a6e449ecc2920e3a2d1ecb04a63dcb489b66
+ms.sourcegitcommit: 8336a06941d09e1107b38f494d048dd785a13069
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225353"
+ms.lasthandoff: 07/30/2019
+ms.locfileid: "68631570"
 ---
-# <a name="authentication"></a>驗證
+# <a name="authentication"></a>Authentication
 
 您的 Bot 會透過安全通道 (SSL/TLS) 使用 HTTP 和 Bot 連接器服務通訊。 當 Bot 傳送要求至連接器服務時，必須包含連接器可用來驗證該 Bot 之身分識別的資訊。 同樣地，當連接器服務傳送要求至 Bot 時，也必須包含 Bot 可用來驗證該服務之身分識別的資訊。 本文描述 Bot 和 Bot 連接器服務之間所進行之服務層級驗證的驗證技術和需求。 若您準備自行撰寫驗證程式碼，您必須實作本文所述的安全性程序，以使 Bot 能與 Bot 連接器服務交換訊息。
 
@@ -181,10 +181,7 @@ GET https://login.botframework.com/v1/.well-known/keys
 
 回應主體會以 [JWK 格式](https://tools.ietf.org/html/rfc7517) \(英文\) 指定文件，但也會針對每個金鑰包含額外屬性：`endorsements`。 金鑰清單本身相對穩定，並可以長時間進行快取 (在 Bot Framework SDK 中的預設值為 5 天)。
 
-每個金鑰內的 `endorsements` 屬性都包含一或多個簽署字串，您可以使用它們來驗證連入要求之 [Activity][Activity] 物件內的 `channelId` 屬性所指定之通道識別碼的真確性。 需要進行簽署之通道識別碼的清單，可在每個 Bot 內設定。 根據預設，它將會是所有已發佈之通道識別碼的清單，雖然 Bot 開發人員可能會覆寫特定通道識別碼的值。 若通道識別碼需要進行簽署：
-
-- 您應該要求搭配該通道識別碼傳送至您 Bot 的任何 [Activity][Activity] 物件，都應具有針對該頻道進行簽署的 JWT 權杖。 
-- 若簽署不存在，您的 Bot 應傳回 **HTTP 403 (禁止)** 狀態碼來拒絕該要求。
+每個金鑰內的 `endorsements` 屬性都包含一或多個簽署字串，您可以使用這些字串來驗證連入要求 [Activity][Activity] 物件內的 `channelId` 屬性所指定之通道識別碼的真確性。 需要進行簽署之通道識別碼的清單，可在每個 Bot 內設定。 根據預設，它將會是所有已發佈之通道識別碼的清單，雖然 Bot 開發人員可能會覆寫特定通道識別碼的值。 
 
 ### <a name="step-4-verify-the-jwt-token"></a>步驟 4：驗證 JWT 權杖
 
@@ -200,7 +197,10 @@ JWT 剖析程式庫可供許多平台使用，且大多數都會針對 JWT 權�
 6. 透過使用於在[步驟 2](#openid-metadata-document) 中所擷取之 Open ID 中繼資料文件的 `id_token_signing_alg_values_supported` 屬性中所指定的簽署演算法，搭配列於在[步驟 3](#connector-to-bot-step-3) 中所擷取之 OpenID 金鑰文件中的金鑰，使權杖具有有效的密碼編譯簽章。
 7. 權杖包含 "serviceUrl" 宣告，其值符合連入要求之 [Activity][Activity] 物件根目錄中的 `servieUrl` 屬性。 
 
-若權杖不符合上述所有需求，您的 Bot 應傳回 **HTTP 403 (禁止)** 狀態碼來拒絕該要求。
+若通道識別碼需要進行簽署：
+
+- 您應該要求搭配該通道識別碼傳送至您 Bot 的任何 [Activity][Activity] 物件，都應具有針對該頻道進行簽署的 JWT 權杖。 
+- 若簽署不存在，您的 Bot 應傳回 **HTTP 403 (禁止)** 狀態碼來拒絕該要求。
 
 > [!IMPORTANT]
 > 這些需求都非常重要，特別是需求 4 和 6。 若無法實作上述所有驗證需求，將會使 Bot 處於被攻擊的風險中，並可能導致 Bot 洩露其 JWT 權杖。

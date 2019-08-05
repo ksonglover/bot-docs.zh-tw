@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e019d2d04d843cc0efd5a39135d65fe4cfc022f3
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: 02e0f810293566b783dda563b377f1a96f4ed58f
+ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67404507"
+ms.lasthandoff: 07/25/2019
+ms.locfileid: "68484018"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>將自然語言理解新增至您的 Bot
 
@@ -36,36 +36,38 @@ ms.locfileid: "67404507"
 在每此處理使用者輸入之後，`DialogBot` 會儲存 `UserState` 和 `ConversationState` 的目前狀態。 蒐集所有必要的資訊後，程式碼範例會建立示範航班預訂保留。 這本文中，我們將探討這的範例的 LUIS 層面。 不過，此範例的一般流程如下所示：
 
 - 當新的使用者連線並顯示歡迎卡片時，就會呼叫 `OnMembersAddedAsync`。 
-- 系統會針對每個收到的使用者輸入呼叫 `OnMessageActivityAsync`。 
+- 系統會針對每個收到的使用者輸入呼叫 `OnMessageActivityAsync`。
 
 ![LUIS 範例的邏輯流程](./media/how-to-luis/luis-logic-flow.png)
 
-`OnMessageActivityAsync` 模組會透過 `Run` 對話擴充方法執行適當的對話。 該主要對話會呼叫 LUIS 協助程式，以尋找評分最高的使用者意圖。 如果使用者輸入的最高意圖傳回 "Book_Flight"，則協助程式會填寫 LUIS 傳回的使用者資訊，並啟動 `BookingDialog`，它會視需要向使用者取得其他資訊，例如：
+`OnMessageActivityAsync` 模組會透過 `Run` 對話擴充方法執行適當的對話。 然後，該主要對話方塊會呼叫 LUIS 協助程式，以尋找評分最高的使用者意圖。 如果使用者輸入的最高意圖傳回 "BookFlight"，則協助程式會填寫 LUIS 傳回的使用者資訊。 之後，主要對話方塊會啟動 `BookingDialog`，其會視需要向使用者取得其他資訊，例如：
 
-- `Origin` 原始城市。
-- `TravelDate` 要預訂航班的日期。 
-- `Destination` 目的地城市。
+- `Origin` 原始城市
+- `TravelDate` 要預訂航班的日期
+- `Destination` 目的地城市
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 在每此處理使用者輸入之後，`dialogBot` 會儲存 `userState` 和 `conversationState` 的目前狀態。 蒐集所有必要的資訊後，程式碼範例會建立示範航班預訂保留。 這本文中，我們將探討這的範例的 LUIS 層面。 不過，此範例的一般流程如下所示：
 
 - 當新的使用者連線並顯示歡迎卡片時，就會呼叫 `onMembersAdded`。 
-- 系統會針對每個收到的使用者輸入呼叫 `OnMessage`。 
+- 系統會針對每個收到的使用者輸入呼叫 `OnMessage`。
 
 ![LUIS 範例的 javascript 邏輯流程](./media/how-to-luis/luis-logic-flow-js.png)
 
-`onMessage` 模組會執行 `mainDialog`，以將使用者輸入傳送至 LUIS 。 收到來自 LUIS 的回應時，`mainDialog` 會保留 LUIS 所傳回的使用者資訊並啟動 `bookingDialog`。 `bookingDialog` 會視需要向使用者取得其他資訊，例如：
+`onMessage` 模組會執行 `mainDialog` 以蒐集使用者輸入。
+然後，該主要對話方塊會呼叫 LUIS 協助程式 `FlightBookingRecognizer`，以尋找評分最高的使用者意圖。 如果使用者輸入的最高意圖傳回 "BookFlight"，則協助程式會填寫 LUIS 傳回的使用者資訊。
+回應傳來時，`mainDialog` 會保留 LUIS 所傳回的使用者資訊並啟動 `bookingDialog`。 `bookingDialog` 會視需要向使用者取得其他資訊，例如：
 
 - `destination` 目的地城市。
 - `origin` 原始城市。
-- `travelDate` 要預訂航班的日期。 
+- `travelDate` 要預訂航班的日期。
 
 ---
 
-如需範例的其他層面 (例如對話或狀態) 詳細資訊，請參閱[使用對話提示蒐集使用者輸入](bot-builder-prompts.md)或[儲存使用者和交談資料](bot-builder-howto-v4-state.md)。 
+如需範例的其他層面 (例如對話或狀態) 詳細資訊，請參閱[使用對話提示蒐集使用者輸入](bot-builder-prompts.md)或[儲存使用者和交談資料](bot-builder-howto-v4-state.md)。
 
 ## <a name="create-a-luis-app-in-the-luis-portal"></a>在 LUIS 入口網站中建立 LUIS 應用程式
-登入 LUIS 入口網站以建立自己的範例 LUIS 應用程式版本。 您可以在 [我的應用程式]  上建立和管理應用程式。 
+登入 LUIS 入口網站以建立自己的範例 LUIS 應用程式版本。 您可以在 [我的應用程式]  上建立和管理應用程式。
 
 1. 選取 [匯入新的應用程式]  。 
 1. 按一下 [選擇應用程式檔案 (JSON 格式)...]  
@@ -96,14 +98,14 @@ settings 檔案 (`appsettings.json` 或 `.env`) 檔案可作為將所有服務�
 將存取 LUIS 應用程式所需的資訊 (包括應用程式識別碼、撰寫金鑰和區域) 新增至 `appsettings.json` 檔案中。 這些是您先前從已發佈的 LUIS 應用程式儲存的值。 請注意，API 主機名稱應該採用 `<your region>.api.cognitive.microsoft.com` 格式。
 
 **appsetting.json**  
-[!code-json[appsettings](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/appsettings.json?range=1-7)]
+[!code-json[appsettings](~/../BotBuilder-Samples/samples/csharp_dotnetcore/13.core-bot/appsettings.json?range=1-7)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 將存取 LUIS 應用程式所需的資訊 (包括應用程式識別碼、撰寫金鑰和區域) 新增至 `.env` 檔案中。 這些是您先前從已發佈的 LUIS 應用程式儲存的值。 請注意，API 主機名稱應該採用 `<your region>.api.cognitive.microsoft.com` 格式。
 
 **.env**  
-[!code[env](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/.env?range=1-5)]
+[!code[env](~/../BotBuilder-Samples/samples/javascript_nodejs/13.core-bot/.env?range=1-5)]
 
 ---
 
@@ -113,22 +115,199 @@ settings 檔案 (`appsettings.json` 或 `.env`) 檔案可作為將所有服務�
 
 請確定您已為專案安裝 **Microsoft.Bot.Builder.AI.Luis** NuGet 套件。
 
-若要連線到 LUIS 服務，Bot 會從 appsetting.json 檔案提取您前面新增的資訊。 `LuisHelper` 類別包含的程式碼可從 appsetting.json 檔案匯入您的設定，以及藉由呼叫 `RecognizeAsync` 方法來查詢 LUIS 服務。 如果傳回的最高意圖是 'Book_Flight'，其會檢查包含預訂 To、From 和 TravelDate 資訊等實體。
+若要連線到 LUIS 服務，Bot 會從 appsetting.json 檔案提取您前面新增的資訊。 `FlightBookingRecognizer` 類別包含的程式碼有來自 appsetting.json 檔案的設定，並且會藉由呼叫 `RecognizeAsync` 方法來查詢 LUIS 服務。
 
-**LuisHelper.cs**  
-[!code-csharp[luis helper](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/LuisHelper.cs?range=15-54)]
+**FlightBookingRecognizer.cs**  
+
+```csharp
+public class FlightBookingRecognizer : IRecognizer
+{
+    private readonly LuisRecognizer _recognizer;
+
+    public FlightBookingRecognizer(IConfiguration configuration)
+
+    {
+        var luisIsConfigured = !string.IsNullOrEmpty(configuration["LuisAppId"]) && !string.IsNullOrEmpty(configuration["LuisAPIKey"]) && !string.IsNullOrEmpty(configuration["LuisAPIHostName"]);
+
+        if (luisIsConfigured)
+        {
+            var luisApplication = new LuisApplication(
+
+                configuration["LuisAppId"],
+
+                configuration["LuisAPIKey"],
+
+                "https://" + configuration["LuisAPIHostName"]);
+
+            _recognizer = new LuisRecognizer(luisApplication);
+
+        }
+    }
+
+    // Returns true if luis is configured in the appsettings.json and initialized.
+
+    public virtual bool IsConfigured => _recognizer != null;
+
+    public virtual async Task<RecognizerResult> RecognizeAsync(ITurnContext turnContext, CancellationToken cancellationToken)
+
+        => await _recognizer.RecognizeAsync(turnContext, cancellationToken);
+
+
+    public virtual async Task<T> RecognizeAsync<T>(ITurnContext turnContext, CancellationToken cancellationToken)
+
+        where T : IRecognizerConvert, new()
+
+        => await _recognizer.RecognizeAsync<T>(turnContext, cancellationToken);
+}
+
+```
+
+<!-- Direct reference
+[!code-csharp[luisHelper](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/FlightBookingRecognizer.cs?range=12-39)]
+-->
+
+`FlightBookingEx.cs` 的邏輯會擷取 *From*、*To* 和 *TravelDate*；其會延伸在從 `MainDialog.cs` 呼叫 `FlightBookingRecognizer.RecognizeAsync<FlightBooking>` 時用來儲存 LUIS 結果的部分類別 `FlightBooking.cs`。
+
+**FlightBookingEx.cs**  
+
+```csharp
+public partial class FlightBooking
+{
+    public (string From, string Airport) FromEntities
+
+    {
+        get
+
+        {
+            var fromValue = Entities?._instance?.From?.FirstOrDefault()?.Text;
+
+            var fromAirportValue = Entities?.From?.FirstOrDefault()?.Airport?.FirstOrDefault()?.FirstOrDefault();
+
+            return (fromValue, fromAirportValue);
+        }
+    }
+
+    public (string To, string Airport) ToEntities
+
+    {
+        get
+
+        {
+            var toValue = Entities?._instance?.To?.FirstOrDefault()?.Text;
+
+            var toAirportValue = Entities?.To?.FirstOrDefault()?.Airport?.FirstOrDefault()?.FirstOrDefault();
+
+            return (toValue, toAirportValue);
+        }
+    }
+
+    // This value will be a TIMEX. And we are only interested in a Date so grab the first result and drop the Time part.
+    // TIMEX is a format that represents DateTime expressions that include some ambiguity. e.g. missing a Year.
+    public string TravelDate
+        => Entities.datetime?.FirstOrDefault()?.Expressions.FirstOrDefault()?.Split('T')[0];
+}
+
+```
+
+<!-- Direct reference
+[!code-csharp[luis helper](~/../BotBuilder-Samples/samples/csharp_dotnetcore/13.core-bot/CognitiveModels/FlightBookingEx.cs?range=8-35)]
+-->
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 若要使用 LUIS，您的專案需要安裝 **botbuilder-ai** npm 套件。
 
-若要連線到 LUIS 服務，Bot 會從 `.env` 檔案提取您前面新增的資訊。 `LuisHelper` 類別包含的程式碼可從 `.env` 檔案匯入您的設定，以及藉由呼叫 `recognize()` 方法來查詢 LUIS 服務。 如果傳回的最高意圖是 'Book_Flight'，其會檢查包含預訂 To、From 和 TravelDate 資訊等實體。
+為了連線至 LUIS 服務，聊天機器人會從 `.env` 檔案使用您前面所新增的資訊。 `flightBookingRecognizer.js` 類別包含的程式碼可從 `.env` 檔案匯入您的設定，以及藉由呼叫 `recognize()` 方法來查詢 LUIS 服務。
 
-[!code-javascript[luis helper](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/luisHelper.js?range=6-65)]
+```javascript
+class FlightBookingRecognizer {
+
+    constructor(config) {
+
+        const luisIsConfigured = config && config.applicationId && config.endpointKey && config.endpoint;
+
+        if (luisIsConfigured) {
+
+            this.recognizer = new LuisRecognizer(config, {}, true);
+        }
+
+    }
+
+    get isConfigured() {
+        return (this.recognizer !== undefined);
+    }
+
+    /**
+     * Returns an object with preformatted LUIS results for the bot's dialogs to consume.
+     * @param {TurnContext} context
+     */
+    async executeLuisQuery(context) {
+        return await this.recognizer.recognize(context);
+    }
+
+    getFromEntities(result) {
+
+        let fromValue, fromAirportValue;
+
+        if (result.entities.$instance.From) {
+
+            fromValue = result.entities.$instance.From[0].text;
+        }
+
+        if (fromValue && result.entities.From[0].Airport) {
+
+            fromAirportValue = result.entities.From[0].Airport[0][0];
+        }
+
+        return { from: fromValue, airport: fromAirportValue };
+    }
+
+    getToEntities(result) {
+
+        let toValue, toAirportValue;
+
+        if (result.entities.$instance.To) {
+            toValue = result.entities.$instance.To[0].text;
+        }
+
+        if (toValue && result.entities.To[0].Airport) {
+            toAirportValue = result.entities.To[0].Airport[0][0];
+        }
+        return { to: toValue, airport: toAirportValue };
+    }
+
+    /**
+     * This value will be a TIMEX. And we are only interested in a Date so grab the first result and drop the Time part.
+     * TIMEX is a format that represents DateTime expressions that include some ambiguity. e.g. missing a Year.
+     */
+
+    getTravelDate(result) {
+
+        const datetimeEntity = result.entities['datetime'];
+
+        if (!datetimeEntity || !datetimeEntity[0]) return undefined;
+
+        const timex = datetimeEntity[0]['timex'];
+
+        if (!timex || !timex[0]) return undefined;
+
+        const datetime = timex[0].split('T')[0];
+
+        return datetime;
+    }
+}
+
+```
+
+<!-- Direct reference
+[!code-javascript[luis helper](~/../BotBuilder-Samples/samples/javascript_nodejs/13.core-bot/dialogs/flightBookingRecognizer.js?range=6-64)]
+-->
+
+用來擷取 From、To 和 TravelDate 的邏輯會在 `flightBookingRecognizer.js` 內實作為協助程式方法。 從 `mainDialog.js` 呼叫 `flightBookingRecognizer.executeLuisQuery()` 之後便會使用這些方法
 
 ---
 
-現在已針對您的 Bot 設定和連線 LUIS。 
+現在已針對您的 Bot 設定和連線 LUIS。
 
 ## <a name="test-the-bot"></a>測試 Bot
 

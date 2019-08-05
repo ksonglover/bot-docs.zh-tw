@@ -10,10 +10,10 @@ ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
 ms.openlocfilehash: ac74fff5fa7635bf0ef585423b0f8663a1df41c4
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
+ms.lasthandoff: 07/25/2019
 ms.locfileid: "67404830"
 ---
 # <a name="send-and-receive-attachments"></a>傳送和接收附件
@@ -31,7 +31,7 @@ ms.locfileid: "67404830"
 * **卡**：您可以傳送一組豐富的視覺化卡片 <!-- and custom keyboards --> (方法是將 **contentType** 設定為所需的卡類型)，然後再傳遞卡片的 JSON。 如果您使用其中一個複合式資訊卡 (Rich Card) 建立器類別 (例如 **HeroCard**)，系統會自動為您填入附件。 如需這方面的範例，請參閱[傳送複合式資訊卡 (Rich Card)](bot-builder-nodejs-send-rich-cards.md)。
 
 ## <a name="add-a-media-attachment"></a>新增媒體附件
-訊息物件應該會是 [IMessage][IMessage] and it's most useful to send the user a message as an object when you’d like to include an attachment like an image. Use the [session.send()][SessionSend] 方法的執行個體，此方法可使用 JSON 物件的形式傳送訊息。 
+訊息物件預期會是 [IMessage][IMessage] 的執行個體，當您想要包含影像等附件時，最適合以物件形式來傳送訊息給使用者。 請使用 [session.send()][SessionSend] 方法，以 JSON 物件的形式傳送訊息。 
 
 ## <a name="example"></a>範例
 

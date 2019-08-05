@@ -10,12 +10,12 @@ ms.subservice: bot-service
 ms.topic: conceptual
 ms.date: 05/02/2019
 ms.author: v-ivorb
-ms.openlocfilehash: 0b108d90d18261cd22214db9a7926bdac1bfee40
-ms.sourcegitcommit: a4181f35dbe6a8b107eea28122372f524e19880a
+ms.openlocfilehash: 08765793611a0c2543fea481479ea4cfa2c8b74c
+ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/02/2019
-ms.locfileid: "65030191"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68671427"
 ---
 ## <a name="about-direct-line"></a>關於 Direct Line
 
@@ -29,7 +29,7 @@ Direct Line 有三種形式：
 
 |                            | Direct Line | Direct Line App Service 擴充功能 | Direct Line Speech |
 |----------------------------|-------------|-----------------------------------|--------------------|
-| GA 可用性和 SLA    | 正式運作 | 個人預覽版，無 SLA  | 個人預覽版，無 SLA |
+| 可用性和授權    | 正式運作 | 個人預覽版，無 SLA  | 個人預覽版，無 SLA |
 | 語音辨識和文字轉語音的效能 | 標準 | 標準 | 高效能 |
 | 整合式 OAuth           | yes | 是 | 否 |
 | 整合式遙測       | yes | 是 | 否 |

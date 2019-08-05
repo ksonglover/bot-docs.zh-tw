@@ -10,10 +10,10 @@ ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
 ms.openlocfilehash: e308445a43507db94fe54735432790dabdb88731
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
+ms.lasthandoff: 07/25/2019
 ms.locfileid: "67404855"
 ---
 # <a name="recognize-user-intent-from-message-content"></a>從訊息內容辨識使用者意圖
@@ -36,7 +36,7 @@ ms.locfileid: "67404855"
 
 [!code-js[Add a regular expression recognizer (JavaScript)](../includes/code/node-regex-recognizer.js#addRegexRecognizer)]
 
-辨識器新增至聊天機器人後，請附加 [triggerAction][triggerAction] to the dialog that you want the bot to invoke when the recognizer detects the intent. Use the [matches][matches] 選項來指定意圖名稱，如下列程式碼所示：
+將辨識器新增至 Bot 後，請將 [triggerAction][triggerAction] 附加到您希望 Bot 在辨識器偵測到意圖時叫用的對話方塊。 使用 [matches][matches] 選項來指定意圖名稱，如下列程式碼所示：
 
 [!code-js[Map the CancelIntent recognizer to a cancel dialog (JavaScript)](../includes/code/node-regex-recognizer.js#bindCancelDialogToRegexRecognizer)]
 
@@ -61,7 +61,7 @@ Bot 可以註冊一個以上的辨識器。 請注意，自訂辨識器範例涉
 
 根據預設，辨識器則會以平行方式執行，但您可以在 [IIntentRecognizerSetOptions][IntentRecognizerSetOptions] 中設定 recognizeOrder，所以只要 Bot 找到可提供分數 1.0 的辨識器時，程序就會立即結束。
 
-Bot Framework SDK 包含[範例][DisambiguationSample] that demonstrates how to provide custom disambiguation logic in your bot by implementing [IDisambiguateRouteHandler][IDisambiguateRouteHandler]。
+Bot Framework SDK 包含一個[範例][DisambiguationSample]，該範例示範如何藉由實作 [IDisambiguateRouteHandler][IDisambiguateRouteHandler] 來提供自訂去除混淆邏輯。
 
 ## <a name="next-steps"></a>後續步驟
 使用規則運算式和檢查訊息內容的邏輯可能會變複雜，尤其是在 Bot 的對話流程為開放式時。 為了協助 Bot 處理來自使用者的各種文字和語音輸入，您可以使用 [LUIS][LUIS] 等意圖辨識服務，將自然語言理解新增到 Bot。

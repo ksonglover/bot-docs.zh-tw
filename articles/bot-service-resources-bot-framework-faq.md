@@ -8,10 +8,10 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 02/21/2019
 ms.openlocfilehash: 57efc2f1d137988792d9484d7f1f857bd193ecfa
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
+ms.lasthandoff: 07/25/2019
 ms.locfileid: "67405778"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常見問題集
@@ -73,7 +73,7 @@ Azure Bot Service 不支援區域移動。 這是全球性服務，不會與任�
 
 ### <a name="i-have-a-communication-channel-id-like-to-be-configurable-with-bot-framework-can-i-work-with-microsoft-to-do-that"></a>我有想要能夠使用 Bot Framework 設定的通訊通道。 可以與 Microsoft 合作完成嗎？
 
-我們沒有一般機制可以讓開發人員將新通道新增至 Bot Framework，但是您可以透過[直接線路 API][DirectLineAPI]. If you are a developer of a communication channel and would like to work with us to enable your channel in the Bot Framework [we’d love to hear from you][Support] 將聊天機器人連線到應用程式。
+我們沒有一般機制可以讓開發人員將新通道新增至 Bot Framework，但是您可以透過[直接線路 API][DirectLineAPI] 將聊天機器人連線到應用程式。 如果您是通訊通道的開發人員，並且想要與我們配合，在 Bot Framework 中啟用您的通道，[歡迎與我們聯繫][Support]。
 
 ### <a name="if-i-want-to-create-a-bot-for-microsoft-teams-what-tools-and-services-should-i-use"></a>如果我想要建立適用於 Microsoft Teams 的聊天機器人，應該使用哪些工具和服務？
 

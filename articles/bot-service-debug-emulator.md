@@ -8,27 +8,63 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 2/26/2019
-ms.openlocfilehash: 0e548700e81fff5029031fd1e349cc75d9d0bc7a
-ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.openlocfilehash: 847ae51791ae66ef190ebefee765f2806ec91c5e
+ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2019
-ms.locfileid: "67464646"
+ms.lasthandoff: 07/25/2019
+ms.locfileid: "68484042"
 ---
 # <a name="debug-with-the-emulator"></a>使用模擬器進行偵錯
 
 Bot Framework 模擬器是一項桌面應用程式，可讓 Bot 開發人員在本機或從遠端對其 Bot 進行測試和偵錯。 使用此模擬器時，您能與您的 Bot 聊天，並檢查您的 Bot 所傳送及接收的訊息。 模擬器會顯示在 Web 聊天 UI 中出現的相同訊息，並在您與 Bot 交換訊息時記錄 JSON 要求和回應。 將您的 Bot 部署至雲端之前，請先在本機使用模擬器加以測試。 即使您尚未使用 Azure Bot Service [建好](./bot-service-quickstart.md) Bot 或將其設定為在任何通道上執行，您仍可使用模擬器來測試 Bot。
 
 ## <a name="prerequisites"></a>必要條件
-- 安裝[模擬器](https://aka.ms/Emulator-wiki-getting-started)
+- 安裝 [Bot Framework 模擬器](https://aka.ms/Emulator-wiki-getting-started)
+
+## <a name="run-a-bot-locally"></a>在本機執行聊天機器人
+在將聊天機器人連線至 Bot Framework Emulator 之前，您必須先在本機執行聊天機器人。 您可以使用 Visual Studio 或 Visual Studio Code 來執行聊天機器人，也可以使用命令列。 若要使用命令列來執行聊天機器人，請執行下列動作：
+
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+* 移至命令提示字元，並將目錄變更為聊天機器人的專案目錄。
+* 執行下列命令來啟動聊天機器人： 
+    ```
+    dotnet run
+    ```
+* 複製 *Application started. Press CTRL+C to shut down.* 前一行的連接埠號碼。
+
+    ![C# 連接埠號碼](media/bot-service-debug-emulator/csharp_port_number.png)
+
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+* 移至命令提示字元，並將目錄變更為聊天機器人的專案目錄。
+* 執行下列命令來啟動聊天機器人：
+    ```
+    node index.js
+    ```
+* 複製 restify 正在接聽的連接埠號碼。
+
+    ![JS 連接埠號碼](media/bot-service-debug-emulator/js_port_number.png)
+---
+
+至此，聊天機器人應該正在本機上執行。 
+
 
 ## <a name="connect-to-a-bot-running-on-localhost"></a>連線至執行於本機主機的 Bot
 
 ![模擬器 UI](media/emulator-v4/emulator-welcome.png)
 
-若要連線到本機上執行的 Bot，請按一下 [開啟 Bot]  ，或選取您預先設定的組態檔 (.bot 檔案)。 您不需要用組態檔來連線到 Bot，但如果您的 Bot 有組態檔，模擬器仍會與其搭配使用。 如果您的聊天機器人搭配 [Microsoft 帳戶 (MSA) 認證](#use-bot-credentials)執行，請也輸入這些認證。
+若要連線至在本機上執行的聊天機器人，請按一下 [開啟聊天機器人]  。 將稍早複製的連接埠號碼新增至下列 URL，並在 [Bot URL] 列中貼上更新後的 URL：
 
-![模擬器 UI](media/emulator-v4/emulator-open-bot.png)
+*http://localhost:**埠號碼**/api/messages*
+
+![模擬器 UI](media/bot-service-debug-emulator/open_bot_emulator.png)
+
+如果您的聊天機器人搭配 [Microsoft 帳戶 (MSA) 認證](#use-bot-credentials)執行，請也輸入這些認證。
+
 
 ### <a name="use-bot-credentials"></a>使用聊天機器人認證
 
@@ -36,36 +72,43 @@ Bot Framework 模擬器是一項桌面應用程式，可讓 Bot 開發人員在�
 
 ## <a name="view-detailed-message-activity-with-the-inspector"></a>使用偵測器檢視詳細訊息活動
 
-傳送訊息給您的 Bot，而 Bot 應該會有所回應。 您可以按一下對話視窗內的訊息泡泡，並使用視窗右側的**偵測器**功能檢查原始 JSON 活動。 訊息泡泡經選取後會變成黃色，且活動 JSON 物件將會顯示在聊天視窗左側。 JSON 資訊包含主要中繼資料，包括 channelID、活動類型、交談識別碼、文字訊息，端點 URL 等。您可以檢查使用者所傳送的活動，以及 Bot 所回應的活動。 
+傳送訊息給聊天機器人，而聊天機器人應該會有所回應。 您可以按一下對話視窗內的訊息泡泡，並使用視窗右側的**偵測器**功能檢查原始 JSON 活動。 訊息泡泡經選取後會變成黃色，且活動 JSON 物件將會顯示在聊天視窗左側。 此 JSON 資訊包含主要中繼資料，包括通道識別碼、活動類型、交談識別碼、文字訊息，端點 URL 等。 您可以檢查使用者所傳送的活動，以及 Bot 所回應的活動。
 
 ![模擬器訊息活動](media/emulator-v4/emulator-view-message-activity-03.png)
 
-## <a name="save-and-load-conversations-with-bot-transcripts"></a>儲存及載入與 Bot 交談的文字記錄
+> [!TIP]
+> 您可以藉由在聊天機器人中新增[檢查中介軟體](bot-service-debug-inspection-middleware.md)，來對連線至通道的聊天機器人進行狀態變更的偵錯。
 
-模擬器中的活動可以儲存為文字記錄。 從開啟的即時聊天視窗中，選取 [另存文字記錄]  ，以儲存文字記錄檔案。 您可以隨時使用 [重新開始]  按鈕來清除對話，並重新連線至 Bot。  
+<!--
+## Save and load conversations with bot transcripts
 
-![模擬器儲存文字記錄](media/emulator-v4/emulator-save-transcript.png)
+Activities in the emulator can be saved as transcripts. From an open live chat window, select **Save Transcript As** to the transcript file. The **Start Over** button can be used any time to clear a conversation and restart a connection to the bot.  
 
-若要載入文字記錄，只需選取 [檔案] > [開啟文字記錄檔案]  ，再選取文字記錄即可。 新的 [文字記錄] 視窗隨即開啟，並將訊息活動轉譯為輸出視窗。 
+![Emulator save transcripts](media/emulator-v4/emulator-save-transcript.png)
 
-![模擬器載入文字記錄](media/emulator-v4/emulator-load-transcript.png)
+To load transcripts, simply select **File > Open Transcript File** and select the transcript. A new Transcript window will open and render the message activity to the output window. 
 
-## <a name="add-services"></a>新增服務 
+![Emulator load transcripts](media/emulator-v4/emulator-load-transcript.png)
+--->
+<!---
+## Add services 
 
-您可以直接從模擬器輕鬆地將 LUIS 應用程式、QnA 知識庫或分派模型新增到 Bot。 載入 Bot 後，請選取模擬器視窗最左側的 [服務] 按鈕。 您會在 [服務]  功能表下方看到用來新增 LUIS、QnA Maker 和分派的選項。 
+You can easily add a LUIS app, QnA knowledge base, or dispatch model to your bot directly from the emulator. When the bot is loaded, select the services button on the far left of the emulator window. You will see options under the **Services** menu to add LUIS, QnA Maker, and Dispatch. 
 
-若要新增服務應用程式，只需按一下 [+]  按鈕，然後選取您想要新增的服務。 系統會提示您登入 Azure 入口網站，以將服務新增至 Bot 檔案，並將服務連線到您的 Bot 應用程式。 
+To add a service app, simply click on the **+** button and select the service you want to add. You will be prompted to sign in to the Azure portal to add the service to the bot file, and connect the service to your bot application. 
 
 > [!IMPORTANT]
-> 只有在您使用 `.bot` 組態檔時，才能新增服務。 服務需要個別加入。 如需詳細資訊，請參閱[管理 Bot 資源](v4sdk/bot-file-basics.md)，或針對您要新增的服務，參閱個別的操作說明文章。
+> Adding services only works if you're using a `.bot` configuration file. Services will need to be added independently. For details on that, see [Manage bot resources](v4sdk/bot-file-basics.md) or the individual how to articles for the service you're trying to add.
 >
-> 如果您不是使用 `.bot` 檔案，左側窗格將不會列出您的服務 (即使您的 Bot 有使用服務)，而且會顯示*服務無法使用*。
+> If you are not using a `.bot` file, the left pane won't have your services listed (even if your bot uses services) and will display *Services not available*.
 
-![LUIS 連線](media/emulator-v4/emulator-connect-luis-btn.png)
+![LUIS connect](media/emulator-v4/emulator-connect-luis-btn.png)
 
-在任一服務連線時，您都可以返回即時聊天視窗，並確認您的服務已連線並運作中。 
+When either service is connected, you can go back to a live chat window and verify that your services are connected and working. 
 
-![QnA 已連線](media/emulator-v4/emulator-view-message-activity.png)
+![QnA connected](media/emulator-v4/emulator-view-message-activity.png)
+
+--->
 
 ## <a name="inspect-services"></a>檢查服務
 
@@ -88,18 +131,16 @@ Open the **Emulator Settings**, enter the path to ngrok, select whether or not t
 ![ngrok path](media/emulator-v4/emulator-ngrok-path.png)
 -->
 
-## <a name="login-to-azure"></a>登入 Azure
+<!---## Login to Azure
 
-您可以使用模擬器來登入您的 Azure 帳戶。 這特別適合用來讓您新增及管理 Bot 所依賴的服務。 若要深入了解可使用模擬器來管理的服務，請參閱[上述內容](#add-services)。
+You can use Emulator to login in to your Azure account. This is particularly helpful for you to add and manage services your bot depends on. 
+See [above](#add-services) to learn more about services you can manage using the Emulator.
+-->
 
-### <a name="to-login"></a>登入
-
-![Azure 登入](media/emulator-v4/emulator-azure-login.png)
-
-登入
-- 您可以按一下 [檔案]-> [使用 Azure 登入]
+### <a name="login-to-azure"></a>登入 Azure
+您可以使用模擬器來登入您的 Azure 帳戶。 這特別適合用來讓您新增及管理 Bot 所依賴的服務。 遵循下列步驟來登入 Azure：
+- 按一下 [檔案] -> [使用 Azure 登入] ![Azure 登入](media/emulator-v4/emulator-azure-login.png)
 - 在歡迎畫面上按一下 [使用 Azure 帳戶登入]，您可以選擇性地讓模擬器保留您的登入狀態，以在模擬器應用程式重新啟動之間保持登入。
-
 ![Azure 登入](media/emulator-v4/emulator-azure-login-success.png)
 
 ## <a name="disabling-data-collection"></a>停用資料收集
@@ -128,10 +169,17 @@ Bot Framework 模擬器是開放原始碼。 您可以[參與][EmulatorGithubCon
 
 ## <a name="next-steps"></a>後續步驟
 
-將對話儲存為文字記錄檔，可讓您快速地對一組互動撰寫草稿及加以重新執行，以用於偵錯。
+使用檢查中介軟體來對連線至通道的聊天機器人進行偵錯。
 
 > [!div class="nextstepaction"]
-> [使用文字記錄檔進行 Bot 偵錯](~/v4sdk/bot-builder-debug-transcript.md)
+> [使用文字記錄檔進行 Bot 偵錯](bot-service-debug-inspection-middleware.md)
+
+<!--
+Saving a conversation to a transcript file allows you to quickly draft and replay a certain set of interactions for debugging.
+
+> [!div class="nextstepaction"]
+> [Debug your bot using transcript files](~/v4sdk/bot-builder-debug-transcript.md)
+-->
 
 <!-- Footnote-style URLs -->
 

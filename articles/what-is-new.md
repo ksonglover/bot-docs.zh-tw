@@ -5,17 +5,17 @@ keywords: bot framework, azure bot service
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 07/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1bbea2f12af976a9d967e7c62baf416b8938f8aa
-ms.sourcegitcommit: b053c0ca7f2e9e60679f7e82e583c57ae83fcb50
+ms.openlocfilehash: f7083c45e67d8731e25e14577f6b061732ffefd5
+ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2019
-ms.locfileid: "68336745"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68671392"
 ---
 # <a name="whats-new-in-bot-framework-july-2019"></a>Bot Framework 中的新功能 (2019 年 7 月)
 
@@ -29,7 +29,7 @@ Bot Framework SDK v4 是[開放原始碼 SDK][1a]，可讓開發人員使用其�
 |---|:---:|:---:|:------:|
 |SDK |[4.5][1] | [4.5][2] | [4.4.0 b2 (預覽)][3] | 
 |Docs | [docs][5] |[docs][5] |  | |
-|範例 |[.NET Core][6], [WebAPI][10] |[Node.js][7] , [TypeScript][8]、[es6][9]  | [Python][111] | | 
+|範例 |[.NET Core][6]、[WebAPI][10] |[Node.js][7]、[TypeScript][8]、[es6][9]  | [Python][111] | | 
 
 [1a]:https://github.com/microsoft/botframework-sdk/#readme
 [1]:https://github.com/Microsoft/botbuilder-dotnet/#packages
@@ -57,7 +57,9 @@ Bot Framework SDK v4 是[開放原始碼 SDK][1a]，可讓開發人員使用其�
 ## <a name="bot-framework-testing"></a>Bot Framework 測試
 - [單元測試](http://aka.ms/bot-test-package) | [docs](https://aka.ms/testing-framework) | [C# 範例](https://aka.ms/corebot-test) | [JS 範例](https://aka.ms/js-core-test-sample)：為因應客戶和開發人員對於更佳測試工具的詢問，7 月版的 SDK 引進了新的單元測試功能。 Microsoft.Bot.Builder.testing 套件可簡化 Bot 中單元測試對話的程序。 
 
-- [通道測試](https://github.com/Microsoft/BotFramework-Emulator/releases)：Microsoft Build 2019 引進了 Bot Inspector，這是 Bot Framework Emulator 中的一項新功能，可讓您在 Microsoft Teams、Slack、Cortana 等通道上對 Bot 進行偵錯和測試。 當您在特定通道上使用 Bot 時，訊息便會鏡像傳送到 Bot Framework Emulator，您可以在其中檢查 Bot 所收到的訊息資料。 此外，也會呈現通道和 Bot 之間任何給定回合的 Bot 記憶體狀態快照集。
+- [通道測試](https://github.com/Microsoft/BotFramework-Emulator/releases) | [docs](https://aka.ms/channel-testing)： 
+
+Microsoft Build 2019 引進了 Bot Inspector，這是 Bot Framework Emulator 中的一項新功能，可讓您在 Microsoft Teams、Slack、Cortana 等通道上對 Bot 進行偵錯和測試。 當您在特定通道上使用 Bot 時，訊息便會鏡像傳送到 Bot Framework Emulator，您可以在其中檢查 Bot 所收到的訊息資料。 此外，也會呈現通道和 Bot 之間任何給定回合的 Bot 記憶體狀態快照集。
 
 ## <a name="web-chat"></a>網路聊天
 - 根據企業客戶的詢問，我們新增了一個[網路聊天範例](https://github.com/microsoft/BotFramework-WebChat/tree/master/samples/19.a.single-sign-on-for-enterprise-apps#single-sign-on-demo-for-enterprise-apps-using-oauth)，示範如何授權使用者透過 Bot 存取企業應用程式上的資源。 有兩種類型的資源可用來示範 OAuth 與 Microsoft Graph 和 GitHub API 的互通性。

@@ -10,10 +10,10 @@ ms.subservice: sdk
 ms.date: 03/28/2018
 monikerRange: azure-bot-service-3.0
 ms.openlocfilehash: 1a3b8a4bfdd73674b972f43fe58afec49c63d8cc
-ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2019
+ms.lasthandoff: 07/25/2019
 ms.locfileid: "67464799"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 辨識意圖和實體 
@@ -265,7 +265,7 @@ bot.dialog('CreateNote', [
 });
 ```
 
-語句中的任何實體都會使用 `args` 參數來傳遞給對話。 [瀑布][waterfall] calls [EntityRecognizer.findEntity][EntityRecognizer_findEntity] to get the title of the note from any `Note.Title` entities in the LUIS response. If the LUIS app didn't detect a `Note.Title` entity, the bot prompts the user for the name of the note. The second step of the waterfall prompts for the text to include in the note. Once the bot has the text of the note, the third step uses [session.userData][session_userData]的第一個步驟，以將附註儲存在 `notes` 物件中，並使用標題作為索引鍵。 如需關於 `session.UserData` 的詳細資訊，請參閱[管理狀態資料](./bot-builder-nodejs-state.md)。 
+語句中的任何實體都會使用 `args` 參數來傳遞給對話。 [瀑布圖][waterfall] 的第一個步驟會呼叫 [EntityRecognizer.findEntity][EntityRecognizer_findEntity]，從 LUIS 回應中的任何 `Note.Title` 實體取得筆記的標題。 如果 LUIS 應用程式未偵測到 `Note.Title` 實體，Bot 會提示使用者輸入筆記的名稱。 瀑布圖的第二個步驟會提示您輸入要包含於筆記中的文字。 一旦 Bot 擁有筆記的文字之後，第三個步驟就會使用 [session.userData][session_userData]，利用標題作為索引鍵，將筆記儲存於 `notes` 物件中。 如需關於 `session.UserData` 的詳細資訊，請參閱[管理狀態資料](./bot-builder-nodejs-state.md)。 
 
 
 
