@@ -5,17 +5,17 @@ keywords: Bot Framework SDK, 建立 Bot, 快速入門, .NET, 開始使用, C# Bo
 author: kamrani
 ms.author: kamrani
 manager: kamrani
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 100e5075799a074759005999b0ded6546316d209
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: f43d37cdf3ed25d163b7bcd88dcdb6071ad89400
+ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215240"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68671464"
 ---
 # <a name="create-a-bot-with-the-bot-framework-sdk-for-net"></a>使用適用於 .NET 的 Bot Framework SDK 建立 Bot
 

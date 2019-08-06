@@ -5,17 +5,17 @@ keywords: 部署 bot, azure 部署 bot, 發佈 bot
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: cc49cab1a3c82b3f0af2a4d8ebf261415c137e36
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: ed7c9d7a883a1d1807237b636bbb59d25df60e08
+ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405968"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68671390"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
@@ -178,9 +178,19 @@ az webapp deployment source config-zip --resource-group "<new-group-name>" --nam
 | src  | 您所建立的 zip 檔案路徑。 |
 
 ## <a name="3-test-in-web-chat"></a>3.在網路聊天中測試
-- 在 Azure 入口網站中，移至 Web 應用程式 Bot 的刀鋒視窗。
-- 在 [Bot 管理]  區段中，按一下 [在網路聊天中測試]  。 Azure Bot Service 會將網路聊天控制項載入，並連線至 Bot。
-- 在成功部署後等候幾秒，選擇性地重新啟動您的 Web 應用程式，以清除任何快取。 回到您的 Web 應用程式 Bot 刀鋒視窗，使用 Azure 入口網站中提供的網路聊天進行測試。
+
+1. 在瀏覽器中導覽至 [Azure 入口網站](https://ms.portal.azure.com)。
+2. 在左側面板中，按一下 [資源群組]  。
+3. 在右側面板中，搜尋您的群組。
+4. 按一下群組名稱。
+5. 按一下 Bot 通道註冊的連結。
+6. 在 [Bot 通道註冊]  刀鋒視窗中，按一下 [在網路聊天中測試]  。
+或者，在右側面板中按一下 [測試] 方塊。
+
+如需通道註冊的詳細資訊，請參閱[向 Bot 服務註冊聊天機器人](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-quickstart-registration?view=azure-bot-service-3.0)。
+
+> [!NOTE]
+> 刀鋒視窗是用來顯示所選服務功能或導覽元素的介面。
 
 ## <a name="additional-information"></a>其他資訊
 將 Bot 部署至 Azure 時，需支付您所使用的服務。 [計費與成本管理](https://docs.microsoft.com/azure/billing/)一文協助您了解 Azure 計費方式、監視使用量和成本，以及管理帳戶和訂用帳戶。

@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/25/2018
-ms.openlocfilehash: 41aceaa20613d9b6b7ac95a7837b4ae197d1dd4a
-ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.openlocfilehash: 2600b69fff24f6d952853c7b1ed764577b4cb270
+ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2019
-ms.locfileid: "67464787"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68671497"
 ---
 # <a name="api-reference"></a>API 參考資料
 
@@ -140,15 +140,15 @@ Authorization: Bearer ACCESS_TOKEN
 | [將附件上傳至通道](#upload-attachment-to-channel) | 將附件直接上傳到通道的 Blob 儲存體。 |
 
 ### <a name="create-conversation"></a>建立交談
-建立新交談。 
+建立新交談。
 ```http 
 POST /v3/conversations
 ```
 
 | | |
 |----|----|
-| **要求本文** | [Conversation](#conversation-object) 物件 |
-| **傳回** | [ConversationResourceResponse](#conversationresourceresponse-object) 物件 | 
+| **要求本文** | [ConversationParameters](#conversationparameters-object) 物件 |
+| **傳回** | [ConversationResourceResponse](#conversationresourceresponse-object) 物件 |
 
 ### <a name="send-to-conversation"></a>傳送至交談
 將活動 (訊息) 傳送至指定交談。 系統將根據時間戳記或通道的語意，將活動附加至交談的結尾處。 若要回應交談內的特定訊息，請改為使用[回覆活動](#reply-to-activity)。
@@ -409,7 +409,6 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | [CardAction 物件](#cardaction-object) | 定義要執行的動作。 |
 | [CardImage 物件](#cardimage-object) | 定義要在資訊卡上顯示的影像。 |
 | [ChannelAccount 物件](#channelaccount-object) | 定義通道上的 Bot 或使用者帳戶。 |
-| [Conversation 物件](#conversation-object) | 定義交談，包含交談中的 Bot 及使用者。 |
 | [ConversationAccount 物件](#conversationaccount-object) | 定義通道中的交談。 |
 | [ConversationMembers 物件](#conversationmembers-object) | 定義交談的成員。 |
 | [ConversationParameters 物件](#conversationparameters-object) | 定義用來建立新交談的參數 |
@@ -617,22 +616,10 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
-| **id** | 字串 | 可唯一識別通道上 Bot 或使用者的識別碼。 |
-| **name** | 字串 | Bot 或使用者的名稱。 |
-
-<a href="#objects">回到結構描述資料表</a>
-
-<!--TODO can't find-->
-### <a name="conversation-object"></a>交談物件
-定義交談，包含交談中的 Bot 及使用者。<br/><br/> 
-
-| 屬性 | 類型 | 說明 |
-|----|----|----|
-| **Bot** | [ChannelAccount](#channelaccount-object) | 用於識別 Bot 的 **ChannelAccount** 物件。 |
-| **isGroup** | 布林值 | 用於指出此項目是否為群組交談的旗標。 設為 **true** 代表此為群組交談，反之則設為 **false**。 預設值為 **false**。 若要開啟群組交談，通道必須支援群組交談功能。 |
-| **members** | [ChannelAccount](#channelaccount-object)[] | 用於識別交談成員的 **ChannelAccount** 物件陣列。 此清單必須包含單一使用者，除非 **isGroup** 設為 **true**。 此清單可能包含其他 Bot。 |
-| **topicName** | 字串 | 交談的標題。 |
-| **activity** | [活動](#activity-object) | 在[建立交談](#create-conversation)要求中，用於定義要發佈至新交談之第一個訊息的 **Activity** 物件。 |
+| **id** | 字串 | 此通道上使用者或聊天機器人的唯一識別碼。 |
+| **name** | 字串 | 聊天機器人或使用者的易記顯示名稱。 |
+| **aadObjectId** | 字串 | 此帳戶在 Azure Active Directory 內的物件識別碼。 |
+| **role** | 字串列舉 | 帳戶背後實體的角色。 `user` 或 `bot`。 |
 
 <a href="#objects">回到結構描述資料表</a>
 
@@ -659,16 +646,17 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 <a href="#objects">回到結構描述資料表</a>
 
 ### <a name="conversationparameters-object"></a>ConversationParameters 物件
-定義用來建立新交談的參數。<br/><br/> 
+定義用來建立新交談的參數。<br/><br/>
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
 | **isGroup** | 布林值 | 指出此項目是否為群組交談。 |
-| **Bot** | [ChannelAccount](#channelaccount-object) | 交談中 Bot 的位址。 |
-| **members** | array | 要新增至交談的成員清單。 |
-| **topicName** | 字串 | 交談的主題標題。 僅在通道提供支援時，才可使用此屬性。 |
-| **activity** | [活動](#activity-object) | (選用) 建立新交談時，以此活動做為交談的初始訊息。 |
-| **channelData** | 物件 | 建立交談時的通道特定酬載。 |
+| **Bot** | [ChannelAccount](#channelaccount-object) | 要將訊息路由傳送至聊天機器人所需的通道帳戶資訊。 |
+| **members** | [ChannelAccount](#channelaccount-object) 陣列 | 要將訊息路由傳送給每個使用者所需的通道帳戶資訊。 |
+| **topicName** | 字串 | (選擇性) 交談的主題。 僅在通道提供支援時，才可使用此屬性。 |
+| **tennantId** | 字串 | (選擇性) 應在其中建立交談的租用戶識別碼。 |
+| **activity** | [活動](#activity-object) | (選擇性) 交談建立完成時要對其傳送的初始訊息。 |
+| **channelData** | 物件 | 用於建立交談的通道特定酬載。 |
 
 <a href="#objects">回到結構描述資料表</a>
 
@@ -691,9 +679,9 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
-| **activityId** | 字串 | 活動的識別碼。 |
+| **activityId** | 字串 | 活動的識別碼 (如果有傳送)。 |
 | **id** | 字串 | 資源的識別碼。 |
-| **serviceUrl** | 字串 | 服務端點。 |
+| **serviceUrl** | 字串 | 可能會執行交談相關作業的服務端點。 |
 
 <a href="#objects">回到結構描述資料表</a>
 

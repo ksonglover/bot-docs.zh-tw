@@ -5,17 +5,17 @@ keywords: 開發 DirectLine Speech Bot, 語音 Bot
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
-ms.topic: get-started-article
+ms.topic: conceptuals
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 07/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 898136303d2c5bbf6a8ce5ea5b87bff0bac0a5c7
-ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
+ms.openlocfilehash: 4f33f799af3c7a6aecec172f5512791b52fdbffe
+ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/16/2019
-ms.locfileid: "68230757"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68671488"
 ---
 # <a name="use-direct-line-speech-in-your-bot"></a>在 Bot 中使用 Direct Line Speech 
 

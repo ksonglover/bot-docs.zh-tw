@@ -5,17 +5,17 @@ keywords: bot framework, azure bot service
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
-ms.topic: get-started-article
+ms.topic: conceptual
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 07/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0b7342274e37ff33afb8695e8f25fbf0fa707178
-ms.sourcegitcommit: b053c0ca7f2e9e60679f7e82e583c57ae83fcb50
+ms.openlocfilehash: 4553335cbca5b5eb720c7cffd11c8e14c8aa19c1
+ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2019
-ms.locfileid: "68336749"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68671524"
 ---
 # <a name="whats-new-in-bot-framework-may-2019"></a>Bot Framework 中的新功能 (2019 年 5 月)
 
@@ -23,7 +23,7 @@ ms.locfileid: "68336749"
 |---|:---:|:---:|:------:|:-----:|
 |SDK |[4.4.3][1] | [4.4.0][2] | [4.4.0b1 (預覽)][3] | [4.0.0a6 (預覽)][3a]|
 |Docs | [docs][5] |[docs][5] |  | |
-|範例 |[.NET Core][6], [WebAPI][10] |[Node.js][7] , [TypeScript][8]、[es6][9]  | [Python][111] | | 
+|範例 |[.NET Core][6]、[WebAPI][10] |[Node.js][7]、[TypeScript][8]、[es6][9]  | [Python][111] | | 
 
 [1a]:https://github.com/microsoft/botframework-sdk/#readme
 [1]:https://github.com/Microsoft/botbuilder-dotnet/#packages
@@ -42,7 +42,7 @@ ms.locfileid: "68336749"
 <a name="V4-whats-new"></a>
 ## <a name="bot-framework-sdk-new-in-preview"></a>Bot Framework SDK (新功能！ 處於預覽狀態)
 
-- [調適型對話][47] | [docs][48] | [C# 範例][49]：自適性對話方塊可讓開發人員建置對話，並隨著對話的進展而動態變化。  傳統上，開發人員已事先安排好整個對話流程，但這會限制對話彈性。  自適性對話方塊則可讓開發人員更有彈性地回應內容變化，並隨著對話的進展而插入新步驟或整個子對話方塊。 
+- [自適性對話方塊][47] | [docs][48] | [C# 範例][49]：自適性對話方塊可讓開發人員建置對話，並隨著對話的進展而動態變化。  傳統上，開發人員已事先安排好整個對話流程，但這會限制對話彈性。  自適性對話方塊則可讓開發人員更有彈性地回應內容變化，並隨著對話的進展而插入新步驟或整個子對話方塊。 
 
 - [語言產生][43] | [docs][44] | [C# 範例][45]：語言產生可讓開發人員從程式碼和資源檔案中擷取出內嵌字串，並透過語言產生執行階段和檔案格式來進行管理。  語言產生可讓客戶對片語定義多個變化、執行以內容為基礎的簡單運算式、參考對話式記憶體，久而久之，我們將能夠讓所有額外功能變成更自然的對話式體驗。
 
@@ -62,7 +62,7 @@ ms.locfileid: "68336749"
 ## <a name="botkit"></a>Botkit
 [Botkit][100] 是一種開發人員工具和 SDK，可用於為主要的傳訊平台建置聊天 Bot、應用程式和自訂整合。 Botkit Bot 會 `hear()` 觸發程序、`ask()` 問題和 `say()` 回覆。 開發人員可以使用此語法來建置對話方塊 - 現在可與 Bot Framework SDK 的最新版本交叉相容。 
 
-此外，Botkit 還帶來 6 個平台配接器，可讓 Javascript Bot 應用程式直接與傳訊平台通訊：[Slack][102], [Webex Teams][103]、[Google Hangouts][104]、[Facebook Messenger][105], [Twilio][106] 和[網路聊天][107]。
+此外，Botkit 還帶來 6 個平台配接器，可讓 Javascript Bot 應用程式直接與傳訊平台通訊：[Slack][102]、[Webex Teams][103]、[Google Hangouts][104]、[Facebook Messenger][105]、[Twilio][106] 和[網路聊天][107]。
 
 Botkit 是 Microsoft Bot Framework 的一部分，其依據 [MIT 開放原始碼授權][101]來發行
 
@@ -86,7 +86,7 @@ Botkit 是 Microsoft Bot Framework 的一部分，其依據 [MIT 開放原始碼
 |[**分析**](https://github.com/Microsoft/AI/blob/master/docs/readme.md#analytics)| 可使用對話式 AI 分析解決方案來重點了解 Bot 的健康情況和行為。 檢閱可用的遙測資料、Application Insights 查詢範例和 Power BI 儀表板，來了解 Bot 與使用者的完整對話範圍。 |
 
 ## <a name="azure-bot-service"></a>Azure Bot 服務
-Azure Bot Service 可讓您裝載有智慧的企業級 Bot，且您可以完整擁有和控制您的資料。 開發人員可以註冊其 Bot 並將 Bot 連線至 Skype、Microsoft Teams、Cortana、網路聊天等通道上的使用者。 [Azure][27]  |  [docs][28] | [連線至管道][29] 
+Azure Bot Service 可讓您裝載有智慧的企業級 Bot，且您可以完整擁有和控制您的資料。 開發人員可以註冊其 Bot 並將 Bot 連線至 Skype、Microsoft Teams、Cortana、網路聊天等通道上的使用者。 [Azure][27]  |  [docs][28] | [連線至通道][29] 
 
 * **Direct Line JS 用戶端**：如果您想要在 Azure Bot Service 中使用 Direct Line 通道，而不要使用網路聊天用戶端，則可以在自訂應用程式中使用 Direct Line JS 用戶端。 如需詳細資訊，請移至 [GitHub][30]。
 
@@ -126,7 +126,7 @@ Bot Framework Emulator 已發行新 Bot Inspector 功能的搶鮮版 (Beta)。 �
 
 - **新功能！分析儀表板**：LUIS 會釋出更詳細、有豐富視覺效果的完善分析儀表板。 其方便使用的設計會醒目指出大部分使用者在設計應用程式時所面臨的常見問題，其方法是提供簡單的解決方式說明，以協助使用者深入了解其模型的品質、潛在的資料問題和採用最佳做法的指導方針。
 
-[文件][31] | [Add language understanding to your bot][32] 
+[Docs][31] | [將語言理解新增至 Bot][32] 
 
 [18]:https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUIS#readme
 [19]:https://github.com/Microsoft/botbuilder-tools/tree/master/packages/QnAMaker#readme
@@ -143,7 +143,7 @@ Bot Framework Emulator 已發行新 Bot Inspector 功能的搶鮮版 (Beta)。 �
 - **新功能！智慧**：內容相關的排名模型、主動式學習建議
 - **新功能！對話**：QnA Maker 中的多回合對話。
 
-[文件][34]  | [add qnamaker to your bot][35] 
+[Docs][34]  | [將 QnAMaker 新增至 Bot][35] 
 
 [33]:https://www.qnamaker.ai/
 [34]:https://aka.ms/qnamaker-docs-home

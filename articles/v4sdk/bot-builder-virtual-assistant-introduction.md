@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b2cc303cdedbc3a9d44ce725bfc78dd308974763
-ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.openlocfilehash: 51ab0fa6844bd0c72212e496b3bc096dc3fa11b2
+ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2019
-ms.locfileid: "67464668"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68671451"
 ---
 # <a name="virtual-assistant-overview"></a>虛擬助理概觀
 

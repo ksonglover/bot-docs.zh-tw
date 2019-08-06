@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 290a2733b96a458eb3529b0b0854703631e05f22
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: a9a98419a8ac65c7e1093e1281e03917fa4eca11
+ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000035"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68671507"
 ---
 # <a name="send-an-activity-to-the-bot"></a>將活動傳送至 Bot
 
@@ -46,7 +46,12 @@ Content-Type: application/json
 
 ### <a name="response"></a>Response
 
-當活動傳遞至 Bot 時，服務會以反映 Bot 狀態碼的 HTTP 狀態碼來回應。 如果 Bot 產生錯誤，系統會將 HTTP 502 回應 (「錯誤的閘道」) 傳回至用戶端，以回應其「傳送活動」要求。 如果 POST 成功，則回應會包含 JSON 承載，指定已傳送至 Bot 的活動識別碼。
+當活動傳遞至 Bot 時，服務會以反映 Bot 狀態碼的 HTTP 狀態碼來回應。 如果 Bot 產生錯誤，系統會將 HTTP 502 回應 (「錯誤的閘道」) 傳回至用戶端，以回應其「傳送活動」要求。
+
+> [!NOTE]
+> 這可能是因為未使用正確的權杖所造成。 只有針對*開始對話*所接收的權杖可以用來傳送活動。
+
+如果 POST 成功，則回應會包含 JSON 承載，指定已傳送至 Bot 的活動識別碼。
 
 ```http
 HTTP/1.1 200 OK

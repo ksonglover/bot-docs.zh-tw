@@ -2,115 +2,367 @@
 title: 將遙測資料新增至 Bot | Microsoft Docs
 description: 了解如何整合 Bot 與新的遙測功能。
 keywords: 遙測, appinsights, 監視 bot
-author: ivorb
+author: WashingtonKayaker
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/23/2019
+ms.date: 07/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7225387933630eb7343a57aa849581ff1cbfbb0c
-ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.openlocfilehash: bd2de7055baf6a37323ad49ccd206c11e8829d9d
+ms.sourcegitcommit: 3574fa4e79edf2a0c179d8b4a71939d7b5ffe2cf
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2019
-ms.locfileid: "67464704"
+ms.lasthandoff: 07/27/2019
+ms.locfileid: "68591043"
 ---
 # <a name="add-telemetry-to-your-bot"></a>將遙測新增至 Bot
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-在 Bot Framework sdk 4.2 版中，已在產品中新增遙測記錄功能。  這可讓 Bot 應用程式將事件資料傳送至 Application Insights 之類的服務。 第一節會說明這些方法，之後則會有更廣泛的遙測功能。
 
-本文件說明如何整合 Bot 與新的遙測功能。 
+Bot Framework SDK 4.2 版中已新增了遙測記錄功能。  此功能可讓聊天機器人應用程式將事件資料傳送給 [Application Insights](https://aka.ms/appinsights-overview) 之類的遙測服務。 遙測可讓您深入了解聊天機器人 (方法是顯示最常使用的功能)、偵測不必要的行為，以及讓您了解可用性、效能和使用方式。
 
-## <a name="basic-telemetry-options"></a>基本遙測選項
 
-### <a name="basic-application-insights"></a>基本的 Application insights
+在本文中，您會了解如何使用 Application Insights 將遙測實作到聊天機器人：
 
-首先，讓我們將基本遙測新增至您的 Bot，並使用 Application Insights。 如需有關設定的其他詳細資訊，請參閱[開始使用 Application Insights](https://github.com/Microsoft/ApplicationInsights-aspnetcore/wiki/Getting-Started-with-Application-Insights-for-ASP.NET-Core) 的前幾節。   
+* 所需的程式碼，以便在聊天機器人中設定遙測，並連線至 Application Insights
 
-如果您想要「貯存」Application Insights，不需要額外的 Application Insights 專屬設定 (例如遙測初始設定式)，請將以下內容新增至 `ConfigureServices()` 方法。   這是最簡單的初始化方法並且會設定 Application Insights，以開始追蹤要求、其他服務的外部呼叫，以及跨服務相互關聯事件。
+* 在聊天機器人的[對話方塊](bot-builder-concept-dialog.md)中啟用遙測
 
-您必須新增下面程式碼片段中包含的 NuGet 套件。
+* 讓遙測能夠從其他服務 (如 [LUIS](bot-builder-howto-v4-luis.md) 和 [QnA Maker](bot-builder-howto-qna.md)) 擷取使用方式資料。
 
-**Startup.cs**
-```csharp
-using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.Bot.Builder.ApplicationInsights;
-using Microsoft.Bot.Builder.Integration.ApplicationInsights.Core;
-using Microsoft.Bot.Builder.Integration.AspNet.Core;
- 
-// This method gets called by the runtime. Use this method to add services to the container.
-public void ConfigureServices(IServiceCollection services)
-{
-    ...
-    // Add Application Insights services into service collection
-    services.AddApplicationInsightsTelemetry();
+* 在 Application Insights 中視覺呈現遙測資料
 
-    // Add the standard telemetry client
-    services.AddSingleton<IBotTelemetryClient, BotTelemetryClient>();
+## <a name="prerequisites"></a>必要條件
 
-    // Add ASP middleware to store the HTTP body, mapped with bot activity key, in the httpcontext.items
-    // This will be picked by the TelemetryBotIdInitializer
-    services.AddTransient<TelemetrySaveBodyASPMiddleware>();
+* [CoreBot 程式碼範例](https://aka.ms/cs-core-sample)
 
-    // Add telemetry initializer that will set the correlation context for all telemetry items
-    services.AddSingleton<ITelemetryInitializer, OperationCorrelationTelemetryInitializer>();
+* [Application Insights 程式碼範例](https://aka.ms/csharp-corebot-app-insights-sample)
 
-    // Add telemetry initializer that sets the user ID and session ID (in addition to other 
-    // bot-specific properties, such as activity ID)
-    services.AddSingleton<ITelemetryInitializer, TelemetryBotIdInitializer>();
-    ...
-}
+* [Microsoft Azure](https://portal.azure.com/) 訂用帳戶
 
-// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-{
-    ...
-    app.UseBotApplicationInsights();
-}
-```
+* [Application Insights 金鑰](../bot-service-resources-app-insights-keys.md)
 
-然後，必須將 Application Insights 檢測金鑰儲存在 `appsettings.json` 檔案中或儲存為環境變數。 `appsettings.json` 檔案包含有關 Bot 在執行時所用外部服務的中繼資料。  例如，CosmosDB、Application Insights 和 Language Understanding (LUIS) 服務連線和中繼資料都會儲存在這裡。 您可以在 Azure 入口網站的 [概觀]  區段 (在該頁面上您服務的 `Essentials` 下拉式清單 (若已摺疊) 之下) 找到檢測金鑰。 您可以在[這裡](~/bot-service-resources-app-insights-keys.md)找到取得金鑰的詳細資訊。
+* 熟悉 [Application Insights](https://aka.ms/appinsights-overview)
 
-此架構會為您尋找金鑰 (如果格式正確)。 `appsettings.json` 項目的格式化應該如下所示：
+> [!NOTE]
+> [Application Insights 程式碼範例](https://aka.ms/csharp-corebot-app-insights-sample)是以 [CoreBot 程式碼範例](https://aka.ms/cs-core-sample)為基礎來建置的。 本文會逐步引導您修改 CoreBot 程式碼範例以併入遙測。 如果您在 Visual Studio 中跟著操作，等到結束時就會擁有 Application Insights 程式碼範例。
 
-```json
-    "ApplicationInsights": {
-        "InstrumentationKey": "putinstrumentationkeyhere"
-    },
-    "Logging": {
-        "LogLevel": {
-            "Default": "Warning"
+## <a name="wiring-up-telemetry-in-your-bot"></a>在聊天機器人中設定遙測
+
+我們會從 [CoreBot 應用程式範例](https://aka.ms/cs-core-sample)開始，然後新增所需程式碼以將遙測整合到任何聊天機器人。 這會讓 Application Insights 能夠開始追蹤要求。
+
+1. 在 Visual Studio 中開啟 [CoreBot 應用程式範例](https://aka.ms/cs-core-sample)
+
+2. 新增以下 NuGet 套件。 如需如何使用 NuGet 的詳細資訊，請參閱[在 Visual Studio 中安裝和管理套件](https://aka.ms/install-manage-packages-vs)：
+    * `Microsoft.ApplicationInsights`
+    * `Microsoft.Bot.Builder.ApplicationInsights`
+    * `Microsoft.Bot.Builder.Integration.ApplicationInsights.Core`
+
+3. 在 `Startup.cs` 中納入下列陳述式︰
+    ```csharp
+    using Microsoft.ApplicationInsights.Extensibility;
+    using Microsoft.Bot.Builder.ApplicationInsights;
+    using Microsoft.Bot.Builder.Integration.ApplicationInsights.Core;
+    using Microsoft.Bot.Builder.Integration.AspNet.Core;
+    ```
+
+    注意：如果您跟著操作，更新了 CoreBot 程式碼範例，您將會注意到 `Microsoft.Bot.Builder.Integration.AspNet.Core` 的 using 陳述式早已存在於 CoreBot 範例中。
+
+4. 在 `Startup.cs` 的 `ConfigureServices()` 方法中納入下列程式碼。 這會透過[相依性插入 (DI)](https://aka.ms/asp.net-core-dependency-interjection) 而讓遙測服務可供聊天機器人使用：
+    ```csharp
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+        ...
+
+        // Create the Bot Framework Adapter with error handling enabled.
+        services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
+
+        // Add Application Insights services into service collection
+        services.AddApplicationInsightsTelemetry();
+
+        // Create the telemetry client.
+        services.AddSingleton<IBotTelemetryClient, BotTelemetryClient>();
+
+        // Add ASP middleware to store the http body mapped with bot activity key in the httpcontext.items. This will be picked by the TelemetryBotIdInitializer
+        services.AddTransient<TelemetrySaveBodyASPMiddleware>();
+
+        // Add telemetry initializer that will set the correlation context for all telemetry items.
+        services.AddSingleton<ITelemetryInitializer, OperationCorrelationTelemetryInitializer>();
+
+        // Add telemetry initializer that sets the user ID and session ID (in addition to other bot-specific properties such as activity ID)
+        services.AddSingleton<ITelemetryInitializer, TelemetryBotIdInitializer>();
+
+        // Create the telemetry middleware to track conversation events
+        services.AddSingleton<IMiddleware, TelemetryLoggerMiddleware>();
+
+        ...
+    }
+    ```
+    
+    注意：如果您跟著操作，更新了 CoreBot 程式碼範例，您將會注意到 `services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();` 早已存在 
+
+5. 在 `Startup.cs` 的 `Configure()` 方法中新增 `UseBotApplicationInsights()` 方法呼叫。 這可讓聊天機器人在 HTTP 內容中儲存所需的聊天機器人特有屬性，以供遙測初始設定式在追蹤事件時擷取：
+
+    ```csharp
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+        ...
+
+        app.UseBotApplicationInsights();
+    }
+    ```
+6. 指示配接器使用已新增至 `ConfigureServices()` 方法的中介軟體程式碼。 方法是在 `AdapterWithErrorHandler.cs` 中搭配使用建構函式參數清單中的參數 IMiddleware middleware 以及建構函式中的 `Use(middleware);` 陳述式，如下所示：
+    ```csharp
+    public AdapterWithErrorHandler(ICredentialProvider credentialProvider, ILogger<BotFrameworkHttpAdapter> logger, IMiddleware middleware, ConversationState conversationState = null)
+            : base(credentialProvider)
+    {
+        ...
+
+        Use(middleware);
+    }
+    ```
+7. 在 `appsettings.json` 檔案中新增 Application Insights 檢測金鑰。`appsettings.json` 檔案包含有關聊天機器人在執行時所用外部服務的中繼資料。 例如，CosmosDB、Application Insights 和 Language Understanding (LUIS) 服務連線和中繼資料都會儲存在該處。 對 `appsettings.json` 檔案新增的內容必須採用下列格式：
+
+    ```json
+    {
+        "MicrosoftAppId": "",
+        "MicrosoftAppPassword": "",
+        "ApplicationInsights": {
+            "InstrumentationKey": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         }
     }
+    ```
+    注意：如需如何取得 _Application Insights 檢測金鑰_的詳細資訊，請參閱 [Application Insights 金鑰](../bot-service-resources-app-insights-keys.md)一文。
+
+至此，您已完成使用 Application Insights 來啟用遙測的初步工作。  您可以使用聊天機器人模擬器在本機執行聊天機器人，然後進入 Application Insights 來查看所記錄的內容，例如回應時間、整體應用程式健康情況和一般執行資訊。 
+
+接下來，我們會看看需要納入哪些內容才能將遙測功能新增至對話方塊中。 此功能可讓您取得額外資訊，例如會執行的對話方塊以及每個對話的相關統計資料。
+
+## <a name="enabling-telemetry-in-your-bots-dialogs"></a>在聊天機器人的對話方塊中啟用遙測
+
+若要取得有關對話的內建遙測資訊，您必須將遙測用戶端新增至每個對話方塊。 請遵循下列步驟來更新 CoreBot 範例：
+
+1.  在 `MainDialog.cs` 中，您必須將新的 TelemetryClient 欄位新增至 `MainDialog` 類別，然後更新建構函式參數清單以納入 `IBotTelemetryClient` 參數，再將該參數傳遞給 `AddDialog()` 方法的每個呼叫。
+
+
+    * 將參數 `IBotTelemetryClient telemetryClient` 新增至 MainDialog 類別的建構函式，然後將其指派給 `TelemetryClient` 欄位：
+
+        ```csharp
+        public MainDialog(IConfiguration configuration, ILogger<MainDialog> logger, IBotTelemetryClient telemetryClient)
+            : base(nameof(MainDialog))
+        {
+            TelemetryClient = telemetryClient;
+
+            ...
+
+        }
+        ```
+
+    * 使用 `AddDialog` 方法新增每個對話方塊時，請設定 `TelemetryClient` 值：
+
+        ```cs
+        public MainDialog(IConfiguration configuration, ILogger<MainDialog> logger, IBotTelemetryClient telemetryClient)
+            : base(nameof(MainDialog))
+        {
+            ...
+
+            AddDialog(new TextPrompt(nameof(TextPrompt))
+            {
+                TelemetryClient = telemetryClient,
+            });
+
+            ...
+        }
+        ```
+
+    * 瀑布式對話方塊會產生與其他對話方塊無關的事件。 在瀑布式步驟清單之後設定 `TelemetryClient` 屬性：
+
+        ```csharp
+        // The IBotTelemetryClient to the WaterfallDialog
+        AddDialog(new WaterfallDialog(
+            nameof(WaterfallDialog),
+            new WaterfallStep[]
+        {
+            IntroStepAsync,
+            ActStepAsync,
+            FinalStepAsync,
+        })
+        {
+            TelemetryClient = telemetryClient,
+        });
+
+        ```
+
+2. 在 `DialogExtensions.cs` 中，您必須在 `Run()` 方法中設定 `dialogSet` 物件的 `TelemetryClient` 屬性：
+
+
+    ```csharp
+    public static async Task Run(this Dialog dialog, ITurnContext turnContext, IStatePropertyAccessor<DialogState> accessor, CancellationToken cancellationToken = default(CancellationToken))
+    {
+        ...
+
+        dialogSet.TelemetryClient = dialog.TelemetryClient;
+
+        ...
+        
+    }
+
+    ```
+
+3. 在 `BookingDialog.cs` 中，使用和更新 `MainDialog.cs` 時所用的相同程式來啟用此檔案中所新增四個對話方塊的遙測。 別忘了將 `TelemetryClient` 欄位新增至 BookingDialog 類別，並將 `IBotTelemetryClient telemetryClient` 參數新增至 BookingDialog 建構函式。
+
+
+> [!TIP] 
+> 如果您跟著操作並更新 CoreBot 程式碼範例，請在遇到任何問題時參閱 [Application Insights程式碼範例](https://aka.ms/csharp-corebot-app-insights-sample)。
+
+這就是將遙測新增至聊天機器人對話方塊的全部過程了，至此，如果您執行了聊天機器人，應該就會看到系統將資料記錄到 Application Insights 中，但如果您有任何整合技術 (例如 LUIS 和 QnA Maker)，您還必須將 `TelemetryClient` 新增至該程式碼。
+
+
+## <a name="enabling-telemetry-to-capture-usage-data-from-other-services-like-luis-and-qna-maker"></a>讓遙測能夠從其他服務 (如 LUIS 和 QnA Maker) 擷取使用方式資料
+
+接下來，我們會在 LUIS 服務中實作遙測功能。 LUIS 服務有內建遙測記錄可供使用，因此您只需進行一些操作就可以開始從 LUIS 取得遙測資料。  
+
+在此範例中，我們只需要提供遙測用戶端，方法就如同我們對對話方塊所做的一樣。 
+
+1. `LuisHelper.cs` 中的 `ExecuteLuisQuery()` 方法需要 `IBotTelemetryClient telemetryClient`  參數：
+
+    ```cs
+    public static async Task<BookingDetails> ExecuteLuisQuery(IBotTelemetryClient telemetryClient, IConfiguration configuration, ILogger logger, ITurnContext turnContext, CancellationToken cancellationToken)
+    ```
+
+2. `LuisPredictionOptions` 類別可讓您提供選擇性參數供 LUIS 預測要求使用。  若要啟用遙測，則在 `LuisHelper.cs` 中建立 `luisPredictionOptions` 物件時，您必須設定 `TelemetryClient` 參數：
+
+    ```cs
+    var luisPredictionOptions = new LuisPredictionOptions()
+    {
+        TelemetryClient = telemetryClient,
+    };
+
+    var recognizer = new LuisRecognizer(luisApplication, luisPredictionOptions);
+    ```
+
+3. 最後一個步驟是將遙測用戶端傳遞給 `MainDialog.cs` 的 `ActStepAsync()` 方法中的 `ExecuteLuisQuery` 呼叫：
+
+    ```cs
+    await LuisHelper.ExecuteLuisQuery(TelemetryClient, Configuration, Logger, stepContext.Context, cancellationToken)
+    ```
+
+這樣就行了，您應該會擁有功能性聊天機器人，可將遙測資料記錄到 Application Insights。 您可以使用 [Microsoft Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme) 在本機執行聊天機器人。 聊天機器人的行為應該不會有任何變更，但會開始將資訊記錄到 Application Insights 中。 請傳送多則訊息來與聊天機器人互動，在下一節中，我們會在 Application Insights 中檢閱遙測結果。
+
+如需聊天機器人的測試和偵測相關資訊，請參閱下列文章：
+
+ * [對 Bot 進行偵錯](../bot-service-debug-bot.md)
+ * [測試和偵錯指導方針](bot-builder-testing-debugging.md)
+ * [使用模擬器進行偵錯](../bot-service-debug-emulator.md)
+
+
+## <a name="visualizing-your-telemetry-data-in-application-insights"></a>在 Application Insights 中視覺呈現遙測資料
+Application Insights 可監視聊天機器人應用程式的可用性、效能及使用方式 (不論應用程式是裝載在雲端還是內部部署環境)。 它會利用 Azure 監視器中強大的資料分析平台，為您提供應用程式作業的深入解析以及診斷錯誤，毋需等待使用者回報錯誤。 有幾種方式可以查看 Application Insights 所收集的遙測資料，其中兩種主要方式是透過查詢和儀表板。 
+
+### <a name="querying-your-telemetry-data-in-application-insights-using-kusto-queries"></a>使用 Kusto 查詢在 Application Insights 中查詢遙測資料
+請以本節作為起點，以了解如何在 Application Insights 中使用記錄查詢。 本節內容會示範兩個實用查詢，並提供其他有額外資訊的文件連結。
+
+查詢資料
+
+1. 移至 [Azure 入口網站](https://portal.azure.com)
+2. 瀏覽至 Application Insights。 若要這麼做，最簡單的方法是按一下 [監視] > [應用程式]  ，即可在其中找到。 
+3. 進入 Application Insights 後，您可以按一下瀏覽列上的 [記錄 (分析)]  。
+
+    ![記錄 (分析)](media/AppInsights-LogView.png)
+
+4. 這會開啟 [查詢] 視窗。  輸入下列查詢，然後選取 [執行]  ：
+
+    ```sql
+    customEvents
+    | where name=="WaterfallStart"
+    | extend DialogId = customDimensions['DialogId']
+    | extend InstanceId = tostring(customDimensions['InstanceId'])
+    | join kind=leftouter (customEvents | where name=="WaterfallComplete" | extend InstanceId = tostring(customDimensions['InstanceId'])) on InstanceId    
+    | summarize starts=countif(name=='WaterfallStart'), completes=countif(name1=='WaterfallComplete') by bin(timestamp, 1d), tostring(DialogId)
+    | project Percentage=max_of(0.0, completes * 1.0 / starts), timestamp, tostring(DialogId) 
+    | render timechart
+    ```
+5. 這會傳回已執行完成的瀑布式對話方塊百分比。
+
+    ![記錄 (分析)](media/AppInsights-Query-PercentCompleteDialog.png)
+
+
+> [!TIP]
+> 您可以選取 [記錄 (分析)]  刀鋒視窗右上方的按鈕，來將任何查詢釘選到 Application Insights 儀表板。 只要選取要作為釘選目的地的儀表板，下一次造訪該儀表板時就可以使用該查詢。
+
+
+## <a name="the-application-insights-dashboard"></a>Application Insights 儀表板
+
+無論何時，只要您在 Azure 中建立 Application Insights 資源，系統就會自動建立新的儀表板，並讓此儀表板與該資源相關聯。  您可以選取 [Application Insights] 刀鋒視窗頂端標示為**應用程式儀表板**的按鈕來查看該儀表板。 
+
+![應用程式儀表板連結](media/Application-Dashboard-Link.png)
+
+
+或者，若要檢視資料，也可移至 Azure 入口網站。 按一下左邊的 [儀表板]  ，然後從下拉式清單中選取您想要的儀表板。
+
+在其中，您會看到一些關於聊天機器人效能的預設資訊，以及您已釘選到儀表板的其他查詢。
+
+
+
+## <a name="additional-information"></a>其他資訊
+
+* [什麼是 Application Insights？](https://aka.ms/appinsights-overview)
+
+* [在 Application Insights 中使用搜尋](https://aka.ms/search-in-application-insights)
+
+* [使用 Azure Application Insights 建立自訂 KPI 儀表板](https://aka.ms/custom-kpi-dashboards-application-insights)
+
+
+<!--
+The easiest way to test is by creating a dashboard using [Azure portal's template deployment page](https://portal.azure.com/#create/Microsoft.Template).
+- Click ["Build your own template in the editor"]
+- Copy and paste either one of these .json file that is provided to help you create the dashboard:
+  - [System Health Dashboard](https://aka.ms/system-health-appinsights)
+  - [Conversation Health Dashboard](https://aka.ms/conversation-health-appinsights)
+- Click "Save"
+- Populate `Basics`: 
+   - Subscription: <your test subscription>
+   - Resource group: <a test resource group>
+   - Location: <such as West US>
+- Populate `Settings`:
+   - Insights Component Name: <like `core672so2hw`>
+   - Insights Component Resource Group: <like `core67`>
+   - Dashboard Name:  <like `'ConversationHealth'` or `SystemHealth`>
+- Click `I agree to the terms and conditions stated above`
+- Click `Purchase`
+- Validate
+   - Click on [`Resource Groups`](https://ms.portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.Resources%2Fsubscriptions%2FresourceGroups)
+   - Select your Resource Group from above (like `core67`).
+   - If you don't see a new Resource, then look at "Deployments" and see if any have failed.
+   - Here's what you typically see for failures:
+     
+```json
+{"code":"DeploymentFailed","message":"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-debug for usage details.","details":[{"code":"BadRequest","message":"{\r\n \"error\": {\r\n \"code\": \"InvalidTemplate\",\r\n \"message\": \"Unable to process template language expressions for resource '/subscriptions/45d8a30e-3363-4e0e-849a-4bb0bbf71a7b/resourceGroups/core67/providers/Microsoft.Portal/dashboards/Bot Analytics Dashboard' at line '34' and column '9'. 'The template parameter 'virtualMachineName' is not found. Please see https://aka.ms/arm-template/#parameters for usage details.'\"\r\n }\r\n}"}]}
 ```
+-->
 
-如需有關如何將 Application Insights 新增至 ASP.NET Core 應用程式的詳細資訊，請參閱[這篇文章](https://docs.microsoft.com/azure/azure-monitor/app/asp-net-core-no-visualstudio)。 
 
-### <a name="customize-your-telemetry-client"></a>自訂您的遙測用戶端
 
-如果您想要自訂 Application Insights 用戶端，或者想要登入完全不同的服務，則必須以不同的方式設定系統。 透過 nuget 下載套件 `Microsoft.Bot.Builder.ApplicationInsights`，或使用 npm 安裝 `botbuilder-applicationinsights`。 您可以在[這裡](~/bot-service-resources-app-insights-keys.md)找到取得 Application Insights 金鑰的詳細資訊。
 
-**修改 Application Insights 組態**
 
-若要修改您的組態，請在新增 Application Insights 時納入 `options`。 否則，所有項目都與上述相同。
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    ...
-    // Add Application Insights services into service collection
-    services.AddApplicationInsightsTelemetry(options);
-    ...
-}
-```
 
-`options` 物件的類型為 `ApplicationInsightsServiceOptions`。 您[可以在這裡找到]()這些選項的詳細資訊。
 
-**使用自訂遙測** 如果您想要將 Bot Framework 所產生的遙測事件記錄到完全不同的系統，請建立自基底介面 `IBotTelemetryClient` 衍生的新類別並加以設定。 然後，在新增上述遙測用戶端時，只要插入自訂用戶端即可。 
+
+<!--
+## Additional information
+
+### Customize your telemetry client
+
+If you want to customize your telemetry to log into a separate service, you have to configure the system differently. If using Application Insights to do so, download the package `Microsoft.Bot.Builder.ApplicationInsights` via NuGet, or use npm to install `botbuilder-applicationinsights`. Details on getting the Application Insights keys can be found [here](../bot-service-resources-app-insights-keys.md). Otherwise, include what is necessary for logging to that service, then follow the section below.
+
+**Use Custom Telemetry**
+If you want to log telemetry events generated by the Bot Framework into a completely separate system, create a new class derived from the base interface `IBotTelemetryClient` and configure. Then, when adding your telemetry client as above, just inject your custom client. 
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -122,43 +374,32 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-### <a name="add-custom-logging-to-your-bot"></a>將自訂記錄新增至您的 Bot
+### Add custom logging to your bot
 
-一旦 Bot 設定了新的遙測記錄支援，您即可開始將遙測新增至您的 Bot。  `BotTelemetryClient` (採用 C#，`IBotTelemetryClient`) 有數種方法可記錄不同類型的事件。  選擇適當的事件類型，可讓您利用 Application Insights 現有的報告 (如果您使用 Application Insights 的話)。  在一般情況下，通常會使用 `TraceEvent`。  使用 `TraceEvent` 記錄的資料會落在 Kusto 的 `CustomEvent` 資料表中。
+Once the Bot has the new telemetry logging support configured, you can begin adding telemetry to your bot.  The `BotTelemetryClient`(in C#, `IBotTelemetryClient`) has several methods to log distinct types of events.  Choosing the appropriate type of event enables you to take advantage of Application Insights existing reports (if you are using Application Insights).  For general scenarios `TraceEvent` is typically used.  The data logged using `TraceEvent` lands in the `CustomEvent` table in Kusto.
 
-如果在 Bot 內使用對話，則每個對話式物件 (包括提示) 都會包含新的 `TelemetryClient` 屬性。  這是可讓您執行記錄的 `BotTelemetryClient`。  這不是只為了方便而已，我們會在本文稍看到如果已設定這個屬性，`WaterfallDialogs` 將會產生事件。
+If using a Dialog within your Bot, every Dialog-based object (including Prompts) will contain a new `TelemetryClient` property.  This is the `BotTelemetryClient` that enables you to perform logging.  This is not just a convenience, we'll see later in this article if this property is set, `WaterfallDialogs` will generate events.
 
-#### <a name="identifiers-and-custom-events"></a>識別碼和自訂事件
+### Details of telemetry options
 
-將事件記錄到 Application Insights 時，所產生的事件包含您不必填入的預設屬性。  比方說，每個自訂事件 (以 `TraceEvent` API 產生) 都會包含 `user_id` 和 `session_id` 屬性。  此外，也會新增 `activitiId`、`activityType` 和 `channelId`。
+There are three main components available for your bot to log telemetry, and each component has customization available for logging your own events, which are discussed in this section. 
 
->注意：系統不會提供這些值給自訂遙測用戶端。
+- A  [Bot Framework Middleware component](#telemetry-middleware) (*TelemetryLoggerMiddleware*) that will log when messages are received, sent, updated or deleted. You can override for custom logging.
+- [*LuisRecognizer* class.](#telemetry-support-luis)  You can override for custom logging in two ways - per invocation (add/replace properties) or derived classes.
+- [*QnAMaker*  class.](#telemetry-qnamaker)  You can override for custom logging in two ways - per invocation (add/replace properties) or derived classes.
 
-屬性 |類型 | 詳細資料
---- | --- | ---
-`user_id`| `string` | [ChannelID](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id) + [From.Id](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)
-`session_id`| `string`|  [ConversationID](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#conversation)
-`customDimensions.activityId`| `string` | [Bot 活動識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#id)
-`customDimensions.activityType` | `string` | [聊天機器人活動類型](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id)
-`customDimensions.channelId` | `string` |  [聊天機器人活動管道識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id)
+All components log using the `IBotTelemetryClient`  (or `BotTelemetryClient` in node.js) interface which can be overridden with a custom implementation.
 
-## <a name="in-depth-telemetry"></a>深入的遙測
 
-4\.4 版的 SDK 新增了三個新元件。  所有元件會使用 `IBotTelemetryClient` (在 node.js 中則使用 `BotTelemetryClient` ) 介面進行記錄，並可使用自訂實作來加以覆寫。
-
-- Bot Framework 中介軟體元件 (*TelemetryLoggerMiddleware*)，會在接收、傳送、更新或刪除訊息時留下記錄。 您可以進行覆寫來建立自訂記錄。
-- *LuisRecognizer* 類別。  您可以透過兩種方式進行覆寫來建立自訂記錄 - 經由叫用 (新增/取代屬性) 或衍生類別。
-- QnAMaker  類別。  您可以透過兩種方式進行覆寫來建立自訂記錄 - 經由叫用 (新增/取代屬性) 或衍生類別。
-
-### <a name="telemetry-middleware"></a>遙測中介軟體
+#### Telemetry Middleware
 
 |C#  | JavaScript |
 |:-----|:------------|
 |**Microsoft.Bot.Builder.TelemetryLoggerMiddleware** | **botbuilder-core** |
 
-#### <a name="out-of-box-usage"></a>現成可用的使用方式
+##### Out of box usage
 
-TelemetryLoggerMiddleware 是無須修改即可新增的 Bot Framework 元件，其會執行記錄而能提供會隨附於 Bot Framework SDK 的現成可用報告。 
+The TelemetryLoggerMiddleware is a Bot Framework component that can be added without modification, and it will perform logging that enables out of the box reports that ship with the Bot Framework SDK. 
 
 ```csharp
 // Create the telemetry middleware to track conversation events
@@ -168,14 +409,26 @@ services.AddSingleton<IMiddleware, TelemetryLoggerMiddleware>();
 services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
 ```
 
-#### <a name="adding-properties"></a>新增屬性
-如果您決定要新增其他屬性，就可以衍生 TelemetryLoggerMiddleware 類別。  例如，如果您想要將屬性 "MyImportantProperty" 新增至 `BotMessageReceived` 事件。  當使用者對 Bot 傳送訊息時便會記錄 `BotMessageReceived`。  若要新增其他屬性，可透過下列方式來完成：
+And in our adapter, we would specify the use of middleware:
+
+```csharp
+public AdapterWithErrorHandler(ICredentialProvider credentialProvider, ILogger<BotFrameworkHttpAdapter> logger, IMiddleware middleware, ConversationState conversationState = null)
+           : base(credentialProvider)
+{
+    ...
+    Use(middleware);
+    ...
+}
+```
+
+##### Adding properties
+If you decide to add additional properties, the TelemetryLoggerMiddleware class can be derived.  For example, if you would like to add the property "MyImportantProperty" to the `BotMessageReceived` event.  `BotMessageReceived` is logged when the user sends a message to the bot.  Adding the additional property can be accomplished in the following way:
 
 ```csharp
 class MyTelemetryMiddleware : TelemetryLoggerMiddleware
 {
     ...
-    public Task OnReceiveActivityAsync(
+    protected override Task OnReceiveActivityAsync(
                   Activity activity,
                   CancellationToken cancellation)
     {
@@ -194,26 +447,25 @@ class MyTelemetryMiddleware : TelemetryLoggerMiddleware
 }
 ```
 
-而在啟動時，我們會新增新的類別：
+In Startup, we would add the new class:
 
 ```csharp
 // Create the telemetry middleware to track conversation events
 services.AddSingleton<IMiddleware, MyTelemetryMiddleware>();
 ```
 
-#### <a name="completely-replacing-properties--additional-events"></a>完全取代屬性/其他事件
+##### Completely replacing properties / Additional event(s)
 
-如果您決定要完全取代所記錄的屬性，便可以衍生 `TelemetryLoggerMiddleware` 類別 (如上方擴充屬性時)。   同樣地，記錄新事件也會以相同方式來執行。
+If you decide to completely replace properties being logged, the `TelemetryLoggerMiddleware` class can be derived (like above when extending properties).   Similarly, logging new events is performed in the same way.
 
-例如，如果您要完全取代 `BotMessageSend` 屬性並傳送多個事件，下列範例會示範要如何執行：
+For example, if you would like to completely replace the`BotMessageSend` properties and send multiple events, the following demonstrates how this could be performed:
 
 ```csharp
 class MyTelemetryMiddleware : TelemetryLoggerMiddleware
 {
     ...
-    public Task<RecognizerResult> OnLuisRecognizeAsync(
+    protected override Task OnReceiveActivityAsync(
                   Activity activity,
-                  string dialogId = null,
                   CancellationToken cancellation)
     {
         // Override properties for BotMsgSendEvent
@@ -237,42 +489,41 @@ class MyTelemetryMiddleware : TelemetryLoggerMiddleware
     ...
 }
 ```
-注意：若未記錄標準屬性，將會導致隨附於產品的現成可用報告停止運作。
+Note: When the standard properties are not logged, it will cause the out of box reports shipped with the product to stop working.
 
-#### <a name="events-logged-from-telemetry-middleware"></a>從遙測中介軟體記錄的事件
-[BotMessageSend](#customevent-botmessagesend)
-[BotMessageReceived](#customevent-botmessagereceived)
-[BotMessageUpdate](#customevent-botmessageupdate)
-[BotMessageDelete](#customevent-botmessagedelete)
+##### Events Logged from Telemetry Middleware
+[BotMessageSend](bot-builder-telemetry-reference.md#customevent-botmessagesend)
+[BotMessageReceived](bot-builder-telemetry-reference.md#customevent-botmessagereceived)
+[BotMessageUpdate](bot-builder-telemetry-reference.md#customevent-botmessageupdate)
+[BotMessageDelete](bot-builder-telemetry-reference.md#customevent-botmessagedelete)
 
-### <a name="telemetry-support-luis"></a>遙測支援 LUIS 
+#### Telemetry support LUIS 
 
 |C#  | JavaScript |
 |:-----|:------------|
 | **Microsoft.Bot.Builder.AI.Luis** | **botbuilder-ai** |
 
-#### <a name="out-of-box-usage"></a>現成可用的使用方式
-LuisRecognizer 是現有的 Bot Framework 元件，藉由透過 `luisOptions` 傳遞 IBotTelemetryClient 介面即可啟用遙測。  您可以視需要覆寫所記錄的預設屬性，並記錄新的事件。
+##### Out of box usage
+The LuisRecognizer is an existing Bot Framework component, and telemetry can be enabled by passing a IBotTelemetryClient interface through `luisOptions`.  You can override the default properties being logged and log new events as required.
 
-在建構 `luisOptions` 期間，必須提供 `IBotTelemetryClient` 物件才能讓此功能運作。
+During construction of `luisOptions`, an `IBotTelemetryClient` object must be provided for this to work.
 
 ```csharp
-var luisOptions = new LuisPredictionOptions(
-      ...
-      telemetryClient,
-      false); // Log personal information flag. Defaults to false.
-
-var client = new LuisRecognizer(luisApp, luisOptions);
+var luisPredictionOptions = new LuisPredictionOptions()
+{
+    TelemetryClient = telemetryClient
+};
+var recognizer = new LuisRecognizer(luisApplication, luisPredictionOptions);
 ```
 
-#### <a name="adding-properties"></a>新增屬性
-如果您決定要新增其他屬性，就可以衍生 `LuisRecognizer` 類別。  例如，如果您想要將屬性 "MyImportantProperty" 新增至 `LuisResult` 事件。  執行 LUIS 預測呼叫時，會記錄 `LuisResult`。  若要新增其他屬性，可透過下列方式來完成：
+##### Adding properties
+If you decide to add additional properties, the `LuisRecognizer` class can be derived.  For example, if you would like to add the property "MyImportantProperty" to the `LuisResult` event.  `LuisResult` is logged when a LUIS prediction call is performed.  Adding the additional property can be accomplished in the following way:
 
 ```csharp
 class MyLuisRecognizer : LuisRecognizer 
 {
    ...
-   override protected Task OnRecognizerResultAsync(
+   protected override Task OnRecognizerResultAsync(
            RecognizerResult recognizerResult,
            ITurnContext turnContext,
            Dictionary<string, string> properties = null,
@@ -291,8 +542,8 @@ class MyLuisRecognizer : LuisRecognizer
 }
 ```
 
-#### <a name="add-properties-per-invocation"></a>經由叫用來新增屬性
-有時候您必須在叫用期間新增其他屬性：
+##### Add properties per invocation
+Sometimes it's necessary to add additional properties during the invocation:
 ```csharp
 var additionalProperties = new Dictionary<string, string>
 {
@@ -301,20 +552,19 @@ var additionalProperties = new Dictionary<string, string>
 };
 
 var result = await recognizer.RecognizeAsync(turnContext,
-     additionalProperties,
-     CancellationToken.None).ConfigureAwait(false);
+     additionalProperties).ConfigureAwait(false);
 ```
 
-#### <a name="completely-replacing-properties--additional-events"></a>完全取代屬性/其他事件
-如果您決定要完全取代所記錄的屬性，便可以衍生 `LuisRecognizer` 類別 (如上方擴充屬性時)。   同樣地，記錄新事件也會以相同方式來執行。
+##### Completely replacing properties / Additional event(s)
+If you decide to completely replace properties being logged, the `LuisRecognizer` class can be derived (like above when extending properties).   Similarly, logging new events is performed in the same way.
 
-例如，如果您要完全取代 `LuisResult` 屬性並傳送多個事件，下列範例會示範要如何執行：
+For example, if you would like to completely replace the`LuisResult` properties and send multiple events, the following demonstrates how this could be performed:
 
 ```csharp
 class MyLuisRecognizer : LuisRecognizer
 {
     ...
-    override protected Task OnRecognizerResultAsync(
+    protected override Task OnRecognizerResultAsync(
              RecognizerResult recognizerResult,
              ITurnContext turnContext,
              Dictionary<string, string> properties = null,
@@ -341,30 +591,30 @@ class MyLuisRecognizer : LuisRecognizer
     ...
 }
 ```
-注意：若未記錄標準屬性，將會導致隨附於產品的 Application Insights 現成可用報告停止運作。
+Note: When the standard properties are not logged, it will cause the Application Insights out of box reports shipped with the product to stop working.
 
-#### <a name="events-logged-from-telemetryluisrecognizer"></a>從 TelemetryLuisRecognizer 記錄的事件
-[LuisResult](#customevent-luisevent)
+##### Events Logged from TelemetryLuisRecognizer
+[LuisResult](bot-builder-telemetry-reference.md#customevent-luisevent)
 
-### <a name="telemetry-qna-recognizer"></a>遙測 QnA 辨識器
+### Telemetry QnAMaker
 
 |C#  | JavaScript |
 |:-----|:------------|
 | **Microsoft.Bot.Builder.AI.QnA** | **botbuilder-ai** |
 
 
-#### <a name="out-of-box-usage"></a>現成可用的使用方式
-QnAMaker 類別是現有的 Bot Framework 元件，會另外新增兩個建構函式參數來啟用記錄功能，以啟用隨附於 Bot Framework SDK 的現成可用報告。 新的 `telemetryClient` 會參考執行記錄的 `IBotTelemetryClient` 介面。  
+##### Out of box usage
+The QnAMaker class is an existing Bot Framework component that adds two additional constructor parameters which enable logging that enable out of the box reports that ship with the Bot Framework SDK. The new `telemetryClient` references a `IBotTelemetryClient` interface which performs the logging.  
 
 ```csharp
 var qna = new QnAMaker(endpoint, options, client, 
                        telemetryClient: telemetryClient,
                        logPersonalInformation: true);
 ```
-#### <a name="adding-properties"></a>新增屬性 
-如果您決定要新增其他屬性，方法有兩種 - 在必須於 QnA 呼叫期間新增屬性以便擷取答案時，或從 `QnAMaker` 類別衍生。  
+##### Adding properties 
+If you decide to add additional properties, there are two methods of doing this - when properties need to be added during the QnA call to retrieve answers or deriving from the `QnAMaker` class.  
 
-下列範例會示範如何從 `QnAMaker` 類別衍生。  此範例會顯示如何將屬性 "MyImportantProperty" 新增至 `QnAMessage` 事件。  執行 QnA `GetAnswers` 呼叫時，會記錄 `QnAMessage` 事件。  此外，我們還會記錄第二個事件 "MySecondEvent"。
+The following demonstrates deriving from the `QnAMaker` class.  The example shows adding the property "MyImportantProperty" to the `QnAMessage` event.  The`QnAMessage` event is logged when a QnA `GetAnswers`call is performed.  In addition, we log a second event "MySecondEvent".
 
 ```csharp
 class MyQnAMaker : QnAMaker 
@@ -400,10 +650,10 @@ class MyQnAMaker : QnAMaker
 }
 ```
 
-#### <a name="adding-properties-during-getanswersasync"></a>在 GetAnswersAsync 期間新增屬性
-如果您有需要在執行階段新增的屬性，`GetAnswersAsync` 方法會提供可新增至事件的屬性和 (或) 計量。
+##### Adding properties during GetAnswersAsync
+If you have properties that need to be added during runtime, the `GetAnswersAsync` method can provide properties and/or metrics to add to the event.
 
-例如，如果您想要將 `dialogId` 新增至事件，則可以透過如下方式來完成：
+For example, if you want to add a `dialogId` to the event, it can be done like the following:
 ```csharp
 var telemetryProperties = new Dictionary<string, string>
 {
@@ -412,15 +662,15 @@ var telemetryProperties = new Dictionary<string, string>
 
 var results = await qna.GetAnswersAsync(context, opts, telemetryProperties);
 ```
-`QnaMaker` 類別會提供覆寫屬性的功能，包括 PersonalInfomation 屬性。
+The `QnaMaker` class provides the capability of overriding properties, including PersonalInfomation properties.
 
-#### <a name="completely-replacing-properties--additional-events"></a>完全取代屬性/其他事件
-如果您決定要完全取代所記錄的屬性，便可以衍生 `TelemetryQnAMaker` 類別 (如上方擴充屬性時)。   同樣地，記錄新事件也會以相同方式來執行。
+##### Completely replacing properties / Additional event(s)
+If you decide to completely replace properties being logged, the `TelemetryQnAMaker` class can be derived (like above when extending properties).   Similarly, logging new events is performed in the same way.
 
-例如，如果您要完全取代 `QnAMessage` 屬性，下列範例會示範要如何執行：
+For example, if you would like to completely replace the`QnAMessage` properties, the following demonstrates how this could be performed:
 
 ```csharp
-class MyLuisRecognizer : TelemetryQnAMaker
+class MyQnAMaker : QnAMaker
 {
     ...
     protected override Task OnQnaResultsAsync(
@@ -443,325 +693,27 @@ class MyLuisRecognizer : TelemetryQnAMaker
     ...
 }
 ```
-注意：若未記錄標準屬性，將會導致隨附於產品的現成可用報告停止運作。
+Note: When the standard properties are not logged, it will cause the out of box reports shipped with the product to stop working.
 
-#### <a name="events-logged-from-telemetryluisrecognizer"></a>從 TelemetryLuisRecognizer 記錄的事件
-[QnAMessage](#customevent-qnamessage)
+##### Events Logged from TelemetryLuisRecognizer
+[QnAMessage](bot-builder-telemetry-reference.md#customevent-qnamessage)
 
+### All other events
 
-## <a name="waterfalldialog-events"></a>WaterfallDialog 事件
+A full list of events logged for your bot's telemetry can be found on the [telemetry reference page](bot-builder-telemetry-reference.md).
 
-除了產生您自己的事件，SDK 內的 `WaterfallDialog` 物件現在也會產生事件。 下一節說明從 Bot Framework 內產生的事件。 在 `WaterfallDialog` 上設定 `TelemetryClient` 屬性，就會儲存這些事件。
+#### Identifiers and Custom Events
 
-以下範例示範如何修改利用 `WaterfallDialog` 來記錄遙測事件的範例 (CoreBot)。  CoreBot 會利用當 `WaterfallDialog` 置於 `ComponentDialog` (`GreetingDialog`) 內時使用的通用樣式。
+When logging events into Application Insights, the events generated contain default properties that you won't have to fill.  For example, `user_id` and `session_id`properties are contained in each Custom Event (generated with the `TraceEvent` API).  In addition, `activitiId`, `activityType` and `channelId` are also added.
 
-```csharp
-// IBotTelemetryClient is direct injected into our Bot
-public CoreBot(BotServices services, UserState userState, ConversationState conversationState, IBotTelemetryClient telemetryClient)
-...
+> [!NOTE]
+> Custom telemetry clients will not be provided these values.
 
-// The IBotTelemetryClient passed to the GreetingDialog
-...
-Dialogs = new DialogSet(_dialogStateAccessor);
-Dialogs.Add(new GreetingDialog(_greetingStateAccessor, telemetryClient));
-...
-
-// The IBotTelemetryClient to the WaterfallDialog
-...
-AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient = telemetryClient });
-...
-
-```
-
-一旦 `WaterfallDialog` 有已設定的 `IBotTelemetryClient`，它就會開始記錄事件。
-
-## <a name="events-generated-by-the-bot-framework-service"></a>Bot Framework Service 所產生的事件
-
-除了 `WaterfallDialog` (可從 Bot 程式碼產生事件)，Bot Framework Channel 服務也會記錄事件。  這可協助您診斷通道或整體 Bot 失敗的問題。
-
-### <a name="customevent-activity"></a>CustomEvent："Activity"
-**記錄來源：** 通道服務 在收到訊息時由通道服務記錄。
-
-### <a name="exception-bot-errors"></a>例外狀況：「Bot 錯誤」
-**記錄來源：** 通道服務 在 Bot 呼叫傳回非 2XX Http 回應時由通道記錄。
-
-## <a name="all-events-generated"></a>產生的所有事件
-
-### <a name="customevent-waterfallstart"></a>CustomEvent："WaterfallStart" 
-
-當 WaterfallDialog 開始時，就會記錄 `WaterfallStart` 事件。
-
-- `user_id`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `session_id` ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.activityId`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.activityType`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.channelId` ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.DialogId` (這是傳入您瀑布的 dialogId (字串)。  您可以將此視為「瀑布類型」)
-- `customDimensions.InstanceID` (每個對話執行個體特有)
-
-### <a name="customevent-waterfallstep"></a>CustomEvent："WaterfallStep" 
-
-記錄瀑布式對話中的個別步驟。
-
-- `user_id`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `session_id` ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.activityId`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.activityType`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.channelId` ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.DialogId` (這是傳入您瀑布的 dialogId (字串)。  您可以將此視為「瀑布類型」)
-- `customDimensions.StepName` (若為 lambda 則是方法名稱或 `StepXofY`)
-- `customDimensions.InstanceID` (每個對話執行個體特有)
-
-### <a name="customevent-waterfalldialogcomplete"></a>CustomEvent："WaterfallDialogComplete"
-
-記錄於瀑布式對話完成時。
-
-- `user_id`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `session_id` ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.activityId`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.activityType`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.channelId` ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.DialogId` (這是傳入您瀑布的 dialogId (字串)。  您可以將此視為「瀑布類型」)
-- `customDimensions.InstanceID` (每個對話執行個體特有)
-
-### <a name="customevent-waterfalldialogcancel"></a>CustomEvent："WaterfallDialogCancel" 
-
-記錄於瀑布式對話取消時。
-
-- `user_id`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `session_id` ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.activityId`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.activityType`  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.channelId` ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- `customDimensions.DialogId` (這是傳入您瀑布的 dialogId (字串)。  您可以將此視為「瀑布類型」)
-- `customDimensions.StepName` (若為 lambda 則是方法名稱或 `StepXofY`)
-- `customDimensions.InstanceID` (每個對話執行個體特有)
-
-### <a name="customevent-botmessagereceived"></a>CustomEvent：BotMessageReceived 
-記錄於 Bot 從使用者收到新訊息時。
-
-若未加以覆寫，則會使用 `Microsoft.Bot.Builder.IBotTelemetry.TrackEvent()` 方法從 `Microsoft.Bot.Builder.TelemetryLoggerMiddleware` 記錄此事件。
-
-- 工作階段識別碼  
-  - 使用 Application Insights 時，會從 `TelemetryBotIdInitializer` 將此屬性記錄為 Application Insights 中所使用的**工作階段**識別碼 (Temeletry.Context.Session.Id  )。  
-  - 對應至 Bot Framework 通訊協定所定義的[對話識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#conversation)。
-  - 所記錄的屬性名稱是 `session_id`。
-
-- 使用者識別碼
-  - 使用 Application Insights 時，會從 `TelemetryBotIdInitializer` 將此屬性記錄為 Application Insights 中所使用的**使用者**識別碼 (Telemetry.Context.User.Id  )。  
-  - 此屬性的值結合了 Bot Framework 通訊協定所定義的[通道識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id)和[使用者識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from) (串連在一起) 屬性。
-  - 所記錄的屬性名稱是 `user_id`。
-
-- ActivityID 
-  - 使用 Application Insights 時，會從 `TelemetryBotIdInitializer` 將此屬性記錄為事件的屬性。
-  - 對應至 Bot Framework 通訊協定所定義的[活動識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#Id)。
-  - 屬性名稱是 `activityId`。
-
-- 通道識別碼
-  - 使用 Application Insights 時，會從 `TelemetryBotIdInitializer` 將此屬性記錄為事件的屬性。  
-  - 對應至 Bot Framework 通訊協定的[通道識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#id)。
-  - 所記錄的屬性名稱是 `channelId`。
-
-- ActivityType 
-  - 使用 Application Insights 時，會從 `TelemetryBotIdInitializer` 將此屬性記錄為事件的屬性。  
-  - 對應至 Bot Framework 通訊協定的[活動類型](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#type)。
-  - 所記錄的屬性名稱是 `activityType`。
-
-- 文字
-  - 會在 `logPersonalInformation` 屬性設定為 `true` 時**選擇性地**記錄。
-  - 對應至 Bot Framework 通訊協定的[活動文字](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#text)欄位。
-  - 所記錄的屬性名稱是 `text`。
-
-- Speak
-
-  - 會在 `logPersonalInformation` 屬性設定為 `true` 時**選擇性地**記錄。
-  - 對應至 Bot Framework 通訊協定的[活動語音](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#speak)欄位。
-  - 所記錄的屬性名稱是 `speak`。
-
-  - 
-
-- FromId
-  - 對應至 Bot Framework 通訊協定的[來源識別碼](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)欄位。
-  - 所記錄的屬性名稱是 `fromId`。
-
-- FromName
-  - 會在 `logPersonalInformation` 屬性設定為 `true` 時**選擇性地**記錄。
-  - 對應至 Bot Framework 通訊協定的[來源名稱](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)欄位。
-  - 所記錄的屬性名稱是 `fromName`。
-
-- RecipientId
-  - 對應至 Bot Framework 通訊協定的[來源名稱](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)欄位。
-  - 所記錄的屬性名稱是 `fromName`。
-
-- RecipientName
-  - 對應至 Bot Framework 通訊協定的[來源名稱](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)欄位。
-  - 所記錄的屬性名稱是 `fromName`。
-
-- ConversationId
-  - 對應至 Bot Framework 通訊協定的[來源名稱](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)欄位。
-  - 所記錄的屬性名稱是 `fromName`。
-
-- ConversationName
-  - 對應至 Bot Framework 通訊協定的[來源名稱](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)欄位。
-  - 所記錄的屬性名稱是 `fromName`。
-
-- Locale
-  - 對應至 Bot Framework 通訊協定的[來源名稱](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)欄位。
-  - 所記錄的屬性名稱是 `fromName`。
-
-### <a name="customevent-botmessagesend"></a>CustomEvent：BotMessageSend 
-**記錄來源：** TelemetryLoggerMiddleware 
-
-記錄於 Bot 傳送訊息時。
-
-- UserID  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- SessionID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ActivityID  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- Channel  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ActivityType  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ReplyToID
-- RecipientId
-- ConversationName
-- Locale
-- RecipientName (PII 選用)
-- Text (PII 選用)
-- Speak (PII 選用)
-
-
-### <a name="customevent-botmessageupdate"></a>CustomEvent：BotMessageUpdate
-**記錄來源：** TelemetryLoggerMiddleware 記錄於 Bot 更新訊息時 (罕見案例)
-- UserID  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- SessionID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ActivityID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- Channel  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ActivityType  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- RecipientId
-- ConversationId
-- ConversationName
-- Locale
-- Text (PII 選用)
-
-
-### <a name="customevent-botmessagedelete"></a>CustomEvent：BotMessageDelete
-**記錄來源：** TelemetryLoggerMiddleware 記錄於 Bot 刪除訊息時 (罕見案例)
-- UserID  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- SessionID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ActivityID  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- Channel  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ActivityType  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- RecipientId
-- ConversationId
-- ConversationName
-
-### <a name="customevent-luisevent"></a>CustomEvent：LuisEvent
-**記錄來源：** LuisRecognizer
-
-記錄 LUIS 服務的結果。
-
-- UserID  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- SessionID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ActivityID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- Channel ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ActivityType ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ApplicationId
-- Intent
-- IntentScore
-- Intent2 
-- IntentScore2 
-- FromId
-- SentimentLabel
-- SentimentScore
-- Entities (json 形式)
-- Question (PII 選用)
-
-## <a name="customevent-qnamessage"></a>CustomEvent：QnAMessage
-**記錄來源：** QnAMaker
-
-記錄 QnA Maker 服務的結果。
-
-- UserID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- SessionID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ActivityID ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- Channel ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- ActivityType  ([從遙測初始設定式](https://aka.ms/telemetry-initializer))
-- Username (PII 選用)
-- Question (PII 選用)
-- MatchedQuestion
-- QuestionId
-- Answer
-- Score
-- ArticleFound
-
-## <a name="querying-the-data"></a>查詢資料
-使用 Application Insights 時，所有資料都會相互關聯 (即使是跨服務)。  我們可以查詢成功的要求，以及查看該要求的所有相關事件。  
-下列查詢會告訴您最近的要求：
-```sql
-requests 
-| where timestamp > ago(3d) 
-| where resultCode == 200
-| order by timestamp desc
-| project timestamp, operation_Id, appName
-| limit 10
-```
-
-從第一個查詢中，選取一些 `operation_Id`，然後尋找更多資訊：
-
-```sql
-let my_operation_id = "<OPERATION_ID>";
-let union_all = () {
-    union
-    (traces | where operation_Id == my_operation_id),
-    (customEvents | where operation_Id == my_operation_id),
-    (requests | where operation_Id == my_operation_id),
-    (dependencies | where operation_Id  == my_operation_id),
-    (exceptions | where operation_Id == my_operation_id)
-};
-union_all
-    | order by timestamp asc
-    | project itemType, name, performanceBucket
-```
-
-這可提供單一要求的時間順序明細，以及每次呼叫的持續時間貯體。
-![範例呼叫](media/performance_query.png)
-
-> 注意："Activity" `customEvent` 事件時間戳記失序，因為這些事件是以非同步方式記錄。
-
-## <a name="create-a-dashboard"></a>建立儀表板
-
-最簡單的測試方法就是使用 [Azure 入口網站的範本部署頁面](https://portal.azure.com/#create/Microsoft.Template)建立儀表板。  
-- 按一下 [在編輯器中建置您自己的範本]
-- 複製並貼上為了協助您建立儀表板而提供的其中一個 .json 檔案：
-  - [系統健康情況儀表板](https://aka.ms/system-health-appinsights)
-  - [交談健康情況儀表板](https://aka.ms/conversation-health-appinsights)
-- 按一下 [儲存]
-- 填入 `Basics`： 
-   - 訂用帳戶：<your test subscription>
-   - 資源群組：<a test resource group>
-   - 位置：<such as West US>
-- 填入 `Settings`：
-   - 見解元件名稱：<像是 `core672so2hw`>
-   - 見解元件資源群組：<像是 `core67`>
-   - 儀表板名稱：<像是 `'ConversationHealth'` 或 `SystemHealth`>
-- 按一下 `I agree to the terms and conditions stated above`
-- 按一下 `Purchase`
-- 驗證
-   - 按一下 [`Resource Groups`](https://ms.portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.Resources%2Fsubscriptions%2FresourceGroups)
-   - 從上面選取您的資源群組 (像是 `core67`)。
-   - 如果您沒有看到新的資源，則查看 [部署] 並了解是否有任何失敗。
-   - 以下是您通常看到的失敗：
-     
-```json
-{"code":"DeploymentFailed","message":"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-debug for usage details.","details":[{"code":"BadRequest","message":"{\r\n \"error\": {\r\n \"code\": \"InvalidTemplate\",\r\n \"message\": \"Unable to process template language expressions for resource '/subscriptions/45d8a30e-3363-4e0e-849a-4bb0bbf71a7b/resourceGroups/core67/providers/Microsoft.Portal/dashboards/Bot Analytics Dashboard' at line '34' and column '9'. 'The template parameter 'virtualMachineName' is not found. Please see https://aka.ms/arm-template/#parameters for usage details.'\"\r\n }\r\n}"}]}
-```
-
-若要檢視資料，請移至 Azure 入口網站。 按一下左邊的 [儀表板]  ，然後從下拉式清單中選取您建立的儀表板。
-
-## <a name="additional-resources"></a>其他資源
-您可以參考這些實作遙測的範例：
-- C#
-  - [LUIS 搭配 AppInsights](https://aka.ms/luis-with-appinsights-cs)
-  - [QnA 搭配 AppInsights](https://aka.ms/qna-with-appinsights-cs)
-- JS
-  - [LUIS 搭配 AppInsights](https://aka.ms/luis-with-appinsights-js)
-  - [QnA 搭配 AppInsights](https://aka.ms/qna-with-appinsights-js)
-
+Property |Type | Details
+--- | --- | ---
+`user_id`| `string` | [ChannelID](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id) + [From.Id](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)
+`session_id`| `string`|  [ConversationID](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#conversation)
+`customDimensions.activityId`| `string` | [The bot activity ID](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#id)
+`customDimensions.activityType` | `string` | [The bot activity type](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id)
+`customDimensions.channelId` | `string` |  [The bot activity channel ID](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#channel-id)
+-->

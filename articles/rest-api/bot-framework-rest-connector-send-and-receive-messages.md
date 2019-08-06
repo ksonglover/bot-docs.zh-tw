@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: d0b7b3250a62a995113bc9c7e087e2e62af0f413
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 15ad5855fef9bc20f351e196941fe81822db5451
+ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997065"
+ms.lasthandoff: 07/31/2019
+ms.locfileid: "68671519"
 ---
 # <a name="send-and-receive-messages"></a>傳送及接收訊息
 
@@ -23,7 +23,7 @@ Bot Connector 服務可讓 Bot 跨多個通道 (例如 Skype、電子郵件、Sl
 
 ### <a name="create-a-reply"></a>建立回覆 
 
-當使用者將傳送訊息至您的 Bot 時，Bot 會以 **message** 類型的[活動][Activity]物件收到訊息。 若要建立使用者訊息的回覆，請建立新的[活動][Activity]物件，並從設定下列屬性開始：
+當使用者將傳送訊息至聊天機器人時，聊天機器人會以 **message** 類型的[活動][Activity]物件收到訊息。 若要建立使用者訊息的回覆，請建立新的[活動][Activity]物件，並從設定下列屬性開始：
 
 | 屬性 | 值 |
 |----|----|
@@ -106,7 +106,7 @@ POST /v3/conversations/{conversationId}/activities
 POST /v3/conversations
 ```
 
-將要求的本文設定為[對話][Conversation]物件，該物件會指定您 Bot 的帳戶資訊，和您想要包含在對話中的使用者帳戶資訊。
+將要求的本文設定為[ConversationParameters][]物件，該物件會指定聊天機器人的帳戶資訊，和您想要包含在對話中的使用者帳戶資訊。
 
 > [!NOTE]
 > 並非所有通道都支援群組對話。 請參閱通道的文件，判斷通道是否支援群組對話，並識別通道允許對話中的參與者數目上限。
@@ -153,5 +153,5 @@ Content-Type: application/json
 
 [Activity]: bot-framework-rest-connector-api-reference.md#activity-object
 [ConversationAccount]: bot-framework-rest-connector-api-reference.md#conversationaccount-object
-[Conversation]: bot-framework-rest-connector-api-reference.md#conversation-object
+[ConversationParameters]: bot-framework-rest-connector-api-reference.md#conversationparameters-object
 
