@@ -33,7 +33,9 @@ ms.locfileid: "68230774"
 | ccRecipients | 以分號 (;) 分隔的電子郵件地址字串，用來新增至訊息的 [Cc]\(副本\)欄位。 |
 | htmlBody | 會指定電子郵件訊息本文的 HTML 文件。 請參閱通道的文件，以取得受支援 HTML 元素和屬性的資訊。 |
 | importance | 電子郵件的重要性層級。 有效值為**高**、**一般**和**低**。 預設值為**一般**。 |
-| subject | 電子郵件的主旨。 請參閱通道的文件，以取得欄位需求的資訊。 |
+
+| subject | 電子郵件的主旨。請參閱通道的文件，以取得欄位需求的資訊。 |
+
 | toRecipients | 以分號 (;) 分隔的電子郵件地址字串，用來新增至訊息的 [收件者] 欄位。 |
 
 > [!NOTE]
@@ -351,7 +353,10 @@ Bot 可以透過正常方式回覆此訊息，也可以將其回應直接張貼�
 
 | 屬性 | 說明 |
 |----|----|
-| messages | Kik 訊息的陣列。 如需 Kik 訊息格式的詳細資訊，請參閱 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 訊息格式</a>。 |
+
+| messages | Kik 訊息的陣列。如需 Kik 訊息格式的詳細資訊，請參閱 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 訊息格式</a>。 |
+
+
 
 此程式碼片段顯示原生 Kik 訊息的 `channelData` 屬性範例。
 
