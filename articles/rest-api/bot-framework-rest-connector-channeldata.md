@@ -6,18 +6,17 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: d69013c721552483cfd38b204936cb1c7f508f82
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 95ec59da7b2b64391a599fa690bf3e8410c3cd53
+ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64564006"
+ms.lasthandoff: 08/03/2019
+ms.locfileid: "68757189"
 ---
 # <a name="implement-channel-specific-functionality"></a>實作通道特定的功能
 
-某些通道所提供的功能，無法只透過[訊息文字和附件](bot-framework-rest-connector-create-messages.md)來實作。 若要實作通道特定的功能，您可以將原生中繼資料傳遞至 [Activity][Activity] 物件之 `channelData` 屬性中的通道。 例如，Bot 可以使用 `channelData` 屬性，指示 Telegram 傳送貼圖或指示 Office365 傳送電子郵件。
+某些通道所提供的功能，無法只透過[訊息文字和附件](bot-framework-rest-connector-create-messages.md)來實作。 若要實作通道特定的功能，您可以將原生中繼資料傳遞至 `Activity` 物件的 `channelData` 屬性中的通道。 例如，Bot 可以使用 `channelData` 屬性，指示 Telegram 傳送貼紙或指示 Office365 傳送電子郵件。
 
 此文章說明如何使用訊息活動的 `channelData` 屬性來實作此通道特定的功能：
 
@@ -30,11 +29,11 @@ ms.locfileid: "64564006"
 | Kik | 傳送和接收原生 Kik 訊息 | 
 
 > [!NOTE]
-> [Activity][Activity] 物件的 `channelData` 屬性值是一個 JSON 物件。 JSON 物件的結構將根據正在實作的通道和功能而變化，如下所述。 
+> `Activity` 物件的 `channelData` 屬性值是一個 JSON 物件。 JSON 物件的結構將根據正在實作的通道和功能而變化，如下所述。 
 
 ## <a name="create-a-custom-email-message"></a>建立自訂的電子郵件訊息
 
-若要建立電子郵件訊息，請將 [Activity][Activity] 物件的 `channelData` 屬性設定為包含這些屬性的 JSON 物件：
+若要建立電子郵件訊息，請將 `Activity` 物件的 `channelData` 屬性設定為包含這些屬性的 JSON 物件：
 
 [!INCLUDE [Email channelData table](~/includes/snippet-channelData-email.md)]
 
@@ -52,10 +51,10 @@ ms.locfileid: "64564006"
 
 ## <a name="create-a-full-fidelity-slack-message"></a>建立不失真的 Slack 訊息
 
-若要建立不失真的 Slack 訊息，請將 [Activity][Activity] 物件的 `channelData` 屬性設定為 JSON 物件，以指定 <a href="https://api.slack.com/docs/messages" target="_blank">Slack 訊息</a>、<a href="https://api.slack.com/docs/message-attachments" target="_blank">Slack 附件</a>和/或 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按鈕</a>。 
+若要建立不失真的 Slack 訊息，請將 `Activity` 物件的 `channelData` 屬性設定為 JSON 物件，以指定 <a href="https://api.slack.com/docs/messages" target="_blank">Slack 訊息</a>、<a href="https://api.slack.com/docs/message-attachments" target="_blank">Slack 附件</a>和/或 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按鈕</a>。 
 
 > [!NOTE]
-> 若要在 Slack 訊息中支援按鈕，您必須在[將 Bot 連線](../bot-service-manage-channels.md)至 Slack 通道時啟用 [互動式訊息]。
+> 若要在 Slack 訊息中支援按鈕，您必須在[將 Bot 連線](../bot-service-manage-channels.md)至 Slack 通道時啟用 [互動式訊息]  。
 
 此程式碼片段顯示自訂 Slack 訊息的 `channelData` 屬性範例。
 
@@ -136,7 +135,7 @@ Bot 可以透過[正常方式](bot-framework-rest-connector-send-and-receive-mes
 
 ## <a name="create-a-facebook-notification"></a>建立 Facebook 通知
 
-若要建立 Facebook 通知，請將 [Activity][Activity] 物件的 `channelData` 屬性設定為指定這些屬性的 JSON 物件： 
+若要建立 Facebook 通知，請將 `Activity` 物件的 `channelData` 屬性設定為指定這些屬性的 JSON 物件： 
 
 | 屬性 | 說明 |
 |----|----|
@@ -163,7 +162,7 @@ Bot 可以透過[正常方式](bot-framework-rest-connector-send-and-receive-mes
 
 ## <a name="create-a-telegram-message"></a>建立 Telegram 訊息
 
-若要建立訊息來實作 Telegram 特定動作 (例如，共用語音備忘或貼圖)，請將 [Activity][Activity] 物件的 `channelData` 屬性設定為會指定這些屬性的 JSON 物件： 
+若要建立訊息來實作 Telegram 特定動作 (例如，共用語音備忘或貼紙)，請將 `Activity` 物件的 `channelData` 屬性設定為會指定這些屬性的 JSON 物件： 
 
 | 屬性 | 說明 |
 |----|----|
@@ -237,11 +236,11 @@ Bot 可以透過[正常方式](bot-framework-rest-connector-send-and-receive-mes
 
 ## <a name="create-a-native-kik-message"></a>建立原生的 Kik 訊息
 
-若要建立原生的 Kik 訊息，請將 [Activity][Activity] 物件的 `channelData` 屬性設定為指定此屬性的 JSON 物件： 
+若要建立原生的 Kik 訊息，請將 `Activity` 物件的 `channelData` 屬性設定為指定此屬性的 JSON 物件： 
 
 | 屬性 | 說明 |
 |----|----|
-|  上限 | Kik 訊息的陣列。 如需 Kik 訊息格式的詳細資訊，請參閱 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 訊息格式</a>。 |
+| messages | Kik 訊息的陣列。 如需 Kik 訊息格式的詳細資訊，請參閱 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 訊息格式</a>。 |
 
 此程式碼片段顯示原生 Kik 訊息的 `channelData` 屬性範例。
 
@@ -274,6 +273,5 @@ Bot 可以透過[正常方式](bot-framework-rest-connector-send-and-receive-mes
 - [活動概觀](bot-framework-rest-connector-activities.md)
 - [建立訊息](bot-framework-rest-connector-create-messages.md)
 - [傳送及接收訊息](bot-framework-rest-connector-send-and-receive-messages.md)
+- [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)
 - [使用通道偵測器預覽功能](../bot-service-channel-inspector.md)
-
-[Activity]: bot-framework-rest-connector-api-reference.md#activity-object
