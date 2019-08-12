@@ -3,19 +3,18 @@ title: 將現有聊天機器人遷移至新的 .NET Core 專案 | Microsoft Docs
 description: 我們會使用新的 .NET Core 專案，取得現有 .NET v3 聊天機器人並將其遷移至 .NET v4 SDK。
 keywords: bot 移轉, formflow, 對話, v3 bot
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 06/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d09b52760bf6ef15dac0205d9aef2d3906fcacfd
-ms.sourcegitcommit: 41c8caf0e0c849beeeb50cdccf6dbc1ba7cce442
+ms.openlocfilehash: c5735b7ad47204dab42abc7b1dd7a15a407b0115
+ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/24/2019
-ms.locfileid: "67344733"
+ms.lasthandoff: 08/03/2019
+ms.locfileid: "68757206"
 ---
 # <a name="migrate-a-net-v3-bot-to-a-net-core-v4-bot"></a>將 .NET v3 聊天機器人遷移至 .NET Core v4 聊天機器人
 
@@ -30,7 +29,7 @@ ms.locfileid: "67344733"
 1. 最後的移轉步驟。
 
 此轉換的結果是 [.NET Core v4 ContosoHelpdeskChatBot](https://github.com/microsoft/BotBuilder-Samples/tree/master/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore)。
-若要遷移至 .NET Framework v4 聊天機器人_而不轉換專案類型_，請參閱[將 .NET v3 聊天機器人遷移至 .NET Framework v4 聊天機器人](conversion-framework.md)。
+若要遷移至 .NET Framework v4 聊天機器人 _而不轉換專案類型_ ，請參閱[將 .NET v3 聊天機器人遷移至 .NET Framework v4 聊天機器人](conversion-framework.md)。
 
 Bot Framework SDK v4 是以與 SDK v3 相同的基礎 REST API 作為基礎。 不過，SDK v4 是舊版 SDK 的重構，讓開發人員對於其 Bot 有更多的彈性和控制權。 SDK 中的主要變更包括：
 
@@ -71,7 +70,8 @@ Bot Framework SDK v4 是以與 SDK v3 相同的基礎 REST API 作為基礎。 �
 
 在 **Startup.cs** 中：
 
-1. 更新 `using` 陳述式：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Startup.cs?range=4-13)]
+1. 更新 `using` 陳述式：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Startup.cs?range=4-13)]
 
 1. 移除這個建構函式：
     ```csharp
@@ -83,7 +83,8 @@ Bot Framework SDK v4 是以與 SDK v3 相同的基礎 REST API 作為基礎。 �
 
 1. 移除 `Configuration` 屬性。
 
-1. 使用下列程式碼更新 `ConfigureServices` 方法：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Startup.cs?range=19-41)]
+1. 使用下列程式碼更新 `ConfigureServices` 方法：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Startup.cs?range=19-41)]
 
 這一次，您會遇到編譯時間錯誤。 我們會在後續步驟中修正這些錯誤。 
 
@@ -104,7 +105,8 @@ Bot Framework SDK v4 是以與 SDK v3 相同的基礎 REST API 作為基礎。 �
 
 1. 更新 **Bots\DialogBots.cs** 檔案。
 
-1. 更新 `using` 陳述式：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=4-8)]
+1. 更新 `using` 陳述式：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=4-8)]
 
 1. 更新 `DialogBot` 以包含對話的泛型參數。
     [!code-csharp[Class definition](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=19)]
@@ -140,7 +142,7 @@ Bot Framework SDK v4 是以與 SDK v3 相同的基礎 REST API 作為基礎。 �
 | [LocalAdminDialog](#update-the-local-admin-dialog) | 處理本機電腦系統管理權限的要求。 |
 | [ResetPasswordDialog](#update-the-reset-password-dialog) | 處理重設密碼的要求。 |
 
-可評分項目已不存在，因此我們不會複製 `CancelScorable` 類別。 將控制權交給您的對話之前，可以檢查回合處理常式中的_全域_命令。
+可評分項目已不存在，因此我們不會複製 `CancelScorable` 類別。 將控制權交給您的對話之前，可以檢查回合處理常式中的 _全域_ 命令。
 
 這些對話會收集輸入，但不會在您的電腦上執行上述任何作業。
 
@@ -184,7 +186,8 @@ v4 程式碼的注意事項：
 
 在 **Dialogs/RootDialog.cs** 檔案中：
 
-1. 更新 `using` 陳述式：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Dialogs/RootDialog.cs?range=4-10)]
+1. 更新 `using` 陳述式：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Dialogs/RootDialog.cs?range=4-10)]
 
 1. 我們需要將 `HelpdeskOptions` 選項從字串清單轉換為選擇清單。 這將搭配選擇提示使用，其將接受選擇號碼 (清單中)、選擇值，或任何選擇的同義字作為有效的輸入。
     [!code-csharp[HelpDeskOptions](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Dialogs/RootDialog.cs?range=28-33)]
@@ -232,7 +235,8 @@ v4 程式碼的注意事項：
 
 在 **Dialogs/InstallAppDialog.cs** 檔案中：
 
-1. 更新 `using` 陳述式：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=4-11)]
+1. 更新 `using` 陳述式：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=4-11)]
 
 1. 為我們用來追蹤所收集資訊的金鑰定義常數。
     [!code-csharp[Key ID](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=17-18)]
@@ -324,16 +328,20 @@ v4 程式碼的注意事項：
 
 我們需要更新模型類別中的 `using` 陳述式，如接下來所示。
 
-1. 在 **InstallApps.cs** 中，將這些陳述式變更為下列內容：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/InstallApp.cs?range=4-5)]
+1. 在 **InstallApps.cs** 中，將這些陳述式變更為下列內容：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/InstallApp.cs?range=4-5)]
 
-1. 在 **LocalAdmin.cs** 中，將這些陳述式變更為下列內容：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/LocalAdmin.cs?range=4-5)]
+1. 在 **LocalAdmin.cs** 中，將這些陳述式變更為下列內容：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/LocalAdmin.cs?range=4-5)]
 
-1. 在 **LocalAdminPrompt.cs** 中，將這些陳述式變更為下列內容：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/LocalAdminPrompt.cs?range=4)]
+1. 在 **LocalAdminPrompt.cs** 中，將這些陳述式變更為下列內容：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/LocalAdminPrompt.cs?range=4)]
 
 1. 在 **ResetPassword.cs** 中，將這些陳述式變更為下列內容：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/ResetPassword.cs?range=4-5)]
     此外，也請刪除命名空間內的 `using` 陳述式。
 
-1. 在 **ResetPasswordPrompt.cs** 中，將這些陳述式變更為下列內容：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/ResetPasswordPrompt.cs?range=4-5)]
+1. 在 **ResetPasswordPrompt.cs** 中，將這些陳述式變更為下列內容：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/ResetPasswordPrompt.cs?range=4-5)]
 
 ### <a name="additional-changes"></a>其他變更
 
