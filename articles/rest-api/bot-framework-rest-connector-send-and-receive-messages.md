@@ -6,14 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 15ad5855fef9bc20f351e196941fe81822db5451
-ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
+ms.openlocfilehash: 8ffb3d0572eafccc89bcc2cf6487aeef475bd6b1
+ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "68671519"
+ms.lasthandoff: 08/03/2019
+ms.locfileid: "68757135"
 ---
 # <a name="send-and-receive-messages"></a>傳送及接收訊息
 
@@ -23,7 +22,7 @@ Bot Connector 服務可讓 Bot 跨多個通道 (例如 Skype、電子郵件、Sl
 
 ### <a name="create-a-reply"></a>建立回覆 
 
-當使用者將傳送訊息至聊天機器人時，聊天機器人會以 **message** 類型的[活動][Activity]物件收到訊息。 若要建立使用者訊息的回覆，請建立新的[活動][Activity]物件，並從設定下列屬性開始：
+當使用者將傳送訊息至 Bot 時，Bot 收到的訊息會是**訊息**類型的 `Activity` 物件。 若要建立使用者訊息的回覆，請建立新的 `Activity` 物件，並從設定下列屬性開始：
 
 | 屬性 | 值 |
 |----|----|
@@ -46,7 +45,7 @@ Bot Connector 服務可讓 Bot 跨多個通道 (例如 Skype、電子郵件、Sl
 POST /v3/conversations/{conversationId}/activities/{activityId}
 ```
 
-在此要求 URI 中，將 **{conversationId}** 取代為您 (回覆) 活動內 `conversation` 物件的 `id` 屬性值，並將 **{activityId}** 取代為您 (回覆) 活動內 `replyToId` 屬性的值。 將要求的本文設定為您所建立要代表回覆的[活動][Activity]物件。
+在此要求 URI 中，將 **{conversationId}** 取代為您 (回覆) 活動內 `conversation` 物件的 `id` 屬性值，並將 **{activityId}** 取代為您 (回覆) 活動內 `replyToId` 屬性的值。 將要求的本文設定為您建立用來代表回覆的 `Activity` 物件。
 
 下列範例會示範將簡單純文字回覆傳送給使用者郵件的要求。 在此範例要求中，`https://smba.trafficmanager.net/apis` 表示基底 URI，和 Bot 所提出要求的基底 URI 可能不同。 如需設定基底 URI 的詳細資訊，請參閱 [API 參考](bot-framework-rest-connector-api-reference.md#base-uri)。
 
@@ -88,7 +87,7 @@ POST /v3/conversations/{conversationId}/activities
 
 在此要求 URI 中，將 **{conversationId}** 取代為對話的識別碼。 
     
-將要求的本文設定為您所建立要代表回覆的[活動][Activity]物件。
+將要求的本文設定為您建立用來代表回覆的 `Activity` 物件。
 
 > [!NOTE]
 > Bot Framework 對於 Bot 可傳送的訊息數目並無任何限制。 不過，大部分的通道會強制執行節流限制，限制 Bot 在短時間內傳送大量的訊息。 此外，如果 Bot 連續快速地傳送多則訊息，通道可能不一定會依照正確順序轉譯訊息。
@@ -106,7 +105,7 @@ POST /v3/conversations/{conversationId}/activities
 POST /v3/conversations
 ```
 
-將要求的本文設定為[ConversationParameters][]物件，該物件會指定聊天機器人的帳戶資訊，和您想要包含在對話中的使用者帳戶資訊。
+將要求的本文設定為 `ConversationParameters` 物件，該物件會指定您 Bot 的帳戶資訊，和您想要包含在對話中的使用者帳戶資訊。
 
 > [!NOTE]
 > 並非所有通道都支援群組對話。 請參閱通道的文件，判斷通道是否支援群組對話，並識別通道允許對話中的參與者數目上限。
@@ -150,8 +149,4 @@ Content-Type: application/json
 
 - [活動概觀](bot-framework-rest-connector-activities.md)
 - [建立訊息](bot-framework-rest-connector-create-messages.md)
-
-[Activity]: bot-framework-rest-connector-api-reference.md#activity-object
-[ConversationAccount]: bot-framework-rest-connector-api-reference.md#conversationaccount-object
-[ConversationParameters]: bot-framework-rest-connector-api-reference.md#conversationparameters-object
-
+- [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)

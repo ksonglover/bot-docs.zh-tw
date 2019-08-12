@@ -6,14 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: a662bb24f384d072a162242a4634fe4fe3a4b395
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 739af17f39a8537833aafcc8d03fb63ea2c8c914
+ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033446"
+ms.lasthandoff: 08/03/2019
+ms.locfileid: "68757055"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>將複合式資訊卡 (Rich Card) 附件新增至訊息
 > [!div class="op_single_selector"]
@@ -34,20 +33,20 @@ Bot Framework 目前支援八種類型的複合式資訊卡：
 | 卡片類型 | 說明 |
 |----|----|
 | <a href="/adaptive-cards/get-started/bots">AdaptiveCard</a> | 可自訂的卡片，可包含文字、語音、影像、按鈕和輸入欄位的任意組合。 請參閱[個別頻道支援](/adaptive-cards/get-started/bots#channel-status)。  |
-| [AnimationCard][animationCard] | 可播放動畫 GIF 或短片的卡片。 |
-| [AudioCard][audioCard] | 可播放音訊檔案的卡片。 |
-| [HeroCard][heroCard] | 通常包含單一大型影像、一或多個按鈕和文字的卡片。 |
-| [ThumbnailCard][thumbnailCard] | 通常包含單一縮圖影像、一或多個按鈕和文字的卡片。 |
-| [ReceiptCard][receiptCard] | 讓 Bot 向使用者提供收據的卡片。 通常包含收據上的項目清單 (稅金和總金額資訊) 和其他文字。 |
-| [SignInCard][signinCard] | 可讓 Bot 要求使用者登入的卡片。 通常包含文字，以及一或多個可讓使用者點選以起始登入程序的按鈕。 |
-| [VideoCard][videoCard] | 可播放視訊的卡片。 |
+| `AnimationCard` | 可以播放動畫 GIF 或短片的卡片。 |
+| `AudioCard` | 可播放音訊檔案的卡片。 |
+| `HeroCard` | 通常包含單一大型影像、一或多個按鈕和文字的卡片。 |
+| `ThumbnailCard` | 通常包含單一縮圖影像、一或多個按鈕和文字的卡片。 |
+| `ReceiptCard` | 讓 Bot 向使用者提供收據的卡片。 通常包含收據上的項目清單、稅金和總金額資訊，以及其他文字。 |
+| `SignInCard` | 可讓 Bot 要求使用者登入的卡片。 通常包含文字，以及一或多個使用者可以按一下以起始登入程序的按鈕。 |
+| `VideoCard` | 可播放視訊的卡片。 |
 
 > [!TIP]
-> 若要確認某個頻道所支援的複合式資訊卡類型，以及查看該頻道轉譯複合式資訊卡的方式，請參閱[頻道偵測器][ChannelInspector]。 如需卡片內容的限制 (例如，按鈕數目上限或標題長度上限) 的相關資訊，請參閱頻道的文件。
+> 若要確認某個通道所支援的複合式資訊卡類型，以及該通道轉譯複合式資訊卡 (Rich Card) 的方式，請參閱[通道偵測器][ChannelInspector]。 如需卡片內容的限制 (例如，按鈕數目上限或標題長度上限) 的相關資訊，請參閱頻道的文件。
 
-## <a name="process-events-within-rich-cards"></a>處理複合式資訊卡內的事件
+## <a name="process-events-within-rich-cards"></a>處理複合式資訊卡 (Rich Card) 內的事件
 
-若要處理複合式資訊卡內的事件，請使用 [CardAction][CardAction] 物件，指定在使用者按一下按鈕或點選卡片的某區段時應發生的情況。 每個 [CardAction][CardAction] 物件均包含下列屬性：
+若要處理複合式資訊卡 (Rich Card) 內的事件，請使用 `CardAction` 物件，指定在使用者按一下按鈕或點選卡片的某區段時所應發生的情況。 每個 `CardAction` 物件都包含下列屬性：
 
 | 屬性 | 類型 | 說明 | 
 |----|----|----|
@@ -59,7 +58,7 @@ Bot Framework 目前支援八種類型的複合式資訊卡：
 > [!NOTE]
 > 調適型卡片內的按鈕不會使用 `CardAction` 物件來建立，而會改用<a href="http://adaptivecards.io" target="_blank">調適型卡片</a>所定義的結構描述來建立。 如需示範如何將按鈕新增至調適型卡片的範例，請參閱[將調適型卡片新增至訊息](#adaptive-card)。
 
-下表列出 [CardAction][CardAction] 物件的 `type` 屬性適用的有效值，並說明每個類型之 `value` 屬性的預期內容：
+下表列出 `CardAction` 物件的 `type` 屬性適用的有效值，並說明每個類型的 `value` 屬性應有的內容：
 
 | type | value | 
 |----|----|
@@ -75,7 +74,7 @@ Bot Framework 目前支援八種類型的複合式資訊卡：
 
 ## <a name="add-a-hero-card-to-a-message"></a>將主圖卡新增至訊息
 
-若要將複合式資訊卡附件新增至訊息，請先建立對應至您想要新增至訊息之[卡片類型](#types-of-cards)的物件。 接著建立 [Attachment][Attachment] 物件、將它的 `contentType` 屬性設定為卡片的媒體類型，並將它的 `content` 屬性設定為您建立來代表卡片的物件。 在訊息的 `attachments` 陣列內，指定您的 [Attachment][Attachment] 物件。
+若要將複合式資訊卡附件新增至訊息，請先建立對應至您想要新增至訊息之[卡片類型](#types-of-cards)的物件。 接著，建立 `Attachment` 物件、將其 `contentType` 屬性設定為卡片的媒體類型，並將其 `content` 屬性設定為您建立來代表卡片的物件。 在訊息的 `attachments` 陣列內，指定您的 `Attachment` 物件。
 
 > [!TIP]
 > 包含複合式資訊卡附件的訊息通常不會指定 `text`。
@@ -83,7 +82,7 @@ Bot Framework 目前支援八種類型的複合式資訊卡：
 某些頻道可讓您將多張複合式資訊卡新增至訊息內的 `attachments` 陣列。 此功能在您想要為使用者提供多個選項的情況下很有用。 例如，如果您的 Bot 讓使用者能夠預約飯店房間，即可為使用者呈現一份複合式資訊卡清單，以顯示各種類型的可用房間。 每張卡片都會包含一張圖片，以及與房間類型相對應的便利設施清單，而使用者可以藉由點選卡片或按一下按鈕來選取房間類型。
 
 > [!TIP]
-> 若要以清單格式顯示多張複合式資訊卡，請將 [Activity][Activity] 物件的 `attachmentLayout` 屬性設定為 "list"。 若要以浮動切換格式顯示多張複合式資訊卡，請將 [Activity][Activity] 物件的 `attachmentLayout` 屬性設定為 "carousel"。 如果頻道不支援浮動切換格式，則將以清單格式顯示複合式資訊卡，即使 `attachmentLayout` 屬性指定 "carousel" 也一樣。
+> 若要以清單格式顯示多張複合式資訊卡，請將 `Activity` 物件的 `attachmentLayout` 屬性設定為 "list"。 若要以浮動切換格式顯示多張複合式資訊卡，請將 `Activity` 物件的 `attachmentLayout` 屬性設定為 "carousel"。 如果通道不支援浮動切換格式，則會以清單格式顯示複合式資訊卡 (Rich Card)，即使 `attachmentLayout` 屬性指定 [浮動切換] 亦然。
 
 下列範例所顯示的要求會傳送包含單一主圖卡附件的訊息。 在此範例要求中，`https://smba.trafficmanager.net/apis` 表示基底 URI，您的 Bot 所發出之要求的基底 URI 可能和這個不同。 如需設定基底 URI 的詳細資訊，請參閱 [API 參考](bot-framework-rest-connector-api-reference.md#base-uri)。
 
@@ -256,19 +255,8 @@ Content-Type: application/json
 - [建立訊息](bot-framework-rest-connector-create-messages.md)
 - [傳送及接收訊息](bot-framework-rest-connector-send-and-receive-messages.md)
 - [將媒體附件新增至訊息](bot-framework-rest-connector-add-media-attachments.md)
-- [頻道偵測器][ChannelInspector]
-- <a href="http://adaptivecards.io" target="_blank">調適型卡片</a>
+- [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)
+- [通道偵測器][ChannelInspector]
+- <a href="http://adaptivecards.io" target="_blank">調適型卡片</a> \(英文\)
 
 [ChannelInspector]: ../bot-service-channel-inspector.md
-
-[animationCard]: bot-framework-rest-connector-api-reference.md#animationcard-object
-[audioCard]: bot-framework-rest-connector-api-reference.md#audiocard-object
-[heroCard]: bot-framework-rest-connector-api-reference.md#herocard-object
-[thumbnailCard]: bot-framework-rest-connector-api-reference.md#thumbnailcard-object
-[receiptCard]: bot-framework-rest-connector-api-reference.md#receiptcard-object
-[signinCard]: bot-framework-rest-connector-api-reference.md#signincard-object
-[videoCard]: bot-framework-rest-connector-api-reference.md#videocard-object
-
-[CardAction]: bot-framework-rest-connector-api-reference.md#cardaction-object
-[Activity]: bot-framework-rest-connector-api-reference.md#activity-object
-[Attachment]: bot-framework-rest-connector-api-reference.md#attachment-object

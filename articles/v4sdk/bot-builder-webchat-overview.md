@@ -3,22 +3,21 @@ title: 網路聊天概觀 | Microsoft Docs
 description: 了解如何設定 Bot Framework 網路聊天。
 keywords: bot framework, 網路聊天, 聊天, 範例, react, 參考
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 06/07/2019
-ms.openlocfilehash: 1d787d375fcd1ddade544724bb28dea9aaeb1dd6
-ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
+ms.openlocfilehash: 2575ac196bd3e875d8523da99d7114b789e70558
+ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "68671414"
+ms.lasthandoff: 08/03/2019
+ms.locfileid: "68757096"
 ---
 # <a name="web-chat-overview"></a>網路聊天概觀
 
-本文包含 [Bot Framework 網路聊天](https://github.com/microsoft/BotFramework-WebChat)元件的詳細資料。 Bot Framework 網路聊天元件是具有高度自訂能力、適用於 Bot Framework V4 SDK 的 Web 型用戶端。 Bot Framework SDK v4 可讓開發人員建立對話模型，並建置精密的聊天機器人應用程式。
+本文包含 [Bot Framework 網路聊天](https://github.com/microsoft/BotFramework-WebChat)元件的詳細資料。 Bot Framework 網路聊天元件是具有高度自訂能力、適用於 Bot Framework V4 SDK 的 Web 型用戶端。 Bot Framework SDK v4 可讓開發人員建立對話模型，並建置精密的 Bot 應用程式。
 
 如果您想要從網路聊天 v3 遷移至 v4，請往下跳至[移轉區段](#migrating-from-web-chat-v3-to-v4)。
 
@@ -30,7 +29,7 @@ ms.locfileid: "68671414"
 首先，請使用 [Azure Bot Service](https://azure.microsoft.com/services/bot-service/) 建立聊天機器人。
 聊天機器人建立好之後，您必須在 Azure 入口網站中[取得聊天機器人的網路聊天祕密](../bot-service-channel-connect-webchat.md#step-1)。 然後使用該祕密[產生權杖](../rest-api/bot-framework-rest-direct-line-3-0-authentication.md)，並將權杖傳遞至網路聊天。
 
-以下會說明如何將網路聊天控制項新增至網站：
+以下說明如何將網路聊天控制項新增至網站：
 
 ```html
 <!DOCTYPE html>
@@ -57,12 +56,12 @@ ms.locfileid: "68671414"
 </html>
 ```
 
-> `userID`、`username`、`locale`、`botAvatarInitials` 和 `userAvatarInitials` 全都是可傳遞至 `renderWebChat` 方法的選擇性參數。 若要深入了解網路聊天屬性，請參閱此 `README` 的[網路聊天 API 參考](#web-chat-api-reference)區段。
+> `userID`、`username`、`locale`、`botAvatarInitials` 和 `userAvatarInitials` 全都是可傳遞至 `renderWebChat` 方法的選擇性參數。 若要深入了解網路聊天屬性，請參閱此文章的[網路聊天 API 參考](#web-chat-api-reference)一節。
 > ![網路聊天的螢幕擷取畫面](https://raw.githubusercontent.com/Microsoft/BotFramework-WebChat/master/media/weatherquery.png.jpg)
 
 ### <a name="integrate-with-javascript"></a>與 JavaScript 整合
 
-網路聊天依設計會使用 JavaScript 或 React 來與您現有的網站整合。 與 JavaScript 整合可讓您獲得適當的樣式和自訂能力。
+網路聊天依設計會使用 JavaScript 或 React 來與您現有的網站整合。 與 JavaScript 整合可您為提供一些設定樣式和自訂的能力。如需詳細資訊，請參閱[將網路聊天整合到您的網站](https://aka.ms/integrate-webchat-into-site)一文。
 
 您可以使用完整的典型網路聊天套件，其內含最常用的功能。
 
@@ -91,9 +90,9 @@ ms.locfileid: "68671414"
 
 ### <a name="integrate-with-react"></a>與 React 整合
 
-若要獲得完整的自訂功能，您可以使用 React 來重新撰寫網路聊天的元件。
+若要獲得完整的自訂功能，您可以使用 [React](https://reactjs.org/) 來重新撰寫網路聊天的元件。
 
-若要從 NPM 安裝生產環境組件，請執行 `npm install botframework-webchat`。
+若要從 npm 安裝生產組建，請執行 `npm install botframework-webchat`。
 
 ```jsx
 import { DirectLine } from 'botframework-directlinejs';
@@ -120,6 +119,10 @@ export default class extends React.Component {
 
 請參閱[透過 React 轉譯的網路聊天](https://github.com/Microsoft/BotFramework-WebChat/tree/master/samples/03.a.host-with-react/)實用範例。
 
+> [!TIP]
+> 如果您不熟悉 React 和 jsx，您可以在 React 的[使用者入門](https://reactjs.org/docs/getting-started.html)頁面上找到訓練課程。
+
+
 ## <a name="customize-web-chat-ui"></a>自訂網路聊天 UI
 
 網路聊天依設計會有自訂功能，而不需要對原始程式碼建立分支。 下表概述以不同方式匯入網路聊天時可進行自訂的種類。 此清單未涵蓋全部種類。
@@ -137,6 +140,9 @@ export default class extends React.Component {
 | 重新撰寫整個 UI        |                    | :heavy_check_mark: |
 
 請參閱[自訂網路聊天](https://github.com/Microsoft/BotFramework-WebChat/blob/master/SAMPLES.md)的詳細資訊，以深入了解自訂功能。
+
+> [!NOTE] 
+> 如需內容傳遞網路 (CDN) 的相關資訊，請參閱[內容傳遞網路 (CDN)](https://aka.ms/CDN-best-practices)
 
 ## <a name="migrating-from-web-chat-v3-to-v4"></a>從網路聊天 v3 遷移至 v4
 

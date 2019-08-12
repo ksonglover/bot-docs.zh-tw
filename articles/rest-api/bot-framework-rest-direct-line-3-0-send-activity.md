@@ -6,14 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: a9a98419a8ac65c7e1093e1281e03917fa4eca11
-ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
+ms.openlocfilehash: 8dfa76d02b2338916011040771a1c1b7e7cb7d76
+ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "68671507"
+ms.lasthandoff: 08/03/2019
+ms.locfileid: "68756911"
 ---
 # <a name="send-an-activity-to-the-bot"></a>將活動傳送至 Bot
 
@@ -21,7 +20,7 @@ ms.locfileid: "68671507"
 
 ## <a name="send-an-activity"></a>傳送活動
 
-若要將活動傳送至 Bot，用戶端必須建立[活動](bot-framework-rest-connector-api-reference.md#activity-object)物件以定義活動，然後在要求本文中指定活動物件，並對 `https://directline.botframework.com/v3/directline/conversations/{conversationId}/activities` 發出 `POST` 要求。
+若要將活動傳送至 Bot，用戶端必須建立 `Activity` 物件以定義活動，然後在要求本文中指定活動物件，並對 `https://directline.botframework.com/v3/directline/conversations/{conversationId}/activities` 發出 `POST` 要求。
 
 下列程式碼片段提供「傳送活動」要求和回應的範例。
 
@@ -76,11 +75,11 @@ HTTP/1.1 200 OK
 
 ## <a name="send-attachments-to-the-bot"></a>將附件傳送至 Bot
 
-在某些情況下，用戶端可能需要將影像或文件之類的附件傳送至 Bot。 用戶端可藉由在它要使用 `POST /v3/directline/conversations/{conversationId}/activities` 傳送的[活動](bot-framework-rest-connector-api-reference.md#activity-object)物件內為附件[指定 URL](#send-by-url)，或藉由使用 `POST /v3/directline/conversations/{conversationId}/upload` 來[上傳附件](#upload-attachments)，將附件傳送至 Bot。
+在某些情況下，用戶端可能需要將影像或文件之類的附件傳送至 Bot。 用戶端可藉由在其使用 `POST /v3/directline/conversations/{conversationId}/activities` 傳送的 `Activity` 物件內為附件[指定 URL](#send-by-url)，或藉由使用 `POST /v3/directline/conversations/{conversationId}/upload` 來[上傳附件](#upload-attachments)，將附件傳送至 Bot。
 
 ## <a id="send-by-url"></a>依 URL 傳送附件
 
-若要使用 `POST /v3/directline/conversations/{conversationId}/activities` 傳送隨附於[活動](bot-framework-rest-connector-api-reference.md#activity-object)物件的一或多個附件，只需將一或多個[附件](bot-framework-rest-connector-api-reference.md#attachment-object)物件包含在活動物件內，並設定每個附件物件的 `contentUrl` 屬性以指定附件的 HTTP、HTTPS 或 `data` URI 即可。
+若要使用 `POST /v3/directline/conversations/{conversationId}/activities` 傳送隨附於 `Activity` 物件的一或多個附件，只需將一或多個 `Attachment` 物件包含在活動物件內，並設定每個附件物件的 `contentUrl` 屬性以指定附件的 HTTP、HTTPS 或 `data` URI 即可。
 
 ## <a id="upload-attachments"></a>藉由上傳來傳送附件
 
@@ -135,7 +134,7 @@ HTTP/1.1 200 OK
 
 若要藉由上傳來傳送多個附件，請將有多個部分的要求 `POST` 至 `/v3/directline/conversations/{conversationId}/upload` 端點。 請將要求的 `Content-Type` 標頭設定為 `multipart/form-data`，並且為每個部分納入 `Content-Type` 標頭和 `Content-Disposition` 標頭，以指定每個附件的類型和檔案名稱。 在要求 URI 中，請將 `userId` 參數設定為訊息傳送者的使用者識別碼。 
 
-您可以藉由新增一個指定 `Content-Type` 標頭值 `application/vnd.microsoft.activity` 的部分，在要求內納入[活動](bot-framework-rest-connector-api-reference.md#activity-object)物件。 如果要求中包含活動，則承載的其他部分所指定的附件會先新增為該活動的附件，然後才會傳送。 如果要求未包含活動，則會建立空的活動，作為指定的附件藉以傳送的容器。
+您可以藉由新增一個指定 `Content-Type` 標頭值 `application/vnd.microsoft.activity` 的部分，在要求內納入 `Activity` 物件。 如果要求中包含活動，則承載的其他部分所指定的附件會先新增為該活動的附件，然後才會傳送。 如果要求未包含活動，則會建立空的活動，作為指定的附件藉以傳送的容器。
 
 下列程式碼片段提供「傳送 (多個) 附件」要求和回應的範例。 在此範例中，要求會傳送包含一些文字和單一影像附件的訊息。 在要求中可以新增其他部分，以將多個附件包含在此訊息中。
 
@@ -191,4 +190,5 @@ HTTP/1.1 200 OK
 - [開始對話](bot-framework-rest-direct-line-3-0-start-conversation.md)
 - [重新連線至交談](bot-framework-rest-direct-line-3-0-reconnect-to-conversation.md)
 - [從 Bot 接收活動](bot-framework-rest-direct-line-3-0-receive-activities.md)
-- [結束交談](bot-framework-rest-direct-line-3-0-end-conversation.md)
+- [結束對話](bot-framework-rest-direct-line-3-0-end-conversation.md)
+- [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)

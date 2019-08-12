@@ -6,18 +6,17 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: db09888c5f782b065ff6bd108ce93379cd42527a
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: 69c58e1e6bd9da4b07e21f8ca3eb029d2dec9e75
+ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317668"
+ms.lasthandoff: 08/03/2019
+ms.locfileid: "68757181"
 ---
 # <a name="activities-overview"></a>活動概觀
 
-Bot 連接器服務透過傳遞 [Activity][Activity] 物件以在 Bot 與通道 (使用者) 之間交換資訊。 最常見的活動類型是**訊息**，但是還有其他活動類型可用來將各種類型的資訊傳達給 Bot 或通道。 
+Bot 連接器服務會藉由傳遞 `Activity` 物件，在 Bot 與通道 (使用者) 之間交換資訊。 最常見的活動類型是**訊息**，但是還有其他活動類型可用來將各種類型的資訊傳達給 Bot 或通道。 
 
 ## <a name="activity-types-in-the-bot-connector-service"></a>Bot 連接器服務中的活動類型
 
@@ -25,14 +24,14 @@ Bot 連接器服務透過傳遞 [Activity][Activity] 物件以在 Bot 與通道 
 
 | 活動類型 | 說明 |
 |------|------|------|
-| Message | 代表 Bot 和使用者之間的通訊。 |
+| message | 代表 Bot 和使用者之間的通訊。 |
 | conversationUpdate | 表示 Bot 已新增至對話、其他成員已新增至對話或從對話中移除，或對話中繼資料已變更。 |
 | contactRelationUpdate | 表示 Bot 已新增至連絡人清單，或從使用者的連絡人清單中移除。 |
 | typing | 表示使用者或在對話另一端的 Bot 正在編譯回應。 | 
 | deleteUserData | 表示使用者已要求 Bot 刪除任何可能已儲存的使用者資料。 |
 | endOfConversation | 表示對話結束。 |
 
-## <a name="message"></a>Message
+## <a name="message"></a>message
 
 您的 Bot 會傳送 **message** 活動以傳達資訊，及接收來自使用者的 **message** 活動。 有些郵件可能是純文字，而其他郵件可能包含更豐富的內容，例如[媒體附件](bot-framework-rest-connector-add-media-attachments.md)、[按鈕，以及卡片](bot-framework-rest-connector-add-rich-cards.md)或是[特定通道的資料](bot-framework-rest-connector-channeldata.md)。 如需常用訊息屬性的資訊，請參閱[建立訊息](bot-framework-rest-connector-create-messages.md)。 如需有關如何傳送和接收訊息的資訊，請參閱[傳送和接收訊息](bot-framework-rest-connector-send-and-receive-messages.md)。 
 
@@ -65,5 +64,4 @@ Bot 會收到 **endOfConversation** 活動，表示使用者已結束對話。 B
 
 - [建立訊息](bot-framework-rest-connector-create-messages.md)
 - [傳送及接收訊息](bot-framework-rest-connector-send-and-receive-messages.md)
-
-[Activity]: bot-framework-rest-connector-api-reference.md#activity-object
+- [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)

@@ -6,17 +6,16 @@ services: bot-service
 author: trrwilson
 manager: nitinme
 ms.service: bot-service
-ms.subservice: bot-service
 ms.topic: conceptual
 ms.date: 05/02/2019
 ms.author: travisw
 ms.custom: ''
-ms.openlocfilehash: 114274a66492d421a7b3d6294d77ee83d336d3ca
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: f38caad2a1b09e8f07e5fe8c7ea7bf7e2b2dfd6f
+ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405925"
+ms.lasthandoff: 08/03/2019
+ms.locfileid: "68756859"
 ---
 # <a name="connect-a-bot-to-direct-line-speech-preview"></a>將 Bot 連線至 Direct Line Speech (預覽)
 
@@ -32,7 +31,7 @@ Direct Line Speech 目前為預覽版，而且需要在 [Azure 入口網站](htt
 
 ## <a name="add-the-direct-line-speech-channel"></a>新增 Direct Line Speech 通道
 
-1. 若要新增 Direct Line Speech 通道，請先在 [Azure 入口網站](https://portal.azure.com)中開啟 Bot，然後按一下設定刀鋒視窗中的 [通道]  。
+1. 在瀏覽器中導覽至 [Azure 入口網站](https://portal.azure.com)。 從您的資源中，選取您的 **Bot 通道註冊**資源。 在組態刀鋒視窗的 [Bot 管理]  區段中，按一下 [通道]  。
 
     ![醒目提示位置以便選取所要連線的通道](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-selectchannel.png "選取通道")
 
@@ -50,19 +49,17 @@ Direct Line Speech 目前為預覽版，而且需要在 [Azure 入口網站](htt
 
 在 Direct Line Speech 通道連線到 Bot 的情況下，您現在需要啟用 Bot Framework 通訊協定串流擴充功能支援，以獲得最佳、低延遲的互動。
 
-1. 如果您還沒這麼做，請在 [Azure 入口網站](https://portal.azure.com)中開啟您 Bot 的刀鋒視窗。 
-
-1. 按一下 [Bot 管理]  類別之下的 [設定]  (在 [通道]  的正下方)。 按一下 [啟用串流端點]  核取方塊。
+1. 在 [Bot 通道註冊]  資源組態刀鋒視窗中，按一下 [Bot 管理]  類別下的 [設定]  (在 [通道]  的正下方)。 按一下 [啟用串流端點]  核取方塊。
 
     ![啟用串流通訊協定](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-enablestreamingsupport.png "啟用串流擴充功能支援")
 
 1. 按一下頁面頂端的 [儲存]  。
 
-1. 在相同刀鋒視窗的 [App Service 設定]  類別之下，按一下 [設定]  。
+1. 從您的資源中，選取 **App Service** 資源。 在顯示的刀鋒視窗中，按一下 [設定]  類別下方的 [組態]  。
 
     ![巡覽至 App Service 設定](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-configureappservice.png "設定 App Service")
 
-1. 按一下 `General settings` ，然後選取可啟用 `Web socket` 支援的選項。
+1. 按一下 `General settings` 索引標籤，然後選取啟用 `Web socket` 支援的選項。
 
     ![啟用 App Service 的 WebSocket](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-enablewebsockets.png "啟用 WebSocket")
 
@@ -72,9 +69,17 @@ Direct Line Speech 目前為預覽版，而且需要在 [Azure 入口網站](htt
 
 ## <a name="manage-secret-keys"></a>管理祕密金鑰
 
-用戶端應用程式需要有通道祕密，才能透過 Direct Line Speech 通道連線到您的 Bot。 在您儲存通道選取項目後，即可從 Azure 入口網站中的**設定 Direct Line Speech** 頁面擷取這些祕密金鑰。
+用戶端應用程式需要有通道祕密，才能透過 Direct Line Speech 通道連線到您的 Bot。 在儲存通道選取項目後，您可以依照後續步驟擷取這些祕密金鑰。
 
-![取得 Direct Line Speech 的祕密金鑰](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-getspeechsecretkeys.png "取得 Direct Line Speech 的祕密金鑰")
+1. 從您的資源中，選取您的 **Bot 通道註冊**資源。 在組態刀鋒視窗的 [Bot 管理]  區段中，按一下 [通道]  。
+1. 按一下 Direct Line Speech 的 [編輯]  連結。
+
+    ![取得 Direct Line Speech 的祕密金鑰](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-getspeechsecretkeys1.png "取得 Direct Line Speech 的祕密金鑰")
+
+    下列視窗隨即顯示。
+
+    ![取得 Direct Line Speech 的祕密金鑰](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-getspeechsecretkeys.png "取得 Direct Line Speech 的祕密金鑰")
+1. 顯示並複製要在您的應用程式中使用的金鑰。
 
 ## <a name="adding-protocol-support-to-your-bot"></a>將通訊協定支援新增至您的 Bot
 

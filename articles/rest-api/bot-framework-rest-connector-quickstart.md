@@ -6,14 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 57babac9594118c12805ff9023cf7086e526a273
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 4c4bfacaeb0be0c3f6dd71f0dd2a195aa2261541
+ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997936"
+ms.lasthandoff: 08/03/2019
+ms.locfileid: "68757154"
 ---
 # <a name="create-a-bot-with-the-bot-connector-service"></a>使用 Bot Connector 服務建立 Bot
 > [!div class="op_single_selector"]
@@ -71,7 +70,7 @@ grant_type=client_credentials&client_id=MICROSOFT-APP-ID&client_secret=MICROSOFT
 
 ### <a name="receive-a-message-from-the-user"></a>從使用者處接收訊息
 
-當使用者傳送訊息時，Bot Framework Connector 會將要求 POST 到您在[註冊](../bot-service-quickstart-registration.md) Bot 時指定的端點。 要求主體是[活動][Activity]物件。 下列範例示範當使用者將簡單的訊息傳送給 Bot 時，Bot 收到的要求主體。 
+當使用者傳送訊息時，Bot Framework Connector 會將要求 POST 到您在[註冊](../bot-service-quickstart-registration.md) Bot 時指定的端點。 要求的本文是 `Activity` 物件。 下列範例示範當使用者將簡單的訊息傳送給 Bot 時，Bot 收到的要求主體。 
 
 ```json
 {
@@ -98,7 +97,7 @@ grant_type=client_credentials&client_id=MICROSOFT-APP-ID&client_secret=MICROSOFT
 
 ### <a name="reply-to-the-users-message"></a>回覆使用者的訊息
 
-當您的 Bot 端點收到代表來自使用者訊息的 `POST` 要求時 (亦即 `type`  = **訊息**)，請使用該要求中的資訊，為回應建立[活動][Activity]物件。
+當您的 Bot 端點收到代表來自使用者的訊息 (亦即`type` = **訊息**) 的 `POST` 要求時，請使用該要求中的資訊，為您的回應建立 `Activity` 物件。
 
 1. 將 **conversation** 屬性設為使用者訊息中 **conversation** 屬性的內容。
 2. 將 **from** 屬性設為使用者訊息中 **recipient** 屬性的內容。
@@ -107,7 +106,7 @@ grant_type=client_credentials&client_id=MICROSOFT-APP-ID&client_secret=MICROSOFT
 
 在連入要求中使用 `serviceUrl` 屬性以[識別基底 URI](bot-framework-rest-connector-api-reference.md#base-uri)，您的 Bot 應該使用該 URI 來發出其回應。 
 
-若要傳送回應，將您的[活動][Activity]物件 `POST` 到 `/v3/conversations/{conversationId}/activities/{activityId}`，如下列範例所示。 這個要求的主體是[活動][Activity]物件，該物件會提示使用者選取可用約會時間。
+若要傳送回應，請將您的 `Activity` 物件 `POST` 到 `/v3/conversations/{conversationId}/activities/{activityId}`，如下列範例所示。 此要求的本文是 `Activity` 物件，該物件會提示使用者選取可用的約會時間。
 
 ```http
 POST https://smba.trafficmanager.net/apis/v3/conversations/abcd1234/activities/bf3cc9a2f5de... 
@@ -135,7 +134,7 @@ Content-Type: application/json
 }
 ```
 
-在此範例要求中，`https://smba.trafficmanager.net/apis` 表示基底 URI，和 Bot 所提出要求的基底 URI 可能不同。 如需設定基底 URI 的詳細資訊，請參閱 [API 參考](bot-framework-rest-connector-api-reference.md#base-uri)。 
+在此範例要求中，`https://smba.trafficmanager.net/apis` 表示基底 URI，您的 Bot 所發出之要求的基底 URI 可能和這個不同。 如需設定基底 URI 的詳細資訊，請參閱 [API 參考](bot-framework-rest-connector-api-reference.md#base-uri)。 
 
 > [!IMPORTANT]
 > 如同這個範例所示，您所傳送每個 API 要求的 `Authorization` 標頭都必須包含字詞 **Bearer**，後面加上您[從 Bot Framework 取得](#get-token)的存取權杖。
@@ -195,6 +194,3 @@ Content-Type: application/json
 ## <a name="next-steps"></a>後續步驟
 
 在本教學課程中，您會從 Bot Framework 取得存取權杖，並且使用 Bot Connector 服務與使用者交換訊息。 您可以使用 [Bot Framework 模擬器](../bot-service-debug-emulator.md)來測試您的 Bot 並且進行偵錯。 如果您想要與其他人共用您的 Bot，您必須將它[設定](../bot-service-manage-channels.md)為在一或多個通道上執行。
-
-
-[Activity]: bot-framework-rest-connector-api-reference.md#activity-object
