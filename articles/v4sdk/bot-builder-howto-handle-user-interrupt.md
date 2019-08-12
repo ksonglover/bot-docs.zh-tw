@@ -3,20 +3,19 @@ title: 處理使用者中斷 | Microsoft Docs
 description: 深入了解如何處理使用者中斷和直接對話流程。
 keywords: 中斷, 切換主題, 中斷
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 04/18/2019
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ba1bc99608558966f4cf45894b2e04b8f17c9a69
-ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
+ms.openlocfilehash: 75f6cc720042ad7f10c0b016dedba7af5fd84435
+ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/25/2019
-ms.locfileid: "68483969"
+ms.lasthandoff: 08/03/2019
+ms.locfileid: "68756995"
 ---
 # <a name="handle-user-interruptions"></a>處理使用者中斷
 
@@ -28,19 +27,19 @@ ms.locfileid: "68483969"
 
 ## <a name="prerequisites"></a>必要條件
 
-- 了解[聊天機器人基本概念][concept-basics], [managing state][concept-state]、[對話方塊程式庫][concept-dialogs]，以及如何[重複使用對話方塊][component-dialogs]。
-- 一份核心聊天機器人範例 (使用 [**CSharp**][cs-sample] or [**JavaScript**][js-sample])。
+- [Bot 基本概念][concept-basics]、[管理狀態][concept-state]、[對話方塊程式庫][concept-dialogs]及如何[重複使用對話方塊][component-dialogs]的知識。
+- 一份核心 Bot 範例 (使用 [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample])。
 
 ## <a name="about-this-sample"></a>關於此範例
 
-本文所使用的範例會設計一個預訂航班的 Bot，其會使用對話方塊來向使用者取得航班資訊。 使用者可以在與 Bot 對話期間，隨時發出_協助_或_取消_命令來中斷對話。 在此，我們會處理兩種中斷：
+本文所使用的範例會設計一個預訂航班的 Bot，其會使用對話方塊來向使用者取得航班資訊。 使用者可以在與 Bot 對話期間，隨時發出 _或 _命令來中斷對話。 在此，我們會處理兩種中斷：
 
 - **回合層級**：略過回合層級的處理，但讓對話方塊與所提供的資訊留在堆疊上。 在下一個回合時，從我們離開的地方接續進行。 
 - **對話方塊層級**：完全取消處理，讓 Bot 可以重新來過一次。
 
 ## <a name="define-and-implement-the-interruption-logic"></a>定義和實作中斷邏輯
 
-首先，我們要定義並實作_協助_和_取消_中斷。
+首先，我們要定義並實作 _和 _中斷。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -52,7 +51,7 @@ ms.locfileid: "68483969"
 
 [!code-csharp[Class signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=10)]
 
-在 `CancelAndHelpDialog` 類別中，`OnBeginDialogAsync` 和 `OnContinueDialogAsync` 方法會呼叫 `InerruptAsync` 方法來檢查使用者是否已中斷一般流程。 如果流程已中斷，則會呼叫基底類別方法；，否則會從 `InterruptAsync` 傳回傳回值。
+在 `CancelAndHelpDialog` 類別中，`OnContinueDialogAsync` 方法會呼叫 `InerruptAsync` 方法來檢查使用者是否已中斷一般流程。 如果流程已中斷，則會呼叫基底類別方法；，否則會從 `InterruptAsync` 傳回傳回值。
 
 [!code-csharp[Overrides](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=22-31)]
 
@@ -72,7 +71,7 @@ ms.locfileid: "68483969"
 
 [!code-javascript[Class signature](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=11)]
 
-在 `CancelAndHelpDialog` 類別中，`onBeginDialog` 和 `onContinueDialog` 方法會呼叫 `interrupt` 方法來檢查使用者是否已中斷一般流程。 如果流程已中斷，則會呼叫基底類別方法；，否則會從 `interrupt` 傳回傳回值。
+在 `CancelAndHelpDialog` 類別中，`onContinueDialog` 方法會呼叫 `interrupt` 方法來檢查使用者是否已中斷一般流程。 如果流程已中斷，則會呼叫基底類別方法；，否則會從 `interrupt` 傳回傳回值。
 
 [!code-javascript[Overrides](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=12-18)]
 
@@ -186,7 +185,7 @@ ms.locfileid: "68483969"
 
 - 您應該傳送預設回應，而不是毫無作為，讓使用者臆測究竟發生什麼事。 預設回應應該告知使用者 Bot 可以理解哪些命令，讓使用者可以回到正軌。
 
-- 在回合中的任何時點，回合內容的_回應_屬性都會指出 Bot 是否已在這個回合傳送訊息給使用者。 回合結束之前，Bot 應該會傳送某些訊息給使用者，即使是簡單的輸入通知也是如此。
+- 在回合中的任何時點，回合內容的 _屬性都會指出 Bot 是否已在這個回合傳送訊息給使用者。 回合結束之前，Bot 應該會傳送某些訊息給使用者，即使是簡單的輸入通知也是如此。
 
 <!-- Footnote-style links -->
 

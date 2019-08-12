@@ -3,19 +3,18 @@ title: 部署您的 Bot | Microsoft Docs
 description: 將您的 Bot 部署至 Azure 雲端。
 keywords: 部署 bot, azure 部署 bot, 發佈 bot
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: conceptual
 ms.service: bot-service
-ms.subservice: abs
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ed7c9d7a883a1d1807237b636bbb59d25df60e08
-ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
+ms.openlocfilehash: a5ef32f16ae8424093cebd77ed137fb31ed53a22
+ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "68671390"
+ms.lasthandoff: 08/03/2019
+ms.locfileid: "68756786"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
@@ -33,7 +32,7 @@ ms.locfileid: "68671390"
 當您使用 Visual Studio 或 Yeoman 範本建立 Bot 時，所產生的原始程式碼會包含 `deploymentTemplates` 資料夾與 ARM 範本。 此處敘述的部署程序會使用 ARM 範本，然後以 Azure CLI 在 Azure 中佈建所需的 Bot 資源。 
 
 > [!IMPORTANT]
-> 在 Bot Framework SDK 4.3 版本中，我們已_不再_使用 .bot 檔案，而是改用 appsettings.json 或 .env 檔案來管理資源。 若要了解如何將設定從 .bot 檔案遷移至 appsettings.json 或 .env 檔案，請參閱[管理 Bot 資源](v4sdk/bot-file-basics.md)。
+> 在 Bot Framework SDK 4.3 版本中，我們已 _使用 .bot 檔案，而是改用 appsettings.json 或 .env 檔案來管理資源。 若要了解如何將設定從 .bot 檔案遷移至 appsettings.json 或 .env 檔案，請參閱[管理 Bot 資源](v4sdk/bot-file-basics.md)。
 
 ### <a name="login-to-azure"></a>登入 Azure
 
@@ -43,6 +42,10 @@ ms.locfileid: "68671390"
 az login
 ```
 瀏覽器視窗會隨即開啟，以便您登入。
+
+> [!NOTE]
+> 如果您將 Bot 部署至非 Azure 雲端 (例如 US Gov)，您必須在 `az login` 之前執行 `az cloud set --name <name-of-cloud>`，其中，&lt;name-of-cloud> 是已註冊的雲端名稱，例如 `AzureUSGovernment`。 如果您要返回公用雲端，可以執行 `az cloud set --name AzureCloud`。 
+
 
 ### <a name="set-the-subscription"></a>設定訂用帳戶
 設定要使用的預設訂用帳戶。
@@ -123,7 +126,7 @@ az group deployment create --name "<name-of-deployment>" --resource-group "<name
 
 ### <a name="retrieve-or-create-necessary-iiskudu-files"></a>擷取或建立必要的 IIS/Kudu 檔案
 
-**針對 C# Bot**
+### <a name="c-botstabcsharp"></a>[C# Bot](#tab/csharp)
 
 ```cmd
 az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "MyBot.csproj"
@@ -131,7 +134,7 @@ az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "MyBot.cspro
 
 您必須提供與 --code-dir 對應的 .csproj 檔案路徑。 這可以透過 --proj-file-path 引數來執行。 此命令會將 --code-dir 和 --proj-file-path 解析為 "./MyBot.csproj"
 
-**針對 JavaScript Bot**
+### <a name="javascript-botstabjavascript"></a>[JavaScript Bot](#tab/javascript)
 
 ```cmd
 az bot prepare-deploy --code-dir "." --lang Javascript
@@ -139,13 +142,15 @@ az bot prepare-deploy --code-dir "." --lang Javascript
 
 此命令會擷取 web.config，這是讓 Node.js 應用程式可以在 Azure App Service 上與 IIS 搭配運作的必要項目。 請確定 web.config 已儲存到您 Bot 的根目錄。
 
-**針對 TypeScript Bot**
+### <a name="typescript-botstabtypescript"></a>[TypeScript Bot](#tab/typescript)
 
 ```cmd
 az bot prepare-deploy --code-dir "." --lang Typescript
 ```
 
 此命令的運作方式類似上述的 JavaScript，但這適用於 Typescript Bot。
+
+---
 
 ### <a name="zip-up-the-code-directory-manually"></a>手動壓縮程式碼目錄
 
@@ -156,7 +161,7 @@ _根據預設，Kudu 會假設來自 zip 檔案的部署都已可供執行，而
 因此，務必在要部署至 Web 應用程式的 zip 檔案中包含建置程式碼和所有必要相依性，否則您的 Bot 不會如預期般運作。
 
 > [!IMPORTANT]
-> 壓縮專案檔之前，請確定您_位在_正確的資料夾。 
+> 壓縮專案檔之前，請確定您 _正確的資料夾。 
 > - 針對 C# Bot，這是具有 .csproj 檔案的資料夾。 
 > - 針對 JS Bot，這是具有 app.js 或 index.js 檔案的資料夾。 
 >
