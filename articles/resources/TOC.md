@@ -1,10 +1,8 @@
 # 虛擬小幫手
 ## [概觀](../v4sdk/bot-builder-virtual-assistant-introduction.md)
 ## [範本簡介](../v4sdk/bot-builder-virtual-assistant-template.md)
-## [開始使用](../v4sdk/bot-builder-virtual-assistant-gettingstarted.md)
 # 技術 
 ## [概觀](../v4sdk/bot-builder-skills-overview.md)
-## [開始使用](../v4sdk/bot-builder-skills-gettingstarted.md)
 # WebChat
 ## [概觀](../v4sdk/bot-builder-webchat-overview.md)
 ## [自訂](../v4sdk/bot-builder-webchat-customization.md)

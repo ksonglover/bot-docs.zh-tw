@@ -7,14 +7,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
-ms.date: 10/11/2018
-ms.openlocfilehash: 9383e15590569458e795e9a0603df21f63609001
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 08/7/2019
+ms.openlocfilehash: edfb61a4f4ca33089bce7d4b44ed242f83cbcc0d
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997735"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68866628"
 ---
 # <a name="connect-a-bot-to-direct-line"></a>將 Bot 連線至直接線路
 
@@ -24,24 +23,24 @@ ms.locfileid: "49997735"
 
 若要新增直接線路通道，請在 [Azure 入口網站](https://portal.azure.com/)中開啟 Bot，並按一下 [**通道**] 刀鋒視窗，然後按一下 [**直接線路**]。
 
-![新增直接線路通道](~/media/bot-service-channel-connect-directline/directline-addchannel.png)
+![新增直接線路通道](media/bot-service-channel-connect-directline/directline-addchannel.png)
 
 ## <a name="add-new-site"></a>新增網站
 
 接下來，新增網站以代表您想要連接到 bot 的用戶端應用程式。 按一下 [**新增網站**]，輸入網站名稱，然後按一下 [**完成**]。
 
-![新增直接線路網站](~/media/bot-service-channel-connect-directline/directline-addsite.png)
+![新增直接線路網站](media/bot-service-channel-connect-directline/directline-addsite.png)
 
 ## <a name="manage-secret-keys"></a>管理祕密金鑰
 
 當您建立網站時，Bot Framework 會產生祕密金鑰，用戶端應用程式可藉此來[驗證](~/rest-api/bot-framework-rest-direct-line-3-0-authentication.md)其所發出的直接線路 API 要求，以便與 bot 進行通訊。 若要檢視純文字金鑰，按一下 [**顯示**] 以取得對應的索引鍵。
 
-![顯示直接線路金鑰](~/media/bot-service-channel-connect-directline/directline-showkey.png)
+![顯示直接線路金鑰](media/bot-service-channel-connect-directline/directline-showkey.png)
 
 複製並安全地儲存顯示的金鑰。 然後使用此金鑰來[驗證](~/rest-api/bot-framework-rest-direct-line-3-0-authentication.md)您的用戶端發出的直接線路 API 要求，以便與 Bot 進行通訊。
 或者，使用直接線路 API [將金鑰交換成權杖](~/rest-api/bot-framework-rest-direct-line-3-0-authentication.md#generate-token)，您的用戶端便可用來驗證單一交談範圍內的後續要求。
 
-![複製直接線路金鑰](~/media/bot-service-channel-connect-directline/directline-copykey.png)
+![複製直接線路金鑰](media/bot-service-channel-connect-directline/directline-copykey.png)
 
 ## <a name="configure-settings"></a>配置設定
 

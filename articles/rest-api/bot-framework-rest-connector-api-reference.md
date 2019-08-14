@@ -6,13 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 10/25/2018
-ms.openlocfilehash: f8f04c8b0cbd2b43f29676f0315739f4cc7716b3
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.date: 08/02/2019
+ms.openlocfilehash: 5a520c2fc5b9e94976e9a2618286aa184045bdeb
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757166"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68866635"
 ---
 # <a name="api-reference"></a>API 參考資料
 
@@ -309,83 +309,6 @@ Microsoft Bot Framework 狀態服務已於 2018 年 3 月 30 日淘汰。 之前
 | `Get Conversation Data` | 擷取先前為通道上的特定交談儲存的狀態資料。 |
 | `Get Private Conversation Data` | 擷取先前為通道上特定交談內容中特定使用者儲存的狀態資料。 |
 | `Delete State For User` | 刪除先前為使用者儲存的狀態資料。 |
-
-### <a name="set-user-data"></a>設定使用者資料
-儲存指定通道上指定使用者的狀態資料。
-```http
-POST /v3/botstate/{channelId}/users/{userId} 
-```
-
-| | |
-|----|----|
-| **要求本文** | `BotData` 物件 |
-| **傳回** | `BotData` 物件 | 
-
-### <a name="set-conversation-data"></a>設定交談資料
-儲存指定通道上指定交談的狀態資料。
-```http
-POST /v3/botstate/{channelId}/conversations/{conversationId}
-```
-
-| | |
-|----|----|
-| **要求本文** | `BotData` 物件 |
-| **傳回** | `BotData` 物件 | 
-
-### <a name="set-private-conversation-data"></a>設定私人交談資料
-針對指定通道上指定交談內容中的指定使用者儲存狀態資料。
-```http
-POST /v3/botstate/{channelId}/conversations/{conversationId}/users/{userId} 
-```
-
-| | |
-|----|----|
-| **要求本文** | `BotData` 物件 |
-| **傳回** | `BotData` 物件 | 
-
-### <a name="get-user-data"></a>取得使用者資料
-擷取先前針對指定通道上所有交談的指定使用者儲存的狀態資料。
-```http
-GET /v3/botstate/{channelId}/users/{userId} 
-```
-
-| | |
-|----|----|
-| **要求本文** | n/a |
-| **傳回** | `BotData` 物件 | 
-
-### <a name="get-conversation-data"></a>取得交談資料
-擷取先前針對指定通道的指定交談儲存的狀態資料。
-```http
-GET /v3/botstate/{channelId}/conversations/{conversationId} 
-```
-
-| | |
-|----|----|
-| **要求本文** | n/a |
-| **傳回** | `BotData` 物件 | 
-
-### <a name="get-private-conversation-data"></a>取得私人交談資料
-擷取先前針對指定通道的指定交談內容之指定使用者儲存的狀態資料。
-```http
-GET /v3/botstate/{channelId}/conversations/{conversationId}/users/{userId} 
-```
-
-| | |
-|----|----|
-| **要求本文** | n/a |
-| **傳回** | [`BotData` 物件 | 
-
-### <a name="delete-state-for-user"></a>刪除使用者狀態
-使用[設定使用者資料](#set-user-data)作業或[設定私人交談資料](#set-private-conversation-data)作業，刪除先前為指定通道的指定使用者儲存的狀態資料。
-```http
-DELETE /v3/botstate/{channelId}/users/{userId} 
-```
-
-| | |
-|----|----|
-| **要求本文** | n/a |
-| **傳回** | 字串陣列 (識別碼) | 
 
 ## <a name="bot-framework-activity-schema"></a>Bot Framework 活動結構描述
 
