@@ -10,10 +10,10 @@ ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
 ms.openlocfilehash: ce1b3f073c932cd4042b91ae9afc1e332a7443f2
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
+ms.lasthandoff: 08/12/2019
 ms.locfileid: "67404898"
 ---
 # <a name="support-localization"></a>支援當地語系化
@@ -134,7 +134,7 @@ var bot = new builder.UniversalBot(connector, [
 ]);
 ```
 
-在內部，SDK 會呼叫 [`session.preferredLocale()`][preferredLocale] to get the user's preferred locale and then uses that in a call to [`session.localizer.gettext()`][GetText] 以將訊息識別碼對應至其當地語系化的文字字串。  您有時候可能需要手動呼叫當地語系化工具。 例如，傳送給 [`Prompts.choice()`][promptsChoice] 的列舉值永遠不會自動當地語系化，因此您需要先手動擷取當地語系化清單，再呼叫提示：
+在內部，SDK 會呼叫 [`session.preferredLocale()`][preferredLocale] 以取得使用者的慣用地區設定，然後在 [`session.localizer.gettext()`][GetText] 呼叫中使用，將訊息識別碼對應至其當地語系化的文字字串。  您有時候可能需要手動呼叫當地語系化工具。 例如，傳送給 [`Prompts.choice()`][promptsChoice] 的列舉值永遠不會自動當地語系化，因此您需要先手動擷取當地語系化清單，再呼叫提示：
 
 ```javascript
 var options = session.localizer.gettext(session.preferredLocale(), "choice_options");

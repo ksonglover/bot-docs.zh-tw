@@ -6,15 +6,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 14b8bf7aa4e99e3ca97442c2ba57dc8c57138d99
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: 14bda9e14f0f812cf528a6b9fdf01175e7eb21ae
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67404690"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68866643"
 ---
 # <a name="add-speech-to-messages"></a>將語音新增至訊息
 
@@ -72,9 +71,9 @@ ms.locfileid: "67404690"
 
 ## <a name="sample-code"></a>範例程式碼 
 
-如需完整範例以了解如何使用適用於 .NET 的 Bot Framework SDK ，來建立具備語音功能的 Bot，請參閱 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">骰子機範例</a>。
+如需完整範例以了解如何使用適用於 Node.js 的 Bot Framework SDK，來建立具備語音功能的 Bot，請參閱 GitHub 中的<a href="https://github.com/microsoft/BotBuilder-Samples/tree/v3-sdk-samples/Node/demo-RollerSkill" target="_blank">骰子機範例</a>。
 
 ## <a name="additional-resources"></a>其他資源
 
 - <a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">語音合成標記語言 (SSML)</a> \(英文\)
-- <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">骰子機範例 (GitHub)</a>
+- <a href="https://github.com/microsoft/BotBuilder-Samples/tree/v3-sdk-samples/Node/demo-RollerSkill" target="_blank">骰子機範例 (GitHub)</a>

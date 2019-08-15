@@ -7,14 +7,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: conceptual
 ms.service: bot-service
-ms.date: 05/23/2019
+ms.date: 08/06/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a5ef32f16ae8424093cebd77ed137fb31ed53a22
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: e8ad6d3f365fefef3e2a6978802bfb02688d317c
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68756786"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68970584"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
@@ -32,7 +32,7 @@ ms.locfileid: "68756786"
 當您使用 Visual Studio 或 Yeoman 範本建立 Bot 時，所產生的原始程式碼會包含 `deploymentTemplates` 資料夾與 ARM 範本。 此處敘述的部署程序會使用 ARM 範本，然後以 Azure CLI 在 Azure 中佈建所需的 Bot 資源。 
 
 > [!IMPORTANT]
-> 在 Bot Framework SDK 4.3 版本中，我們已 _使用 .bot 檔案，而是改用 appsettings.json 或 .env 檔案來管理資源。 若要了解如何將設定從 .bot 檔案遷移至 appsettings.json 或 .env 檔案，請參閱[管理 Bot 資源](v4sdk/bot-file-basics.md)。
+> 在 Bot Framework SDK 4.3 版本中，我們已_不再_使用 .bot 檔案，而是改用 appsettings.json 或 .env 檔案來管理資源。 若要了解如何將設定從 .bot 檔案遷移至 appsettings.json 或 .env 檔案，請參閱[管理 Bot 資源](v4sdk/bot-file-basics.md)。
 
 ### <a name="login-to-azure"></a>登入 Azure
 
@@ -57,6 +57,7 @@ az account set --subscription "<azure-subscription>"
 如果您不確定哪個訂用帳戶要用於部署 Bot ，可以使用 `az account list` 命令，檢視帳戶的訂用帳戶清單。 瀏覽至 Bot 資料夾。
 
 ### <a name="create-an-app-registration"></a>建立應用程式註冊
+
 註冊應用程式意謂著您可以使用 Azure AD 來驗證使用者，以及要求存取使用者資源。 在 Azure 中，您的 Bot 需要已註冊的應用程式來允許 Bot 存取 Bot Framework 服務，以便傳送和接收已驗證的訊息。 若要透過 Azure CLI 建立註冊應用程式，請執行下列命令：
 
 ```cmd
@@ -71,10 +72,15 @@ az ad app create --display-name "displayName" --password "AtLeastSixteenCharacte
 
 上述命令會輸出具有 `appId` 索引鍵的 JSON，請儲存此索引鍵的值以用於 ARM 部署，該值會用在 `appId` 參數上。 提供的密碼將會用於 `appSecret` 參數。
 
+> [!NOTE] 
+> 如果想要使用現有的應用程式註冊，您可以使用下列命令：az bot create --kind webapp --resource-group "name-of-resource-group" --name "name-of-web-app" --appid "existing-app-id" --password "existing-app-password" --lang "Javascript | Csharp"_
+
 您可以將 Bot 部署在新的資源群組或現有的資源群組中。 選擇最適合您的選項。
 
-# <a name="deploy-via-arm-template-with-new-resource-grouptabnewrg"></a>[透過 ARM 範本部署 (使用**新**資源群組)](#tab/newrg)
-
+## <a name="deploy-via-arm-template-with-new-resource-group"></a>透過 ARM 範本部署 (使用**新**資源群組)
+<!--
+## [Deploy via ARM template (with **new**  Resource Group)](#tab/nerg)
+-->
 ### <a name="create-azure-resources"></a>建立 Azure 資源
 
 您會在 Azure 中建立新的資源群組，然後使用 ARM 範本在其中建立指定資源。 在此案例中，我們提供 App Service 方案、Web 應用程式和 Bot 通道註冊。
@@ -90,7 +96,10 @@ az deployment create --name "<name-of-deployment>" --template-file "template-wit
 | location |位置。 值的來源：`az account list-locations`。 您可以使用 `az configure --defaults location=<location>` 來設定預設位置。 |
 | parameters | 提供部署參數值。 執行 `az ad app create` 命令時所得的 `appId` 值。 `appSecret` 是您在上一個步驟中提供的密碼。 `botId` 參數應該是全域唯一，而且會用來作為不可變的 Bot 識別碼。 此參數也會用來設定 Bot 的顯示名稱，而這是可變動的。 `botSku` 是定價層，可以是 F0 (免費) 或 S1 (標準)。 `newAppServicePlanName` 是 App Service 方案的名稱。 `newWebAppName` 是您要建立的 Web 應用程式名稱。 `groupName` 是您要建立的 Azure 資源群組名稱。 `groupLocation` 是 Azure 資源群組的位置。 `newAppServicePlanLocation` 是 App Service 方案的位置。 |
 
-# <a name="deploy-via-arm-template-with-existing--resource-grouptaberg"></a>[透過 ARM 範本部署 (使用**現有的**資源群組)](#tab/erg)
+## <a name="deploy-via-arm-template-with-existing--resource-group"></a>透過 ARM 範本部署 (使用**現有**的資源群組)
+<!--
+## [Deploy via ARM template (with **existing**  Resource Group)](#tab/erg)
+-->
 
 ### <a name="create-azure-resources"></a>建立 Azure 資源
 
@@ -100,7 +109,8 @@ az deployment create --name "<name-of-deployment>" --template-file "template-wit
 
 在此案例中，我們使用現有的 App Service 方案，但建立新的 Web 應用程式和 Bot 通道註冊。 
 
-_注意：botId 參數應該是全域唯一，而且會用來作為不可變的 Bot 識別碼。此參數也會用來設定 Bot 的 displayName，而這是可變動的。_
+> [!NOTE]
+> botId 參數應該是全域唯一，而且會用來作為不可變的 Bot 識別碼。 此參數也會用來設定 Bot 的 displayName，而這是可變動的。
 
 ```cmd
 az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" existingAppServicePlan="<name-of-app-service-plan>" appServicePlanLocation="<location>"
@@ -126,7 +136,10 @@ az group deployment create --name "<name-of-deployment>" --resource-group "<name
 
 ### <a name="retrieve-or-create-necessary-iiskudu-files"></a>擷取或建立必要的 IIS/Kudu 檔案
 
-### <a name="c-botstabcsharp"></a>[C# Bot](#tab/csharp)
+### <a name="c-bots"></a>C# Bot
+<!--
+### [C# bots](#tab/csharp)
+-->
 
 ```cmd
 az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "MyBot.csproj"
@@ -134,7 +147,11 @@ az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "MyBot.cspro
 
 您必須提供與 --code-dir 對應的 .csproj 檔案路徑。 這可以透過 --proj-file-path 引數來執行。 此命令會將 --code-dir 和 --proj-file-path 解析為 "./MyBot.csproj"
 
-### <a name="javascript-botstabjavascript"></a>[JavaScript Bot](#tab/javascript)
+
+### <a name="javascript-bots"></a>JavaScript Bot
+<!--
+### [Javascript bots](#tab/javascript)
+-->
 
 ```cmd
 az bot prepare-deploy --code-dir "." --lang Javascript
@@ -142,7 +159,10 @@ az bot prepare-deploy --code-dir "." --lang Javascript
 
 此命令會擷取 web.config，這是讓 Node.js 應用程式可以在 Azure App Service 上與 IIS 搭配運作的必要項目。 請確定 web.config 已儲存到您 Bot 的根目錄。
 
-### <a name="typescript-botstabtypescript"></a>[TypeScript Bot](#tab/typescript)
+### <a name="typescript-bots"></a>TypeScript Bot
+<!--
+### [Typescript bots](#tab/typescript)
+-->
 
 ```cmd
 az bot prepare-deploy --code-dir "." --lang Typescript
@@ -161,7 +181,7 @@ _根據預設，Kudu 會假設來自 zip 檔案的部署都已可供執行，而
 因此，務必在要部署至 Web 應用程式的 zip 檔案中包含建置程式碼和所有必要相依性，否則您的 Bot 不會如預期般運作。
 
 > [!IMPORTANT]
-> 壓縮專案檔之前，請確定您 _正確的資料夾。 
+> 壓縮專案檔之前，請確定您_位在_正確的資料夾。 
 > - 針對 C# Bot，這是具有 .csproj 檔案的資料夾。 
 > - 針對 JS Bot，這是具有 app.js 或 index.js 檔案的資料夾。 
 >
@@ -192,7 +212,7 @@ az webapp deployment source config-zip --resource-group "<new-group-name>" --nam
 6. 在 [Bot 通道註冊]  刀鋒視窗中，按一下 [在網路聊天中測試]  。
 或者，在右側面板中按一下 [測試] 方塊。
 
-如需通道註冊的詳細資訊，請參閱[向 Bot 服務註冊聊天機器人](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-quickstart-registration?view=azure-bot-service-3.0)。
+如需通道註冊的詳細資訊，請參閱[向 Bot 服務註冊聊天機器人](https://docs.microsoft.com/azure/bot-service/bot-service-quickstart-registration?view=azure-bot-service-3.0)。
 
 > [!NOTE]
 > 刀鋒視窗是用來顯示所選服務功能或導覽元素的介面。

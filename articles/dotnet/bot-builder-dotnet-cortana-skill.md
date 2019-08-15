@@ -10,10 +10,10 @@ ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
 ms.openlocfilehash: 9dd84e9e5e39e1e1b801e08fbee101dbfa8b0c49
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
+ms.lasthandoff: 08/12/2019
 ms.locfileid: "67405685"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能建置啟用語音的 Bot
@@ -99,7 +99,7 @@ The following code demonstrates how to add the `Speak` and `InputHint` propertie
 ## <a name="sample-rollerskill"></a>範例：RollerSkill
 下列各節中的程式碼來自擲骰子的範例 Cortana 技能。 請從 [BotBuilder-Samples 存放庫](https://github.com/Microsoft/BotBuilder-Samples/) (英文) 下載 Bot 的完整程式碼。
 
-您必須說出其[叫用名稱][InvocationNameGuidelines] to Cortana. For the roller skill, after you [add the bot to the Cortana channel][CortanaChannel]來叫用該技能並將其註冊為 Cortana 技能，您可以告訴 Cortana「啟動骰子機」或「讓骰子機擲骰子」以進行叫用。
+您可以向 Cortana 說出技能的[叫用名稱][InvocationNameGuidelines]以便叫用技能。 對於骰子機技能，在您[將 Bot 新增至 Cortana 通道][CortanaChannel]並將其註冊為 Cortana 技能後，可以告訴 Cortana「啟動骰子機」或「讓骰子機擲骰子」以進行叫用。
 
 ### <a name="explore-the-code"></a>探索程式碼
 

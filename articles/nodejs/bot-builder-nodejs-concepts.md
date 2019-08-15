@@ -10,10 +10,10 @@ ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
 ms.openlocfilehash: a3cff9a77de098ee524334183ba891068f176b6e
-ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2019
+ms.lasthandoff: 08/12/2019
 ms.locfileid: "67464777"
 ---
 # <a name="key-concepts-in-the-bot-framework-sdk-for-nodejs"></a>適用於 Node.js 的 Bot Framework SDK 重要概念
@@ -31,7 +31,7 @@ Bot Framework Connector 是一項可將 Bot 連線至多個*通道* (即 [Teams]
 
 此連接器可藉由從 Bot 至通道和從通道至 Bot 的訊息轉送，讓 Bot 和使用者之間的通訊更為順暢。 Bot 的邏輯裝載為 Web 服務，並透過連接器服務接收使用者的訊息，而 Bot 的回覆會使用 HTTPS POST 傳送至連接器。 
 
-適用於 Node.js 的 Bot Framework SDK 所提供的 [UniversalBot][UniversalBot] and [ChatConnector][ChatConnector] 類別可用來設定 Bot，使其透過 Bot Framework Connector 來傳送和接收訊息。 `UniversalBot` 類別會形成 Bot 的思考核心。 它負責管理 Bot 與使用者之間的所有對話。 `ChatConnector` 類別會將您的 Bot 連線至 Bot Framework Connector 服務。
+適用於 Node.js 的 Bot Framework SDK 所提供的 [UniversalBot][UniversalBot] 和 [ChatConnector][ChatConnector] 類別可用來設定 Bot，使其透過 Bot Framework Connector 來傳送和接收訊息。 `UniversalBot` 類別會形成 Bot 的思考核心。 它負責管理 Bot 與使用者之間的所有對話。 `ChatConnector` 類別會將您的 Bot 連線至 Bot Framework Connector 服務。
 如需使用這些類別進行示範的範例，請參閱[使用適用於 Node.js 的 Bot Framework SDK 建立 Bot](bot-builder-nodejs-quickstart.md)。
 
 連接器也會將 Bot 傳送至通道的訊息正規化，讓您能夠以跨平台的方式開發 Bot。 要將訊息正規化，必須將訊息從 Bot Framework 的結構描述轉換為通道的結構描述。 如果通道不支援架構結構描述的所有層面，則連接器會嘗試將訊息轉換為通道支援的格式。 例如，如果 Bot 將訊息傳送至 SMS 通道，而訊息中包含具有動作按鈕的卡片，則連接器可能會將卡片轉譯為影像，並將動作包含為訊息文字中的連結。 [通道偵測器][ChannelInspector]是一項 Web 工具，會說明連接器在各種通道上轉譯訊息的方式。

@@ -8,14 +8,14 @@ ms.service: bot-service
 ms.topic: conceptual
 ms.author: kamrani
 ms.date: 07/25/2019
-ms.openlocfilehash: 6b6e841e49ab800b239961cf5ae54dc2d5feab23
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: 68ef5f1d24c464489ff500fe290de2a151f87f5a
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757770"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68970598"
 ---
-## <a name="net-bot-with-direct-line-app-service-extension"></a>具有 Direct Line App Service 擴充功能的 .NET Bot
+# <a name="configure-net-bot-for-extension"></a>設定 .NET Bot 擴充功能
 
 [!INCLUDE[applies-to-v4](includes/applies-to.md)]
 
@@ -24,6 +24,10 @@ ms.locfileid: "68757770"
 ## <a name="prerequisites"></a>必要條件
 
 若要執行後續說明的步驟，您在 Azure 中必須具有 **Azure App Service** 資源和相關的 **App Service**。
+
+## <a name="enable-direct-line-app-service-extension"></a>啟用 Direct Line App Service 擴充功能
+
+本文說明如何使用 Bot 通道組態中的金鑰，在裝載 Bot 的 **Azure App Service** 資源中啟用 Direct Line App Service 擴充功能。
 
 ## <a name="update-net-bot-to-use-direct-line-app-service-extension"></a>更新 .NET Bot 以使用 Direct Line App Service 擴充功能
 
@@ -71,10 +75,6 @@ ms.locfileid: "68757770"
 
 1. 將 Bot **發佈**至您的 Azure App Service。
 1. 在瀏覽器中，導覽至 https://<your_app_service>.azurewebsites.net/.bot。 如果一切都正確無誤，頁面將會傳回下列 JSON 內容：`{"k":true,"ib":true,"ob":true,"initialized":true}`。
-
-## <a name="enable-direct-line-app-service-extension"></a>啟用 Direct Line App Service 擴充功能
-
-本文說明如何使用 Bot 通道組態中的金鑰，在裝載 Bot 的 **Azure App Service** 資源中啟用 Direct Line App Service 擴充功能。
 
 ### <a name="gather-your-direct-line-extension-keys"></a>收集您的 Direct Line 擴充功能金鑰
 

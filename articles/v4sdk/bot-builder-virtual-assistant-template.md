@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 503ec19444c51120bf46838e14edb891ec5c3bb5
-ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.openlocfilehash: 6bf567729e0c4799672f773ddcfadb4fabfa36fc
+ms.sourcegitcommit: 7b3d2b5b9b8ce77887a9e6124a347ad798a139ca
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2019
-ms.locfileid: "67464657"
+ms.lasthandoff: 08/13/2019
+ms.locfileid: "68991967"
 ---
 # <a name="virtual-assistant---template-outline"></a>虛擬助理 - 範本大綱
 
@@ -48,11 +48,11 @@ ms.locfileid: "67464657"
 
 ## <a name="basic-language-understanding-luis-intents"></a>基本 Language Understanding (LUIS) 意圖
 
-每個 Bot 都應該能處理基礎等級的對話式語言理解。 例如，問候語就是每個 Bot 應能輕鬆處理的基本項目。 一般而言，開發人員需要建立這些基本意圖，並提供用於入門的初始訓練資料。 虛擬助理範本提供 LU 範例檔案來協助您入門，同時避免在每次使用專案時都必須建立這些檔案，並確保有現成的基礎功能可用。
+每個 Bot 都應該能處理基礎等級的對話式語言理解。 例如，問候語就是每個 Bot 應能輕鬆處理的基本項目。 一般而言，開發人員需要建立這些基本意圖，並提供用於入門的初始訓練資料。 虛擬助理範本提供範例 .lu 檔案來協助您入門，同時避免在每次使用專案時都必須建立這些檔案，並確保有現成的基礎功能可用。
 
-LU 檔案會以英文、中文、法文、義大利文、德文、西班牙文提供下列意圖。
+.lu 檔案會以英文、中文、法文、義大利文、德文、西班牙文提供下列意圖。
 
-意圖       | 範例語句 |
+Intent       | 範例語句 |
 -------------|-------------|
 取消       |取消  、沒關係 |
 呈報     |我可以洽詢人員嗎？ |
@@ -68,7 +68,7 @@ ShowPrevious |顯示上一個 |
 StartOver    |*restart*|
 Stop         |*stop*|
 
-[LU](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/Ludown/docs/lu-file-format.md) 格式類似於 MarkDown，可讓您輕鬆進行修改與原始檔控制。 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 工具則可用來將 .LU 檔案轉換成 LUIS 模型，然後透過入口網站或相關聯的 [LUIS](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUIS) CLI (命令列) 工具將其發行至您的 LUIS 訂用帳戶。
+[.lu](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/Ludown/docs/lu-file-format.md) 格式類似於 Markdown，可讓您輕鬆進行修改與原始檔控制。 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 工具則可用來將 .lu 檔案轉換成 LUIS 模型，然後透過入口網站或相關聯的 [LUIS](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUIS) CLI (命令列) 工具將其發行至您的 LUIS 訂用帳戶。
 
 ## <a name="telemetry"></a>遙測
 
@@ -80,7 +80,7 @@ Bot 層級的遙測在本質上與技術和作業方面的遙測相連結，因�
 
 中介軟體元件結合 QnA Maker 和 LuisRecognizer SDK 類別的包裝函式類別，以提供簡潔的方式來收集一組一致的事件。 接著，這些一致的事件可交由 Application Insights 工具和 PowerBI 之類的工具來使用。
 
-範例 PowerBI 儀表板是 Bot Framework 解決方案 github 存放庫的一部分，可立即與每個虛擬助理範本搭配運作方式。 如需詳細資訊，請參閱[分析](https://github.com/Microsoft/AI/blob/master/docs/readme.md#analytics)一節。
+範例 Power BI 儀表板是 Bot Framework 解決方案 github 存放庫的一部分，可立即與每個虛擬助理範本搭配運作方式。 如需詳細資訊，請參閱[分析](https://aka.ms/bfsanalytics)一節。
 
 ![分析範例](./media/enterprise-template/powerbi-conversationanalytics-luisintents.png)
 
@@ -88,7 +88,7 @@ Bot 層級的遙測在本質上與技術和作業方面的遙測相連結，因�
 
 在第一波交談方式體驗中，產生良好效果的主要設計模式就是利用 Language Understanding (LUIS) 和 QnA Maker。 LUIS 可透過 Bot 為終端使用者執行的工作來訓練，而 QnA Maker 可透過較廣泛的知識來訓練。
 
-所有傳入的語句 (問題) 都會路由至 LUIS 以進行分析。 如果無法識別指定語句的意圖，則會將其標示為「無」意圖。 接著會使用 QnA Maker 來嘗試為終端使用者尋找回答。
+所有傳入的語句 (問題) 都會路由至 LUIS 以進行分析。 如果無法識別指定語句的意圖，則會將其標示為*無*意圖。 接著會使用 QnA Maker 來嘗試為終端使用者尋找回答。
 
 儘管此模式運作良好，還是有可能在兩個主要案例中遇到問題。
 
@@ -97,31 +97,31 @@ Bot 層級的遙測在本質上與技術和作業方面的遙測相連結，因�
 
 [發送器](https://docs.microsoft.com/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig)為此提供了簡潔的解決方案，方法是從每個設定的 LUIS 模型擷取語句，以及從 QnA Maker 擷取問題，然後建立中央分派 LUIS 模型。
 
-這可讓 Bot 快速找出應處理指定語句的 LUIS 模型或元件，並確保系統會認為 QnA Maker 資料在意圖處理的最上層，而不是跟之前一樣視為 None 意圖。
+這可讓 Bot 快速找出應處理指定語句的 LUIS 模型或元件，並確保系統會認為 QnA Maker 資料在意圖處理的最上層，而不是跟之前一樣視為*無*意圖。
 
-此分派工具也會啟用評估，並在部署之前，醒目提示 LUIS 模型之間的混淆和重疊及已標示的 QnA Maker 知識庫問題。
+此分派工具也會啟用評估，並在部署之前，醒目提示 LUIS 模型之間的混淆、問題和重疊及 QnA Maker 知識庫問題。
 
-發送器會使用於每個專案 (使用範本所建立) 的核心。 分派模型會在 `MainDialog` 類別內使用，可識別目標是 LUIS 模型或 QnA。 在 LUIS 的案例中，次要 LUIS 模型會受到叫用，並如往常般傳回意圖和實體。 發送器也用於中斷偵測。
+發送器會使用於每個專案 (使用範本所建立) 的核心。 分派模型會在 `MainDialog` 類別內使用，可識別目標是 LUIS 模型或 QnA。 在 LUIS 的案例中，次要 LUIS 模型會受到叫用，並傳回意圖和實體。 發送器也用於中斷偵測。
 
 ![分派範例](./media/enterprise-template/dispatchexample.png)
 
 ## <a name="qna-maker"></a>QnA Maker
 
-[QnA Maker](https://www.qnamaker.ai/) 可讓非開發人員以問題和答案配對的格式來策展通用知識。 此知識可以從常見問題集資料來源和產品手冊中匯入，也可在 QnaMaker 入口網站內以互動方式匯入。
+[QnA Maker](https://www.qnamaker.ai/) 可讓非開發人員以問題和答案配對的格式來策展通用知識。 此知識可以從常見問題集資料來源和產品手冊中匯入，也可在 QnA Maker 入口網站內以互動方式匯入。
 
-在 CognitiveModels 的 QnA 資料夾內會以 [LU](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/Ludown/docs/lu-file-format.md) 檔案格式提供兩個範例 QnA Maker 模型，一個用於常見問題集，一個用於閒聊。 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 接著會用來當作部署指令碼的一部分，以建立 QnA Maker JSON 檔案，然後 [QnA Maker](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/QnAMaker) CLI (命令列) 工具會使用此檔案來將項目發行至 QnA Maker 知識庫。
+在 CognitiveModels 的 QnA 資料夾內會以 [.lu](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/Ludown/docs/lu-file-format.md) 檔案格式提供兩個範例 QnA Maker 模型，一個用於常見問題集，一個用於閒聊。 [LUDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 接著會用來當作部署指令碼的一部分，以建立 QnA Maker JSON 檔案，然後 [QnA Maker](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/QnAMaker) CLI (命令列) 工具會使用此檔案來將項目發行至 QnA Maker 知識庫。
 
 ![QnA ChitChat 範例](./media/enterprise-template/qnachitchatexample.png)
 
 ## <a name="content-moderator"></a>內容仲裁
 
-內容審查工具為選用元件，可偵測潛在的不雅內容，並協助檢查個人識別資訊 (PII)。 將此功能整合到 Bot 會很有幫助，這可讓 Bot 針對不雅內容或當使用者共用 PII 資訊時，做出適當反應。 比方說，Bot 可能會道歉並移交給人類，或在偵測到 PII 資訊時，不儲存遙測記錄。
+內容審查工具為選用元件，可偵測潛在的不雅內容，並協助檢查個人識別資訊 (PII)。 比方說，Bot 可能會在發生粗話時道歉並移交給人類，或在偵測到 PII 資訊時，不儲存遙測記錄。
 
 系統會提供中介軟體元件，以透過 TurnState 物件上的 ```TextModeratorResult``` 將該畫面轉換成文字並顯示。
 
-# <a name="next-steps"></a>後續步驟
-請參閱[使用者入門](https://github.com/Microsoft/AI/tree/master/docs#tutorials)以了解如何建立和部署虛擬助理。 
+## <a name="next-steps"></a>後續步驟
+請參閱[教學課程](https://aka.ms/bfstutorials)以了解如何建立和部署虛擬助理。 
 
-# <a name="additional-resources"></a>其他資源
-虛擬助理範本的完整原始程式碼位於 [GitHub](https://github.com/Microsoft/AI/)。
+## <a name="additional-resources"></a>其他資源
+虛擬助理範本的完整原始程式碼位於 [GitHub](https://aka.ms/bfsolutions)。
 

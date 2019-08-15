@@ -2,21 +2,24 @@
 title: 透過 Azure Bot 服務將驗證新增至您的 Bot | Microsoft Docs
 description: 了解如何使用 Azure Bot 服務驗證功能以便將 SSO 新增至您的 Bot。
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: abs
 ms.date: 06/07/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3467c45ed97c84a2bad28cd5fef2de03a3caed22
-ms.sourcegitcommit: 3574fa4e79edf2a0c179d8b4a71939d7b5ffe2cf
+ms.openlocfilehash: b5d3031a23959d054056f89968c35a1e1e49c1dd
+ms.sourcegitcommit: 7b3d2b5b9b8ce77887a9e6124a347ad798a139ca
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/27/2019
-ms.locfileid: "68591044"
+ms.lasthandoff: 08/13/2019
+ms.locfileid: "68991989"
 ---
-<!-- Related TODO:
+<!-- 
+
+ms.author: v-jofing
+
+Related TODO:
 - Check code in [Web Chat channel](https://docs.microsoft.com/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0)
 - Check guidance in [DirectLine authentication](https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-4.0)
 -->
@@ -79,8 +82,6 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 - **準備 Bot 範例程式碼**
 
 完成後，您將有一個在本機執行的 Bot 能夠對 Azure AD 應用程式回應幾項簡單工作，例如，檢查及傳送電子郵件，或者顯示您或管理員的身分。 您的 Bot 必須針對 Microsoft.Graph 程式庫使用來自 Azure AD 應用程式的權杖，才能達到上述目的。 您不需要發佈 Bot 以測試 OAuth 登入功能；不過，您的 Bot 將需要有效的 Azure 應用程式識別碼和密碼。
-
-這些驗證功能也可與其他類型的 Bot 搭配使用。 不過，本文將使用僅具有註冊功能的 Bot。
 
 ### <a name="web-chat-and-direct-line-considerations"></a>網路聊天和 Direct Line 的考量
 
@@ -406,6 +407,33 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 ---
 
+### <a name="adding-teams-authentication"></a>新增 Teams 驗證
+
+Teams 在 OAuth 方面的行為與其他通道稍有不同，而且需要進行一些變更，才能正確地實作驗證。 我們會從 Teams 驗證 Bot 範例 ([C#][cs-teams-auth-sample]/[JavaScript][js-teams-auth-sample]) 新增程式碼。
+ 
+其他通道與 Teams 之間的一項差異在於 Teams 會傳送*叫用*活動而非*事件*活動給 Bot。 
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+**Bots/TeamsBot.cs** [!code-csharp[Invoke Activity](~/../botbuilder-samples/samples/csharp_dotnetcore/46.teams-auth/Bots/TeamsBot.cs?range=34-42&highlight34)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+**bots/teamsBot.js** [!code-javascript[Invoke Activity](~/../botbuilder-samples/samples/javascript_nodejs/46.teams-auth/bots/teamsBot.js?range=27-31&highlight=27)]
+
+---
+
+如果您使用 *OAuth 提示*，則必須將此叫用活動轉送至對話方塊。 我們會在 `TeamsActivityHandler` 中這麼做。 將下列程式碼新增至您的主要對話方塊檔案。 
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+**Bots/DialogBot.cs** [!code-csharp[Dialogs Handler](~/../botbuilder-samples/samples/csharp_dotnetcore/46.teams-auth/Bots/DialogBot.cs?range=18)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+**Bots/dialogBot.js** [!code-javascript[Dialogs Handler](~/../botbuilder-samples/samples/javascript_nodejs/46.teams-auth/bots/dialogBot.js?range=4-6)]
+
+---
+最後，請務必在 Bot 資料夾的最上層新增適當的 `TeamsActivityHandler` 檔案 (`TeamsActivityHandler.cs` 用於 C# Bot，而 `teamsActivityHandler.js` 用於 Javascript Bot)。
+
+`TeamsActivityHandler` 也會傳送*訊息回應*活動。 訊息反應活動會使用 [回覆識別碼]  欄位來參考原始活動。 此活動應該也會在 Microsoft Teams 中透過[活動摘要][teams-activity-feed]顯示。
+
 ### <a name="further-reading"></a>進階閱讀
 
 - [Bot Framework 其他資源](https://docs.microsoft.com/azure/bot-service/bot-service-resources-links-help)包含其他支援的連結。
@@ -429,3 +457,6 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 [js-auth-sample]: https://aka.ms/v4js-bot-auth-sample
 [cs-msgraph-sample]: https://aka.ms/v4cs-auth-msgraph-sample
 [js-msgraph-sample]: https://aka.ms/v4js-auth-msgraph-sample
+[cs-teams-auth-sample]:https://aka.ms/cs-teams-auth-sample
+[js-teams-auth-sample]:https://aka.ms/js-teams-auth-sample
+[teams-activity-feed]:[https://aka.ms/teams-activity-feed

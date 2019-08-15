@@ -9,10 +9,10 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 2/26/2019
 ms.openlocfilehash: 847ae51791ae66ef190ebefee765f2806ec91c5e
-ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/25/2019
+ms.lasthandoff: 08/12/2019
 ms.locfileid: "68484042"
 ---
 # <a name="debug-with-the-emulator"></a>使用模擬器進行偵錯
@@ -163,7 +163,7 @@ See [above](#add-services) to learn more about services you can manage using the
 
 ## <a name="additional-resources"></a>其他資源
 
-Bot Framework 模擬器是開放原始碼。 您可以[參與][EmulatorGithubContribute] to the development and [submit bugs and suggestions][EmulatorGithubBugs]。
+Bot Framework 模擬器是開放原始碼。 您可以[參與][EmulatorGithubContribute]開發，並[提交 Bug 和建議][EmulatorGithubBugs]。
 
 如需進行疑難排解，請參閱[針對一般問題疑難排解](bot-service-troubleshoot-bot-configuration.md)以及該區段中的其他疑難排解文章。
 

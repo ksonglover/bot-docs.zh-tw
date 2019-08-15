@@ -1,23 +1,22 @@
 ---
 title: 開發 Direct Line Speech Bot | Microsoft Docs
 description: 開發 DirectLine Speech Bot
-keywords: 開發 DirectLine Speech Bot, 語音 Bot
+keywords: 開發 Direct Line Speech Bot, 語音 Bot
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
-ms.topic: conceptuals
+ms.topic: article
 ms.service: bot-service
-ms.subservice: abs
 ms.date: 07/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4f33f799af3c7a6aecec172f5512791b52fdbffe
-ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
+ms.openlocfilehash: d4b44fdc2d063c2d91020435473346fdfbda589b
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "68671488"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68970609"
 ---
-# <a name="use-direct-line-speech-in-your-bot"></a>在 Bot 中使用 Direct Line Speech 
+# <a name="use-direct-line-speech-in-your-bot"></a>在 Bot 中使用 Direct Line Speech
 
 [!INCLUDE [applies-to-v4](includes/applies-to.md)]
 
@@ -48,7 +47,7 @@ public IActivity Speak(string message)
 }
 ```
 
-## <a name="option-1-update-your-net-core-bot-code-if-your-bot-has-a-botcontrollercs"></a>選項 1：更新 .NET Core Bot 程式碼 _(如果 Bot 有 BotController.cs)_
+## <a name="option-1-update-your-net-core-bot-code-_if-your-bot-has-a-botcontrollercs_"></a>選項 1：更新 .NET Core Bot 程式碼 _(如果 Bot 有 BotController.cs)_
 當您在 Azure 入口網站中使用其中一個範本 (例如 EchoBot) 建立新的 Bot 時，您會收到一個 Bot，其中包含可公開單一 POST 端點的 ASP.NET MVC 控制器。 下列指示說明如何將該控制器擴展為同時公開一個端點來接受 WebSocket 串流端點 (GET 端點)。
 1.  在您解決方案的 Controllers 資料夾之下開啟 BotController.cs
 
@@ -105,7 +104,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 8.  您 Bot 程式碼的其餘部分維持不變！
 
-## <a name="option-2-update-your-net-core-bot-code-if-your-bot-uses-addbot-and-usebotframework-instead-of-a-botcontroller"></a>選項 2：更新 .NET Core Bot 程式碼 _(如果 Bot 使用 AddBot 和 UseBotFramework 而非 BotController)_
+## <a name="option-2-update-your-net-core-bot-code-_if-your-bot-uses-addbot-and-usebotframework-instead-of-a-botcontroller_"></a>選項 2：更新 .NET Core Bot 程式碼 _(如果 Bot 使用 AddBot 和 UseBotFramework 而非 BotController)_
 
 如果您已使用 4.3.2 版之前的 Bot Builder SDK v4 建立 Bot，Bot 可能不包含 BotController，但在 Startup.cs 檔案中改為使用 AddBot() 和 UseBotFramework() 方法來公開 Bot 接收訊息的 POST 端點。 若要公開新的串流端點，您必須新增 BotController 及移除 AddBot() 和 UseBotFramework() 方法。 這些指示會逐步引導需要進行的變更。
 
@@ -167,6 +166,10 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 4.  您 Bot 程式碼的其餘部分維持不變！
+
+## <a name="additional-information"></a>其他資訊
+
+如需有關使用活動的詳細資訊，請參閱 [Bot 如何運作](v4sdk/bot-builder-basics.md)如何[傳送及接收文字訊息](v4sdk/bot-builder-howto-send-messages.md)。
 
 ## <a name="next-steps"></a>後續步驟
 > [!div class="nextstepaction"]

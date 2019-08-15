@@ -3,19 +3,18 @@ title: 活動處理 |Microsoft Docs
 description: 了解 Bot SDK 中的活動處理程序。
 keywords: bot 介面卡, 自訂中介軟體, 最少運算, 後援, 事件處理常式
 author: jonathanfingold
-ms.author: jonathanfingold
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0e0fe51e33e99bbb35ef1d731b611ff9ca12a138
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: 315bebddeda21301d29fa003ce9c8f43e1677000
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67404308"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68970717"
 ---
 # <a name="activity-processing"></a>活動處理
 

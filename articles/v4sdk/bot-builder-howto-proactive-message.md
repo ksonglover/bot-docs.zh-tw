@@ -3,19 +3,18 @@ title: 將主動式通知傳送給使用者 | Microsoft Docs
 description: 了解如何傳送通知訊息
 keywords: 主動式訊息, 通知訊息, bot 通知,
 author: jonathanfingold
-ms.author: jonathanfingold
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9389f97cbba2e8766bf29b2502d36e9ec03077cf
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 0c5268a16f7dcff8e46d3a14f32409517eb98489
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215387"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68970715"
 ---
 # <a name="send-proactive-notifications-to-users"></a>將主動式通知傳送給使用者
 
@@ -123,7 +122,7 @@ MicrosoftAppCredentials.TrustServiceUrl(serviceUrl);
 
 針對主動式傳訊，`serviceUrl` 是主動訊息接收者使用的通道 URL，您可以在 `Activity.ServiceUrl` 中找到此項目。 
 
-您可以直接將上述程式碼加在傳送主動訊息的程式碼之前。 此範例將其放在 `ProactiveBot.cs` 中 `CreateCallback()` 的結尾附近，但已標記為註解，因為若沒有 `appId` 和 `appPassword`，其無法在模擬器中運作。
+您可以直接將上述程式碼加在傳送主動訊息的程式碼之前。 在[主動式訊息範例](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/16.proactive-messages)中，您可以將其放在 `NotifyController.cs` 中，就在 `await turnContext.SendActivityAsync("proactive hello");` 的前面。
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -133,7 +132,7 @@ MicrosoftAppCredentials.trustServiceUrl(serviceUrl);
 
 針對主動式傳訊，`serviceUrl` 是主動訊息接收者使用的通道 URL，您可以在 `activity.serviceUrl` 中找到此項目。
 
-您可以直接將上述程式碼加在傳送主動訊息的程式碼之前。 此範例將其放在 `bot.js` 中 `completeJob()` 的結尾處，但已標記為註解，因為若沒有 `appId` 和 `appPassword`，其無法在模擬器中運作。
+您可以直接將上述程式碼加在傳送主動訊息的程式碼之前。 在[主動式訊息範例](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/16.proactive-messages)中，您可以將其放在 `index.js` 中，就在 `await turnContext.sendActivity('proactive hello');` 的前面。
 
 ---
 

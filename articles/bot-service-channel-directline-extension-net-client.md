@@ -8,18 +8,18 @@ ms.service: bot-service
 ms.topic: conceptual
 ms.author: kamrani
 ms.date: 07/25/2019
-ms.openlocfilehash: 1b3b11723cc93c32aef92250518d2ffc16435460
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: 62fda46569c6134f798b4d253a0676a037fdfa0f
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757780"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68866461"
 ---
-## <a name="create-net-client-to-connect-to-direct-line-app-service-extension"></a>建立連線至 Direct Line App Service 擴充功能的 .NET 用戶端
+# <a name="create-net-client-to-connect-to-direct-line-app-service-extension"></a>建立連線至 Direct Line App Service 擴充功能的 .NET 用戶端
 
 本文說明如何以 C# 建立連線至 Direct Line App Service 擴充功能的 .NET 用戶端。
 
-### <a name="gather-your-direct-line-extension-keys"></a>收集您的 Direct Line 擴充功能金鑰
+## <a name="gather-your-direct-line-extension-keys"></a>收集您的 Direct Line 擴充功能金鑰
 
 1. 在瀏覽器中，導覽至 [Azure 入口網站](https://portal.azure.com/)
 1. 在 Azure 入口網站中，找出您的 **Azure Bot Service** 資源
@@ -29,12 +29,12 @@ ms.locfileid: "68757780"
 1. 捲動至 [網站] 區段。 一般應會有預設網站，除非您已將其刪除或重新命名。
 1. 按一下 [顯示連結]  以顯示其中一個金鑰，然後複製其值。
 
-![App Service 擴充功能金鑰](./media/channels/direct-line-extension-extension-keys-net-client.png)
+    ![App Service 擴充功能金鑰](./media/channels/direct-line-extension-extension-keys-net-client.png)
 
 > [!NOTE]
 > 此值是您用來連線至 Direct Line App Service 擴充功能的 Direct Line 用戶端密碼。 您想要的話，也可以建立其他網站，並同樣使用這些秘密值。
 
-### <a name="add-the-preview-nuget-package-source"></a>新增預覽 Nuget 套件來源
+## <a name="add-the-preview-nuget-package-source"></a>新增預覽 Nuget 套件來源
 
 建立 C# Direct Line 用戶端所需的預覽 NuGet 套件，可在 NuGet 摘要中找到。
 
@@ -46,7 +46,7 @@ ms.locfileid: "68757780"
 1. 按一下 [更新]  按鈕以儲存這些值。
 1. 按一下 [確定]  以結束套件來源設定。
 
-### <a name="create-a-c-direct-line-client"></a>建立 C# Direct Line 用戶端
+## <a name="create-a-c-direct-line-client"></a>建立 C# Direct Line 用戶端
 
 Direct Line App Service 擴充功能的互動方式與傳統 Direct Line 有所不同，因為大部分的通訊都會透過 *WebSocket* 進行。 更新的 Direct Line 用戶端包含用來開啟和關閉 *WebSocket*、透過 WebSocket 傳送命令，以及從 Bot 接收活動的協助程式類別。 本節說明如何建立簡單的 C# 用戶端與 Bot 進行互動。
 

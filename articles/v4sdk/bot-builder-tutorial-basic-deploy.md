@@ -3,19 +3,18 @@ title: 建立和部署基本 Bot 的教學課程 | Microsoft Docs
 description: 了解如何建立基本 Bot，然後將其部署至 Azure。
 keywords: echo bot, 部署, azure, 教學課程
 author: Ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9f8b4ec1442d7647a69bd691ddca98f02e086850
-ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
+ms.openlocfilehash: 45acff9701e7a99a6ed550091745d7323a730092
+ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "68671539"
+ms.lasthandoff: 08/09/2019
+ms.locfileid: "68970679"
 ---
 # <a name="tutorial-create-and-deploy-a-basic-bot"></a>教學課程：建立及部署基本 Bot
 
@@ -87,8 +86,10 @@ az ad app create --display-name "displayName" --password "AtLeastSixteenCharacte
 
 您可以將 Bot 部署在新的資源群組或現有的資源群組中。 選擇最適合您的選項。
 
-# <a name="deploy-via-arm-template-with-new-resource-grouptabnewrg"></a>[透過 ARM 範本部署 (使用**新**資源群組)](#tab/newrg)
-
+## <a name="deploy-via-arm-template-with-new-resource-group"></a>透過 ARM 範本部署 (使用**新**資源群組)
+<!--
+## [Deploy via ARM template (with **new**  Resource Group)](#tab/nerg)
+-->
 #### <a name="create-azure-resources"></a>建立 Azure 資源
 
 您會在 Azure 中建立新的資源群組，然後使用 ARM 範本在其中建立指定資源。 在此案例中，我們提供 App Service 方案、Web 應用程式和 Bot 通道註冊。
@@ -104,7 +105,10 @@ az deployment create --name "name-of-deployment" --template-file "template-with-
 | location |位置。 值的來源：`az account list-locations`。 您可以使用 `az configure --defaults location=<location>` 來設定預設位置。 |
 | parameters | 提供部署參數值。 執行 `az ad app create` 命令時所得的 `appId` 值。 `appSecret` 是您在上一個步驟中提供的密碼。 `botId` 參數應該是全域唯一，而且會用來作為不可變的 Bot 識別碼。 此參數也會用來設定 Bot 的顯示名稱，而這是可變動的。 `botSku` 是定價層，可以是 F0 (免費) 或 S1 (標準)。 `newAppServicePlanName` 是 App Service 方案的名稱。 `newWebAppName` 是您要建立的 Web 應用程式名稱。 `groupName` 是您要建立的 Azure 資源群組名稱。 `groupLocation` 是 Azure 資源群組的位置。 `newAppServicePlanLocation` 是 App Service 方案的位置。 |
 
-# <a name="deploy-via-arm-template-with-existing--resource-grouptaberg"></a>[透過 ARM 範本部署 (使用**現有的**資源群組)](#tab/erg)
+## <a name="deploy-via-arm-template-with-existing-resource-group"></a>透過 ARM 範本部署 (使用**現有**的資源群組)
+<!--
+## [Deploy via ARM template (with **existing**  Resource Group)](#tab/erg)
+-->
 
 #### <a name="create-azure-resources"></a>建立 Azure 資源
 
@@ -117,7 +121,7 @@ az deployment create --name "name-of-deployment" --template-file "template-with-
 _注意：botId 參數應該是全域唯一，而且會用來作為不可變的 Bot 識別碼。此參數也會用來設定 Bot 的 displayName，而這是可變動的。_
 
 ```cmd
-az group deployment create --name "name-of-deployment" --resource-group "name-of-resource-group" --template-file "template-with-preexisting-rg.json" --parameters appId="msa-app-guid" appSecret="msa-app-password" botId="id-or-name-of-bot" newWebAppName="name-of-web-app" existingAppServicePlan="name-of-app-service-plan" newappServicePlanLocation="location"
+az group deployment create --name "name-of-deployment" --resource-group "name-of-resource-group" --template-file "template-with-preexisting-rg.json" --parameters appId="msa-app-guid" appSecret="msa-app-password" botId="id-or-name-of-bot" newWebAppName="name-of-web-app" existingAppServicePlan="name-of-app-service-plan" appServicePlanLocation="location"
 ```
 
 **選項 2：新的 App Service 方案** 
@@ -141,7 +145,9 @@ az group deployment create --name "name-of-deployment" --resource-group "name-of
 #### <a name="retrieve-or-create-necessary-iiskudu-files"></a>擷取或建立必要的 IIS/Kudu 檔案
 
 **針對 C# Bot**
-
+<!--
+### [C# bots](#tab/csharp)
+-->
 ```cmd
 az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "MyBot.csproj"
 ```
@@ -149,7 +155,9 @@ az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "MyBot.cspro
 您必須提供與 --code-dir 對應的 .csproj 檔案路徑。 這可以透過 --proj-file-path 引數來執行。 此命令會將 --code-dir 和 --proj-file-path 解析為 "./MyBot.csproj"
 
 **針對 JavaScript Bot**
-
+<!--
+### [Javascript bots](#tab/javascript)
+-->
 ```cmd
 az bot prepare-deploy --code-dir "." --lang Javascript
 ```
