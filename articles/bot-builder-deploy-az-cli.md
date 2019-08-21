@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: bot-service
 ms.date: 08/06/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e8ad6d3f365fefef3e2a6978802bfb02688d317c
-ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
+ms.openlocfilehash: 4578cfcb497825c8928c066178ca3b28bb4540bf
+ms.sourcegitcommit: c2fbd002315759af9853ecaf0ec9dca7923f438f
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68970584"
+ms.lasthandoff: 08/16/2019
+ms.locfileid: "69520960"
 ---
 # <a name="deploy-your-bot"></a>部署您的 Bot
 
@@ -73,7 +73,10 @@ az ad app create --display-name "displayName" --password "AtLeastSixteenCharacte
 上述命令會輸出具有 `appId` 索引鍵的 JSON，請儲存此索引鍵的值以用於 ARM 部署，該值會用在 `appId` 參數上。 提供的密碼將會用於 `appSecret` 參數。
 
 > [!NOTE] 
-> 如果想要使用現有的應用程式註冊，您可以使用下列命令：az bot create --kind webapp --resource-group "name-of-resource-group" --name "name-of-web-app" --appid "existing-app-id" --password "existing-app-password" --lang "Javascript | Csharp"_
+> 如果您想要使用現有的應用程式註冊，您可以使用命令：
+> ``` cmd
+> az bot create --kind webapp --resource-group "<name-of-resource-group>" --name "<name-of-web-app>" --appid "<existing-app-id>" --password "<existing-app-password>" --lang <Javascript|Csharp>
+> ```
 
 您可以將 Bot 部署在新的資源群組或現有的資源群組中。 選擇最適合您的選項。
 

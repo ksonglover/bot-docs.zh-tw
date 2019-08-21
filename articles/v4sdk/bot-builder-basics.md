@@ -7,15 +7,14 @@ ms.author: johtaylo
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 187a8427fd8627b0ce6b812ce8ee857e62b0394d
-ms.sourcegitcommit: a47183f5d1c2b2454c4a06c0f292d7c075612cdd
+ms.openlocfilehash: c728962141c1beec89f2830fa15d5985922ddfa5
+ms.sourcegitcommit: 3eaf06dd9691a27a1cd4a7f6434e922cd530795a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2019
-ms.locfileid: "67252685"
+ms.lasthandoff: 08/17/2019
+ms.locfileid: "69565391"
 ---
 # <a name="how-bots-work"></a>Bot 的運作方式
 
@@ -142,13 +141,16 @@ Bot 邏輯會處理來自從一或多個通道的傳入活動，並產生傳出�
 | Event | 處理常式 | 說明 |
 | :-- | :-- | :-- |
 | 收到的任何活動類型 | `OnTurnAsync` | 根據所收到的活動型別，呼叫其中一個其他處理常式。 |
-| 收到的訊息活動 | `OnMessageActivityAsync` | 覆寫此項目以處理 `Message` 活動。 |
-| 收到的交談更新活動 | `OnConversationUpdateActivityAsync` | 在 `ConversationUpdate` 活動上，如有 Bot 以外的成員加入或離開交談，則會呼叫處理常式。 |
+| 收到的訊息活動 | `OnMessageActivityAsync` | 覆寫此項目以處理 `message` 活動。 |
+| 收到的交談更新活動 | `OnConversationUpdateActivityAsync` | 在 `conversationUpdate` 活動上，如有 Bot 以外的成員加入或離開交談，則會呼叫處理常式。 |
 | 已加入交談的非 Bot 成員 | `OnMembersAddedAsync` | 覆寫此項目以處理要加入交談的成員。 |
 | 已離開交談的非 Bot 成員 | `OnMembersRemovedAsync` | 覆寫此項目以處理要離開交談的成員。 |
-| 收到的事件活動 | `OnEventActivityAsync` | 在 `Event` 活動上，呼叫事件類型特有的處理常式。 |
+| 收到的事件活動 | `OnEventActivityAsync` | 在 `event` 活動上，呼叫事件類型特有的處理常式。 |
 | 收到的權杖回應事件活動 | `OnTokenResponseEventAsync` | 覆寫此項目以處理權杖回應事件。 |
 | 收到的非權杖回應事件活動 | `OnEventAsync` | 覆寫此項目以處理其他類型的事件。 |
+| 已接收訊息回應活動 | `OnMessageReactionActivityAsync` | 在 `messageReaction` 活動上，如果在訊息中新增或移除一或多個回應，則會呼叫處理常式。 |
+| 新增至訊息的訊息反應 | `OnReactionsAddedAsync` | 覆寫此參數以處理新增至訊息的反應。 |
+| 從訊息移除的訊息反應 | `OnReactionsRemovedAsync` | 覆寫此參數以處理從訊息移除的反應。 |
 | 收到的其他活動類型 | `OnUnrecognizedActivityTypeAsync` | 覆寫此項目以處理任何未處理的活動類型。 |
 
 這些不同的處理常式都有 `turnContext`，其可提供連入活動 (對應至輸入 HTTP 要求) 的相關資訊。 活動可以是各種類型，所以每個處理常式都會在其回合內容參數中提供強型別活動；在大部分情況下，一律處理通常最常見的 `OnMessageActivityAsync`。
@@ -186,15 +188,20 @@ public class MyBot : ActivityHandler
 
 | Event | 處理常式 | 說明 |
 | :-- | :-- | :-- |
-| 收到的任何活動類型 | `onTurn` | 根據所收到的活動型別，呼叫其中一個其他處理常式。 |
-| 收到的訊息活動 | `onMessage` | 為此項目提供函式以處理 `Message` 活動。 |
-| 收到的交談更新活動 | `onConversationUpdate` | 在 `ConversationUpdate` 活動上，如有 Bot 以外的成員加入或離開交談，則會呼叫處理常式。 |
-| 已加入交談的非 Bot 成員 | `onMembersAdded` | 為此項目提供函式以處理要加入交談的成員。 |
-| 已離開交談的非 Bot 成員 | `onMembersRemoved` | 為此項目提供函式以處理要離開交談的成員。 |
-| 收到的事件活動 | `onEvent` | 在 `Event` 活動上，呼叫事件類型特有的處理常式。 |
-| 收到的權杖回應事件活動 | `onTokenResponseEvent` | 為此項目提供函式以處理權杖回應事件。 |
-| 收到的其他活動類型 | `onUnrecognizedActivityType` | 為此項目提供函式以處理任何未處理的活動類型。 |
-| 活動處理常式已完成 | `onDialog` | 為此項目提供函式，以在其餘的活動處理常式完成之後，處理任何應在回合結束時進行的處理。 |
+| 收到的任何活動類型 | `onTurn` | 收到任何活動時呼叫。 |
+| 收到的訊息活動 | `onMessage` | 收到 `message` 活動時呼叫。 |
+| 收到的交談更新活動 | `onConversationUpdate` | 收到任何 `conversationUpdate` 活動時呼叫。 |
+| 已加入對話的成員 | `onMembersAdded` | 在任何成員加入對話時呼叫 (包含 Bot)。 |
+| 成員已離開對話 | `onMembersRemoved` | 在任何成員離開對話時呼叫 (包含 Bot)。 |
+| 已接收訊息回應活動 | `onMessageReaction` | 收到任何 `messageReaction` 活動時呼叫。 |
+| 新增至訊息的訊息反應 | `onReactionsAdded` | 當反應新增至訊息時呼叫。 |
+| 從訊息移除的訊息反應 | `onReactionsRemoved` | 當反應從訊息移除時呼叫。 |
+| 收到的事件活動 | `onEvent` | 收到任何 `event` 活動時呼叫。 |
+| 收到的權杖回應事件活動 | `onTokenResponseEvent` | 收到任何 `tokens/response` 事件時呼叫。 |
+| 收到的其他活動類型 | `onUnrecognizedActivityType` | 當未定義特定活動類型的處理常式時呼叫。 |
+| 活動處理常式已完成 | `onDialog` | 在任何適用的處理常式完成後呼叫。 |
+
+從每個處理常式的 `next` 函式參數呼叫，以允許繼續處理。 如果未呼叫 `next`，活動的處理就會結束。
 
 在每個回合上，我們會先查看 Bot 是否已收到訊息。 當我們收到來自使用者的訊息時，我們會回應他們所傳送的訊息。
 
