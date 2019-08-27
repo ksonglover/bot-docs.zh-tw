@@ -5,7 +5,9 @@
 # [JavaScript 移轉快速參考](javascript-migration-quickreference.md)
 # [將 .NET v3 Bot 遷移至 .NET Framework v4 bot](conversion-framework.md)
 # [將 .NET v3 Bot 遷移至 .NET Core v4 bot](conversion-core.md)
-# [將 JavaScript v3 bot 遷移至 v4](conversion-javascript.md)
+# [在 v4 bot 中使用 .NET v3 使用者狀態](csharp-user-state-using.md)
+# [將 JavaScript v3 bot 遷移至 v4 bot](conversion-javascript.md)
+<!-- Remember to add JavaScript user state topic -->
 
 <!-- Current target:
 _intro/overview_
