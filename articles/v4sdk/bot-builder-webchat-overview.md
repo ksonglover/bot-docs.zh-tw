@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 06/07/2019
-ms.openlocfilehash: 2575ac196bd3e875d8523da99d7114b789e70558
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: e5a6320a645f55fe9e023688af23ec8fe62e3006
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757096"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037379"
 ---
 # <a name="web-chat-overview"></a>網路聊天概觀
 
@@ -27,7 +27,7 @@ ms.locfileid: "68757096"
 > 如需舊版網路聊天 (v3)，請瀏覽[網路聊天 v3 分支](https://github.com/Microsoft/BotFramework-WebChat/tree/v3)。
 
 首先，請使用 [Azure Bot Service](https://azure.microsoft.com/services/bot-service/) 建立聊天機器人。
-聊天機器人建立好之後，您必須在 Azure 入口網站中[取得聊天機器人的網路聊天祕密](../bot-service-channel-connect-webchat.md#step-1)。 然後使用該祕密[產生權杖](../rest-api/bot-framework-rest-direct-line-3-0-authentication.md)，並將權杖傳遞至網路聊天。
+聊天機器人建立好之後，您必須在 Azure 入口網站中[取得聊天機器人的網路聊天祕密](../bot-service-channel-connect-webchat.md#get-your-bot-secret-key)。 然後使用該祕密[產生權杖](../rest-api/bot-framework-rest-direct-line-3-0-authentication.md)，並將權杖傳遞至網路聊天。
 
 以下說明如何將網路聊天控制項新增至網站：
 

@@ -3,31 +3,29 @@ title: 實作循序對話流程 | Microsoft Docs
 description: 了解如何在 Bot Framework SDK 中利用交談管理簡單的交談流程。
 keywords: 簡單對話流程, 循序對話流程, 對話, 提示, 瀑布, 對話方塊集
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 07/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c3c116eec8222ce50cd7dde672cc86f9765a3f97
-ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
+ms.openlocfilehash: 27d7e5ee6edd4cedfb9d59b318d9a3765e2f0ad8
+ms.sourcegitcommit: 9e1034a86ffdf2289b0d13cba2bd9bdf1958e7bc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/12/2019
-ms.locfileid: "67587479"
+ms.lasthandoff: 08/21/2019
+ms.locfileid: "69890603"
 ---
 # <a name="implement-sequential-conversation-flow"></a>實作循序對話流程
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-張貼問題來收集資訊是 Bot 與使用者互動時的其中一種主要方式。 dialogs 程式庫提供實用的內建功能 (例如*提示*類別)，可讓您輕鬆地詢問問題，以及驗證回應以確保回應符合特定資料類型或符合自訂驗證規則。 
+張貼問題來收集資訊是 Bot 與使用者互動時的其中一種主要方式。 dialogs 程式庫提供實用的內建功能 (例如*提示*類別)，可讓您輕鬆地詢問問題，以及驗證回應以確保回應符合特定資料類型或符合自訂驗證規則。
 
-您可以使用對話方塊程式庫來管理簡單和複雜的對話流程。 在簡單互動中，Bot 透過一連串固定的步驟執行，然後完成對話。 一般而言，當 Bot 需要向使用者蒐集資訊時，對話就很實用。 本主題詳細說明如何建立提示並從瀑布對話進行呼叫，以實作簡單的交談流程。 
+您可以使用對話方塊程式庫來管理簡單和複雜的對話流程。 在簡單互動中，Bot 透過一連串固定的步驟執行，然後完成對話。 一般而言，當 Bot 需要向使用者蒐集資訊時，對話就很實用。 本主題詳細說明如何建立提示並從瀑布對話進行呼叫，以實作簡單的交談流程。
 
 > [!TIP]
-> 如需查閱範例來了解如何撰寫您自己的提示而不使用對話程式庫，請參閱[建立您自己的提示，以收集使用者輸入](bot-builder-primitive-prompts.md)一文。 
-
+> 如需查閱範例來了解如何撰寫您自己的提示而不使用對話程式庫，請參閱[建立您自己的提示，以收集使用者輸入](bot-builder-primitive-prompts.md)一文。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -39,7 +37,7 @@ ms.locfileid: "67587479"
 在多回合提示範例中，我們會使用瀑布式對話、一些提示和元件對話來建立簡單互動，以詢問使用者一系列的問題。 程式碼會使用對話方塊來循環下列步驟：
 
 | 步驟        | 提示類型  |
-|:-------------|:-------------| 
+|:-------------|:-------------|
 | 要求使用者的運輸模式 | 選擇提示 |
 | 要求使用者的名稱 | 文字提示 |
 | 詢問使用者是否要提供年齡 | 確認提示 |
@@ -67,8 +65,6 @@ Bot 會透過 `UserProfileDialog` 與使用者互動。 當我們建立 Bot 的 
 [!code-csharp[Constructor snippet](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=22-41)]
 
 接下來，我們會實作對話使用的步驟。 若要使用提示，請從您對話中的步驟中呼叫，並在下列步驟中使用 `stepContext.Result` 擷取提示結果。 在幕後，提示為兩個步驟的對話方塊。 第一步，提示會要求輸入；第二步，其會傳回有效值，或利用重新提示從頭開始，直到其收到有效輸入為止。
-
-
 
 您應該一律從瀑布式步驟傳回非 Null 的 `DialogTurnResult`。 如果不這麼做，您的對話可能無法依照設計方式運作。 我們在此示範如何在瀑布式對話中實作 `NameStepAsync`。
 
@@ -104,17 +100,17 @@ Bot 會透過 `UserProfileDialog` 與使用者互動。 當我們建立 Bot 的 
 
 在 `UserProfileDialog` 建構函式中，建立瀑布式步驟、提示和瀑布式對話，然後將其新增至對話集。 提示必須位於其使用所在的相同對話集中。
 
-[!code-javascript[Constructor snippet](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=25-47)]
+[!code-javascript[Constructor snippet](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=25-45)]
 
 接下來，我們會實作對話使用的步驟。 若要使用提示，請從您對話中的步驟中呼叫，並從步驟內容的下列步驟中擷取提示結果，在此例中請使用 `step.result`。 在幕後，提示為兩個步驟的對話方塊。 第一步，提示會要求輸入；第二步，其會傳回有效值，或利用重新提示從頭開始，直到其收到有效輸入為止。
 
 您應該一律從瀑布式步驟傳回非 Null 的 `DialogTurnResult`。 如果不這麼做，您的對話可能無法依照設計方式運作。 我們在此示範如何在瀑布式對話中實作 `nameStep`。
 
-[!code-javascript[name step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=75-78)]
+[!code-javascript[name step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=73-76)]
 
 在 `ageStep` 中，我們會在使用者的輸入驗證失敗時指定重試提示，而驗證失敗是因為提示無法剖析其格式，或輸入不符合驗證準則 (在前述建構函式中指定)。 在此情況下，如果未提供任何重試提示，則提示會使用初始提示文字來重新提示使用者提供輸入。
 
-[!code-javascript[age step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=90-101&highlight=5)]
+[!code-javascript[age step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=88-99&highlight=5)]
 
 **userProfile.js**
 
@@ -126,7 +122,7 @@ Bot 會透過 `UserProfileDialog` 與使用者互動。 當我們建立 Bot 的 
 
 在最後一個步驟中，我們會檢查由前一個瀑布式步驟中呼叫的對話所傳回的 `step.result`。 如果傳回的值為 true，我們會使用使用者設定檔存取子來取得及更新使用者設定檔。 若要取得使用者設定檔，我們會呼叫 `get` 方法，然後設定 `userProfile.transport`、`userProfile.name` 和 `userProfile.age` 屬性的值。 最後，我們會先摘要說明使用者資訊，再呼叫 `endDialog` 來結束對話。 結束對話就會將其從對話堆疊中取出，並將選擇性結果傳回給對話的父代。 父代是開始剛剛結束對話的對話或方法。
 
-[!code-javascript[summary step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=115-136&highlight=4-8,20-21)]
+[!code-javascript[summary step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=113-134&highlight=4-8,20-21)]
 
 **建立擴充方法來執行瀑布式對話方塊**
 
@@ -136,7 +132,7 @@ Bot 會透過 `UserProfileDialog` 與使用者互動。 當我們建立 Bot 的 
 
 對話內容可讓您開始一個具有字串識別碼的對話，或繼續目前的對話 (例如具有多個步驟的瀑布式對話)。 對話內容會傳遞至 Bot 的對話和瀑布式步驟。
 
-[!code-javascript[run method](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=55-64)]
+[!code-javascript[run method](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=53-62)]
 
 ---
 
@@ -154,7 +150,9 @@ Bot 會透過 `UserProfileDialog` 與使用者互動。 當我們建立 Bot 的 
 
 `onMessage` 處理常式會使用協助程式方法來開始或繼續對話。 在 `onDialog` 中，我們會使用 Bot 的狀態管理物件將任何狀態變更保存到儲存體。 (在其他已定義的處理常式 (例如 `onMessage`) 執行之後，最後會呼叫 `onDialog` 方法。 如此一來，我們會在訊息處理常式完成後，但在回合本身完成之前儲存狀態。)
 
-[!code-javascript[overrides](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/bots/dialogBot.js?range=30-44)]
+**bots/dialogBot.js**
+
+[!code-javascript[overrides](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/bots/dialogBot.js?range=24-38&highlight=11-13)]
 
 ---
 
@@ -172,15 +170,15 @@ Bot 會透過 `UserProfileDialog` 與使用者互動。 當我們建立 Bot 的 
 
 我們會在 `Startup` 中為 Bot 註冊服務。 這些服務可透過相依性插入來提供給程式碼的其他部分。
 
-[!code-csharp[ConfigureServices](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Startup.cs?range=17-41)]
+[!code-csharp[ConfigureServices](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Startup.cs?range=17-39)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 **index.js**
 
-我們會在 `index.js` 中為 Bot 註冊服務。 
+我們會在 `index.js` 中為 Bot 註冊服務。
 
-[!code-javascript[overrides](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/index.js?range=18-49)]
+[!code-javascript[overrides](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/index.js?range=18-46)]
 
 ---
 

@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 8dfa76d02b2338916011040771a1c1b7e7cb7d76
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: 0b9e2c406ee20535dfb065639beda8b66d0a2996
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68756911"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037351"
 ---
 # <a name="send-an-activity-to-the-bot"></a>將活動傳送至 Bot
 
@@ -20,7 +20,7 @@ ms.locfileid: "68756911"
 
 ## <a name="send-an-activity"></a>傳送活動
 
-若要將活動傳送至 Bot，用戶端必須建立 `Activity` 物件以定義活動，然後在要求本文中指定活動物件，並對 `https://directline.botframework.com/v3/directline/conversations/{conversationId}/activities` 發出 `POST` 要求。
+若要將活動傳送至 Bot，用戶端必須建立[活動][]物件以定義活動，然後在要求本文中指定活動物件，並對 `https://directline.botframework.com/v3/directline/conversations/{conversationId}/activities` 發出 `POST` 要求。
 
 下列程式碼片段提供「傳送活動」要求和回應的範例。
 
@@ -75,11 +75,11 @@ HTTP/1.1 200 OK
 
 ## <a name="send-attachments-to-the-bot"></a>將附件傳送至 Bot
 
-在某些情況下，用戶端可能需要將影像或文件之類的附件傳送至 Bot。 用戶端可藉由在其使用 `POST /v3/directline/conversations/{conversationId}/activities` 傳送的 `Activity` 物件內為附件[指定 URL](#send-by-url)，或藉由使用 `POST /v3/directline/conversations/{conversationId}/upload` 來[上傳附件](#upload-attachments)，將附件傳送至 Bot。
+在某些情況下，用戶端可能需要將影像或文件之類的附件傳送至 Bot。 用戶端可藉由在它要使用 `POST /v3/directline/conversations/{conversationId}/activities` 傳送的[活動][]物件內為附件[指定 URL](#send-by-url)，或藉由使用 `POST /v3/directline/conversations/{conversationId}/upload` 來[上傳附件](#upload-attachments)，將附件傳送至 Bot。
 
 ## <a id="send-by-url"></a>依 URL 傳送附件
 
-若要使用 `POST /v3/directline/conversations/{conversationId}/activities` 傳送隨附於 `Activity` 物件的一或多個附件，只需將一或多個 `Attachment` 物件包含在活動物件內，並設定每個附件物件的 `contentUrl` 屬性以指定附件的 HTTP、HTTPS 或 `data` URI 即可。
+若要使用 `POST /v3/directline/conversations/{conversationId}/activities` 傳送隨附於[活動][]物件的一或多個附件，只需將一或多個[附件][]物件包含在活動物件內，並設定每個附件物件的 `contentUrl` 屬性以指定附件的 HTTP、HTTPS 或 `data` URI 即可。
 
 ## <a id="upload-attachments"></a>藉由上傳來傳送附件
 
@@ -192,3 +192,6 @@ HTTP/1.1 200 OK
 - [從 Bot 接收活動](bot-framework-rest-direct-line-3-0-receive-activities.md)
 - [結束對話](bot-framework-rest-direct-line-3-0-end-conversation.md)
 - [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)
+
+[活動]: bot-framework-rest-connector-api-reference.md#activity-object
+[附件]: bot-framework-rest-connector-api-reference.md#attachment-object

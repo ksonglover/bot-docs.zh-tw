@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 3cbc28bf228d8b8106bce40b5c39b5baf287a287
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: e5d0ee3ffd97de190c4e009fe96568b1463c07ab
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757131"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037471"
 ---
 # <a name="add-speech-to-messages"></a>將語音新增至訊息
 > [!div class="op_single_selector"]
@@ -24,7 +24,7 @@ ms.locfileid: "68757131"
 
 ## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定要由 Bot 讀出的文字
 
-若要指定將由 Bot 在支援語音的通道上讀出的文字，請在代表訊息的 `Activity` 物件中設定 `speak` 屬性。 您可以將 `speak` 屬性設定為純文字字串或格式化為<a href="https://docs.microsoft.com/azure/cognitive-services/speech-service/speech-synthesis-markup" target="_blank">語音合成標記語言 (SSML)</a> 的字串，SSML 是一種以 XML 為基礎的標記語言，可讓您控制 Bot 語音的各種特性，例如聲音、速率、音量、發音、音調等等。 
+若要指定將由 Bot 在啟用語音通道上讀出的文字，請在代表您訊息的 [Activity][] 物件中設定 `speak` 屬性。 您可以將 `speak` 屬性設定為純文字字串或格式化為<a href="https://docs.microsoft.com/azure/cognitive-services/speech-service/speech-synthesis-markup" target="_blank">語音合成標記語言 (SSML)</a> 的字串，SSML 是一種以 XML 為基礎的標記語言，可讓您控制 Bot 語音的各種特性，例如聲音、速率、音量、發音、音調等等。 
 
 下列要求會傳送一則訊息，其中指定要顯示的文字和要讀出的文字，並指出 Bot [需要使用者輸入](bot-framework-rest-connector-add-input-hints.md)。 其會使用 <a href="https://docs.microsoft.com/azure/cognitive-services/speech-service/speech-synthesis-markup" target="_blank">SSML</a> 格式來指定 `speak` 屬性，表示應以適度強調的方式讀出 "sure" 這個字。 在此範例要求中，`https://smba.trafficmanager.net/apis` 表示基底 URI，您的 Bot 所發出之要求的基底 URI 可能和這個不同。 如需設定基底 URI 的詳細資訊，請參閱 [API 參考](bot-framework-rest-connector-api-reference.md#base-uri)。
 
@@ -67,3 +67,5 @@ Content-Type: application/json
 - [將輸入提示新增至訊息](bot-framework-rest-connector-add-input-hints.md)
 - [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)
 - <a href="https://docs.microsoft.com/azure/cognitive-services/speech-service/speech-synthesis-markup" target="_blank">語音合成標記語言 (SSML)</a> \(英文\)
+
+[Activity]: bot-framework-rest-connector-api-reference.md#activity-object

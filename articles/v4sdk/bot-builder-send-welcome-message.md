@@ -3,19 +3,18 @@ title: 將歡迎訊息傳送給使用者 | Microsoft Docs
 description: 了解如何開發 Bot，以提供親切的使用者體驗。
 keywords: 概觀, 開發, 使用者體驗, 歡迎, 個人化體驗, C#, JS, 歡迎訊息, Bot, 問候, 問候語
 author: DanDev33
-ms.author: v-dashel
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 24009289f65d214663693aa9221f9e076ba93bc2
-ms.sourcegitcommit: d29d3d7ccef401aa1e84e19e623db33b5ff13e63
+ms.openlocfilehash: df1d0b7553958664c57147b5a45520b591a965f4
+ms.sourcegitcommit: 9e1034a86ffdf2289b0d13cba2bd9bdf1958e7bc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/17/2019
-ms.locfileid: "67160627"
+ms.lasthandoff: 08/21/2019
+ms.locfileid: "69890625"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
@@ -60,7 +59,7 @@ Bot 會遇到的兩個主要事件為
 使用者狀態物件會在啟動時建立，而相依性會插入 Bot 建構函式。
 
 **Startup.cs**  
-[!code-csharp[ConfigureServices](~/../botBuilder-samples/samples/csharp_dotnetcore/03.welcome-user/Startup.cs?range=29-33)]
+[!code-csharp[ConfigureServices](~/../botBuilder-samples/samples/csharp_dotnetcore/03.welcome-user/Startup.cs?range=30-34)]
 
 **WelcomeUserBot.cs**  
 [!code-csharp[Class](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=41-47)]
@@ -69,7 +68,7 @@ Bot 會遇到的兩個主要事件為
 在啟動時，會將記憶體儲存體與使用者狀態同時定義於 index.js 中。
 
 **Index.js**  
-[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/Index.js?range=8-10,33-41)]
+[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/Index.js?range=8-10,32-39)]
 
 ---
 
@@ -85,7 +84,9 @@ Bot 會遇到的兩個主要事件為
 現在，我們會建立屬性存取子來獲得 UserState 中所保存 WelcomedUserProperty 的控制代碼。
 
 **WelcomeBot.js**  
-[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=7-10,16-22)]
+[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=7-9)]
+
+[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=17-22)]
 
 ---
 
@@ -101,7 +102,7 @@ Bot 會遇到的兩個主要事件為
 此 JavaScript 程式碼會在有新增的使用者時，傳送初始歡迎訊息。 其方法是檢查對話活動並確認對話中是否已新增新的成員。
 
 **WelcomeBot.js**  
-[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=65-87)]
+[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=65-88)]
 
 ---
 

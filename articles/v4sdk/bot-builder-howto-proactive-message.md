@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0c5268a16f7dcff8e46d3a14f32409517eb98489
-ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
+ms.openlocfilehash: bb243e1530155819afb4ab4061da1e29908f58e4
+ms.sourcegitcommit: 008aa6223aef800c3abccda9a7f72684959ce5e7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68970715"
+ms.lasthandoff: 08/26/2019
+ms.locfileid: "70026354"
 ---
 # <a name="send-proactive-notifications-to-users"></a>將主動式通知傳送給使用者
 
@@ -81,7 +81,7 @@ ms.locfileid: "68970715"
 每當要求 Bot 的通知頁面時，通知控制器就會從字典中擷取對話參考。
 接著，控制器會使用 `ContinueConversationAsync` 和 `BotCallback` 方法來傳送主動訊息。
 
-[!code-csharp[Notify logic](~/../botbuilder-samples/samples/csharp_dotnetcore/16.proactive-messages/Controllers/NotifyController.cs?range=17-59&highlight=28,40-43)]
+[!code-csharp[Notify logic](~/../botbuilder-samples/samples/csharp_dotnetcore/16.proactive-messages/Controllers/NotifyController.cs?range=17-60&highlight=28,40-43)]
 
 若要傳送主動訊息，配接器會需要 Bot 的應用程式識別碼。 在生產環境中，您可以使用 Bot 的應用程式識別碼。 在本機測試環境中，您可以使用任何 GUID。 如果 Bot 目前尚未獲派應用程式識別碼，通知控制器會自行產生用於呼叫的預留位置識別碼。
 
@@ -93,7 +93,7 @@ ms.locfileid: "68970715"
 接著，伺服器會使用 `continueConversation` 方法來傳送主動訊息。
 `continueConversation` 的參數是一個函式，作為 Bot 在這一回合的回合處理常式。
 
-[!code-javascript[Notify logic](~/../botbuilder-samples/samples/javascript_nodejs/16.proactive-messages/index.js?range=56-62&highlight=4-5)]
+[!code-javascript[Notify logic](~/../botbuilder-samples/samples/javascript_nodejs/16.proactive-messages/index.js?range=56-68&highlight=4-5)]
 
 ---
 

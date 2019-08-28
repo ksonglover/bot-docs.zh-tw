@@ -8,18 +8,15 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 04/18/2019
-ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 75f6cc720042ad7f10c0b016dedba7af5fd84435
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: b3e2a2f60c3a3f44c81e31b280315d8fee06138b
+ms.sourcegitcommit: 008aa6223aef800c3abccda9a7f72684959ce5e7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68756995"
+ms.lasthandoff: 08/26/2019
+ms.locfileid: "70026329"
 ---
 # <a name="handle-user-interruptions"></a>處理使用者中斷
-
-<!-- Rebuild to link to published samples in the master branch -->
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
@@ -32,14 +29,14 @@ ms.locfileid: "68756995"
 
 ## <a name="about-this-sample"></a>關於此範例
 
-本文所使用的範例會設計一個預訂航班的 Bot，其會使用對話方塊來向使用者取得航班資訊。 使用者可以在與 Bot 對話期間，隨時發出 _或 _命令來中斷對話。 在此，我們會處理兩種中斷：
+本文所使用的範例會設計一個預訂航班的 Bot，其會使用對話方塊來向使用者取得航班資訊。 使用者可以在與 Bot 對話期間，隨時發出_協助_或_取消_命令來中斷對話。 在此，我們會處理兩種中斷：
 
 - **回合層級**：略過回合層級的處理，但讓對話方塊與所提供的資訊留在堆疊上。 在下一個回合時，從我們離開的地方接續進行。 
 - **對話方塊層級**：完全取消處理，讓 Bot 可以重新來過一次。
 
 ## <a name="define-and-implement-the-interruption-logic"></a>定義和實作中斷邏輯
 
-首先，我們要定義並實作 _和 _中斷。
+首先，我們要定義並實作_協助_和_取消_中斷。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -49,7 +46,7 @@ ms.locfileid: "68756995"
 
 一開始，我們會先實作 `CancelAndHelpDialog` 類別來處理使用者中斷。
 
-[!code-csharp[Class signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=10)]
+[!code-csharp[Class signature](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=12)]
 
 在 `CancelAndHelpDialog` 類別中，`OnContinueDialogAsync` 方法會呼叫 `InerruptAsync` 方法來檢查使用者是否已中斷一般流程。 如果流程已中斷，則會呼叫基底類別方法；，否則會從 `InterruptAsync` 傳回傳回值。
 
@@ -93,7 +90,7 @@ ms.locfileid: "68756995"
 
 有新的訊息活動送達時，Bot 會執行 `MainDialog`。 `MainDialog` 會提示使用者其能提供什麼協助。 然後，其會藉由呼叫 `BeginDialogAsync` 在 `MainDialog.ActStepAsync` 方法中啟動 `BookingDialog`，如下所示。
 
-[!code-csharp[ActStepAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/MainDialog.cs?range=58-101&highlight=82-83)]
+[!code-csharp[ActStepAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/MainDialog.cs?range=58-101&highlight=6,26)]
 
 接下來，在 `MainDialog` 類別的 `FinalStepAsync` 方法中，預約對話方塊會結束，並認為預約已完成或取消。
 
@@ -107,7 +104,7 @@ ms.locfileid: "68756995"
 
 有新的訊息活動送達時，Bot 會執行 `MainDialog`。 `MainDialog` 會提示使用者其能提供什麼協助。 然後，其會藉由呼叫 `beginDialog` 在 `MainDialog.actStep` 方法中啟動 `bookingDialog`，如下所示。
 
-[!code-javascript[Act step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=90-97&highlight=96-97)]
+[!code-javascript[Act step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=71-112&highlight=6,27)]
 
 接下來，在 `MainDialog` 類別的 `finalStep` 方法中，預約對話方塊會結束，並認為預約已完成或取消。
 
@@ -147,7 +144,7 @@ ms.locfileid: "68756995"
 
 最後，在 `Startup.cs` 中會建立暫時性的 Bot，且每一回合都會建立新的 Bot 執行個體。
 
-[!code-csharp[Add transient bot](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Startup.cs?range=47-48)]
+[!code-csharp[Add transient bot](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Startup.cs?range=43-44)]
 
 如需參考，以下是呼叫中用來建立上述 Bot 的類別定義。
 
@@ -161,7 +158,7 @@ ms.locfileid: "68756995"
 
 最後，在 `index.js` 中便會建立 Bot。
 
-[!code-javascript[Create bot](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=69-73)]
+[!code-javascript[Create bot](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=65)]
 
 如需參考，以下是呼叫中用來建立上述 Bot 的類別定義。
 
@@ -185,7 +182,7 @@ ms.locfileid: "68756995"
 
 - 您應該傳送預設回應，而不是毫無作為，讓使用者臆測究竟發生什麼事。 預設回應應該告知使用者 Bot 可以理解哪些命令，讓使用者可以回到正軌。
 
-- 在回合中的任何時點，回合內容的 _屬性都會指出 Bot 是否已在這個回合傳送訊息給使用者。 回合結束之前，Bot 應該會傳送某些訊息給使用者，即使是簡單的輸入通知也是如此。
+- 在回合中的任何時點，回合內容的_回應_屬性都會指出 Bot 是否已在這個回合傳送訊息給使用者。 回合結束之前，Bot 應該會傳送某些訊息給使用者，即使是簡單的輸入通知也是如此。
 
 <!-- Footnote-style links -->
 

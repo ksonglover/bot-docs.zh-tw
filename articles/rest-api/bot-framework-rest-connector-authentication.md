@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 645ab3c8bcf2bc253128219b5aa1332d8ae23dc1
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: 8f9b66165c0f88b92d81bfec58fd20a182e43e1d
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757054"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037532"
 ---
 # <a name="authentication"></a>Authentication
 
@@ -180,7 +180,7 @@ GET https://login.botframework.com/v1/.well-known/keys
 
 回應主體會以 [JWK 格式](https://tools.ietf.org/html/rfc7517) \(英文\) 指定文件，但也會針對每個金鑰包含額外屬性：`endorsements`。 金鑰清單本身相對穩定，並可以長時間進行快取 (在 Bot Framework SDK 中的預設值為 5 天)。
 
-每個金鑰內的 `endorsements` 屬性都包含一或多個簽署字串，您可以使用這些字串來驗證連入要求 `Activity` 物件內的 `channelId` 屬性所指定的通道識別碼是否真確。 需要進行簽署之通道識別碼的清單，可在每個 Bot 內設定。 根據預設，它將會是所有已發佈之通道識別碼的清單，雖然 Bot 開發人員可能會覆寫特定通道識別碼的值。 
+每個金鑰內的 `endorsements` 屬性都包含一或多個簽署字串，您可以使用這些字串來驗證連入要求 [Activity][] 物件內的 `channelId` 屬性所指定之通道識別碼的真確性。 需要進行簽署之通道識別碼的清單，可在每個 Bot 內設定。 根據預設，它將會是所有已發佈之通道識別碼的清單，雖然 Bot 開發人員可能會覆寫特定通道識別碼的值。 
 
 ### <a name="step-4-verify-the-jwt-token"></a>步驟 4：驗證 JWT 權杖
 
@@ -194,7 +194,7 @@ JWT 剖析程式庫可供許多平台使用，且大多數都會針對 JWT 權�
 4. 權杖包含具有與 Bot 的 Microsoft 應用程式識別碼相等之值的「對象」宣告。
 5. 權杖仍處於其有效期間之內。 業界標準的時鐘誤差為 5 分鐘。
 6. 透過使用於在[步驟 2](#openid-metadata-document) 中所擷取之 Open ID 中繼資料文件的 `id_token_signing_alg_values_supported` 屬性中所指定的簽署演算法，搭配列於在[步驟 3](#connector-to-bot-step-3) 中所擷取之 OpenID 金鑰文件中的金鑰，使權杖具有有效的密碼編譯簽章。
-7. 權杖包含 "serviceUrl" 宣告，其值符合連入要求 `Activity` 物件根目錄中的 `servieUrl` 屬性。 
+7. 權杖包含 "serviceUrl" 宣告，其值符合連入要求之 [Activity][] 物件根目錄中的 `servieUrl` 屬性。 
 
 若通道識別碼需要進行簽署：
 
@@ -392,3 +392,5 @@ payload:
 - [JSON Web 權杖 (JWT) draft-jones-json-web-token-07](http://openid.net/specs/draft-jones-json-web-token-07.html) \(英文\)
 - [JSON Web 簽章 (JWS) draft-jones-json-web-signature-04](https://tools.ietf.org/html/draft-jones-json-web-signature-04) \(英文\)
 - [JSON Web 金鑰 (JWK) RFC 7517](https://tools.ietf.org/html/rfc7517) \(英文\)
+
+[Activity]: bot-framework-rest-connector-api-reference.md#activity-object
