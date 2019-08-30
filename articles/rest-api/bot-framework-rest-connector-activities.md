@@ -7,16 +7,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 69c58e1e6bd9da4b07e21f8ca3eb029d2dec9e75
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: 706568a5d2fa7ef815d7d169c74a2fa5061b3ab1
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757181"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037558"
 ---
 # <a name="activities-overview"></a>活動概觀
 
-Bot 連接器服務會藉由傳遞 `Activity` 物件，在 Bot 與通道 (使用者) 之間交換資訊。 最常見的活動類型是**訊息**，但是還有其他活動類型可用來將各種類型的資訊傳達給 Bot 或通道。 
+Bot 連接器服務可藉由傳遞 [Activity][] 物件，在 Bot 與通道 (使用者) 之間交換資訊。 最常見的活動類型是**訊息**，但是還有其他活動類型可用來將各種類型的資訊傳達給 Bot 或通道。 
 
 ## <a name="activity-types-in-the-bot-connector-service"></a>Bot 連接器服務中的活動類型
 
@@ -64,4 +64,5 @@ Bot 會收到 **endOfConversation** 活動，表示使用者已結束對話。 B
 
 - [建立訊息](bot-framework-rest-connector-create-messages.md)
 - [傳送及接收訊息](bot-framework-rest-connector-send-and-receive-messages.md)
-- [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)
+
+[Activity]: bot-framework-rest-connector-api-reference.md#activity-object

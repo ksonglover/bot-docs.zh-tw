@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 06/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c5735b7ad47204dab42abc7b1dd7a15a407b0115
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: 23646cf47b49e73eec9c3ce9a4deb1e053892fa1
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757206"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037261"
 ---
 # <a name="migrate-a-net-v3-bot-to-a-net-core-v4-bot"></a>將 .NET v3 聊天機器人遷移至 .NET Core v4 聊天機器人
 
@@ -114,7 +114,9 @@ Bot Framework SDK v4 是以與 SDK v3 相同的基礎 REST API 作為基礎。 �
 1. 新增這些欄位和一個建構函式，並初始化這些項目。 再一次地，ASP.NET 會使用相依性插入來取得參數值。
     [!code-csharp[Fields and constructor](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=21-28)]
 
-1. 更新 `OnMessageActivityAsync` 實作以叫用主要對話。 (我們會簡短地定義 `Run` 擴充方法。) [!code-csharp[OnMessageActivityAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=38-47)]
+1. 更新 `OnMessageActivityAsync` 實作以叫用主要對話。 (我們會簡短地定義 `Run` 擴充方法。)
+
+[!code-csharp[OnMessageActivityAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=38-47)]
 
 1. 更新 `OnTurnAsync`，以在回合結束時儲存我們的交談狀態。 在 v4 中，我們必須明確地執行此作業，以將狀態寫出到持續性層。 `ActivityHandler.OnTurnAsync` 方法會呼叫特定活動處理常式方法 (根據接收的活動類型)，因此我們會在呼叫基底方法之後儲存狀態。
     [!code-csharp[OnTurnAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=30-36)]
@@ -337,7 +339,9 @@ v4 程式碼的注意事項：
 1. 在 **LocalAdminPrompt.cs** 中，將這些陳述式變更為下列內容：  
     [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/LocalAdminPrompt.cs?range=4)]
 
-1. 在 **ResetPassword.cs** 中，將這些陳述式變更為下列內容：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/ResetPassword.cs?range=4-5)]
+1. 在 **ResetPassword.cs** 中，將這些陳述式變更為下列內容：
+
+[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/ResetPassword.cs?range=4-5)]
     此外，也請刪除命名空間內的 `using` 陳述式。
 
 1. 在 **ResetPasswordPrompt.cs** 中，將這些陳述式變更為下列內容：  
@@ -345,12 +349,16 @@ v4 程式碼的注意事項：
 
 ### <a name="additional-changes"></a>其他變更
 
-在 **ResetPassword.cs** 中，將 `MobileNumber` 的傳回類型變更為如下所示：[!code-csharp[MobileNumber](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/ResetPassword.cs?range=17)]
+在 **ResetPassword.cs** 中變更 `MobileNumber` 的傳回類型，如下所示：
+
+[!code-csharp[MobileNumber](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/Models/ResetPassword.cs?range=17)]
 
 ## <a name="final-porting-steps"></a>最後的移轉步驟 
 若要完成移轉程序，請執行下列步驟：
 
-1. 建立 `AdapterWithErrorHandler` 類別來定義配接器，此配接器內含有錯誤處理常式，可攔截中介軟體或應用程式中的例外狀況。 介面器透過 Bot 中介軟體管道處理內送活動，並導向至 Bot 邏輯再送出。 使用下列程式碼來建立類別：[!code-csharp[MobileNumber](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/AdapterWithErrorHandler.cs?range=4-46)]
+1. 建立 `AdapterWithErrorHandler` 類別來定義配接器，此配接器內含有錯誤處理常式，可攔截中介軟體或應用程式中的例外狀況。 介面器透過 Bot 中介軟體管道處理內送活動，並導向至 Bot 邏輯再送出。 使用下列程式碼來建立類別：
+
+ [!code-csharp[MobileNumber](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetCore/ContosoHelpdeskChatBot/AdapterWithErrorHandler.cs?range=4-46)]
 1. 視情況修改 **wwwroot\default.htm** 頁面。
 
 ## <a name="run-and-test-your-bot-in-the-emulator"></a>在模擬器中執行並測試您的 Bot

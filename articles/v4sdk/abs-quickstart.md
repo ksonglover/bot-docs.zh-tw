@@ -2,25 +2,26 @@
 title: 使用 Bot 服務建立 Bot | Microsoft Docs
 description: 了解如何使用 Bot 服務建立 Bot，Bot 服務是專用於 Bot 的整合式開發環境。
 keywords: Quickstart, create bot, bot service, web app bot, 快速入門, 建立 Bot, Bot 服務, Web 應用程式 Bot
-author: v-ducvo
-ms.author: v-ducvo
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: abs
-ms.date: 07/19/2019
-ms.openlocfilehash: c4274df084fb0f25535aacb0173e19bc93f20ba1
-ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
+ms.date: 08/15/2019
+ms.openlocfilehash: b8307877bf08db170173486ec9df88fae4d27c29
+ms.sourcegitcommit: 9e1034a86ffdf2289b0d13cba2bd9bdf1958e7bc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/25/2019
-ms.locfileid: "68484415"
+ms.lasthandoff: 08/21/2019
+ms.locfileid: "69890621"
 ---
 # <a name="create-a-bot-with-azure-bot-service"></a>建立具有 Azure Bot Service 的 Bot
 
 [!INCLUDE [applies-to-v4](../includes/applies-to.md)]
 
 Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bot Framework SDK 和連接 Bot 與通道的 Bot 服務。 在此主題中，您可以使用 Bot Framework SDK v4，選擇 .NET 或 Node.js 範本來建立 Bot。
+
+>[!NOTE] 
+> 您所建立的 Bot 會自動向 Azure Bot 服務註冊。 如果您已有裝載於其他位置的 Bot，而您想要加以註冊，請參閱下列文章：[使用 Azure Bot 服務註冊 Bot](../bot-service-quickstart-registration.md)。
 
 [!INCLUDE [Azure vs local development](~/includes/snippet-quickstart-paths.md)]
 
@@ -57,7 +58,7 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 
 勾選 [通知]  來確認已部署 Bot。 通知會從 [部署進行中]  變更為 [部署成功]  。 按一下 [前往資源]  按鈕以開啟 Bot 的資源刀鋒視窗。
 
-現在，既然您已建立 Bot，請在 Web 聊天中測試。 
+現在，既然您已建立 Bot，請在 Web 聊天中測試。
 
 ## <a name="test-the-bot"></a>測試 Bot
 在 [Bot 管理]  區段中，按一下 [在網路聊天中測試]  。 Azure Bot Service 會將網路聊天控制項載入，並連線至 Bot。 
@@ -65,6 +66,16 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 ![Azure 網路聊天測試](../media/azure-bot-quickstarts/azure-webchat-test.png)
 
 輸入訊息，您的 Bot 應會回應。
+
+## <a name="manual-app-registration"></a>手動註冊應用程式
+
+在下列情況下必須以手動方式註冊：
+
+- 您無法在組織中進行註冊，而需經由其他合作對象為您建置的 Bot 建立應用程式識別碼。
+- 您需要手動建立自己的應用程式識別碼 (和密碼)。
+
+請參閱[常見問題集 - 應用程式註冊](../bot-service-resources-bot-framework-faq.md#app-registration)。
+
 
 ## <a name="download-code"></a>下載程式碼
 您可以下載程式碼，以在本機上處理。 

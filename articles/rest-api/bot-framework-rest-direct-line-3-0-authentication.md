@@ -6,14 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
-ms.date: 04/10/2019
-ms.openlocfilehash: 717a95d580bad218ade9a884522724f1c6b96ad7
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.date: 08/22/2019
+ms.openlocfilehash: d79cea421e6743c504e3fa68056de71974194923
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032645"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037439"
 ---
 # <a name="authentication"></a>Authentication
 
@@ -140,7 +139,132 @@ HTTP/1.1 200 OK
 }
 ```
 
+## <a name="azure-bot-service-authentication"></a>Azure Bot 服務驗證
+
+本節中所提供的資訊以[透過 Azure Bot 服務將驗證新增至您的 Bot](../v4sdk/bot-builder-authentication.md) 一文為基礎。
+
+**Azure Bot 服務驗證**可讓您驗證使用者，並取得各種識別提供者 (例如 *Azure Active Directory*、*GitHub*、*Uber* 等等) 所提供的**存取權杖**。 您也可以設定自訂 **OAuth2** 識別提供者的驗證。 這種功能，讓您能夠撰寫可在所有支援的識別提供者和通道上運作的**一個驗證程式碼**。 若要使用這些功能，您必須執行下列步驟：
+
+1. 在您的 Bot 上以靜態方式設定 `settings`，其中包含您向識別提供者註冊應用程式的詳細資料。
+2. 使用您在先前的步驟中提供的應用程式資訊所支援的 `OAuthCard` 登入使用者。
+3. 透過 **Azure Bot 服務 API** 擷取存取權杖。
+
+### <a name="security-considerations"></a>安全性考量
+
+<!-- Summarized from: https://blog.botframework.com/2018/09/25/enhanced-direct-line-authentication-features/ -->
+
+當您搭配使用 *Azure Bot 服務驗證*與[網路聊天](../bot-service-channel-connect-webchat.md)時，必須留意某些重要的安全性考量。
+
+1. **模擬**。 此處的模擬是指攻擊者設法讓 Bot 將其誤認為他人。 在網路聊天中，攻擊者可藉由**變更他人網路聊天執行個體的使用者識別碼**，來模擬其他人。 為了防止這一點，建議 Bot 開發人員**將使用者識別碼設計得難以猜測**。 如果您啟用了**增強式驗證**選項，Azure Bot 服務將可進一步偵測及拒絕任何使用者識別碼變更。 這表示，從 Direct Line 到 Bot 的訊息，一律會使用您用來初始化網路聊天的相同使用者識別碼 (`Activity.From.Id`)。 請注意，此功能需要以 `dl_` 開頭的使用者識別碼
+1. **使用者身分識別**。 您必須注意，您所處理的使用者身分識別有兩個：
+
+    1. 通道中的使用者身分識別。
+    1. Bot 在識別提供者中感興趣的使用者身分識別。
+  
+    當 Bot 要求通道中的使用者 A 登入識別提供者 P 時，登入程序必須確定使用者 A 是登入 P 的使用者。如果允許另一個使用者 B 登入，則使用者 A 將有權透過 Bot 存取使用者 B 的資源。 在網路聊天中，我們有 2 項機制可確保登入的是正確的使用者，說明如下。
+
+    1. 過去，在登入結束時，使用者會看到一個隨機產生的 6 位數代碼 (也稱為神奇代碼)。 使用者必須在起始登入的對話中輸入此代碼，才能完成登入程序。 這項機制常會導致不順暢的使用者體驗。 此外，此機制也容易遭受網路釣魚攻擊。 惡意使用者可透過網路釣魚誘騙其他使用者登入，並取得神奇代碼。
+
+    2. 由於前述方法有這些問題，Azure Bot 服務已不再使用神奇代碼。 Azure Bot 服務可確保登入程序只能在與網路聊天本身**相同的瀏覽器工作階段**中完成。 
+    若要啟用這項保護，您必須以 Bot 開發人員的身分使用 **Direct Line 權杖**啟動網路聊天，且該權杖必須包含**可裝載 Bot 網路聊天用戶端的信任網域清單**。 過去，您只能藉由將未記載的選擇性參數傳至 Direct Line 權杖 API 來取得此權杖。 現在，透過增強型驗證選項，您可以在 Direct Line 組態頁面中以靜態方式指定信任網域 (原始) 清單。
+
+### <a name="code-examples"></a>程式碼範例
+
+下列 .NET 控制器可在啟用增強型驗證選項的情況下運作，並傳回 Direct Line 權杖和使用者識別碼。
+
+```csharp
+public class HomeController : Controller
+{
+    public async Task<ActionResult> Index()
+    {
+        var secret = GetSecret();
+
+        HttpClient client = new HttpClient();
+
+        HttpRequestMessage request = new HttpRequestMessage(
+            HttpMethod.Post,
+            $"https://directline.botframework.com/v3/directline/tokens/generate");
+
+        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", secret);
+
+        var userId = $"dl_{Guid.NewGuid()}";
+
+        request.Content = new StringContent(
+            JsonConvert.SerializeObject(
+                new { User = new { Id = userId } }),
+                Encoding.UTF8,
+                "application/json");
+
+        var response = await client.SendAsync(request);
+        string token = String.Empty;
+
+        if (response.IsSuccessStatusCode)
+        {
+            var body = await response.Content.ReadAsStringAsync();
+            token = JsonConvert.DeserializeObject<DirectLineToken>(body).token;
+        }
+
+        var config = new ChatConfig()
+        {
+            Token = token,
+            UserId = userId  
+        };
+
+        return View(config);
+    }
+}
+
+public class DirectLineToken
+{
+    public string conversationId { get; set; }
+    public string token { get; set; }
+    public int expires_in { get; set; }
+}
+public class ChatConfig
+{
+    public string Token { get; set; }
+    public string UserId { get; set; }
+}
+
+```
+
+下列 JavaScript 控制器可在啟用增強型驗證選項的情況下運作，並傳回 Direct Line 權杖和使用者識別碼。
+
+```javascript
+var router = express.Router(); // get an instance of the express Router
+
+// Get a directline configuration (accessed at GET /api/config)
+const userId = "dl_" + createUniqueId();
+
+router.get('/config', function(req, res) {
+    const options = {
+        method: 'POST',
+        uri: 'https://directline.botframework.com/v3/directline/tokens/generate',
+        headers: {
+            'Authorization': 'Bearer ' + secret
+        },
+        json: {
+            User: { Id: userId }
+        }
+    };
+
+    request.post(options, (error, response, body) => {
+        if (!error && response.statusCode < 300) {
+            res.json({ 
+                    token: body.token,
+                    userId: userId
+                });
+        }
+        else {
+            res.status(500).send('Call to retrieve token from Direct Line failed');
+        } 
+    });
+});
+
+```
+
 ## <a name="additional-resources"></a>其他資源
 
 - [重要概念](bot-framework-rest-direct-line-3-0-concepts.md)
 - [將 Bot 連線至 Direct Line](../bot-service-channel-connect-directline.md)
+- [透過 Azure Bot 服務將驗證新增至您的 Bot](../bot-builder-tutorial-authentication.md)

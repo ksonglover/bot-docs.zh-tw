@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: e616c3e3b8d7ee82f5685fe1edc69059acffb1b1
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: b8b0eb454b77332a8b19104af78d9553582ab854
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757072"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037139"
 ---
 # <a name="add-suggested-actions-to-messages"></a>將建議的動作新增至訊息
 > [!div class="op_single_selector"]
@@ -24,7 +24,7 @@ ms.locfileid: "68757072"
 
 ## <a name="send-suggested-actions"></a>傳送建議的動作
 
-若要將建議的動作新增至訊息，請設定 `Activity` 的 `suggestedActions` 屬性以指定 `CardAction` 物件清單，代表要向使用者呈現的按鈕。 
+若要將建議的動作新增至訊息，請設定 [Activity][] 的 `suggestedActions` 屬性，以指定 [CardAction][] 物件清單，以代表要向使用者呈現的按鈕。 
 
 下列要求會傳送一則訊息，向使用者呈現三個建議的動作。 在此範例要求中，`https://smba.trafficmanager.net/apis` 表示基底 URI；與 Bot 所提出要求的基底 URI 可能不同。 如需設定基底 URI 的詳細資料，請參閱 [API 參考](bot-framework-rest-connector-api-reference.md#base-uri)。
 
@@ -82,3 +82,6 @@ Content-Type: application/json
 - [傳送及接收訊息](bot-framework-rest-connector-send-and-receive-messages.md)
 
 [channelInspector]: ../bot-service-channel-inspector.md
+
+[Activity]: bot-framework-rest-connector-api-reference.md#activity-object
+[CardAction]: bot-framework-rest-connector-api-reference.md#cardaction-object

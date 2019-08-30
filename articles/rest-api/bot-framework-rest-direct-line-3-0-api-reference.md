@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 522f4f133e6a7b4e5379a27c1ce1a02138402559
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: 25f6e30898101b87289af775e8386f941aa747a9
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68756928"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037375"
 ---
 # <a name="api-reference---direct-line-api-30"></a>API 參考 - Direct Line API 3.0
 
@@ -46,7 +46,7 @@ Authorization: Bearer SECRET_OR_TOKEN
 | 204 | 要求成功，但未傳回任何內容。 |
 | 400 | 要求的格式不正確或有其他錯誤。 |
 | 401 | 用戶端未獲授權，無法提出要求。 此狀態碼出現的原因通常是遺漏 `Authorization` 標頭或格式不正確。 |
-| 403 | 不允許用戶端執行要求的作業。 如果要求指定先前有效但已過期的權杖，在 `ErrorResponse` 物件內傳回之 `Error` 的 `code` 屬性會設定為 `TokenExpired`。 |
+| 403 | 不允許用戶端執行要求的作業。 如果要求指定先前有效但已過期的權杖，在 [ErrorResponse][] 物件內傳回之[錯誤][]的 `code` 屬性會設定為 `TokenExpired`。 |
 | 404 | 找不到要求的資源。 此狀態碼通常表示要求的 URI 無效。 |
 | 500 | Direct Line 服務內發生內部伺服器錯誤。 |
 | 502 | Bot 無法使用，或傳回錯誤。 **此為常見錯誤碼。** |
@@ -56,7 +56,7 @@ Authorization: Bearer SECRET_OR_TOKEN
 
 ### <a name="errors"></a>Errors
 
-若回應顯示的 HTTP 狀態碼位於 4xx 或 5xx 範圍內，則會在提供錯誤相關資訊的回應本文中加入 `ErrorResponse` 物件。 如果您收到 4xx 範圍的錯誤訊息，請檢查 **ErrorResponse** 物件以找出錯誤原因，並在重新提交要求之前先解決問題。
+若回應顯示的 HTTP 狀態碼位於 4xx 或 5xx 範圍內，則會在提供錯誤相關資訊的回應本文中加入 [ErrorResponse][] 物件。 如果您收到 4xx 範圍的錯誤訊息，請檢查 **ErrorResponse** 物件以找出錯誤原因，並在重新提交要求之前先解決問題。
 
 > [!NOTE]
 > **ErrorResponse** 物件內 `code` 屬性指定的 HTTP 狀態碼和值很穩定。 **ErrorResponse** 物件內 `message` 屬性指定的值可能會隨著時間改變。
@@ -167,8 +167,8 @@ POST /v3/directline/conversations/{conversationId}/activities
 
 | | |
 |----|----|
-| **要求本文** | `Activity` 物件 |
-| **傳回** | `ResourceResponse`，其中包含 `id` 屬性，指定已傳送給 Bot 的活動識別碼。 | 
+| **要求本文** | [Activity][] 物件 |
+| **傳回** | [ResourceResponse][]，其中包含 `id` 屬性，指定已傳送給 Bot 的活動識別碼。 | 
 
 ### <a id="upload-send-files"></a> 上傳與傳送檔案
 上傳檔案後，以附件型式傳送檔案。 設定要求 URI 中的 `userId` 參數以指定正在傳送附件之使用者的識別碼。
@@ -178,8 +178,8 @@ POST /v3/directline/conversations/{conversationId}/upload?userId={userId}
 
 | | |
 |----|----|
-| **要求本文** | 若為單一附件，請在要求本文填入檔案內容。 若有多個附件，請建立每個附件均包含其各自一部分的多部分要求本文，同時也可選擇性地讓應作為指定附件之容器的 `Activity` 物件有一個部分。 如需詳細資訊，請參閱[將活動傳送到 Bot](bot-framework-rest-direct-line-3-0-send-activity.md)。 |
-| **傳回** | `ResourceResponse`，其中包含 `id` 屬性，指定已傳送給 Bot 的活動識別碼。 | 
+| **要求本文** | 若為單一附件，請在要求本文填入檔案內容。 若有多個附件，請建立多部分要求本文，包含一個部分是針對每個附件，以及 (選擇性) 一個部分是針對應該作為指定附件之容器的 [Activity][] 物件。 如需詳細資訊，請參閱[將活動傳送到 Bot](bot-framework-rest-direct-line-3-0-send-activity.md)。 |
+| **傳回** | [ResourceResponse][]，其中包含 `id` 屬性，指定已傳送給 Bot 的活動識別碼。 | 
 
 > [!NOTE]
 > 上傳的檔案會在 24 小時後刪除。
@@ -193,7 +193,7 @@ Direct Line 3.0 結構描述包含 [Bot Framework 活動結構描述](https://ak
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
-| **活動** | `Activity`[] | **Activity** 物件的陣列。 |
+| **活動** | [Activity][][] | **Activity** 物件的陣列。 |
 | **watermark** | 字串 | 一組訊息中，活動的最大浮水印。 用戶端可以使用 `watermark` 值，指出它在[從 Bot 擷取活動](bot-framework-rest-direct-line-3-0-receive-activities.md#http-get)時，或在[產生新的 WebSocket 資料流 URL](bot-framework-rest-direct-line-3-0-reconnect-to-conversation.md) 時，已看到的最新訊息。 |
 
 ### <a name="conversation-object"></a>Conversation 物件
@@ -208,7 +208,7 @@ Direct Line 3.0 結構描述包含 [Bot Framework 活動結構描述](https://ak
 
 ### <a name="activities"></a>活動
 
-針對用戶端透過 Direct Line 從 Bot 收到的每個 `Activity`：
+針對用戶端透過 Direct Line 從 Bot 收到的每個 [Activity][]：
 
 - 會保留附件卡片。
 - 已上傳附件的 URL 會以私密連結隱藏。
@@ -229,3 +229,8 @@ Direct Line 3.0 結構描述包含 [Bot Framework 活動結構描述](https://ak
 ## <a name="additional-resources"></a>其他資源
 
 - [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)
+
+[Activity]: bot-framework-rest-connector-api-reference.md#activity-object
+[錯誤]: bot-framework-rest-connector-api-reference.md#error-object
+[ErrorResponse]: bot-framework-rest-connector-api-reference.md#errorresponse-object
+[ResourceResponse]: bot-framework-rest-connector-api-reference.md#resourceresponse-object

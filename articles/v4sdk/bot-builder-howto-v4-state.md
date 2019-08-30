@@ -3,19 +3,18 @@ title: 儲存使用者和對話資料 | Microsoft Docs
 description: 了解如何透過 Bot Framework SDK 儲存及擷取資料。
 keywords: 交談狀態, 使用者狀態, 交談, 儲存狀態, 管理 Bot 狀態
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3e844a254f1aee709d7dd0b0866ee4ae14737f65
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: 3f298f728f11327da1613549c08e405a89d8d180
+ms.sourcegitcommit: 9e1034a86ffdf2289b0d13cba2bd9bdf1958e7bc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693722"
+ms.lasthandoff: 08/21/2019
+ms.locfileid: "69890585"
 ---
 # <a name="save-user-and-conversation-data"></a>儲存使用者和對話資料
 
@@ -68,7 +67,7 @@ Bot 原本就是無狀態。 部署 Bot 後，在不同的回合中，Bot 便無
 接下來，我們會註冊用來建立 `UserState` 和 `ConversationState` 物件的 `MemoryStorage`。 使用者和對話狀態物件會在 `Startup` 上建立，而相依性會插入 Bot 建構函式。 為 Bot 註冊的其他服務為：認證提供者、配接器及 Bot 實作。
 
 **Startup.cs**  
-[!code-csharp[ConfigureServices](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/Startup.cs?range=16-38)]
+[!code-csharp[ConfigureServices](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/Startup.cs?range=17-36)]
 
 **StateManagementBot.cs**  
 [!code-csharp[StateManagement](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=15-22)]

@@ -1,19 +1,18 @@
 ---
 title: 透過 Azure Bot 服務將驗證新增至您的 Bot | Microsoft Docs
 description: 了解如何使用 Azure Bot 服務驗證功能以便將 SSO 新增至您的 Bot。
-author: JonathanFingold
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 06/07/2019
+ms.date: 08/22/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b5d3031a23959d054056f89968c35a1e1e49c1dd
-ms.sourcegitcommit: 7b3d2b5b9b8ce77887a9e6124a347ad798a139ca
+ms.openlocfilehash: 8eea0bfd49bfd142c648d8ce842e1c24aa8ab45a
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/13/2019
-ms.locfileid: "68991989"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037525"
 ---
 <!-- 
 
@@ -87,15 +86,8 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 <!-- Summarized from: https://blog.botframework.com/2018/09/25/enhanced-direct-line-authentication-features/ -->
 
-在網路聊天使用 Azure Bot 服務驗證時，必須考量幾個重要的安全性問題。
-
-1. 防止攻擊者進行模擬而使 Bot 將其誤認為其他人。 在網路聊天中，攻擊者可藉由變更他人網路聊天執行個體的使用者識別碼，來模擬其他人。
-
-    若要防止此問題發生，請使用難以猜測的使用者識別碼。 當您在 Direct Line 通道中啟用增強式驗證選項時，Azure Bot 服務可偵測並拒絕任何使用者識別碼變更。 從 Direct Line 到 Bot 的訊息，一律會使用您用來初始化網路聊天的相同使用者識別碼。 請注意，此功能需要以 `dl_` 開頭的使用者識別碼。
-
-1. 請確實登入正確的使用者。 使用者有兩個身分識別：通道中的身分識別，和用於識別提供者的身分識別。 在網路聊天中，Azure Bot 服務可確保登入程序會在與網路聊天本身相同的瀏覽器工作階段中完成。
-
-    若要啟用這項保護，請以 Direct Line 權杖啟動網路聊天，且該權杖必須包含可裝載 Bot 網路聊天用戶端的信任網域清單。 然後，在 Direct Line 組態頁面中以靜態方式指定信任網域 (原始) 清單。
+> [!IMPORTANT]
+> 請留意這些重要的[安全性考量](../rest-api/bot-framework-rest-direct-line-3-0-authentication.md#security-considerations)。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -178,7 +170,7 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 下一步是向 Bot 註冊您剛剛建立的 Azure AD 應用程式。
 
-# <a name="azure-ad-v1tabaadv1"></a>[Azure AD v1](#tab/aadv1)
+#### <a name="azure-ad-v1"></a>Azure AD v1
 
 1. 在 [Azure 入口網站](http://portal.azure.com/)瀏覽至 Bot 的資源頁面。
 1. 按一下 [設定]  。
@@ -191,7 +183,11 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
     1. 針對 [用戶端祕密]  ，輸入您已建立的祕密，以將 Bot 存取權授與 Azure AD 應用程式。
     1. 若為 [授與類型]  欄位，請輸入「`authorization_code`」。
     1. 若為 [登入 URL]  欄位，請輸入「`https://login.microsoftonline.com`」。
-    1. 針對 [租用戶識別碼]  ，輸入您稍早記下的 Azure AD 應用程式目錄 (租用戶) 識別碼。
+    1. 針對 [租用戶識別碼]  ，輸入您先前為 AAD 應用程式記錄的**目錄 (租用戶) 識別碼**，或輸入 **common**，視您在建立 AAD 應用程式時所選取的支援帳戶類型而定。 若要決定要指派何值，請遵循下列準則：
+
+        - 建立 AAD 應用程式時，如果您選取 [僅限此組織目錄中的帳戶 (僅限 Microsoft - 單一租用戶)]  或 [任何組織目錄中的帳戶 (Microsoft AAD 目錄 - 多租用戶)]  ，輸入您先前為 AAD 應用程式記錄的**租用戶識別碼**。
+
+        - 不過，如果您已選取 [任何組織目錄中的帳戶 (任何 AAD 目錄 - 多租用戶和個人 Microsoft 帳戶，例如 Skype、Xbox、Outlook.com)]  ，請輸入 **common** 一字，而不要輸入租用戶識別碼。 否則，AAD 應用程式將會透過已選取其識別碼的租用戶進行驗證，並排除個人 MS 帳戶。
 
        這將會是與可驗證之使用者相關聯的租用戶。
 
@@ -203,7 +199,7 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 > [!NOTE]
 > 這些值可讓應用程式透過 Microsoft Graph API 存取 Office 365 資料。
 
-# <a name="azure-ad-v2tabaadv2"></a>[Azure AD v2](#tab/aadv2)
+#### <a name="azure-ad-v2"></a>Azure AD v2
 
 1. 在 [Azure 入口網站](http://portal.azure.com/)上瀏覽至 Bot 的 [Bot 通道註冊] 頁面。
 1. 按一下 [設定]  。
@@ -214,7 +210,11 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
     1. 若為 [服務提供者]  ，請選取 [Azure Active Directory v2]  。 選取此項目後，Azure AD 專用的欄位隨即顯示。
     1. 若為 [用戶端識別碼]  欄位，請輸入您為 Azure AD v1 應用程式記錄的應用程式 (用戶端) 識別碼。
     1. 針對 [用戶端祕密]  ，輸入您已建立的祕密，以將 Bot 存取權授與 Azure AD 應用程式。
-    1. 針對 [租用戶識別碼]  ，輸入您稍早記下的 Azure AD 應用程式目錄 (租用戶) 識別碼。
+    1. 針對 [租用戶識別碼]  ，輸入您先前為 AAD 應用程式記錄的**目錄 (租用戶) 識別碼**，或輸入 **common**，視您在建立 AAD 應用程式時所選取的支援帳戶類型而定。 若要決定要指派何值，請遵循下列準則：
+
+        - 建立 AAD 應用程式時，如果您選取 [僅限此組織目錄中的帳戶 (僅限 Microsoft - 單一租用戶)]  或 [任何組織目錄中的帳戶 (Microsoft AAD 目錄 - 多租用戶)]  ，輸入您先前為 AAD 應用程式記錄的**租用戶識別碼**。
+
+        - 不過，如果您已選取 [任何組織目錄中的帳戶 (任何 AAD 目錄 - 多租用戶和個人 Microsoft 帳戶，例如 Skype、Xbox、Outlook.com)]  ，請輸入 **common** 一字，而不要輸入租用戶識別碼。 否則，AAD 應用程式將會透過已選取其識別碼的租用戶進行驗證，並排除個人 MS 帳戶。
 
        這將會是與可驗證之使用者相關聯的租用戶。
 
@@ -227,8 +227,6 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 > [!NOTE]
 > 這些值可讓應用程式透過 Microsoft Graph API 存取 Office 365 資料。
-
----
 
 ### <a name="test-your-connection"></a>測試連線
 
@@ -272,7 +270,7 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 ---
 
-如果您不知道如何取得 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**值，您可以建立[此處所述](../bot-service-quickstart-registration.md#bot-channels-registration-password)的新密碼
+如果您不知道如何取得 **Microsoft 應用程式識別碼**和 **Microsoft 應用程式密碼**值，您可以建立[此處所述](../bot-service-quickstart-registration.md#get-registration-password)的新密碼
 
 > [!NOTE]
 > 您現在可將此 Bot 程式碼發佈至 Azure 訂用帳戶 (以滑鼠右鍵按一下專案，然後選擇 [發佈]  )，但此動作在本文的範例中並非必要。 在 Azure 入口網站中配置 Bot 時，您必須進行發佈設定，其應使用您所用的應用程式和主控方案。
@@ -342,7 +340,7 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 在下列對話步驟中，檢查上一個步驟的結果中是否有權杖存在。 如果不是 Null，則表示使用者登入成功。
 
-[!code-csharp[Get the OAuthPrompt result](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/MainDialog.cs?range=54-58)]
+[!code-csharp[Get the OAuthPrompt result](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/MainDialog.cs?range=54-56)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -352,7 +350,7 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 將 OAuth 提示新增至其建構函式中的 **MainDialog**。 在此，已從 **.env** 檔案擷取連線名稱值。
 
-[!code-javascript[Add OAuthPrompt](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/mainDialog.js?range=23-28)]
+[!code-javascript[Add OAuthPrompt](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/mainDialog.js?range=24-29)]
 
 在對話步驟中，使用 `beginDialog` 來啟動 OAuth 提示，其會要求使用者登入。
 
@@ -363,7 +361,7 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 在下列對話步驟中，檢查上一個步驟的結果中是否有權杖存在。 如果不是 Null，則表示使用者登入成功。
 
-[!code-javascript[Get OAuthPrompt result](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/mainDialog.js?range=61-64)]
+[!code-javascript[Get OAuthPrompt result](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/mainDialog.js?range=62-63)]
 
 ---
 
@@ -385,25 +383,25 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 **AuthBot** 衍生自 `ActivityHandler` 並明確處理權杖回應事件活動。 在此，我們會持續進行作用中的對話，讓 OAuth 提示得以處理事件和擷取權杖。
 
-[!code-javascript[onTokenResponseEvent](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/bots/authBot.js?range=28-33)]
+[!code-javascript[onTokenResponseEvent](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/bots/authBot.js?range=29-31)]
 
 ---
 
 ### <a name="log-the-user-out"></a>登出使用者
 
-最佳做法是讓使用者明確登出，而不是依賴連接逾時。
+最佳做法是讓使用者明確登出，而不是依賴連線逾時。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 **Dialogs\LogoutDialog.cs**
 
-[!code-csharp[Allow logout](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/LogoutDialog.cs?range=20-61&highlight=35)]
+[!code-csharp[Allow logout](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/LogoutDialog.cs?range=44-61&highlight=11)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 **dialogs/logoutDialog.js**
 
-[!code-javascript[Allow logout](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/logoutDialog.js?range=13-42&highlight=25)]
+[!code-javascript[Allow logout](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/logoutDialog.js?range=31-42&highlight=7)]
 
 ---
 
@@ -414,10 +412,10 @@ Teams 在 OAuth 方面的行為與其他通道稍有不同，而且需要進行�
 其他通道與 Teams 之間的一項差異在於 Teams 會傳送*叫用*活動而非*事件*活動給 Bot。 
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
-**Bots/TeamsBot.cs** [!code-csharp[Invoke Activity](~/../botbuilder-samples/samples/csharp_dotnetcore/46.teams-auth/Bots/TeamsBot.cs?range=34-42&highlight34)]
+**Bots/TeamsBot.cs** [!code-csharp[Invoke Activity](~/../botbuilder-samples/samples/csharp_dotnetcore/46.teams-auth/Bots/TeamsBot.cs?range=34-42&highlight=1)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-**bots/teamsBot.js** [!code-javascript[Invoke Activity](~/../botbuilder-samples/samples/javascript_nodejs/46.teams-auth/bots/teamsBot.js?range=27-31&highlight=27)]
+**bots/teamsBot.js** [!code-javascript[Invoke Activity](~/../botbuilder-samples/samples/javascript_nodejs/46.teams-auth/bots/teamsBot.js?range=27-32&highlight=3)]
 
 ---
 

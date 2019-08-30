@@ -2,22 +2,20 @@
 title: 將現有 v3 JavaScript Bot 遷移至新的 v4 專案 | Microsoft Docs
 description: 我們採用現有 v3 JavaScript Bot 並將其遷移至 v4 SDK，而且使用新的專案。
 keywords: JavaScript, bot 移轉, 對話方塊, v3 bot
-author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 573dabba7a16f88db890f0d095a2d4a0f983660c
-ms.sourcegitcommit: 41c8caf0e0c849beeeb50cdccf6dbc1ba7cce442
+ms.openlocfilehash: 2dac81ea653729043294ed3ebe6037b6cd8b67eb
+ms.sourcegitcommit: 008aa6223aef800c3abccda9a7f72684959ce5e7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/24/2019
-ms.locfileid: "67344586"
+ms.lasthandoff: 08/26/2019
+ms.locfileid: "70026387"
 ---
-# <a name="migrate-a-sdk-v3-javascript-bot-to-v4"></a>將 SDK v3 Javascript Bot 遷移至 v4
+# <a name="migrate-a-javascript-v3-bot-to-a-v4-bot"></a>將 JavaScript v3 Bot 遷移至 v4 Bot
 
 在本文中，我們會將 v3 SDK JavaScript [core-MultiDialogs-v3](https://aka.ms/v3-js-core-multidialog-migration-sample) Bot 移植到新的 v4 JavaScript Bot。
 此轉換可細分成下列階段：

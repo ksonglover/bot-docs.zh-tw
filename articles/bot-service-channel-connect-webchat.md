@@ -7,14 +7,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
-ms.date: 12/04/2018
-ms.openlocfilehash: 20ee5a5a0849cef91e59aece7a87f8e9ac4e86ec
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.date: 08/22/2019
+ms.openlocfilehash: b6174f20be47d40287cedd2a94b2d4e87c29bc2f
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317628"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037490"
 ---
 # <a name="connect-a-bot-to-web-chat"></a>將 Bot 連線至「網路聊天」
 
@@ -26,19 +25,24 @@ ms.locfileid: "54317628"
 
 Bot Framework 入口網站中的網路聊天頻道，包含您在網頁中內嵌網路聊天控制項所需的所有項目。 如需使用網路聊天控制項，您只需要取得 Bot 的祕密金鑰，並在網頁中內嵌控制項即可。
 
-## <a id="step-1"></a> 取得您的 bot 祕密金鑰
+## <a name="web-chat-and-direct-line-considerations"></a>網路聊天和 Direct Line 的考量
 
-1. 在 [Azure 入口網站](http://portal.azure.com)中開啟您的 Bot，然後按一下 [通道] 刀鋒視窗。
+> [!IMPORTANT]
+> 請留意這些重要的[安全性考量](rest-api/bot-framework-rest-direct-line-3-0-authentication.md#security-considerations)。
 
-2. 針對 **網路聊天**頻道，按一下 [編輯]。  
+## <a name="get-your-bot-secret-key"></a>取得您的 Bot 祕密金鑰
+
+1. 在 [Azure 入口網站](http://portal.azure.com)中開啟您的 Bot，然後按一下 [通道]  刀鋒視窗。
+
+2. 針對 **網路聊天**頻道，按一下 [編輯]  。  
 ![網路聊天頻道](./media/bot-service-channel-webchat/bot-service-channel-list.png)
 
-3. 在 [祕密金鑰] 底下，按一下第一個金鑰的 [顯示]。  
+3. 在 [祕密金鑰]  底下，按一下第一個金鑰的 [顯示]  。  
 ![祕密金鑰](./media/bot-service-channel-webchat/secret-key.png)
 
-4. 複製 [祕密金鑰] 和 [內嵌程式碼]。
+4. 複製 [祕密金鑰]  和 [內嵌程式碼]  。
 
-5. 按一下 [完成] 。
+5. 按一下 [完成]  。
 
 ## <a name="embed-the-web-chat-control-in-your-website"></a>在您的網站中內嵌網路聊天控制項
 
@@ -54,7 +58,7 @@ Bot Framework 入口網站中的網路聊天頻道，包含您在網頁中內嵌
 
 2. 您 **GET** 要求的回應會包含權杖 (以引號括住)，可透過轉譯 **iframe** 內的 網路聊天控制項用來開始對話。 權杖僅對一個對話有效；若要開始另一個對話，您必須產生新的權杖。
 
-3. 在您從 Bot Framework 入口網站中的網路聊天頻道複製的 `iframe` **內嵌程式碼**內 (如上方[取得您的 bot 祕密金鑰](#step-1)中所述)，將 `s=` 參數變更為 `t=`，並以您的權杖來取代 "YOUR_SECRET_HERE"。
+3. 在您從 Bot Framework 入口網站中的網路聊天頻道複製的 `iframe` **內嵌程式碼**內 (如上方[取得您的 bot 祕密金鑰](#get-your-bot-secret-key)中所述)，將 `s=` 參數變更為 `t=`，並以您的權杖來取代 "YOUR_SECRET_HERE"。
 
 > [!NOTE]
 > 權杖在到期前會自動更新。 
@@ -113,7 +117,7 @@ Authorization: BotConnector YOUR_SECRET_HERE
 
 若要藉由指定 `iframe` 標記內的祕密，在您的網站中內嵌 Bot：
 
-1. 請從 Bot Framework 入口網站內的網路聊天頻道，複製 `iframe` **內嵌程式碼** (如上方[取得您的 bot 祕密金鑰](#step-1)中所述)。
+1. 請從 Bot Framework 入口網站內的網路聊天頻道，複製 `iframe` **內嵌程式碼** (如上方[取得您的 bot 祕密金鑰](#get-your-bot-secret-key)中所述)。
 
 2. 在**內嵌程式碼**內，將 "YOUR_SECRET_HERE" 取代為您從相同頁面中複製的**祕密金鑰**值。
 

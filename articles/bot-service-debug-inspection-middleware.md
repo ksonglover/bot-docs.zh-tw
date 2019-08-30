@@ -7,19 +7,18 @@ keywords: Bot Framework SDK, 對聊天機器人進行偵錯, 檢查中介軟體,
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 7/9/2019
-ms.openlocfilehash: bdc88645b6747e5f38497c858c77cd79b21a6dd3
-ms.sourcegitcommit: 565a5df8b34a6d73ddf452ca7808eb83bb5be503
+ms.openlocfilehash: fe96131a7087f3f2c4980fe4f2eacb94a4ae9e4a
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/26/2019
-ms.locfileid: "68507992"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037515"
 ---
 # <a name="debug-a-bot-with-inspection-middleware"></a>使用檢查中介軟體來對聊天機器人進行偵錯
-本文說明如何使用檢查中介軟體 (Bot Framework v4 中的新功能) 來對聊天機器人進行偵錯。 您可以使用追蹤訊息將資料傳送給模擬器，然後在任何指定的對話回合中檢查聊天機器人的狀態。
+本文說明如何使用檢查中介軟體對 Bot 進行偵錯。 除了查看 Bot 目前的狀態以外，這項功能也可讓 Bot Framework Emulator 偵測 Bot 的輸入和輸出流量。 您可以使用追蹤訊息將資料傳送給模擬器，然後在任何指定的對話回合中檢查聊天機器人的狀態。 
 
-我們會使用以 [Bot Framework](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/02.echo-bot) 建立的基本 Echo 聊天機器人，來示範如何新增檢查中介軟體以對聊天機器人進行偵錯，以及檢查聊天機器人的訊息狀態。 您也可以[使用 IDE 對聊天機器人進行偵錯](./bot-service-debug-bot.md)或[使用 Bot Framework Emulator 進行偵錯](./bot-service-debug-emulator.md)，但若要對狀態進行偵錯，則必須在聊天機器人內新增檢查中介軟體。 這裡有提供檢查聊天機器人的範例：[C#](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/47.inspection) 和 [JavaScript](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/47.inspection)。 
+我們會使用透過 Bot Framework v4 ([C#](https://docs.microsoft.com/azure/bot-service/dotnet/bot-builder-dotnet-sdk-quickstart?view=azure-bot-service-4.0) | [JavaScript](https://docs.microsoft.com/azure/bot-service/javascript/bot-builder-javascript-quickstart?view=azure-bot-service-4.0)) 在本機建立的 EchoBot，來說明如何偵測和檢查 Bot 的訊息狀態。 您也可以[使用 IDE 對 Bot 進行偵錯](./bot-service-debug-bot.md)或[使用 Bot Framework Emulator 進行偵錯](./bot-service-debug-emulator.md)，但若要對狀態進行偵錯，則必須在 Bot 內新增檢查中介軟體。 這裡有提供檢查聊天機器人的範例：[C#](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/47.inspection) 和 [JavaScript](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/47.inspection)。 
 
 ## <a name="prerequisites"></a>必要條件
 - 下載並安裝 [Bot Framework Emulator](https://aka.ms/Emulator-wiki-getting-started)
@@ -35,6 +34,16 @@ ms.locfileid: "68507992"
 ![目前版本](./media/bot-debug-inspection-middleware/bot-debug-check-emulator-version.png) 
 
 ## <a name="update-your-bots-code"></a>更新聊天機器人的程式碼
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+在 **Startup** 檔案中設定檢查狀態。 將檢查中介軟體新增至配接器。 檢查狀態會透過插入相依性來提供。 請參閱下面的程式碼更新，或參閱此處的檢查範例：[C#](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/47.inspection)。 
+
+**Startup.cs** [!code-csharp [inspection bot sample](~/../botbuilder-samples/samples/csharp_dotnetcore/47.inspection/Startup.cs?range=17-37)]
+
+**AdapterWithInspection.cs**  
+[!code-csharp [inspection bot sample](~/../botbuilder-samples/samples/csharp_dotnetcore/47.inspection/AdapterwithInspection.cs?range=11-21)]
+
+**EchoBot.cs** [!code-csharp [inspection bot sample](~/../botbuilder-samples/samples/csharp_dotnetcore/47.inspection/Bots/EchoBot.cs?range=14-43)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 在更新聊天機器人的程式碼之前，請先在終端機執行下列命令，以將聊天機器人的套件更新為最新版本： 
@@ -55,16 +64,6 @@ npm install --save botbuilder@latest
 
 [!code-javascript [inspection bot sample](~/../botbuilder-samples/samples/javascript_nodejs/47.inspection/bot.js?range=6-50)]
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-在 **Startup** 檔案中設定檢查狀態。 將檢查中介軟體新增至配接器。 檢查狀態會透過插入相依性來提供。 請參閱下面的程式碼更新，或參閱此處的檢查範例：[C#](https://github.com/microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/47.inspection)。 
-
-**Startup.cs** [!code-csharp [inspection bot sample](~/../botbuilder-samples/samples/csharp_dotnetcore/47.inspection/Startup.cs?range=17-37)]
-
-**AdapterWithInspection.cs**  
-[!code-csharp [inspection bot sample](~/../botbuilder-samples/samples/csharp_dotnetcore/47.inspection/AdapterwithInspection.cs?range=11-21)]
-
-**EchoBot.cs** [!code-csharp [inspection bot sample](~/../botbuilder-samples/samples/csharp_dotnetcore/47.inspection/Bots/EchoBot.cs?range=14-43)]
-
 ---
 
 ## <a name="test-your-bot-locally"></a>在本機測試 Bot 
@@ -72,17 +71,18 @@ npm install --save botbuilder@latest
 
 1. 在終端機流覽至聊天機器人的目錄，然後執行下列命令以在本機執行聊天機器人： 
 
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```cmd
+dotnet run
+```
+
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```cmd
 npm start 
 ```
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-```cmd
-dotnet run
-```
 ---
 
 2. 開啟模擬器。 按一下 [開啟聊天機器人]  。 使用 http://localhost:3978/api/messages 和 **MicrosoftAppId** 與 **MicrosoftAppPassword** 值填入 [Bot URL]。 如果您有 JavaScript 聊天機器人，則可以在聊天機器人的 **.env** 檔案中找到這些值。 如果您有 C# 聊天機器人，則可以在 **appsettings.json** 檔案中找到這些值。 按一下 [ **連接**]。 
@@ -96,7 +96,7 @@ dotnet run
 
 5. 現在，您可以在第一個模擬器的聊天方塊中傳送訊息，然後在偵錯模擬器中檢查訊息。 若要檢查訊息的狀態，請在偵錯模擬器中按一下 [Bot 狀態]  ，然後在右邊的 [JSON]  視窗上展開 [值]  。 您將能夠看到聊天機器人的狀態，如下所示：![聊天機器人狀態](./media/bot-debug-inspection-middleware/bot-debug-bot-state.png)
 
-## <a name="inspect-the-state-of-a-bot-configured-in-azure-connected-to-channels"></a>檢查 Azure 中所設定且已連線至通道的聊天機器人狀態 
+## <a name="inspect-the-state-of-a-bot-configured-in-azure"></a>檢查在 Azure 中設定的 Bot 所處的狀態 
 如果您想要檢查 Azure 中所設定且已連線至通道 (如 Teams) 的聊天機器人狀態，您必須安裝並執行 [ngrok](https://ngrok.com/)。
 
 ### <a name="run-ngrok"></a>執行 ngrok

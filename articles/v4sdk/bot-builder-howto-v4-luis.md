@@ -3,19 +3,18 @@ title: 將自然語言理解新增至您的 Bot | Microsoft Docs
 description: 了解如何搭配 Bot Framework SDK 將 LUIS 用於自然語言理解。
 keywords: Language Understanding, LUIS, intent, recognizer, entities, middleware, 意圖, 辨識器, 實體, 中介軟體
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: cognitive-services
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 02e0f810293566b783dda563b377f1a96f4ed58f
-ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
+ms.openlocfilehash: 1641260f6673a810e7bc71ecaca1ada234286e42
+ms.sourcegitcommit: 008aa6223aef800c3abccda9a7f72684959ce5e7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/25/2019
-ms.locfileid: "68484018"
+ms.lasthandoff: 08/26/2019
+ms.locfileid: "70026322"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>將自然語言理解新增至您的 Bot
 
@@ -119,99 +118,13 @@ settings 檔案 (`appsettings.json` 或 `.env`) 檔案可作為將所有服務�
 
 **FlightBookingRecognizer.cs**  
 
-```csharp
-public class FlightBookingRecognizer : IRecognizer
-{
-    private readonly LuisRecognizer _recognizer;
-
-    public FlightBookingRecognizer(IConfiguration configuration)
-
-    {
-        var luisIsConfigured = !string.IsNullOrEmpty(configuration["LuisAppId"]) && !string.IsNullOrEmpty(configuration["LuisAPIKey"]) && !string.IsNullOrEmpty(configuration["LuisAPIHostName"]);
-
-        if (luisIsConfigured)
-        {
-            var luisApplication = new LuisApplication(
-
-                configuration["LuisAppId"],
-
-                configuration["LuisAPIKey"],
-
-                "https://" + configuration["LuisAPIHostName"]);
-
-            _recognizer = new LuisRecognizer(luisApplication);
-
-        }
-    }
-
-    // Returns true if luis is configured in the appsettings.json and initialized.
-
-    public virtual bool IsConfigured => _recognizer != null;
-
-    public virtual async Task<RecognizerResult> RecognizeAsync(ITurnContext turnContext, CancellationToken cancellationToken)
-
-        => await _recognizer.RecognizeAsync(turnContext, cancellationToken);
-
-
-    public virtual async Task<T> RecognizeAsync<T>(ITurnContext turnContext, CancellationToken cancellationToken)
-
-        where T : IRecognizerConvert, new()
-
-        => await _recognizer.RecognizeAsync<T>(turnContext, cancellationToken);
-}
-
-```
-
-<!-- Direct reference
-[!code-csharp[luisHelper](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/FlightBookingRecognizer.cs?range=12-39)]
--->
+[!code-csharp[luisHelper](~/../BotBuilder-Samples/samples/csharp_dotnetcore/13.core-bot/FlightBookingRecognizer.cs?range=12-39)]
 
 `FlightBookingEx.cs` 的邏輯會擷取 *From*、*To* 和 *TravelDate*；其會延伸在從 `MainDialog.cs` 呼叫 `FlightBookingRecognizer.RecognizeAsync<FlightBooking>` 時用來儲存 LUIS 結果的部分類別 `FlightBooking.cs`。
 
-**FlightBookingEx.cs**  
+**CognitiveModels\FlightBookingEx.cs**  
 
-```csharp
-public partial class FlightBooking
-{
-    public (string From, string Airport) FromEntities
-
-    {
-        get
-
-        {
-            var fromValue = Entities?._instance?.From?.FirstOrDefault()?.Text;
-
-            var fromAirportValue = Entities?.From?.FirstOrDefault()?.Airport?.FirstOrDefault()?.FirstOrDefault();
-
-            return (fromValue, fromAirportValue);
-        }
-    }
-
-    public (string To, string Airport) ToEntities
-
-    {
-        get
-
-        {
-            var toValue = Entities?._instance?.To?.FirstOrDefault()?.Text;
-
-            var toAirportValue = Entities?.To?.FirstOrDefault()?.Airport?.FirstOrDefault()?.FirstOrDefault();
-
-            return (toValue, toAirportValue);
-        }
-    }
-
-    // This value will be a TIMEX. And we are only interested in a Date so grab the first result and drop the Time part.
-    // TIMEX is a format that represents DateTime expressions that include some ambiguity. e.g. missing a Year.
-    public string TravelDate
-        => Entities.datetime?.FirstOrDefault()?.Expressions.FirstOrDefault()?.Split('T')[0];
-}
-
-```
-
-<!-- Direct reference
 [!code-csharp[luis helper](~/../BotBuilder-Samples/samples/csharp_dotnetcore/13.core-bot/CognitiveModels/FlightBookingEx.cs?range=8-35)]
--->
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -219,89 +132,9 @@ public partial class FlightBooking
 
 為了連線至 LUIS 服務，聊天機器人會從 `.env` 檔案使用您前面所新增的資訊。 `flightBookingRecognizer.js` 類別包含的程式碼可從 `.env` 檔案匯入您的設定，以及藉由呼叫 `recognize()` 方法來查詢 LUIS 服務。
 
-```javascript
-class FlightBookingRecognizer {
+**dialogs/flightBookingRecognizer.js**
 
-    constructor(config) {
-
-        const luisIsConfigured = config && config.applicationId && config.endpointKey && config.endpoint;
-
-        if (luisIsConfigured) {
-
-            this.recognizer = new LuisRecognizer(config, {}, true);
-        }
-
-    }
-
-    get isConfigured() {
-        return (this.recognizer !== undefined);
-    }
-
-    /**
-     * Returns an object with preformatted LUIS results for the bot's dialogs to consume.
-     * @param {TurnContext} context
-     */
-    async executeLuisQuery(context) {
-        return await this.recognizer.recognize(context);
-    }
-
-    getFromEntities(result) {
-
-        let fromValue, fromAirportValue;
-
-        if (result.entities.$instance.From) {
-
-            fromValue = result.entities.$instance.From[0].text;
-        }
-
-        if (fromValue && result.entities.From[0].Airport) {
-
-            fromAirportValue = result.entities.From[0].Airport[0][0];
-        }
-
-        return { from: fromValue, airport: fromAirportValue };
-    }
-
-    getToEntities(result) {
-
-        let toValue, toAirportValue;
-
-        if (result.entities.$instance.To) {
-            toValue = result.entities.$instance.To[0].text;
-        }
-
-        if (toValue && result.entities.To[0].Airport) {
-            toAirportValue = result.entities.To[0].Airport[0][0];
-        }
-        return { to: toValue, airport: toAirportValue };
-    }
-
-    /**
-     * This value will be a TIMEX. And we are only interested in a Date so grab the first result and drop the Time part.
-     * TIMEX is a format that represents DateTime expressions that include some ambiguity. e.g. missing a Year.
-     */
-
-    getTravelDate(result) {
-
-        const datetimeEntity = result.entities['datetime'];
-
-        if (!datetimeEntity || !datetimeEntity[0]) return undefined;
-
-        const timex = datetimeEntity[0]['timex'];
-
-        if (!timex || !timex[0]) return undefined;
-
-        const datetime = timex[0].split('T')[0];
-
-        return datetime;
-    }
-}
-
-```
-
-<!-- Direct reference
 [!code-javascript[luis helper](~/../BotBuilder-Samples/samples/javascript_nodejs/13.core-bot/dialogs/flightBookingRecognizer.js?range=6-64)]
--->
 
 用來擷取 From、To 和 TravelDate 的邏輯會在 `flightBookingRecognizer.js` 內實作為協助程式方法。 從 `mainDialog.js` 呼叫 `flightBookingRecognizer.executeLuisQuery()` 之後便會使用這些方法
 

@@ -7,15 +7,14 @@ ms.author: v-mimiel
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 06/11/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b1082e16933da1fb4c20f51d4764ec1774aabdb6
-ms.sourcegitcommit: 4f78e68507fa3594971bfcbb13231c5bfd2ba555
+ms.openlocfilehash: 576947edf99705e5d0d8850837b3469f13381d06
+ms.sourcegitcommit: 008aa6223aef800c3abccda9a7f72684959ce5e7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/17/2019
-ms.locfileid: "68292188"
+ms.lasthandoff: 08/26/2019
+ms.locfileid: "70026412"
 ---
 # <a name="migration-overview"></a>移轉概觀
 
@@ -96,8 +95,10 @@ Bot Framework SDK v4 支援與 v3 相同的基礎 Bot Framework Service。 不�
 
 下列工作表可引導您評估移轉工作負載。 在 [發生次數]  資料行中，將 *count* 取代為實際數值。 在 [T 恤]  資料行中，輸入如下的值：*小*、*中*、*大*(視您的評估而定)。
 
-步驟 | V3 | V4 | 發生次數 | 複雜度 | T 恤
--- | -- | -- | -- | -- | --
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+| 步驟 | V3 | V4 | 發生次數 | 複雜度 | T 恤 |
+| -- | -- | -- | -- | -- | -- |
 若要取得連入活動 | IDialogContext.Activity | ITurnContext.Activity | count | 小型  
 若要建立活動並傳送給使用者 | activity.CreateReply(“text”) IDialogContext.PostAsync | MessageFactory.Text(“text”) ITurnContext.SendActivityAsync | count | 小型 |
 狀態管理 | UserData、ConversationData 和 PrivateConversationData context.UserData.SetValue context.UserData.TryGetValue botDataStore.LoadAsyn | UserState、ConversationState 和 PrivateConversationState (含屬性存取子) | context.UserData.SetValue - count context.UserData.TryGetValue - count botDataStore.LoadAsyn - count | 中至大 (請參閱可用的[使用者狀態管理](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-concept-state?view=azure-bot-service-4.0#state-management)) |
@@ -111,7 +112,26 @@ Bot Framework SDK v4 支援與 v3 相同的基礎 Bot Framework Service。 不�
 表示目前對話已完成的訊號 | IDialogContext.Done | 傳回等候步驟內容的 EndDialogAsync 方法。 | count | 中 |  
 對話失敗。 | IDialogContext.Fail | 擲回要在聊天機器人的另一個層級攔截的例外狀況、結束狀態為「已取消」的步驟，或呼叫該步驟或對話內容的 CancelAllDialogsAsync。 | count | 小型 |  
 
-### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+| 步驟 | V3 | V4 | 發生次數 | 複雜度 | T 恤 |
+| -- | -- | -- | -- | -- | -- |
+若要取得連入活動 | IMessage | TurnContext.activity | count | 小型  
+若要建立活動並傳送給使用者 | 呼叫 Session.send('message') | 呼叫 TurnContext.sendActivity | count | 小型 |
+狀態管理 | UserState 和 ConversationState UserState.get()、UserState.saveChanges()、ConversationState.get()、ConversationState.saveChanges() | UserState 和 ConversationState (含屬性存取子) | count | 中至大 (請參閱可用的[使用者狀態管理](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-concept-state?view=azure-bot-service-4.0#state-management)) |
+處理對話的開始 | 呼叫 session.beginDialog，並傳入對話方塊的識別碼 | 呼叫 DialogContext.beginDialog | count | 小型 |  
+傳送活動 | 呼叫 Session.send | 呼叫 TurnContext.sendActivity | count | 小型 |  
+等候使用者回應 | 從瀑布式步驟內呼叫提示，例如：builder.Prompts.text(session, 'Please enter your destination')。 在下一個步驟擷取回應。 | 傳回等候  TurnContext.prompt 開始進行提示對話方塊。 然後在瀑布的下一個步驟中擷取結果。 | count | 中 (視流程而定) |  
+處理對話的接續 | 自動 | 在瀑布式對話方塊中新增其他步驟，或實作 Dialog.continueDialog | count | 大型 |  
+表示在使用者的下一則訊息前處理結束 | Session.endDialog | 傳回 Dialog.EndOfTurn | count | 中 |  
+開始子對話 | Session.beginDialog | 傳回等候步驟內容的 beginDialog 方法。 如果子對話方塊傳回值，該值將可透過步驟內容的結果屬性用於瀑布的下一個步驟。 | count | 中 |  
+以新對話取代目前的對話 | Session.replaceDialog | ITurnContext.replaceDialog | count | 大型 |  
+表示目前對話已完成的訊號 | Session.endDialog | 傳回等候步驟內容的 endDialog 方法。 | count | 中 |  
+對話失敗。 | Session.pruneDialogStack | 擲回要在 Bot 的另一個層級攔截的例外狀況、結束狀態為「已取消」的步驟，或呼叫該步驟或對話內容的 cancelAllDialogs。 | count | 小型 |  
+
+---
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 Bot Framework SDK v4 是以與 v3 相同的基礎 REST API 作為基礎。 不過，v4 是舊版 SDK 的重構，目的是為了提升聊天機器人的彈性和控制力。
 
@@ -138,7 +158,7 @@ Bot Framework SDK v4 是以與 v3 相同的基礎 REST API 作為基礎。 不�
 
 如需詳細資訊，請參閱[將 .NET v3 聊天機器人遷移至 .NET Core v4 聊天機器人](conversion-core.md)。
 
-### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 **Bot Framework JavaScript SDK v4** 導入了幾項針對聊天機器人撰寫方式的基本變更。 這些變更會影響以 Javascript 開發聊天機器人的語法，特別是建立聊天機器人物件、定義對話方塊及撰寫事件處理邏輯程式碼的語法。 Bot Framework SDK v4 是以與 v3 相同的基礎 REST API 作為基礎。 不過，v4 是舊版 SDK 的重構，目的是為了提升聊天機器人的彈性和控制力，尤其是：
 

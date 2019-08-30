@@ -7,16 +7,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 95ec59da7b2b64391a599fa690bf3e8410c3cd53
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: 242774949243802c267a9db3b8461113b161c13a
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757189"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037329"
 ---
 # <a name="implement-channel-specific-functionality"></a>實作通道特定的功能
 
-某些通道所提供的功能，無法只透過[訊息文字和附件](bot-framework-rest-connector-create-messages.md)來實作。 若要實作通道特定的功能，您可以將原生中繼資料傳遞至 `Activity` 物件的 `channelData` 屬性中的通道。 例如，Bot 可以使用 `channelData` 屬性，指示 Telegram 傳送貼紙或指示 Office365 傳送電子郵件。
+某些通道所提供的功能，無法只透過[訊息文字和附件](bot-framework-rest-connector-create-messages.md)來實作。 若要實作通道特定的功能，您可以將原生中繼資料傳至 [Activity[]] 物件的 `channelData` 屬性中的通道。 例如，Bot 可以使用 `channelData` 屬性，指示 Telegram 傳送貼圖或指示 Office365 傳送電子郵件。
 
 此文章說明如何使用訊息活動的 `channelData` 屬性來實作此通道特定的功能：
 
@@ -275,3 +275,5 @@ Bot 可以透過[正常方式](bot-framework-rest-connector-send-and-receive-mes
 - [傳送及接收訊息](bot-framework-rest-connector-send-and-receive-messages.md)
 - [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)
 - [使用通道偵測器預覽功能](../bot-service-channel-inspector.md)
+
+[Activity]: bot-framework-rest-connector-api-reference.md#activity-object

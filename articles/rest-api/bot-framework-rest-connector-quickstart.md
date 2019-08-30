@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 4c4bfacaeb0be0c3f6dd71f0dd2a195aa2261541
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: 751a5d8430bb675e8ad5e10d02f94ee5642672cb
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757154"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037459"
 ---
 # <a name="create-a-bot-with-the-bot-connector-service"></a>使用 Bot Connector 服務建立 Bot
 > [!div class="op_single_selector"]
@@ -70,7 +70,7 @@ grant_type=client_credentials&client_id=MICROSOFT-APP-ID&client_secret=MICROSOFT
 
 ### <a name="receive-a-message-from-the-user"></a>從使用者處接收訊息
 
-當使用者傳送訊息時，Bot Framework Connector 會將要求 POST 到您在[註冊](../bot-service-quickstart-registration.md) Bot 時指定的端點。 要求的本文是 `Activity` 物件。 下列範例示範當使用者將簡單的訊息傳送給 Bot 時，Bot 收到的要求主體。 
+當使用者傳送訊息時，Bot Framework Connector 會將要求 POST 到您在[註冊](../bot-service-quickstart-registration.md) Bot 時指定的端點。 要求的本文是 [Activity][] 物件。 下列範例示範當使用者將簡單的訊息傳送給 Bot 時，Bot 收到的要求主體。 
 
 ```json
 {
@@ -97,7 +97,7 @@ grant_type=client_credentials&client_id=MICROSOFT-APP-ID&client_secret=MICROSOFT
 
 ### <a name="reply-to-the-users-message"></a>回覆使用者的訊息
 
-當您的 Bot 端點收到代表來自使用者的訊息 (亦即`type` = **訊息**) 的 `POST` 要求時，請使用該要求中的資訊，為您的回應建立 `Activity` 物件。
+當您的 Bot 端點收到代表使用者傳入訊息的 `POST` 要求時 (亦即 `type` = **訊息**)，請使用該要求中的資訊，為回應建立 [Activity][] 物件。
 
 1. 將 **conversation** 屬性設為使用者訊息中 **conversation** 屬性的內容。
 2. 將 **from** 屬性設為使用者訊息中 **recipient** 屬性的內容。
@@ -194,3 +194,5 @@ Content-Type: application/json
 ## <a name="next-steps"></a>後續步驟
 
 在本教學課程中，您會從 Bot Framework 取得存取權杖，並且使用 Bot Connector 服務與使用者交換訊息。 您可以使用 [Bot Framework 模擬器](../bot-service-debug-emulator.md)來測試您的 Bot 並且進行偵錯。 如果您想要與其他人共用您的 Bot，您必須將它[設定](../bot-service-manage-channels.md)為在一或多個通道上執行。
+
+[Activity]: bot-framework-rest-connector-api-reference.md#activity-object

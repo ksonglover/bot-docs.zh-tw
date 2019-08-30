@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 10/25/2018
-ms.openlocfilehash: 03facdff733787e95ca3bc68dfee15d747340453
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: be56700664e7626c247bb77899dc89f3cac32469
+ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68757086"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "70037219"
 ---
 # <a name="add-media-attachments-to-messages"></a>將媒體附件新增至訊息
 > [!div class="op_single_selector"]
@@ -27,7 +27,7 @@ Bot 和頻道通常會交換文字字串，但某些頻道也支援交換附件�
 
 ## <a name="add-a-media-attachment"></a>新增媒體附件  
 
-若要將媒體附件新增至訊息，請建立 `Attachment` 物件，設定 `name` 屬性，將 `contentUrl` 屬性設為媒體檔案的 URL，並將 `contentType` 屬性設為適當的媒體類型 (例如 **image/png**、**audio/wav**、**video/mp4**)。 然後，在代表訊息的 `Activity` 物件中，於 `Attachment` 陣列內指定您的 `attachments` 物件。 
+若要將媒體附件新增至訊息，請建立 [Attachment][] 物件，設定 `name` 屬性，將 `contentUrl` 屬性設為媒體檔案的 URL，並將 `contentType` 屬性設為適當的媒體類型 (例如 **image/png**、**audio/wav**、**video/mp4**)。 然後，在代表訊息的 [Activity][] 物件中，於 `attachments` 陣列內指定您的 `Attachment` 物件。
 
 下列範例所顯示的要求會傳送包含文字和單一影像附件的訊息。 在此範例要求中，`https://smba.trafficmanager.net/apis` 表示基底 URI；與 Bot 所提出要求的基底 URI 可能不同。 如需設定基底 URI 的詳細資料，請參閱 [API 參考](bot-framework-rest-connector-api-reference.md#base-uri)。
 
@@ -101,7 +101,7 @@ Content-Type: application/json
 
 ## <a name="add-an-audiocard-attachment"></a>新增 AudioCard 附件
 
-新增 `AudioCard` 或 `VideoCard` 附件等同於新增媒體附件。 例如，下列 JSON 顯示如何在媒體附件中新增音訊卡。
+新增 [AudioCard][] 或 [VideoCard][] 附件等同於新增媒體附件。 例如，下列 JSON 顯示如何在媒體附件中新增音訊卡。
 
 ```json
 {
@@ -177,3 +177,8 @@ Content-Type: application/json
 - [將複合式資訊卡 (Rich Card) 新增至訊息](bot-framework-rest-connector-add-rich-cards.md)
 - [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)
 - [Bot Framework 卡片結構描述](https://aka.ms/botSpecs-cardSchema)
+
+[Activity]: bot-framework-rest-connector-api-reference.md#activity-object
+[Attachment]: bot-framework-rest-connector-api-reference.md#attachment-object
+[AudioCard]: bot-framework-rest-connector-api-reference.md#audiocard-object
+[VideoCard]: bot-framework-rest-connector-api-reference.md#videocard-object

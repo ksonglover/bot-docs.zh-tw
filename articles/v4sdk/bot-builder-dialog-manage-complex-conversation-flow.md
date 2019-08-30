@@ -3,19 +3,18 @@ title: 使用分支和迴圈建立進階交談流程 | Microsoft Docs
 description: 了解如何在 Bot Framework SDK 中透過對話來管理複雜的交談流程。
 keywords: 複雜對話流程, 重複, 迴圈, 選單, 對話方塊, 提示, 瀑布, 對話方塊集
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 07/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b7ffa16c2f0a00043b12faec1d31bbfe5bfa250f
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: 9f88c854f2af18ae0c9fb724f8c3a3c99b6141ba
+ms.sourcegitcommit: 9e1034a86ffdf2289b0d13cba2bd9bdf1958e7bc
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/05/2019
-ms.locfileid: "67587478"
+ms.lasthandoff: 08/21/2019
+ms.locfileid: "69890639"
 ---
 # <a name="create-advanced-conversation-flow-using-branches-and-loops"></a>使用分支和迴圈建立進階的交談流程
 
@@ -41,11 +40,11 @@ ms.locfileid: "67587478"
 
 對話方塊分成 `MainDialog`、`TopLevelDialog` 和 `ReviewSelectionDialog` 元件對話，並一起執行下列動作：
 
-- 這些對話方塊會要求使用者的名稱和年齡，然後根據使用者的年齡進行 _。
+- 這些對話方塊會要求使用者的名稱和年齡，然後根據使用者的年齡進行_分支_。
   - 如果使用者太年輕，則不會要求使用者評論任何公司。
   - 如果使用者年紀夠大，就會開始收集使用者的評論喜好。
     - 其可讓使用者選取要評論的公司。
-    - 如果使用者選擇了一家公司，這些對話方塊就會以 _來允許選取第二間公司。
+    - 如果使用者選擇了一家公司，這些對話方塊就會以_迴圈_來允許選取第二間公司。
 - 並在最後感謝使用者的參與。
 
 其使用兩個瀑布式對話，和一些提示來管理複雜對話。
@@ -64,7 +63,7 @@ ms.locfileid: "67587478"
 - 用於管理狀態的服務：儲存體、使用者狀態及交談狀態。
 - Bot 會使用的對話方塊。
 
-[!code-csharp[ConfigureServices](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Startup.cs?range=22-39)]
+[!code-csharp[ConfigureServices](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Startup.cs?range=22-36)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -80,8 +79,7 @@ ms.locfileid: "67587478"
 - 用於管理狀態的服務：儲存體、使用者狀態及對話狀態。
 - Bot 會使用的對話方塊。
 
-[!code-javascript[ConfigureServices](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/index.js?range=25-38)]
-[!code-javascript[ConfigureServices](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/index.js?range=43-45)]
+[!code-javascript[ConfigureServices](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/index.js?range=25-55)]
 
 ---
 
@@ -206,7 +204,7 @@ Since component dialog defines an inner dialog set, we have to create an outer d
 
 **Bots\DialogAndWelcome.cs**
 
-`DialogAndWelcomeBot` 會展開上述的 `DialogBot`，以在使用者加入對話時提供歡迎訊息，並且是 `Startup.cs` 所呼叫的項目。
+`DialogAndWelcomeBot` 擴充了上述的 `DialogBot`，可在使用者加入對話時提供歡迎訊息，且是 `Startup.cs` 中所建立的項目。
 
 [!code-csharp[On members added](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Bots/DialogAndWelcome.cs?range=21-38)]
 
@@ -226,11 +224,11 @@ Since component dialog defines an inner dialog set, we have to create an outer d
 
 訊息處理常式會呼叫 `run` 協助程式方法來管理對話方塊，我們會實作回合處理常式，來將任何變更儲存至對話和使用者狀態，而這可能會在回合期間發生。 呼叫 `next` 會讓基礎實作呼叫 `onDialog` 方法，確保儲存呼叫會在回合結束時執行。
 
-[!code-javascript[Overrides](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/bots/dialogBot.js?range=30-47)]
+[!code-javascript[Overrides](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/bots/dialogBot.js?range=24-41)]
 
 **bots/dialogAndWelcomeBot.js**
 
-`DialogAndWelcomeBot` 會展開上述的 `DialogBot`，以在使用者加入對話時提供歡迎訊息，並且是 `Startup.cs` 所呼叫的項目。
+`DialogAndWelcomeBot` 擴充了上述的 `DialogBot`，可在使用者加入對話時提供歡迎訊息，且是 `index.js` 中所建立的項目。
 
 [!code-javascript[On members added](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/bots/dialogAndWelcomeBot.js?range=10-21)]
 
@@ -242,13 +240,13 @@ Since component dialog defines an inner dialog set, we have to create an outer d
 
 **Dialogs\TopLevelDialog.cs**
 
-以下是分支邏輯範例，來自 _對話方塊的步驟：
+以下是分支邏輯範例，來自_最上層_對話方塊的步驟：
 
 [!code-csharp[branching logic](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Dialogs/TopLevelDialog.cs?range=68-80)]
 
 **Dialogs\ReviewSelectionDialog.cs**
 
-以下是迴圈邏輯範例，來自 _對話方塊的步驟：
+以下是迴圈邏輯範例，來自_檢閱選取_對話方塊的步驟：
 
 [!code-csharp[looping logic](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Dialogs/ReviewSelectionDialog.cs?range=96-105)]
 
@@ -256,13 +254,13 @@ Since component dialog defines an inner dialog set, we have to create an outer d
 
 **dialogs/topLevelDialog.js**
 
-以下是分支邏輯範例，來自 _對話方塊的步驟：
+以下是分支邏輯範例，來自_最上層_對話方塊的步驟：
 
 [!code-javascript[branching logic](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/dialogs/topLevelDialog.js?range=56-64)]
 
 **dialogs/reviewSelectionDialog.js**
 
-以下是迴圈邏輯範例，來自 _對話方塊的步驟：
+以下是迴圈邏輯範例，來自_檢閱選取_對話方塊的步驟：
 
 [!code-javascript[looping logic](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/dialogs/reviewSelectionDialog.js?range=71-77)]
 
