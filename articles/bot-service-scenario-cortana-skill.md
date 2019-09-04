@@ -2,19 +2,18 @@
 title: Cortana 技能 Bot 案例 | Microsoft Docs
 description: 使用 Bot Framework 探索 Cortana 技能 Bot 案例。
 author: BrianRandell
-ms.author: v-brra
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: cognitive-services
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 7676b7bd75a45130b62c1a691499095d6ba07291
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d6ba5b414ff7e600fac1e5d4ebce27363340f42f
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000225"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167048"
 ---
 # <a name="cortana-skills-bot-scenario"></a>Cortana 技能 Bot 案例
 
@@ -38,7 +37,7 @@ Cortana 是您的個人助理。 使用您的語音和自訂的 Cortana 技能 B
 ## <a name="sample-bot"></a>範例 Bot
 使用 Cortana 技能 Bot 完全取決於個人背景。 使用 Cortana，您可以使用語音要求「Bob 的行動裝置維護」根據您的位置來處理您的車輛。 使用透過 Cortana 公開的個人資訊，您的 Bot 可以根據使用者與 Bot 交談時的位置來確認位置。
 
-您可以從[常見的 Bot Framework 案例範例](https://aka.ms/bot/scenarios)下載或複製此範例 Bot 的原始程式碼。
+您可以從[常見的 Bot Framework 案例範例](https://aka.ms/abs-scenarios)下載或複製此範例 Bot 的原始程式碼。
 
 ## <a name="components-youll-use"></a>您將使用的元件
 Cortana Bot 會使用下列元件：

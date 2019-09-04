@@ -10,12 +10,12 @@ ms.topic: conceptual
 ms.date: 05/02/2019
 ms.author: travisw
 ms.custom: ''
-ms.openlocfilehash: f38caad2a1b09e8f07e5fe8c7ea7bf7e2b2dfd6f
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: f7f70804ce67adec386d1a6722ba7e87b6cb2a93
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2019
-ms.locfileid: "68756859"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167027"
 ---
 # <a name="connect-a-bot-to-direct-line-speech-preview"></a>將 Bot 連線至 Direct Line Speech (預覽)
 
@@ -23,7 +23,7 @@ ms.locfileid: "68756859"
 
 您可以設定 Bot，允許用戶端應用程式透過 Direct Line Speech 通道與其通訊。
 
-建置好您的 Bot 後，透過 Direct Line Speech 上線，將可使用 [Speech SDK](https://aka.ms/speech/sdk) 與用戶端應用程式進行低延遲、高可靠性連線。 這些連線最適合用於語音輸入、語音輸出的交談式體驗。 如需有關 Direct Line Speech 以及如何建置用戶端應用程式的詳細資訊，請瀏覽[自訂語音優先虛擬助理](https://aka.ms/bots/speech/va)頁面。  
+建置好您的 Bot 後，透過 Direct Line Speech 上線，將可使用 [Speech SDK](https://aka.ms/speech-services-docs) 與用戶端應用程式進行低延遲、高可靠性連線。 這些連線最適合用於語音輸入、語音輸出的交談式體驗。 如需有關 Direct Line Speech 以及如何建置用戶端應用程式的詳細資訊，請瀏覽[自訂語音優先虛擬助理](https://aka.ms/voice-first-va)頁面。  
 
 ## <a name="sign-up-for-direct-line-speech-preview"></a>註冊 Direct Line Speech 預覽版
 

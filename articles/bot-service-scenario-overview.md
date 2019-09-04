@@ -2,18 +2,18 @@
 title: Bot Service 案例概觀 | Microsoft Docs
 description: 針對使用 Bot Service 所建置的強大且成功 Bot，探索其重要案例。
 author: BrianRandell
-ms.author: v-brra
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f8b64e5705085af5b00de6a3c00059dbdea24cb9
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: c4a0af8bfd6496b82ddcc9219e948395d87e4ff3
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405761"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167348"
 ---
 # <a name="bot-scenarios"></a>Bot 案例
 
@@ -21,7 +21,7 @@ ms.locfileid: "67405761"
 
 本主題會針對使用 Bot Service 所建置強大且成功的 Bot，探索其重要案例。
 
-您可以從[常見的 Bot Framework 案例範例](https://aka.ms/bot/scenarios)下載或複製所有案例 Bot 範例的原始程式碼。
+您可以從[常見的 Bot Framework 案例範例](https://aka.ms/abs-scenarios)下載或複製所有案例 Bot 範例的原始程式碼。
 
 ## <a name="commerce-bot-scenario"></a>商務 Bot 案例
 [商務 Bot](bot-service-scenario-commerce.md) 案例說明 Bot 如何取代傳統電子郵件和電話互動等常見的旅館接待服務。 Bot 會利用認知服務，以更順暢地處理客戶的文字和語音要求，並搭配蒐集來自與後端服務整合的內容。

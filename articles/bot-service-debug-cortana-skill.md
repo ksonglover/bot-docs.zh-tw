@@ -3,17 +3,18 @@ title: 測試 Cortana 技能 |Microsoft Docs
 description: 了解如何藉由叫用 Cortana 技能測試 Cortana bot。
 keywords: Bot Framework SDK, 註冊您的機器人, cortana
 author: v-ducvo
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 05/01/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 7d07317afb6d89c2d22d6f4983f7b21c3a1a053c
-ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
+ms.openlocfilehash: 996063bef2e139292187f125318f63745373e7bb
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/01/2019
-ms.locfileid: "67496669"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70166938"
 ---
 # <a name="test-a-cortana-skill"></a>測試 Cortana 技能
 
@@ -92,8 +93,8 @@ ms.locfileid: "67496669"
 [BFPortal]: https://dev.botframework.com/
 [CortanaDevCenter]: https://developer.microsoft.com/cortana
 
-[CortanaSpecificEntities]: https://aka.ms/lgvcto
-[CortanaAuth]: https://aka.ms/vsdqcj
+[CortanaSpecificEntities]: https://aka.ms/cortana-channel-data
+[CortanaAuth]: https://aka.ms/add-auth-cortana-skill
 
 [InvocationNameGuidelines]: https://aka.ms/cortana-invocation-guidelines 
 

@@ -2,18 +2,18 @@
 title: 企業生產力 Bot 案例 | Microsoft Docs
 description: 探索使用 Bot Framework 的企業生產力 Bot 案例。
 author: BrianRandell
-ms.author: v-brra
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 1fe68144662be3de349d05ea861a230641ae1efb
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3ae87b52864ae1a9a4b7b439529e5093d6d3be8e
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996706"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167073"
 ---
 # <a name="enterprise-productivity-bot-scenario"></a>企業生產力 Bot 案例
 
@@ -34,7 +34,7 @@ ms.locfileid: "49996706"
 5. 此資訊會傳回給員工，他可以在不離開 Bot 的情況下篩出資料。
 6. Application Insights 會收集執行階段遙測，以協助開發 Bot 效能和使用量。
 
-您可以從[常見的 Bot Framework 案例範例](https://aka.ms/bot/scenarios) \(英文\) 下載或複製此範例 Bot 的原始程式碼。
+您可以從[常見的 Bot Framework 案例範例](https://aka.ms/abs-scenarios) \(英文\) 下載或複製此範例 Bot 的原始程式碼。
 
 ## <a name="sample-bot"></a>範例 Bot
 因為 Bot 可透過各種通道來存取，只需要經過驗證，您就可以在辦公室時透過公司入口網站來存取，或在外出時透過 Skype 來存取。 透過與 Azure AD 整合，您的企業生產力 Bot 就會知道您是否已經過 Azure AD 驗證，進而得知您是否能夠存取它。 接著，您就可以要求 Bot，以檢查與下一個特定客戶的約會時間。 Bot 是藉由透過圖形 API 查詢 Office 365 來取得此資訊。 然後，如果接下來一星期有約會，Bot 會查詢 CRM，尋找該客戶任何近期的案例資訊。 Bot 會回應找不到任何案例，或是數個已開立和已結案的案例。 您可以在該處要求 Bot 依類型列出案例，並向下鑽研個別案例。

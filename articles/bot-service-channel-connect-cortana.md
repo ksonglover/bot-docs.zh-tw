@@ -7,14 +7,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 04/30/2018
-ms.openlocfilehash: 3df9d22b486e56547452cc5bce4add3946f670f5
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: caa7c71bc0b12ff6defb72f75dcb6d12ce512806
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405929"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70166999"
 ---
 # <a name="connect-a-bot-to-cortana"></a>將 Bot 連線至 Cortana
 
@@ -113,4 +112,4 @@ Cortana 會提供許多不同類型的使用者設定檔資訊，供您存取並
 
 [invocation]: https://docs.microsoft.com/cortana/skills/cortana-invocation-guidelines
 [publish]: https://docs.microsoft.com/cortana/skills/publish-skill
-[CortanaEntity]: https://aka.ms/lgvcto
+[CortanaEntity]: https://aka.ms/cortana-channel-data

@@ -6,15 +6,14 @@ ms.author: mateusv
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 2/13/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d81a7e55ab7ac5e3b430ae051d1abbb4ca94b44d
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: 8bad1459dfce89f79906dec0f4c03cb50a242449
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405837"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70166949"
 ---
 # <a name="create-task-automation-bots"></a>建立工作自動化 Bot
 
@@ -91,13 +90,6 @@ Contoso 的資深開發人員 John 決定建立 Bot，以將密碼重設工作�
 
 此外，Bot 能夠自由地輕鬆延伸及擴充。 例如，開發人員可以選擇將自然語言和語音功能新增至密碼重設 Bot，使其可透過語音通話進行存取，或可新增文字簡訊的支援。 該公司可能會在整個建置中設定 kiosk，並在這個體驗中內嵌密碼重設 Bot。
 
-<!-- TODO: SimpleTaskAutomation no longer exists
-## Sample code
-
-For a complete sample that shows how to implement simple task automation using the Bot Framework SDK for .NET, see the <a href="https://aka.ms/capability-SimpleTaskAutomation" target="_blank">Simple Task Automation sample</a> in GitHub.
-
-For a complete sample that shows how to implement simple task automation using the Bot Framework SDK for Node.js, see the <a href="https://aka.ms/capability-SimpleTaskAutomation" target="_blank">Simple Task Automation sample</a> in GitHub.
--->
 
 ## <a name="additional-resources"></a>其他資源
 

@@ -7,12 +7,12 @@ ms.topic: conceptual
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 72c4d972b3f403beadad6d098a3c639cbbc1694d
-ms.sourcegitcommit: 9e1034a86ffdf2289b0d13cba2bd9bdf1958e7bc
+ms.openlocfilehash: 014f5c998fcb9d322439ca8b0e0bf2ba5f9f0679
+ms.sourcegitcommit: 0b647dc6716b0c06f04ee22ebdd7b53039c2784a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/21/2019
-ms.locfileid: "69890540"
+ms.lasthandoff: 08/28/2019
+ms.locfileid: "70076518"
 ---
 # <a name="register-a-bot-with-azure-bot-service"></a>使用 Azure Bot 服務註冊 Bot
 
@@ -32,6 +32,7 @@ ms.locfileid: "69890540"
 
 1. 在左窗格中，按一下 [建立資源]  。
 1. 在右窗格的選取方塊中，輸入 *bot*。 在下拉式清單中，選取 [Bot 通道註冊]  或 [Web 應用程式 Bot]  ，視您的應用程式而定。
+針對 **Web Bot 應用程式**，請依照下列文章中說明的步驟操作：[使用 Azure Bot 服務建立 Bot](v4sdk/abs-quickstart.md)。 您將在 Azure 中建立會自動向 Azure Bot 服務註冊的 Bot。
 1. 按一下 [建立]  按鈕開始進行程序。
 1. 在 [Bot 服務]  刀鋒視窗中，依照下圖下方表格中說明的內容，提供有關您 Bot 的必要資訊。  
 
@@ -75,8 +76,6 @@ ms.locfileid: "69890540"
     ![建立註冊 Bot 刀鋒視窗](media/azure-bot-quickstarts/bot-channels-registration-app-secrets-create.png)
 
     這會產生 Bot 的新密碼。 複製此密碼，並儲存至檔案。 這是您唯一會看到此密碼的時機。 如果您未儲存完整的密碼，您必須重複此程序來建立新的密碼，以便稍後使用。
-
-針對 **Web Bot 應用程式**，請依照下列文章中說明的步驟操作：[使用 Azure Bot 服務建立 Bot](v4sdk/abs-quickstart.md)。 您將在 Azure 中建立會自動向 Azure Bot 服務註冊的 Bot。
 
 ## <a name="manual-app-registration"></a>手動註冊應用程式
 

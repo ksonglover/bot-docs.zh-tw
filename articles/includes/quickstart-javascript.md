@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 4af367b04f84d935936b5752cf9dbc863430105c
-ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
+ms.openlocfilehash: f6d12b0031ec14e8c7c6e8bee876e7abb96c01f6
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/16/2019
-ms.locfileid: "68230807"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70174596"
 ---
 ## <a name="prerequisites"></a>必要條件
 
@@ -61,7 +61,7 @@ Yeoman 會提示您輸入一些用來建立 Bot 的資訊。 本教學課程使�
 - 輸入 Bot 的名稱。 (my-chat-bot)
 - 輸入描述。 (示範 Microsoft Bot Framework 的核心功能)
 - 選擇 Bot 的語言。 (JavaScript)
-- 選擇要使用的範本。 (回應聊天機器人 - https://aka.ms/bot-template-echo)
+- 選擇要使用的範本。 (回應聊天機器人 - https://aka.ms/generator-botbuilder-templates)
 
 由於有範本，專案中會包含要在本快速入門建立聊天機器人所需的所有程式碼。 您實際上不需要撰寫任何額外的程式碼。
 

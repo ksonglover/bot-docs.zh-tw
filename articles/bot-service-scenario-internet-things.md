@@ -2,18 +2,18 @@
 title: 物聯網 Bot 案例 |Microsoft Docs
 description: 藉由 Bot Framework 探索物聯網 Bot 案例。
 author: BrianRandell
-ms.author: v-brra
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 0cdade289bc7474a3d2597ae54fd2c355a7969f9
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 53a99c4313604d55da6554e927109f0f2f74104c
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996995"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167360"
 ---
 # <a name="internet-of-things-iot-bot-scenario"></a>物聯網 (IoT) Bot 案例
 
@@ -36,7 +36,7 @@ ms.locfileid: "49996995"
 ## <a name="sample-bot"></a>範例 Bot
 IoT Bot 將能讓您快速地使用 Skype 或 Slack 等頻道的聊天命令，來控制您的 Hue。 為了方便遠端存取，您可以呼叫預先定義的 IFTTT 小程式 來搭配 Hue 使用。
 
-您可以從[常見的 Bot Framework 案例範例](https://aka.ms/bot/scenarios)下載或複製此範例 Bot 的原始程式碼。
+您可以從[常見的 Bot Framework 案例範例](https://aka.ms/abs-scenarios)下載或複製此範例 Bot 的原始程式碼。
 
 ## <a name="components-youll-use"></a>您將使用的元件
 物聯網 (IoT) Bot 會使用下列元件：

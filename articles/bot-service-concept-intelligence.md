@@ -7,15 +7,14 @@ ms.author: rstand
 manager: rstand
 ms.topic: article
 ms.service: bot-service
-ms.subservice: cognitive-services
 ms.date: 12/17/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3f9cd112397a66bffb8efd41cbeab6feca8c7d7f
-ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.openlocfilehash: 7dbbe8492761360941eca5e724a7339e28968769
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2019
-ms.locfileid: "67464613"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167015"
 ---
 # <a name="cognitive-services"></a>認知服務
 
@@ -68,9 +67,9 @@ ms.locfileid: "67464613"
 下列資源提供有關新增語音辨識功能至 Bot 的額外資訊。
 
 * [應用程式的 Bot 交談影片概觀](https://channel9.msdn.com/events/Build/2017/P4114)
-* [適用於 UWP 或 Xamarin 應用程式的 Microsoft.Bot.Client 程式庫](https://aka.ms/BotClient)
-* [Bot 用戶端程式庫範例](https://aka.ms/BotClientSample)
-* [支援語音的 WebChat 用戶端](https://aka.ms/BFWebChat)
+* [適用於 UWP 或 Xamarin 應用程式的 Microsoft.Bot.Client 程式庫](https://aka.ms/bot-client)
+* [Bot 用戶端程式庫範例](https://aka.ms/trivia-bot-speech-sample)
+* [支援語音的 WebChat 用戶端](https://aka.ms/BotFramework-WebChat)
 
 深入了解採用 Microsoft 認知服務的[語音辨識和轉換][speech]。
 

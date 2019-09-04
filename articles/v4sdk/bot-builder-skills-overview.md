@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 59b5e340ee9f2eeb89eaf420a0cca031fcc7f2b1
-ms.sourcegitcommit: 7b3d2b5b9b8ce77887a9e6124a347ad798a139ca
+ms.openlocfilehash: 566eb58f98335b9c55499051c6a23a6e0e0b6bc5
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/13/2019
-ms.locfileid: "68991937"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167124"
 ---
 # <a name="virtual-assistant---skills-overview"></a>虛擬主題 - 技能概觀
 
@@ -40,13 +40,13 @@ ms.locfileid: "68991937"
 
 | Name | 說明 |
 | ---- | ----------- |
-|[行事曆技能](https://aka.ms/bfcalendarskill)|將行事曆功能新增到您的助理。 由 Microsoft Graph 和 Google 提供技術支援。|
-|[電子郵件技能](https://aka.ms/bfemailskill)|將電子郵件功能新增到您的助理。 由 Microsoft Graph 和 Google 提供技術支援。|
-|[待辦事項技能](https://aka.ms/bftodoskill)|將工作管理功能新增到您的助理。 由 Microsoft Craph 提供技術支援。|
-|[景點技能](https://aka.ms/bfpoiskill)|尋找景點及指示。 由 Azure 地圖服務和 FourSquare 提供技術支援。|
-|[汽車技能](https://aka.ms/bfautoskill)|產業垂直整合技能，用於展示和啟用汽車功能控制。|
-|[實驗性技能](https://aka.ms/bfexperimentalskills)|新聞、餐廳訂位和天氣。|
+|[行事曆技能](https://aka.ms/bf-calendar-skill)|將行事曆功能新增到您的助理。 由 Microsoft Graph 和 Google 提供技術支援。|
+|[電子郵件技能](https://aka.ms/bf-email-skill)|將電子郵件功能新增到您的助理。 由 Microsoft Graph 和 Google 提供技術支援。|
+|[待辦事項技能](https://aka.ms/bf-todo-skill)|將工作管理功能新增到您的助理。 由 Microsoft Craph 提供技術支援。|
+|[景點技能](https://aka.ms/bf-poi-skill)|尋找景點及指示。 由 Azure 地圖服務和 FourSquare 提供技術支援。|
+|[汽車技能](https://aka.ms/bf-autos-kill)|產業垂直整合技能，用於展示和啟用汽車功能控制。|
+|[實驗性技能](https://aka.ms/bf-experimental-skills)|新聞、餐廳訂位和天氣。|
 
 ## <a name="getting-started"></a>開始使用
 
-請參閱[教學課程](https://aka.ms/bfstutorials)，以了解如何運用現有的技能並增長自己的技能。
+請參閱[教學課程](https://aka.ms/bfs-tutorials)，以了解如何運用現有的技能並增長自己的技能。

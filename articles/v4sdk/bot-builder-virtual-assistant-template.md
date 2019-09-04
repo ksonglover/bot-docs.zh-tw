@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6bf567729e0c4799672f773ddcfadb4fabfa36fc
-ms.sourcegitcommit: 7b3d2b5b9b8ce77887a9e6124a347ad798a139ca
+ms.openlocfilehash: 82385510894213a386c3f38836c85aad44306a23
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/13/2019
-ms.locfileid: "68991967"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167059"
 ---
 # <a name="virtual-assistant---template-outline"></a>虛擬助理 - 範本大綱
 
@@ -80,7 +80,7 @@ Bot 層級的遙測在本質上與技術和作業方面的遙測相連結，因�
 
 中介軟體元件結合 QnA Maker 和 LuisRecognizer SDK 類別的包裝函式類別，以提供簡潔的方式來收集一組一致的事件。 接著，這些一致的事件可交由 Application Insights 工具和 PowerBI 之類的工具來使用。
 
-範例 Power BI 儀表板是 Bot Framework 解決方案 github 存放庫的一部分，可立即與每個虛擬助理範本搭配運作方式。 如需詳細資訊，請參閱[分析](https://aka.ms/bfsanalytics)一節。
+範例 Power BI 儀表板是 Bot Framework 解決方案 github 存放庫的一部分，可立即與每個虛擬助理範本搭配運作方式。 如需詳細資訊，請參閱[分析](https://aka.ms/bfs-analytics)一節。
 
 ![分析範例](./media/enterprise-template/powerbi-conversationanalytics-luisintents.png)
 
@@ -120,8 +120,8 @@ Bot 層級的遙測在本質上與技術和作業方面的遙測相連結，因�
 系統會提供中介軟體元件，以透過 TurnState 物件上的 ```TextModeratorResult``` 將該畫面轉換成文字並顯示。
 
 ## <a name="next-steps"></a>後續步驟
-請參閱[教學課程](https://aka.ms/bfstutorials)以了解如何建立和部署虛擬助理。 
+請參閱[教學課程](https://aka.ms/bfs-tutorials)以了解如何建立和部署虛擬助理。 
 
 ## <a name="additional-resources"></a>其他資源
-虛擬助理範本的完整原始程式碼位於 [GitHub](https://aka.ms/bfsolutions)。
+虛擬助理範本的完整原始程式碼位於 [GitHub](https://aka.ms/bf-solutions)。
 
