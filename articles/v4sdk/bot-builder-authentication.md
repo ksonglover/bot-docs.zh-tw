@@ -7,12 +7,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 08/22/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8eea0bfd49bfd142c648d8ce842e1c24aa8ab45a
-ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
+ms.openlocfilehash: 8b12068984396a015bfbb441f9b1e506acbb9154
+ms.sourcegitcommit: 0b647dc6716b0c06f04ee22ebdd7b53039c2784a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70037525"
+ms.lasthandoff: 08/28/2019
+ms.locfileid: "70076570"
 ---
 <!-- 
 
@@ -431,6 +431,9 @@ Teams 在 OAuth 方面的行為與其他通道稍有不同，而且需要進行�
 最後，請務必在 Bot 資料夾的最上層新增適當的 `TeamsActivityHandler` 檔案 (`TeamsActivityHandler.cs` 用於 C# Bot，而 `teamsActivityHandler.js` 用於 Javascript Bot)。
 
 `TeamsActivityHandler` 也會傳送*訊息回應*活動。 訊息反應活動會使用 [回覆識別碼]  欄位來參考原始活動。 此活動應該也會在 Microsoft Teams 中透過[活動摘要][teams-activity-feed]顯示。
+
+> [!NOTE]
+> 您必須建立資訊清單，並在 `validDomains` 區段中納入 `token.botframework.com`，否則 OAuthCard 的 [登入]  按鈕將不會開啟驗證視窗。 請使用 [App Studio](https://docs.microsoft.com/en-us/microsoftteams/platform/get-started/get-started-app-studio) 來產生您的資訊清單。
 
 ### <a name="further-reading"></a>進階閱讀
 

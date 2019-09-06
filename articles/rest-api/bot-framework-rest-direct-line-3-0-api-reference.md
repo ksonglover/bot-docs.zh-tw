@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 25f6e30898101b87289af775e8386f941aa747a9
-ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
+ms.openlocfilehash: 618b2ffe99114679aa5592b816adf6e1b82be83e
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70037375"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167187"
 ---
 # <a name="api-reference---direct-line-api-30"></a>API 參考 - Direct Line API 3.0
 
@@ -36,7 +36,7 @@ Authorization: Bearer SECRET_OR_TOKEN
 
 ## <a name="http-status-codes"></a>HTTP 狀態碼
 
-與每個回應一併傳回的 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank">HTTP 狀態碼</a>會指出對應要求的結果。 
+與每個回應一併傳回的 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank">HTTP 狀態碼</a>會指出對應要求的結果。
 
 | HTTP 狀態碼 | 意義 |
 |----|----|
@@ -71,10 +71,12 @@ POST https://directline.botframework.com/v3/directline/conversations/abc123/acti
 ```
 
 #### <a name="response"></a>Response
+
 ```http
 HTTP/1.1 502 Bad Gateway
 [other headers]
 ```
+
 ```json
 {
     "error": {
@@ -84,112 +86,128 @@ HTTP/1.1 502 Bad Gateway
 }
 ```
 
-## <a name="token-operations"></a>權杖作業 
+## <a name="token-operations"></a>權杖作業
+
 透過這些作業可建立或重新整理用戶端用於存取單一對話的權杖。
 
 | 作業 | 說明 |
 |----|----|
-| [產生權杖](#generate-token) | 產生新對話的權杖。 | 
-| [重新整理權杖](#refresh-token) | 重新整理權杖。 | 
+| [產生權杖](#generate-token) | 產生新對話的權杖。 |
+| [重新整理權杖](#refresh-token) | 重新整理權杖。 |
 
 ### <a name="generate-token"></a>產生權杖
-產生適用於一個對話的權杖。 
-```http 
+
+產生適用於一個對話的權杖。
+
+```http
 POST /v3/directline/tokens/generate
 ```
 
 | | |
 |----|----|
-| **要求本文** | n/a |
-| **傳回** | [Conversation](#conversation-object) 物件 | 
+| **要求本文** | [TokenParameters](#tokenparameters-object) 物件。 |
+| **傳回** | [Conversation](#conversation-object) 物件 |
 
 ### <a name="refresh-token"></a>重新整理權杖
-重新整理此權杖。 
-```http 
+
+重新整理此權杖。
+
+```http
 POST /v3/directline/tokens/refresh
 ```
 
 | | |
 |----|----|
 | **要求本文** | n/a |
-| **傳回** | [Conversation](#conversation-object) 物件 | 
+| **傳回** | [Conversation](#conversation-object) 物件 |
 
-## <a name="conversation-operations"></a>對話作業 
+## <a name="conversation-operations"></a>對話作業
+
 使用這些作業可開啟您與 Bot 的對話，並在用戶端與 Bot 之間交換訊息。
 
 | 作業 | 說明 |
 |----|----|
-| [開始對話](#start-conversation) | 開啟與 Bot 的新對話。 | 
+| [開始對話](#start-conversation) | 開啟與 Bot 的新對話。 |
 | [取得對話資訊](#get-conversation-information) | 取得現有對話的相關資訊。 此作業會產生新的 WebSocket 資料流 URL，用戶端可以用來[重新連線](bot-framework-rest-direct-line-3-0-reconnect-to-conversation.md)對話。 |
 | [取得活動](#get-activities) | 從 Bot 擷取活動。 |
-| [傳送活動](#send-an-activity) | 將活動傳送到 Bot。 | 
-| [上傳與傳送檔案](#upload-send-files) | 上傳檔案後，以附件型式傳送檔案。 |
+| [傳送活動](#send-an-activity) | 將活動傳送到 Bot。 |
+| [上傳與傳送檔案](#upload-and-send-files) | 上傳檔案後，以附件型式傳送檔案。 |
 
 ### <a name="start-conversation"></a>開始對話
-開啟與 Bot 的新對話。 
-```http 
+
+開啟與 Bot 的新對話。
+
+```http
 POST /v3/directline/conversations
 ```
 
 | | |
 |----|----|
-| **要求本文** | n/a |
-| **傳回** | [Conversation](#conversation-object) 物件 | 
+| **要求本文** | [TokenParameters](#tokenparameters-object) 物件。 |
+| **傳回** | [Conversation](#conversation-object) 物件 |
 
 ### <a name="get-conversation-information"></a>取得對話資訊
+
 取得現有對話的相關資訊，並且產生新的 WebSocket 資料流 URL，用戶端可以用來[重新連線](bot-framework-rest-direct-line-3-0-reconnect-to-conversation.md)對話。 您可以選擇性地在要求 URI 中提供 `watermark` 參數，以指出最近期內用戶端所見到的訊息。
-```http 
+
+```http
 GET /v3/directline/conversations/{conversationId}?watermark={watermark_value}
 ```
 
 | | |
 |----|----|
 | **要求本文** | n/a |
-| **傳回** | [Conversation](#conversation-object) 物件 | 
+| **傳回** | [Conversation](#conversation-object) 物件 |
 
 ### <a name="get-activities"></a>取得活動
-針對指定對話從 Bot 擷取活動。 您可以選擇性地在要求 URI 中提供 `watermark` 參數，以指出最近期內用戶端所見到的訊息。 
 
-```http 
+針對指定對話從 Bot 擷取活動。 您可以選擇性地在要求 URI 中提供 `watermark` 參數，以指出最近期內用戶端所見到的訊息。
+
+```http
 GET /v3/directline/conversations/{conversationId}/activities?watermark={watermark_value}
 ```
 
 | | |
 |----|----|
 | **要求本文** | n/a |
-| **傳回** | [ActivitySet](#activityset-object) 物件。 回應中包含 `watermark` 作為 `ActivitySet` 物件的屬性。 用戶端應隨 `watermark` 值向前逐頁查詢可用的活動，直到沒有活動傳回。 | 
+| **傳回** | [ActivitySet](#activityset-object) 物件。 回應中包含 `watermark` 作為 `ActivitySet` 物件的屬性。 用戶端應隨 `watermark` 值向前逐頁查詢可用的活動，直到沒有活動傳回。 |
 
 ### <a name="send-an-activity"></a>傳送活動
-將活動傳送到 Bot。 
-```http 
+
+將活動傳送到 Bot。
+
+```http
 POST /v3/directline/conversations/{conversationId}/activities
 ```
 
 | | |
 |----|----|
 | **要求本文** | [Activity][] 物件 |
-| **傳回** | [ResourceResponse][]，其中包含 `id` 屬性，指定已傳送給 Bot 的活動識別碼。 | 
+| **傳回** | [ResourceResponse][]，其中包含 `id` 屬性，指定已傳送給 Bot 的活動識別碼。 |
 
-### <a id="upload-send-files"></a> 上傳與傳送檔案
+### <a name="upload-and-send-files"></a>上傳與傳送檔案
+
 上傳檔案後，以附件型式傳送檔案。 設定要求 URI 中的 `userId` 參數以指定正在傳送附件之使用者的識別碼。
-```http 
+
+```http
 POST /v3/directline/conversations/{conversationId}/upload?userId={userId}
 ```
 
 | | |
 |----|----|
 | **要求本文** | 若為單一附件，請在要求本文填入檔案內容。 若有多個附件，請建立多部分要求本文，包含一個部分是針對每個附件，以及 (選擇性) 一個部分是針對應該作為指定附件之容器的 [Activity][] 物件。 如需詳細資訊，請參閱[將活動傳送到 Bot](bot-framework-rest-direct-line-3-0-send-activity.md)。 |
-| **傳回** | [ResourceResponse][]，其中包含 `id` 屬性，指定已傳送給 Bot 的活動識別碼。 | 
+| **傳回** | [ResourceResponse][]，其中包含 `id` 屬性，指定已傳送給 Bot 的活動識別碼。 |
 
 > [!NOTE]
 > 上傳的檔案會在 24 小時後刪除。
 
 ## <a name="schema"></a>結構描述
 
-Direct Line 3.0 結構描述包含 [Bot Framework 活動結構描述](https://aka.ms/botSpecs-activitySchema)所定義的所有物件，以及 `ActivitySet` 物件和 `Conversation` 物件。
+Direct Line 3.0 結構描述包含 [Bot Framework 結構描述](bot-framework-rest-connector-api-reference.md#schema)所定義的所有物件，以及 Direct Line 特有的一些物件。
 
-### <a name="activityset-object"></a>ActivitySet 物件 
-定義一組活動。<br/><br/>
+### <a name="activityset-object"></a>ActivitySet 物件
+
+定義一組活動。
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
@@ -197,24 +215,37 @@ Direct Line 3.0 結構描述包含 [Bot Framework 活動結構描述](https://ak
 | **watermark** | 字串 | 一組訊息中，活動的最大浮水印。 用戶端可以使用 `watermark` 值，指出它在[從 Bot 擷取活動](bot-framework-rest-direct-line-3-0-receive-activities.md#http-get)時，或在[產生新的 WebSocket 資料流 URL](bot-framework-rest-direct-line-3-0-reconnect-to-conversation.md) 時，已看到的最新訊息。 |
 
 ### <a name="conversation-object"></a>Conversation 物件
-定義 Direct Line 對話。<br/><br/>
+
+定義 Direct Line 對話。
 
 | 屬性 | 類型 | 說明 |
 |----|----|----|
 | **conversationId** | 字串 | 唯一識別指定權杖所適用對話的識別碼。 |
+| **eTag** | 字串 | HTTP ETag (實體標記)。 |
 | **expires_in** | number | 權杖到期之前的秒數。 |
+| **referenceGrammarId** | 字串 | 此 Bot 的參考文法所具備的識別碼。 |
 | **streamUrl** | 字串 | 對話的訊息資料流 URL。 |
 | **token** | 字串 | 適用於指定對話的權杖。 |
 
-### <a name="activities"></a>活動
+### <a name="tokenparameters-object"></a>TokenParameters 物件
+
+用來建立權杖的參數。
+
+| 屬性 | 類型 | 說明 |
+|----|----|----|
+| **eTag** | 字串 | HTTP ETag (實體標記)。 |
+| **trustedOrigins** | string[] | 要內嵌在權杖內的受信任來源。 |
+| **user** | [ChannelAccount][] | 要內嵌在權杖內的使用者帳戶。 |
+
+## <a name="activities"></a>活動
 
 針對用戶端透過 Direct Line 從 Bot 收到的每個 [Activity][]：
 
 - 會保留附件卡片。
 - 已上傳附件的 URL 會以私密連結隱藏。
-- `channelData` 屬性已保留而不修改。 
+- `channelData` 屬性已保留而不修改。
 
-用戶端可能從 Bot [收到](bot-framework-rest-direct-line-3-0-receive-activities.md)多個活動，作為 [ActivitySet](#activityset-object) 的一部分。 
+用戶端可能從 Bot [收到](bot-framework-rest-direct-line-3-0-receive-activities.md)多個活動，作為 [ActivitySet](#activityset-object) 的一部分。
 
 當用戶端透過 Direct Line 傳送 `Activity` 給 Bot 時：
 
@@ -224,13 +255,14 @@ Direct Line 3.0 結構描述包含 [Bot Framework 活動結構描述](https://ak
 - `channelData` 屬性已保留而不修改。
 - 若序列化為 JSON 並且加密，則活動的總大小不得超過 256000 個字元。 因此，建議將活動保持在 15 萬以下。 如果需要更多資料，請考慮將活動分成多個活動及/或考慮使用附件。
 
-對於每個要求，用戶端可[傳送](bot-framework-rest-direct-line-3-0-send-activity.md)一個活動。 
+對於每個要求，用戶端可[傳送](bot-framework-rest-direct-line-3-0-send-activity.md)一個活動。
 
 ## <a name="additional-resources"></a>其他資源
 
-- [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)
+- [Bot Framework 活動規格](https://aka.ms/botSpecs-activitySchema)
 
 [Activity]: bot-framework-rest-connector-api-reference.md#activity-object
+[ChannelAccount]: bot-framework-rest-connector-api-reference.md#channelaccount-object
 [錯誤]: bot-framework-rest-connector-api-reference.md#error-object
 [ErrorResponse]: bot-framework-rest-connector-api-reference.md#errorresponse-object
 [ResourceResponse]: bot-framework-rest-connector-api-reference.md#resourceresponse-object

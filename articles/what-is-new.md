@@ -2,20 +2,19 @@
 title: 新功能 | Microsoft Docs
 description: 了解 Bot Framework 中的新功能。
 keywords: bot framework, azure bot service
-author: ivorb
-ms.author: v-ivorb
+author: kamrani
+ms.author: kamrani
 manager: kamrani
 ms.topic: conceptual
 ms.service: bot-service
-ms.subservice: abs
 ms.date: 07/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f7083c45e67d8731e25e14577f6b061732ffefd5
-ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
+ms.openlocfilehash: 708ad1fac166f312ad6ccf14a024f821f19eaaf2
+ms.sourcegitcommit: e573c586472c5328ce875114308d9d1b73651e62
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "68671392"
+ms.lasthandoff: 09/03/2019
+ms.locfileid: "70224389"
 ---
 # <a name="whats-new-in-bot-framework-july-2019"></a>Bot Framework 中的新功能 (2019 年 7 月)
 
@@ -55,7 +54,7 @@ Bot Framework SDK v4 是[開放原始碼 SDK][1a]，可讓開發人員使用其�
 - [Bot Framework Python SDK (預覽 2)](https://github.com/microsoft/botbuilder-python) | [範例](https://github.com/Microsoft/botbuilder-python/tree/master/samples)：Python SDK 現在支援 OAuth、提示、CosmosDB，且包含 SDK 4.5 中的所有主要功能。 此外，這些範例也可協助您了解 SDK 中的新功能。
 
 ## <a name="bot-framework-testing"></a>Bot Framework 測試
-- [單元測試](http://aka.ms/bot-test-package) | [docs](https://aka.ms/testing-framework) | [C# 範例](https://aka.ms/corebot-test) | [JS 範例](https://aka.ms/js-core-test-sample)：為因應客戶和開發人員對於更佳測試工具的詢問，7 月版的 SDK 引進了新的單元測試功能。 Microsoft.Bot.Builder.testing 套件可簡化 Bot 中單元測試對話的程序。 
+- [Docs](https://aka.ms/testing-framework) | 單元測試套件 ([C#](https://aka.ms/nuget-botbuilder-testing)/ [JavaScript](https://aka.ms/npm-botbuilder-testing)) | [C# 範例](https://aka.ms/cs-core-test-sample) | [JS 範例](https://aka.ms/js-core-test-sample)：為因應客戶和開發人員對於更佳測試工具的詢問，7 月版的 SDK 引進了新的單元測試功能。 Microsoft.Bot.Builder.testing 套件可簡化 Bot 中單元測試對話的程序。  
 
 - [通道測試](https://github.com/Microsoft/BotFramework-Emulator/releases) | [docs](https://aka.ms/channel-testing)： 
 

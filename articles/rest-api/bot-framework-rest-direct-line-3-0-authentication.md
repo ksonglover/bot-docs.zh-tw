@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 08/22/2019
-ms.openlocfilehash: d79cea421e6743c504e3fa68056de71974194923
-ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
+ms.openlocfilehash: 37e02a34e7b8ecc4d501ed7330b6f374548fd5a0
+ms.sourcegitcommit: 0b647dc6716b0c06f04ee22ebdd7b53039c2784a
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70037439"
+ms.lasthandoff: 08/28/2019
+ms.locfileid: "70076562"
 ---
 # <a name="authentication"></a>Authentication
 
@@ -26,7 +26,12 @@ Authorization: Bearer SECRET_OR_TOKEN
 
 Direct Line **祕密**是一個主要金鑰，可用來存取屬於相關聯 Bot 的任何對話。 **祕密**也可用來取得**權杖**。 祕密不會過期。 
 
-Direct Line **權杖**是一個金鑰，可用來存取單一對話。 權杖會過期，但可以重新整理。 
+Direct Line **權杖**是一個金鑰，可用來存取單一對話。 權杖會過期，但可以重新整理。
+
+決定何時或是否使用**祕密**金鑰或**權杖**時，必須以安全性考量為準。
+公開祕密金鑰或許是可行的，但必須有意識且謹慎地執行。 這其實是預設行為，因為可讓 Direct Line 指出用戶端是否合法。
+但一般而言，如果您嘗試要保存使用者資料，安全性仍是一項顧慮。
+如需詳細資訊，請參閱[安全性考量](#security-considerations)一節。
 
 如果您要建立服務對服務的應用程式，則在 Direct Line API 要求的 `Authorization` 標頭中指定**祕密**可能是最簡單的方法。 如果您要撰寫用戶端在網頁瀏覽器或行動裝置應用程式中執行的應用程式，您可以將交換祕密以取得權杖 (這只適用於單一對話，而且除非重新整理，否則將會過期)，並在 Direct Line API 要求的 `Authorization` 標頭中指定**權杖**。 選擇最適合您的安全性模型。
 
@@ -167,6 +172,8 @@ HTTP/1.1 200 OK
 
     2. 由於前述方法有這些問題，Azure Bot 服務已不再使用神奇代碼。 Azure Bot 服務可確保登入程序只能在與網路聊天本身**相同的瀏覽器工作階段**中完成。 
     若要啟用這項保護，您必須以 Bot 開發人員的身分使用 **Direct Line 權杖**啟動網路聊天，且該權杖必須包含**可裝載 Bot 網路聊天用戶端的信任網域清單**。 過去，您只能藉由將未記載的選擇性參數傳至 Direct Line 權杖 API 來取得此權杖。 現在，透過增強型驗證選項，您可以在 Direct Line 組態頁面中以靜態方式指定信任網域 (原始) 清單。
+
+    另請參閱[透過 Azure Bot 服務將驗證新增至您的 Bot](../v4sdk/bot-builder-authentication.md)。
 
 ### <a name="code-examples"></a>程式碼範例
 

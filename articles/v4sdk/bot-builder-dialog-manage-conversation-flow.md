@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 07/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 27d7e5ee6edd4cedfb9d59b318d9a3765e2f0ad8
-ms.sourcegitcommit: 9e1034a86ffdf2289b0d13cba2bd9bdf1958e7bc
+ms.openlocfilehash: 4030a1498be321757b8a25bbd9b8bcde29bb9e5d
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/21/2019
-ms.locfileid: "69890603"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167188"
 ---
 # <a name="implement-sequential-conversation-flow"></a>實作循序對話流程
 
@@ -30,7 +30,7 @@ ms.locfileid: "69890603"
 ## <a name="prerequisites"></a>必要條件
 
 - [Bot 基本概念][concept-basics]、[管理狀態][concept-state]和 [dialogs 程式庫][concept-dialogs]的知識。
-- 一份**多回合提示**範例 (使用 [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample])。
+- 採用 [**C#** ][cs-sample] 或 [**JavaScript**][js-sample] 的**多回合提示**範例複本。
 
 ## <a name="about-this-sample"></a>關於此範例
 

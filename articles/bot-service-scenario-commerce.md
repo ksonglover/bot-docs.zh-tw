@@ -2,18 +2,18 @@
 title: 商務 Bot 案例 | Microsoft Docs
 description: 使用 Bot Framework 來探索商務 Bot 案例。
 author: BrianRandell
-ms.author: v-brra
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f880bc9a424fd9905f7e4ced25e97e2c37155072
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 9e2eac132922ad90437c88404cbfb97f6f495945
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996825"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167090"
 ---
 # <a name="commerce-bot-scenario"></a>商務 Bot 案例
 
@@ -36,7 +36,7 @@ ms.locfileid: "49996825"
 ## <a name="sample-bot"></a>範例 Bot
 範例商務 Bot 的設計訴求是打造虛構的旅館接待服務。 在透過鏈結的成員服務行動應用程式向旅館驗證 Azure AD B2C 後，客戶可存取以 C# 撰寫的 Bot。 鏈結會將預約儲存在 SQL Database 中。 客戶可以使用自然的問句，如「住宿期間租一間泳池小屋的費用多少」。 Bot 因此會擁有來賓住在哪間旅館和住宿期間的相關內容。 此外，Language Understanding (LUIS) 服務可讓 Bot 從簡單的詞語如「泳池小屋」等輕鬆取得內容。 Bot 會提供答案，然後為來賓預訂小屋，並提供天數和小屋類型的選擇。 在 Bot 擁有所有必要資料後，即會依要求進行預訂。 來賓也可以使用語音進行相同的要求。
 
-您可以從[常見的 Bot Framework 案例範例](https://aka.ms/bot/scenarios)下載或複製此範例 Bot 的來源程式碼。
+您可以從[常見的 Bot Framework 案例範例](https://aka.ms/abs-scenarios)下載或複製此範例 Bot 的來源程式碼。
 
 ## <a name="components-youll-use"></a>您將使用的元件
 商務 Bot 會使用下列元件：

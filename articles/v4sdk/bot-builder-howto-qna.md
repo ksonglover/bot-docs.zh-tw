@@ -3,19 +3,18 @@ title: 使用 QnA Maker 回答問題 | Microsoft Docs
 description: 了解如何在 Bot 中使用 QnA Maker。
 keywords: 問題和答案, QnA, 常見問題集, QnA Maker
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: cognitive-services
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 15581daa570b9e51ff8f7bec93d16deebcd71d45
-ms.sourcegitcommit: 93508adfb79523f610a919b361fc34f5c8dd3eff
+ms.openlocfilehash: dc11191e65d58f4fa038878da71cc0354cad4c64
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/02/2019
-ms.locfileid: "67533389"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167158"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答問題
 
@@ -27,7 +26,7 @@ QnA Maker 會透過您的資料提供對話式的問題和解答層。 這可讓
 
 ## <a name="prerequisites"></a>必要條件
 
-- 本文中的程式碼是以 QnA Maker 範例為基礎。 您需要從 **[CSharp](https://aka.ms/cs-qna) 或 [JavaScript](https://aka.ms/js-qna-sample)** 中取得其副本。
+- 本文中的程式碼是以 QnA Maker 範例為基礎。 您需要其採用 **[C#](https://aka.ms/cs-qna) 或 [JavaScript](https://aka.ms/js-qna-sample)** 的複本。
 - [QnA Maker](https://www.qnamaker.ai/) 帳戶
 - [Bot 基本概念](bot-builder-basics.md)、[QnA Maker](https://docs.microsoft.com/azure/cognitive-services/qnamaker/overview/overview) 及[管理 Bot 資源](bot-file-basics.md)的知識。
 

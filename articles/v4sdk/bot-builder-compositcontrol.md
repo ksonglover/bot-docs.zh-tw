@@ -3,19 +3,18 @@ title: 重複使用對話方塊 | Microsoft Docs
 description: 了解如何在 Bot Framework SDK 中使用元件對話將 Bot 邏輯模組化。
 keywords: 複合控制項, 模組化 Bot 邏輯
 author: v-ducvo
-ms.author: v-ducvo
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 07/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 77f1c154af5821b1e476546f307a01be27f568c0
-ms.sourcegitcommit: a1eaa44f182a7210197bd793250907df00e9edab
+ms.openlocfilehash: bb359ec2493b1c29624f5fb0135478cae1dea0e0
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/06/2019
-ms.locfileid: "67587496"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167172"
 ---
 # <a name="reuse-dialogs"></a>重複使用對話方塊
 
@@ -26,7 +25,7 @@ ms.locfileid: "67587496"
 ## <a name="prerequisites"></a>必要條件
 
 - [Bot 基本概念][concept-basics]、[對話方塊程式庫][concept-dialogs]及如何[管理對話][simple-flow]的知識。
-- 一份多回合提示範例 (使用 [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample])。
+- 採用 [**C#** ][cs-sample] 或 [**JavaScript**][js-sample] 的多回合提示範例複本。
 
 ## <a name="about-the-sample"></a>關於範例
 
@@ -44,7 +43,7 @@ ms.locfileid: "67587496"
 
 ## <a name="implement-the-component-dialog"></a>實作元件對話
 
-在多回合提示範例中，我們會使用 _、一些 _和 _來建立簡單互動，以詢問使用者一系列的問題。
+在多回合提示範例中，我們會使用_瀑布式對話方塊_、一些_提示_和_元件對話_來建立簡單互動，以詢問使用者一系列的問題。
 
 元件對話會封裝一個或多個對話。 元件對話有內部對話集，新增至內部對話集的對話和提示會有其本身的識別碼，只在元件對話中顯示。
 
@@ -140,9 +139,9 @@ ms.locfileid: "67587496"
 
 ### <a name="how-cancellation-works-for-component-dialogs"></a>元件對話的取消作業如何運作
 
-如果您從元件對話的內容呼叫 _，元件對話將會取消其內部堆疊上的所有對話，然後結束對話，並將控制項傳回給外部堆疊上的下一個對話。
+如果您從元件對話的內容呼叫_取消所有對話_，元件對話將會取消其內部堆疊上的所有對話，然後結束對話，並將控制項傳回給外部堆疊上的下一個對話。
 
-如果您從外部內容呼叫 _，則元件及外部內容上其餘的對話都會遭到取消。
+如果您從外部內容呼叫_取消所有對話_，則元件及外部內容上其餘的對話都會遭到取消。
 
 在 Bot 中管理巢狀元件對話時，請記住這點。
 

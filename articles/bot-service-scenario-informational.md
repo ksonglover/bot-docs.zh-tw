@@ -2,18 +2,18 @@
 title: 資訊 Bot 案例 | Microsoft Docs
 description: 使用 Bot Framework 探索資訊 Bot 案例。
 author: BrianRandell
-ms.author: v-brra
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 22902f1f590661c0973d7f0427b13ee45f0d7227
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f62f58de5e15092e34c1e612ef0b54bc2e4b5886
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998985"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167370"
 ---
 # <a name="information-bot-scenario"></a>資訊 Bot 案例
 
@@ -36,19 +36,19 @@ ms.locfileid: "49998985"
 7. Application Insights 會收集執行階段遙測，以協助開發 Bot 效能和使用量。
 
 ## <a name="sample-bot"></a>範例 Bot
-範例 Bot 以 C# 撰寫，在 Microsoft Azure 中執行，並搭配 Azure 搜尋服務從 SQL Database 執行個體索引的資料使用。 Bot 會公開一份問題清單，以詢問如何使用認知服務將問題 (答案) 分段：QnA Maker。 Bot 的使用者可以輸入查詢，以透過 Azure 搜尋服務，在索引資料庫中的廣泛或特定區域中查閱資料。 此範例提供簡單的資料庫與客戶和訂單資訊。 Application Insights 可追蹤 Bot 的使用方式，並協助您監視例外狀況的 Bot。 Bot 發行為 Azure AD 應用程式，讓您可以限制存取資訊的人選。
+範例 Bot 以 C# 撰寫，在 Microsoft Azure 中執行，並搭配 Azure 搜尋服務從 SQL Database 執行個體索引的資料使用。 Bot 會公開一份問題清單，可供詢問如何使用認知服務將問題 (答案) 斷句：QnA Maker。 Bot 的使用者可以輸入查詢，以透過 Azure 搜尋服務，在索引資料庫中的廣泛或特定區域中查閱資料。 此範例提供簡單的資料庫與客戶和訂單資訊。 Application Insights 可追蹤 Bot 的使用方式，並協助您監視例外狀況的 Bot。 Bot 發行為 Azure AD 應用程式，讓您可以限制存取資訊的人選。
 
-您可以從[常見的 Bot Framework 案例範例](https://aka.ms/bot/scenarios)下載或複製此範例 Bot 的原始程式碼。
+您可以從[常見的 Bot Framework 案例範例](https://aka.ms/abs-scenarios)下載或複製此範例 Bot 的原始程式碼。
 
 ## <a name="components-youll-use"></a>您將會使用的元件
 資訊 Bot 會使用下列元件：
--   用於驗證的 Azure AD
+-   用以驗證的 Azure AD
 -   認知服務：QnA Maker
 -   Azure 搜尋服務
 -   Application Insights
 
 ### <a name="azure-active-directory-azure-ad"></a>Azure Active Directory (Azure AD)
-Azure Active Directory (Azure AD) 是 Microsoft 的多租用戶雲端型目錄和身分識別管理服務。 身為 Bot 開發人員，Azure AD 可讓您專注於建置 Bot，快速而簡單地整合數百萬個全球各地組織所使用的世界級身分識別管理解決方案。 您可以藉由定義 Azure AD 應用程式，來控制哪些人可存取您的 Bot，以及其所公開的資料，而不需要自己實作複雜的驗證和授權系統。
+Azure Active Directory (Azure AD) 是 Microsoft 的多租用戶雲端型目錄和身分識別管理服務。 身為 Bot 開發人員，Azure AD 可讓您專注於建置 Bot，快速而簡單地整合數百萬個全球各地組織所使用的世界級身分識別管理解決方案。 透過定義 Azure AD 應用程式，您可以控制哪些人可存取您的 Bot 以及其所公開的資料，而不需要自己實作複雜的驗證和授權系統。
 
 ### <a name="cognitive-services-qna-maker"></a>認知服務：QnA Maker
 認知服務 QnA Maker 可協助您提供常見問題集的資料來源，讓使用者可以從 Bot 進行查詢。 遇到儲存在不同系統中的大量資訊時，此服務可以有效協助使用者篩選資訊來源和資訊集。 單一 SQL 資料庫擁有大量資訊，以至於執行自由格式搜尋時會提供過多資訊。 初次使用 QnA Maker 時，您可以為 Bot 使用者定義藍圖，讓使用者了解如何問對問題，以透過 Azure 搜尋服務找到答案。

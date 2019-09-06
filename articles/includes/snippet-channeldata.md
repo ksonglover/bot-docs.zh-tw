@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: c19287b38a2c807e6675af2c3f7e1824eb7eab8e
-ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
+ms.openlocfilehash: 0eab36869a986d15905cdfde5c317613276c844d
+ms.sourcegitcommit: e573c586472c5328ce875114308d9d1b73651e62
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/16/2019
-ms.locfileid: "68230774"
+ms.lasthandoff: 09/03/2019
+ms.locfileid: "70242609"
 ---
 某些通道所提供的功能，無法只透過訊息文字和附件來實作。 若要實作通道特定的功能，您可以將原生中繼資料傳遞至活動物件「通道資料」  屬性中的通道。 例如，Bot 可以使用通道資料屬性，指示 Telegram 傳送貼圖或指示 Office365 傳送電子郵件。
 
@@ -33,9 +33,7 @@ ms.locfileid: "68230774"
 | ccRecipients | 以分號 (;) 分隔的電子郵件地址字串，用來新增至訊息的 [Cc]\(副本\)欄位。 |
 | htmlBody | 會指定電子郵件訊息本文的 HTML 文件。 請參閱通道的文件，以取得受支援 HTML 元素和屬性的資訊。 |
 | importance | 電子郵件的重要性層級。 有效值為**高**、**一般**和**低**。 預設值為**一般**。 |
-
-| subject | 電子郵件的主旨。請參閱通道的文件，以取得欄位需求的資訊。 |
-
+| subject | 電子郵件的主旨。 請參閱通道的文件，以取得欄位需求的資訊。 |
 | toRecipients | 以分號 (;) 分隔的電子郵件地址字串，用來新增至訊息的 [收件者] 欄位。 |
 
 > [!NOTE]
@@ -353,10 +351,7 @@ Bot 可以透過正常方式回覆此訊息，也可以將其回應直接張貼�
 
 | 屬性 | 說明 |
 |----|----|
-
-| messages | Kik 訊息的陣列。如需 Kik 訊息格式的詳細資訊，請參閱 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 訊息格式</a>。 |
-
-
+| messages | Kik 訊息的陣列。 如需 Kik 訊息格式的詳細資訊，請參閱 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 訊息格式</a>。 |
 
 此程式碼片段顯示原生 Kik 訊息的 `channelData` 屬性範例。
 
@@ -449,6 +444,49 @@ Bot 可以透過正常方式回覆此訊息，也可以將其回應直接張貼�
     } 
 }
 ```
+
+## <a name="adding-a-bot-to-teams"></a>將 Bot 新增至 Teams
+
+新增至小組的 Bot 會成為另一個小組成員，而可在交談中被 `@mentioned`。 事實上，Bot 只有在被 `@mentioned` 時才會接收訊息，而使通道上的其他交談不會傳送給 Bot。
+如需詳細資訊，請參閱[與 Microsoft Teams Bot 進行通道和群組聊天交談](https://aka.ms/bots-con-channel)。
+
+由於群組或通道中的 Bot 只有在訊息中提及它 (`@botname`) 時才會回應，因此群組通道中的 Bot 所接收的每個訊息都會包含它自己的名稱，且您必須確定您的訊息剖析能力可加以處理。 此外，Bot 可以剖析出其他被提及的使用者，並且在其訊息中提及使用者。
+
+### <a name="check-for-and-strip-bot-mention"></a>檢查是否有 @bot 提及並加以移除
+
+```csharp
+
+Mention[] m = sourceMessage.GetMentions();
+var messageText = sourceMessage.Text;
+
+for (int i = 0;i < m.Length;i++)
+{
+    if (m[i].Mentioned.Id == sourceMessage.Recipient.Id)
+    {
+        //Bot is in the @mention list.
+        //The below example will strip the bot name out of the message, so you can parse it as if it wasn't included. Note that the Text object will contain the full bot name, if applicable.
+        if (m[i].Text != null)
+            messageText = messageText.Replace(m[i].Text, "");
+    }
+}
+```
+
+```javascript
+var text = message.text;
+if (message.entities) {
+    message.entities
+        .filter(entity => ((entity.type === "mention") && (entity.mentioned.id.toLowerCase() === botId)))
+        .forEach(entity => {
+            text = text.replace(entity.text, "");
+        });
+    text = text.trim();
+}
+
+```
+
+> [!IMPORTANT] 
+> 建議您不要針對測試以外的任何用途使用 GUID 新增 Bot。 這麼做會嚴重限制 Bot 的功能。 生產環境中的 Bot 應會隨著應用程式新增至 Teams。 請參閱[建立 Bot](https://docs.microsoft.com/microsoftteams/platform/concepts/bots/bots-create) 和[測試及偵錯您的 Microsoft Teams Bot](https://docs.microsoft.com/microsoftteams/platform/concepts/bots/bots-test)。
+
 
 ## <a name="additional-resources"></a>其他資源
 

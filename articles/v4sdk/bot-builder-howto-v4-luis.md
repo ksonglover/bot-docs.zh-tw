@@ -9,22 +9,21 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1641260f6673a810e7bc71ecaca1ada234286e42
-ms.sourcegitcommit: 008aa6223aef800c3abccda9a7f72684959ce5e7
+ms.openlocfilehash: b20670b85b876d7cf10dea7f031e4d24221071a8
+ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/26/2019
-ms.locfileid: "70026322"
+ms.lasthandoff: 08/30/2019
+ms.locfileid: "70167156"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>將自然語言理解新增至您的 Bot
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
-
 讓您的 Bot 能透過對話和上下文了解使用者的意思，並不是簡單的工作，但這樣的功能可讓您的 Bot 使用起來更有自然對話的感覺。 Language Understanding (稱為 LUIS) 能讓您這麼做，使您的 Bot 可以辨識使用者訊息的意圖，這樣使用者就能使用更自然的語言，且更順利地引導交談流程。 本主題會逐步引導您將 LUIS 新增至航班預訂應用程式，以辨識使用者輸入內含的不同意圖和實體。 
 
 ## <a name="prerequisites"></a>必要條件
 - [LUIS](https://www.luis.ai) 帳戶
-- 本文中的程式碼是以 **Core Bot** 範例為基礎。 您需要 **[CSharp](https://aka.ms/cs-core-sample) 或 [JavaScript](https://aka.ms/js-core-sample)** 中的一份範例。 
+- 本文中的程式碼是以 **Core Bot** 範例為基礎。 您需要採用 **[C#](https://aka.ms/cs-core-sample) 或 [JavaScript](https://aka.ms/js-core-sample)** 的範例複本。 
 - [Bot 基本概念](bot-builder-basics.md)、[自然語言處理](https://docs.microsoft.com/azure/cognitive-services/luis/what-is-luis)和 [管理 Bot 資源](bot-file-basics.md)的知識。
 
 ## <a name="about-this-sample"></a>關於此範例
