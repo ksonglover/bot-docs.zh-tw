@@ -3,18 +3,17 @@ title: 針對 Bot HTTP 500 錯誤進行疑難排解 | Microsoft Docs
 description: 如何針對已部署 Bot 中的 HTTP 500 錯誤進行疑難排解。
 keywords: 疑難排解, HTTP 500, 問題。
 author: jonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 4/30/2019
-ms.openlocfilehash: 93689b7cee1c89bd9a7079c15ddf6aa16fcacc26
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 3dcb22c2310f8c686f02fae27617061681910d01
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033079"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298601"
 ---
 # <a name="troubleshoot-http-500-errors"></a>針對 HTTP 500 錯誤進行疑難排解
 
@@ -153,11 +152,11 @@ Bot ASP.Net 和 Node 會在伺服器層級發出可以檢查的記錄。
 #### <a name="set-up-a-browser-to-watch-your-logs"></a>設定要監看您記錄的瀏覽器
 
 1. 在 [Azure 入口網站](http://portal.azure.com/)中開啟 Bot。
-1. 開啟 [App Service 設定 / 所有 App Service 設定] 頁面，以查看所有服務設定。
-1. 開啟應用程式服務的 [監視 / 診斷記錄] 頁面。
-   - 確保已啟用 [應用程式記錄 (檔案系統)]。 如果變更此設定，請務必按一下 [儲存] 。
-1. 切換至 [監視 / 記錄資料流] 頁面。
-   - 選取 [Web 伺服器記錄]，並確保您看到已連線的訊息。 您應該會看到如下的內容：
+1. 開啟 [App Service 設定 / 所有 App Service 設定]  頁面，以查看所有服務設定。
+1. 開啟應用程式服務的 [監視 / 診斷記錄]  頁面。
+   - 確保已啟用 [應用程式記錄 (檔案系統)]  。 如果變更此設定，請務必按一下 [儲存]  。
+1. 切換至 [監視 / 記錄資料流]  頁面。
+   - 選取 [Web 伺服器記錄]  ，並確保您看到已連線的訊息。 您應該會看到如下的內容：
 
      ```bash
      Connecting...
@@ -169,10 +168,10 @@ Bot ASP.Net 和 Node 會在伺服器層級發出可以檢查的記錄。
 #### <a name="set-up-browser-to-restart-your-bot-service"></a>設定瀏覽器以重新啟動您的 Bot 服務
 
 1. 使用不同的瀏覽器，在 Azure 入口網站中開啟 Bot。
-1. 開啟 [App Service 設定 / 所有 App Service 設定] 頁面，以查看所有服務設定。
-1. 切換至應用程式服務的 [概觀] 頁面，按一下 [重新啟動]。
-   - 系統會提示您是否確定選取 [是]。
+1. 開啟 [App Service 設定 / 所有 App Service 設定]  頁面，以查看所有服務設定。
+1. 切換至應用程式服務的 [概觀]  頁面，按一下 [重新啟動]  。
+   - 系統會提示您是否確定選取 [是]  。
 1. 返回第一個瀏覽器視窗並監看記錄。
 1. 確認您正在接收新的記錄。
    - 如果沒有任何活動，請重新部署您的 Bot。
-   - 然後切換到 [應用程式記錄] 頁面並尋找是否有任何錯誤。
+   - 然後切換到 [應用程式記錄]  頁面並尋找是否有任何錯誤。

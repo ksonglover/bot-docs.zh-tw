@@ -3,19 +3,18 @@ title: 啟用網路聊天中的語音 | Microsoft Docs
 description: 了解如何針對連線到 Web 聊天頻道的 Bot，啟用 Web 聊天控制項中的語音。
 keywords: speech, web chat, voice, microphone, audio, 語音, Web 聊天, 麥克風, 音訊
 author: DeniseMak
-ms.author: v-demak
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: cdb512b0efe111870b34c440f978105786b6f36a
-ms.sourcegitcommit: 8161753641368567f239e24a35ad61768acccd8e
+ms.openlocfilehash: b83dff7969c58451e5752938f74b682b2163c49d
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/10/2019
-ms.locfileid: "54202574"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298198"
 ---
 # <a name="enable-speech-in-web-chat"></a>啟用網路聊天中的語音
 您可以啟用 Web 聊天控制項中的語音介面。 使用者可透過使用 Web 聊天控制項中的麥克風，與語音介面進行互動。

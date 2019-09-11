@@ -2,19 +2,18 @@
 title: 傳送和接收附件 | Microsoft Docs
 description: 了解如何使用適用於 Node.js 的 Bot Framework SDK 來傳送和接收含有附件的訊息。
 author: DeniseMak
-ms.author: v-demak
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: ac74fff5fa7635bf0ef585423b0f8663a1df41c4
-ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
+ms.openlocfilehash: c830ed61a70b3b92451988ea73f223da3e55bbc7
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/25/2019
-ms.locfileid: "67404830"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299722"
 ---
 # <a name="send-and-receive-attachments"></a>傳送和接收附件
 

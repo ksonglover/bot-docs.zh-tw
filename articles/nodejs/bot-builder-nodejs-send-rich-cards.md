@@ -2,19 +2,18 @@
 title: 將複合式資訊卡 (Rich Card) 附件新增至訊息 | Microsoft Docs
 description: 了解如何使用適用於 Node.js 的 Bot Framework SDK，傳送具互動性且吸引人的複合式資訊卡。
 author: v-ducvo
-ms.author: v-ducvo
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: cba67dc4da5a0b505b4f91f9cbf7fbc0a47b8974
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: 9b56539146909be1231611319703c3e9cf2ef5c2
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67404807"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299710"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>將複合式資訊卡 (Rich Card) 附件新增至訊息
 

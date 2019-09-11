@@ -3,18 +3,17 @@ title: 將 Bot 連線至 LINE | Microsoft Docs
 description: 了解如何設定 Bot 與 LINE 之間的連線。
 keywords: 連接 bot, bot通道, LINE bot, 認證, 設定, 電話
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 1/7/2019
-ms.openlocfilehash: f6ed40c5ad3999ea5a123bf051de849917f22b42
-ms.sourcegitcommit: e41dabe407fdd7e6b1d6b6bf19bef5f7aae36e61
+ms.openlocfilehash: 8be0c7f89595e3222e5170fc7f11d052f9cb6851
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56893508"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298473"
 ---
 # <a name="connect-a-bot-to-line"></a>將 Bot 連線至 LINE
 
@@ -59,17 +58,17 @@ ms.locfileid: "56893508"
 
 ![LINE 螢幕擷取畫面：通道頁面](./media/channels/LINE-screenshot-5.png)
 
-按一下您所建立的通道來存取通道設定，然後向下捲動來找到 [基本資訊] > [通道祕密]。 在某處儲存該資訊片刻。 確認 [可用功能] 包括 `PUSH_MESSAGE`。
+按一下您所建立的通道來存取通道設定，然後向下捲動來找到 [基本資訊] > [通道祕密]  。 在某處儲存該資訊片刻。 確認 [可用功能] 包括 `PUSH_MESSAGE`。
 
 ![LINE 螢幕擷取畫面：通道祕密](./media/channels/LINE-screenshot-6.png)
 
-然後，再往下捲動至 [傳訊設定]。 您會在其中看到 [通道存取權杖] 欄位，並有 [核發] 按鈕。 按一下該按鈕來取得存取權杖，並先儲存該權杖片刻。
+然後，再往下捲動至 [傳訊設定]  。 您會在其中看到 [通道存取權杖]  欄位，並有 [核發]  按鈕。 按一下該按鈕來取得存取權杖，並先儲存該權杖片刻。
 
 ![LINE 螢幕擷取畫面：通道權杖](./media/channels/LINE-screenshot-8.png)
 
 ## <a name="connect-your-line-channel-to-your-azure-bot"></a>將 LINE 通道連線至 Azure Bot
 
-登入 [Azure 入口網站](https://portal.azure.com/)並尋找您的 Bot，然後按一下 [通道]。 
+登入 [Azure 入口網站](https://portal.azure.com/)並尋找您的 Bot，然後按一下 [通道]  。 
 
 ![LINE 螢幕擷取畫面：Azure 設定](./media/channels/LINE-channel-setting-2.png)
 
@@ -81,12 +80,12 @@ ms.locfileid: "56893508"
 
 ## <a name="configure-line-webhook-settings"></a>設定 LINE 的 Webhook 設定
 
-接下來，回到 LINE 開發人員主控台，將 Azure 提供給您的 Webhook URL 貼到 [訊息設定] > [Webhook URL]，然後按一下 [驗證] 來驗證連線。 如果您剛剛才在 Azure 中建立通道，可能需要幾分鐘的時間才會生效。
+接下來，回到 LINE 開發人員主控台，將 Azure 提供給您的 Webhook URL 貼到 [訊息設定] > [Webhook URL]  ，然後按一下 [驗證]  來驗證連線。 如果您剛剛才在 Azure 中建立通道，可能需要幾分鐘的時間才會生效。
 
-然後，啟用 [訊息設定] > [使用 Webhook]。
+然後，啟用 [訊息設定] > [使用 Webhook]  。
 
 > [!IMPORTANT]
-> 在 LINE 開發人員主控台中，您必須先設定 Webhook URL，然後才能設定 [使用 Webhook = Enabled]。 具有空白 URL 的第一個啟用 Webhook 不會設定 Enabled 狀態 (即使 UI 這麼說也是一樣)。
+> 在 LINE 開發人員主控台中，您必須先設定 Webhook URL，然後才能設定 [使用 Webhook = Enabled]  。 具有空白 URL 的第一個啟用 Webhook 不會設定 Enabled 狀態 (即使 UI 這麼說也是一樣)。
 
 在新增 Webhook URL 並啟用 Webhook 之後，請務必重新載入此頁面，並確認這些變更是否已正確設定。
 
@@ -100,7 +99,7 @@ ms.locfileid: "56893508"
 
 在 LINE 開發人員主控台中，瀏覽至 [設定] 頁面，此時您會看到 Bot 的 QR 代碼。 
 
-在 LINE 行動應用程式中，移至最右側有三個點 [**...**] 的瀏覽索引標籤，然後點選 [QR 代碼] 圖示。 
+在 LINE 行動應用程式中，移至最右側有三個點 [ **...** ] 的瀏覽索引標籤，然後點選 [QR 代碼] 圖示。 
 
 ![LINE 螢幕擷取畫面：行動應用程式](./media/channels/LINE-screenshot-12.jpg)
 

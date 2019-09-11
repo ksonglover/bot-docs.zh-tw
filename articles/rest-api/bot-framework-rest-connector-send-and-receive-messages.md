@@ -7,16 +7,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: d694f20985b6bf2875fe28f599ff603512b87757
-ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
+ms.openlocfilehash: 5e0f35b7fe62c93f4f4e17b5343960fa2b617ef9
+ms.sourcegitcommit: e815e786413296deea0bd78e5a495df329a9a7cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70037341"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876097"
 ---
 # <a name="send-and-receive-messages"></a>傳送及接收訊息
 
-Bot Connector 服務可讓 Bot 跨多個通道 (例如 Skype、電子郵件、Slack 等) 進行通訊。 它可藉由轉接從 Bot 至通道和從通道至 Bot 的[活動](bot-framework-rest-connector-activities.md)，來協助 Bot 和使用者之間的通訊。 每個活動都包含資訊，可用於將訊息以及訊息建立者、訊息的內容和訊息收件者的相關資訊，路由傳送至適當的目的地。 本文說明如何使用 Bot Connector 服務來交換通道上的 Bot 和使用者之間的**訊息**活動。 
+Bot Connector 服務可讓 Bot 跨多個通道 (例如 Skype、電子郵件、Slack 等) 進行通訊。 它可藉由轉接從 Bot 至通道和從通道至 Bot 的[活動](https://aka.ms/botSpecs-activitySchema)，來協助 Bot 和使用者之間的通訊。 每個活動都包含資訊，可用於將訊息以及訊息建立者、訊息的內容和訊息收件者的相關資訊，路由傳送至適當的目的地。 本文說明如何使用 Bot Connector 服務來交換通道上的 Bot 和使用者之間的**訊息**活動。 
 
 ## <a id="create-reply"></a> 回覆訊息
 
@@ -147,7 +147,6 @@ Content-Type: application/json
 
 ## <a name="additional-resources"></a>其他資源
 
-- [活動概觀](bot-framework-rest-connector-activities.md)
 - [建立訊息](bot-framework-rest-connector-create-messages.md)
 - [Bot Framework -- 活動結構描述](https://aka.ms/botSpecs-activitySchema)
 

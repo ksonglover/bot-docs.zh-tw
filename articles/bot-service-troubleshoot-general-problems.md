@@ -2,17 +2,17 @@
 title: 對 Bot 進行疑難排解 |Microsoft Docs
 description: 使用技術性常見問題集來對 Bot 開發中的一般問題進行疑難排解。
 author: DeniseMak
-ms.author: v-demak
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 04/30/2019
-ms.openlocfilehash: 7a018855b11aa638cbad1b70b53505395ae7f5f9
-ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.openlocfilehash: c9c8ff04e7093cd0375e52c4ecd90b44af4f4798
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2019
-ms.locfileid: "67464577"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298566"
 ---
 # <a name="troubleshooting-general-problems"></a>對一般問題進行疑難排解
 這些常見問答集可協助您對常見的 Bot 開發或作業問題進行疑難排解。
@@ -265,7 +265,7 @@ builder.Update(Conversation.Container);
 
 * [ES6 BotBuilder](https://github.com/brene/botbuilder-es6-template) \(英文\) - ES6 Bot 建立器範本
 
-## <a name="why-do-i-get-an-authorizationrequestdenied-exception-when-creating-a-bot"></a>為何在建立 Bot 時會收到 Authorization_RequestDenied 例外狀況？
+## <a name="why-do-i-get-an-authorization_requestdenied-exception-when-creating-a-bot"></a>為何在建立 Bot 時會收到 Authorization_RequestDenied 例外狀況？
 
 建立 Azure Bot 服務 Bot 的權限是透過 Azure Active Directory (AAD) 入口網站來管理。 如果未在 [AAD 入口網站](http://aad.portal.azure.com)中正確設定權限，使用者在嘗試建立 Bot 服務時將會收到 **Authorization_RequestDenied** 例外狀況。
 

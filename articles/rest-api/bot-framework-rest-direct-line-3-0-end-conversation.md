@@ -6,18 +6,17 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 438558995f83ade38404856d61ba66ee77480a27
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+ms.openlocfilehash: 3006672ba8459ebec7d754a7ec31679debdba4aa
+ms.sourcegitcommit: e815e786413296deea0bd78e5a495df329a9a7cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55711932"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876168"
 ---
 # <a name="end-a-conversation"></a>結束對話
 
-**endOfConversation** [活動](bot-framework-rest-connector-activities.md)表示通道或 Bot 已結束交談。 
+**endOfConversation** [活動](https://aka.ms/botSpecs-activitySchema)表示通道或 Bot 已結束交談。 
 
 > [!NOTE] 
 > 雖然只有非常少數的通道會傳送 **endOfConversation** 事件，但 Cortana 是唯一接受該事件的通道。 其他通道 (包括 Direct Line) 不會實作這項功能，而會卸除或推進活動；每個通道都可決定如何回應 endOfConversation 活動。 如果您要設計 DirectLine 用戶端，您會更新用戶端以做出正確行為，例如，如果 Bot 傳送活動給已經結束的對話，則會產生錯誤。

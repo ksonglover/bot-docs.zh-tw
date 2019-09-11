@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 3f8badd90c3be5191e24556d5f7fde66cc72fd6b
-ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
+ms.openlocfilehash: 727a319ef479a1f8954151d0e7dcaefaf3d249a1
+ms.sourcegitcommit: e815e786413296deea0bd78e5a495df329a9a7cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70037367"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876154"
 ---
 # <a name="create-messages"></a>建立訊息
 
@@ -55,7 +55,7 @@ Bot 會傳送**訊息**類型的 [Activity][] 物件以傳達資訊給使用者�
 ## <a name="additional-resources"></a>其他資源
 
 - [使用通道偵測器預覽功能][ChannelInspector]
-- [活動概觀](bot-framework-rest-connector-activities.md)
+- [活動概觀](https://aka.ms/botSpecs-activitySchema)
 - [傳送及接收訊息](bot-framework-rest-connector-send-and-receive-messages.md)
 - [將媒體附件新增至訊息](bot-framework-rest-connector-add-media-attachments.md)
 - [將複合式資訊卡 (Rich Card) 新增至訊息](bot-framework-rest-connector-add-rich-cards.md)

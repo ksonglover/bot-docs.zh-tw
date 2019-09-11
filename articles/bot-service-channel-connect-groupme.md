@@ -3,18 +3,17 @@ title: 將 Bot 連線至 GroupMe | Microsoft Docs
 description: 深入了解如何設定 Bot 與 GroupMe 的連線。
 keywords: Bot 頻道, GroupMe, 建立 GroupMe, 認證
 author: RobStand
-ms.author: RobStand
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: a2004293ff10cfbc7132f58b7c0c834a2012cfd1
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 67bcd518f8c6ae7a1e383c611108c15b51bd0292
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563575"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298728"
 ---
 # <a name="connect-a-bot-to-groupme"></a>將 Bot 連線至 GroupMe
 
@@ -36,16 +35,16 @@ ms.locfileid: "64563575"
 
 ## <a name="gather-credentials"></a>收集認證
 
-1. 在 [重新導向 URL] 欄位中，複製 **client_id=** 之後的值。
-2. 複製 [存取權杖] 值。
+1. 在 [重新導向 URL]  欄位中，複製 **client_id=** 之後的值。
+2. 複製 [存取權杖]  值。
 
 ![複製用戶端識別碼和存取權杖](~/media/channels/GM-StepClientId.png)
 
 
 ## <a name="submit-credentials"></a>提交認證
 
-1. 在 dev.botframework.com，將您剛剛複製的 **client_id** 值貼到 [用戶端識別碼] 欄位。
-2. 將 [存取權杖] 值貼到 [存取權杖] 欄位。
-2. 按一下 [檔案] 。
+1. 在 dev.botframework.com，將您剛剛複製的 **client_id** 值貼到 [用戶端識別碼]  欄位。
+2. 將 [存取權杖]  值貼到 [存取權杖]  欄位。
+2. 按一下 [檔案]  。
 
 ![輸入認證](~/media/channels/GM-StepClientIDToken.png)

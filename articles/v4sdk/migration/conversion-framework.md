@@ -3,19 +3,18 @@ title: 在相同 .NET Framework 專案中遷移現有的 Bot | Microsoft Docs
 description: 我們採用現有的 .NET v3 聊天機器人並將其遷移至 .NET v4 SDK，而且使用相同的專案。
 keywords: bot 移轉, formflow, 對話, v3 bot
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 519515a2174a7028af7bc170ca8a7c40f7d48c52
-ms.sourcegitcommit: b053c0ca7f2e9e60679f7e82e583c57ae83fcb50
+ms.openlocfilehash: 0dfe98c13d74f2f7d13a3eece505dd901184c849
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2019
-ms.locfileid: "68336732"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299064"
 ---
 # <a name="migrate-a-net-v3-bot-to-a-net-framework-v4-bot"></a>將 .NET v3 聊天機器人遷移至 .NET Framework v4 聊天機器人
 

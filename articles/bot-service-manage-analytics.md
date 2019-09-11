@@ -3,18 +3,17 @@ title: Bot 分析 | Microsoft Docs
 description: 了解如何使用資料收集和分析，利用 Bot Framework 中的分析來改善 Bot。
 keywords: bot 分析, application insights, 流量, 延遲, 整合, AppInsights
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: abs
 ms.date: 12/04/2018
-ms.openlocfilehash: 2f7474500af4305f4c51193a2a5af264d419569b
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: 324050c625f5d9666811f63191d783643816104c
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010513"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298695"
 ---
 # <a name="bot-analytics"></a>Bot 分析
 
@@ -22,7 +21,7 @@ Analytics 是 [Application Insights](/azure/application-insights/app-insights-an
 
 ## <a name="view-analytics-for-a-bot"></a>檢視針對 Bot 的分析
 
-若要存取 Analytics，請在 Azure 入口網站中開啟 Bot，然後按一下 [Analytics]。
+若要存取 Analytics，請在 Azure 入口網站中開啟 Bot，然後按一下 [Analytics]  。
 
 資料太多嗎？ 您可以對連結到 Bot 的 Application Insights [啟用並設定取樣](/azure/application-insights/app-insights-sampling)。 這可減少遙測流量和儲存體，同時能夠維持統計上正確的分析。
 
@@ -56,7 +55,7 @@ Analytics 是 [Application Insights](/azure/application-insights/app-insights-an
 
 ![保留圖表](~/media/analytics-retention.png)
 
-請注意，可能的最近日期是在兩天前；使用者在前天傳送訊息，然後在昨天「返回」。
+請注意，可能的最近日期是在兩天前；使用者在前天傳送訊息，然後在昨天「返回」  。
 
 ### <a name="user"></a>使用者
 
@@ -84,14 +83,14 @@ Analytics 是 [Application Insights](/azure/application-insights/app-insights-an
 
 > [!NOTE]
 > Analytics 同時需要 Azure 訂用帳戶與 Application Insights [資源](/azure/application-insights/app-insights-create-new-resource)。
-若要存取 Application Insights，請在 [Azure 入口網站](https://portal.azure.com/)中開啟 Bot，然後按一下 [設定]。
+若要存取 Application Insights，請在 [Azure 入口網站](https://portal.azure.com/)中開啟 Bot，然後按一下 [設定]  。
 
 建立 Bot 資源時，您可以新增 Application Insights。
 
 您也可以稍後建立 Application Insights 資源並將其連線到 Bot。
 
 1. 建立 Application Insights [資源](/azure/application-insights/app-insights-create-new-resource)。
-2. 在儀表板中開啟 Bot。 按一下 [設定]，然後向下捲動至 [Analytics] 區段。
+2. 在儀表板中開啟 Bot。 按一下 [設定]  ，然後向下捲動至 [Analytics]  區段。
 3. 輸入資訊以便將 Bot 連線至 Application Insights。 所有欄位皆為必填項目。
 
 ![連線 Insights](~/media/analytics-enable.png)

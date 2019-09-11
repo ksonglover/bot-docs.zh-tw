@@ -3,18 +3,17 @@ title: 設定語音預備 | Microsoft Docs
 description: 了解如何使用 Azure 入口網站來設定您 Bot Service 的語音預備。
 keywords: 語音預備, 語音辨識, LUIS
 author: v-royhar
-ms.author: v-royhar
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: cognitive-services
 ms.date: 12/13/2017
-ms.openlocfilehash: 5cb47be530f9f82d83272684e6405730c72f3cb7
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 5cb993392c57db63074fd5354ff85616d5004133
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997147"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298036"
 ---
 # <a name="configure-speech-priming"></a>設定語音預備
 
@@ -35,14 +34,14 @@ ms.locfileid: "49997147"
 
 若要變更 Bing 語音搭配您 Bot 使用的 LUIS 應用程式清單，請執行下列作業：
 
-1. 在 Bot Service 刀鋒視窗上按一下 [語音預備]。 可提供給您的 LUIS 應用程式清單隨即顯示。
+1. 在 Bot Service 刀鋒視窗上按一下 [語音預備]  。 可提供給您的 LUIS 應用程式清單隨即顯示。
 2. 選取您想要 Bing 語音使用的 LUIS 應用程式。
  
     a. 若要在清單中選取 LUIS 應用程式，請將滑鼠停在 LUIS 模型上，直到出現一個核取方塊，然後勾選該核取方塊。
      
     b. 若要選取不在清單中的 LUIS 應用程式，請捲動到底部，並將 LUIS 應用程式識別碼 GUID 輸入文字方塊中。
      
-3. 按一下 [儲存]，來儲存與您 Bot 的 Bing 語音相關聯的 LUIS 應用程式清單。
+3. 按一下 [儲存]  ，來儲存與您 Bot 的 Bing 語音相關聯的 LUIS 應用程式清單。
 
 ![語音預備面板](~/media/bot-service-manage-speech-priming/speech-priming.png)
 

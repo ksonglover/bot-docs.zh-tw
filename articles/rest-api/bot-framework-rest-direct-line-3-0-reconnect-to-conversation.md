@@ -6,14 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 2/09/2019
-ms.openlocfilehash: 45675e612553e79f51edde60eaee6bf14df0e44d
-ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
+ms.openlocfilehash: 3197b4f0e3d8d2cc07cea967f4ddf0738e3e27e9
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/09/2019
-ms.locfileid: "55971398"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299556"
 ---
 # <a name="reconnect-to-a-conversation"></a>重新連線到對話
 
@@ -28,7 +27,7 @@ GET https://directline.botframework.com/v3/directline/conversations/{conversatio
 Authorization: Bearer SECRET_OR_TOKEN
 ```
 
-在此要求 URI 中，使用對話識別碼取代 **{conversationId}**，以及使用 watermark 值來取代 **{watermark_value}** (如果有提供 `watermark` 參數的話)。 `watermark` 是選用參數。 如果要求 URI 中有指定 `watermark` 參數，對話會從浮水印 重新執行，以保證沒有任何訊息遺失。 如果 `watermark` 參數從要求 URI 中省略，則只會收到重新連線要求執行之後的訊息。
+在此要求 URI 中，使用對話識別碼取代 **{conversationId}** ，以及使用 watermark 值來取代 **{watermark_value}** (如果有提供 `watermark` 參數的話)。 `watermark` 是選用參數。 如果要求 URI 中有指定 `watermark` 參數，對話會從浮水印 重新執行，以保證沒有任何訊息遺失。 如果 `watermark` 參數從要求 URI 中省略，則只會收到重新連線要求執行之後的訊息。
 
 下列程式碼片段提供重新連線要求和回應的範例。
 

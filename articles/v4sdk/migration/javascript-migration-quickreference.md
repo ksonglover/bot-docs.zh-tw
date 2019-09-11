@@ -3,19 +3,18 @@ title: 從 JavaScript v3 遷移到 v4 的快速參考 | Microsoft Docs
 description: 概述 v3 和 v4 JavaScript Bot Framework SDK 中的主要差異。
 keywords: JavaScript, bot 移轉, 對話方塊, v3 bot
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c259e24e8aaebff3902bdaff9a03306ab544f36e
-ms.sourcegitcommit: 565a5df8b34a6d73ddf452ca7808eb83bb5be503
+ms.openlocfilehash: e0ad87c9b2896767d7053322b510da182a44ec69
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/26/2019
-ms.locfileid: "68508063"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299022"
 ---
 # <a name="javascript-migration-quick-reference"></a>JavaScript 移轉快速參考
 

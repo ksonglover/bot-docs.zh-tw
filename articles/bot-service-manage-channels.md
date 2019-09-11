@@ -3,18 +3,17 @@ title: 將 Bot 設定為在一或多個通道上執行 | Microsoft Docs
 description: 了解如何使用 Bot Framework 入口網站，將 Bot 設定為在一或多個通道上執行。
 keywords: Bot 通道, 設定, cortana, facebook messenger, kik, slack, skype, azure 入口網站
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 09/22/2018
-ms.openlocfilehash: 448bd1acd39445c39e49f27c3b9446523124bf87
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: cb951e9fd2bad6e68552a025ff3188fecd1783b2
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563735"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297598"
 ---
 # <a name="connect-a-bot-to-channels"></a>將 Bot 連線至通道
 
@@ -28,7 +27,7 @@ ms.locfileid: "64563735"
 
 1. 登入 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>。
 2. 選取您想要設定的 Bot。
-3. 在 [Bot Service] 刀鋒視窗中，按一下 [Bot 管理] 底下的 [通道]。
+3. 在 [Bot Service] 刀鋒視窗中，按一下 [Bot 管理]  底下的 [通道]  。
 4. 按一下想要在 Bot 中新增的通道圖示。
 
 ![連線到通道](./media/channels/connect-to-channels.png)

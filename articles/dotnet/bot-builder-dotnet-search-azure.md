@@ -2,19 +2,18 @@
 title: 使用 Azure 搜尋服務建立資料驅動體驗 | Microsoft Docs
 description: 了解如何使用 Azure 搜尋服務建立資料驅動體驗，並協助使用者在採用適用於 .NET 的 Bot Framework SDK 和 Azure 搜尋服務的 Bot 中瀏覽大量內容。
 author: matthewshim-ms
-ms.author: v-shimma
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 1/28/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: ee1e8c660eae27efae5c18b1392ff68d716f73da
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: 2328357c372cabc186e589ccbf65f36517d4789c
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405645"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297817"
 ---
 # <a name="create-data-driven-experiences-with-azure-search"></a>使用 Azure 搜尋服務建立資料驅動體驗 
 

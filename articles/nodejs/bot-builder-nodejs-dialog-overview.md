@@ -2,19 +2,18 @@
 title: 對話概觀 | Microsoft Docs
 description: 了解如何在適用於 Node.js 的 Bot Framework SDK 中使用對話，以建立交談模型並管理交談流程。
 author: DucVo
-ms.author: v-ducvo
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f0b933a5bdcea5090ede1b2f589cd69f9e681757
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: 9ec846c5d464821538902dd726e8b9ee68d4bae1
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405014"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299874"
 ---
 # <a name="dialogs-in-the-bot-framework-sdk-for-nodejs"></a>適用於 Node.js 的 Bot Framework SDK 中的對話
 

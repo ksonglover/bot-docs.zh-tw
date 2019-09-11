@@ -3,19 +3,18 @@ title: Bot Framework Service 遙測所產生的事件 | Microsoft Docs
 description: 了解新的遙測功能會觸發哪些事件。
 keywords: 遙測, appinsights, 監視 bot
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 929432d51a7bdfbcbd328ae7ea4e0df8873e7392
-ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
+ms.openlocfilehash: dbb58a6a287124d0b393a4fc5a617e89840d1542
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/25/2019
-ms.locfileid: "68484355"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299164"
 ---
 # <a name="events-generated-by-the-bot-framework-service-telemetry"></a>Bot Framework Service 遙測所產生的事件
 

@@ -5,7 +5,7 @@
 ## [API 參考](bot-framework-rest-connector-api-reference.md)
 # 連接器
 ## [驗證](bot-framework-rest-connector-authentication.md)
-## [活動概觀](bot-framework-rest-connector-activities.md)
+## [活動概觀](https://aka.ms/botSpecs-activitySchema)
 ## [建立訊息](bot-framework-rest-connector-create-messages.md)
 ## [傳送及接收訊息](bot-framework-rest-connector-send-and-receive-messages.md)
 ## [將媒體附件新增至訊息](bot-framework-rest-connector-add-media-attachments.md)

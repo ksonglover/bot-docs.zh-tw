@@ -3,19 +3,18 @@ title: Azure Bot Service 中的使用者驗證 | Microsoft Docs
 description: 了解 Azure Bot Service 中的使用者驗證功能。
 keywords: azure bot 服務, 驗證, bot framework 權杖服務
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: abs
 ms.date: 05/31/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6eea954f58096d89cd3278058146b93fa04f435f
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: b4b71f7679ad6eea283437acb5a8293855219cf2
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693758"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299493"
 ---
 # <a name="user-authentication-within-a-conversation"></a>對話中的使用者驗證
 

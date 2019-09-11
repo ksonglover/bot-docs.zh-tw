@@ -6,14 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: dbd7d437b7a1cdffd446337192e77a8c3d93e4a0
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: a9fa1fe134f8ac7716796f4e9090acb60915afe8
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405775"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298588"
 ---
 # <a name="upgrade-your-bot-to-bot-framework-api-v3"></a>將 Bot 升級為 Bot Framework API 第 3 版
 

@@ -7,16 +7,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 0b9e2c406ee20535dfb065639beda8b66d0a2996
-ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
+ms.openlocfilehash: 5c7ac61da6c2e0d09fb2f8dc4cd0bf3961bcfc4f
+ms.sourcegitcommit: e815e786413296deea0bd78e5a495df329a9a7cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70037351"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876000"
 ---
 # <a name="send-an-activity-to-the-bot"></a>將活動傳送至 Bot
 
-使用 Direct Line 3.0 通訊協定時，用戶端與 Bot 可交換許多不同類型的[活動](bot-framework-rest-connector-activities.md)，包括**訊息**活動、**輸入**活動，以及 Bot 所支援的自訂活動。 對於每個要求，用戶端可傳送一個活動。 
+使用 Direct Line 3.0 通訊協定時，用戶端與 Bot 可交換許多不同類型的[活動](https://aka.ms/botSpecs-activitySchema)，包括**訊息**活動、**輸入**活動，以及 Bot 所支援的自訂活動。 對於每個要求，用戶端可傳送一個活動。 
 
 ## <a name="send-an-activity"></a>傳送活動
 

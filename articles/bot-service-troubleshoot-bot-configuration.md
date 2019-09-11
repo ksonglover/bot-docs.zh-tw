@@ -3,18 +3,17 @@ title: 針對 Bot 設定問題進行疑難排解 | Microsoft Docs
 description: 如何針對已部署 Bot 中的設定問題進行疑難排解。
 keywords: 疑難排解, 設定, 網路聊天, 問題。
 author: jonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 4/30/2019
-ms.openlocfilehash: c208cef52d1850a00b62828ae0ea622a2606ec5b
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: d71cfc604484b521450465c483201952d4672fcd
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033419"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298618"
 ---
 # <a name="troubleshoot-bot-configuration-issues"></a>針對 Bot 設定問題進行疑難排解
 
@@ -23,7 +22,7 @@ ms.locfileid: "65033419"
 ## <a name="test-in-web-chat"></a>在網路聊天中測試
 
 1. 在 [Azure 入口網站](http://portal.azure.com/)中開啟 Bot 資源。
-1. 開啟 [在網路聊天中測試] 窗格。
+1. 開啟 [在網路聊天中測試]  窗格。
 1. 將訊息傳送給您的 Bot。
 
 ![在網路聊天中測試](./media/test-in-webchat.png)
@@ -36,8 +35,8 @@ Bot 無法運作的可能原因很多。 最可能是 Bot 應用程式已關閉�
 
 若要查看 Bot 是否正在執行：
 
-1. 開啟 [概觀] 窗格。
-1. 複製 [訊息端點] 並將其貼到您的瀏覽器。
+1. 開啟 [概觀]  窗格。
+1. 複製 [訊息端點]  並將其貼到您的瀏覽器。
 
 如果此端點傳回 HTTP 錯誤 405，則表示 Bot 可觸達且 Bot 能夠回應訊息。 您應該調查 Bot 是否[逾時](https://github.com/daveta/analytics/blob/master/troubleshooting_timeout.md)或[因為 HTTP 5xx 錯誤而失敗](bot-service-troubleshoot-500-errors.md)。
 

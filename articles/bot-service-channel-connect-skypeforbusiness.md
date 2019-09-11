@@ -7,14 +7,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 25837bd9f462a2729a36fbd9decdc3e2bb6be0e3
-ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
+ms.openlocfilehash: fc72262106687199769cad0515c546f805e341af
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/01/2019
-ms.locfileid: "67496657"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298327"
 ---
 # <a name="connect-a-bot-to-skype-for-business-preview"></a>將 Bot 連結到商務用 Skype (預覽)
 

@@ -2,19 +2,18 @@
 title: 建立訊息 | Microsoft Docs
 description: 了解如何使用適用於 Node.js 的 Bot Framework SDK 來建立訊息。
 author: v-ducvo
-ms.author: v-ducvo
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 09/7/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 36df5898f4a5c02253aae04b3b85dbe70fc21ada
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: 7e2f48a3450154de9e2465f9d0d992ace4f3996f
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67404877"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299801"
 ---
 # <a name="create-messages"></a>建立訊息
 

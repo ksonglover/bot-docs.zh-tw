@@ -2,39 +2,38 @@
 title: 將 Bot 移轉至 Azure | Microsoft Docs
 description: 了解如何將您的 Bot 從舊版 Bot Framework 入口網站移轉至 Azure 入口網站中的 Bot Service。
 author: v-ducvo
-ms.author: v-ducvo
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: abs
 ms.date: 3/22/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: c6e91ebfe54857f11772bd4a926e3b5b2776c8cc
-ms.sourcegitcommit: 54a4382add4756346098b286695a9b4791db7139
+ms.openlocfilehash: d0d2f6930dd9a686cff98b09ca3e863ec0980491
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/29/2019
-ms.locfileid: "58616934"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297525"
 ---
 # <a name="migrate-your-bot-to-azure"></a>將 Bot 移轉至 Azure
 
 所有在 [Bot Framework 入口網站](http://dev.botframework.com)中建立的 **Azure Bot Service (預覽版)** Bot，都必須移轉至 Azure 中的新 Bot Service。 此服務已在 2017 年 12 月正式推出 (GA)。 
 
-請注意，僅連線至下列通道的註冊 Bot「不需要」移轉：**Teams**、**Skype** 或 **Cortana**。 例如，連線至 **Facebook** 和 **Skype** 的註冊 Bot *需要*移轉，但連線至 **Skype** 和 **Cortana** 註冊 Bot 則*不需要*移轉。
+請注意，僅連線至下列通道的註冊 Bot「不需要」  移轉：**Teams**、**Skype** 或 **Cortana**。 例如，連線至 **Facebook** 和 **Skype** 的註冊 Bot *需要*移轉，但連線至 **Skype** 和 **Cortana** 註冊 Bot 則*不需要*移轉。
 
 > [!IMPORTANT]
 > 移轉使用 Node.js 建立的 Functions Bot 之前，您必須使用 **Azure Functions Pack** 將 **node_modules** 模組封裝在一起。 這麼做可改善移轉期間的效能和 Functions Bot 在移轉之後的執行效能。 若要封裝您的模組，請參閱[使用 Funcpack 封裝 Functions Bot](#package-a-functions-bot-with-funcpack)。
 
 若要移轉您的 Bot，請執行下列作業：
 
-1. 登入 [Bot Framework 入口網站](http://dev.botframework.com)，然後按一下 [我的 Bot]。
-2. 為您要移轉的 Bot 按一下 [移轉] 按鈕。
-3. 接受**條款**，然後按一下 [移轉] 開始進行移轉程序，或按一下 [取消] 以取消此動作。
+1. 登入 [Bot Framework 入口網站](http://dev.botframework.com)，然後按一下 [我的 Bot]  。
+2. 為您要移轉的 Bot 按一下 [移轉]  按鈕。
+3. 接受**條款**，然後按一下 [移轉]  開始進行移轉程序，或按一下 [取消]  以取消此動作。
 
 > [!IMPORTANT]
 > 移轉工作正在進行時，請勿離開頁面或重新整理頁面。 這麼做會導致移轉工作過早停止，且您將必須重新執行此動作。 為了確保移轉順利完成，請等候確認訊息出現。
 
-移轉程序順利完成後，[移轉狀態] 會指出您的 Bot 已移轉，且 [回復移轉] 按鈕在移轉日期後的一週內都可供使用，以備在問題發生時回復。
+移轉程序順利完成後，[移轉狀態]  會指出您的 Bot 已移轉，且 [回復移轉]  按鈕在移轉日期後的一週內都可供使用，以備在問題發生時回復。
 
 按一下已移轉的 Bot 名稱，將會在 [Azure 入口網站](http://portal.azure.com)中開啟該 Bot。
 
@@ -85,9 +84,9 @@ Functions Bot 移轉將會佈建 "Functions Bot" 類型的 Bot Service 資源，
 
 如果 Bot 在移轉期間或移轉之後發生錯誤，您可以**回復移轉**。 若要回復移轉，請執行下列作業：
 
-1. 登入 [Bot Framework 入口網站](http://dev.botframework.com)，然後按一下 [我的 Bot]。
-2. 為您要回復的 Bot 按一下 [回復移轉] 按鈕。 此時會出現提示。
-3. 按一下 [是，我要回復] 以繼續作業，或按 [取消] 以取消回復動作。
+1. 登入 [Bot Framework 入口網站](http://dev.botframework.com)，然後按一下 [我的 Bot]  。
+2. 為您要回復的 Bot 按一下 [回復移轉]  按鈕。 此時會出現提示。
+3. 按一下 [是，我要回復]  以繼續作業，或按 [取消]  以取消回復動作。
 
 > [!NOTE]
 > 回復功能可在移轉後的一週內使用，但只有在移轉後的 Bot 有問題時，才應該使用。
@@ -96,7 +95,7 @@ Functions Bot 移轉將會佈建 "Functions Bot" 類型的 Bot Service 資源，
 我的 node.js/Functions Bot 已成功移轉，但無法回應：
 
 * **檢查端點**
-  * 移至 Bot 資源中的 [設定] 刀鋒視窗，並確認 Bot 端點具有 "code" 查詢字串參數及其值。 如果沒有，您必須將其加入。
+  * 移至 Bot 資源中的 [設定]  刀鋒視窗，並確認 Bot 端點具有 "code" 查詢字串參數及其值。 如果沒有，您必須將其加入。
 * **在 Kudu 中檢查備份的祕密資料夾**
   * 在某些罕見的情況下，某些備份祕密檔案可能會產生衝突。 請移至 Kudu 中的 **home\data\Functions\secrets** 資料夾，並刪除您在該處找到的任何 **host.snapshot** (或 **host.backup**) 檔案。 其中應該只有一個 **host.json** 和一個 **messages.json**。 最後，請重新啟動 App Service，然後重新嘗試與 Bot 聊天。
 

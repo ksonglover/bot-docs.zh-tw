@@ -6,14 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 06/13/2019
-ms.openlocfilehash: c99e7ce86415ee1291a92e2684b975fd03c822f7
-ms.sourcegitcommit: a47183f5d1c2b2454c4a06c0f292d7c075612cdd
+ms.openlocfilehash: 1e5c48dd3782100f9393c3498baa2b0a7c728cb3
+ms.sourcegitcommit: e815e786413296deea0bd78e5a495df329a9a7cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/19/2019
-ms.locfileid: "67252701"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876150"
 ---
 # <a name="receive-activities-from-the-bot"></a>接收來自 Bot 的活動
 
@@ -25,7 +24,7 @@ ms.locfileid: "67252701"
 
 此服務只允許每個交談有 1 個 WebSocket 連線。 Direct Line 可能會關閉其他 WebSocket 連線，並顯示值為 `collision` 的原因。
 
-並非所有[活動類型](bot-framework-rest-connector-activities.md)都可透過 WebSocket 和 HTTP GET 這兩者使用。 下表說明對於使用直接線路通訊協定的用戶端之各種活動類型的可用性。
+並非所有[活動類型](https://aka.ms/botSpecs-activitySchema)都可透過 WebSocket 和 HTTP GET 這兩者使用。 下表說明對於使用直接線路通訊協定的用戶端之各種活動類型的可用性。
 
 | 活動類型 | 可用性 | 
 |----|----|

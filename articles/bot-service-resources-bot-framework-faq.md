@@ -2,17 +2,17 @@
 title: Bot Service 常見問題集 | Microsoft Docs
 description: Bot Framework 元素的常見問題集清單，以及新功能的上市時間。
 author: DeniseMak
-ms.author: v-demak
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 02/21/2019
-ms.openlocfilehash: 57efc2f1d137988792d9484d7f1f857bd193ecfa
-ms.sourcegitcommit: 23a1808e18176f1704f2f6f2763ace872b1388ae
+ms.openlocfilehash: d8e5151e7b5432b8ec90087647380757e101c447
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/25/2019
-ms.locfileid: "67405778"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298088"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常見問題集
 

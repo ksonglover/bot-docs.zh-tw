@@ -2,19 +2,18 @@
 title: 處理使用者動作 | Microsoft Docs
 description: 了解如何使用適用於 Node.js 的 Bot Framework SDK，藉由讓 Bot 聽取和處理包含某些關鍵字的使用者輸入，來處理使用者動作。
 author: DucVo
-ms.author: v-ducvo
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5a0756be0a29660ef63f50a67ce4fa0f27ccc50f
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: 56f5c66b03fe5ae8f0abeb66470a7c31997829ba
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405038"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299895"
 ---
 # <a name="handle-user-actions"></a>處理使用者動作
 

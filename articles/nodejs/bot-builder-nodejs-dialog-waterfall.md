@@ -2,19 +2,18 @@
 title: 使用瀑布定義交談步驟 |Microsoft Docs
 description: 了解如何以適用於 Node.js 的 Bot Framework SDK 來使用瀑布以定義交談的步驟。
 author: v-ducvo
-ms.author: v-ducvo
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 526091d61f10ac0c241b994aa3ea99c1d2a70074
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 2a5ade5e6407537e72b520a22d74bc2c3943fce4
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225323"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299838"
 ---
 # <a name="define-conversation-steps-with-waterfalls"></a>使用瀑布定義交談步驟
 
@@ -200,7 +199,7 @@ bot.dialog('dinnerOrder', [
 
 ## <a name="next-steps"></a>後續步驟
 
-使用瀑布，您可以透過「提示」從使用者收集資訊。 讓我們深入了解您可以提示使用者提供輸入的方式。
+使用瀑布，您可以透過「提示」  從使用者收集資訊。 讓我們深入了解您可以提示使用者提供輸入的方式。
 
 > [!div class="nextstepaction"]
 > [提示使用者提供輸入](bot-builder-nodejs-dialog-prompt.md)

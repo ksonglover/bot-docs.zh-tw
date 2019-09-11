@@ -7,14 +7,13 @@ ms.author: mateusv
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: f59a7acbdb7d580aebeef6ffe81d8b15505aed90
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d0ef3b7cbac1ea2d8486c2f38d1ab762471878c6
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999805"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297078"
 ---
 # <a name="design-a-bots-first-user-interaction"></a>設計 Bot 的首次使用者互動
 

@@ -3,19 +3,18 @@ title: 在 Bot Framework SDK 內的交談| Microsoft Docs
 description: 說明 Bot Framework SDK 中的交談。
 keywords: 對話流程、辨識意圖、單一回合、多回合、Bot 對話
 author: jonathanfingold
-ms.author: jonathanfingold
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3138b591519ff76865f007ae091c6c33cd0da79c
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: ea5cf37ec788f68e8eea32ee6610f59ec286193c
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67404141"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299388"
 ---
 # <a name="conversation-flow"></a>交談流程
 [!INCLUDE[applies-to](../includes/applies-to.md)]

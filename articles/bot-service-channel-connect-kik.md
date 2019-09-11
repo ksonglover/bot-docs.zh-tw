@@ -3,18 +3,17 @@ title: 將 Bot 連線至 Kik | Microsoft Docs
 description: 深入了解如何配置 Bot 與 Kik 之間的連線。
 keywords: 連接 bot, bot通道, Kik bot, 認證, 配置, 電話
 author: RobStand
-ms.author: RobStand
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 3072694307ace7c8821fd9e61fe8204acca97efb
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 9024de58fd40fc3ef9f3c064a23b5e0811c20a89
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996726"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298364"
 ---
 # <a name="connect-a-bot-to-kik"></a>將 Bot 連線至 Kik
 
@@ -28,7 +27,7 @@ ms.locfileid: "49996726"
 
 ## <a name="log-into-the-dev-portal-with-your-mobile-phone"></a>藉由行動電話登入開發人員入口網站
 
-使用行動電話<a href="https://dev.kik.com" target="_blank">登入 Kik入口網站</a>。 若出現提示：在 "Kik" 中開啟在此頁面嗎？ 請選取 [開啟]。 
+使用行動電話<a href="https://dev.kik.com" target="_blank">登入 Kik入口網站</a>。 若出現提示：在 "Kik" 中開啟在此頁面嗎？  請選取 [開啟]  。 
 
 ![Kik 開發人員入口網站](./media/channels/kik-dev-portal.png)
 

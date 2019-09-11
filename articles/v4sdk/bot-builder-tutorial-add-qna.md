@@ -3,19 +3,18 @@ title: 可讓 Bot 回答問題的 Azure Bot Service 教學課程 | Microsoft Doc
 description: 在 Bot 中使用 QnA Maker 回答問題的教學課程。
 keywords: QnA Maker, 問題和答案, 知識庫
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: tutorial
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: aff1440f739150181ddc2d65d9b749b4eeda5d79
-ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.openlocfilehash: 8bc13f06e4cfd36afea65a344503fa48fe05f08e
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2019
-ms.locfileid: "67464692"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299208"
 ---
 # <a name="tutorial-use-qna-maker-in-your-bot-to-answer-questions"></a>教學課程：在 Bot 中使用 QnA Maker 回答問題
 

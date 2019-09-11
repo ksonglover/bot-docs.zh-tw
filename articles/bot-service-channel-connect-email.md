@@ -7,14 +7,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 02/08/2019
-ms.openlocfilehash: e77f6cddac07cdcc06d6d35cda98544f33dd1d43
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: ca88c2d023505401d9e31a58bfe7313565a2350c
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563414"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298579"
 ---
 # <a name="connect-a-bot-to-office-365-email"></a>將 Bot 連結到 Office 365 電子郵件
 
@@ -31,7 +30,7 @@ ms.locfileid: "64563414"
 > [!NOTE]
 > 您自己的個人電子郵件帳戶不應該用於 Bot，因為傳送至電子郵件帳戶的每個訊息都將轉送給 Bot。 這可能導致 Bot 不當地向寄件者傳送回應。 因此，Bot 應該只使用專用的 O365 電子郵件帳戶。
 
-若要新增電子郵件通道，請在 [Azure 入口網站](https://portal.azure.com/)中開啟 Bot，按一下 [通道] 刀鋒視窗，然後按一下 [電子郵件]。 輸入有效的電子郵件認證，然後按一下 [儲存]。
+若要新增電子郵件通道，請在 [Azure 入口網站](https://portal.azure.com/)中開啟 Bot，按一下 [通道]  刀鋒視窗，然後按一下 [電子郵件]  。 輸入有效的電子郵件認證，然後按一下 [儲存]  。
 
 ![輸入電子郵件認證](~/media/bot-service-channel-connect-email/bot-service-channel-connect-email-credentials.png)
 

@@ -2,19 +2,18 @@
 title: 要求付款 | Microsoft Docs
 description: 了解如何使用適用於 Node.js 的 Bot Framework SDK 傳送付款要求。
 author: v-ducvo
-ms.author: v-ducvo
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 88fd1ee1eb46fa056ecadae1f0cc1b19eb7c908f
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: 11171e0d715d153351d00e58e89443062853b11e
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67404845"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299759"
 ---
 # <a name="request-payment"></a>要求付款
 

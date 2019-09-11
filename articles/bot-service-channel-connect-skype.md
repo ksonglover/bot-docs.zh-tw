@@ -3,18 +3,17 @@ title: 將 Bot 連線至 Skype | Microsoft Docs
 description: 了解如何配置 Bot，以透過 Skype 介面存取。
 keywords: skype, Bot 頻道, 設定 skype, 發佈, 連接到頻道
 author: v-ducvo
-ms.author: RobStand
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 10/11/2018
-ms.openlocfilehash: f52c8fd668299486eccda3920181df971f475a90
-ms.sourcegitcommit: 75f32b3325dd0fc4d8128dee6c22ebf91e5785b3
+ms.openlocfilehash: a34591e6af9657411739e04ab6dc547e4c692419
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53120655"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297664"
 ---
 # <a name="connect-a-bot-to-skype"></a>將 Bot 連線至 Skype
 
@@ -28,11 +27,11 @@ Skype 可讓您透過立即訊息、 電話和視訊通話連接使用者。 藉
 
 ![設定 Skype 通道](~/media/channels/skype_configure.png)
 
-您需要在 [Web 控制項]、[傳訊]、[呼叫]、[群組] 和 [發佈] 中進行設定。 讓我們逐一進行設定。
+您需要在 [Web 控制項]  、[傳訊]  、[呼叫]  、[群組]  和 [發佈]  中進行設定。 讓我們逐一進行設定。
 
 ## <a name="web-control"></a>Web 控制項
 
-若要將 Bot 嵌入您的網站，請按一下 [Web 控制項] 區段中的 [取得內嵌程式碼] 按鈕。 這會將您導向 Skype for Developers 頁面。 請遵循那裡的指示來取得內嵌程式碼。
+若要將 Bot 嵌入您的網站，請按一下 [Web 控制項]  區段中的 [取得內嵌程式碼]  按鈕。 這會將您導向 Skype for Developers 頁面。 請遵循那裡的指示來取得內嵌程式碼。
 
 ## <a name="messaging"></a>訊息
 
@@ -55,7 +54,7 @@ Skype 可讓您透過立即訊息、 電話和視訊通話連接使用者。 藉
 > [!TIP]
 > 如果您想要提交 Bot 進行檢閱，請記住它必須先符合 [Skype 憑證檢查清單](https://github.com/Microsoft/skype-dev-bots/blob/master/certification/CHECKLIST.md)，才會獲得接受。
 
-完成設定之後，請按一下 [儲存] 並接受 [服務條款]。 Skype 通道現在已新增至您的 Bot。
+完成設定之後，請按一下 [儲存]  並接受 [服務條款]  。 Skype 通道現在已新增至您的 Bot。
 
 ## <a name="next-steps"></a>後續步驟
 

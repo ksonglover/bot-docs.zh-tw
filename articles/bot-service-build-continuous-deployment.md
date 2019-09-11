@@ -3,18 +3,18 @@ title: 設定 Bot Service 的持續部署 | Microsoft Docs
 description: 了解如何設定從 Bot Service 原始檔控制的持續部署。
 keywords: 持續部署, 發佈, 部署, Azure 入口網站
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8d324138db60c2b34f9bebd3ff53c30a12c3cefa
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: daf5624f3ab327602ae75bcbbd00d4b527661ff4
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405951"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297731"
 ---
 # <a name="set-up-continuous-deployment"></a>設定連續部署
 

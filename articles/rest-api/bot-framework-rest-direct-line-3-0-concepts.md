@@ -6,20 +6,19 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 01/06/2019
-ms.openlocfilehash: 94ef9cc221e67f4f3762eb7a1a006a915e3c5307
-ms.sourcegitcommit: fd60ad0ff51b92fa6495b016e136eaf333413512
+ms.openlocfilehash: 6727530ec6267a63e28e103bdfc12183ebed8016
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55764096"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299588"
 ---
 # <a name="key-concepts-in-direct-line-api-30"></a>Direct Line API 3.0 中的重要概念
 
 您可以使用 Direct Line API 啟用您的 Bot 和您自有用戶端應用程式的對話。 本文介紹 Direct Line API 3.0 中的重要概念，並提供相關開發人員資源的資訊。
 
-## <a name="authentication"></a>驗證
+## <a name="authentication"></a>Authentication
 
 Direct Line API 3.0 要求可以使用您從 <a href="https://dev.botframework.com/" target="_blank">Bot Framework 入口網站</a> 中的 Direct Line 頻道設定頁面取得的**祕密**來驗證，或使用您在執行階段取得的**權杖**來驗證。 如需詳細資訊，請參閱[驗證](bot-framework-rest-direct-line-3-0-authentication.md)。
 

@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 4108f02a350d7e02d66db06cd7e65fa9c7a98e7d
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
+ms.translationtype: HT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "70297366"
+---
 **臨機操作主動式訊息**是最簡單的主動式訊息類型。
 Bot 只會在每次觸發時將訊息插入對話，不會顧及使用者目前是否與 Bot 在其他對話主題中，也不會嘗試以任何方式變更對話。
 

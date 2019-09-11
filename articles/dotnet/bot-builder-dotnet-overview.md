@@ -6,15 +6,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f54ea91bbe04f5b9b8a0701a3473ef7e76cacaeb
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: f9f15903bf3b004e64fbe737f25d6cb34cdfe7fe
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224723"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297841"
 ---
 # <a name="bot-framework-sdk-for-net"></a>適用於 .NET 的 Bot Framework SDK
 
@@ -46,9 +45,9 @@ SDK 可用於 NuGet 套件，以及 <a href="https://github.com/Microsoft/BotBui
 
 若要在 Visual Studio 專案中安裝 SDK，請完成下列步驟：
 
-1. 在 [方案總管] 中，以滑鼠右鍵按一下專案名稱，然後選取 [管理 NuGet 套件]。
-2. 在 [瀏覽] 索引標籤上的搜尋方塊中輸入 "Microsoft.Bot.Builder"。
-3. 選取結果清單中的 [Microsoft.Bot.Builder]，按一下 [安裝]，並接受變更。
+1. 在 [方案總管]  中，以滑鼠右鍵按一下專案名稱，然後選取 [管理 NuGet 套件]  。
+2. 在 [瀏覽]  索引標籤上的搜尋方塊中輸入 "Microsoft.Bot.Builder"。
+3. 選取結果清單中的 [Microsoft.Bot.Builder]  ，按一下 [安裝]  ，並接受變更。
 
 ## <a name="get-code-samples"></a>取得程式碼範例
 

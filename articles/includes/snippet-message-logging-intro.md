@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: 12ead266dea859c84450e08ae12ed98d4952d698
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54226013"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "70297375"
 ---
 Bot Framework SDK 中的**中介軟體**功能可讓 Bot 攔截使用者與 Bot 之間交換的所有訊息。 針對每個攔截的訊息，您可以選擇執行如下的動作：將訊息儲存到您所指定的資料存放區，以建立對話記錄，或是以某種方式檢查訊息，並執行程式碼所指定的任何動作。 
 
