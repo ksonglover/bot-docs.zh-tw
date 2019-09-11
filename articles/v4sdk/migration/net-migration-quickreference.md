@@ -3,19 +3,18 @@ title: 從 .NET v3 遷移到 v4 的快速參考 | Microsoft Docs
 description: 概述 v3 和 v4 .NET Bot Framework SDK 中的主要差異。
 keywords: .net, bot 移轉, 對話方塊, v3 bot
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/31/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c878007731ecf6a2f4c3129ef411a8d18d080fef
-ms.sourcegitcommit: 565a5df8b34a6d73ddf452ca7808eb83bb5be503
+ms.openlocfilehash: 3ede676cd1a09566b42dc49cc3258aa6e42cbe05
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/26/2019
-ms.locfileid: "68508079"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298953"
 ---
 # <a name="net-migration-quick-reference"></a>.NET 移轉快速參考
 
