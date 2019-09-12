@@ -7,14 +7,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: efe38392117fb871b2b98e3f1d8d798bfaef0c41
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: cdf9a98d77f876fb582432ab9b4704d2ac98d45f
+ms.sourcegitcommit: dd12ddf408c010182b09da88e2aac0de124cef22
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563755"
+ms.lasthandoff: 09/05/2019
+ms.locfileid: "70385960"
 ---
 # <a name="connect-a-bot-to-telegram"></a>將 Bot 連線至 Telegram
 
@@ -53,9 +52,17 @@ ms.locfileid: "64563755"
 
 ## <a name="enter-the-telegram-bots-access-token"></a>輸入 Telegram Bot 的存取權杖
 
-將您先前複製的權杖貼至 [存取權杖] 欄位，然後按一下 [提交]。
+在 Azure 入口網站中移至 Bot 的 [通道]  區段，然後按一下 [Telegram]  按鈕。 
 
-## <a name="enable-the-bot"></a>啟用 Bot
-勾選 [在 Telegram 上啟用此 Bot]。 然後按一下 [我已完成設定 Telegram]。
+> [!NOTE]
+>  如果您已將 Bot 連線至 Telegram，則 Azure 入口網站 UI 看起來會略有不同。 
 
-當您完成這些步驟時，您的 Bot 即已成功設定為在 Telegram 中與使用者進行通訊。
+![選取通道中的 Telegram](~/media/channels/tg-connectBot-Azure.png)
+
+將您先前複製的權杖貼到 [存取權杖]  欄位中，然後按一下 [儲存]  。
+
+![Telegram 存取權杖](~/media/channels/tg-accessToken-Azure.png)
+
+您的 Bot 現已成功設定為可與 Telegram 中的使用者通訊。 
+
+![已啟用 Telegram Bot](~/media/channels/tg-botEnabled-Azure.png)

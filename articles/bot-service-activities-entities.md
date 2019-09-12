@@ -3,18 +3,17 @@ title: 實體和活動類型 | Microsoft Docs
 description: 實體和活動類型。
 keywords: 提及實體, 活動類型, 取用實體
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 03/01/2018
-ms.openlocfilehash: e38d9887e50455e66ac7fdcd5c4e7bb309a3e3e9
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: 4a37824ffc6eeeda69330a659d3d026bde5f0069
+ms.sourcegitcommit: 99fa595b81e6fabb1f4a93e0694e88bfbfab2dd4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405947"
+ms.lasthandoff: 09/09/2019
+ms.locfileid: "70808440"
 ---
 # <a name="entities-and-activity-types"></a>實體和活動類型
 
@@ -138,10 +137,10 @@ if (entity[0].type === "GeoCoordinates" && entity[0].latitude > 34) {
 ---
 
 ## <a name="activity-types"></a>活動類型
+<!-- 
+This code example show how to process an activity of type **message**:
 
-此程式碼範例示範如何處理 **message** 類型的活動：
-
-# <a name="ctabcs"></a>[C#](#tab/cs)
+# [C#](#tab/cs)
 
 ```cs
 if (context.Activity.Type == ActivityTypes.Message){
@@ -149,7 +148,7 @@ if (context.Activity.Type == ActivityTypes.Message){
 }
 ```
 
-# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
+# [JavaScript](#tab/js)
 
 ```js
 if(context.activity.type === 'message'){
@@ -157,9 +156,9 @@ if(context.activity.type === 'message'){
 }
 ```
 
----
+--- -->
 
-活動類型有好幾種；活動可以屬於數個會傳遞最常見**訊息**的不同類型。 說明和進一步的資訊可於[活動結構描述頁面](https://aka.ms/botSpecs-activitySchema)中找到。
+活動可以屬於數個會傳遞最常見**訊息**的不同類型。 如需不同活動類型的說明和詳細資料，請參閱 [Bot Framework 活動結構描述](https://aka.ms/botSpecs-activitySchema)。
 
 ::: moniker range="azure-bot-service-3.0"
 

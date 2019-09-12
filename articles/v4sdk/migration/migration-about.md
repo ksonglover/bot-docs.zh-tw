@@ -3,19 +3,18 @@ title: v3 和 v4 SDK 之間的差異 | Microsoft Docs
 description: 說明 v3 和 v4 SDK 之間的差異。
 keywords: bot 移轉, formflow, 對話, 狀態
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 862fbf59cf33406e35e9051c0814489fdfdaa8f3
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 6444c1e3ef1948b3e407df50255aaa7c5350bf34
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215584"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298988"
 ---
 # <a name="differences-between-the-v3-and-v4-net-sdk"></a>v3 和 v4 .NET SDK 之間的差異
 
@@ -33,7 +32,7 @@ Bot Framework SDK 第 4 版支援與第 3 版相同的基礎 Bot Framework 服�
 - 新的 Dialogs 程式庫。
   - v3 對話需要針對新的對話程式庫重新撰寫。
   - 可評分項目已不存在。 將控制權交給您的對話之前，可以檢查「全域」命令。 根據您設計 v4 Bot 的方式，這可能位在訊息處理常式或父代對話方塊中。 如需範例，請參閱如何[處理使用者中斷][interruptions]。
-  - 如需詳細資料，請參閱[對話方塊程式庫][about-dialogs]。
+  - 如需詳細資料，請參閱 [Dialogs 程式庫][about-dialogs]。
 - 支援 ASP.NET Core。
   - 建立新 C# Bot 的範本是以 ASP.NET Core 架構為目標。
   - 您仍然可將 ASP.NET 用於 Bot，但 v4 的重點在於支援 ASP.NET Core 架構。
@@ -119,7 +118,7 @@ v4 會定義`UserState`、`ConversationState` 和 `PrivateConversationState` 類
 | | |
 |:--|:--|
 | 元件對話，其衍生自 `ComponentDialog` 類別 | 可讓您封裝對話程式碼，而不會與外部內容發生命名衝突。 請參閱[重複使用對話][reuse-dialogs]。 |
-| 瀑布式對話，也就是 `WaterfallDialog` 類別的執行個體 | 其設計訴求是要搭配提示對話運作，而提示對話會提示使用者輸入並驗證各種類型的使用者輸入。 瀑布式對話會為您將大部分的程序自動化，但是對您的對話程式碼強加特定形式，請參閱[循序對話流程][sequential-flow]。 |
+| 瀑布式對話，也就是 `WaterfallDialog` 類別的執行個體 | 其設計訴求是要搭配提示對話運作，而提示對話會提示使用者輸入並驗證各種類型的使用者輸入。 瀑布式對話會為您將大部分的程序自動化，但是對您的對話方塊程式碼強加特定形式，請參閱[循序對話流程][sequential-flow]。 |
 | 自訂對話，其衍生自抽象 `Dialog` 類別 | 這讓您的對話運作方式擁有最大彈性，但您也需要深入了解對話堆疊的實作方式。 |
 
 在 v3 中，您已使用 `FormFlow` 執行一組工作的步驟。 在 v4 中，瀑布式對話會取代 FormFlow。 當您建立瀑布式對話時，您會在建構函式中定義對話方塊的步驟。 執行的步驟順序會完全遵循您宣告的方式，並且會自動地逐一前進。

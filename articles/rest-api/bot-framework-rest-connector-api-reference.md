@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 08/02/2019
-ms.openlocfilehash: 68ba9f8b2b47d501ebf629e8a804e6a1479e1839
-ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
+ms.openlocfilehash: 52902456903fb8c5c9fd2037150a55a05f66f31c
+ms.sourcegitcommit: e815e786413296deea0bd78e5a495df329a9a7cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/30/2019
-ms.locfileid: "70167211"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876129"
 ---
 # <a name="api-reference"></a>API 參考資料
 
@@ -433,7 +433,7 @@ Bot Framework 活動結構描述會定義您的 Bot 可用來與使用者通訊�
 | **textHighlights** | [TextHighlight](#texthighlight-object)[] | 在活動包含 **replyToId** 值時會醒目提示的文字片段集合。 |
 | **timestamp** | 字串 | 訊息傳送時的 UTC 時區日期及時間，以 [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) 格式表示。 |
 | **topicName** | 字串 | 活動所屬交談的主題。 |
-| **type** | 字串 | 活動的類型。 下列任一值：**message**、**contactRelationUpdate**、**conversationUpdate**、**typing**、**endOfConversation**、**event**、**invoke**、**deleteUserData**、**messageUpdate**、**messageDelete**、**installationUpdate**、**messageReaction**、**suggestion**、**trace**、**handoff**。 如需有關活動類型的詳細資料，請參閱[活動概觀](bot-framework-rest-connector-activities.md)。 |
+| **type** | 字串 | 活動的類型。 下列任一值：**message**、**contactRelationUpdate**、**conversationUpdate**、**typing**、**endOfConversation**、**event**、**invoke**、**deleteUserData**、**messageUpdate**、**messageDelete**、**installationUpdate**、**messageReaction**、**suggestion**、**trace**、**handoff**。 如需有關活動類型的詳細資料，請參閱[活動概觀](https://aka.ms/botSpecs-activitySchema)。 |
 | **value** | 物件 | 開放端點的值。 |
 | **valueType** | 字串 | 活動的值物件類型。 |
 
@@ -451,7 +451,7 @@ Bot Framework 活動結構描述會定義您的 Bot 可用來與使用者通訊�
 | **buttons** | [CardAction](#cardaction-object)[] | 可讓使用者執行一或多個動作的 **CardAction** 物件陣列。 此通道可決定您能指定的按鈕數目。 |
 | **duration** | 字串 | 媒體內容的長度，採用 [ISO 8601 持續時間格式](https://www.iso.org/iso-8601-date-and-time-format.html)。 |
 | **映像** | [ThumbnailUrl](#thumbnailurl-object) | 可指定要在資訊卡上顯示之影像的 **ThumbnailUrl** 物件。 |
-| **media** | [MediaUrl](#mediaurl-object)[] | 用於指定要播放之動畫 GIF 清單的 **MediaUrl** 物件陣列。 |
+| **media** | [MediaUrl](#mediaurl-object)[] | **MediaUrl** 物件的陣列。 此欄位包含多個 URL 時，每個 URL 都會是相同內容的替代格式。|
 | **shareable** | 布林值 | 用於指出是否要與他人共用動畫的旗標。 將此屬性設為 **true** 可與他人共用動畫；如不共用則設為 **false**。 預設值為 **true**。 |
 | **subtitle** | 字串 | 顯示在資訊卡標題下方的子標題。 |
 | **text** | 字串 | 顯示在資訊卡標題或子標題下方的描述或提示。 |
@@ -522,7 +522,7 @@ Bot Framework 活動結構描述會定義您的 Bot 可用來與使用者通訊�
 | **buttons** | [CardAction](#cardaction-object)[] | 可讓使用者執行一或多個動作的 **CardAction** 物件陣列。 此通道可決定您能指定的按鈕數目。 |
 | **duration** | 字串 | 媒體內容的長度，採用 [ISO 8601 持續時間格式](https://www.iso.org/iso-8601-date-and-time-format.html)。 |
 | **映像** | [ThumbnailUrl](#thumbnailurl-object) | 可指定要在資訊卡上顯示之影像的 **ThumbnailUrl** 物件。 |
-| **media** | [MediaUrl](#mediaurl-object)[] | 用於指定要播放之音訊檔案清單的 **MediaUrl** 物件陣列。 |
+| **media** | [MediaUrl](#mediaurl-object)[] | **MediaUrl** 物件的陣列。  此欄位包含多個 URL 時，每個 URL 都會是相同內容的替代格式。 |
 | **shareable** | 布林值 | 用於指出是否要與他人共用音訊檔案的旗標。 將此屬性設為 **true** 可與他人共用音訊；如不共用則設為 **false**。 預設值為 **true**。 |
 | **subtitle** | 字串 | 顯示在資訊卡標題下方的子標題。 |
 | **text** | 字串 | 顯示在資訊卡標題或子標題下方的描述或提示。 |
@@ -940,7 +940,7 @@ Bot Framework 活動結構描述會定義您的 Bot 可用來與使用者通訊�
 | **buttons** | [CardAction](#cardaction-object)[] | 可讓使用者執行一或多個動作的 **CardAction** 物件陣列。 此通道可決定您能指定的按鈕數目。 |
 | **duration** | 字串 | 媒體內容的長度，採用 [ISO 8601 持續時間格式](https://www.iso.org/iso-8601-date-and-time-format.html)。 |
 | **映像** | [ThumbnailUrl](#thumbnailurl-object) | 可指定要在資訊卡上顯示之影像的 **ThumbnailUrl** 物件。 |
-| **media** | [MediaUrl](#mediaurl-object)[] | 用於指定要播放之影片清單的 **MediaUrl** 物件。 |
+| **media** | [MediaUrl](#mediaurl-object)[] | **MediaUrl** 的陣列。  此欄位包含多個 URL 時，每個 URL 都會是相同內容的替代格式。 |
 | **shareable** | 布林值 | 用於指出是否要與他人共用影片的旗標。 將此屬性設為 **true** 可與他人共用影片；如不共用則設為 **false**。 預設值為 **true**。 |
 | **subtitle** | 字串 | 顯示在資訊卡標題下方的子標題。 |
 | **text** | 字串 | 顯示在資訊卡標題或子標題下方的描述或提示。 |

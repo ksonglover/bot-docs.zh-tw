@@ -6,15 +6,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d84252281baa57a15b093cfd0ba92fe5fe422027
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: a29f376afa4a9d3027960407f688cbef76b35473
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225853"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298798"
 ---
 # <a name="define-a-form-using-json-schema"></a>使用 JSON 結構描述來定義表單
 
@@ -32,10 +31,10 @@ FormFlow 可支援下列標準 <a href="http://json-schema.org/documentation.htm
 |----|----|
 | type | 會定義欄位包含的資料類型。 |
 | 列舉 | 會定義欄位的有效值。 |
-| minimum | 會定義欄位允許的最小數值 (如 [NumericAttribute][numericAttribute] 中所述)。 |
-| maximum | 會定義欄位允許的最大數值 (如 [NumericAttribute][numericAttribute] 中所述)。 |
+| minimum | 定義欄位允許的最小數值 (如 [NumericAttribute][numericAttribute] 中所述)。 |
+| maximum | 定義欄位允許的最大數值 (如 [NumericAttribute][numericAttribute] 中所述)。 |
 | 必要 | 會定義哪些欄位為必要。 |
-| 模式 | 會驗證字串值 (如 [PatternAttribute][patternAttribute] 中所述)。 |
+| 模式 | 驗證字串值 (如 [PatternAttribute][patternAttribute] 中所述)。 |
 
 ## <a name="extensions-to-json-schema"></a>JSON 結構描述延伸模組
 
@@ -46,8 +45,8 @@ FormFlow 可延伸標準 <a href="http://json-schema.org/documentation.html" tar
 | 屬性 | 值 |
 |----|----|
 | OnCompletion | 含引數 `(IDialogContext context, JObject state)` 的 C# 指令碼用來完成表單。 |
-| 參考 | 要包含在指令碼中的參考。 例如： `[assemblyReference, ...]`。 路徑應為絕對或相對於目前的目錄。 根據預設，指令碼會包含 `Microsoft.Bot.Builder.dll`。 |
-| 匯入 | 要包含在指令碼中的匯入。 例如： `[import, ...]`。 根據預設，指令碼會包含 `Microsoft.Bot.Builder`、`Microsoft.Bot.Builder.Dialogs`、`Microsoft.Bot.Builder.FormFlow`、`Microsoft.Bot.Builder.FormFlow.Advanced`、`System.Collections.Generic` 和 `System.Linq` 命名空間。 |
+| 參考 | 要包含在指令碼中的參考。 例如： `[assemblyReference, ...]` 。 路徑應為絕對或相對於目前的目錄。 根據預設，指令碼會包含 `Microsoft.Bot.Builder.dll`。 |
+| 匯入 | 要包含在指令碼中的匯入。 例如： `[import, ...]` 。 根據預設，指令碼會包含 `Microsoft.Bot.Builder`、`Microsoft.Bot.Builder.Dialogs`、`Microsoft.Bot.Builder.FormFlow`、`Microsoft.Bot.Builder.FormFlow.Advanced`、`System.Collections.Generic` 和 `System.Linq` 命名空間。 |
 
 ### <a name="additional-properties-at-the-root-of-the-schema-or-as-peers-of-the-type-property"></a>位於結構描述根目錄，或作為類型屬性同儕節點的其他屬性
 

@@ -6,15 +6,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3089e7a073f6a6d9af3a3720954af3a915106888
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: fe45d873369b28a0081df28d2d3971e5b77ca4f9
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224993"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298376"
 ---
 # <a name="dialogs-in-the-bot-framework-sdk-for-net"></a>適用於 .NET 的 Bot Framework SDK 中的對話
 

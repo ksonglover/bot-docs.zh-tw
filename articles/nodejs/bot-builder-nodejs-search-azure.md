@@ -2,19 +2,18 @@
 title: 使用 Azure 搜尋服務建立資料驅動體驗 | Microsoft Docs
 description: 了解如何使用 Azure 搜尋服務建立資料驅動體驗，並協助使用者在採用適用於 Node.js 的 Bot Framework SDK 和 Azure 搜尋服務的 Bot 中巡覽大量內容。
 author: matthewshim-ms
-ms.author: v-shimma
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 259f709ae460fde13cdf25ce6d7cbf5dd44a333d
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: 0a5ebd10e076b44708f13de0b8485bffff3419af
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224856"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299757"
 ---
 # <a name="create-data-driven-experiences-with-azure-search"></a>使用 Azure 搜尋服務建立資料驅動體驗 
 
@@ -24,7 +23,7 @@ ms.locfileid: "57224856"
 > - [.NET](../dotnet/bot-builder-dotnet-search-azure.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-search-azure.md)
 
-您可以將 [Azure 搜尋服務][search]新增至 Bot，以協助使用者巡覽大量內容，並為 Bot 的使用者建立資料驅動的探索體驗。
+您可以將 [Azure 搜尋服務][search]新增至 Bot，以協助使用者瀏覽大量內容，並為 Bot 的使用者建立資料驅動的探索體驗。
 
 Azure 搜尋服務是一項 Azure 服務，可提供關鍵字搜尋、內建語言、自訂評分、多面向導覽等等。 Azure 搜尋服務也可以對各種來源 (包括 Azure SQL DB、DocumentDB、Blob 儲存體和表格儲存體) 的內容編製索引。 它支援「推送」其他資料來源的編製索引，而且可以開啟 PDF、Office 文件，以及其他包含非結構化資料的格式。 收集後，內容就會進入 Azure 搜尋服務索引，然後 Bot 就可加以查詢。
 
@@ -157,7 +156,7 @@ function searchHitAsCard(showSave, searchHit) {
 
 * [Azure 搜尋服務][search]
 * [Node Util][NodeUtil]
-* [對話](bot-builder-nodejs-dialog-manage-conversation.md)
+* [對話方塊](bot-builder-nodejs-dialog-manage-conversation.md)
 
 [NodeUtil]: https://nodejs.org/api/util.html
 [search]: /azure/search/search-what-is-azure-search

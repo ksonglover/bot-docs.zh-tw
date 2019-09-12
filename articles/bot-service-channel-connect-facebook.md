@@ -7,12 +7,12 @@ ms.topic: article
 ms.author: kamrani
 ms.service: bot-service
 ms.date: 08/03/2019
-ms.openlocfilehash: 4e5dc332b463e9490c7aa265a08e8f126d59d3f9
-ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
+ms.openlocfilehash: a856e3cc578b8c73583126df9f670bfde68ec9dc
+ms.sourcegitcommit: dd12ddf408c010182b09da88e2aac0de124cef22
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68866586"
+ms.lasthandoff: 09/05/2019
+ms.locfileid: "70386110"
 ---
 # <a name="connect-a-bot-to-facebook"></a>將 Bot 連線到 Facebook
 
@@ -131,14 +131,31 @@ Bot 完成之後，Facebook 對於發佈到 Messenger 的應用程式有自己�
 
 ## <a name="connect-a-bot-to-facebook-workplace"></a>將 Bot 連線到 Facebook Workplace
 
+Facebook Workplace 是商務導向的 Facebook 版本，可讓員工輕鬆地連線及共同作業。 其中包含即時影片、新聞摘要、群組、Messenger、反應、搜尋和趨勢文章。 也支援：
+
+- 分析和整合。 儀表板提供分析、整合、單一登入功能，以及公司用來整合 Workplace 及其現有 IT 系統的身分識別提供者。
+- 跨公司群組。 有共用空間讓不同組織的員工可以共同合作及共同作業。
+
 如需 Facebook Workplace 開發的指導方針，請參閱 [Workplace 說明中心](https://workplace.facebook.com/help/work/)以深入了解 Facebook Workplace 和 [Workplace 開發人員文件](https://developers.facebook.com/docs/workplace)。
 
-若要將 Bot 設定為使用 Facebook Workplace 進行通訊，請建立自訂整合並將 Bot 連線到該整合。
+若要搭配使用 Facebook Workplace 與您的 Bot，您必須建立 Workplace 帳戶和自訂整合來連接 Bot。
 
+### <a name="create-a-workplace-premium-account"></a>建立 Workplace Premium 帳戶
 
-1. 建立 Facebook Workplace Premium 帳戶。 遵循[這裡](https://www.facebook.com/workplace)的指示，建立 Facebook Workplace Premium 帳戶並將自己設定為系統管理員。 請記住，只有 Workplace 的系統管理員可以建立自訂整合。
+1. 代表您的公司將應用程式提交至 [Workplace](https://www.facebook.com/workplace)。
+1. 應用程式通過核准後，您將會收到邀請您加入的電子郵件。 此回覆程序可能需要一些時間。
+1. 在電子郵件邀請中，按一下 [開始使用]  。
+1. 輸入您的設定檔資訊。
+    > [!TIP]
+    > 將您自己設定為系統管理員。 請記住，只有系統管理員才能建立自訂整合。
+1. 按一下 [預覽設定檔]  ，並確認資訊正確無誤。
+1. 存取*免費試用*。
+1. 建立**密碼**。
+1. 按一下 [邀請同事]  ，以邀請員工登入。 您邀請的員工在其本身簽署後即會成為成員。 他們會經歷與下列步驟所述類似的登入程序。
 
-1. 遵循下列所述的步驟，為您的 Workplace 建立[自訂整合](https://developers.facebook.com/docs/workplace/custom-integrations-new)。 當您建立自訂整合時，只會建立您的 Workplace 社群內可見且已定義權限的應用程式和 'Bot' 類型的頁面。
+### <a name="create-a-custom-integration"></a>建立自訂整合
+
+依照下列所述的步驟，為您的 Workplace 建立[自訂整合](https://developers.facebook.com/docs/workplace/custom-integrations-new)。 當您建立自訂整合時，只會建立您的 Workplace 社群內可見且已定義權限的應用程式和 'Bot' 類型的頁面。
 
 1. 在 [管理面板]  中，開啟 [整合]  索引標籤。
 1. 按一下 [建立自己的自訂應用程式]  按鈕。

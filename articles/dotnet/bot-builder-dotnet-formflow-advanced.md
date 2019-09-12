@@ -6,15 +6,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d04e13babef847a44438e1a748990d7405478fa2
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 4dc065905c71aef0b3f0108032ca79a2a15f8af0
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225953"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298022"
 ---
 # <a name="advanced-features-of-formflow"></a>FormFlow 的進階功能
 
@@ -70,11 +69,11 @@ For sandwich toppings you have selected Avocado, Banana Peppers, Cucumbers, Gree
 
 | 屬性 | 目的 |
 |----|----| 
-| [描述][describeAttribute] | 變更欄位或值在範本或卡片中的顯示方式 |
+| [說明][describeAttribute] | 變更欄位或值在範本或卡片中的顯示方式 |
 | [數值][numericAttribute] | 限制數值欄位的接受值 |
-| [選用][optionalAttribute] | 將欄位標示為選用 |
+| [選擇性][optionalAttribute] | 將欄位標示為選用 |
 | [模式][patternAttribute] | 定義規則運算式來驗證字串欄位 |
-| [提示][promptAttribute] | 定義欄位的提示 |
+| [Prompt][promptAttribute] | 定義欄位的提示 |
 | [範本][templateAttribute] | 定義要用來在提示中產生提示或值的範本 |
 | [字詞][termsAttribute] | 定義符合欄位或值的輸入字詞 |
 

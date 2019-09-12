@@ -3,19 +3,18 @@ title: 將媒體新增至訊息 | Microsoft Docs
 description: 了解如何使用 Bot Framework SDK 將媒體新增至訊息。
 keywords: 媒體, 訊息, 影像, 音訊, 視訊, 檔案, MessageFactory, 複合式資訊卡, 訊息, 調適型卡片, 主圖卡片, 建議動作
 author: ivorb
-ms.author: v-ivorb
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9478a3861b24746b4081ab2176486e59ccc7d4bc
-ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.openlocfilehash: 4caa11221ed930a627b53d7f46107adb226a816d
+ms.sourcegitcommit: e815e786413296deea0bd78e5a495df329a9a7cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 06/28/2019
-ms.locfileid: "67464716"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876177"
 ---
 # <a name="add-media-to-messages"></a>將媒體新增至訊息
 
@@ -23,7 +22,15 @@ ms.locfileid: "67464716"
 
 使用者與 Bot 之間交換的訊息可以包含媒體附件，例如影像、視訊、音訊和檔案等。 Bot Framework SDK 支援將豐富訊息傳送給使用者的工作。 若要判斷通道 (Facebook、Skype、Slack 等等) 支援的豐富訊息類型，請參閱通道文件中的限制相關資訊。
 
-請參閱[設計使用者體驗](../bot-service-design-user-experience.md)，以取得可用卡片的範例。
+## <a name="prerequisites"></a>必要條件
+- [Bot 基本概念](bot-builder-basics.md)的知識。
+- 本文中的程式碼以下列範例為基礎：
+
+  | 範例程式碼 | C# | JS |
+  | :------ | :----- | :---|
+  | 卡片 | [C# 範例](https://aka.ms/bot-cards-sample-code) | [JS 範例](https://aka.ms/bot-cards-js-sample-code) |
+  | 附件 | [C# 範例](https://aka.ms/bot-attachments-sample-code) | [JS 範例](https://aka.ms/bot-attachments-sample-code-js) |
+  | 建議動作 | [C# 範例](https://aka.ms/SuggestedActionsCSharp) | [JS 範例](https://aka.ms/SuggestedActionsJS) |
 
 ## <a name="send-attachments"></a>傳送附件
 
@@ -241,14 +248,6 @@ ms.locfileid: "67464716"
 請參閱[設計使用者體驗](../bot-service-design-user-experience.md)，以取得可用卡片的範例。
 
 如需結構描述的詳細資訊，請參閱 Bot Framework 活動結構描述的 [Bot Framework 卡片結構描述](https://aka.ms/botSpecs-cardSchema)和[訊息活動區段](https://aka.ms/botSpecs-activitySchema#message-activity)。
-
-| 範例程式碼 | C# | JS |
-| :------ | :----- | :---|
-| 卡片 | [C# 範例](https://aka.ms/bot-cards-sample-code) | [JS 範例](https://aka.ms/bot-cards-js-sample-code) |
-| 附件 | [C# 範例](https://aka.ms/bot-attachments-sample-code) | [JS 範例](https://aka.ms/bot-attachments-sample-code-js) |
-| 建議動作 | [C# 範例](https://aka.ms/SuggestedActionsCSharp) | [JS 範例](https://aka.ms/SuggestedActionsJS) |
-
-如需其他範例，請參考 [GitHub](https://aka.ms/bot-samples-readme) 上的 Bot Builder 範例存放庫。
 
 ### <a name="code-sample-for-processing-adaptive-card-input"></a>用於處理調適型卡片輸入的程式碼範例
 

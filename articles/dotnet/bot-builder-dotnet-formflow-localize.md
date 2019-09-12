@@ -6,22 +6,21 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 11/02/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3ec3d12a7d35f65adca901395edff2db3ab71c66
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 795232b401284becd940daed6bf7da8642c12efd
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225583"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297956"
 ---
 # <a name="localize-form-content"></a>將表單內容當地語系化
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 表單的當地語系化語言是由目前執行緒的 [CurrentUICulture](https://msdn.microsoft.com/library/system.threading.thread.currentuiculture(v=vs.110).aspx) 和 [CurrentCulture](https://msdn.microsoft.com/library/system.threading.thread.currentculture(v=vs.110).aspx) 所決定。
-根據預設，文化特性是衍生自目前訊息的 [地區設定] 欄位，但是您可以覆寫該預設行為。
+根據預設，文化特性是衍生自目前訊息的 [地區設定]  欄位，但是您可以覆寫該預設行為。
 根據您建構 Bot 的方式，當地語系化資訊可能來自最多三種不同的來源：
 
 - **PromptDialog** 和 **FormFlow** 的內建當地語系化
@@ -81,22 +80,22 @@ rview -g Microsoft.Bot.Sample.AnnotatedSandwichBot.dll Microsoft.Bot.Sample.Anno
 
 產生資源檔之後，請新增至您的專案中，然後藉由完成下列步驟來設定中性語言： 
 
-1. 以滑鼠右鍵按一下專案，然後選取 [應用程式]。
-2. 按一下 [組件資訊]。
-3. 選取與您用來開發 Bot 的語言對應的 [中性語言] 值。
+1. 以滑鼠右鍵按一下專案，然後選取 [應用程式]  。
+2. 按一下 [組件資訊]  。
+3. 選取與您用來開發 Bot 的語言對應的 [中性語言]  值。
 
-建立您的表單時，[IFormBuilder.Build][build] 方法會自動尋找資源，其中包含您的表單類型名稱，並且使用這些資源來將表單中的靜態字串當地語系化。 
+建立您的表單時，[IFormBuilder.Build][build] 方法會自動尋找包含您表單類型名稱的資源，並且使用這些資源將表單中的靜態字串當地語系化。 
 
 > [!NOTE]
-> 使用 [Advanced.Field.SetDefine][setDefine] 定義的動態計算欄位 (如同[使用動態欄位](bot-builder-dotnet-formflow-formbuilder.md#dynamically-define-field-values-confirmations-and-messages)中所述) 無法透過與靜態欄位相同的方式進行當地語系化，因為動態計算欄位的字串是在表單填入時建構。 但是，您可以藉由使用一般 C# 當地語系化機制，將動態計算欄位當地語系化。
+> 使用 [Advanced.Field.SetDefine][setDefine] 定義的動態計算欄位 (如同[使用動態欄位](bot-builder-dotnet-formflow-formbuilder.md#dynamically-define-field-values-confirmations-and-messages)中所述) 無法透過與靜態欄位相同的方式進行當地語系化，因為動態計算欄位的字串是在表單填入時建構的。 但是，您可以藉由使用一般 C# 當地語系化機制，將動態計算欄位當地語系化。
 
 ### <a name="localize-resource-files"></a>將資源檔當地語系化 
 
 將資源檔新增至您的專案之後，您可以使用<a href="https://developer.microsoft.com/windows/develop/multilingual-app-toolkit" target="_blank">多語應用程式工具組 (MAT)</a> 將資源檔當地語系化。 安裝 **MAT**，然後藉由完成下列步驟針對專案加以啟用：
 
 1. 在 Visual Studio 方案總管中選取您的專案。
-2. 按一下 [工具]、[多語應用程式工具組]，然後按一下 [啟用]。
-3. 以滑鼠右鍵按一下專案，然後選取 [多語應用程式工具組]、[新增翻譯] 以選取翻譯。 這樣會建立業界標準的 <a href="https://en.wikipedia.org/wiki/XLIFF" target="_blank">XLF</a> 檔案，您可以自動或手動進行翻譯。
+2. 按一下 [工具]  、[多語應用程式工具組]  ，然後按一下 [啟用]  。
+3. 以滑鼠右鍵按一下專案，然後選取 [多語應用程式工具組]  、[新增翻譯]  以選取翻譯。 這樣會建立業界標準的 <a href="https://en.wikipedia.org/wiki/XLIFF" target="_blank">XLF</a> 檔案，您可以自動或手動進行翻譯。
 
 > [!NOTE]
 > 雖然這篇文章說明如何使用多語應用程式工具組來將內容當地語系化，但是您可以透過其他各種方式來實作當地語系化。

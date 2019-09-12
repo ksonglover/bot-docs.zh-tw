@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 10246fda94932feb96e5faa0cdd8ca489c98c855
-ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
+ms.openlocfilehash: 3a4bf05a6c9b9eeca4a3cccef7aaf77c2f304048
+ms.sourcegitcommit: e815e786413296deea0bd78e5a495df329a9a7cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70037462"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876181"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>將複合式資訊卡 (Rich Card) 附件新增至訊息
 > [!div class="op_single_selector"]
@@ -32,7 +32,7 @@ Bot Framework 目前支援八種類型的複合式資訊卡：
 
 | 卡片類型 | 說明 |
 |----|----|
-| <a href="/adaptive-cards/get-started/bots">AdaptiveCard</a> | 可自訂的卡片，可包含文字、語音、影像、按鈕和輸入欄位的任意組合。 請參閱[個別頻道支援](/adaptive-cards/get-started/bots#channel-status)。  |
+| <a href="/adaptive-cards/get-started/bots">AdaptiveCard</a> | 可自訂的卡片，可包含文字、語音、影像、按鈕和輸入欄位的任意組合。 請參閱[個別頻道支援](/adaptive-cards/get-started/bots#channel-status)。 |
 | [AnimationCard][] | 可以播放動畫 GIF 或短片的卡片。 |
 | [AudioCard][] | 可播放音訊檔案的卡片。 |
 | [HeroCard][] | 通常包含單一大型影像、一或多個按鈕和文字的卡片。 |
@@ -50,6 +50,9 @@ Bot Framework 目前支援八種類型的複合式資訊卡：
 
 | 屬性 | 類型 | 說明 | 
 |----|----|----|
+| channelData | 字串 | 與此動作相關聯的通道特定資料 |
+| displayText | 字串 | 在點選按鈕後要顯示在聊天動態中的文字 | 
+| text | 字串 | 動作的文字 | 
 | type | 字串 | 動作的類型 (下表中指定的其中一個值) |
 | title | 字串 | 按鈕的標題 |
 | image | 字串 | 按鈕的影像 URL |
@@ -260,12 +263,10 @@ Content-Type: application/json
 - <a href="http://adaptivecards.io" target="_blank">調適型卡片</a> \(英文\)
 
 [ChannelInspector]: ../bot-service-channel-inspector.md
-
 [Activity]: bot-framework-rest-connector-api-reference.md#activity-object
 [Attachment]: bot-framework-rest-connector-api-reference.md#attachment-object
 [CardAction]: bot-framework-rest-connector-api-reference.md#cardaction-object
-
-[AnnimationCard]: bot-framework-rest-connector-api-reference.md#annimationcard-object
+[AnimationCard]: bot-framework-rest-connector-api-reference.md#animationcard-object
 [AudioCard]: bot-framework-rest-connector-api-reference.md#audiocard-object
 [HeroCard]: bot-framework-rest-connector-api-reference.md#herocard-object
 [ThumbnailCard]: bot-framework-rest-connector-api-reference.md#thumbnailcard-object

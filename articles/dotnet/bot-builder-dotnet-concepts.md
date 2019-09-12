@@ -6,15 +6,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e01473a06a0cdbef635de33e5734b02351e36cea
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 0b0493d9975e58dda0f2195c03d887e4681ca0bf
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563453"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298380"
 ---
 # <a name="key-concepts-in-the-bot-framework-sdk-for-net"></a>適用於 .NET 的 Bot Framework SDK 重要概念
 

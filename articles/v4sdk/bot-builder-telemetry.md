@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 07/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5ca631c1e2d334eef82c2a0f5c0b08ef242d06b1
-ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
+ms.openlocfilehash: 4db21ee1515b1c43dcbb20b532dcd195e20c3357
+ms.sourcegitcommit: e815e786413296deea0bd78e5a495df329a9a7cb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/30/2019
-ms.locfileid: "70167139"
+ms.lasthandoff: 09/10/2019
+ms.locfileid: "70876198"
 ---
 # <a name="add-telemetry-to-your-bot"></a>將遙測新增至 Bot
 
@@ -55,10 +55,8 @@ Bot Framework SDK 4.2 版中已新增了遙測記錄功能。  此功能可讓�
 
 1. 在 Visual Studio 中開啟 [CoreBot 應用程式範例](https://aka.ms/cs-core-sample)
 
-2. 新增以下 NuGet 套件。 如需如何使用 NuGet 的詳細資訊，請參閱[在 Visual Studio 中安裝和管理套件](https://aka.ms/install-manage-packages-vs)：
-    * `Microsoft.ApplicationInsights`
-    * `Microsoft.Bot.Builder.ApplicationInsights`
-    * `Microsoft.Bot.Builder.Integration.ApplicationInsights.Core`
+2. 新增 `Microsoft.Bot.Builder.Integration.ApplicationInsights.Core ` NuGet 套件。 如需如何使用 NuGet 的詳細資訊，請參閱[在 Visual Studio 中安裝和管理套件](https://aka.ms/install-manage-packages-vs)：
+
 
 3. 在 `Startup.cs` 中納入下列陳述式︰
     ```csharp

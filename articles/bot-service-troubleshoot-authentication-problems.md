@@ -2,17 +2,17 @@
 title: 針對 Bot Framework 驗證進行疑難排解 | Microsoft Docs
 description: 了解如何使用 Bot 針對驗證錯誤進行疑難排解。
 author: DeniseMak
-ms.author: v-demak
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 04/30/2019
-ms.openlocfilehash: 756e24409532de1473e546e3f771be416cb44c78
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: c929a97175858f8e159b660346cb897183bbcf73
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033649"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297448"
 ---
 # <a name="troubleshooting-bot-framework-authentication"></a>針對 Bot Framework 驗證進行疑難排解
 
@@ -204,15 +204,15 @@ Bot Framework 要求可從網際網路存取 Bot，因此您必須將您的 Bot 
 
 1. 請確定您的 Bot 已成功部署和執行。 
 2. 登入 <a href="https://portal.azure.com" target="_blank">Azure 入口網站</a>。
-3. 按一下 [我的 Bot]。
+3. 按一下 [我的 Bot]  。
 4. 選取您想要測試的 Bot。
-5. 按一下 [測試] 以在內嵌的 Web 聊天控制項中開啟 Bot。
+5. 按一下 [測試]  以在內嵌的 Web 聊天控制項中開啟 Bot。
 6. 若要測試與 Bot 的連線，請在網路聊天控制項中輸入一些文字，然後按 Enter。
 
 如果聊天視窗中指出錯誤，請使用錯誤訊息來判斷錯誤的原因。 常見問題包括： 
 
-* 在 Bot Framework 入口網站中針對 Bot 的 [設定] 頁面上指定的**傳訊端點**不正確。 請確定您在 URL 結尾包含適當的路徑 (例如，`/api/messages`)。
-* 在 Bot Framework 入口網站中針對 Bot 的 [設定] 頁面上指定的**傳訊端點**未以 `https` 開頭，也不受 Bot Framework 信任。 您的 Bot 必須具有有效的鏈結信任憑證。
+* 在 Bot Framework 入口網站中針對 Bot 的 [設定]  頁面上指定的**傳訊端點**不正確。 請確定您在 URL 結尾包含適當的路徑 (例如，`/api/messages`)。
+* 在 Bot Framework 入口網站中針對 Bot 的 [設定]  頁面上指定的**傳訊端點**未以 `https` 開頭，也不受 Bot Framework 信任。 您的 Bot 必須具有有效的鏈結信任憑證。
 * 為 Bot 設定之應用程式識別碼或密碼的值遺失或不正確。 [驗證](#enable-security-localhost) Bot 組態設定指定應用程式識別碼和密碼的有效值。
 
 如果 Bot 對輸入做出了適當的回應，那麼您已驗證您的 Bot 在啟用安全性的情況下可以在雲端中存取與執行。 此時，您的 Bot 已準備好安全地[連線到通道](~/bot-service-manage-channels.md)，例如 Skype、Facebook Messenger，直接線路等。
@@ -223,7 +223,7 @@ Bot Framework 要求可從網際網路存取 Bot，因此您必須將您的 Bot 
 
 * 請檢閱[偵錯 Bot](bot-service-debug-bot.md) 操作說明，以及該區段中的其他偵錯文章。
 * 使用 Bot Framework Emulator 和 <a href="https://ngrok.com/" target="_blank">ngrok</a> 通道軟體[在雲端對您的 Bot 進行偵錯](~/bot-service-debug-emulator.md)。 *ngrok 並非 Microsoft 產品。*
-* 使用像 [Fiddler](https://www.telerik.com/fiddler) 這樣的 Proxy 處理工具，來檢查進出 Bot 的 HTTPS 流量。 Fiddler 並非 Microsoft 產品。
+* 使用像 [Fiddler](https://www.telerik.com/fiddler) 這樣的 Proxy 處理工具，來檢查進出 Bot 的 HTTPS 流量。 Fiddler 並非 Microsoft 產品。 
 * 若要了解 Bot Framework 所使用的驗證技術，請檢閱 [Bot 連接器驗證指南][BotConnectorAuthGuide]。
 * 使用 Bot Framework [支援][Support]資源向其他人請求協助。 
 

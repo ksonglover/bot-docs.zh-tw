@@ -3,17 +3,17 @@ title: 使用 Bot Framework 模擬器對 Bot 進行測試和偵錯 | Microsoft D
 description: 了解如何使用 Bot Framework 模擬器桌面應用程式對 Bot 進行檢查、測試和偵錯。
 keywords: 文字記錄, msbot 工具, 語言服務, 語音辨識
 author: DeniseMak
-ms.author: v-demak
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 2/26/2019
-ms.openlocfilehash: 847ae51791ae66ef190ebefee765f2806ec91c5e
-ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
+ms.openlocfilehash: b6db4fd406b115ca88298d0727ff118821dad0d5
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/12/2019
-ms.locfileid: "68484042"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70298265"
 ---
 # <a name="debug-with-the-emulator"></a>使用模擬器進行偵錯
 
@@ -33,7 +33,7 @@ Bot Framework 模擬器是一項桌面應用程式，可讓 Bot 開發人員在�
     ```
     dotnet run
     ```
-* 複製 *Application started. Press CTRL+C to shut down.* 前一行的連接埠號碼。
+* 複製 *Application started. Press CTRL+C to shut down.* 前一行中的連接埠號碼。
 
     ![C# 連接埠號碼](media/bot-service-debug-emulator/csharp_port_number.png)
 

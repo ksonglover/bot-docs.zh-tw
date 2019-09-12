@@ -6,15 +6,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f3d46431191638cc41026f6c020a5f04de21ff0d
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 032d3c9553c5be774bf5d71fb2477d5a5689ca40
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225633"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297909"
 ---
 # <a name="customize-user-experience-with-pattern-language"></a>使用模式語言自訂使用者體驗
 

@@ -7,14 +7,13 @@ ms.author: mateusv
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 3ac767e525c1082005f4521af9e9714dd8c39cff
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 27553a88ee4373eacb089eb6358520820509e195
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998515"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297590"
 ---
 # <a name="principles-of-bot-design"></a>Bot 設計準則
 
@@ -28,11 +27,11 @@ Bot Framework 可讓開發人員建立引人注目的 Bot 體驗，解決各種�
 
 在設計您的 Bot 時，請注意下列因素都不保證 Bot 成功： 
 
-- **Bot 有多「聰明」**：在大部分情況下，讓您的 Bot 更有智慧，並不保證使用者在採用您的平台時就能夠更滿意。 事實上，許多 Bot 有一些進階機器學習或自然語言功能。 如果 Bot 需要解決其設計目的的問題時，就會包含這些功能，但是您不應該假設 Bot 智慧與使用者採用 Bot 之間有任何相互關聯。
+- **Bot 有多「聰明」** ：在大部分情況下，讓您的 Bot 更有智慧，並不保證使用者在採用您的平台時就能夠更滿意。 事實上，許多 Bot 有一些進階機器學習或自然語言功能。 如果 Bot 需要解決其設計目的的問題時，就會包含這些功能，但是您不應該假設 Bot 智慧與使用者採用 Bot 之間有任何相互關聯。
 
-- **Bot 支援多少自然語言**：您的 Bot 可以很適合對話。 它可以有大量的詞彙，甚至笑話可以說得很好。 但是，除非它能夠解決您的使用者需要解決的問題，否則這些功能對於讓您的 Bot 成功並無太大助益。 事實上，有些 Bot 完全沒有對話功能。 而在許多情況下，這完全沒有問題。
+- **Bot 支援多少自然語言**：您的 Bot 可以有很好的對話表現。 它可以有大量的詞彙，甚至笑話可以說得很好。 但是，除非它能夠解決您的使用者需要解決的問題，否則這些功能對於讓您的 Bot 成功並無太大助益。 事實上，有些 Bot 完全沒有對話功能。 而在許多情況下，這完全沒有問題。
 
-- **語音**：讓 Bot 具有語音功能，不一定可得到良好的使用者體驗。 通常，強制使用者使用語音可能會導致令人沮喪的使用者體驗。 當您設計 Bot 時，請一定要考慮語音是否能有效解決指定的問題。 那裡會不會是吵雜的環境？ 語音能夠傳達需要與使用者共用的資訊嗎？ 
+- **語音**：讓 Bot 具有語音功能，不一定能帶來良好的使用者體驗。 通常，強制使用者使用語音可能會導致令人沮喪的使用者體驗。 當您設計 Bot 時，請一定要考慮語音是否能有效解決指定的問題。 那裡會不會是吵雜的環境？ 語音能夠傳達需要與使用者共用的資訊嗎？ 
 
 ## <a name="factors-that-do-influence-a-bots-success"></a>可讓 Bot 成功的因素
 

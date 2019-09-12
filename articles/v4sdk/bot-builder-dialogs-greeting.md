@@ -3,19 +3,18 @@ title: 實作問候語對話方塊 | Microsoft Docs
 description: 使用對話方塊來歡迎使用者加入對話。
 keywords: 問候語, 對話方塊, 對話流程, 對話集
 author: JonathanFingold
-ms.author: v-jofing
+ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 82e6273b8d6dc984e29bef891f3e8f67b1c53eed
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 5ea41c8ea879d20ba9d031bf3345b0862171458d
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215409"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70299295"
 ---
 # <a name="implement-a-greeting-dialog"></a>實作問候語對話方塊
 
@@ -23,12 +22,12 @@ ms.locfileid: "66215409"
 
 您可以使用對話方塊來歡迎使用者加入對話。
 
-如需有關歡迎使用者的詳細資訊，請參閱如何[傳送歡迎訊息給使用者][send-welcome]。
+如需關於歡迎使用者的詳細資訊，請參閱如何[傳送歡迎訊息給使用者][send-welcome]。
 
 ## <a name="prerequisites"></a>必要條件
 
-- [管理狀態][concept-state]、[對話方塊程式庫][concept-dialogs]、如何[管理對話][simple-flow]及[使用對話方塊提示來收集使用者輸入][prompting]的知識。
-- 一份 ??? [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample] 中的範例。
+- [管理狀態][concept-state]、[對話程式庫][concept-dialogs]、如何[管理交談][simple-flow]，以及如何[使用對話提示來收集使用者輸入][prompting]的知識。
+- 一份 ??? 範例 (使用 [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample])。
 
 ## <a name="task-as-in-to-do-x-do-these-things"></a>\<工作 > [如同執行 X，執行下列項目]
 

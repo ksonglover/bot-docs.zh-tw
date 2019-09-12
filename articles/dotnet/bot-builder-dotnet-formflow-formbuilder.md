@@ -6,21 +6,20 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8a13358afca190606e235475a58f6aedd146fee5
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: b738296d3d796cdccd40e0d3bda503b9d6349bff
+ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225403"
+ms.lasthandoff: 09/04/2019
+ms.locfileid: "70297988"
 ---
 # <a name="customize-a-form-using-formbuilder"></a>使用 FormBuilder 來自訂表單
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-[FormFlow 的基本功能](bot-builder-dotnet-formflow.md)描述基本的 FormFlow 實作，可提供相當通用的使用者體驗，而 [FormFlow 的進階功能](bot-builder-dotnet-formflow-advanced.md)則描述如何使用商務邏輯和屬性來自訂使用者體驗。 本文說明如何藉由指定表單執行步驟的序列，並以動態方式定義欄位值、確認和訊息，使用 [FormBuilder][formBuilder] 進一步自訂使用者體驗。 
+[FormFlow 的基本功能](bot-builder-dotnet-formflow.md)描述基本的 FormFlow 實作，可提供相當通用的使用者體驗，而 [FormFlow 的進階功能](bot-builder-dotnet-formflow-advanced.md)則描述如何使用商務邏輯和屬性來自訂使用者體驗。 本文說明如何指定表單執行步驟的序列，並以動態方式定義欄位值、確認和訊息，藉以使用 [FormBuilder][formBuilder] 進一步自訂使用者體驗。 
 
 ## <a name="dynamically-define-field-values-confirmations-and-messages"></a>以動態方式定義欄位值、確認和訊息
 
@@ -38,10 +37,10 @@ ms.locfileid: "54225403"
 
 [!code-csharp[Define value](../includes/code/dotnet-formflow-formbuilder.cs#defineValue)]
 
-在此範例中，[Advanced.Field.SetType][setType] 方法會指定欄位類型 (`null` 表示列舉欄位)。 [Advanced.Field.SetActive][setActive] 方法可指定只有在三明治長度為 `Length.FootLong` 時，才會啟用欄位。 最後，[Advanced.Field.SetDefine][setDefine] 方法會指定可定義欄位的非同步委派。 委派已傳遞至目前的狀態物件和以動態方式定義的 [Advanced.Field][field]。 此委派會使用欄位的 Fluent 方法，以動態方式定義值。 在此範例中，值為字串，且 `AddDescription` 和 `AddTerms` 方法會指定每個值的說明和字詞。
+在此範例中，[Advanced.Field.SetType][setType] 方法會指定欄位類型 (`null` 表示列舉欄位)。 [Advanced.Field.SetActive][setActive] 方法可指定只有在三明治長度為 `Length.FootLong` 時，才會啟用欄位。 最後，[Advanced.Field.SetDefine][setDefine] 方法會指定可定義欄位的非同步委派。 系統會將目前的狀態物件和以動態方式定義的 [Advanced.Field][field] 傳遞給委派。 此委派會使用欄位的 Fluent 方法，以動態方式定義值。 在此範例中，值為字串，且 `AddDescription` 和 `AddTerms` 方法會指定每個值的說明和字詞。
 
 > [!NOTE]
-> 若要以動態方式定義欄位值，您可以自己實作 [Advanced.IField][iField]，或使用 [Advanced.FieldReflector][FieldReflector] 類別來簡化程序，如上述範例所示。 
+> 若要以動態方式定義欄位值，您可以自行實作 [Advanced.IField][iField]，或使用 [Advanced.FieldReflector][FieldReflector] 類別來簡化程序，如上述範例所示。 
 
 ### <a name="dynamically-define-messages-and-confirmations"></a>以動態方式定義訊息和確認
 
