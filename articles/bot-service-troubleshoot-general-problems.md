@@ -6,13 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 04/30/2019
-ms.openlocfilehash: c9c8ff04e7093cd0375e52c4ecd90b44af4f4798
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.date: 09/17/2019
+ms.openlocfilehash: 47f87555b48edcfdca6d07ab2bdaa52ef915a8da
+ms.sourcegitcommit: 61a2297fabf35c59693309f2a605e893634585b7
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70298566"
+ms.lasthandoff: 09/17/2019
+ms.locfileid: "71061071"
 ---
 # <a name="troubleshooting-general-problems"></a>對一般問題進行疑難排解
 這些常見問答集可協助您對常見的 Bot 開發或作業問題進行疑難排解。
@@ -78,7 +78,7 @@ Bot 為 Web 服務，而某些主機平台 (包括 Azure) 在該服務於一段�
 
 ## <a name="how-can-i-guarantee-message-delivery-order"></a>如何保證訊息傳遞順序？
 
-Bot Framework 將會盡可能地保留訊息排序。 例如，如果您先傳送訊息 A 並等候該 HTTP 作業完成，然後才起始另一個 HTTP 作業以傳送訊息 B，則 Bot Framework 將會自動了解訊息 A 應該排在訊息 B 之前。不過，一般而言 Bot Framework 並無法保證訊息傳遞順序，因為通道是最終負責傳遞訊息的角色，並可能會對訊息進行重新排序。 如果要降低訊息以錯誤順序傳遞的風險，您可以考慮在訊息之間實作時間延遲。
+Bot Framework 將會盡可能地保留訊息排序。 例如，如果您先傳送訊息 A 並等候該 HTTP 作業完成，然後才起始另一個 HTTP 作業以傳送訊息 B，則 Bot Framework 將會自動了解訊息 A 應該排在訊息 B 之前。不過，一般而言 Bot Framework 並無法保證訊息傳遞順序，因為通道是最終負責傳遞訊息的角色，並可能會對訊息進行重新排序。
 
 ## <a name="how-can-i-intercept-all-messages-between-the-user-and-my-bot"></a>如何攔截使用者與我的 Bot 之間的所有訊息？
 
