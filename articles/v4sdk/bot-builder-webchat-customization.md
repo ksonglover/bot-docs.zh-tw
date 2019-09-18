@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 06/07/2019
-ms.openlocfilehash: 9e61e7e9d7bc6ba06d4c239cbf8b0dc0c4e7e16e
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.openlocfilehash: 9310bdf8cab253cd379b7b49daa18deed79f27ae
+ms.sourcegitcommit: 96d26f6b0576747fa62767710af922ace0ff0e3b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70299090"
+ms.lasthandoff: 09/17/2019
+ms.locfileid: "71060347"
 ---
 # <a name="web-chat-customization"></a>網路聊天自訂
 
@@ -155,7 +155,7 @@ ms.locfileid: "70299090"
 
 ## <a name="change-the-avatar-of-the-bot-within-the-dialog-box"></a>變更對話方塊內的聊天機器人虛擬人偶
 
-最新版的網路聊天支援虛擬人偶，您可以使用 `botAvatarInitials` 和 `userAvatarInitials` 屬性來加以自訂。
+最新版本的網路聊天支援個人頭像，讓您可以透過在 `styleOptions` 道具中設定 `botAvatarInitials` 和 `userAvatarInitials` 來自訂。
 
 <img alt="Screenshot with avatar initials" src="https://raw.githubusercontent.com/Microsoft/BotFramework-WebChat/master/media/sample-avatar-initials.png" width="396" />
 
@@ -166,15 +166,17 @@ ms.locfileid: "70299090"
       <div id="webchat" role="main"></div>
       <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
       <script>
+         const styleOptions = {
+            botAvatarInitials: 'BF',
+            userAvatarInitials: 'WC'
+         };
+
          window.WebChat.renderWebChat(
             {
                directLine: window.WebChat.createDirectLine({
                   secret: 'YOUR_BOT_SECRET'
                }),
-
-               // Passing avatar initials when rendering Web Chat
-               botAvatarInitials: 'BF',
-               userAvatarInitials: 'WC'
+               styleOptions
             },
             document.getElementById('webchat')
          );
@@ -183,7 +185,7 @@ ms.locfileid: "70299090"
 </html>
 ```
 
-在 `renderWebChat` 程式碼內，我們新增了 `botAvatarInitials` 和 `userAvatarInitials`：
+在網路聊天的 `styleOptions` 道具中，我們新增了 `botAvatarInitials` 和 `userAvatarInitials`：
 
 ```js
 botAvatarInitials: 'BF',
