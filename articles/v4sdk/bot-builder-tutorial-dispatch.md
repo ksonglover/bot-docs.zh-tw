@@ -7,14 +7,14 @@ ms.author: diberry
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 05/23/2019
+ms.date: 09/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4d95eafeb5b1b5923f38c40e884b5e3cee8b16eb
-ms.sourcegitcommit: 008aa6223aef800c3abccda9a7f72684959ce5e7
+ms.openlocfilehash: df7c608b32b2b570c50eb9a045d965adabd96881
+ms.sourcegitcommit: b869b6c325017df22158f4575576fb63c8ded488
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/26/2019
-ms.locfileid: "70026338"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "71224782"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多個 LUIS 和 QnA 模型
 
@@ -60,7 +60,7 @@ ms.locfileid: "70026338"
 ## <a name="create-luis-apps-and-qna-knowledge-base"></a>建立 LUIS 應用程式和 QnA 知識庫
 建立分派模型之前，您必須先建立並發佈 LUIS 應用程式和 QnA 知識庫。 在本文中，我們將發佈下列模型，這些模型包含在_採用分派的 NLP_ 範例的 `\CognitiveModels` 資料夾中： 
 
-| Name | 說明 |
+| 名稱 | 說明 |
 |------|------|
 | HomeAutomation | 使用相關聯的實體資料，辨識住家自動化意圖的 LUIS 應用程式。|
 | Weather | 使用位置資料辨識天氣相關意圖的 LUIS 應用程式。|
@@ -91,7 +91,11 @@ ms.locfileid: "70026338"
 
 設定 QnA Maker 知識庫的第一個步驟是在 Azure 中設定 QnA Maker 服務。 若要這麼做，請遵循[這裡](https://aka.ms/create-qna-maker)的逐步指示。
 
-在 Azure 中建立 QnA Maker 服務之後，您需要記錄針對 QnA Maker 服務提供的認知服務「金鑰 1」  。 將 QnA Maker 應用程式新增至分派應用程式時，此金鑰會當作 \<azure-qna-service-key1> 使用。 下列步驟為您提供此金鑰：
+在 Azure 中建立 QnA Maker 服務之後，您需要記錄針對 QnA Maker 服務提供的認知服務「金鑰 1」  。 將 QnA Maker 應用程式新增至分派應用程式時，此金鑰會當作 \<azure-qna-service-key1> 使用。 
+
+深入瞭解與 QnA Maker [搭配使用的兩種](https://docs.microsoft.com/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure#types-of-keys-in-qna-maker)不同類型的金鑰。
+
+下列步驟為您提供此金鑰：
     
 ![選取認知服務](./media/tutorial-dispatch/select-qna-cognitive-service.png)
 
@@ -152,6 +156,8 @@ ms.locfileid: "70026338"
 |QnA Maker| **應用程式識別碼** - 可於發佈應用程式後在 [QnA Maker](https://http://qnamaker.ai) 入口網站的 [設定] 頁面上找到。 這是在知識庫後面 POST 命令的第一個部分中所找到的識別碼。 要到哪裡尋找應用程式識別碼的範例是 `POST /knowledgebases/{APP-ID}/generateAnswer`。<br>**撰寫金鑰** - 可在 Azure 入口網站中找到，若為 QnA Maker 資源，則位於 [金鑰]  底下。 您只需要其中一個金鑰即可。|
 
 撰寫金鑰無法從已發佈的應用程式，用來取得預測分數或信賴分數。 您需要端點金鑰才能執行此動作。 本教學課程稍後將討論及使用 **[端點金鑰](#service-endpoint-keys)** 。 
+
+深入瞭解與 QnA Maker [搭配使用的兩種](https://docs.microsoft.com/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure#types-of-keys-in-qna-maker)不同類型的金鑰。
 
 ## <a name="create-the-dispatch-model"></a>建立分派模型
 
