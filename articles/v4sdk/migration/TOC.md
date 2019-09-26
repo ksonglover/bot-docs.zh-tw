@@ -7,6 +7,8 @@
 # [將 .NET v3 Bot 遷移至 .NET Core v4 bot](conversion-core.md)
 # [在 v4 bot 中使用 .NET v3 使用者狀態](csharp-user-state-using.md)
 # [將 JavaScript v3 bot 遷移至 v4 bot](conversion-javascript.md)
+# [在 v4 bot 中使用 JavaScript v3 使用者狀態](javascript-user-state-using.md)
+
 <!-- Remember to add JavaScript user state topic -->
 
 <!-- Current target:
