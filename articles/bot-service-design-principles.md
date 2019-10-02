@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 27553a88ee4373eacb089eb6358520820509e195
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.openlocfilehash: ca343ccb400a652a382ae1a8c279010ff7456bf1
+ms.sourcegitcommit: d493caf74b87b790c99bcdaddb30682251e3fdd4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70297590"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71278944"
 ---
 # <a name="principles-of-bot-design"></a>Bot 設計準則
 
@@ -56,4 +56,4 @@ Bot Framework 可讓開發人員建立引人注目的 Bot 體驗，解決各種�
 
 ## <a name="next-steps"></a>後續步驟
 
-既然您已熟悉 Bot 設計的一些基本準則，請在本節其餘部分深入了解設計使用者體驗和通用模式。
+您已熟悉 Bot 設計的一些基本原則，請繼續深入了解使用者與 Bot 之間[首次互動](~/bot-service-design-first-interaction.md)的幾個基本原則設計。

@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 8f9b66165c0f88b92d81bfec58fd20a182e43e1d
-ms.sourcegitcommit: c200cc2db62dbb46c2a089fb76017cc55bdf26b0
+ms.openlocfilehash: ed02e02e73f8cf326963da0002477df3441719a2
+ms.sourcegitcommit: d493caf74b87b790c99bcdaddb30682251e3fdd4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/27/2019
-ms.locfileid: "70037532"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71279873"
 ---
 # <a name="authentication"></a>Authentication
 
@@ -34,7 +34,7 @@ ms.locfileid: "70037532"
 | Technology | 說明 |
 |----|----|
 | **SSL/TLS** | 會針對所有服務對服務連線使用 SSL/TLS。 會使用 `X.509v3` 憑證來建立所有 HTTPS 服務的身分識別。 **用戶端應一律檢查服務憑證以確保其為受信任且有效的憑證。** (此配置「不會」使用用戶端憑證。) |
-| **OAuth 2.0** | 會使用 OAuth 2.0 登入至 Microsoft 帳戶 (MSA)/AAD v2 登入服務來產生 Bot 可用來傳送訊息的安全權杖。 此權杖為服務對服務權杖，且不需要使用者登入。 |
+| **OAuth 2.0** | OAuth 2.0 會使用 Azure Active Directory (Azure AD) v2 帳戶登入服務來產生安全性權杖，讓 bot 可用來傳送訊息。 此權杖為服務對服務權杖，且不需要使用者登入。 |
 | **JSON Web 權杖 (JWT)** | 會使用 JSON Web 權杖來對在 Bot 來回傳送的權杖進行加密。 根據此文章所概述的需求，**用戶端應完整驗證其所接收到的所有 JWT 權杖**。 |
 | **OpenID 中繼資料** | Bot 連接器服務會發行其用來在已知的靜態端點將其 JWT 權杖簽署至 OpenID 中繼資料的有效權杖清單。 |
 
@@ -55,9 +55,9 @@ Authorization: Bearer ACCESS_TOKEN
 > [!IMPORTANT]
 > 若您尚未這麼做，請務必向 Bot Framework [註冊您的 Bot](../bot-service-quickstart-registration.md)，以取得其應用程式識別碼和密碼。 您將需要 Bot 的應用程式識別碼和密碼以要求存取權杖。
 
-### <a name="step-1-request-an-access-token-from-the-msaaad-v2-login-service"></a>步驟 1：從 MSA/AAD v2 登入服務要求存取權杖
+### <a name="step-1-request-an-access-token-from-the-azure-ad-v2-account-login-service"></a>步驟 1：從 Azure AD v2 帳戶登入服務要求存取權杖
 
-若要從 MSA/AAD v2 登入服務要求存取權杖，請發出下列要求，並將 **MICROSOFT-APP-ID** 和 **MICROSOFT-APP-PASSWORD** 取代為您向 Bot Framework [註冊](../bot-service-quickstart-registration.md)您的 Bot 時所取得的應用程式識別碼和密碼。
+若要從登入服務要求存取權杖，請發出下列要求，並將 **MICROSOFT-APP-ID** 和 **MICROSOFT-APP-PASSWORD** 取代為您向 Bot Framework [註冊](../bot-service-quickstart-registration.md)您的 Bot 時所取得的應用程式識別碼和密碼。
 
 ```http
 POST https://login.microsoftonline.com/botframework.com/oauth2/v2.0/token
@@ -67,17 +67,17 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=client_credentials&client_id=MICROSOFT-APP-ID&client_secret=MICROSOFT-APP-PASSWORD&scope=https%3A%2F%2Fapi.botframework.com%2F.default
 ```
 
-### <a name="step-2-obtain-the-jwt-token-from-the-msaaad-v2-login-service-response"></a>步驟 2：從 MSA/AAD v2 登入服務回應取得 JWT 權杖
+### <a name="step-2-obtain-the-jwt-token-from-the-the-azure-ad-v2-account-login-service-response"></a>步驟 2：從 Azure AD v2 帳戶登入服務回應取得 JWT 權杖
 
-若您的應用程式已由 MSA/AAD v2 登入服務授權，JSON 回應主體將會指定您的存取權杖、其類型，以及其到期時間 (以秒為單位)。 
+若您的應用程式已由登入服務授權，JSON 回應主體將會指定您的存取權杖、其類型，以及其到期時間 (以秒為單位)。
 
 將權杖加入至要求的 `Authorization` 標頭時，您必須使用於此回應中所指定的確切值 (亦即不要對權杖值進行逸出或編碼)。 存取權杖在到期之後便會失效。 若要避免權杖到期影響 Bot 的效能，您可以選擇對權杖進行快取並主動重新整理它。
 
-此範例示範來自 MSA/AAD v2 登入服務的回應：
+此範例示範來自 Azure AD v2 帳戶登入服務的回應：
 
 ```http
 HTTP/1.1 200 OK
-... (other headers) 
+... (other headers)
 ```
 
 ```json
@@ -97,7 +97,8 @@ HTTP/1.1 200 OK
 Authorization: Bearer ACCESS_TOKEN
 ```
 
-您傳送至 Bot 連接器服務的所有要求，都必須在 `Authorization` 標頭中包含存取權杖。 若權杖格式正確、尚未到期且是由 MSA/AAD v2 登入服務所產生，Bot 連接器服務將會授權該要求。 系統會執行額外檢查，以確保權杖是屬於傳送要求的 Bot。
+您傳送至 Bot 連接器服務的所有要求，都必須在 `Authorization` 標頭中包含存取權杖。
+若權杖格式正確、尚未到期且是由 Azure AD v2 帳戶登入服務所產生，Bot 連接器服務將會授權該要求。 系統會執行額外檢查，以確保權杖是屬於傳送要求的 Bot。
 
 下列範例示範如何在要求的 `Authorization` 標頭中指定存取權杖。 
 
@@ -109,7 +110,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1Ni...
 ```
 
 > [!IMPORTANT]
-> 請僅在傳送至 Bot 連接器服務之要求的 `Authorization` 標頭中指定 JWT 權杖。 請「不要」透過不安全的通道傳送權杖，且「不要」將它包含在您傳送至其他服務的 HTTP 要求中。 您從 MSA/AAD v2 登入服務取得的 JWT 權杖就像密碼一樣，因此應該謹慎處理。 任何擁有該權杖的人都可以使用它來代表您的 Bot 執行作業。 
+> 請僅在傳送至 Bot 連接器服務之要求的 `Authorization` 標頭中指定 JWT 權杖。
+> 請「不要」透過不安全的通道傳送權杖，且「不要」將它包含在您傳送至其他服務的 HTTP 要求中。
+> 您從 Azure AD v2 帳戶登入服務取得的 JWT 權杖就像密碼一樣，因此應該謹慎處理。 任何擁有該權杖的人都可以使用它來代表您的 Bot 執行作業。
 
 #### <a name="bot-to-connector-example-jwt-components"></a>Bot 至連接器：範例 JWT 元件
 

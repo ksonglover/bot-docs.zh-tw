@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 05/05/2019
-ms.openlocfilehash: 5ca0e9d036d5d3628fff9ae8b0bf5d9f4aa9d8b4
-ms.sourcegitcommit: f3fda6791f48ab178721b72d4f4a77c373573e38
+ms.openlocfilehash: 3ef81582c500a403080908e0d2c63de2ead5b9ab
+ms.sourcegitcommit: e9cd857ee11945ef0b98a1ffb4792494dfaeb126
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/31/2019
-ms.locfileid: "68671450"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71693151"
 ---
 # <a name="about-azure-bot-service"></a>關於 Azure Bot Service
 
@@ -72,6 +72,8 @@ Bot 是將許多不同組件整合在一起運作的複雜應用程式。 和其
 - 使用[模擬器](bot-service-debug-emulator.md)在本機測試 Bot。 Bot Framework 模擬器是獨立的應用程式，不僅提供交談介面，還提供偵錯和訊問工具來協助您了解 Bot 的運作方式和原因。  模擬器可以隨著開發中的 Bot 應用程式在本機執行。 
  
 - 在 [Web](bot-service-manage-test-webchat.md) 上測試您的 Bot。 透過 Azure 入口網站進行設定後，Bot 也可透過網路聊天介面觸達。 網路聊天介面適合用來將 Bot 的存取權授與給測試人員，以及其他無法直接存取 Bot 執行中程式碼的人員。
+
+- 使用 Bot Framework SDK 的 7 月更新[單元測試](https://docs.microsoft.com/en-us/azure/bot-service/unit-test-bots?view=azure-bot-service-4.0)您的 Bot。
 
 ### <a name="publish"></a>發佈 
 當您準備在 Web 上提供您的 Bot 時，請將 Bot 發佈至 [Azure](bot-builder-howto-deploy-azure.md) 或自己的 Web 服務或資料中心。 在公用網際網路上有一個位址是 Bot 在您的網站上，或在聊天通道內活化的第一個步驟。

@@ -10,16 +10,19 @@ ms.topic: conceptual
 ms.date: 05/02/2019
 ms.author: travisw
 ms.custom: ''
-ms.openlocfilehash: f7f70804ce67adec386d1a6722ba7e87b6cb2a93
-ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
+ms.openlocfilehash: ec0a4afb33c560a6b53ff6a02da9b1cfed07f16b
+ms.sourcegitcommit: d493caf74b87b790c99bcdaddb30682251e3fdd4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/30/2019
-ms.locfileid: "70167027"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71278993"
 ---
-# <a name="connect-a-bot-to-direct-line-speech-preview"></a>將 Bot 連線至 Direct Line Speech (預覽)
+# <a name="connect-a-bot-to-direct-line-speech-channel"></a>將 Bot 連線至 Direct Line Speech 通道
 
 [!INCLUDE[applies-to-v4](includes/applies-to.md)]
+
+> [!WARNING]
+> **Direct Line Speech 通道**正在公開**預覽**中。  
 
 您可以設定 Bot，允許用戶端應用程式透過 Direct Line Speech 通道與其通訊。
 
@@ -96,3 +99,8 @@ Direct Line Speech 目前為預覽版，而且需要在 [Azure 入口網站](htt
 1. 用來示意交談開始與結束的 [conversationUpdate](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#conversation-update-activity) 和 [endOfCoversation](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#end-of-conversation-activity) 活動 (常用於產生歡迎訊息)，將會更新來與其他通道達到一致
 
 1. 通道尚未支援 [SigninCard](https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-connector-add-rich-cards?view=azure-bot-service-4.0) 
+
+## <a name="next-steps"></a>後續步驟
+
+> [!div class="nextstepaction"]
+> [在 Bot 中使用 Direct Line Speech](./directline-speech-bot.md)

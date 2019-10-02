@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 07/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5a8a79139c7efa1141c79921836d778c6fae5c89
-ms.sourcegitcommit: 4ddaae622fffb2c3bcfd3bff3c97bcc8088f93e0
+ms.openlocfilehash: 8294ca4b58c2a50d55bdfd9a81cc2c6fb57f3922
+ms.sourcegitcommit: d493caf74b87b790c99bcdaddb30682251e3fdd4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/15/2019
-ms.locfileid: "69448575"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71279009"
 ---
 # <a name="use-direct-line-speech-in-your-bot"></a>在 Bot 中使用 Direct Line Speech
 
@@ -26,8 +26,11 @@ Direct Line Speech 使用 Bot Framework 的新 WebSocket 型串流功能，在 D
 
 在 Direct Line Speech 預覽版中，有您需要新增至 Bot 的其他 NuGet 套件。
 
-- **Microsoft.Bot.StreamingExtensions** 4.5.1-preview1
 - **Microsoft.Bot.Builder.StreamingExtensions** 4.5.1-preview1
+
+這也會安裝下列套件：
+
+- **Microsoft.Bot.StreamingExtensions** 4.5.1-preview1
 
 如果您在最初找不到這些功能，請確定在搜尋中包含發行前版本套件。
 
@@ -40,10 +43,19 @@ public IActivity Speak(string message)
 {
     var activity = MessageFactory.Text(message);
     string body = @"<speak version='1.0' xmlns='https://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
-        <voice name='Microsoft Server Speech Text to Speech Voice (en-US, JessaNeural)'>" +
+        <voice name='Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'>" +
         $"{message}" + "</voice></speak>";
     activity.Speak = body;
     return activity;
+}
+```
+
+下列程式碼片段示範如何使用先前的 *Speak* 函式：
+
+```cs
+protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
+{
+    await turnContext.SendActivityAsync(Speak($"Echo: {turnContext.Activity.Text}"), cancellationToken);
 }
 ```
 
@@ -174,9 +186,11 @@ public IActivity Speak(string message)
 
 ## <a name="additional-information"></a>其他資訊
 
-如需有關使用活動的詳細資訊，請參閱 [Bot 如何運作](v4sdk/bot-builder-basics.md)如何[傳送及接收文字訊息](v4sdk/bot-builder-howto-send-messages.md)。
+- 如需建立和使用啟用語音的 Bot 的完整範例，請參閱[教學課程：使用語音 SDK 透過聲音啟用 Bot](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/tutorial-voice-enable-your-bot-speech-sdk)。
+
+- 如需有關使用活動的詳細資訊，請參閱 [Bot 如何運作](v4sdk/bot-builder-basics.md)如何[傳送及接收文字訊息](v4sdk/bot-builder-howto-send-messages.md)。
 
 ## <a name="next-steps"></a>後續步驟
 
 > [!div class="nextstepaction"]
-> [將 Bot 連線至 Direct Line Speech (預覽)](./bot-service-channel-connect-directlinespeech.md)
+> [將 Bot 連線至 Direct Line Speech](./bot-service-channel-connect-directlinespeech.md)

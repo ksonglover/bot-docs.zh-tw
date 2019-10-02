@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 03/01/2019
-ms.openlocfilehash: ec160690fd76bfa921a3dea25eef598215787531
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.openlocfilehash: ffb7864eabecd6aa509e2b347f3df48985d00584
+ms.sourcegitcommit: e9cd857ee11945ef0b98a1ffb4792494dfaeb126
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70297207"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71693134"
 ---
 # <a name="categorized-activities-by-channel"></a>依通路分類的活動
 
@@ -248,3 +248,12 @@ Handoff                    | :x:                  | :x:                  | :x:  
 - 其他：會顯示警告方塊 (我們從未在生產環境中看到)。您可以將此轉譯管線修改為新增、移除或取代任何自訂轉譯。
 
 您可以使用網路聊天傳送任何活動類型和承載，我們不會以文件記錄也不會建議這項功能。 您應該改為使用 "event" 活動。
+
+## <a name="action-support-by-channel"></a>依通道的動作支援
+
+下表顯示依通道列出的卡片動作和建議的動作支援。
+
+ \                      | Cortana  | Direct Line | Direct Line (網路聊天) | 電子郵件 | Facebook | GroupMe |   Kik   | 折線圖  | Teams | Slack | Skype | 商務用 Skype | Telegram | Twilio  
+:---------------------- | :-----:  | :---------: | :--------------------: |:----: | :------: | :-----: | :-----: | :---: | :---: | :---: | :---: | :------------: | :------: | :----:  
+建議的動作       |    0     |     100     |          100           |   0   |    10    |    0    |   20    |  13   |   0   |  100  |  10   |       0        |    100   |   0     
+卡片動作            |   100    |     100     |          100           |   0   |     3    |    0    |   20    |  99   |   3   |  100  |   3   |       0        |     0    |   0     
