@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 03/13/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 4d3b89ddb9a170aa9372ad667b9fce271fec5fe3
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.openlocfilehash: 26a253ed46f8ed0d23f2bd046de132f44cd19019
+ms.sourcegitcommit: d493caf74b87b790c99bcdaddb30682251e3fdd4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70297467"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71278955"
 ---
 # <a name="add-suggested-actions-to-messages"></a>將建議的動作新增至訊息
 
@@ -25,9 +25,6 @@ ms.locfileid: "70297467"
 > - [REST](../rest-api/bot-framework-rest-connector-add-suggested-actions.md)
 
 [!INCLUDE [Introduction to suggested actions](../includes/snippet-suggested-actions-intro.md)]
-
-> [!TIP]
-> 使用[通道偵測器][channelInspector]來查看建議動作的外觀，以及在各種通道上的運作方式。
 
 ## <a name="send-suggested-actions"></a>傳送建議的動作
 
@@ -41,10 +38,9 @@ ms.locfileid: "70297467"
 
 ## <a name="additional-resources"></a>其他資源
 
-- [使用通道偵測器預覽功能][inspector]
 - [活動概觀](bot-builder-dotnet-activities.md)
 - [建立訊息](bot-builder-dotnet-create-messages.md)
-- <a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 類別</a> \(英文\)
+- [Activity 類別](https://aka.ms/ActivityClass-dotnet-API) \(英文\)
 - <a href="/dotnet/api/microsoft.bot.connector.imessageactivity" target="_blank">IMessageActivity 介面</a>
 - <a href="/dotnet/api/microsoft.bot.connector.cardaction" target="_blank">CardAction 類別</a>
 - <a href="/dotnet/api/microsoft.bot.connector.suggestedactions" target="_blank">SuggestedActions 類別</a>
@@ -52,7 +48,5 @@ ms.locfileid: "70297467"
 [cardAction]: /dotnet/api/microsoft.bot.connector.cardaction
 
 [inspector]: ../bot-service-channel-inspector.md
-
-[channelInspector]: ../bot-service-channel-inspector.md
 
 

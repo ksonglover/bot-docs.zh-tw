@@ -8,13 +8,15 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 08/14/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3e0619a21b68ee98e112a15a863063d0d3ef802c
-ms.sourcegitcommit: 008aa6223aef800c3abccda9a7f72684959ce5e7
+ms.openlocfilehash: 4697ecf47464114de68ec6c0d872b45ff1ee5e54
+ms.sourcegitcommit: d493caf74b87b790c99bcdaddb30682251e3fdd4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/26/2019
-ms.locfileid: "70026687"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71278978"
 ---
+<!-- This article is on hold -->
+
 # <a name="using-javascript-v3-user-state-in-a-v4-bot"></a>在 v4 Bot 中使用 JavaScript v3 使用者狀態
 
 本文說明 v4 Bot 如何對 v3 使用者狀態資訊執行讀取、寫入和刪除作業的範例。

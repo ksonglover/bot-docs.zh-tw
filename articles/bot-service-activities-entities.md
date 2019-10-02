@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 03/01/2018
-ms.openlocfilehash: 4a37824ffc6eeeda69330a659d3d026bde5f0069
-ms.sourcegitcommit: 99fa595b81e6fabb1f4a93e0694e88bfbfab2dd4
+ms.openlocfilehash: e1eae45702a1eee94714f96425050948310c7520
+ms.sourcegitcommit: e9cd857ee11945ef0b98a1ffb4792494dfaeb126
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/09/2019
-ms.locfileid: "70808440"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71693120"
 ---
 # <a name="entities-and-activity-types"></a>實體和活動類型
 
@@ -75,16 +75,16 @@ place 物件包含下列屬性：
 | 位址 | 說明或郵寄地址物件 (未來) |
 | 地理區域 | GeoCoordinates |
 | HasMap | 地圖的 URL 或地圖物件 (未來) |
-| Name | 位置的名稱 |
+| 名稱 | 位置的名稱 |
 
 geoCoordinates 物件包含下列屬性：
 
 | 屬性 | 說明 |
 |----|----|
 | 類型 | 實體的類型 ("GeoCoordinates") |
-| Name | 位置的名稱 |
+| 名稱 | 位置的名稱 |
 | 經度 | 位置的經度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |
-| 經度 | 位置的緯度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |
+| 緯度 | 位置的緯度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |
 | Elevation | 位置的提升 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |
 
 此程式碼範例示範如何將 place 實體新增至實體集合：

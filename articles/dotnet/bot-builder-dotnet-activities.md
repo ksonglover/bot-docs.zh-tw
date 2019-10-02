@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5036ff7e6fd563b15e80cf12ac40fe274af70775
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.openlocfilehash: cce7537124810504c9b92d86ad0ef7bd3b3ac5e9
+ms.sourcegitcommit: d493caf74b87b790c99bcdaddb30682251e3fdd4
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70298547"
+ms.lasthandoff: 09/26/2019
+ms.locfileid: "71278984"
 ---
 # <a name="activities-overview"></a>活動概觀
 
@@ -88,4 +88,4 @@ Bot 可能會收到 **invoke** 活動，代表執行特定作業的要求。 **i
 
 - [傳送及接收活動](bot-builder-dotnet-connector.md)
 - [建立訊息](bot-builder-dotnet-create-messages.md)
-- <a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活動類別</a>
+- [活動類別](https://aka.ms/ActivityClass-dotnet-API)

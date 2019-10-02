@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e9a7158183171d45ba60cdb1507af9f717ecd51b
-ms.sourcegitcommit: dd12ddf408c010182b09da88e2aac0de124cef22
+ms.openlocfilehash: c48d71c21d5e482b497cd38095af377ce2d04f6d
+ms.sourcegitcommit: e9cd857ee11945ef0b98a1ffb4792494dfaeb126
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/05/2019
-ms.locfileid: "70386114"
+ms.lasthandoff: 10/01/2019
+ms.locfileid: "71694541"
 ---
 # <a name="tutorial-create-and-deploy-a-basic-bot"></a>教學課程：建立及部署基本 Bot
 
@@ -22,7 +22,7 @@ ms.locfileid: "70386114"
 
 本教學課程會引導您使用 Bot Framework SDK 建立基本 Bot，然後將其部署至 Azure。 如果您已經建立基本 Bot 並且在本機執行，請直接跳到[部署您的 Bot](#deploy-your-bot) 一節。
 
-在本教學課程中，您了解如何：
+在本教學課程中，您會了解如何：
 
 > [!div class="checklist"]
 > * 建立基本 Echo Bot
