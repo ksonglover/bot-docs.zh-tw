@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dc11191e65d58f4fa038878da71cc0354cad4c64
-ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
+ms.openlocfilehash: 81e5b029453223b89bed97f54891f6ccb2d15ac1
+ms.sourcegitcommit: 5d81c5b25ea56e04f09d05916ee947d631009172
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/30/2019
-ms.locfileid: "70167158"
+ms.lasthandoff: 10/10/2019
+ms.locfileid: "72236436"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答問題
 
@@ -124,7 +124,9 @@ QnAEndpointHostName="<your-hostname>"
 
 在 **QnABot.js** 檔案中，我們可使用 .env 檔案所提供的連線資訊來連線到 QnA Maker 服務：_this.qnaMaker_。
 
-**QnAMaker.js** [!code-javascript[QnAMaker](~/../botbuilder-samples/samples/javascript_nodejs/11.qnamaker/bots/QnABot.js?range=19-23)]
+**QnAMaker.js**
+
+[!code-javascript[QnAMaker](~/../botbuilder-samples/samples/javascript_nodejs/11.qnamaker/bots/QnABot.js?range=19-23)]
 
 
 ---
@@ -142,7 +144,9 @@ QnAEndpointHostName="<your-hostname>"
 
 在 **QnABot.js** 檔案中，我們會將使用者的輸入傳遞至 QnA Maker 服務的 `getAnswers` 方法，以從知識庫中取得解答。 如果 QnA Maker 傳回回應，該回應會顯示給使用者。 否則，使用者會收到「找不到 QnA Maker 解答」的訊息。 
 
-**QnABot.js** [!code-javascript[OnMessage](~/../botbuilder-samples/samples/javascript_nodejs/11.qnamaker/bots/QnABot.js?range=43-59)]
+**QnABot.js**
+
+[!code-javascript[OnMessage](~/../botbuilder-samples/samples/javascript_nodejs/11.qnamaker/bots/QnABot.js?range=43-59)]
 
 ---
 

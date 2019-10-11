@@ -8,16 +8,19 @@ ms.service: bot-service
 ms.topic: conceptual
 ms.author: kamrani
 ms.date: 07/09/2019
-ms.openlocfilehash: f5d23d31b0f2665993a8cc774d7c4577d0333441
-ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
+ms.openlocfilehash: c4c54e50450ae81098992c880e23a049229fa09f
+ms.sourcegitcommit: 7e901f5f39a0cfb0d37e532321b90a1dcf4baadd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68970586"
+ms.lasthandoff: 10/08/2019
+ms.locfileid: "72039753"
 ---
 # <a name="direct-line-app-service-extension"></a>Direct Line App Service 擴充功能
 
 [!INCLUDE[applies-to-v4](includes/applies-to.md)]
+
+> [!WARNING]
+> **Direct Line App Service 擴充功能**已公開**預覽**。  
 
 Direct Line App Service 擴充功能可讓用戶端直接與 Bot 所在的主機連線。 這會提供工作負載隔離，而在某些情況下可改善效能。 下圖顯示整體架構：
 
@@ -33,7 +36,7 @@ Direct Line App Service 擴充功能會預先安裝在全世界各個資料中�
 
 ## <a name="see-also"></a>另請參閱
 
-|Name|說明|
+|名稱|說明|
 |---|---|
 |[設定 .NET Bot 擴充功能](bot-service-channel-directline-extension-net-bot.md)|更新 Bot 以使用**具名管道**，並在裝載 Bot 的 **Azure App Service** 資源中啟用 Direct Line App Service 擴充功能。  |
 |[建立具有擴充功能的 .NET 用戶端](bot-service-channel-directline-extension-net-client.md)|以 C# 建立連線至 Direct Line App Service 擴充功能的 .NET 用戶端|

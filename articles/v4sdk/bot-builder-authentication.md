@@ -7,12 +7,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 08/22/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: da7c9f76c65a70acc8cbb4a12ee93fc8f99de53b
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.openlocfilehash: 953f52a7bc95c0b87435be70bb4052cf939b0a63
+ms.sourcegitcommit: 7e901f5f39a0cfb0d37e532321b90a1dcf4baadd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70299566"
+ms.lasthandoff: 10/08/2019
+ms.locfileid: "72039763"
 ---
 <!-- 
 
@@ -411,21 +411,25 @@ Teams 在 OAuth 方面的行為與其他通道稍有不同，而且需要進行�
  
 其他通道與 Teams 之間的一項差異在於 Teams 會傳送*叫用*活動而非*事件*活動給 Bot。 
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-**Bots/TeamsBot.cs** [!code-csharp[Invoke Activity](~/../botbuilder-samples/samples/csharp_dotnetcore/46.teams-auth/Bots/TeamsBot.cs?range=34-42&highlight=1)]
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)  
+**Bots/TeamsBot.cs**  
+[!code-csharp[Invoke Activity](~/../botbuilder-samples/samples/csharp_dotnetcore/46.teams-auth/Bots/TeamsBot.cs?range=34-42&highlight=1)]
 
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-**bots/teamsBot.js** [!code-javascript[Invoke Activity](~/../botbuilder-samples/samples/javascript_nodejs/46.teams-auth/bots/teamsBot.js?range=27-32&highlight=3)]
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)  
+**bots/teamsBot.js**  
+[!code-javascript[Invoke Activity](~/../botbuilder-samples/samples/javascript_nodejs/46.teams-auth/bots/teamsBot.js?range=27-32&highlight=3)]
 
 ---
 
 如果您使用 *OAuth 提示*，則必須將此叫用活動轉送至對話方塊。 我們會在 `TeamsActivityHandler` 中這麼做。 將下列程式碼新增至您的主要對話方塊檔案。 
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-**Bots/DialogBot.cs** [!code-csharp[Dialogs Handler](~/../botbuilder-samples/samples/csharp_dotnetcore/46.teams-auth/Bots/DialogBot.cs?range=18)]
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)  
+**Bots/DialogBot.cs**  
+[!code-csharp[Dialogs Handler](~/../botbuilder-samples/samples/csharp_dotnetcore/46.teams-auth/Bots/DialogBot.cs?range=18)]
 
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-**Bots/dialogBot.js** [!code-javascript[Dialogs Handler](~/../botbuilder-samples/samples/javascript_nodejs/46.teams-auth/bots/dialogBot.js?range=4-6)]
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)  
+**Bots/dialogBot.js**  
+[!code-javascript[Dialogs Handler](~/../botbuilder-samples/samples/javascript_nodejs/46.teams-auth/bots/dialogBot.js?range=4-6)]
 
 ---
 最後，請務必在 Bot 資料夾的最上層新增適當的 `TeamsActivityHandler` 檔案 (`TeamsActivityHandler.cs` 用於 C# Bot，而 `teamsActivityHandler.js` 用於 Javascript Bot)。

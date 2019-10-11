@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 8073e5f635d20de457e1bf5880c1b5c4c564fab4
-ms.sourcegitcommit: dd12ddf408c010182b09da88e2aac0de124cef22
+ms.openlocfilehash: bbe74a9a82d3bd04593384d825d373bfab35e3db
+ms.sourcegitcommit: 7e901f5f39a0cfb0d37e532321b90a1dcf4baadd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/05/2019
-ms.locfileid: "70386037"
+ms.lasthandoff: 10/08/2019
+ms.locfileid: "72039773"
 ---
 您必須先備妥專案檔，才能部署 Bot。 
 <!-- **C# bots** -->
@@ -37,4 +37,5 @@ az bot prepare-deploy --code-dir "." --lang Typescript
 ---
 
 > [!NOTE]
-> `az bot prepare-depoloy` 命令應該會在您的 Bot 專案資料夾中產生 `.deployment` 檔案。
+>  針對 C# Bots 和 JavaScript Bot，`az bot prepare-depoloy` 命令應該會在您的 Bot 專案資料夾中產生 `.deployment` 檔案。
+> 針對 TypeScript Bot，此命令應該會產生兩個 `web.config` 檔案。 其中一個位於您的專案資料夾中，而另一個位於專案資料夾中的 **src** 資料夾內。 

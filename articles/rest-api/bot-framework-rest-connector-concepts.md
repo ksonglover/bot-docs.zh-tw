@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 01/16/2019
-ms.openlocfilehash: 0e97ad58fc81b52086eb691950845eec1665b064
-ms.sourcegitcommit: e815e786413296deea0bd78e5a495df329a9a7cb
+ms.openlocfilehash: 25adbcda6b1f33f5379f9231291c5a511e9c1d04
+ms.sourcegitcommit: 7e901f5f39a0cfb0d37e532321b90a1dcf4baadd
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/10/2019
-ms.locfileid: "70876082"
+ms.lasthandoff: 10/08/2019
+ms.locfileid: "72039749"
 ---
 # <a name="key-concepts"></a>重要概念
 
@@ -24,7 +24,7 @@ Bot 連接器服務可讓您的 Bot 和在 <a href="https://dev.botframework.com
 
 ### <a name="activity"></a>活動
 
-Bot 連接器服務會藉由傳遞 [Activity][] 物件，以在 Bot 和通道 (使用者) 之間交換資訊。 最常見的活動類型是**訊息**，但是還有其他活動類型可用來將各種類型的資訊傳達給 Bot 或通道。 若要進一步了解 Bot 連接器服務中的活動，請參閱 [活動概觀]https://aka.ms/botSpecs-activitySchema 。
+Bot 連接器服務會藉由傳遞 [Activity][Activity] 物件，以在 Bot 和通道 (使用者) 之間交換資訊。 最常見的活動類型是**訊息**，但是還有其他活動類型可用來將各種類型的資訊傳達給 Bot 或通道。 如需 Bot 連接器服務中 Activity 的詳細資訊，請參閱[活動概觀](https://aka.ms/botSpecs-activitySchema)。
 
 ## <a name="bot-state-service"></a>Bot 狀態服務
 
