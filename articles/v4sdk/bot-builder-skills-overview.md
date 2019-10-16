@@ -6,14 +6,14 @@ ms.author: darrenj
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 05/23/2019
+ms.date: 10/09/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 566eb58f98335b9c55499051c6a23a6e0e0b6bc5
-ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
+ms.openlocfilehash: 9bb149773fe1b2cdd09da0165a4fff4e647f419d
+ms.sourcegitcommit: 5d81c5b25ea56e04f09d05916ee947d631009172
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/30/2019
-ms.locfileid: "70167124"
+ms.lasthandoff: 10/10/2019
+ms.locfileid: "72236428"
 ---
 # <a name="virtual-assistant---skills-overview"></a>虛擬主題 - 技能概觀
 
@@ -38,13 +38,13 @@ ms.locfileid: "70167124"
 
 ![技能案例](./media/enterprise-template/skills-at-build.png)
 
-| Name | 說明 |
+| 名稱 | 說明 |
 | ---- | ----------- |
 |[行事曆技能](https://aka.ms/bf-calendar-skill)|將行事曆功能新增到您的助理。 由 Microsoft Graph 和 Google 提供技術支援。|
 |[電子郵件技能](https://aka.ms/bf-email-skill)|將電子郵件功能新增到您的助理。 由 Microsoft Graph 和 Google 提供技術支援。|
 |[待辦事項技能](https://aka.ms/bf-todo-skill)|將工作管理功能新增到您的助理。 由 Microsoft Craph 提供技術支援。|
 |[景點技能](https://aka.ms/bf-poi-skill)|尋找景點及指示。 由 Azure 地圖服務和 FourSquare 提供技術支援。|
-|[汽車技能](https://aka.ms/bf-autos-kill)|產業垂直整合技能，用於展示和啟用汽車功能控制。|
+|[汽車技能](https://aka.ms/bf-auto-skill)|產業垂直整合技能，用於展示和啟用汽車功能控制。|
 |[實驗性技能](https://aka.ms/bf-experimental-skills)|新聞、餐廳訂位和天氣。|
 
 ## <a name="getting-started"></a>開始使用
