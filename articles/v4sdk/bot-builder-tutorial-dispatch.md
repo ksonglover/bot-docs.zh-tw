@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: df7c608b32b2b570c50eb9a045d965adabd96881
-ms.sourcegitcommit: b869b6c325017df22158f4575576fb63c8ded488
+ms.openlocfilehash: c9303962c992ef9b0801d0bdaabf08886755777d
+ms.sourcegitcommit: 33b67191b3a1c5744e1b93b0c02345536db41a54
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/24/2019
-ms.locfileid: "71224782"
+ms.lasthandoff: 10/18/2019
+ms.locfileid: "72561357"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多個 LUIS 和 QnA 模型
 
@@ -23,7 +23,8 @@ ms.locfileid: "71224782"
 如果聊天機器人使用多個 LUIS 模型和 QnA Maker 知識庫 (KB)，您可以使用分派工具來判斷哪一個 LUIS 模型或 QnA Maker 知識庫最符合使用者輸入。 分派工具執行此操作的方式是建立單一 LUIS 應用程式，以將使用者輸入路由至正確的模型。 如需有關分派工具的詳細資訊 (包括 CLI 命令)，請參閱[讀我檔案][dispatch-readme]。
 
 ## <a name="prerequisites"></a>必要條件
-- [Bot 基本概念](bot-builder-basics.md)、[LUIS][howto-luis] 和 [QnA Maker][howto-qna] 的知識。 
+
+- [Bot 基本概念](bot-builder-basics.md)、[LUIS][howto-luis] 和 [QnA Maker][howto-qna] 的知識。
 - [分派工具](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Dispatch)
 - 從 [C# 範例][cs-sample]或 [JS 範例][js-sample]程式碼存放庫取得一份**採用分派的 NLP**。
 - 用來發佈 LUIS 應用程式的 [luis.ai](https://www.luis.ai/) 帳戶。
@@ -58,7 +59,8 @@ ms.locfileid: "71224782"
 處理常式會呼叫 LUIS 或 QnA Maker 服務，並將產生的結果傳回給使用者。
 
 ## <a name="create-luis-apps-and-qna-knowledge-base"></a>建立 LUIS 應用程式和 QnA 知識庫
-建立分派模型之前，您必須先建立並發佈 LUIS 應用程式和 QnA 知識庫。 在本文中，我們將發佈下列模型，這些模型包含在_採用分派的 NLP_ 範例的 `\CognitiveModels` 資料夾中： 
+
+建立分派模型之前，您必須先建立並發佈 LUIS 應用程式和 QnA 知識庫。 在本文中，我們將發佈下列模型，這些模型包含在_採用分派的 NLP_ 範例的 `\CognitiveModels` 資料夾中：
 
 | 名稱 | 說明 |
 |------|------|
@@ -67,11 +69,12 @@ ms.locfileid: "71224782"
 | QnAMaker  | 提供聊天機器人相關簡單問題解答的 QnA Maker 知識庫。 |
 
 ### <a name="create-luis-apps"></a>建立 LUIS 應用程式
+
 1. 登入 [LUIS Web 入口網站](https://www.luis.ai/)。 在 [我的應用程式]  區段之下，選取 [匯入新的應用程式]  索引標籤。 下列對話方塊隨即顯示：
 
     ![匯入 LUIS json 檔案](./media/tutorial-dispatch/import-new-luis-app.png)
 
-2. 選取 [選擇應用程式檔案]  按鈕，瀏覽至您範例程式碼的 CognitiveModel 資料夾，然後選取 'HomeAutomation.json' 檔案。 將選用名稱欄位保留空白。 
+2. 選取 [選擇應用程式檔案]  按鈕，瀏覽至您範例程式碼的 CognitiveModel 資料夾，然後選取 'HomeAutomation.json' 檔案。 將選用名稱欄位保留空白。
 
 3. 選取 [完成]  。
 
@@ -91,12 +94,12 @@ ms.locfileid: "71224782"
 
 設定 QnA Maker 知識庫的第一個步驟是在 Azure 中設定 QnA Maker 服務。 若要這麼做，請遵循[這裡](https://aka.ms/create-qna-maker)的逐步指示。
 
-在 Azure 中建立 QnA Maker 服務之後，您需要記錄針對 QnA Maker 服務提供的認知服務「金鑰 1」  。 將 QnA Maker 應用程式新增至分派應用程式時，此金鑰會當作 \<azure-qna-service-key1> 使用。 
+在 Azure 中建立 QnA Maker 服務之後，您需要記錄針對 QnA Maker 服務提供的認知服務「金鑰 1」  。 將 QnA Maker 應用程式新增至分派應用程式時，此金鑰會當作 \<azure-qna-service-key1> 使用。
 
 深入瞭解與 QnA Maker [搭配使用的兩種](https://docs.microsoft.com/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure#types-of-keys-in-qna-maker)不同類型的金鑰。
 
 下列步驟為您提供此金鑰：
-    
+
 ![選取認知服務](./media/tutorial-dispatch/select-qna-cognitive-service.png)
 
 1. 在 Azure 入口網站中選取您的 QnA Maker 認知服務。
@@ -109,16 +112,15 @@ ms.locfileid: "71224782"
 
 1. 將「金鑰 1」  的值複製到剪貼簿並儲存在本機。 稍後將 QnA Maker 應用程式新增至分派應用程式時，此金鑰會用於 (-k) 金鑰值\<azure-qna-service-key1>。
 
-1. 現在登入 [QnAMaker 入口網站](https://qnamaker.ai)。 
+1. 現在登入 [QnAMaker 入口網站](https://qnamaker.ai)。
 
 1. 在步驟 2 中，選取下列項目：
 
-    * 您的 Azure AD 帳戶。
-    * 您的 Azure 訂用帳戶名稱。
-    * 針對您的 QnA Maker 服務建立的名稱。 (如果您的 Azure QnA 服務並未一開始就出現在此下拉式清單中，請嘗試重新整理頁面。)
+    - 您的 Azure AD 帳戶。
+    - 您的 Azure 訂用帳戶名稱。
+    - 針對您的 QnA Maker 服務建立的名稱。 (如果您的 Azure QnA 服務並未一開始就出現在此下拉式清單中，請嘗試重新整理頁面。)
 
-    ![建立 QnA 步驟 2](./media/tutorial-dispatch/create-qna-step-2.png) 
-     
+    ![建立 QnA 步驟 2](./media/tutorial-dispatch/create-qna-step-2.png)
 
 1. 在步驟 3 中，提供您的 QnA Maker 知識庫名稱。 在此範例中，請使用 'sample-qna' 這個名稱。
 
@@ -139,12 +141,12 @@ ms.locfileid: "71224782"
     Host: <your-hostname>  // NOTE - this is a URL.
     Authorization: EndpointKey <qna-maker-resource-key>
     ```
-    
-    您主機名稱的完整 URL 字串看起來會類似 "https://< >.azure.net/qnamaker"。 稍後在您的 `appsettings.json` 或 `.env` 檔案中會用到這些值。
+
+    您主機名稱的完整 URL 字串看起來會類似 "https://<host-id>.azure.net/qnamakerr"。 稍後在您的 `appsettings.json` 或 `.env` 檔案中會用到這些值。
 
 ## <a name="dispatch-app-needs-read-access-to-existing-apps"></a>分派應用程式需要現有應用程式的讀取權限
 
-分派工具需要可讀取現有 LUIS 和 QnA Maker 應用程式的撰寫權限，才能建立新的父項 LUIS 應用程式來分派至 LUIS 和 QnA Maker 應用程式。 在提供此存取權時也會隨附應用程式識別碼和撰寫金鑰。 
+分派工具需要可讀取現有 LUIS 和 QnA Maker 應用程式的撰寫權限，才能建立新的父項 LUIS 應用程式來分派至 LUIS 和 QnA Maker 應用程式。 在提供此存取權時也會隨附應用程式識別碼和撰寫金鑰。
 
 ### <a name="service-authoring-keys"></a>服務的撰寫金鑰
 
@@ -153,9 +155,9 @@ ms.locfileid: "71224782"
 |應用程式|資訊的位置|
 |--|--|
 |LUIS|**應用程式識別碼** - 可於 [LUIS 入口網站](https://www.luis.ai)中找到每個應用程式的識別碼，路徑為 [管理]-> [應用程式資訊]<br>**撰寫金鑰** - 可於 LUIS 入口網站右上角，選取您自己的 [使用者] 和 [設定] 來找到。|
-|QnA Maker| **應用程式識別碼** - 可於發佈應用程式後在 [QnA Maker](https://http://qnamaker.ai) 入口網站的 [設定] 頁面上找到。 這是在知識庫後面 POST 命令的第一個部分中所找到的識別碼。 要到哪裡尋找應用程式識別碼的範例是 `POST /knowledgebases/{APP-ID}/generateAnswer`。<br>**撰寫金鑰** - 可在 Azure 入口網站中找到，若為 QnA Maker 資源，則位於 [金鑰]  底下。 您只需要其中一個金鑰即可。|
+|QnA Maker| **應用程式識別碼** - 可於發佈應用程式後在 [QnA Maker](https://http://qnamaker.ai) 入口網站的 [設定] 頁面上找到。 這是在知識庫後面 POST 命令的第一個部分中所找到的識別碼。 要到哪裡尋找應用程式識別碼的範例是 `POST /knowledgebases/<APP-ID>/generateAnswer`。<br>**撰寫金鑰** - 可在 Azure 入口網站中找到，若為 QnA Maker 資源，則位於 [金鑰]  底下。 您只需要其中一個金鑰即可。|
 
-撰寫金鑰無法從已發佈的應用程式，用來取得預測分數或信賴分數。 您需要端點金鑰才能執行此動作。 本教學課程稍後將討論及使用 **[端點金鑰](#service-endpoint-keys)** 。 
+撰寫金鑰無法從已發佈的應用程式，用來取得預測分數或信賴分數。 您需要端點金鑰才能執行此動作。 本教學課程稍後將討論及使用 **[端點金鑰](#service-endpoint-keys)** 。
 
 深入瞭解與 QnA Maker [搭配使用的兩種](https://docs.microsoft.com/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure#types-of-keys-in-qna-maker)不同類型的金鑰。
 
@@ -202,7 +204,8 @@ ms.locfileid: "71224782"
 - `None`
 - `q_sample-qna`
 
-這些服務必須以正確的名稱發佈，才能讓聊天機器人正常運作。 Bot 需要已發佈服務的相關資訊，好讓其可以存取這些服務。
+這些服務必須以正確的名稱發佈，才能讓聊天機器人正常運作。
+Bot 需要已發佈服務的相關資訊，好讓其可以存取這些服務。
 
 ### <a name="service-endpoint-keys"></a>服務端點金鑰
 
@@ -211,7 +214,7 @@ ms.locfileid: "71224782"
 |應用程式|查詢端點金鑰位置|
 |--|--|
 |LUIS|在 LUIS 入口網站中，請針對每個 LUIS 應用程式在 [管理] 區段中選取 [金鑰和端點設定]  ，以尋找與每個應用程式相關聯的金鑰。 如果您要遵循本教學課程，則端點金鑰就是和 `<your-luis-authoring-key>` 相同的金鑰。 撰寫金鑰允許 1000 次的端點叫用，然後就會過期。|
-|QnA Maker|在 QnA Maker 入口網站中，請針對知識庫在 [管理] 設定中，使用顯示在**授權**標頭 Postman 設定中的金鑰值，但不要 `EndpointKey ` 文字。|
+|QnA Maker|在 QnA Maker 入口網站中，請針對知識庫在 [管理] 設定中，使用顯示在**授權**標頭 Postman 設定中的金鑰值，但不要 `EndpointKey` 文字。|
 
 這些值會用於 **appsettings.json** (若為 C#) 和 **.env** 檔案 (若為 javascript)。
 
@@ -221,22 +224,22 @@ ms.locfileid: "71224782"
 
 第一次執行此應用程式之前，請先確認您已安裝數個 NuGet 套件：
 
-**Microsoft.Bot.Builder**
-
-**Microsoft.Bot.Builder.AI.Luis**
-
-**Microsoft.Bot.Builder.AI.QnA**
+- **Microsoft.Bot.Builder**
+- **Microsoft.Bot.Builder.AI.Luis**
+- **Microsoft.Bot.Builder.AI.QnA**
 
 ### <a name="manually-update-your-appsettingsjson-file"></a>手動更新 appsettings.json 檔案
 
 建立所有服務應用程式後，每個服務應用程式的資訊都必須新增至 'appsettings.json' 檔案。 初始的 [C# 範例][cs-sample]程式碼會包含空白的 appsettings.json 檔案：
 
-**appsettings.json**  
+**appsettings.json**
+
 [!code-json[AppSettings](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/AppSettings.json?range=8-17)]
 
 針對下列所示的每個實體，在這些指示中新增您稍早所記錄的值：
 
 **appsettings.json**
+
 ```json
 "MicrosoftAppId": "",
 "MicrosoftAppPassword": "",
@@ -249,6 +252,7 @@ ms.locfileid: "71224782"
 "LuisAPIKey": "<your-luis-endpoint-key>",
 "LuisAPIHostName": "<your-dispatch-app-region>",
 ```
+
 完成所有變更時，儲存這個檔案。
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
@@ -261,6 +265,7 @@ ms.locfileid: "71224782"
 npm install --save botbuilder
 npm install --save botbuilder-ai
 ```
+
 若要使用 .env 組態檔，您的 Bot 必須包含額外的套件：
 
 ```powershell
@@ -303,17 +308,22 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 在 **BotServices.cs** 中，_appsettings.json_ 組態檔中包含的資訊會用於將分派 Bot 連線至 `Dispatch` 和 `SampleQnA` 服務。 建構函式會使用您提供的值來連線到這些服務。
 
-**BotServices.cs**  
+**BotServices.cs**
+
 [!code-csharp[ReadConfigurationInfo](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/BotServices.cs?range=14-30)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
 在 **dispatchBot.js** 中， _.env_ 組態檔中包含的資訊會用來將分派 Bot 連線至 _LuisRecognizer(dispatch)_ 和 _QnAMaker_ 服務。 建構函式會使用您提供的值來連線到這些服務。
 
-**bots/dispatchBot.js**  
+**bots/dispatchBot.js**
+
 [!code-javascript[ReadConfigurationInfo](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=11-24)]
 
 ---
+
+> [!NOTE]
+> 根據預設，`includeApiResults` 參數會設定為 false，表示辨識器只會傳回有關實體/意圖的基本資訊。 如果您需要 LUIS 的完整回應 (例如本教學課程稍後使用的 `ConnectedServiceResult`)，請將此參數設定為 true。 這會接著將 LUIS 服務的完整回應新增至 `RecognizerResult` 上的屬性面板 集合中。
 
 ### <a name="call-the-services-from-your-bot"></a>從 Bot 呼叫服務
 
@@ -323,14 +333,15 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 在 **DispatchBot.cs** 檔案中，每當呼叫 `OnMessageActivityAsync` 方法時，我們就會針對分派模型來檢查傳入的使用者訊息。 接著，我們會將分派模型的 `topIntent` 和 `recognizerResult` 傳遞至正確的方法，以呼叫服務並傳回結果。
 
-**bots\DispatchBot.cs**  
+**bots\DispatchBot.cs**
+
 [!code-csharp[OnMessageActivity](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=26-36)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
 在 **dispatchBot.js** `onMessage` 方法中，我們會針對分派模型檢查使用者輸入訊息、尋找 _topIntent_，然後藉由呼叫 _dispatchToTopIntentAsync_ 來傳遞此意圖。
 
-**bots/dispatchBot.js**  
+**bots/dispatchBot.js**
 
 [!code-javascript[OnMessageActivity](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=29-42)]
 
@@ -342,7 +353,8 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 當模型產生結果時，它會指出哪一項服務最適合處理語句。 此 Bot 中的程式碼會將要求路由傳送至對應的服務，然後概述來自所呼叫服務的回應。 根據分派傳回的_意圖_，此程式碼會使用傳回的意圖來路由至正確的 LUIS 模型或 QnA 服務。
 
-**bots\DispatchBot.cs**  
+**bots\DispatchBot.cs**
+
 [!code-csharp[DispatchToTop](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=51-69)]
 
 如果叫用 `ProcessHomeAutomationAsync` 或 `ProcessWeatherAsync` 方法，則會從 _luisResult.ConnectedServiceResult_ 內的分派模型中傳遞結果。 接著，指定方法會提供顯示分派模型最高意圖的使用者意見反應，並且以排名列出所有偵測到的意圖和實體。
@@ -387,9 +399,9 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 ## <a name="dispatch-for-user-utterance-to-qna-maker"></a>將使用者語句分派至 QnA Maker
 
-1. 在聊天機器人模擬器中，輸入 `hi` 文字並提交語句。 聊天機器人會提交此查詢來分派 LUIS 應用程式並取得回應，其內容會指出哪個子應用程式應該取得此語句以便進一步處理。 
+1. 在聊天機器人模擬器中，輸入 `hi` 文字並提交語句。 聊天機器人會提交此查詢來分派 LUIS 應用程式並取得回應，其內容會指出哪個子應用程式應該取得此語句以便進一步處理。
 
-1. 藉由在記錄中選取 `LUIS Trace` 行，便可以在聊天機器人模擬器中看到 LUIS 回應。 來自分派 LUIS 應用程式的 LUIS 結果會顯示在偵測器中。 
+1. 藉由在記錄中選取 `LUIS Trace` 行，便可以在聊天機器人模擬器中看到 LUIS 回應。 來自分派 LUIS 應用程式的 LUIS 結果會顯示在偵測器中。
 
     ```json
     {
@@ -421,10 +433,10 @@ LuisAPIHostName=<your-dispatch-app-region>
       }
     }
     ```
-    
-    因為語句 `hi` 是分派 LUIS 應用程式的 **q_sample-qna** 意圖一部分，且您已將其選取為 `topScoringIntent`，所以聊天機器人會提出第二個要求，但這一次會對 QnA Maker 應用程式來提出，且使用相同的語句。 
 
-1. 在聊天機器人模擬器記錄中選取 `QnAMaker Trace` 行。 QnA Maker 結果會顯示在偵測器中。 
+    因為語句 `hi` 是分派 LUIS 應用程式的 **q_sample-qna** 意圖一部分，且您已將其選取為 `topScoringIntent`，所以聊天機器人會提出第二個要求，但這一次會對 QnA Maker 應用程式來提出，且使用相同的語句。
+
+1. 在聊天機器人模擬器記錄中選取 `QnAMaker Trace` 行。 QnA Maker 結果會顯示在偵測器中。
 
 ```json
 {
@@ -448,14 +460,17 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 ## <a name="resolving-incorrect-top-intent-from-dispatch"></a>解決來自分派、不正確的最上層意圖
 
-當聊天機器人正在執行時，移除已分派應用程式之間的類似或重疊語句有可能會改善聊天機器人的效能。 例如，假設在 `Home Automation` LUIS 應用程式中，「開燈」這類要求對應至「TurnOnLights」意圖，但「為什麼無法打開燈？」要求則對應至 「無」意圖，因此系統便會將其傳遞至 QnA Maker。 這兩個語句對分派 LUIS 應用程式來說太接近，因此無法判斷正確的子應用程式是 LUIS 應用程式還是 QnA Maker 應用程式。
+當聊天機器人正在執行時，移除已分派應用程式之間的類似或重疊語句有可能會改善聊天機器人的效能。
+<!--For example, let's say that in the `Home Automation` LUIS app requests like "turn my lights on" map to a "TurnOnLights" intent, but requests like "Why won't my lights turn on?" map to a "None" intent so that they can be passed on to QnA Maker. These two utterances are too close for the dispatch LUIS app to determine if the correct child app is the LUIS app or the QnA Maker app.
 
-使用分派工具結合 LUIS 應用程式和 QnA Maker 應用程式時，您必須執行下列_其中一個_動作：
+When you combine the LUIS app and the QnA Maker app using dispatch, you need to do _one_ of the following:
 
-* 從 `Home Automation` 子 LUIS 應用程式移除 "None" 意圖，然後將該意圖中的語句新增至發送器應用程式中的 "None" 意圖。
-* 在聊天機器人中新增邏輯，以將符合分派 LUIS 應用程式 "None" 意圖的訊息傳遞至 QnA Maker 服務。 請比較分派 LUIS 應用程式的分數與 QnA Maker 應用程式的分數。 使用最高的分數。 這可有效地從分派循環中移除 QnA Maker。 
+- Remove the "None" intent from the child `Home Automation` LUIS app, and instead add the utterances from that intent to the "None" intent in the dispatcher app.
+- Add logic in your bot to pass the messages that match the Dispatch LUIS app's "None" intent on to the QnA maker service. Compare the score of the Dispatch LUIS app's score and the score of the QnA Maker app. Use the highest score. This effectively removes QnA Maker from the Dispatch cycle.
 
-上述兩個動作都會減少 Bot 以「找不到答案」訊息回應使用者的次數。
+Either of the above two actions will reduce the number of times that your bot responds back to your users with the message, 'Couldn't find an answer.'
+-->
+您可以使用 [Dispatch ][dispatch-readme] 命令列工具來測試及評估分派模型。
 
 ### <a name="to-update-or-create-a-new-luis-model"></a>更新或建立新的 LUIS 模型
 
@@ -485,6 +500,7 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 若要改善此範例中使用的服務，請參閱 [LUIS](https://docs.microsoft.com/azure/cognitive-services/luis/luis-concept-best-practices) 及 [QnA Maker](https://docs.microsoft.com/azure/cognitive-services/qnamaker/concepts/best-practices) 的最佳做法。
 
+<!-- Foot-note style links -->
 
 [howto-luis]: bot-builder-howto-v4-luis.md
 [howto-qna]: bot-builder-howto-qna.md
@@ -492,4 +508,5 @@ LuisAPIHostName=<your-dispatch-app-region>
 [cs-sample]: https://aka.ms/dispatch-sample-cs
 [js-sample]: https://aka.ms/dispatch-sample-js
 
-[dispatch-readme]: https://aka.ms/botbuilder-tools-dispatch
+[dispatch-readme]: https://aka.ms/dispatch-command-line-tool
+<!--[dispatch-evaluate]: https://aka.ms/dispatch-command-line-tool#evaluating-your-dispatch-model-->
