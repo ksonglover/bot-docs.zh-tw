@@ -6,13 +6,13 @@ manager: kamrani
 ms.topic: article
 ms.author: kamrani
 ms.service: bot-service
-ms.date: 08/03/2019
-ms.openlocfilehash: a856e3cc578b8c73583126df9f670bfde68ec9dc
-ms.sourcegitcommit: dd12ddf408c010182b09da88e2aac0de124cef22
+ms.date: 10/28/2019
+ms.openlocfilehash: 0821d9cac50828cc7802c4be8221538d4e1e620d
+ms.sourcegitcommit: b2819741e2bcace92510e7b250cd5c1ab667d774
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/05/2019
-ms.locfileid: "70386110"
+ms.lasthandoff: 10/29/2019
+ms.locfileid: "73031226"
 ---
 # <a name="connect-a-bot-to-facebook"></a>將 Bot 連線到 Facebook
 
@@ -22,6 +22,9 @@ ms.locfileid: "70386110"
 > Facebook UI 可能會因為您所使用的版本而略有不同。
 
 ## <a name="connect-a-bot-to-facebook-messenger"></a>將 Bot 連線到 Facebook Messenger
+
+> [!NOTE]
+> 從 2019 年 12 月 16 日開始，Facebook Workplace 正在變更自訂整合的安全性模型。  必須更新使用 Microsoft Bot Framework 所建立的目前整合，才能使用 Bot Framework 介面卡 (在 JavaScript/node.js 中提供)，並使用 Azure 上的 Web 應用程式進行部署。  使用 Microsoft Bot Framework 開發的新工作場所 Bot，也應該使用 JavaScript Facebook 介面卡。 深入瞭解[使用 Facebook 介面卡](https://aka.ms/botframework-workplace-adapter)。 下列指示僅適用於 2019 年 12 月 16 日之前。
 
 若要深入了解如何針對 Facebook Messenger 進行開發，請參閱 [Messenger 平台文件](https://developers.facebook.com/docs/messenger-platform)。 您可以檢閱 Facebook 的[啟動前指導方針](https://developers.facebook.com/docs/messenger-platform/product-overview/launch#app_public)、[快速入門](https://developers.facebook.com/docs/messenger-platform/guides/quick-start)和[設定指南](https://developers.facebook.com/docs/messenger-platform/guides/setup)。
 
