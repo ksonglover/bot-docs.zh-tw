@@ -25,7 +25,7 @@ ms.locfileid: "70299493"
 許多服務支援透過 OAuth 或 OAuth2 通訊協定來擷取權杖。
 Azure Bot Service 提供特製化的登入卡片和服務，可搭配 OAuth 通訊協定使用及管理權杖生命週期，而且 Bot 可以使用這些功能來取得使用者權杖。
 
-- _OAuth 連線設定_是 Bot 組態的一部分，註冊在 Azure 的 Azure Bot Service 資源中。
+- _OAuth 連線設定_ 是 Bot 組態的一部分，註冊在 Azure 的 Azure Bot Service 資源中。
 
     每個連線設定都包含要使用的外部服務或識別提供者資訊，以及有效的 OAuth 用戶端識別碼及祕密、要啟用的 OAuth 範圍和該外部服務或身分識別所需的任何其他連線中繼資料。
 
