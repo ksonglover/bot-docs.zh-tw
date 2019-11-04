@@ -25,6 +25,7 @@
 ## [Slack](../bot-service-channel-connect-slack.md) 
 ## [Telegram](../bot-service-channel-connect-telegram.md) 
 ## [Twilio](../bot-service-channel-connect-twilio.md)
+## [微信](../bot-service-channel-connect-wechat.md)
 ## [網路聊天](../bot-service-channel-connect-webchat.md)
 ## [其他通道](../bot-service-channel-additional-channels.md)
 # [設定 Bot 設定](../bot-service-manage-settings.md)

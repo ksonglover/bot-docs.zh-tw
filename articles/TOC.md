@@ -19,6 +19,7 @@
 ## [中介軟體](v4sdk/bot-builder-concept-middleware.md)
 ## [使用者驗證](v4sdk/bot-builder-concept-authentication.md)
 ## [管理 bot 資源](v4sdk/bot-file-basics.md)
+## [適用於 Microsoft Teams 的 Bot 如何運作](v4sdk/bot-builder-basics-teams.md)
 <!-- [Language understanding](v4sdk/bot-builder-concept-luis.md) -->
 ## [Bot 服務範本](bot-service-concept-templates.md)
 ## [認知服務](bot-service-concept-intelligence.md)
@@ -56,6 +57,7 @@
 ### [Node.js](nodejs/TOC.md)
 ## 測試
 ### [單元測試 Bot](v4sdk/unit-test-bots.md)
+### [將追蹤活動新增至您的 Bot](v4sdk/using-trace-activities.md)
 ## [偵錯](debug/TOC.md)
 ## 部署
 ### [將 Bot 部署至 Azure](bot-builder-deploy-az-cli.md)
@@ -68,5 +70,8 @@
 ## [REST](rest-api/TOC.md)
 ## [.NET SDK v3](https://aka.ms/botframework-v3-cs-sdk)
 ## [Node.js SDK v3](https://aka.ms/bot-jssdk-v3)
+## BF CLI 工具參考
+### [BF CLI 總覽](v4sdk/bf-cli-overview.md)
+### [BF CLI 參考](v4sdk/bf-cli-reference.md)
 ## [實體和活動類型](bot-service-activities-entities.md)
 # [資源](resources/TOC.md)
