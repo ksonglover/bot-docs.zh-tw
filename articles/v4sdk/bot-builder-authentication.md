@@ -5,18 +5,16 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 08/22/2019
+ms.date: 11/04/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 953f52a7bc95c0b87435be70bb4052cf939b0a63
-ms.sourcegitcommit: 7e901f5f39a0cfb0d37e532321b90a1dcf4baadd
+ms.openlocfilehash: c55e14f10bf6a5f4032033472c07401bde82a334
+ms.sourcegitcommit: 490810d278d1c8207330b132f28a5eaf2b37bd07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/08/2019
-ms.locfileid: "72039763"
+ms.lasthandoff: 11/05/2019
+ms.locfileid: "73592268"
 ---
 <!-- 
-
-ms.author: kamrani
 
 Related TODO:
 - Check code in [Web Chat channel](https://docs.microsoft.com/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0)
@@ -172,7 +170,7 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 #### <a name="azure-ad-v1"></a>Azure AD v1
 
-1. 在 [Azure 入口網站](http://portal.azure.com/)瀏覽至 Bot 的資源頁面。
+1. 在 [Azure 入口網站](https://portal.azure.com/)瀏覽至 Bot 的資源頁面。
 1. 按一下 [設定]  。
 1. 在靠近頁面底部的 [OAuth 連線設定]  下方，按一下 [新增設定]  。
 1. 填寫表單，如下所示：
@@ -201,7 +199,7 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 
 #### <a name="azure-ad-v2"></a>Azure AD v2
 
-1. 在 [Azure 入口網站](http://portal.azure.com/)上瀏覽至 Bot 的 [Bot 通道註冊] 頁面。
+1. 在 [Azure 入口網站](https://portal.azure.com/)上瀏覽至 Bot 的 [Bot 通道註冊] 頁面。
 1. 按一下 [設定]  。
 1. 在靠近頁面底部的 [OAuth 連線設定]  下方，按一下 [新增設定]  。
 1. 填寫表單，如下所示：
@@ -437,7 +435,7 @@ Teams 在 OAuth 方面的行為與其他通道稍有不同，而且需要進行�
 `TeamsActivityHandler` 也會傳送*訊息回應*活動。 訊息反應活動會使用 [回覆識別碼]  欄位來參考原始活動。 此活動應該也會在 Microsoft Teams 中透過[活動摘要][teams-activity-feed]顯示。
 
 > [!NOTE]
-> 您必須建立資訊清單，並在 `validDomains` 區段中納入 `token.botframework.com`，否則 OAuthCard 的 [登入]  按鈕將不會開啟驗證視窗。 請使用 [App Studio](https://docs.microsoft.com/en-us/microsoftteams/platform/get-started/get-started-app-studio) 來產生您的資訊清單。
+> 您必須建立資訊清單，並在 `validDomains` 區段中納入 `token.botframework.com`，否則 OAuthCard 的 [登入]  按鈕將不會開啟驗證視窗。 請使用 [App Studio](https://docs.microsoft.com/microsoftteams/platform/get-started/get-started-app-studio) 來產生您的資訊清單。
 
 ### <a name="further-reading"></a>進階閱讀
 

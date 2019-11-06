@@ -7,13 +7,13 @@ keywords: Bot Framework SDK, 對聊天機器人進行偵錯, 檢查中介軟體,
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 7/9/2019
-ms.openlocfilehash: 4a3ff1ef255b914a30c10f6ebd070b7ca98d2f86
-ms.sourcegitcommit: e9cd857ee11945ef0b98a1ffb4792494dfaeb126
+ms.date: 11/01/2019
+ms.openlocfilehash: 86521259b284694fcc35f27899953c9eea1b57d0
+ms.sourcegitcommit: 490810d278d1c8207330b132f28a5eaf2b37bd07
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/01/2019
-ms.locfileid: "71693125"
+ms.lasthandoff: 11/05/2019
+ms.locfileid: "73592264"
 ---
 # <a name="debug-a-bot-with-inspection-middleware"></a>使用檢查中介軟體來對聊天機器人進行偵錯
 本文說明如何使用檢查中介軟體對 Bot 進行偵錯。 除了查看 Bot 目前的狀態以外，這項功能也可讓 Bot Framework Emulator 偵測 Bot 的輸入和輸出流量。 您可以使用追蹤訊息將資料傳送給模擬器，然後在任何指定的對話回合中檢查聊天機器人的狀態。 
@@ -22,8 +22,8 @@ ms.locfileid: "71693125"
 
 ## <a name="prerequisites"></a>必要條件
 - 下載並安裝 [Bot Framework Emulator](https://aka.ms/Emulator-wiki-getting-started)
-- 了解聊天機器人的[中介軟體](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-concept-middleware?view=azure-bot-service-4.0)
-- 了解聊天機器人的[管理狀態](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-concept-state?view=azure-bot-service-4.0)
+- 了解聊天機器人的[中介軟體](https://docs.microsoft.com/azure/bot-service/bot-builder-concept-middleware?view=azure-bot-service-4.0)
+- 了解聊天機器人的[管理狀態](https://docs.microsoft.com/azure/bot-service/bot-builder-concept-state?view=azure-bot-service-4.0)
 - 下載並安裝 [ngrok](https://ngrok.com/) (如果您想要對 Azure 中設定為使用其他通道的聊天機器人進行偵錯)
 
 ## <a name="update-your-emulator-to-the-latest-version"></a>將模擬器更新為最新版本 
