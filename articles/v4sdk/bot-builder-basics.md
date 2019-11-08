@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0e8a8275a7ede599b3d25576abcd3c1160873db7
-ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
+ms.openlocfilehash: dc2c222866796f584bcad950a6e0afc40ab43a90
+ms.sourcegitcommit: 4751c7b8ff1d3603d4596e4fa99e0071036c207c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/30/2019
-ms.locfileid: "70167204"
+ms.lasthandoff: 11/02/2019
+ms.locfileid: "73441622"
 ---
 # <a name="how-bots-work"></a>Bot 的運作方式
 
@@ -138,7 +138,7 @@ Bot 邏輯會處理來自從一或多個通道的傳入活動，並產生傳出�
 
 `ActivityHandler` 中定義的處理常式如下：
 
-| Event | 處理常式 | 說明 |
+| 事件 | 處理常式 | 說明 |
 | :-- | :-- | :-- |
 | 收到的任何活動類型 | `OnTurnAsync` | 根據所收到的活動型別，呼叫其中一個其他處理常式。 |
 | 收到的訊息活動 | `OnMessageActivityAsync` | 覆寫此項目以處理 `message` 活動。 |
@@ -186,7 +186,7 @@ public class MyBot : ActivityHandler
 
 `ActivityHandler` 中定義的處理常式如下：
 
-| Event | 處理常式 | 說明 |
+| 事件 | 處理常式 | 說明 |
 | :-- | :-- | :-- |
 | 收到的任何活動類型 | `onTurn` | 收到任何活動時呼叫。 |
 | 收到的訊息活動 | `onMessage` | 收到 `message` 活動時呼叫。 |
@@ -377,3 +377,5 @@ Bot 資源 (例如連線服務的應用程式識別碼、密碼、金鑰或祕�
 ## <a name="additional-resources"></a>其他資源
 
 - 若要了解 bot 中的狀態角色，請參閱[管理狀態](bot-builder-concept-state.md)。
+
+- 若要了解為 Microsoft Teams 開發 Bot 的重要概念，請參閱 [Microsoft Teams Bot 的運作方式](bot-builder-basics-teams.md)

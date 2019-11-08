@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 07/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 17e9925cf8e34eb4d31964b9cebac367abaec58c
-ms.sourcegitcommit: 378dbffd3960a1fa063ffb314878ccd64fb8fb49
+ms.openlocfilehash: 5b8c812d7521edb2907b1a52d3acb890adf5ac67
+ms.sourcegitcommit: 4751c7b8ff1d3603d4596e4fa99e0071036c207c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/18/2019
-ms.locfileid: "71094440"
+ms.lasthandoff: 11/02/2019
+ms.locfileid: "73441514"
 ---
 # <a name="add-telemetry-to-your-bot"></a>將遙測新增至 Bot
 
@@ -22,6 +22,8 @@ ms.locfileid: "71094440"
 
 
 Bot Framework SDK 4.2 版中已新增了遙測記錄功能。  此功能可讓聊天機器人應用程式將事件資料傳送給 [Application Insights](https://aka.ms/appinsights-overview) 之類的遙測服務。 遙測可讓您深入了解聊天機器人 (方法是顯示最常使用的功能)、偵測不必要的行為，以及讓您了解可用性、效能和使用方式。
+
+***注意：在 4.6 版中，為確保在使用自訂配接器時可正確地記錄遙測，已更新將遙測實作至 Bot 的標準方法。本文已更新為顯示更新的方法。這些變更可以回溯相容，而使用先前方法的 Bot 將繼續正確地記錄遙測。***
 
 
 在本文中，您會了解如何使用 Application Insights 將遙測實作到聊天機器人：
@@ -74,46 +76,33 @@ Bot Framework SDK 4.2 版中已新增了遙測記錄功能。  此功能可讓�
     public void ConfigureServices(IServiceCollection services)
     {
         ...
-
         // Create the Bot Framework Adapter with error handling enabled.
         services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
 
         // Add Application Insights services into service collection
         services.AddApplicationInsightsTelemetry();
 
-        // Create the telemetry client.
+        // Add the standard telemetry client
         services.AddSingleton<IBotTelemetryClient, BotTelemetryClient>();
 
-        // Add ASP middleware to store the http body mapped with bot activity key in the httpcontext.items. This will be picked by the TelemetryBotIdInitializer
-        services.AddTransient<TelemetrySaveBodyASPMiddleware>();
+        // Create the telemetry middleware to track conversation events
+        services.AddSingleton<TelemetryLoggerMiddleware>();
 
-        // Add telemetry initializer that will set the correlation context for all telemetry items.
+        // Add the telemetry initializer middleware
+        services.AddSingleton<IMiddleware, TelemetryInitializerMiddleware>();
+
+        // Add telemetry initializer that will set the correlation context for all telemetry items
         services.AddSingleton<ITelemetryInitializer, OperationCorrelationTelemetryInitializer>();
 
-        // Add telemetry initializer that sets the user ID and session ID (in addition to other bot-specific properties such as activity ID)
+        // Add telemetry initializer that sets the user ID and session ID (in addition to other bot-specific properties, such as activity ID)
         services.AddSingleton<ITelemetryInitializer, TelemetryBotIdInitializer>();
-
-        // Create the telemetry middleware to track conversation events
-        services.AddSingleton<IMiddleware, TelemetryLoggerMiddleware>();
-
         ...
     }
     ```
     
     注意：如果您跟著操作，更新了 CoreBot 程式碼範例，您將會注意到 `services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();` 早已存在 
 
-5. 在 `Startup.cs` 的 `Configure()` 方法中新增 `UseBotApplicationInsights()` 方法呼叫。 這可讓聊天機器人在 HTTP 內容中儲存所需的聊天機器人特有屬性，以供遙測初始設定式在追蹤事件時擷取：
-
-    ```csharp
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-    {
-        ...
-
-        app.UseBotApplicationInsights();
-    }
-    ```
-6. 指示配接器使用已新增至 `ConfigureServices()` 方法的中介軟體程式碼。 方法是在 `AdapterWithErrorHandler.cs` 中搭配使用建構函式參數清單中的參數 IMiddleware middleware 以及建構函式中的 `Use(middleware);` 陳述式，如下所示：
+5. 指示配接器使用已新增至 `ConfigureServices()` 方法的中介軟體程式碼。 方法是在 `AdapterWithErrorHandler.cs` 中搭配使用建構函式參數清單中的參數 IMiddleware middleware 以及建構函式中的 `Use(middleware);` 陳述式，如下所示：
     ```csharp
     public AdapterWithErrorHandler(ICredentialProvider credentialProvider, ILogger<BotFrameworkHttpAdapter> logger, IMiddleware middleware, ConversationState conversationState = null)
             : base(credentialProvider)
@@ -123,6 +112,7 @@ Bot Framework SDK 4.2 版中已新增了遙測記錄功能。  此功能可讓�
         Use(middleware);
     }
     ```
+
 7. 在 `appsettings.json` 檔案中新增 Application Insights 檢測金鑰。`appsettings.json` 檔案包含有關聊天機器人在執行時所用外部服務的中繼資料。 例如，CosmosDB、Application Insights 和 Language Understanding (LUIS) 服務連線和中繼資料都會儲存在該處。 對 `appsettings.json` 檔案新增的內容必須採用下列格式：
 
     ```json
@@ -137,6 +127,45 @@ Bot Framework SDK 4.2 版中已新增了遙測記錄功能。  此功能可讓�
     注意：如需如何取得 _Application Insights 檢測金鑰_的詳細資訊，請參閱 [Application Insights 金鑰](../bot-service-resources-app-insights-keys.md)一文。
 
 至此，您已完成使用 Application Insights 來啟用遙測的初步工作。  您可以使用聊天機器人模擬器在本機執行聊天機器人，然後進入 Application Insights 來查看所記錄的內容，例如回應時間、整體應用程式健康情況和一般執行資訊。 
+
+## <a name="enabling--disabling-activity-event-and-personal-information-logging"></a>啟用/停用活動事件和個人資訊記錄
+
+### <a name="enabling-or-disabling-activity-logging"></a>啟用或停用活動記錄
+
+根據預設，當您的 Bot 傳送/接收活動時，`TelemetryInitializerMiddleware` 將會使用 `TelemetryLoggerMiddleware` 來記錄遙測。 活動記錄會在您的 Application Insights 資源中建立自訂事件記錄檔。  您也可以停用活動事件記錄，只要在 `TelemetryInitializerMiddleware` 上將 `logActivityTelemetry` 設定為 False 即可，但必須在將其登錄到 **Startup.cs** 之前。
+
+```cs
+public void ConfigureServices(IServiceCollection services)
+{
+    ...
+    // Add the telemetry initializer middleware
+    services.AddSingleton<IMiddleware, TelemetryInitializerMiddleware>(sp =>
+            {
+                var httpContextAccessor = sp.GetService<IHttpContextAccessor>();
+                var loggerMiddleware = sp.GetService<TelemetryLoggerMiddleware>();
+                return new TelemetryInitializerMiddleware(httpContextAccessor, loggerMiddleware, logActivityTelemetry: false);
+            });
+    ...
+}
+```
+
+### <a name="enable-or-disable-logging-personal-information"></a>啟用或停用記錄個人資訊
+
+根據預設，如果啟用活動記錄，傳入/傳出活動的某些屬性就會從記錄中排除，因為這些屬性可能包含個人資訊，例如使用者名稱和活動文字。 您可以在登錄 `TelemetryLoggerMiddleware` 時，對 **Startup.cs** 進行下列變更，以選擇將這些屬性包含在記錄中。
+
+```cs
+public void ConfigureServices(IServiceCollection services)
+{
+    ...
+    // Add the telemetry initializer middleware
+    services.AddSingleton<TelemetryLoggerMiddleware>(sp =>
+            {
+                var telemetryClient = sp.GetService<IBotTelemetryClient>();
+                return new TelemetryLoggerMiddleware(telemetryClient, logPersonalInformation: true);
+            });
+    ...
+}
+```
 
 接下來，我們會看看需要納入哪些內容才能將遙測功能新增至對話方塊中。 此功能可讓您取得額外資訊，例如會執行的對話方塊以及每個對話的相關統計資料。
 

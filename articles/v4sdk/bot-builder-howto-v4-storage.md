@@ -7,14 +7,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 05/23/2019
+ms.date: 11/01/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9a5a8f8eac9f0b20278b2506063c6e14e4d9fd5b
-ms.sourcegitcommit: 514a3c1ffe0ebe69e07565446ddde0370b35aeaa
+ms.openlocfilehash: bd34b7f369fddfeaa0cd97b10fb49b86e2207c64
+ms.sourcegitcommit: 4751c7b8ff1d3603d4596e4fa99e0071036c207c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/22/2019
-ms.locfileid: "69903665"
+ms.lasthandoff: 11/02/2019
+ms.locfileid: "73441557"
 ---
 # <a name="write-directly-to-storage"></a>直接寫入儲存體
 
@@ -253,13 +253,13 @@ module.exports.MyBot = MyBot;
 既然您已使用記憶體儲存體，我們會將程式碼更新為使用 Azure Cosmos DB。 Cosmos DB 是 Microsoft 全球發行的多模型資料庫。 Azure Cosmos DB 可讓您有彈性且獨立地跨任意數目的 Azure 地理區域調整輸送量和儲存體。 它利用完整的服務等級協定 (SLA) 提供了輸送量、延遲、可用性和一致性的保證。 
 
 ### <a name="set-up"></a>設定
-若要在 Bot 中使用 Cosmos DB，您需要先設定一些事項，再進入程式碼。 如需建立 Cosmos DB 資料庫和應用程式的深入說明，請存取 [Cosmos DB dotnet](https://aka.ms/Bot-framework-create-dotnet-cosmosdb) 或[Cosmos DB nodejs](https://aka.ms/Bot-framework-create-nodejs-cosmosdb) 的文件。
+若要在 Bot 中使用 Cosmos DB，您需要先建立資料庫資源，然後再進入程式碼。 如需建立 Cosmos DB 資料庫和應用程式的深入說明，請存取 [Cosmos DB dotnet](https://aka.ms/Bot-framework-create-dotnet-cosmosdb) 或[Cosmos DB nodejs](https://aka.ms/Bot-framework-create-nodejs-cosmosdb) 的文件。
 
 ### <a name="create-your-database-account"></a>建立資料庫帳戶
 
-1. 在新的瀏覽器視窗中，登入 [Azure 入口網站](http://portal.azure.com)。
+1. 在新的瀏覽器視窗中，登入 [Azure 入口網站](https://portal.azure.com)。
 
-![建立 Cosmos DB 資料庫](./media/create-cosmosdb-database.png)
+![建立 Cosmos DB 資料庫帳戶](./media/create-cosmosdb-database.png)
 
 2. 按一下 [建立資源] > [資料庫] > [Azure Cosmos DB]  。
 
@@ -271,22 +271,31 @@ module.exports.MyBot = MyBot;
 
 建立帳戶需要幾分鐘的時間。 等候入口網站顯示 恭喜! 已建立您的 Azure Cosmos DB 帳戶 頁面。
 
-### <a name="add-a-collection"></a>新增集合
+### <a name="add-a-database"></a>新增資料庫
 
-![新增 Cosmos DB 集合](./media/add_database_collection.png)
+1. 瀏覽至新建 Cosmos DB 帳戶內的 [資料總管]  頁面，然後從 [建立容器]  按鈕旁邊的下拉式方塊中選擇 [建立資料庫]  。 接著，面板會在視窗的右側開啟，您可以在此輸入新容器的詳細資料。 
 
-1. 按一下 [設定] > [新增集合]  。 [新增集合]  區域會顯示在最右邊，您可能需要向右捲動才能看到它。 由於 Cosmos DB 的近期更新，請務必新增單一分割區索引鍵： _/id_。此索引鍵可避免跨分割區查詢錯誤。
+![Cosmos DB](./media/create-cosmosdb-database-resource.png)
 
-![Cosmos DB](./media/cosmos-db-sql-database.png)
+2. 輸入新資料庫的識別碼，並選擇性地設定輸送量 (之後可進行變更)，最後按一下 [確定]  以建立您的資料庫。 請記下此資料庫識別碼，稍後設定 Bot 時會用到。
 
-2. 新資料庫集合 "bot-cosmos-sql-db" 的集合識別碼為 "bot-storage"。 我們會在下面的編碼範例中使用這些值。
+![Cosmos DB](./media/create-cosmosdb-database-resource-details.png)
+
+3. 現在您已建立 Cosmos DB 帳戶和資料庫，您需要複製一些值，以便將新資料庫整合到您的 Bot。  若要取得這些資料，請瀏覽至 Cosmos DB 帳戶 [資料庫設定] 區段內的 [金鑰]  索引標籤。  在此頁面中，您會需要 Cosmos DB 端點 (**URI**) 和您的授權金鑰 (**PRIMARY KEY**)。
 
 ![Cosmos DB 金鑰](./media/comos-db-keys.png)
 
-3. 您資料庫設定的 [金鑰]  索引標籤中會提供端點 URI 和金鑰。 本文稍後設定您的程式碼時，需要使用這些值。 
+您現在應該有一個包含資料庫的 Cosmos DB 帳戶，且已備妥下列詳細資料來設定您的 Bot。
+
+- Cosmos DB 端點
+- 授權金鑰
+- 資料庫識別碼
 
 ### <a name="add-configuration-information"></a>新增組態資訊
-我們要新增 Cosmos DB 儲存體的組態資料簡短又簡單，當您的 Bot 變得複雜時，您可以使用相同方法新增其他組態設定。 此範例使用上述範例中的 Cosmos DB 資料庫和集合名稱。
+用於新增 Cosmos DB 儲存體的設定資料既簡短又簡單。  請使用您在本文上一節中記下的詳細資料，設定您的端點、授權金鑰和資料庫識別碼。  最後，您應為容器選擇適當名稱，以在資料庫內建立可儲存您 Bot 狀態的容器。 在下列範例中，此容器將稱為 "bot-storage"。
+
+> [!NOTE]
+> 您不應自行建立容器。 您的 Bot 會在建立其內部 Cosmos DB 用戶端時為您建立容器，以確保其已正確設定，可用於儲存 Bot 狀態。
 
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -295,9 +304,9 @@ module.exports.MyBot = MyBot;
 public class EchoBot : ActivityHandler
 {
    private const string CosmosServiceEndpoint = "<your-cosmos-db-URI>";
-   private const string CosmosDBKey = "<your-cosmos-db-account-key>";
-   private const string CosmosDBDatabaseName = "bot-cosmos-sql-db";
-   private const string CosmosDBCollectionName = "bot-storage";
+   private const string CosmosDBKey = "<your-authorization-key>";
+   private const string CosmosDBDatabaseId = "<your-database-id>";
+   private const string CosmosDBContainerId = "bot-storage";
    ...
    
 }
@@ -309,10 +318,10 @@ public class EchoBot : ActivityHandler
 
 **.env**
 ```javascript
-DB_SERVICE_ENDPOINT="<your-Cosmos-db-URI>"
-AUTH_KEY="<your-cosmos-db-account-key>"
-DATABASE="<bot-cosmos-sql-db>"
-COLLECTION="<bot-storage>"
+DB_SERVICE_ENDPOINT="<your-cosmos-db-URI>"
+AUTH_KEY="<your-authorization-key>"
+DATABASE_ID="<your-database-id>"
+CONTAINER="bot-storage"
 ```
 ---
 
@@ -343,6 +352,9 @@ npm install --save dotenv
 
 ### <a name="implementation"></a>實作 
 
+> [!NOTE]
+> 4\.6 版引進了新的 Cosmos DB 儲存體提供者 `CosmosDbPartitionedStorage`。 使用原始 `CosmosDbStorage` 的現有 Bot 應該繼續使用 `CosmosDbStorage`。 使用舊版提供者的 Bot 將繼續如預期般運作。 新的 Bot 應使用 `CosmosDbPartitionedStorage` 作為資料分割，以提供更高的效能。
+
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 下列範例程式碼會使用與上面提供的[記憶體儲存體](#memory-storage)範例相同的 Bot 程式碼執行。
@@ -361,12 +373,12 @@ public class EchoBot : ActivityHandler
    // private static readonly MemoryStorage _myStorage = new MemoryStorage();
 
    // Replaces Memory Storage with reference to Cosmos DB.
-   private static readonly CosmosDbStorage _myStorage = new CosmosDbStorage(new CosmosDbStorageOptions
+   private static readonly CosmosDbStorage _myStorage = new CosmosDbPartitionedStorage(new CosmosDbPartitionedStorageOptions
    {
-      AuthKey = CosmosDBKey,
-      CollectionId = CosmosDBCollectionName,
-      CosmosDBEndpoint = new Uri(CosmosServiceEndpoint),
-      DatabaseId = CosmosDBDatabaseName,
+        CosmosDbEndpoint = CosmosServiceEndpoint,
+        AuthKey = CosmosDBKey,
+        DatabaseId = CosmosDBDatabaseId,
+        ContainerId = CosmosDBContainerId,
    });
    
    ...
@@ -397,11 +409,11 @@ require('dotenv').config({ path: ENV_FILE });
 // var storage = new MemoryStorage();
 
 // Create access to CosmosDb Storage - this replaces local Memory Storage.
-var storage = new CosmosDbStorage({
-    serviceEndpoint: process.env.DB_SERVICE_ENDPOINT, 
+var storage = new CosmosDbPartitionedStorage({
+    cosmosDbEndpoint: process.env.DB_SERVICE_ENDPOINT, 
     authKey: process.env.AUTH_KEY, 
-    databaseId: process.env.DATABASE,
-    collectionId: process.env.COLLECTION
+    databaseId: process.env.DATABASE_ID,
+    containerId: process.env.CONTAINER
 })
 
 ```
@@ -432,7 +444,7 @@ Azure Blob 儲存體是 Microsoft 針對雲端推出的物件儲存體解決方�
 
 ### <a name="create-your-blob-storage-account"></a>建立 Blob 儲存體帳戶
 若要在 Bot 中使用 Blob 儲存體，您需要先設定一些事項，再進入程式碼。
-1. 在新的瀏覽器視窗中，登入 [Azure 入口網站](http://portal.azure.com)。
+1. 在新的瀏覽器視窗中，登入 [Azure 入口網站](https://portal.azure.com)。
 
 ![建立 Blob 儲存體](./media/create-blob-storage.png)
 

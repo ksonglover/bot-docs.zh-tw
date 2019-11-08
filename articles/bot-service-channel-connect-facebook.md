@@ -7,12 +7,12 @@ ms.topic: article
 ms.author: kamrani
 ms.service: bot-service
 ms.date: 10/28/2019
-ms.openlocfilehash: 0821d9cac50828cc7802c4be8221538d4e1e620d
-ms.sourcegitcommit: b2819741e2bcace92510e7b250cd5c1ab667d774
+ms.openlocfilehash: ba9f0ec8f4b6f0e2f5a7069ab456f96b303a4c92
+ms.sourcegitcommit: 4751c7b8ff1d3603d4596e4fa99e0071036c207c
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/29/2019
-ms.locfileid: "73031226"
+ms.lasthandoff: 11/02/2019
+ms.locfileid: "73441634"
 ---
 # <a name="connect-a-bot-to-facebook"></a>將 Bot 連線到 Facebook
 
@@ -133,6 +133,9 @@ Bot 完成之後，Facebook 對於發佈到 Messenger 的應用程式有自己�
 確保與這個 Bot 相關聯的 Facebook 頁面已發佈。 狀態會顯示在頁面設定中。
 
 ## <a name="connect-a-bot-to-facebook-workplace"></a>將 Bot 連線到 Facebook Workplace
+
+> [!NOTE]
+> 從 2019 年 12 月 16 日開始，Facebook Workplace 正在變更自訂整合的安全性模型。  目前，在 JavaScript/Node.js 上使用 Microsoft Bot Framework v4 建置的整合都必須更新為使用此 Bot Framework：[Facebook for Workplace 配接器](https://aka.ms/botframework-workplace-adapter)，並使用 Azure Web 應用程式進行部署，以在該日期之後繼續運作。 以 Workplace 為目標的新 Microsoft Bot Framework Bot 也應該使用該配接器來進行開發。
 
 Facebook Workplace 是商務導向的 Facebook 版本，可讓員工輕鬆地連線及共同作業。 其中包含即時影片、新聞摘要、群組、Messenger、反應、搜尋和趨勢文章。 也支援：
 
