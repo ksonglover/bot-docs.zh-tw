@@ -7,14 +7,14 @@ ms.author: diberry
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 09/23/2019
+ms.date: 11/06/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c9303962c992ef9b0801d0bdaabf08886755777d
-ms.sourcegitcommit: 33b67191b3a1c5744e1b93b0c02345536db41a54
+ms.openlocfilehash: 844f1514c0b90477cbe454d91dbc93637713d457
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/18/2019
-ms.locfileid: "72561357"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933765"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多個 LUIS 和 QnA 模型
 
@@ -310,7 +310,7 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 **BotServices.cs**
 
-[!code-csharp[ReadConfigurationInfo](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/BotServices.cs?range=14-30)]
+[!code-csharp[ReadConfigurationInfo](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/BotServices.cs?range=16-31)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
@@ -318,7 +318,7 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 **bots/dispatchBot.js**
 
-[!code-javascript[ReadConfigurationInfo](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=11-24)]
+[!code-javascript[ReadConfigurationInfo](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=11-26)]
 
 ---
 
@@ -343,7 +343,7 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 **bots/dispatchBot.js**
 
-[!code-javascript[OnMessageActivity](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=29-42)]
+[!code-javascript[onMessage](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=31-44)]
 
 ---
 
@@ -366,7 +366,7 @@ LuisAPIHostName=<your-dispatch-app-region>
 當模型產生結果時，它會指出哪一項服務最適合處理語句。 此範例中的程式碼會使用可辨識的 _topIntent_，示範如何將要求路由至相對應的服務。
 
 **bots/dispatchBot.js**  
-[!code-javascript[dispatchToTopIntentAsync](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=59-75)]
+[!code-javascript[dispatchToTopIntentAsync](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=61-77)]
 
 如果叫用 `processHomeAutomation` 或 `processWeather` 方法，則會從 _recognizerResult.luisResult_ 內的分派模型中傳遞結果。 接著，指定方法會提供顯示分派模型最高意圖的使用者意見反應，並且以排名列出所有偵測到的意圖和實體。
 

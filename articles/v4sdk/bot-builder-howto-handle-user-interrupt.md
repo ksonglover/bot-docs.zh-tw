@@ -7,14 +7,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 04/18/2019
+ms.date: 11/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b3e2a2f60c3a3f44c81e31b280315d8fee06138b
-ms.sourcegitcommit: 008aa6223aef800c3abccda9a7f72684959ce5e7
+ms.openlocfilehash: 1c75349605e7b142035112c84c2b8684fe78ca85
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/26/2019
-ms.locfileid: "70026329"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933550"
 ---
 # <a name="handle-user-interruptions"></a>處理使用者中斷
 
@@ -56,7 +56,7 @@ ms.locfileid: "70026329"
 
 如果使用者輸入「取消」，則會在其內部對話方塊內容上呼叫 `CancelAllDialogsAsync`，此方法會清除其對話方塊堆疊，並讓其以取消的狀態結束，且不會有結果值。 到 `MainDialog` (稍後會顯示) 時，其會顯示預約對話方塊已結束並傳回 Null，情況類似使用者選擇不要確認其預約時。
 
-[!code-csharp[Interrupt](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=33-56&highlight=43-45,49-51)]
+[!code-csharp[Interrupt](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/Dialogs/CancelAndHelpDialog.cs?range=33-56)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -76,7 +76,7 @@ ms.locfileid: "70026329"
 
 如果使用者輸入「取消」，則會在其內部對話方塊內容上呼叫 `cancelAllDialogs`，此方法會清除其對話方塊堆疊，並讓其以取消的狀態結束，且不會有結果值。 到 `MainDialog` (稍後會顯示) 時，其會顯示預約對話方塊已結束並傳回 Null，情況類似使用者選擇不要確認其預約時。
 
-[!code-javascript[Interrupt](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=20-37&highlight=27-29,32-34)]
+[!code-javascript[Interrupt](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/cancelAndHelpDialog.js?range=20-39)]
 
 ---
 
@@ -104,11 +104,11 @@ ms.locfileid: "70026329"
 
 有新的訊息活動送達時，Bot 會執行 `MainDialog`。 `MainDialog` 會提示使用者其能提供什麼協助。 然後，其會藉由呼叫 `beginDialog` 在 `MainDialog.actStep` 方法中啟動 `bookingDialog`，如下所示。
 
-[!code-javascript[Act step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=71-112&highlight=6,27)]
+[!code-javascript[Act step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=71-115&highlight=6,27)]
 
 接下來，在 `MainDialog` 類別的 `finalStep` 方法中，預約對話方塊會結束，並認為預約已完成或取消。
 
-[!code-javascript[Final step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=135-139)]
+[!code-javascript[Final step](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/dialogs/mainDialog.js?range=142-159)]
 
 這裡不會顯示 `BookingDialog` 中的程式碼，因為其與中斷處理沒有直接關聯。 其會用來提示使用者輸入預約詳細資料。 您可以在 **dialogs/bookingDialogs.js** 中找到該程式碼。
 
@@ -124,7 +124,7 @@ ms.locfileid: "70026329"
 
 在我們的範例中，配接器的 `OnTurnError` 處理常式會接收 Bot 的回合邏輯所擲回的任何例外狀況。 如果有擲回的例外狀況，處理常式就會刪除目前對話的對話狀態，防止 Bot 卡在因為狀態不良而導致的錯誤迴圈中。
 
-[!code-csharp[AdapterWithErrorHandler](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/AdapterWithErrorHandler.cs?range=13-45)]
+[!code-csharp[AdapterWithErrorHandler](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/AdapterWithErrorHandler.cs?range=19-50)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -132,7 +132,7 @@ ms.locfileid: "70026329"
 
 在我們的範例中，配接器的 `onTurnError` 處理常式會接收 Bot 的回合邏輯所擲回的任何例外狀況。 如果有擲回的例外狀況，處理常式就會刪除目前對話的對話狀態，防止 Bot 卡在因為狀態不良而導致的錯誤迴圈中。
 
-[!code-javascript[AdapterWithErrorHandler](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=34-44)]
+[!code-javascript[AdapterWithErrorHandler](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=35-57)]
 
 ---
 
@@ -158,7 +158,7 @@ ms.locfileid: "70026329"
 
 最後，在 `index.js` 中便會建立 Bot。
 
-[!code-javascript[Create bot](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=65)]
+[!code-javascript[Create bot](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/index.js?range=75-78)]
 
 如需參考，以下是呼叫中用來建立上述 Bot 的類別定義。
 

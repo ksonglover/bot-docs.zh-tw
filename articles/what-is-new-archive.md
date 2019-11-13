@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.service: bot-service
 ms.date: 11/01/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6d73ad7bc0226874253dfe37a00b09ab22677b92
-ms.sourcegitcommit: 4751c7b8ff1d3603d4596e4fa99e0071036c207c
+ms.openlocfilehash: a57e5bd2b17cb2ac7553e71ac66f2bdfe97f3b35
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2019
-ms.locfileid: "73441649"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933752"
 ---
 # <a name="whats-new-july-2019"></a>新功能 (2019 年 7 月)
 
@@ -70,7 +70,7 @@ Microsoft Build 2019 引進了 Bot Inspector，這是 Bot Framework Emulator 中
   
 - [Chat for Dynamics 365](https://www.powerobjects.com/powerpacks/powerchat/)：Chat for Dynamics 365 提供幾項功能，可確保支援專員和終端使用者可以有效地互動並保持高生產力。 在 Microsoft Dynamics 365 中進行即時聊天並追蹤來自網站訪客的交談。
 
-# <a name="whats-new-may-2019"></a>新功能 (2019 年 5 月)
+## <a name="whats-new-may-2019"></a>新功能 (2019 年 5 月)
 
 |   | C#  | JS  | Python |  Java | 
 |---|:---:|:---:|:------:|:-----:|

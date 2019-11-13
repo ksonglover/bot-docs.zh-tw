@@ -7,14 +7,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 07/05/2019
+ms.date: 11/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bb359ec2493b1c29624f5fb0135478cae1dea0e0
-ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
+ms.openlocfilehash: 6ef79b62aecbc79ed277f3962606d5ed5d9ceeb3
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/30/2019
-ms.locfileid: "70167172"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933548"
 ---
 # <a name="reuse-dialogs"></a>重複使用對話方塊
 
@@ -79,11 +79,11 @@ ms.locfileid: "70167172"
 
 在建構函式中，`AddDialog` 方法會將對話和提示新增至元件對話。 您使用此方法新增的第一個項目會設定為初始對話，但您可以藉由明確地設定 `InitialDialogId` 屬性，來加以變更。 當您啟動元件對話時，就會啟動其「初始對話」  。
 
-[!code-javascript[Constructor](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=25-47)]
+[!code-javascript[Constructor](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=25-45)]
 
 這是瀑布式對話方塊中第一個步驟的實作。
 
-[!code-javascript[First step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=66-73)]
+[!code-javascript[First step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=64-71)]
 
 如需有關如何實作瀑布式對話方塊的詳細資訊，請參閱如何[實作循序對話流程](bot-builder-dialog-manage-complex-conversation-flow.md)。
 
@@ -117,13 +117,13 @@ ms.locfileid: "70167172"
 
 在範例中，我們已將 `run` 方法新增至使用者設定檔對話中。
 
-[!code-javascript[run method](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=55-64)]
+[!code-javascript[run method](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=53-62)]
 
 **bots/dialogBot.js**
 
 `run` 方法是從 Bot 的 `onMessage` 方法中呼叫。
 
-[!code-javascript[onMessage](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/bots/dialogBot.js?range=30-37)]
+[!code-javascript[onMessage](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/bots/dialogBot.js?range=24-31&highlight=5)]
 
 ---
 

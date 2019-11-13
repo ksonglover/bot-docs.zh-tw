@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 11/01/2019
-ms.openlocfilehash: 86521259b284694fcc35f27899953c9eea1b57d0
-ms.sourcegitcommit: 490810d278d1c8207330b132f28a5eaf2b37bd07
+ms.openlocfilehash: 0e59c6d3548e273a8fb164526ddeb6ba66f48e3e
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/05/2019
-ms.locfileid: "73592264"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933520"
 ---
 # <a name="debug-a-bot-with-inspection-middleware"></a>使用檢查中介軟體來對聊天機器人進行偵錯
 本文說明如何使用檢查中介軟體對 Bot 進行偵錯。 除了查看 Bot 目前的狀態以外，這項功能也可讓 Bot Framework Emulator 偵測 Bot 的輸入和輸出流量。 您可以使用追蹤訊息將資料傳送給模擬器，然後在任何指定的對話回合中檢查聊天機器人的狀態。 
@@ -42,7 +42,7 @@ ms.locfileid: "73592264"
 [!code-csharp [inspection bot sample](~/../botbuilder-samples/samples/csharp_dotnetcore/47.inspection/Startup.cs?range=17-37)]
 
 **AdapterWithInspection.cs**  
-[!code-csharp [inspection bot sample](~/../botbuilder-samples/samples/csharp_dotnetcore/47.inspection/AdapterwithInspection.cs?range=11-21)]
+[!code-csharp [inspection bot sample](~/../botbuilder-samples/samples/csharp_dotnetcore/47.inspection/AdapterwithInspection.cs?range=11-37)]
 
 **EchoBot.cs**  
 [!code-csharp [inspection bot sample](~/../botbuilder-samples/samples/csharp_dotnetcore/47.inspection/Bots/EchoBot.cs?range=14-43)]
