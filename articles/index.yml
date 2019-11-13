@@ -21,7 +21,7 @@ abstract:
       height: 110
       src: media/video/satya-video.png
       width: 250
-    title: '由 Satya Nadella 建置 2019 重點演說。 (1:25:09)'
+    title: 'Satya Nadella 在 Build 2019 的演說重點。 (1:25:09)'
     href: 'https://mybuild.techcommunity.microsoft.com/sessions/77571?source=%7B%7B%20ctrl.source#top-anchor'
     width: 250
 sections:
