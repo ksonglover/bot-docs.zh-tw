@@ -7,12 +7,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 11/04/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c55e14f10bf6a5f4032033472c07401bde82a334
-ms.sourcegitcommit: 490810d278d1c8207330b132f28a5eaf2b37bd07
+ms.openlocfilehash: 165eac6ac134a5807119c7a067b77fb7bc6e3282
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/05/2019
-ms.locfileid: "73592268"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933699"
 ---
 <!-- 
 
@@ -273,30 +273,36 @@ Azure Bot 服務和 v4 SDK 包含全新的 Bot 驗證功能，並提供相關功
 > [!NOTE]
 > 您現在可將此 Bot 程式碼發佈至 Azure 訂用帳戶 (以滑鼠右鍵按一下專案，然後選擇 [發佈]  )，但此動作在本文的範例中並非必要。 在 Azure 入口網站中配置 Bot 時，您必須進行發佈設定，其應使用您所用的應用程式和主控方案。
 
-## <a name="test-the-bot"></a>測試 Bot
+## <a name="test-the-bot-using-the-emulator"></a>使用模擬器測試 Bot
 
-1. 如果您尚未安裝 [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)，請進行安裝。
-1. 在您的電腦本機執行範例。
-1. 啟動模擬器、連線到您的 Bot，然後傳送訊息。
+如果您尚未安裝 [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)，請進行安裝。 另請參閱[使用模擬器進行偵錯](../bot-service-debug-emulator.md)。
 
-    - 當您連線到 Bot 時，您必須提供 Bot 的應用程式識別碼和密碼。
+<!-- auth config steps -->
+為了讓 Bot 範例登入能夠執行，您必須如[設定模擬器進行驗證](../bot-service-debug-emulator.md#configure-the-emulator-for-authentication)所示設定模擬器。
 
-        - 如果您的 Bot 程式碼中需要 XML 逸出密碼，您也需要在這裡這麼做。
+### <a name="testing"></a>測試
 
-    - 輸入「`help`」以檢視適用於 Bot 的可用命令清單，以及測試驗證功能。
-    - 登入後一直到登出前，您都不需要再次提供認證。
-    - 若要登出並取消驗證，請輸入「`logout`」。
+設定驗證機制之後，您可以執行實際的 Bot 範例測試。  
+
+1. 在您的電腦本機執行 Bot 範例。
+1. 啟動模擬器。
+1. 當您連線到 Bot 時，必須提供 Bot 的應用程式識別碼和密碼。
+    - 您會從 Azure 應用程式註冊取得應用程式識別碼和密碼。 這些是您在 `appsettings.json` 或 `.env` 檔案中指派給 Bot 應用程式的相同值。 在模擬器中，您可以在組態檔中或在第一次連線到 Bot 時指派這些值。
+    - 如果您的 Bot 程式碼中需要 XML 逸出密碼，您也需要在這裡這麼做。
+1. 輸入「`help`」以檢視適用於 Bot 的可用命令清單，以及測試驗證功能。
+1. 登入後一直到登出前，您都不需要再次提供認證。
+1. 若要登出並取消驗證，請輸入「`logout`」。
 
 > [!NOTE]
 > Bot 驗證需要使用 Bot 連接器服務。 該服務將針對您的 Bot 存取 Bot 通道註冊資訊。
 
-# <a name="bot-authenticationtabbot-oauth"></a>[Bot 驗證](#tab/bot-oauth)
+## <a name="bot-authentication-example"></a>Bot 驗證範例
 
 在 **Bot 驗證**範例中，對話的設計訴求是要在使用者登入後擷取使用者權杖。
 
 ![範例輸出](media/how-to-auth/auth-bot-test.png)
 
-# <a name="bot-authentication-msgraphtabbot-msgraph-auth"></a>[Bot 驗證 MSGraph](#tab/bot-msgraph-auth)
+## <a name="bot-authentication-msgraph-example"></a>Bot 驗證 MSGraph 範例
 
 在 **Bot 驗證 MSGraph**範例中，對話的設計訴求是要接受使用者登入後的一組有限命令。
 
@@ -423,7 +429,7 @@ Teams 在 OAuth 方面的行為與其他通道稍有不同，而且需要進行�
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)  
 **Bots/DialogBot.cs**  
-[!code-csharp[Dialogs Handler](~/../botbuilder-samples/samples/csharp_dotnetcore/46.teams-auth/Bots/DialogBot.cs?range=18)]
+[!code-csharp[Dialogs Handler](~/../botbuilder-samples/samples/csharp_dotnetcore/46.teams-auth/Bots/DialogBot.cs?range=19)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)  
 **Bots/dialogBot.js**  

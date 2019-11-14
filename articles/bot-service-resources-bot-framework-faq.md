@@ -7,24 +7,49 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 02/21/2019
-ms.openlocfilehash: d8e5151e7b5432b8ec90087647380757e101c447
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.openlocfilehash: 8804ee573f3bf16a831e58221e27d2c8557bd20f
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70298088"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933538"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常見問題集
 
 本文包含關於一些 Bot Framework 常見問題集的解答。
 
 ## <a name="background-and-availability"></a>背景與可用性
+
 ### <a name="why-did-microsoft-develop-the-bot-framework"></a>Microsoft 為何要開發 Bot Framework？
 
 在我們使用對話使用者介面 (CUI) 時，目前只有少數開發人員具備必要的專業知識和工具，可以建立新的對話體驗；或是讓現有的應用程式和服務，具備使用者可以享受的對話介面。 我們建立了 Bot Framework，讓開發人員更容易建置良好的 Bot 並且與使用者連線，無論是在哪裡進行對話 (包括 Microsoft 的主要通道)。
 
 ### <a name="what-is-the-v4-sdk"></a>什麼是 v4 SDK？
 Bot Framework v4 SDK 是根據意見反映而建置，並且參考了先前的 Bot Framework SDK。 它引入了正確層級的抽象概念，同時採用了豐富的 Bot 建置組塊元件化功能。 您可以從簡單的 Bot 開始，並且使用模組化和可延伸的架構，讓您的 Bot 更細緻。 您可以在 GitHub 上找到 SDK 的[常見問題集](https://github.com/Microsoft/botbuilder-dotnet/wiki/FAQ)。
+
+### <a name="running-a-bot-offline"></a>離線執行 Bot
+
+<!-- WIP -->
+在討論如何離線使用 Bot 之前 (表示 Bot 未部署在 Azure 上或在其他一些主機服務上，但已內部部署)，讓我們來澄清幾個重點。
+
+- Bot 是一種沒有 UI 的 Web 服務，因此使用者必須透過其他方式、以使用 [Azure 連接器服務](rest-api/bot-framework-rest-connector-concepts.md#bot-connector-service)的通道形式與其互動。 連接器函式可做為 *Proxy*，在用戶端與 Bot 之間轉送訊息。
+- **連接器**是裝載於 Azure 節點且散佈各地的全域應用程式，具備可用性和延展性。 
+- 您可以使用 [Bot 通道註冊](bot-service-quickstart-registration.md)，向連接器註冊 Bot。
+    >[!NOTE]
+    > Bot 必須有可由連接器公開觸達的端點。
+
+您可以離線執行 Bot，但功能有限。 例如，如果您想要使用具有 LUIS 功能的離線 Bot，必須建立 Bot 的容器、必要的工具，以及 LUIS 的容器。 兩者都是透過 Docker Compose 橋接網路進行連線。
+
+這是「部份」離線解決方案，因為認知服務容器需要週期性線上連線。
+
+> [!NOTE]
+> 離線執行的 Bot 不支援 QnA 服務。
+
+如需詳細資訊，請參閱
+
+- [將 Language Understanding (LUIS) 容器部署至 Azure 容器執行個體](https://docs.microsoft.com/azure/cognitive-services/luis/deploy-luis-on-container-instances)
+- [Azure 認知服務中的容器支援](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-container-support)
+
 
 ## <a name="bot-framework-sdk-version-3-lifetime-support"></a>Bot Framework SDK 第 3 版存留期支援 
 SDK V3 Bot 會繼續執行並受 Azure Bot Service 支援。  自 Bot Framework SDK V4 發行以來，如同其他架構，我們會以安全性、高優先順序錯誤修正及連接器 / 通訊協定層更新，繼續支援 SDK V3。  客戶可預期 2019 年繼續有 v3 支援。
@@ -57,7 +82,7 @@ SDK V3 Bot 會繼續執行並受 Azure Bot Service 支援。  自 Bot Framework 
 
 ### <a name="should-i-build-new-a-bot-using-v3-or-v4"></a>我應該使用 V3 或 V4 建置新的 Bot？
 - 在新的交談式體驗中，我們建議您使用 Bot Framework SDK V4 啟動新的 Bot。
-- 如果您已熟悉 Bot Framework SDK V3，您應該花點時間了解新的 [Bot Framework SDK V4](http://aka.ms/botframeowrkoverview) 所提供的新版本和功能。
+- 如果您已熟悉 Bot Framework SDK V3，您應該花點時間了解新的 [Bot Framework SDK V4](https://aka.ms/botframeowrkoverview) 所提供的新版本和功能。
 - 如果您在生產環境中已經有 Bot Framework SDK V3 Bot，別擔心，其會繼續按現狀針對可預見的未來運作。
 - 您可以透過 Azure 入口網站和 Azure 命令列，建立 Bot Framework SDK V4 及舊版 V3 Bot。 
 
@@ -105,7 +130,7 @@ services.AddSingleton<IChannelProvider, ConfigurationChannelProvider>();
 ```csharp
 options.ChannelProvider = new ConfigurationChannelProvider();
 ```
-您可以在[這裡](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-services-aiandcognitiveservices#azure-bot-service)找到有關政府服務的詳細資訊
+您可以在[這裡](https://docs.microsoft.com/azure/azure-government/documentation-government-services-aiandcognitiveservices#azure-bot-service)找到有關政府服務的詳細資訊
 
 ## <a name="security-and-privacy"></a>安全性和隱私權
 ### <a name="do-the-bots-registered-with-the-bot-framework-collect-personal-information-if-yes-how-can-i-be-sure-the-data-is-safe-and-secure-what-about-privacy"></a>向 Bot Framework 註冊的 Bot 是否會收集個人資訊？ 如果是的話，我要如何確定資料是安全的？ 隱私權呢？
@@ -162,7 +187,7 @@ Bot Framework 服務必須保護自己本身及其客戶免於不當呼叫模式
 ## <a name="related-services"></a>相關服務
 ### <a name="how-does-the-bot-framework-relate-to-cognitive-services"></a>Bot Framework 與認知服務有何關聯？
 
-Bot Framework 和[認知服務](http://www.microsoft.com/cognitive)都是在 [Microsoft Build 2016](http://build.microsoft.com) 中引進的新功能，將會在正式上市時整合至 Cortana Intelligence Suite。 這兩項服務都是根據多年的研究所建置，並且用於熱門的 Microsoft 產品中。 這些功能與 ‘Cortana Intelligence’ 合併，可以讓每個組織利用資料、雲端和智慧的能力，建置專屬的智慧系統，以便開啟新的機會、增加營運速度並且成為業界的領先者。
+Bot Framework 和[認知服務](https://www.microsoft.com/cognitive)都是在 [Microsoft Build 2016](https://build.microsoft.com) 中引進的新功能，將會在正式上市時整合至 Cortana Intelligence Suite。 這兩項服務都是根據多年的研究所建置，並且用於熱門的 Microsoft 產品中。 這些功能與 ‘Cortana Intelligence’ 合併，可以讓每個組織利用資料、雲端和智慧的能力，建置專屬的智慧系統，以便開啟新的機會、增加營運速度並且成為業界的領先者。
 
 ### <a name="what-is-cortana-intelligence"></a>什麼是 Cortana Intelligence？
 

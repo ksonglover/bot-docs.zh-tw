@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9911fda3458d686cce993a54223ab06036dee745
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.openlocfilehash: 9dbb64dd941cdd7706b0ec8f7bd531530c8db59e
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70299516"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933604"
 ---
 # <a name="dialogs-library"></a>對話方塊程式庫
 
@@ -106,7 +106,7 @@ Dialogs 程式庫中的提示，可讓您輕鬆地向使用者詢問資訊並評
 * *值*：包含您可以新增至內容，而後轉入後續步驟中的資訊。
 * *結果*：包含上一個步驟的結果。
 
-此外，next  方法會繼續進行相同回合中瀑布式對話的下一個步驟，並且讓 Bot 視需要略過特定步驟。
+此外，next  方法 (C# 中的 **NextAsync**，JS 中的 **next**) 會繼續進行相同回合中瀑布式對話的下一個步驟，並且讓 Bot 視需要略過特定步驟。
 
 #### <a name="prompt-options"></a>提示選項
 

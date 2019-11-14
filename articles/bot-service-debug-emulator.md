@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 2/26/2019
-ms.openlocfilehash: b6db4fd406b115ca88298d0727ff118821dad0d5
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.openlocfilehash: de15fbc7fb000bde3b62883405149d22f3ac23a0
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70298265"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933648"
 ---
 # <a name="debug-with-the-emulator"></a>使用模擬器進行偵錯
 
@@ -55,6 +55,37 @@ Bot Framework 模擬器是一項桌面應用程式，可讓 Bot 開發人員在�
 
 ## <a name="connect-to-a-bot-running-on-localhost"></a>連線至執行於本機主機的 Bot
 
+<!-- auth config steps -->
+### <a name="configure-the-emulator-for-authentication"></a>設定模擬器以進行驗證
+
+如果 Bot 需要驗證、顯示登入對話方塊，您必須設定模擬器，如下所示。
+
+#### <a name="using-sign-in-verification-code"></a>使用登入驗證碼
+
+1. 啟動模擬器。
+1. 在模擬器中，按一下左下方的齒輪圖示，或右上方的 [模擬器設定]  索引標籤。
+1. 勾選 [使用 Oauthcard 的登入驗證碼]  方塊。
+1. 勾選 [略過本機位址的 ngrok]  方塊。
+1. 按一下 [儲存]  按鈕。
+
+當您按一下 Bot 所顯示的登入按鈕時，將會產生驗證碼。
+您會在 Bot 輸入聊天方塊中輸入程式碼，讓驗證生效。
+之後，您就可以執行允許的作業。
+
+或者，您可以執行以下所述的步驟。
+
+#### <a name="using-authentication-tokens"></a>使用驗證權杖
+
+1. 啟動模擬器。
+1. 在模擬器中，按一下左下方的齒輪圖示，或右上方的 [模擬器設定]  索引標籤。
+1. 勾選 [使用1.0 版驗證權杖]  方塊。
+1. 輸入 **ngrok** 工具的本機路徑。 如需工具詳細資訊，請參閱 [ngrok](https://ngrok.com/)。
+1. 勾選 [在模擬器啟動時執行 ngrok]  方塊。
+1. 按一下 [儲存]  按鈕。
+
+當您按一下 Bot 所顯示的登入按鈕時，系統會要求您輸入認證。 驗證權杖隨即產生。 之後，您就可以執行允許的作業。
+
+
 ![模擬器 UI](media/emulator-v4/emulator-welcome.png)
 
 若要連線至在本機上執行的聊天機器人，請按一下 [開啟聊天機器人]  。 將稍早複製的連接埠號碼新增至下列 URL，並在 [Bot URL] 列中貼上更新後的 URL：
@@ -64,7 +95,6 @@ Bot Framework 模擬器是一項桌面應用程式，可讓 Bot 開發人員在�
 ![模擬器 UI](media/bot-service-debug-emulator/open_bot_emulator.png)
 
 如果您的聊天機器人搭配 [Microsoft 帳戶 (MSA) 認證](#use-bot-credentials)執行，請也輸入這些認證。
-
 
 ### <a name="use-bot-credentials"></a>使用聊天機器人認證
 

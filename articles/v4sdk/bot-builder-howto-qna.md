@@ -7,22 +7,22 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 11/01/2019
+ms.date: 11/06/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9ac71659e6420f5181aa7e332d8e5806f1edc348
-ms.sourcegitcommit: 4751c7b8ff1d3603d4596e4fa99e0071036c207c
+ms.openlocfilehash: b58307732ae973719231987a35eab6374ea704e4
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2019
-ms.locfileid: "73441552"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933615"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答問題
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-QnA Maker 會透過您的資料提供對話式的問題和解答層。 這可讓您的 Bot 傳送問題給 QnA Maker 並接收回應，而不需要您來剖析和解譯問題的意圖。 
+QnA Maker 會透過您的資料提供對話式的問題和解答層。 這可讓您的 Bot 傳送問題給 QnA Maker 並接收回應，而不需要您來剖析和解譯問題的意圖。
 
-在建立您自己的 QnA Maker 服務時，其中一項基本需求是在服務中植入問題和解答。 在許多案例中，問題和解答已存在於常見問題集或其他文件的內容中；但有些時候，您可能會想要以更自然的對話方式來自訂問題的解答。 
+在建立您自己的 QnA Maker 服務時，其中一項基本需求是在服務中植入問題和解答。 在許多案例中，問題和解答已存在於常見問題集或其他文件的內容中；但有些時候，您可能會想要以更自然的對話方式來自訂問題的解答。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -35,19 +35,23 @@ QnA Maker 會透過您的資料提供對話式的問題和解答層。 這可讓
 為了讓 Bot 可使用 QnA Maker，您必須先在 [QnA Maker](https://www.qnamaker.ai/) 上建立知識庫，我們將在下一節中討論這部分。 然後，您的 Bot 可以對其傳送使用者的查詢，讓其在回應中提供問題的最佳答案。
 
 ## <a name="ctabcs"></a>[C#](#tab/cs)
+
 ![QnABot 邏輯流程](./media/qnabot-logic-flow.png)
 
-系統會針對每個收到的使用者輸入呼叫 `OnMessageActivityAsync`。 呼叫後，該方法就會在範例程式碼的 `appsetting.json` 檔案內存取儲存的 `_configuration` 資訊，以尋找值來連線到預先設定的 QnA Maker 知識庫。 
+系統會針對每個收到的使用者輸入呼叫 `OnMessageActivityAsync`。 呼叫後，該方法就會在範例程式碼的 `appsetting.json` 檔案內存取儲存的 `_configuration` 資訊，以尋找值來連線到預先設定的 QnA Maker 知識庫。
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
+
 ![QnABot JS 邏輯流程](./media/qnabot-js-logic-flow.png)
 
 系統會針對每個收到的使用者輸入呼叫 `OnMessage`。 呼叫後，該方法就會存取您的 `qnamaker` 連接器，該連接器已使用您範例程式碼中 `.env` 檔案所提供的值預先設定。  qnamaker 方法 `getAnswers` 會將您的 Bot 連線到外部的 QnA Maker 知識庫。
 
 ---
+
 使用者輸入會傳送至您的知識庫，並向使用者顯示最適合的回傳解答。
 
 ## <a name="create-a-qna-maker-service-and-publish-a-knowledge-base"></a>建立 QnA Maker 服務及發佈知識庫
+
 第一步是建立 QnA Maker 服務。 依照 QnA Maker [文件](https://docs.microsoft.com/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure)中所述的步驟在 Azure 中建立服務。
 
 接下來，您將使用 `smartLightFAQ.tsv` 檔案 (位於範例專案的 CognitiveModels 資料夾中) 來建立知識庫。 用於建立、定型及發佈 QnA Maker[知識庫](https://docs.microsoft.com/azure/cognitive-services/qnamaker/quickstarts/create-publish-knowledge-base)的步驟會列於 QnA Maker 文件中。 當您遵循這些步驟時，請將您的 KB 命名為 `qna`，並使用 `smartLightFAQ.tsv` 檔案來填入 KB。
@@ -55,18 +59,19 @@ QnA Maker 會透過您的資料提供對話式的問題和解答層。 這可讓
 > 注意： 本文也可用來存取您自己使用者所開發的 QnA Maker 知識庫。
 
 ## <a name="obtain-values-to-connect-your-bot-to-the-knowledge-base"></a>取得值，將您的 Bot 連線到知識庫
+
 1. 在 [QnA Maker](https://www.qnamaker.ai/) 網站上，選取您的知識庫。
-1. 開啟您的知識庫，然後選取 [設定]  。 記錄針對「服務名稱」  顯示的值。 使用 QnA Maker 入口網站介面時，此值很適合用於尋找您感興趣的知識庫。 但不會用於將 Bot 應用程式連線到此知識庫。 
+1. 開啟您的知識庫，然後選取 [設定]  。 記錄針對「服務名稱」  顯示的值。 使用 QnA Maker 入口網站介面時，此值很適合用於尋找您感興趣的知識庫。 但不會用於將 Bot 應用程式連線到此知識庫。
 1. 從 Postman 範例 HTTP 要求，向下捲動以尋找 [部署詳細資料]  並記錄下列值：
    - POST /knowledgebases/\<knowledge-base-id>/generateAnswer
    - 主機：\<your-hostname> / / 以 /qnamaker 結尾的完整 URL
    - 授權：EndpointKey \<your-endpoint-key>
-   
+
 您主機名稱的完整 URL 字串看起來會類似 "https://< >.azure.net/qnamaker"。 這三個值會為您的應用程式提供透過 Azure QnA 服務連線到 QnA Maker 知識庫所需的資訊。  
 
-## <a name="update-the-settings-file"></a>更新設定檔
+## <a name="update-the-settings-file"></a>更新 settings 檔案
 
-首先，將存取您知識庫所需的資訊 (包括主機名稱、端點金鑰和知識庫識別碼 (kbId)) 新增至設定檔。 這些是您在 QnA Maker 中從知識庫 [設定]  索引標籤儲存的值。 
+首先，將存取您知識庫所需的資訊 (包括主機名稱、端點金鑰和知識庫識別碼 (kbId)) 新增至設定檔。 這些是您在 QnA Maker 中從知識庫 [設定]  索引標籤儲存的值。
 
 如果您未將其部署於生產環境，可將應用程式識別碼和密碼欄位保留空白。
 
@@ -77,29 +82,13 @@ QnA Maker 會透過您的資料提供對話式的問題和解答層。 這可讓
 
 ### <a name="update-your-appsettingsjson-file"></a>更新 appsettings.json 檔案
 
-```json
-{
-  "MicrosoftAppId": "",
-  "MicrosoftAppPassword": "",
-  
-  "QnAKnowledgebaseId": "<knowledge-base-id>",
-  "QnAAuthKey": "<your-endpoint-key>",
-  "QnAEndpointHostName": "<your-hostname>"
-}
-```
+[!code-csharp[appsettings](~/../botbuilder-samples/samples/csharp_dotnetcore/11.qnamaker/appsettings.json)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
 ### <a name="update-your-env-file"></a>更新 .env 檔案
 
-```file
-MicrosoftAppId=""
-MicrosoftAppPassword=""
-
-QnAKnowledgebaseId="<knowledge-base-id>"
-QnAAuthKey="<your-endpoint-key>"
-QnAEndpointHostName="<your-hostname>"
-```
+[!code-javascript[.env file](~/../botbuilder-samples/samples/javascript_nodejs/11.qnamaker/.env)]
 
 ---
 
@@ -113,8 +102,7 @@ QnAEndpointHostName="<your-hostname>"
 
 在 **QnABot.cs** 的 `OnMessageActivityAsync` 方法中，我們會建立 QnAMaker 執行個體。 `QnABot` 類別中也會加入連線資訊名稱 (儲存在上述的 `appsettings.json` 中)。 如果您已在設定檔中選擇不同的知識庫連線資訊名稱，請務必在此更新名稱，以反映您所選擇的名稱。
 
-**Bots/QnABot.cs**  
-[!code-csharp[qna connection](~/../botbuilder-samples/samples/csharp_dotnetcore/11.qnamaker/Bots/QnABot.cs?range=32-37)]
+**Bots/QnABot.cs** [!code-csharp[qna connection](~/../botbuilder-samples/samples/csharp_dotnetcore/11.qnamaker/Bots/QnABot.cs?range=32-39)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
@@ -124,7 +112,8 @@ QnAEndpointHostName="<your-hostname>"
 
 在 **QnABot.js** 檔案中，我們可使用 .env 檔案所提供的連線資訊來連線到 QnA Maker 服務：_this.qnaMaker_。
 
-**QnAMaker.js** [!code-javascript[QnAMaker](~/../botbuilder-samples/samples/javascript_nodejs/11.qnamaker/bots/QnABot.js?range=12-16)]
+**bots/QnABot.js** [!code-javascript[QnAMaker](~/../botbuilder-samples/samples/javascript_nodejs/11.qnamaker/bots/QnABot.js?range=12-16)]
+
 ---
 
 ## <a name="calling-qna-maker-from-your-bot"></a>從您的 Bot 呼叫 QnA Maker
@@ -133,16 +122,13 @@ QnAEndpointHostName="<your-hostname>"
 
 當您的 Bot 需要來自 QnAMaker 的解答時，從您的 Bot 程式碼呼叫 `GetAnswersAsync()`，以根據目前的內容取得適當解答。 如果您要存取自己的知識庫，請變更以下的_找不到解答_訊息，為您的使用者提供實用的指示。
 
-**QnABot.cs**  
-[!code-csharp[qna connection](~/../botbuilder-samples/samples/csharp_dotnetcore/11.qnamaker/Bots/QnABot.cs?range=43-52)]
+**Bots/QnABot.cs** [!code-csharp[qna get answers](~/../botbuilder-samples/samples/csharp_dotnetcore/11.qnamaker/Bots/QnABot.cs?range=43-52)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-在 **QnABot.js** 檔案中，我們會將使用者的輸入傳遞至 QnA Maker 服務的 `getAnswers` 方法，以從知識庫中取得解答。 如果 QnA Maker 傳回回應，該回應會顯示給使用者。 否則，使用者會收到「找不到 QnA Maker 解答」的訊息。 
+在 **QnABot.js** 檔案中，我們會將使用者的輸入傳遞至 QnA Maker 服務的 `getAnswers` 方法，以從知識庫中取得解答。 如果 QnA Maker 傳回回應，該回應會顯示給使用者。 否則，使用者會收到「找不到 QnA Maker 解答」的訊息。
 
-**QnABot.js**
-
-[!code-javascript[OnMessage](~/../botbuilder-samples/samples/javascript_nodejs/11.qnamaker/bots/QnABot.js?range=43-59)]
+**bots/QnABot.js** [!code-javascript[OnMessage](~/../botbuilder-samples/samples/javascript_nodejs/11.qnamaker/bots/QnABot.js?range=46-55)]
 
 ---
 
@@ -162,7 +148,7 @@ QnA Maker 支援後續追蹤提示，也稱為多回合提示。
 如果 QnA Maker 知識庫需要使用者的其他回應，QnA Maker 會傳送您可以用來提示使用者的內容資訊。 此資訊也會用來對 QnA Maker 服務進行任何後續追蹤呼叫。
 在 4.6 版中，Bot Framework SDK 已新增此功能的支援。
 
-若要建立這類知識庫，請參閱 QnA Maker 文件，以了解如何[使用後續追蹤提示建立多個對話回合](https://aka.ms/qnamaker-multiturn-conversation)。 若要了解如何在 Bot 中併入多回合支援，請參閱 QnA Maker 多回合 [[**C#** ](https://aka.ms/cs-qna-multiturn) | [**JS**](https://aka.ms/js-qna-multiturn)] 範例。
+若要建立這類知識庫，請參閱 QnA Maker 文件，以了解如何[使用後續追蹤提示建立多個對話回合](https://aka.ms/qnamaker-multiturn-conversation)。 <!--To learn how to incorporate multi-turn support in your bot, take a look at the QnA Maker Multi-turn [[**C#**](https://aka.ms/cs-qna-multiturn) | [**JS**](https://aka.ms/js-qna-multiturn)] sample.-->
 
 <!--TODO: Update code based on final sample 
 The following code snippets come from the proof-of-concept **multi-turn QnA Maker prompts** sample for

@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 07/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5b8c812d7521edb2907b1a52d3acb890adf5ac67
-ms.sourcegitcommit: 4751c7b8ff1d3603d4596e4fa99e0071036c207c
+ms.openlocfilehash: 524ffa37d1d089bfec01fa7b89a456ecdda719f9
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/02/2019
-ms.locfileid: "73441514"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933715"
 ---
 # <a name="add-telemetry-to-your-bot"></a>將遙測新增至 Bot
 
@@ -171,9 +171,9 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="enabling-telemetry-in-your-bots-dialogs"></a>在聊天機器人的對話方塊中啟用遙測
 
-若要取得有關對話的內建遙測資訊，您必須將遙測用戶端新增至每個對話方塊。 請遵循下列步驟來更新 CoreBot 範例：
+ 請遵循下列步驟來更新 CoreBot 範例：
 
-1.  在 `MainDialog.cs` 中，您必須將新的 TelemetryClient 欄位新增至 `MainDialog` 類別，然後更新建構函式參數清單以納入 `IBotTelemetryClient` 參數，再將該參數傳遞給 `AddDialog()` 方法的每個呼叫。
+1.  在 `MainDialog.cs` 中，將新的 TelemetryClient 欄位新增至 `MainDialog` 類別，然後更新建構函式參數清單以納入 `IBotTelemetryClient` 參數，再將該參數傳遞給 `AddDialog()` 方法的每個呼叫。
 
 
     * 將參數 `IBotTelemetryClient telemetryClient` 新增至 MainDialog 類別的建構函式，然後將其指派給 `TelemetryClient` 欄位：
@@ -224,7 +224,7 @@ public void ConfigureServices(IServiceCollection services)
 
         ```
 
-2. 在 `DialogExtensions.cs` 中，您必須在 `Run()` 方法中設定 `dialogSet` 物件的 `TelemetryClient` 屬性：
+2. 在 `DialogExtensions.cs` 中，於 `Run()` 方法中設定 `dialogSet` 物件的 `TelemetryClient` 屬性：
 
 
     ```csharp

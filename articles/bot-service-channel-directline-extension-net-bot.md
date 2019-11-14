@@ -8,12 +8,12 @@ ms.service: bot-service
 ms.topic: conceptual
 ms.author: kamrani
 ms.date: 07/25/2019
-ms.openlocfilehash: 68ef5f1d24c464489ff500fe290de2a151f87f5a
-ms.sourcegitcommit: 6a83b2c8ab2902121e8ee9531a7aa2d85b827396
+ms.openlocfilehash: 3ed589bff5c3740dddcfb62226714006313ae330
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/09/2019
-ms.locfileid: "68970598"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933682"
 ---
 # <a name="configure-net-bot-for-extension"></a>設定 .NET Bot 擴充功能
 
@@ -74,7 +74,13 @@ ms.locfileid: "68970598"
     這些值是與服務註冊群組相關聯的 **appid** 和 **appSecret**。
 
 1. 將 Bot **發佈**至您的 Azure App Service。
-1. 在瀏覽器中，導覽至 https://<your_app_service>.azurewebsites.net/.bot。 如果一切都正確無誤，頁面將會傳回下列 JSON 內容：`{"k":true,"ib":true,"ob":true,"initialized":true}`。
+1. 在瀏覽器中，導覽至 https://<your_app_service>.azurewebsites.net/.bot。 如果一切都正確無誤，頁面將會傳回下列 JSON 內容：`{"k":true,"ib":true,"ob":true,"initialized":true}`。 這是您在**一切運作正常**時所取得的資訊，其中
+
+    - **k** 決定 Direct Line App Service 擴充功能 (ASE) 是否可以從其組態中讀取擴充功能金鑰。 
+    - **initialized** 可決定 Direct Line ASE 是否可以使用擴充功能金鑰從 Azure Bot Service 下載 Bot 中繼資料
+    - **ib** 決定 Direct Line ASE 是否可以與 Bot 建立輸入連線。
+    - **ob** 可決定 Direct Line ASE 是否可以與 Bot 建立輸出連線。 
+
 
 ### <a name="gather-your-direct-line-extension-keys"></a>收集您的 Direct Line 擴充功能金鑰
 
@@ -94,7 +100,7 @@ ms.locfileid: "68970598"
 1. 在 Azure 入口網站中，找出您的 Bot 裝載所在 Web 應用程式的 [Azure App Service]  資源頁面
 1. 按一下 [組態]  。 在 [應用程式設定]  區段下方，新增下列新設定：
 
-    |Name|值|
+    |名稱|值|
     |---|---|
     |DirectLineExtensionKey|<App_Service_Extension_Key_From_Section_1>|
     |DIRECTLINE_EXTENSION_VERSION|最新|

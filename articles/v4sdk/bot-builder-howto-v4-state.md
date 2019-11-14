@@ -7,14 +7,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 05/23/2019
+ms.date: 11/06/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3f298f728f11327da1613549c08e405a89d8d180
-ms.sourcegitcommit: 9e1034a86ffdf2289b0d13cba2bd9bdf1958e7bc
+ms.openlocfilehash: f306fdbe39fd7863faf0ec32f99604c3a99da955
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/21/2019
-ms.locfileid: "69890585"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933736"
 ---
 # <a name="save-user-and-conversation-data"></a>儲存使用者和對話資料
 
@@ -23,6 +23,7 @@ ms.locfileid: "69890585"
 Bot 原本就是無狀態。 部署 Bot 後，在不同的回合中，Bot 便無法在相同程序中或同部電腦上執行。 不過，Bot 可能需要追蹤對話的內容，以便管理其行為，以及記住先前問題的答案。 Bot Framework SDK 的狀態和儲存體功能可讓您將狀態新增至 Bot。 Bot 會使用狀態管理和儲存體物件來管理和保存狀態。 狀態管理員會提供抽象層，讓您使用屬性存取子存取狀態屬性，而不受基礎儲存體類型所影響。
 
 ## <a name="prerequisites"></a>必要條件
+
 - 需具備 [Bot 基本概念](bot-builder-basics.md)以及 Bot 如何[管理狀態](bot-builder-concept-state.md)的知識。
 - 本文中的程式碼是以**狀態管理 Bot 範例**為基礎。 您需要 [CSharp](https://aka.ms/statebot-sample-cs) 或 [JavaScript](https://aka.ms/statebot-sample-js) 中的一份範例。
 
@@ -30,9 +31,11 @@ Bot 原本就是無狀態。 部署 Bot 後，在不同的回合中，Bot 便無
 收到使用者輸入後，此範例會檢查儲存的對話狀態，以查看之前是否已提示此使用者提供名稱。 如果沒有，則會要求使用者的名稱，並將該輸入儲存在使用者狀態中。 如果有，則使用者狀態中儲存的名稱就會用來與使用者對話，而其輸入的資料 (包括接收時間與輸入通道識別碼) 會傳回給使用者。 時間和通道識別碼值會從使用者對話資料中擷取，然後再儲存到對話狀態。 下圖顯示 Bot、使用者設定檔及對話資料類別之間的關聯性。
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
 ![狀態 Bot 範例](media/StateBotSample-Overview.png)
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
 ![狀態 Bot 範例](media/StateBotSample-JS-Overview.png)
 
 ---
@@ -67,17 +70,17 @@ Bot 原本就是無狀態。 部署 Bot 後，在不同的回合中，Bot 便無
 接下來，我們會註冊用來建立 `UserState` 和 `ConversationState` 物件的 `MemoryStorage`。 使用者和對話狀態物件會在 `Startup` 上建立，而相依性會插入 Bot 建構函式。 為 Bot 註冊的其他服務為：認證提供者、配接器及 Bot 實作。
 
 **Startup.cs**  
-[!code-csharp[ConfigureServices](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/Startup.cs?range=17-36)]
+[!code-csharp[ConfigureServices](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/Startup.cs?range=26-29)]
+[!code-csharp[ConfigureServices](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/Startup.cs?range=51-57)]
 
-**StateManagementBot.cs**  
-[!code-csharp[StateManagement](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=15-22)]
+**Bots/StateManagementBot.cs** [!code-csharp[StateManagement](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/Bots/StateManagementBot.cs?range=15-22)]
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 接下來，我們會註冊用來建立 `UserState` 和 `ConversationState` 物件的 `MemoryStorage`。
 
 **index.js**  
-[!code-javascript[DefineMemoryStore](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/index.js?range=32-38)]
+[!code-javascript[DefineMemoryStore](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/index.js?range=33-39)]
 
 ---
 
@@ -87,43 +90,39 @@ Bot 原本就是無狀態。 部署 Bot 後，在不同的回合中，Bot 便無
 
 現在我們要使用可提供控制代碼給 `BotState` 物件的 `CreateProperty` 方法建立屬性存取子。 每個狀態屬性存取子，都可讓您取得或設定相關聯的狀態屬性值。 在我們使用狀態屬性之前，我們會使用每個存取子從儲存體載入屬性，並從狀態快取中取得該屬性。 為取得狀態屬性相關金鑰的正確範圍，我們會呼叫 `GetAsync` 方法。
 
-**StateManagementBot.cs**  
-[!code-csharp[StateAccessors](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=38-46)]
+**Bots/StateManagementBot.cs** [!code-csharp[StateAccessors](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/Bots/StateManagementBot.cs?range=38-46)]
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 現在我們要建立 `UserState` 和 `ConversationState` 的屬性存取子。 每個狀態屬性存取子，都可讓您取得或設定相關聯的狀態屬性值。 我們使用每個存取子從儲存體載入相關聯的屬性，並從快取中擷取其目前的狀態。
 
-**StateManagementBot.js**。  
-[!code-javascript[BotService](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=6-19)]
+**bots/stateManagementBot.js** [!code-javascript[BotService](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=6-19)]
 
 ---
 
 ## <a name="access-state-from-your-bot"></a>從 Bot 存取狀態
+
 前一節討論了初始階段步驟，以將狀態屬性存取子新增至 Bot。 現在，我們可以在執行階段使用這些存取子，來讀取和寫入狀態資訊。 以下範例程式碼會使用下列邏輯流程：
+
 - 如果 userProfile.Name 為空白，且 conversationData.PromptedUserForName 為 _true_，我們就會擷取所提供的使用者名稱，並將其儲存在使用者狀態中。
 - 如果 userProfile.Name 為空白，且 conversationData.PromptedUserForName 為 _false_，我們就會要求使用者的名稱。
 - 如果先前已儲存 userProfile.Name，則我們會從使用者輸入中擷取訊息時間和通道識別碼，將所有資料回應給使用者，並將擷取的資料儲存在對話狀態中。
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-**StateManagementBot.cs**  
-[!code-csharp[OnMessageActivityAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=38-85)]
+**Bots/StateManagementBot.cs** [!code-csharp[OnMessageActivityAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=38-85)]
 
 結束回合處理常式之前，我們會使用狀態管理物件的 SaveChangesAsync()  方法，將所有狀態變更寫回儲存體。
 
-**StateManagementBot.cs**  
-[!code-csharp[OnTurnAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=24-31)]
+**Bots/StateManagementBot.cs** [!code-csharp[OnTurnAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=24-31)]
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-**StateManagementBot.js**  
-[!code-javascript[OnMessage](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=21-54)]
+**bots/stateManagementBot.js** [!code-javascript[OnMessage](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=21-58)]
 
 結束每個對話方塊回合之前，我們會使用狀態管理物件的 _saveChanges()_ 方法，藉由將狀態寫回儲存體來保留所有變更。
 
-**StateManagementBot.js**  
-[!code-javascript[OnDialog](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=60-67)]
+**bots/stateManagementBot.js** [!code-javascript[OnDialog](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=60-67)]
 
 ---
 

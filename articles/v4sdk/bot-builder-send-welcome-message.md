@@ -7,14 +7,14 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 05/23/2019
+ms.date: 11/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: df1d0b7553958664c57147b5a45520b591a965f4
-ms.sourcegitcommit: 9e1034a86ffdf2289b0d13cba2bd9bdf1958e7bc
+ms.openlocfilehash: 4390ddbbe9c75852cb9d7cad19cb50d0f8f04f8b
+ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/21/2019
-ms.locfileid: "69890625"
+ms.lasthandoff: 11/12/2019
+ms.locfileid: "73933725"
 ---
 # <a name="send-welcome-message-to-users"></a>將歡迎訊息傳送給使用者
 
@@ -23,98 +23,119 @@ ms.locfileid: "69890625"
 建立任何 Bot 時的主要目標就是讓您的使用者參與有意義的對話。 達成此目標的最佳方式之一就是確保從使用者第一次連線的那一刻，他們就了解您 Bot 的主要用途和功能，以及您 Bot 的建立原因。 這篇文章提供程式碼範例，協助您歡迎使用者使用 Bot。
 
 ## <a name="prerequisites"></a>必要條件
-- 了解 [bot 基本概念](bot-builder-basics.md)。 
+
+- 了解 [bot 基本概念](bot-builder-basics.md)。
 - 採用 [C# 範例](https://aka.ms/welcome-user-mvc)或 [JS 範例](https://aka.ms/bot-welcome-sample-js)的一份**歡迎使用者範例**。 此範例中的程式碼用來說明如何傳送歡迎訊息。
 
 ## <a name="about-this-sample-code"></a>關於此程式碼範例
-此程式碼範例示範，如何在新的使用者一開始連線至 Bot 時就偵測到並表示歡迎。 下圖顯示此 Bot 的邏輯流程。 
+
+此程式碼範例示範，如何在新的使用者一開始連線至 Bot 時就偵測到並表示歡迎。 下圖顯示此 Bot 的邏輯流程。
 
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
 Bot 會遇到的兩個主要事件為
+
 - `OnMembersAddedAsync`，每當有新的使用者連線至 Bot 時便會加以呼叫
 - `OnMessageActivityAsync`，每次收到新的使用者輸入時便會加以呼叫。
 
 ![歡迎使用者邏輯流程](media/welcome-user-flow.png)
 
-每當有新的使用者連線時，Bot 便會向其提供 `WelcomeMessage`、`InfoMessage` 和 `PatternMessage`。 收到新的使用者輸入時，便會檢查 WelcomeUserState 以查看 `DidBotWelcomeUser` 是否設定為 true  。 如果沒有，便會對使用者傳回初始的歡迎使用者訊息。
+每當有新的使用者連線時，Bot 便會向其提供 `WelcomeMessage`、`InfoMessage` 和 `PatternMessage`。
+收到新的使用者輸入時，便會檢查 WelcomeUserState 以查看 `DidBotWelcomeUser` 是否設定為 true  。 如果沒有，便會對使用者傳回初始的歡迎使用者訊息。
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
 Bot 會遇到的兩個主要事件為
+
 - `onMembersAdded`，每當有新的使用者連線至 Bot 時便會加以呼叫
 - `onMessage`，每次收到新的使用者輸入時便會加以呼叫。
 
 ![歡迎使用者邏輯流程](media/welcome-user-flow-js.png)
 
-每當有新的使用者連線時，Bot 便會向其提供 `welcomeMessage`、`infoMessage` 和 `patternMessage`。 收到新的使用者輸入時，便會檢查 `welcomedUserProperty` 以查看 `didBotWelcomeUser` 是否設定為 true  。 如果沒有，便會對使用者傳回初始的歡迎使用者訊息。
+每當有新的使用者連線時，Bot 便會向其提供 `welcomeMessage`、`infoMessage` 和 `patternMessage`。
+收到新的使用者輸入時，便會檢查 `welcomedUserProperty` 以查看 `didBotWelcomeUser` 是否設定為 true  。 如果沒有，便會對使用者傳回初始的歡迎使用者訊息。
 
 ---
 
  如果 DidBotWelcomeUser 是 _true_，便會評估使用者的輸入。 根據使用者輸入的內容，此 Bot 會執行下列其中一項：
+
 - 針對從使用者收到的問候發出回應。
 - 顯示主圖卡片來提供關於 Bot 的其他資訊。
 - 重新傳送 `WelcomeMessage` 來說明此 Bot 預期的輸入。
 
 ## <a name="create-user-object"></a>建立使用者物件
+
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
 使用者狀態物件會在啟動時建立，而相依性會插入 Bot 建構函式。
 
 **Startup.cs**  
-[!code-csharp[ConfigureServices](~/../botBuilder-samples/samples/csharp_dotnetcore/03.welcome-user/Startup.cs?range=30-34)]
+[!code-csharp[Configure services](~/../botBuilder-samples/samples/csharp_dotnetcore/03.welcome-user/Startup.cs?range=30-34)]
 
 **WelcomeUserBot.cs**  
-[!code-csharp[Class](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=41-47)]
+[!code-csharp[Consume services](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=41-47)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
 在啟動時，會將記憶體儲存體與使用者狀態同時定義於 index.js 中。
 
 **Index.js**  
-[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/Index.js?range=8-10,32-39)]
+[!code-javascript[Import statement](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/Index.js?range=8-10)]
+[!code-javascript[Create objects](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/Index.js?range=51-55)]
 
 ---
 
 ## <a name="create-property-accessors"></a>建立屬性存取子
+
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
 現在，我們會建立屬性存取子來獲得 OnMessageActivityAsync 方法內 WelcomeUserState 的控制代碼。
 然後，呼叫 GetAsync 方法來取得正確範圍的金鑰。 我們隨後會使用 `SaveChangesAsync` 方法在每個使用者輸入反覆項目之後儲存使用者狀態資料。
 
 **WelcomeUserBot.cs**  
-[!code-csharp[OnMessageActivityAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=68-71, 102-105)]
+[!code-csharp[Get state](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=68-71)]
+[!code-csharp[Save state](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range= 103-105)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-現在，我們會建立屬性存取子來獲得 UserState 中所保存 WelcomedUserProperty 的控制代碼。
+
+現在，我們會建立屬性存取子來獲得 userState 中所保存 welcomedUserProperty 的控制代碼。
 
 **WelcomeBot.js**  
-[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=7-9)]
-
-[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=17-22)]
+[!code-javascript[Define welcome property key](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=7-8)]
+[!code-javascript[Create welcome property accessor](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=16-22)]
 
 ---
 
 ## <a name="detect-and-greet-newly-connected-users"></a>偵測並歡迎新連線的使用者
 
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
 在 **WelcomeUserBot** 中，我們會使用 `OnMembersAddedAsync()` 檢查是否有活動更新，以了解對話中是否新增了新的使用者，然後向其傳送一組三個的初始歡迎訊息，分別是 `WelcomeMessage`、`InfoMessage` 和 `PatternMessage`。 此互動的完整程式碼如下所示。
 
 **WelcomeUserBot.cs**  
-[!code-csharp[WelcomeMessages](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=20-40, 55-66)]
+[!code-csharp[Define messages](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=20-39)]
+[!code-csharp[Send messages](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=55-66)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
 此 JavaScript 程式碼會在有新增的使用者時，傳送初始歡迎訊息。 其方法是檢查對話活動並確認對話中是否已新增新的成員。
 
 **WelcomeBot.js**  
-[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=65-88)]
+[!code-javascript[Send messages](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=65-88)]
 
 ---
 
 ## <a name="welcome-new-user-and-discard-initial-input"></a>歡迎新的使用者並捨棄初始輸入
 
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
 此外，務必考量使用者的輸入何時實際上可能包含實用資訊，而這可能因通道而異。 若要確保使用者在所有可能的通道上都有美好的體驗，我們會檢查狀態旗標 _didBotWelcomeUser_，如果這是 "false"，我們就不會處理此初始使用者輸入。 我們會改為向使用者提供初始歡迎訊息。 布林值 _welcomedUserProperty_ 於是會設定為 "true" (儲存於 UserState 內)，我們的程式碼現在則會處理這位使用者來自所有其他訊息活動的輸入。
 
 **WelcomeUserBot.cs**  
 [!code-csharp[DidBotWelcomeUser](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=68-82)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
 此外，務必考量使用者的輸入何時實際上可能包含實用資訊，而這可能因通道而異。 為確保使用者在所有可能的通道上都有美好的體驗，我們會檢查 didBotWelcomedUser 屬性，如果此屬性不存在，我們便會將其設定為 "false"，並且不處理初始使用者輸入。 我們會改為向使用者提供初始歡迎訊息。 然後布林值 _didBotWelcomeUser_ 會設為 "true"，而我們的程式碼會處理來自所有其他訊息活動的使用者輸入。
 
 **WelcomeBot.js**  
@@ -127,12 +148,14 @@ Bot 會遇到的兩個主要事件為
 在歡迎新的使用者後，便會在每個訊息回合評估使用者輸入資訊，且 Bot 會根據該使用者輸入的內容來提供回應。 下列程式碼顯示用來產生該回應的決策邏輯。 
 
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
 輸入 'intro' 或 'help' 會呼叫 `SendIntroCardAsync` 函式來向使用者呈現資訊主圖卡片。 本文的下一節會檢驗該程式碼。
 
 **WelcomeUserBot.cs**  
 [!code-csharp[SwitchOnUtterance](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=85-100)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
 輸入 'intro' 或 'help' 會使用 CardFactory 來向使用者呈現簡介調適型卡片。 本文的下一節會檢驗該程式碼。
 
 **WelcomeBot.js**  

@@ -11,7 +11,7 @@ metadata:
   ms.tgt_pltfrm: na
   ms.devlang: na
   ms.topic: landing-page
-  ms.date: 05/31/2019
+  ms.date: 11/11/2019
   ms.author: ivorb
 abstract:
   description: 'Azure Bot 服務提供專為 Bot 開發打造的整合式環境，可讓您在同一處建置、連線、測試、部署及管理智慧型 Bot。 Azure Bot 服務會利用 Bot Framework SDK，並支援 C# 和 JavaScript。 了解如何透過我們的快速入門、教學課程和範例使用 Bot 服務。'
@@ -21,8 +21,8 @@ abstract:
       height: 110
       src: media/video/satya-video.png
       width: 250
-    title: 'Satya Nadella 在 Build 2019 的演說重點。 (1:25:09)'
-    href: 'https://mybuild.techcommunity.microsoft.com/sessions/77571?source=%7B%7B%20ctrl.source#top-anchor'
+    title: 'Satya Nadella 的 Ignite 2019 專題演講。 (1:52)'
+    href: 'https://myignite.techcommunity.microsoft.com/sessions/77831?source=sessions'
     width: 250
 sections:
   - items:
