@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dedd9c7eb8d562acd30e137cb1a99f618f79ff7e
-ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
+ms.openlocfilehash: 65a55550dff284ad44fd85cfe9223107cb8f4baf
+ms.sourcegitcommit: dbc7eaee5c1f300b23c55abe6b60cd01c7408915
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/30/2019
-ms.locfileid: "70167337"
+ms.lasthandoff: 11/23/2019
+ms.locfileid: "74415139"
 ---
 # <a name="virtual-assistant-overview"></a>虛擬助理概觀
 
@@ -107,3 +107,4 @@ ms.locfileid: "70167337"
 ## <a name="getting-started"></a>開始使用
 
 請參閱[教學課程](https://aka.ms/bfs-tutorials)以了解如何建立和部署虛擬助理。
+
