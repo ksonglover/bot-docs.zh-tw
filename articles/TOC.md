@@ -52,6 +52,7 @@
 ### [在您的 Bot 中新增驗證](v4sdk/bot-builder-authentication.md)
 ### [為您的 Bot 實作自訂儲存空間](v4sdk/bot-builder-custom-storage.md)
 ### [將遙測資料新增至 Bot](v4sdk/bot-builder-telemetry.md)
+### [將遙測新增至您的 QnA Bot](v4sdk/bot-builder-telemetry-QnAMaker.md)
 ### [在 Bot 中使用 Direct Line Speech](directline-speech-bot.md)
 ### [.NET](dotnet/TOC.md)
 ### [Node.js](nodejs/TOC.md)
