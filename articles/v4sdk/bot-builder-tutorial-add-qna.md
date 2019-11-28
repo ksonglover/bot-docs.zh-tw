@@ -9,12 +9,12 @@ ms.topic: tutorial
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8bc13f06e4cfd36afea65a344503fa48fe05f08e
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.openlocfilehash: 422c1285d6f668b6f5c39617f5d25419b2874eea
+ms.sourcegitcommit: dcacda776c927bcc7c76d00ff3cc6b00b062bd6b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70299208"
+ms.lasthandoff: 11/23/2019
+ms.locfileid: "74410470"
 ---
 # <a name="tutorial-use-qna-maker-in-your-bot-to-answer-questions"></a>教學課程：在 Bot 中使用 QnA Maker 回答問題
 
@@ -22,7 +22,7 @@ ms.locfileid: "70299208"
 
 您可以使用 QnA Maker 服務和知識庫，對 Bot 新增問與答支援。 當您建立知識庫時，您會在其中植入問題與答案。
 
-在本教學課程中，您了解如何：
+在本教學課程中，您會了解如何：
 
 > [!div class="checklist"]
 > * 建立 QnA Maker 服務和知識庫
@@ -55,12 +55,12 @@ ms.locfileid: "70299208"
    1. 如有必要，請建立 QnA 服務。 (您可以在此教學課程中使用現有的 QnA Maker 服務或建立新的服務)。如需詳細的 QnA Maker 指示，請參閱[建立 QnA Maker 服務](https://docs.microsoft.com/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure)和[建立、訓練及發佈 QnA Maker 知識庫](https://docs.microsoft.com/azure/cognitive-services/qnamaker/quickstarts/create-publish-knowledge-base)。
    1. 將 QnA 服務連線到知識庫。
    1. 為您的知識庫命名。
-   1. 若要填入您的知識庫，請使用範例存放庫中的 **BotBuilder-Samples\samples\csharp_dotnetcore\11.qnamaker\CognitiveModels\smartLightFAQ.tsv** 檔案。
+   1. 若要填入您的知識庫，請使用範例存放庫中的 `BotBuilder-Samples\samples\csharp_dotnetcore\11.qnamaker\CognitiveModels\smartLightFAQ.tsv` 檔案。 如果您已下載範例，請從您的電腦上傳 smartLightFAQ.tsv  檔案。
    1. 按一下 [建立知識庫]  以建立知識庫。
 1. **儲存並訓練**知識庫。
 1. **發佈**知識庫。
 
-發佈 QnA Maker 應用程式後，選取 [設定]  索引標籤，然後捲動至 [部署詳細資料]。 記錄以下來自 _Postman_ 範例 HTTP 要求的值。
+發佈 QnA Maker 應用程式後，選取 [設定]  索引標籤，然後捲動至 [部署詳細資料]  。 複製以下來自 Postman  HTTP 範例要求的值。
 
 ```text
 POST /knowledgebases/<knowledge-base-id>/generateAnswer
@@ -111,9 +111,9 @@ QnAEndpointHostName="your-hostname" // This is a URL ending in /qnamaker
 
 | 欄位 | 值 |
 |:----|:----|
-| QnAKnowledgebaseId | QnA Maker 入口網站為您產生的知識庫識別碼。 |
-| QnAAuthKey | QnA Maker 入口網站為您產生的端點金鑰。 |
-| QnAEndpointHostName | QnA Maker 入口網站所產生的主機 URL。 使用完整的 URL，其開頭為 `https://` 並以 `/qnamaker` 結尾。 完整的 URL 字串看起來會類似 "https://< >.azure.net/qnamaker"。 |
+| QnAKnowledgebaseId | 來自 *Postman* HTTP 範例要求的 `knowledge-base-id`。|
+| QnAAuthKey | 來自 *Postman* HTTP 範例要求的 `qna-maker-resource-key`。 |
+| QnAEndpointHostName | 來自 *Postman* HTTP 範例要求的 `your-hostname`。 使用完整的 URL，其開頭為 `https://` 並以 `/qnamaker` 結尾。 完整的 URL 字串看起來會像是 `https://<your knowledge base name>.azurewebsites.net/qnamaker`。 |
 
 現在儲存您的編輯。
 
@@ -207,9 +207,9 @@ QnAEndpointHostName="your-hostname" // This is a URL ending in /qnamaker
    ```csharp
    protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
    {
-      // First send the user input to your QnA Maker knowledge base
+      await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {turnContext.Activity.Text}"), cancellationToken);
+
       await AccessQnAMaker(turnContext, cancellationToken);
-      ...
    }
    ```
 
@@ -293,28 +293,33 @@ QnAEndpointHostName="your-hostname" // This is a URL ending in /qnamaker
 ![測試 qna 範例](./media/qna-test-bot.png)
 
 ## <a name="republish-your-bot"></a>重新發佈 Bot
+您現在可以將 Bot 重新發佈回到 Azure。 您必須壓縮專案資料夾，然後執行命令來將 Bot 部署至 Azure。 如需詳細資訊，請參閱[部署 Bot](https://docs.microsoft.com/azure/bot-service/bot-builder-deploy-az-cli?view=azure-bot-service-4.0&tabs=csharp) 一文。 
 
-我們現在可以將您的 Bot 重新發佈回到 Azure。
+### <a name="zip-your-project-folder"></a>壓縮專案資料夾 
+[!INCLUDE [zip up code](~/includes/deploy/snippet-zip-code.md)]
 
-> [!IMPORTANT]
-> 建立專案檔案的壓縮檔之前，請確定您「位在」  正確的資料夾中。 
-> - 針對 C# Bot，這是具有 .csproj 檔案的資料夾。 
-> - 針對 JS Bot，這是具有 app.js 或 index.js 檔案的資料夾。 
+<!-- > [!IMPORTANT]
+> Before creating a zip of your project files, make sure that you are _in_ the correct folder. 
+> - For C# bots, it is the folder that has the .csproj file. 
+> - For JS bots, it is the folder that has the app.js or index.js file. 
 >
-> 選取所有檔案並在該資料夾中壓縮，然後在該資料夾中執行命令。
+> Select all the files and zip them up while in that folder, then run the command while still in that folder.
 >
-> 如果您的根資料夾位置不正確，**Bot 將無法在 Azure 入口網站中執行**。
+> If your root folder location is incorrect, the **bot will fail to run in the Azure portal**. -->
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+### <a name="deploy-your-code-to-azure"></a>將程式碼部署至 Azure
+[!INCLUDE [deploy code to Azure](~/includes/deploy/snippet-deploy-code-to-az.md)]
+
+<!-- # [C#](#tab/csharp)
 ```cmd
 az webapp deployment source config-zip --resource-group "resource-group-name" --name "bot-name-in-azure" --src "c:\bot\mybot.zip"
 ```
 
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+# [JavaScript](#tab/javascript)
 
 [!INCLUDE [publish snippet](~/includes/deploy/snippet-publish-js.md)]
 
----
+--- -->
 
 ### <a name="test-the-published-bot"></a>測試已發佈的 Bot
 
@@ -330,8 +335,8 @@ az webapp deployment source config-zip --resource-group "resource-group-name" --
 如果您不打算繼續使用此應用程式，請使用下列步驟來刪除相關聯的資源：
 
 1. 在 Azure 入口網站中，開啟您 Bot 的資源群組。
-1. 按一下 [刪除資源群組]  來刪除群組及其包含的所有資源。
-1. 在確認窗格中，輸入資源群組名稱，然後按一下 [刪除]  。
+2. 按一下 [刪除資源群組]  來刪除群組及其包含的所有資源。
+3. 在確認窗格中，輸入資源群組名稱，然後按一下 [刪除]  。
 
 ## <a name="next-steps"></a>後續步驟
 

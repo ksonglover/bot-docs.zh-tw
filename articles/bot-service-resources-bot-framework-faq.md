@@ -1,18 +1,18 @@
 ---
 title: Bot Service 常見問題集 | Microsoft Docs
 description: Bot Framework 元素的常見問題集清單，以及新功能的上市時間。
-author: DeniseMak
+author: scheyal
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 02/21/2019
-ms.openlocfilehash: 8804ee573f3bf16a831e58221e27d2c8557bd20f
-ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
+ms.date: 11/21/2019
+ms.openlocfilehash: c0feda708be8ac384c458289884fddf6ee798790
+ms.sourcegitcommit: a4a437a1d44137375ea044dcc11bccc8d004e3db
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73933538"
+ms.lasthandoff: 11/25/2019
+ms.locfileid: "74479499"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常見問題集
 
@@ -50,41 +50,40 @@ Bot Framework v4 SDK 是根據意見反映而建置，並且參考了先前的 B
 - [將 Language Understanding (LUIS) 容器部署至 Azure 容器執行個體](https://docs.microsoft.com/azure/cognitive-services/luis/deploy-luis-on-container-instances)
 - [Azure 認知服務中的容器支援](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-container-support)
 
+## <a name="bot-framework-sdk-version-3-lifetime-support-and-deprecation-notice"></a>Bot Framework SDK 第 3 版存留期支援與取代通知
+Microsoft Bot Framework SDK V4 已於 2018 年 9 月發行，從那時起，我們已提供了幾個次要版本來改善功能。 如先前所宣佈，V3 SDK 已淘汰。 因此，V3 存放庫中將不再有任何開發。 **現有的 V3 Bot 工作負載將會繼續執行，並不會發生中斷。我們不打算中斷任何正在執行的工作負載**。
 
-## <a name="bot-framework-sdk-version-3-lifetime-support"></a>Bot Framework SDK 第 3 版存留期支援 
-SDK V3 Bot 會繼續執行並受 Azure Bot Service 支援。  自 Bot Framework SDK V4 發行以來，如同其他架構，我們會以安全性、高優先順序錯誤修正及連接器 / 通訊協定層更新，繼續支援 SDK V3。  客戶可預期 2019 年繼續有 v3 支援。
+如前面所述，Bot Builder SDK V3 Bot 會繼續執行並受 Azure Bot Service 支援。 Bot Builder SDK V3 將只能受到重大安全性錯誤修正、連接器和通訊協定階層相容性更新的支援。  
 
-### <a name="what-is-microsoft-plan-for-supporting-existing-v3-bots-what-happens-to-my-v3-bots-will-my-v3-bots-stop-working"></a>Microsoft 對於支援現有 V3 Bot 的計畫為何？ 我的 V3 Bot 發生什麼事？ 我的 V3 Bot 會停止運作嗎？
-SDK V3 Bot 會繼續執行並受 Azure Bot Service 支援。  自 Bot Framework SDK V4 發行以來，如同其他架構，我們會以安全性、高優先順序錯誤修正及連接器 / 通訊協定層更新，繼續支援 SDK V3。  客戶可預期 2019 年繼續有 v3 支援。
-- Azure Bot Service 與 Bot Framework V3 兩者都是 GA 產品且受到完全支援。 基礎 Bot Framework 通訊協定和連接器程式庫維持不變，而且在 V3 與 V4 SDK 之間共用。  
-- 2019 年會繼續支援使用 Bot Framework (BotBuilder) V3 SDK 所建立的 Bot。 
-- 客戶可以繼續使用 Azure 入口網站或 Azure CLI 工具建立 V3 Bot。
+所有新功能都只會在 [Bot Framework SDK V4](https://github.com/microsoft/botframework-sdk) 上開發。  建議客戶儘快將其 Bot 遷移至 V4。
 
-### <a name="what-happens-to-my-bot-written-to-rest--bot-framework-protocol-31"></a>寫入至 REST 和 Bot Framework 通訊協定 3.1 的 Bot 發生什麼事？
-- Azure Bot Service 與 Bot Framework V3 兩者都是 GA 產品且受到完全支援。
-- Bot Framework 通訊協定維持不變，而且在 V3 與 V4 SDK 之間共用。  
+強烈建議您開始將 V3 聊天機器人遷移至 V4。 為了支援此移轉，我們已製作移轉文件，且會對移轉計劃提供延伸支援 (透過 Stack Overflow 和 Microsoft 客戶支援等標準管道)。
 
-### <a name="will-there-be-more-updates-additional-development-for-the-v3-sdk-or-just-bugfixes"></a>V3 SDK 會有更多更新、額外開發，或只有錯誤修正？  
-- 我們會以次要增強功能 (主要在連接器層)，以及安全性和高優先順序的錯誤修正來更新 V3。  
-- 我們會根據錯誤修正和/或必要的通訊協定變更，視需要每年發行 V3 更新兩次。 
-- 目前的計畫是將 V3 的次要和修補版本發佈至 NuGet 和 NPM，以供我們的 C# 和 JavaScript SDK 使用。
+如需詳細資訊，請參閱下列參考文件：
+* [基本移轉指引](https://aka.ms/bfv3v4migration)
+* 主要 V4 存放庫會用來開發 Bot Framework 的 Bot
+  * [適用於 dotnet 的 Botbuilder](https://github.com/microsoft/botbuilder-dotnet)
+  * [適用於 JS 的 Botbuilder](https://github.com/microsoft/botbuilder-js) 
+* QnA Maker 程式庫已取代為下列 V4 程式庫：
+  * [適用於 dotnet 的程式庫](https://github.com/Microsoft/botbuilder-dotnet/tree/master/libraries/Microsoft.Bot.Builder.AI.QnA)
+  * [適用於 JS 的程式庫](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-ai/src/qnaMaker.ts)
+* Azure 程式庫已取代為下列 V4 程式庫：
+  * [適用於 JS Azure 的 Botbuilder](https://github.com/Microsoft/botbuilder-js/tree/master/libraries/botbuilder-azure)
+  * [適用於 dotnet Azure 的 Botbuilder](https://github.com/Microsoft/botbuilder-dotnet/tree/master/libraries/Microsoft.Bot.Builder.Azure)
 
-### <a name="why-v4-is-not-backwards-compatible-with-v3"></a>為何 V4 與 V3 無法回溯相容？
-- 在通訊協定層級，交談式應用程式 (也就是您的 Bot) 與不同通道之間的通訊會使用 Bot Framework 活動通訊協定 (V3 與 V4 之間的通訊使用相同的通訊協定)。 相同的基礎 Azure Bot Service (AZURE BOT SERVICE) 基礎結構同時支援 V3 和 V4 Bot。
-- Bot Framework SDK V4 使用模組化且可擴充的 SDK 架構，提供以交談式為主的開發體驗，讓開發人員能建立強大且複雜的聊天應用程式。 V4 擴充式設計是以客戶意見反應為基礎，這意味著 SDK V3 對話模型和基本項目過於狹隘並限制擴充性。  
+### <a name="v3-status-summary"></a>V3 狀態摘要
 
-### <a name="what-is-the-general-migration-strategy-i-have-a-v3-bot-how-can-i-migrate-it-to-v4-can-i-migrate-my-v3-bot-to-v4"></a>什麼是一般移轉策略？ 我有 V3 Bot，如何將其遷移至 V4/ 是否可以將 V3 Bot 遷移至 V4？
+#### <a name="abs-service"></a>ABS 服務
+1.  ABS 服務端會繼續支援執行 V3 Bot，而且沒有任何計畫的生命週期結束日期，任何執行中的 Bot 都不會中斷運作。 
+2.  通道會繼續與 V3 相容，而且沒有中斷或結束生命週期的計畫。
+3.  入口網站上已停止建立新的 V3 Bot；不過，若專家使用者不在 ABS 上 (例如作為 webapp 服務)，但想要獨立部署其 V3 Bot，則可以這麼做。
 
-- 若要了解如何將 V3 Bot 遷移至 V4，請參閱 [v3 和 v4 .NET SDK 之間的差異](v4sdk/migration/migration-about.md)。
-- 在此階段，使用 SDK V3 至 SDK V4 建立的 Bot 移轉說明會以文件和範例形式呈現。 我們目前不打算在 SDK V4 中提供任何 SDK V3 相容性層，來允許 V3 建置要在 V4 Bot 內運作的 Bot。
-- 如果您在生產環境中已經有 Bot Framework SDK V3 Bot，別擔心，其會繼續按現狀針對可預見的未來運作。
-- Bot Framework SDK V4 是非常成功的 V3 SDK 進化版本。 V4 為主要版本發行，其中包含防止 V3 Bot 在較新 V4 SDK 上執行的重大變更。
+#### <a name="sdk-and-tools"></a>SDK 和工具
 
-### <a name="should-i-build-new-a-bot-using-v3-or-v4"></a>我應該使用 V3 或 V4 建置新的 Bot？
-- 在新的交談式體驗中，我們建議您使用 Bot Framework SDK V4 啟動新的 Bot。
-- 如果您已熟悉 Bot Framework SDK V3，您應該花點時間了解新的 [Bot Framework SDK V4](https://aka.ms/botframeowrkoverview) 所提供的新版本和功能。
-- 如果您在生產環境中已經有 Bot Framework SDK V3 Bot，別擔心，其會繼續按現狀針對可預見的未來運作。
-- 您可以透過 Azure 入口網站和 Azure 命令列，建立 Bot Framework SDK V4 及舊版 V3 Bot。 
+1.  我們不會從 SDK 端投資 V3，而且只會針對可預見的未來，對 SDK 分支套用重要的安全性修正 (例外狀況：我們計畫新增技能連接器，以允許 V4 Bot 呼叫舊版的 V3 Bot)。
+2.  SDK 和工具開發僅適用於 V4，並沒有針對 V3 執行或規劃 (因此我們已經在進行了)。
+3.  但我們不會防止任何人執行舊工具來管理其 V3 Bot。 
+
 
 ### <a name="how-can-i-migrate-azure-bot-service-from-one-region-to-another"></a>要如何在不同區域間遷移 Azure Bot Service？
 
@@ -264,4 +263,3 @@ Cortana Intelligence 是完全受控的巨量資料、進階分析及智慧套�
 [DirectLineAPI]: https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts
 [Support]: bot-service-resources-links-help.md
 [WebChat]: bot-service-channel-connect-webchat.md
-

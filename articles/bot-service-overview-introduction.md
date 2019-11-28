@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 05/05/2019
-ms.openlocfilehash: 3ef81582c500a403080908e0d2c63de2ead5b9ab
-ms.sourcegitcommit: e9cd857ee11945ef0b98a1ffb4792494dfaeb126
+ms.openlocfilehash: 0206cf3381d95fbc58d49924aa19dadea5f226dc
+ms.sourcegitcommit: dbc7eaee5c1f300b23c55abe6b60cd01c7408915
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/01/2019
-ms.locfileid: "71693151"
+ms.lasthandoff: 11/23/2019
+ms.locfileid: "74415153"
 ---
 # <a name="about-azure-bot-service"></a>關於 Azure Bot Service
 
@@ -50,7 +50,7 @@ Azure Bot 服務和 Bot Framework 可提供一組整合式工具與服務，可�
 ### <a name="build"></a>建置
 Bot 是一項 Web 服務，可實作對話式介面並透過 Bot Framework Service 進行通訊，以傳送和接收訊息和事件。 Bot Framework Service 是 Azure Bot Service 和 Bot Framework 的其中一個元件。 您可以使用任意多個環境和語言建立 Bot。 您可以在 [Azure 入口網站](bot-service-quickstart.md)中開始進行 Bot 開發，或使用 [[C#](dotnet/bot-builder-dotnet-sdk-quickstart.md) | [JavaScript](javascript/bot-builder-javascript-quickstart.md)] 範本進行本機開發。
 
-我們在 Azure Bot Service 和 Bot Framework 中提供可用來增強 Bot 功能的其他元件
+我們在 Azure Bot Service 和 Bot Framework 中提供可用來增強 Bot 功能的其他元件：
 
 | 功能 | 說明 | 連結 |
 | --- | --- | --- |
@@ -73,7 +73,7 @@ Bot 是將許多不同組件整合在一起運作的複雜應用程式。 和其
  
 - 在 [Web](bot-service-manage-test-webchat.md) 上測試您的 Bot。 透過 Azure 入口網站進行設定後，Bot 也可透過網路聊天介面觸達。 網路聊天介面適合用來將 Bot 的存取權授與給測試人員，以及其他無法直接存取 Bot 執行中程式碼的人員。
 
-- 使用 Bot Framework SDK 的 7 月更新[單元測試](https://docs.microsoft.com/en-us/azure/bot-service/unit-test-bots?view=azure-bot-service-4.0)您的 Bot。
+- 使用 Bot Framework SDK 的 7 月更新[單元測試](https://docs.microsoft.com/azure/bot-service/unit-test-bots?view=azure-bot-service-4.0)您的 Bot。
 
 ### <a name="publish"></a>發佈 
 當您準備在 Web 上提供您的 Bot 時，請將 Bot 發佈至 [Azure](bot-builder-howto-deploy-azure.md) 或自己的 Web 服務或資料中心。 在公用網際網路上有一個位址是 Bot 在您的網站上，或在聊天通道內活化的第一個步驟。

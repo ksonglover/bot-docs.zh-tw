@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 0570ec6a44c9fe1b007c1fd1b8c335288baa63cb
-ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
+ms.openlocfilehash: 9c86001a51914f359163e7d755aa57e1c54127f8
+ms.sourcegitcommit: dcacda776c927bcc7c76d00ff3cc6b00b062bd6b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/16/2019
-ms.locfileid: "68230667"
+ms.lasthandoff: 11/23/2019
+ms.locfileid: "74414581"
 ---
 ## <a name="prerequisites"></a>必要條件
 - [Visual Studio 2017 或更新版本](https://www.visualstudio.com/downloads)
@@ -13,14 +13,14 @@ ms.locfileid: "68230667"
 - 了解 [ASP.Net Core](https://docs.microsoft.com/aspnet/core/) 和 [ C# 的非同步程式設計](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/async/index)
 
 ## <a name="create-a-bot"></a>建立 Bot
-安裝您在必要條件區段下載的 BotBuilderVSIX.vsix 範本。
+安裝您在必要條件區段下載的 [BotBuilderVSIX.vsix](https://aka.ms/bot-vsix) 範本。
 
-在 Visual Studio 中，使用 **Echo Bot (Bot Framework v4)** 範本建立新的 Bot 專案。
+在 Visual Studio 中，使用 **Echo Bot (Bot Framework v4)** 範本建立新的 Bot 專案。 在搜尋方塊中輸入 bot framework v4  ，即可只顯示 Bot 範本。
 
-![Visual Studio 專案](~/media/azure-bot-quickstarts/bot-builder-dotnet-project.png)
+![Visual Studio 會建立新的專案對話方塊](../media/azure-bot-quickstarts/bot-builder-dotnet-project-vs2019.png)
 
 > [!TIP] 
-> 如有需要，請將專案組建類型變更為 ``.Net Core 2.1``。 此外，視需要更新 `Microsoft.Bot.Builder` [NuGet 套件](https://docs.microsoft.com/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
+> 如果使用 Visual Studio 2017，請確定專案組建類型為 ``.Net Core 2.1`` 或更新版本。 此外，視需要更新 `Microsoft.Bot.Builder` [NuGet 套件](https://docs.microsoft.com/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
 
 由於有範本，專案中會包含要在本快速入門建立聊天機器人所需的所有程式碼。 您實際上不需要撰寫任何額外的程式碼。
 

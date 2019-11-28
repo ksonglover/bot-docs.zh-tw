@@ -7,13 +7,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 04/30/2018
-ms.openlocfilehash: caa7c71bc0b12ff6defb72f75dcb6d12ce512806
-ms.sourcegitcommit: eacf1522d648338eebefe2cc5686c1f7866ec6a2
+ms.date: 11/22/2019
+ms.openlocfilehash: 912f913f5fa09d971ba1e87e31736292f707adc2
+ms.sourcegitcommit: 78da125eafe93b3c6d254708b82bdd01de7c3afb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/30/2019
-ms.locfileid: "70166999"
+ms.lasthandoff: 11/25/2019
+ms.locfileid: "74464279"
 ---
 # <a name="connect-a-bot-to-cortana"></a>將 Bot 連線至 Cortana
 
@@ -103,6 +103,8 @@ Cortana 會提供許多不同類型的使用者設定檔資訊，供您存取並
 填妥 Cortana 技能的註冊表單後，請按一下 [在 Cortana 上部署]  以完成連線。 這麼做會將您重新導向回您 Bot 的通道刀鋒視窗中，Bot 現應已連線至 Cortana。
 
 此時您的 Bot 已經部署為您帳戶的 Cortana 技能。
+
+接下來，您必須啟用並授權 Bot 技能，才能連線到帳戶。 在您的 Cortana 應用程式中，說出或輸入*要求引動名稱*，其中「引動名稱」是您在 Azure 入口網站 Cortana 通道中所設定的內容。 Cortana 接著會提示您允許 Bot 技能來進行連線。 如果您選擇 [是] 來允許此作業，則技能現在就會運作，並顯示在 Cortana 的技能清單中。
 
 ## <a name="next-steps"></a>後續步驟
 

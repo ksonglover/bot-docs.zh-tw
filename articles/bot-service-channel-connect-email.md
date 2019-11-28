@@ -2,18 +2,18 @@
 title: 將 Bot 連結到 Office 365 電子郵件 | Microsoft Docs
 description: 了解如何設定 Bot 以使用 Office 365 傳送及接收電子郵件。
 keywords: Office 365, bot channels, email, email credentials, azure portal, custom email, Office 365, Bot 通道, 電子郵件, 電子郵件認證, azure 入口網站, 自訂電子郵件
-author: RobStand
+author: kamrani
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 02/08/2019
-ms.openlocfilehash: ca88c2d023505401d9e31a58bfe7313565a2350c
-ms.sourcegitcommit: a6d02ec4738e7fc90b7108934740e9077667f3c5
+ms.date: 11/15/2019
+ms.openlocfilehash: 3ad7829af9dc24ca9e10ebab352b4513b3bcad28
+ms.sourcegitcommit: 78da125eafe93b3c6d254708b82bdd01de7c3afb
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/04/2019
-ms.locfileid: "70298579"
+ms.lasthandoff: 11/25/2019
+ms.locfileid: "74464282"
 ---
 # <a name="connect-a-bot-to-office-365-email"></a>將 Bot 連結到 Office 365 電子郵件
 
@@ -21,6 +21,9 @@ ms.locfileid: "70298579"
 
 > [!WARNING]
 > 建立 "spambot" 違反 Bot Framework [管理辦法](https://www.botframework.com/Content/Microsoft-Bot-Framework-Preview-Online-Services-Agreement.htm)，包括傳送不需要或未經請求的大量電子郵件的 Bot。
+
+> [!NOTE]
+> 如果您使用的是 Microsoft Exchange Server，請先確定您已先啟用[自動探索](https://docs.microsoft.com/exchange/client-developer/exchange-web-services/autodiscover-for-exchange)，然後再設定電子郵件通道。 
 
 ## <a name="configure-email-credentials"></a>設定電子郵件認證
 

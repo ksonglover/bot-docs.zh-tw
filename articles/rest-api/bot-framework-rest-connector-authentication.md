@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: ed02e02e73f8cf326963da0002477df3441719a2
-ms.sourcegitcommit: d493caf74b87b790c99bcdaddb30682251e3fdd4
+ms.openlocfilehash: cc2421c5693d123f8dd76b238c37d6e4198b5dd8
+ms.sourcegitcommit: dcacda776c927bcc7c76d00ff3cc6b00b062bd6b
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 09/26/2019
-ms.locfileid: "71279873"
+ms.lasthandoff: 11/23/2019
+ms.locfileid: "74410448"
 ---
 # <a name="authentication"></a>Authentication
 
@@ -52,12 +52,12 @@ Authorization: Bearer ACCESS_TOKEN
 
 ![在驗證 MSA 登入服務之後再驗證 Bot](../media/connector/auth_bot_to_bot_connector.png)
 
+### <a name="step-1-request-an-access-token-from-the-azure-ad-v2-account-login-service"></a>步驟 1：從 Azure AD v2 帳戶登入服務要求存取權杖
+
 > [!IMPORTANT]
 > 若您尚未這麼做，請務必向 Bot Framework [註冊您的 Bot](../bot-service-quickstart-registration.md)，以取得其應用程式識別碼和密碼。 您將需要 Bot 的應用程式識別碼和密碼以要求存取權杖。
 
-### <a name="step-1-request-an-access-token-from-the-azure-ad-v2-account-login-service"></a>步驟 1：從 Azure AD v2 帳戶登入服務要求存取權杖
-
-若要從登入服務要求存取權杖，請發出下列要求，並將 **MICROSOFT-APP-ID** 和 **MICROSOFT-APP-PASSWORD** 取代為您向 Bot Framework [註冊](../bot-service-quickstart-registration.md)您的 Bot 時所取得的應用程式識別碼和密碼。
+若要從登入服務要求存取權杖，請發出下列要求，並將 **MICROSOFT-APP-ID** 和 **MICROSOFT-APP-PASSWORD** 取代為您向 Bot Framework [註冊](../bot-service-quickstart-registration.md) Bot 時所取得的 Bot 應用程式識別碼和密碼。
 
 ```http
 POST https://login.microsoftonline.com/botframework.com/oauth2/v2.0/token

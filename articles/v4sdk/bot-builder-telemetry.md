@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 07/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 524ffa37d1d089bfec01fa7b89a456ecdda719f9
-ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
+ms.openlocfilehash: a023fd97bfb7b8d55ad01d118075a6441e426575
+ms.sourcegitcommit: 08f9dc91152e0d4565368f72f547cdea1885af89
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73933715"
+ms.lasthandoff: 11/26/2019
+ms.locfileid: "74510762"
 ---
 # <a name="add-telemetry-to-your-bot"></a>將遙測新增至 Bot
 
@@ -113,7 +113,7 @@ Bot Framework SDK 4.2 版中已新增了遙測記錄功能。  此功能可讓�
     }
     ```
 
-7. 在 `appsettings.json` 檔案中新增 Application Insights 檢測金鑰。`appsettings.json` 檔案包含有關聊天機器人在執行時所用外部服務的中繼資料。 例如，CosmosDB、Application Insights 和 Language Understanding (LUIS) 服務連線和中繼資料都會儲存在該處。 對 `appsettings.json` 檔案新增的內容必須採用下列格式：
+6. 在 `appsettings.json` 檔案中新增 Application Insights 檢測金鑰。`appsettings.json` 檔案包含有關聊天機器人在執行時所用外部服務的中繼資料。 例如，CosmosDB、Application Insights 和 Language Understanding (LUIS) 服務連線和中繼資料都會儲存在該處。 對 `appsettings.json` 檔案新增的內容必須採用下列格式：
 
     ```json
     {
@@ -251,7 +251,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## <a name="enabling-telemetry-to-capture-usage-data-from-other-services-like-luis-and-qna-maker"></a>讓遙測能夠從其他服務 (如 LUIS 和 QnA Maker) 擷取使用方式資料
 
-接下來，我們會在 LUIS 服務中實作遙測功能。 LUIS 服務有內建遙測記錄可供使用，因此您只需進行一些操作就可以開始從 LUIS 取得遙測資料。  
+接下來，我們會在 LUIS 服務中實作遙測功能。 LUIS 服務有內建遙測記錄可供使用，因此您只需進行一些操作就可以開始從 LUIS 取得遙測資料。  如果您想要在啟用 QnA Maker 的 Bot 中啟用遙測，請參閱[將遙測新增至您的 QnAMaker Bot](bot-builder-telemetry-QnAMaker.md)
 
 在此範例中，我們只需要提供遙測用戶端，方法就如同我們對對話方塊所做的一樣。 
 
@@ -337,6 +337,8 @@ Application Insights 可監視聊天機器人應用程式的可用性、效能�
 
 ## <a name="additional-information"></a>其他資訊
 
+* [將遙測新增至您的 QnAMaker Bot](bot-builder-telemetry-qnamaker.md)
+
 * [什麼是 Application Insights？](https://aka.ms/appinsights-overview)
 
 * [在 Application Insights 中使用搜尋](https://aka.ms/search-in-application-insights)
@@ -372,14 +374,6 @@ The easiest way to test is by creating a dashboard using [Azure portal's templat
 ```
 -->
 
-
-
-
-
-
-
-
-
 <!--
 ## Additional information
 
@@ -414,9 +408,7 @@ There are three main components available for your bot to log telemetry, and eac
 - [*LuisRecognizer* class.](#telemetry-support-luis)  You can override for custom logging in two ways - per invocation (add/replace properties) or derived classes.
 - [*QnAMaker*  class.](#telemetry-qnamaker)  You can override for custom logging in two ways - per invocation (add/replace properties) or derived classes.
 
-
 All components log using the `IBotTelemetryClient`  (or `BotTelemetryClient` in node.js) interface which can be overridden with a custom implementation.
-
 
 #### Telemetry Middleware
 
@@ -735,6 +727,7 @@ When logging events into Application Insights, the events generated contain defa
 
 > [!NOTE]
 > Custom telemetry clients will not be provided these values.
+
 
 Property |Type | Details
 --- | --- | ---

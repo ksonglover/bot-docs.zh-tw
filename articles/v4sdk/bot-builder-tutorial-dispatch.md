@@ -7,14 +7,14 @@ ms.author: diberry
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 11/06/2019
+ms.date: 11/22/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 844f1514c0b90477cbe454d91dbc93637713d457
-ms.sourcegitcommit: 312a4593177840433dfee405335100ce59aac347
+ms.openlocfilehash: 8b98610c649f145aed975ed1d4b8eb0281d26016
+ms.sourcegitcommit: a4a437a1d44137375ea044dcc11bccc8d004e3db
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/12/2019
-ms.locfileid: "73933765"
+ms.lasthandoff: 11/25/2019
+ms.locfileid: "74479519"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多個 LUIS 和 QnA 模型
 
@@ -88,7 +88,7 @@ ms.locfileid: "73933765"
 
 7. 開啟已發佈的新 LUIS 應用程式後，選取 [管理]  索引標籤。在 [應用程式資訊] 頁面中，將 `Application ID` 的值記錄為 "_app-id-for-app_"，並將 `Display name` 的值記錄為 "_name-of-app_"。 在 [金鑰和端點] 頁面中，將 `Authoring Key` 的值記錄為 "_your-luis-authoring-key_"，並將 `Region` 記錄為 "_your-region_"。 稍後在您的 'appsetting.json' 檔案中會用到這些值。
 
-8. 完成後，針對 'Weather.json' 檔案重複上述步驟，以_訓練_和_發佈_您的 LUIS **氣象**應用程式和 LUIS **分派**應用程式。
+8. 完成後，針對 'Weather.json' 檔案重複上述步驟，以_訓練_和_發佈_您的 LUIS **住家自動化**應用程式和 LUIS **氣象**應用程式。
 
 ### <a name="create-qna-maker-knowledge-base"></a>建立 QnA Maker 知識庫
 
@@ -475,6 +475,16 @@ Either of the above two actions will reduce the number of times that your bot re
 ### <a name="to-update-or-create-a-new-luis-model"></a>更新或建立新的 LUIS 模型
 
 此範例是以預先設定的 LUIS 模型為基礎。 在[這裡](https://aka.ms/create-luis-model#updating-your-cognitive-models)可以找到其他資訊，協助您更新此模型，或建立新的 LUIS 模型。
+
+更新基礎模型 (QnA 或 LUIS) 之後，請執行 `dispatch refresh` 來更新您的分派 LUIS 應用程式。 基本上，`dispatch refresh` 是與 `dispatch create` 相同的命令，但不會建立新的 LUIS 應用程式識別碼。 
+
+請注意，執行 `dispatch refresh` 時，不會保留已直接加入 LUIS 中的語句。 若要在分派應用程式中保留這些額外的語句，請在文字檔中新增那些語句 (每行一個語句)，然後執行下列命令來新增要分派的檔案：
+
+```powershell
+dispatch add -t file -f <file path> --intentName <target intent name, ie l_General>
+```
+
+一旦將具有額外語句的檔案加入「分派」之後，語句就會在每次重新整理後保留下來。
 
 ### <a name="to-delete-resources"></a>刪除資源
 

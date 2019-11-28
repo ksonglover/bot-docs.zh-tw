@@ -6,13 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 08/15/2019
-ms.openlocfilehash: b8307877bf08db170173486ec9df88fae4d27c29
-ms.sourcegitcommit: 9e1034a86ffdf2289b0d13cba2bd9bdf1958e7bc
+ms.date: 11/22/2019
+ms.openlocfilehash: fd3a20822827a8d4500a1e91bbb9e998b05475dd
+ms.sourcegitcommit: a4a437a1d44137375ea044dcc11bccc8d004e3db
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/21/2019
-ms.locfileid: "69890621"
+ms.lasthandoff: 11/25/2019
+ms.locfileid: "74479509"
 ---
 # <a name="create-a-bot-with-azure-bot-service"></a>建立具有 Azure Bot Service 的 Bot
 
@@ -27,11 +27,11 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
 
 ## <a name="prerequisites"></a>必要條件
 
-- [Azure](http://portal.azure.com) 帳戶
+- [Azure](https://portal.azure.com) 帳戶
 
 ### <a name="create-a-new-bot-service"></a>建立新的 Bot 服務
 
-1. 登入 [Azure 入口網站](http://portal.azure.com/)。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
 1. 按一下 Azure 入口網站左上角的 [建立新資源]  連結，然後選取 [AI + 機器學習服務]   > [Web 應用程式 Bot]  。 
 
 ![建立 Bot](../media/azure-bot-quickstarts/abs-create-blade.png)
@@ -51,6 +51,7 @@ Azure Bot 服務提供建立 Bot 的核心元件，包括用於開發 Bot 的 Bo
  | **應用程式名稱** | 唯一的名稱 | Bot 的唯一 URL 名稱。 例如，如果您將 Bot 命名為 *myawesomebot*，則 Bot 的 URL 將會是 `http://myawesomebot.azurewebsites.net`。 名稱只能使用英數字元和底線字元。 此欄位有 35 個字元的長度限制。 一旦建立 Bot，就無法變更應用程式名稱。 |
  | **Bot 範本** | 回應 Bot | 選擇 [SDK v4]  。 選取 [C#] 或 [Node.js] 以供本快速入門使用，然後按一下 [選取]  。  
  | **App Service 方案/位置** | 您的 App Service 方案  | 選取 [App Service 方案](https://azure.microsoft.com/pricing/details/app-service/plans/)位置。 您可以選擇任何列出的位置，但通常最好是選擇與 Bot 服務相同的位置。 |
+ | **LUIS 帳戶** 僅適用於基本 Bot 範本  | LUIS Azure 資源名稱 | [將 LUIS 資源遷移至 Azure 資源](https://docs.microsoft.com/azure/cognitive-services/luis/luis-migration-authoring)後，請輸入 Azure 資源名稱，以將此 LUIS 應用程式與該 Azure 資源產生關聯。 
  | **Application Insights** | 另一 | 決定您要**開啟**或**關閉** [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果您選取 [開啟]  ，您也必須指定區域位置。 您可以選擇任何列出的位置，但通常最好是選擇與 Bot 服務相同的位置。 |
  | **Microsoft 應用程式識別碼和密碼** | 自動建立應用程式識別碼和密碼 | 如果您需要手動輸入 Microsoft 應用程式識別碼和密碼，請使用此選項。 否則，在 Bot 建立程序期間，便會為您建立新的 Microsoft 應用程式識別碼和密碼。 在為 Bot Service 手動建立應用程式註冊時，請確定您已將支援的帳戶類型設為「任何組織目錄中的帳戶」或「任何組織目錄中的帳戶及個人的 Microsoft 帳戶 (例如 Skype、Outlook.com、Xbox 等等)」。 |
 
