@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 11/21/2019
-ms.openlocfilehash: c0feda708be8ac384c458289884fddf6ee798790
-ms.sourcegitcommit: a4a437a1d44137375ea044dcc11bccc8d004e3db
+ms.openlocfilehash: 4c8a70e4b82e2bc4a5c10d4cf73abf51f5f904ea
+ms.sourcegitcommit: 91a393e885b9ef7e08ceb978ce2f567ea38e7f48
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/25/2019
-ms.locfileid: "74479499"
+ms.lasthandoff: 11/27/2019
+ms.locfileid: "74564410"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常見問題集
 
@@ -84,8 +84,7 @@ Microsoft Bot Framework SDK V4 已於 2018 年 9 月發行，從那時起，我�
 2.  SDK 和工具開發僅適用於 V4，並沒有針對 V3 執行或規劃 (因此我們已經在進行了)。
 3.  但我們不會防止任何人執行舊工具來管理其 V3 Bot。 
 
-
-### <a name="how-can-i-migrate-azure-bot-service-from-one-region-to-another"></a>要如何在不同區域間遷移 Azure Bot Service？
+## <a name="how-can-i-migrate-azure-bot-service-from-one-region-to-another"></a>要如何在不同區域間遷移 Azure Bot Service？
 
 Azure Bot Service 不支援區域移動。 這是全球性服務，不會與任何特定區域繫結。
 
